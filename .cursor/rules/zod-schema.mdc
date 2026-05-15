@@ -1,0 +1,17 @@
+---
+globs: ["core/content-schema/**/*.ts"]
+alwaysApply: false
+description: "The locked content schema — public-API changes require an ADR"
+---
+
+# Zod schema rules
+
+- This package is the **locked content schema**. Every container, every spec, every authoring tool depends on it. **Any change to public exports requires an ADR** under `docs/adr/` and a numbered schema migration.
+- **Zod v3** (`zod@^3.23`). Do not import `zod/v4` or any pre-release.
+- Prefer `.discriminatedUnion("kind", [...])` for tagged unions. It produces better error messages and faster narrowing than `z.union`.
+- Use `.brand<"Name">()` **sparingly** at the schema level. For numeric units, prefer the branded numeric types exposed by `@paideia/shared` (`Seconds`, `Metres`, …) and have the schema accept the underlying `z.number()` with a runtime range check.
+- Every public type MUST be both:
+  - `export const FooSpec = z.object({...})` — the schema
+  - `export type Foo = z.infer<typeof FooSpec>` — the type
+- Never export a refined-but-unnamed shape. Name it.
+- Backwards-incompatible changes bump the schema-migration counter and ship a migration script. No silent breakage.

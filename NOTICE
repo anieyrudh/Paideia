@@ -1,0 +1,44 @@
+# Third-party dependencies
+
+This file enumerates third-party libraries and assets that are bundled,
+linked, or referenced in Paideia, along with their licenses.
+
+Every production dependency added must appear here. CI enforces this via
+scripts/check-licenses.mjs.
+
+## License allowlist (bundled into JS payload)
+
+The following licenses are accepted for code bundled into the browser:
+- MIT
+- Apache-2.0
+- BSD-2-Clause, BSD-3-Clause
+- ISC
+- MPL-2.0 (file-level copyleft only — acceptable when wrapped)
+- 0BSD
+- Unlicense
+- CC0-1.0
+
+## Rejected (cannot bundle into JS payload)
+
+- GPL-*, AGPL-*, LGPL-*, SSPL-*, BUSL-*, commercial-only
+
+These may be used as external services (self-hosted, accessed via iframe or
+HTTP) but never bundled. Each such use must be documented in the consuming
+package's TECHNICAL.md.
+
+## Bundled dependencies
+
+(Populated automatically by scripts/check-licenses.mjs as the project grows.)
+
+## Clean-room rebuild attributions
+
+Several packages in core/ are clean-room reimplementations of algorithms
+originally published in copyleft-licensed projects. Each carries provenance
+documentation in its TECHNICAL.md. No source code was viewed during
+implementation; only published algorithm descriptions in papers, textbooks,
+and open documentation.
+
+Inspirations gratefully acknowledged:
+- core/argument-graph — Toulmin model; Argdown public documentation
+- core/corpus — Manning, Raghavan, Schütze, "Introduction to Information Retrieval"
+- core/mind-map — Fruchterman-Reingold, Kamada-Kawai force-directed layout papers

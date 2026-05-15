@@ -1,0 +1,12 @@
+All curriculum content in this repository (concept cards, decision matrices,
+sources, transfer problems, misconception maps, and supporting prose) is
+licensed under the Creative Commons Attribution 4.0 International License.
+
+The full license text is available at:
+  https://creativecommons.org/licenses/by/4.0/legalcode
+
+Attribution: When reusing or adapting content from this repository, please
+credit "Paideia · github.com/Paideia/paideia" and link back to the source.
+
+Code (everything under core/, *.tsx, *.ts, *.mjs, configuration files) is
+licensed under the MIT License — see LICENSE.

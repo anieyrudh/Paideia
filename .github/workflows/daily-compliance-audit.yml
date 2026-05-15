@@ -1,0 +1,78 @@
+name: Daily Compliance Audit
+
+on:
+  schedule:
+    # 00:00 UTC = 08:00 SGT
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  NODE_VERSION: "20"
+
+jobs:
+  audit:
+    name: Walk every container and file compliance Issues
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Run container audit
+        id: audit
+        shell: bash
+        run: |
+          set -e
+          OUTPUT=$(node scripts/audit-containers.mjs)
+          echo "$OUTPUT" > audit.json
+          # JSON is also exported on a multi-line output for downstream steps.
+          echo "violations<<__EOF__" >> "$GITHUB_OUTPUT"
+          cat audit.json >> "$GITHUB_OUTPUT"
+          echo "__EOF__" >> "$GITHUB_OUTPUT"
+
+      - name: File Issues for violations
+        if: steps.audit.outputs.violations != '[]' && steps.audit.outputs.violations != ''
+        uses: actions/github-script@v7
+        env:
+          AUDIT_VIOLATIONS: ${{ steps.audit.outputs.violations }}
+        with:
+          script: |
+            const raw = process.env.AUDIT_VIOLATIONS || "[]";
+            let violations;
+            try {
+              violations = JSON.parse(raw);
+            } catch (err) {
+              core.setFailed(`Could not parse audit-containers.mjs output as JSON: ${err.message}`);
+              return;
+            }
+            if (!Array.isArray(violations) || violations.length === 0) {
+              core.info("No violations to file.");
+              return;
+            }
+            const { owner, repo } = context.repo;
+            for (const v of violations) {
+              const container = (v.container || "unknown-container").toString();
+              const checks = Array.isArray(v.failures) ? v.failures : [];
+              const title = `[compliance] ${container}`;
+              const bodyLines = [
+                `**Container:** \`${container}\``,
+                "",
+                "**Failures:**",
+                ...checks.map(c => `- ${c}`),
+                "",
+                "_Filed automatically by daily-compliance-audit.yml._"
+              ];
+              await github.rest.issues.create({
+                owner, repo, title,
+                body: bodyLines.join("\n"),
+                labels: ["compliance", "auto-generated"]
+              });
+            }

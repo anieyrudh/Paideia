@@ -1,0 +1,55 @@
+name: Codex Review (placeholder)
+
+on:
+  pull_request:
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  codex:
+    name: Codex auto-review placeholder
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for OPENAI_API_KEY secret
+        id: secret-check
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -n "$OPENAI_API_KEY" ]; then
+            echo "configured=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "configured=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Post placeholder PR comment
+        if: steps.secret-check.outputs.configured == 'false'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const body = "Codex auto-review will run here once the OPENAI_API_KEY secret is configured.";
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request && context.payload.pull_request.number;
+            if (!issue_number) {
+              core.info("No pull_request context; skipping comment.");
+              return;
+            }
+            // Avoid duplicate comments on re-runs.
+            const existing = await github.paginate(github.rest.issues.listComments, {
+              owner, repo, issue_number, per_page: 100
+            });
+            const already = existing.find(c => c.body && c.body.includes("Codex auto-review will run here"));
+            if (already) {
+              core.info("Placeholder comment already present; skipping.");
+              return;
+            }
+            await github.rest.issues.createComment({ owner, repo, issue_number, body });
+
+      - name: Codex placeholder summary
+        if: steps.secret-check.outputs.configured == 'true'
+        run: |
+          echo "OPENAI_API_KEY secret is set. The real Codex GitHub Action invocation will be wired in here."
+          # NOTE: This job is intentionally a no-op until the real Codex Action is integrated.
+          # Do not fail the build either way.
+          exit 0

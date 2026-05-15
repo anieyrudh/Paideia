@@ -1,0 +1,15 @@
+---
+globs: ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts"]
+alwaysApply: false
+description: "Testing rules — vitest, Playwright, prediction gate, axe, property-based"
+---
+
+# Testing rules
+
+- **vitest** for unit and integration tests. **Playwright** for end-to-end and sim behaviour.
+- Every sim test (`sims/<sim-id>/<sim-id>.test.ts`) MUST assert that the prediction gate blocks reveal until the student commits. The literal token `prediction-gate` MUST appear in the file (validator checks this). The Playwright assertion is the real verification — the token is a lint-level proxy.
+- **Property-based tests for kernel math.** Use `fast-check`. Kernel correctness is tested over input domains, not just hand-picked points. Pin seeds for determinism; print the failing seed on failure.
+- **a11y in CI.** axe scan via `@playwright/mcp` or `@axe-core/playwright`. **Critical** issues BLOCK the build. Serious issues fail PR review. Minor issues are tracked but do not block.
+- No `expect(x).toBeTruthy()` on a value you could equality-check. Be specific.
+- Float comparisons use `approxEqual` from `@paideia/shared`, not `toBe`.
+- Tests live next to the code they test (`foo.ts` ↔ `foo.test.ts`), not in a top-level `__tests__/`.

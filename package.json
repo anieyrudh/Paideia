@@ -1,0 +1,29 @@
+{
+  "name": "paideia",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Open educational infrastructure. Concept-mastery learning across institutions. Predict → Manipulate → Observe → Explain → Transfer.",
+  "license": "SEE LICENSE AND LICENSE-content",
+  "packageManager": "pnpm@10.15.0",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "pnpm -r lint",
+    "typecheck": "tsc -b",
+    "container:validate": "node scripts/validate-containers.mjs",
+    "container:new": "node scripts/new-container.mjs",
+    "axe": "pnpm -r axe",
+    "boundary": "dependency-cruiser --config .dependency-cruiser.cjs core a-level sutd",
+    "license:check": "node scripts/check-licenses.mjs"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0",
+    "@types/node": "^22.0.0",
+    "zod": "^3.23.0",
+    "dependency-cruiser": "^16.0.0"
+  }
+}

@@ -1,0 +1,43 @@
+---
+globs: ["**/*.ts", "**/*.tsx"]
+alwaysApply: false
+description: "TypeScript strict-mode rules for Paideia"
+---
+
+# TypeScript rules
+
+- **Strict mode is non-negotiable**: `strict`, `noUncheckedIndexedAccess`, `exactOptionalPropertyTypes` are all on.
+- **No `any` in public APIs.** Internal `any` only with a `// reason:` comment. Prefer `unknown` + narrowing.
+- **Units in type names.** Use the branded numeric types from `@paideia/shared` (`Seconds`, `Metres`, `Radians`, `Kilograms`, etc.) for any quantity that has units. Naked `number` is for dimensionless ratios and indices only.
+- **Discriminated unions over union-of-objects.** Every variant carries a `kind: "..."` literal.
+- **Prefer `KernelResult<T>` over throwing** for *expected* failures. Throw only for invariant violations.
+- **No float equality.** Use `approxEqual(a, b, eps)` from `@paideia/shared`.
+- **No `Function` / `Object` / `{}`.** Use specific function-type aliases from `@paideia/shared` (`Function2D`, `Function3D`, `Predicate<T>`, …).
+
+## Examples
+
+```ts
+// ❌ Bad — Function type, can throw, naked number
+function derivative(f: Function, x: number): number { /* ... */ }
+
+// ✅ Good — typed callable, typed result, branded input
+function derivative(f: Function2D, x: Metres): KernelResult<MetresPerSecond>
+```
+
+```ts
+// ❌ Bad — float equality
+if (a.x === b.x) { /* ... */ }
+
+// ✅ Good — tolerance-aware
+if (approxEqual(a.x, b.x, 1e-9)) { /* ... */ }
+```
+
+```ts
+// ❌ Bad — union of objects without discriminant
+type Event = { x: number } | { name: string }
+
+// ✅ Good — discriminated
+type Event =
+  | { kind: "point"; x: Metres }
+  | { kind: "label"; name: string }
+```

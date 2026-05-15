@@ -1,0 +1,109 @@
+# Concept Package manifest · template
+# Validates against ConceptPackageSpec in core/content-schema.
+# Single source of truth for this container. Every other file defers to fields here.
+# The scaffolder fills <PLACEHOLDERS>; author replaces with real values.
+
+schema_version: "1.0.0"
+
+# Identity
+id: <PACKAGE_ID>                     # kebab-case, matches directory name
+branch: <a-level | sutd>
+subject: <SUBJECT>                   # kebab-case: physics | general-paper | calculus | ...
+title: "<HUMAN-READABLE TITLE>"
+one_line_summary: "<One sentence (≤300 chars) — appears on the catalogue card>"
+
+# Curriculum alignment
+syllabus_ref: "<SEAB CODE / SECTION>" # e.g., "9749 / 17", "Calculus / Differentiation"
+level: "<LEVEL>"                       # e.g., "H2", "Freshmore"
+prerequisites:                         # other package ids the student should have completed
+  - <prereq-package-id>
+
+# Pedagogy intent
+aid_types:                             # which item types this container provides
+  - simulation
+  - misconception-audit
+predict_at: package-level              # package-level | per-sim | both
+
+# Package-level predict (used when predict_at !== "per-sim")
+package_predict:
+  prompt: |
+    <The predict prompt the student sees on container launch.>
+  commit_format:
+    kind: ranking                       # ranking | value | sketch | freetext | multiple-choice
+    options:
+      - "<option 1>"
+      - "<option 2>"
+      - "<option 3>"
+      - "<option 4>"
+  rationale_required: true
+
+# Container items (file-path references)
+items:
+  concept_card: concept-card.md
+  decision_matrix: decision-matrix.md
+  misconceptions: misconceptions.md
+  sources: sources.md
+  sims:
+    - id: <sim-id>                      # see sims/<sim-id>/SimulationSpec.yaml
+      title: "<sim title>"
+      interaction_type: function-plot-with-draggable
+      kernel_deps:
+        - core/numerical-math
+        - core/plotting
+      manipulate:
+        controls:
+          - id: x
+            label: "x"
+            kind: drag-point
+            kernel_binding: state.x
+            bounds: { min: -10, max: 10, step: 0.01 }
+      observe:
+        renderers:
+          - id: function-curve
+            module: core/plotting
+            symbol: FunctionPlot
+            props_binding: state
+      explain:
+        prompt: |
+          <Explain prompt after reveal>
+        socratic: true
+        expected_misconceptions_surfaced:
+          - "<misconception name>"
+  transfer_problems:
+    - id: <transfer-id>
+      prompt: |
+        <Transfer prompt — different surface form, same concept>
+      surface_form: "<surface-form-name>"
+      same_concept_check: |
+        <Why this is genuine transfer, not numeric reshuffle>
+  assessments: []
+
+# Lifecycle
+status: skeleton                       # skeleton | content-only | draft | reviewed | ready-for-build | published
+authors:
+  - "<Your Name>"
+advisor_signoffs: []
+
+# Provenance (optional)
+# provenance:
+#   remixed_from:
+#     package_id: original-package-id
+#     commit: abc1234
+#     changes_summary: "Adapted manipulate controls for SUTD calculus context"
+
+# Misconceptions surfaced (cross-ref to misconceptions.md)
+misconceptions:
+  - name: "<Misconception name>"
+    description: |
+      <Description of the misconception>
+    evidence_source: "<PER paper or textbook citation>"
+    surface_in_predict: true
+
+# Sources cited (cross-ref to sources.md)
+sources:
+  - citation: "<Full citation>"
+    url: "<https://...>"
+    license: "<CC-BY-4.0 | MIT | ...>"
+    seab_alignment: matches
+
+language: en

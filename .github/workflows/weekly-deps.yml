@@ -1,0 +1,94 @@
+name: Weekly Dependencies
+
+on:
+  schedule:
+    # Sunday 18:00 UTC = Monday 02:00 SGT
+    - cron: "0 18 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  PNPM_VERSION: "10"
+  NODE_VERSION: "20"
+
+jobs:
+  weekly-deps:
+    name: pnpm outdated + license drift
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile || echo "no lockfile yet"
+
+      - name: Run pnpm outdated -r
+        id: outdated
+        shell: bash
+        run: |
+          set +e
+          OUT=$(pnpm outdated -r 2>&1 || true)
+          {
+            echo "report<<__EOF__"
+            echo "$OUT"
+            echo "__EOF__"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Run license check
+        id: licenses
+        shell: bash
+        run: |
+          set +e
+          OUT=$(node scripts/check-licenses.mjs 2>&1 || true)
+          {
+            echo "report<<__EOF__"
+            echo "$OUT"
+            echo "__EOF__"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: File weekly Issue with results
+        uses: actions/github-script@v7
+        env:
+          OUTDATED: ${{ steps.outdated.outputs.report }}
+          LICENSES: ${{ steps.licenses.outputs.report }}
+        with:
+          script: |
+            const outdated = process.env.OUTDATED || "(no output)";
+            const licenses = process.env.LICENSES || "(no output)";
+            const today = new Date().toISOString().slice(0, 10);
+            const title = `[weekly-deps] ${today} outdated + license drift report`;
+            const body = [
+              "## Outdated production dependencies (`pnpm outdated -r`)",
+              "",
+              "```",
+              outdated,
+              "```",
+              "",
+              "## License check (`node scripts/check-licenses.mjs`)",
+              "",
+              "```",
+              licenses,
+              "```",
+              "",
+              "_Filed automatically by weekly-deps.yml._"
+            ].join("\n");
+            const { owner, repo } = context.repo;
+            await github.rest.issues.create({
+              owner, repo, title, body,
+              labels: ["dependencies", "auto-generated"]
+            });

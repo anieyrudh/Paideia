@@ -1,0 +1,42 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Paideia/paideia/main/scripts/licenses.schema.json",
+  "description": "License allowlist for production dependencies bundled into the browser payload. See NOTICE for context.",
+  "allowed": [
+    "MIT",
+    "MIT-0",
+    "Apache-2.0",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "MPL-2.0",
+    "0BSD",
+    "Unlicense",
+    "CC0-1.0",
+    "Python-2.0",
+    "BlueOak-1.0.0"
+  ],
+  "rejected": [
+    "GPL-1.0",
+    "GPL-2.0",
+    "GPL-3.0",
+    "AGPL-1.0",
+    "AGPL-3.0",
+    "LGPL-2.0",
+    "LGPL-2.1",
+    "LGPL-3.0",
+    "SSPL-1.0",
+    "BUSL-1.1",
+    "Commons-Clause"
+  ],
+  "review_required": [
+    "CC-BY-4.0",
+    "CC-BY-SA-4.0",
+    "OFL-1.1"
+  ],
+  "iframe_only": [
+    "Voyant Tools (GPLv3) — embed via separate service",
+    "WiseMapping (GPLv3) — embed via separate service",
+    "Kialo Edu (commercial) — link to external"
+  ],
+  "notes": "MPL-2.0 is file-level copyleft and acceptable when we don't modify upstream MPL files. CC-BY-4.0 is the content license and must not appear on code deps. OFL-1.1 is acceptable for font assets only."
+}

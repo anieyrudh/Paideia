@@ -1,0 +1,16 @@
+---
+globs: ["**/*"]
+alwaysApply: true
+description: "Paideia monorepo conventions — pnpm, TS project refs, no barrels, per-package AGENTS.md is authoritative"
+---
+
+# Monorepo conventions
+
+- **pnpm workspaces** (`pnpm-workspace.yaml`). Use `pnpm -F <pkg> <cmd>` to scope. Never `npm`/`yarn`.
+- **TypeScript project references** are how cross-package types flow. Adding a package: register it in `tsconfig.base.json` and add a `references` entry in the consumer.
+- **No barrels.** Do NOT create `src/index.ts` files that simply re-export the package. Import from the specific module path. The schema package is the one exception (it IS the public API).
+- **Per-package `AGENTS.md` is authoritative.** The root `AGENTS.md` is a map. When the two conflict, the package one wins for code inside that package.
+- **Cross-branch imports forbidden.** `a-level/**` MUST NOT import from `sutd/**` and vice versa. Both branches may import from `core/**`. Enforced by dependency-cruiser in CI.
+- **Container shape is enforced.** Anything under `a-level/content/**` or `sutd/content/**` must conform to `docs/container-spec.md` §1. Validator runs on every PR.
+- **Licenses.** Code = MIT. Content = CC-BY-4.0. No GPL deps bundled at runtime. Check `LICENSES.json` before adding a dep.
+- **Conventional Commits with scope:** `feat(a-level):`, `feat(sutd):`, `feat(core):`, `fix(core):`, `core!:` for breaking core changes (requires ADR).

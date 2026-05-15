@@ -1,0 +1,6 @@
+packages:
+  - "core/*"
+  - "a-level/packages/*"
+  - "a-level/apps/*"
+  - "sutd/packages/*"
+  - "sutd/apps/*"

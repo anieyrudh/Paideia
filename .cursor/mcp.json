@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "_comment": "Uncomment a server after setting its tokens. See mcp.README.md for setup. JSON has no comments — leave servers commented by renaming the key to begin with `_`.",
+    "_context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"],
+      "env": {
+        "CONTEXT7_API_KEY": "${{ secrets.CONTEXT7_API_KEY }}"
+      }
+    },
+    "_github": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${{ secrets.GITHUB_PAT }}"
+      }
+    },
+    "_playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp"]
+    }
+  }
+}

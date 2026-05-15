@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(pnpm:*)",
+      "Bash(pnpm install)",
+      "Bash(pnpm dev)",
+      "Bash(pnpm test)",
+      "Bash(pnpm typecheck)",
+      "Bash(pnpm lint)",
+      "Bash(pnpm container:new)",
+      "Bash(pnpm container:validate)",
+      "Bash(pnpm -F *)",
+      "Bash(vitest:*)",
+      "Bash(npx vitest:*)",
+      "Bash(tsc:*)",
+      "Bash(npx tsc:*)",
+      "Bash(git status)",
+      "Bash(git status:*)",
+      "Bash(git diff)",
+      "Bash(git diff:*)",
+      "Bash(git log)",
+      "Bash(git log:*)",
+      "Bash(git branch)",
+      "Bash(git branch:*)",
+      "Bash(gh pr view)",
+      "Bash(gh pr view:*)",
+      "Bash(gh pr list)",
+      "Bash(gh pr list:*)",
+      "Bash(gh issue view:*)",
+      "Bash(gh issue list:*)"
+    ]
+  },
+  "hooks": {
+    "PostFileEdit": [
+      {
+        "matcher": "**/*.{ts,tsx}",
+        "command": "pnpm -F \"$(node -e \"const p=process.env.CLAUDE_FILE_PATH||'';const m=p.match(/(?:^|\\/)(?:a-level|sutd|core)\\/([^/]+)/);process.stdout.write(m?m[1]:'')\")\" typecheck",
+        "description": "Typecheck the affected package after any TS/TSX edit"
+      }
+    ],
+    "PreCommit": [
+      {
+        "command": "pnpm lint && pnpm test && pnpm container:validate",
+        "description": "Lint, test, and validate container shape before every commit"
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit",
+        "paths": [
+          "**/curriculum/seab-2027/**",
+          "**/content/seab-2027/**"
+        ],
+        "command": "node -e \"const fs=require('fs');const p=process.env.CLAUDE_FILE_PATH;if(!p)process.exit(0);const t=fs.readFileSync(p,'utf8');if(!/^syllabus_source:/m.test(t)){console.warn('[paideia] WARN: '+p+' is under a SEAB-2027 path but has no `syllabus_source:` frontmatter line. v0 warn-only — will become a hard block once the path tree exists.');}\"",
+        "description": "Warn (v0) when SEAB-2027 content lacks `syllabus_source:` frontmatter. Aspirational — paths may not yet exist. Will harden to a block in v1."
+      }
+    ]
+  }
+}

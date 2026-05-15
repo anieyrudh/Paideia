@@ -1,0 +1,19 @@
+---
+globs: ["**/concept-package.yaml", "**/SimulationSpec.yaml"]
+alwaysApply: false
+description: "YAML content authoring — schema validation, templates, cross-references"
+---
+
+# YAML content rules
+
+- These files MUST validate against the Zod schemas in `core/content-schema/src/index.ts`:
+  - `concept-package.yaml` → `ConceptPackageSpec`
+  - `SimulationSpec.yaml` → `SimulationSpec`
+- Start from the canonical templates in `core/docs-templates/`. Do not invent fields.
+- **Cross-references use exact filenames** from `docs/container-spec.md` §1. If you reference `concept-card.md`, write it `concept-card.md` — not `concept_card.md`, `ConceptCard.md`, etc.
+- IDs are kebab-case and MUST match across:
+  - directory name ↔ `concept-package.yaml.id`
+  - sim subdirectory name ↔ `SimulationSpec.yaml.id` ↔ `concept-package.yaml.items.sims[].id`
+  - transfer filename ↔ `concept-package.yaml.items.transfer_problems[].id`
+- The validator hard-fails any divergence. Keep the manifest as the single source of truth and let other files defer to it.
+- `kernel_deps` entries must resolve to existing `core/<kernel>/` directories.

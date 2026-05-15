@@ -1,0 +1,91 @@
+name: Accessibility
+
+on:
+  pull_request:
+    paths:
+      - "a-level/**"
+      - "sutd/**"
+      - "core/ui-*/**"
+      - ".github/workflows/accessibility.yml"
+  push:
+    branches: [main]
+    paths:
+      - "a-level/**"
+      - "sutd/**"
+      - "core/ui-*/**"
+      - ".github/workflows/accessibility.yml"
+
+env:
+  PNPM_VERSION: "10"
+  NODE_VERSION: "20"
+
+jobs:
+  axe-scan:
+    name: Playwright + axe-core scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+
+      - name: Get pnpm store directory
+        id: pnpm-store
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache pnpm store
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-store.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile || echo "no lockfile yet"
+
+      - name: Detect catalogue apps
+        id: detect
+        shell: bash
+        run: |
+          SUTD_APP="sutd/apps/catalogue"
+          ALEVEL_APP="a-level/apps/shell"
+          HAS_ANY="false"
+          if [ -d "$SUTD_APP" ]; then HAS_ANY="true"; fi
+          if [ -d "$ALEVEL_APP" ]; then HAS_ANY="true"; fi
+          echo "has_any=$HAS_ANY" >> "$GITHUB_OUTPUT"
+
+      - name: Install Playwright browsers
+        if: steps.detect.outputs.has_any == 'true'
+        run: pnpm dlx playwright install --with-deps chromium
+
+      - name: Run axe accessibility scan (v0 no-op when no apps yet)
+        shell: bash
+        env:
+          HAS_ANY: ${{ steps.detect.outputs.has_any }}
+        run: |
+          if [ "$HAS_ANY" != "true" ]; then
+            echo "No catalogue apps detected (sutd/apps/catalogue, a-level/apps/shell). Running placeholder no-op axe scan that passes."
+            exit 0
+          fi
+          set -e
+          # Critical issues are determined by the axe rule impact level.
+          # The Playwright project must export a script "test:a11y" that fails on any
+          # 'critical' impact violation. CI surfaces stderr / exit code.
+          if pnpm -w run test:a11y; then
+            echo "axe scan: no critical violations"
+          else
+            echo "axe scan: CRITICAL accessibility violations found" >&2
+            exit 1
+          fi
