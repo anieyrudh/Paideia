@@ -2,194 +2,321 @@
 /**
  * validate-containers.mjs
  *
- * Walks every ConceptPackage container under:
+ * Walk every ConceptPackage under:
  *   <branch>/content/<subject>/concept-packages/<package-id>/
- * and validates it against docs/container-spec.md §1.
- *
- * Checks performed per container:
- *   1. Required top-level files exist with EXACT names:
- *        concept-package.yaml
- *        concept-card.md
- *        sources.md
- *        README.md
- *        TECHNICAL.md
- *      and a `sims/` directory (may be empty).
- *   2. concept-package.yaml parses (regex sanity check; full Zod validation is
- *      delegated to core/content-schema once that package is built).
- *   3. For each sims/<sim-id>/:
- *        - SimulationSpec.yaml exists
- *        - At least one *.test.ts file exists AND contains the literal
- *          string `prediction-gate`.
- *   4. TECHNICAL.md contains a non-empty section starting with
- *      `## Anieyrudh Filter pass`.
- *   5. concept-card.md has YAML frontmatter delimited by `---`.
- *
- * Exit codes:
- *   0 — all containers passed (or no containers found)
- *   1 — at least one container failed
- *
- * No external dependencies — uses only Node built-ins.
- *
- * TODO: integrate Zod schema once core/content-schema is built. At that point,
- * the regex sanity check on concept-package.yaml is replaced with full
- * ConceptPackageSpec.parse() validation.
+ * and validate it against docs/container-spec.md §1 plus the Zod schemas in
+ * @paideia/content-schema.
  */
 
-import { readdirSync, readFileSync, statSync, existsSync } from "node:fs";
-import { join, relative, resolve, basename } from "node:path";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { spawnSync } from "node:child_process";
+import { basename, join, relative, resolve } from "node:path";
+import YAML from "yaml";
 
 const REPO_ROOT = resolve(process.cwd());
 const BRANCHES = ["a-level", "sutd"];
+let schemas = null;
 
-const REQUIRED_FILES = [
+const REQUIRED_FILES = new Set([
   "concept-package.yaml",
   "concept-card.md",
   "sources.md",
   "README.md",
-  "TECHNICAL.md"
-];
+  "TECHNICAL.md",
+]);
 
-/**
- * Recursively find every concept-packages/<package-id>/ directory.
- * Returns absolute paths.
- */
+const ALLOWED_TOP_LEVEL = new Set([
+  ...REQUIRED_FILES,
+  "decision-matrix.md",
+  "misconceptions.md",
+  "sims",
+  "transfer",
+  "assessments",
+  "extras",
+]);
+
+function isDirectory(path) {
+  return existsSync(path) && statSync(path).isDirectory();
+}
+
+function isFile(path) {
+  return existsSync(path) && statSync(path).isFile();
+}
+
 function findContainers() {
   const containers = [];
   for (const branch of BRANCHES) {
     const contentDir = join(REPO_ROOT, branch, "content");
-    if (!existsSync(contentDir)) continue;
-    if (!statSync(contentDir).isDirectory()) continue;
+    if (!isDirectory(contentDir)) continue;
 
-    // <branch>/content/<subject>/concept-packages/<package-id>/
     for (const subject of readdirSync(contentDir)) {
       const subjectDir = join(contentDir, subject);
-      if (!statSync(subjectDir).isDirectory()) continue;
+      if (!isDirectory(subjectDir)) continue;
 
       const packagesDir = join(subjectDir, "concept-packages");
-      if (!existsSync(packagesDir)) continue;
-      if (!statSync(packagesDir).isDirectory()) continue;
+      if (!isDirectory(packagesDir)) continue;
 
       for (const pkg of readdirSync(packagesDir)) {
         const pkgDir = join(packagesDir, pkg);
-        if (statSync(pkgDir).isDirectory()) {
-          containers.push(pkgDir);
-        }
+        if (isDirectory(pkgDir)) containers.push(pkgDir);
       }
     }
   }
   return containers;
 }
 
-/**
- * Validate a single container directory.
- * Returns an array of human-readable failure strings (empty = pass).
- */
-function validateContainer(containerDir) {
-  const failures = [];
-  const rel = relative(REPO_ROOT, containerDir);
+function parseYamlFile(path, failures, label) {
+  try {
+    const raw = readFileSync(path, "utf8");
+    if (raw.trim().length === 0) {
+      failures.push(`${label} is empty`);
+      return null;
+    }
+    return YAML.parse(raw);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    failures.push(`${label} is not valid YAML: ${message}`);
+    return null;
+  }
+}
 
-  // 1. Required top-level files
+function formatZodIssues(error) {
+  return error.issues
+    .map((issue) => {
+      const path = issue.path.length > 0 ? issue.path.join(".") : "(root)";
+      return `${path}: ${issue.message}`;
+    })
+    .join("; ");
+}
+
+async function loadSchemas() {
+  if (schemas !== null) return schemas;
+
+  const build = spawnSync("pnpm", ["-F", "@paideia/content-schema", "build"], {
+    cwd: REPO_ROOT,
+    encoding: "utf8",
+    stdio: "pipe",
+  });
+
+  if (build.status !== 0) {
+    const detail = [build.stdout, build.stderr].filter(Boolean).join("\n");
+    throw new Error(`Could not build @paideia/content-schema before validation.\n${detail}`);
+  }
+
+  schemas = await import("../core/content-schema/dist/index.js");
+  return schemas;
+}
+
+function parseFrontmatter(markdown, failures) {
+  const match = markdown.match(/^---\s*\n([\s\S]*?)\n---\s*(\n|$)/);
+  if (!match?.[1]) {
+    failures.push("concept-card.md is missing YAML frontmatter delimited by `---` at the top of the file");
+    return null;
+  }
+  try {
+    return YAML.parse(match[1]);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    failures.push(`concept-card.md frontmatter is not valid YAML: ${message}`);
+    return null;
+  }
+}
+
+function sectionBody(markdown, heading) {
+  const escaped = heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = markdown.match(new RegExp(`^##\\s+${escaped}\\s*$`, "m"));
+  if (!match) return null;
+  const startIdx = (match.index ?? 0) + match[0].length;
+  const after = markdown.slice(startIdx);
+  const nextHeader = after.search(/^##\s+/m);
+  return nextHeader === -1 ? after : after.slice(0, nextHeader);
+}
+
+function validateTopLevelShape(containerDir, failures) {
   for (const filename of REQUIRED_FILES) {
-    const fp = join(containerDir, filename);
-    if (!existsSync(fp) || !statSync(fp).isFile()) {
+    if (!isFile(join(containerDir, filename))) {
       failures.push(`Missing required file: ${filename}`);
     }
   }
 
-  // sims/ directory must exist (may be empty)
-  const simsDir = join(containerDir, "sims");
-  if (!existsSync(simsDir) || !statSync(simsDir).isDirectory()) {
+  if (!isDirectory(join(containerDir, "sims"))) {
     failures.push("Missing required directory: sims/");
   }
 
-  // 2. concept-package.yaml sanity check
-  const cpYaml = join(containerDir, "concept-package.yaml");
-  if (existsSync(cpYaml)) {
-    const raw = readFileSync(cpYaml, "utf8");
-    if (raw.trim().length === 0) {
-      failures.push("concept-package.yaml is empty");
-    } else {
-      // Regex sanity: must contain an `id:` field and a `status:` field at root.
-      // TODO: replace with Zod ConceptPackageSpec.parse() once core/content-schema is built.
-      if (!/^id\s*:\s*\S+/m.test(raw)) {
-        failures.push("concept-package.yaml does not declare an `id:` field");
-      }
-      if (!/^status\s*:\s*\S+/m.test(raw)) {
-        failures.push("concept-package.yaml does not declare a `status:` field");
-      }
+  for (const entry of readdirSync(containerDir)) {
+    if (!ALLOWED_TOP_LEVEL.has(entry)) {
+      failures.push(`Unexpected top-level item: ${entry}`);
     }
   }
-
-  // 3. Each sims/<sim-id>/ must have SimulationSpec.yaml and a *.test.ts with `prediction-gate`
-  if (existsSync(simsDir) && statSync(simsDir).isDirectory()) {
-    for (const simId of readdirSync(simsDir)) {
-      const simDir = join(simsDir, simId);
-      if (!statSync(simDir).isDirectory()) continue;
-
-      const specPath = join(simDir, "SimulationSpec.yaml");
-      if (!existsSync(specPath) || !statSync(specPath).isFile()) {
-        failures.push(`sims/${simId}/SimulationSpec.yaml is missing`);
-      }
-
-      const testFiles = readdirSync(simDir).filter(
-        (f) => f.endsWith(".test.ts") && statSync(join(simDir, f)).isFile()
-      );
-      if (testFiles.length === 0) {
-        failures.push(`sims/${simId}/ has no *.test.ts file`);
-      } else {
-        const anyHasGate = testFiles.some((f) => {
-          const body = readFileSync(join(simDir, f), "utf8");
-          return body.includes("prediction-gate");
-        });
-        if (!anyHasGate) {
-          failures.push(
-            `sims/${simId}/ has *.test.ts files, but none contain the literal string \`prediction-gate\``
-          );
-        }
-      }
-    }
-  }
-
-  // 4. TECHNICAL.md must contain a non-empty `## Anieyrudh Filter pass` section
-  const techPath = join(containerDir, "TECHNICAL.md");
-  if (existsSync(techPath)) {
-    const tech = readFileSync(techPath, "utf8");
-    const headerRegex = /^##\s+Anieyrudh Filter pass\s*$/m;
-    const match = tech.match(headerRegex);
-    if (!match) {
-      failures.push(
-        "TECHNICAL.md is missing the `## Anieyrudh Filter pass` section header"
-      );
-    } else {
-      // Extract content between this header and the next `## ` header (or EOF).
-      const startIdx = (match.index ?? 0) + match[0].length;
-      const after = tech.slice(startIdx);
-      const nextHeader = after.search(/^##\s+/m);
-      const sectionBody = nextHeader === -1 ? after : after.slice(0, nextHeader);
-      if (sectionBody.trim().length === 0) {
-        failures.push(
-          "TECHNICAL.md `## Anieyrudh Filter pass` section is empty — must record P0/P1 items + resolution before merge"
-        );
-      }
-    }
-  }
-
-  // 5. concept-card.md must have YAML frontmatter delimited by `---`
-  const cardPath = join(containerDir, "concept-card.md");
-  if (existsSync(cardPath)) {
-    const card = readFileSync(cardPath, "utf8");
-    // Frontmatter must start at the very top with `---` on its own line, then close with another `---`.
-    if (!/^---\s*\n[\s\S]*?\n---\s*(\n|$)/.test(card)) {
-      failures.push(
-        "concept-card.md is missing YAML frontmatter delimited by `---` at the top of the file"
-      );
-    }
-  }
-
-  return { container: rel, failures };
 }
 
-function main() {
+function validateConceptPackage(containerDir, failures) {
+  const parsed = parseYamlFile(
+    join(containerDir, "concept-package.yaml"),
+    failures,
+    "concept-package.yaml",
+  );
+  if (parsed === null) return null;
+
+  const result = schemas.ConceptPackageSpec.safeParse(parsed);
+  if (!result.success) {
+    failures.push(`concept-package.yaml failed ConceptPackageSpec: ${formatZodIssues(result.error)}`);
+    return null;
+  }
+
+  const packageId = basename(containerDir);
+  if (result.data.id !== packageId) {
+    failures.push(`concept-package.yaml id \`${result.data.id}\` does not match directory \`${packageId}\``);
+  }
+
+  const parts = relative(REPO_ROOT, containerDir).split("/");
+  const [branch, content, subject] = parts;
+  if (!BRANCHES.includes(branch ?? "") || content !== "content" || !subject) {
+    failures.push("Container path must be <branch>/content/<subject>/concept-packages/<package-id>");
+  } else {
+    if (result.data.branch !== branch) {
+      failures.push(`concept-package.yaml branch \`${result.data.branch}\` does not match path branch \`${branch}\``);
+    }
+    if (result.data.subject !== subject) {
+      failures.push(`concept-package.yaml subject \`${result.data.subject}\` does not match path subject \`${subject}\``);
+    }
+  }
+
+  return result.data;
+}
+
+function validateConceptCard(containerDir, manifest, failures) {
+  const cardPath = join(containerDir, "concept-card.md");
+  if (!isFile(cardPath)) return;
+
+  const frontmatter = parseFrontmatter(readFileSync(cardPath, "utf8"), failures);
+  if (frontmatter === null) return;
+
+  const result = schemas.ConceptCardFrontmatter.safeParse(frontmatter);
+  if (!result.success) {
+    failures.push(`concept-card.md frontmatter failed ConceptCardFrontmatter: ${formatZodIssues(result.error)}`);
+    return;
+  }
+
+  if (manifest === null) return;
+  if (result.data.concept !== manifest.id) {
+    failures.push(`concept-card.md concept \`${result.data.concept}\` does not match concept-package.yaml id \`${manifest.id}\``);
+  }
+  if (result.data.branch !== manifest.branch) {
+    failures.push(`concept-card.md branch \`${result.data.branch}\` does not match concept-package.yaml branch \`${manifest.branch}\``);
+  }
+  if (result.data.subject !== manifest.subject) {
+    failures.push(`concept-card.md subject \`${result.data.subject}\` does not match concept-package.yaml subject \`${manifest.subject}\``);
+  }
+}
+
+function validateTechnical(containerDir, failures) {
+  const techPath = join(containerDir, "TECHNICAL.md");
+  if (!isFile(techPath)) return;
+  const body = sectionBody(readFileSync(techPath, "utf8"), "Anieyrudh Filter pass");
+  if (body === null) {
+    failures.push("TECHNICAL.md is missing the `## Anieyrudh Filter pass` section header");
+  } else if (body.trim().length === 0) {
+    failures.push("TECHNICAL.md `## Anieyrudh Filter pass` section is empty");
+  }
+}
+
+function validateKernelDeps(kernelDeps, label, failures) {
+  for (const dep of kernelDeps) {
+    if (!dep.startsWith("core/")) {
+      failures.push(`${label} kernel_deps entry \`${dep}\` must start with core/`);
+      continue;
+    }
+    if (!isDirectory(join(REPO_ROOT, dep))) {
+      failures.push(`${label} kernel_deps entry \`${dep}\` does not resolve to an existing directory`);
+    }
+  }
+}
+
+function validateSimDirectory(containerDir, simId, manifestSimIds, failures) {
+  const simDir = join(containerDir, "sims", simId);
+  const specPath = join(simDir, "SimulationSpec.yaml");
+  if (!isFile(specPath)) {
+    failures.push(`sims/${simId}/SimulationSpec.yaml is missing`);
+  } else {
+    const parsed = parseYamlFile(specPath, failures, `sims/${simId}/SimulationSpec.yaml`);
+    if (parsed !== null) {
+      const result = schemas.SimulationSpec.safeParse(parsed);
+      if (!result.success) {
+        failures.push(`sims/${simId}/SimulationSpec.yaml failed SimulationSpec: ${formatZodIssues(result.error)}`);
+      } else {
+        if (result.data.id !== simId) {
+          failures.push(`sims/${simId}/SimulationSpec.yaml id \`${result.data.id}\` does not match directory \`${simId}\``);
+        }
+        validateKernelDeps(result.data.kernel_deps, `sims/${simId}/SimulationSpec.yaml`, failures);
+      }
+    }
+  }
+
+  if (!manifestSimIds.has(simId)) {
+    failures.push(`sims/${simId}/ exists but concept-package.yaml items.sims does not list \`${simId}\``);
+  }
+
+  if (!isFile(join(simDir, "index.tsx"))) {
+    failures.push(`sims/${simId}/index.tsx is missing`);
+  }
+
+  const expectedTest = `${simId}.test.ts`;
+  const testPath = join(simDir, expectedTest);
+  if (!isFile(testPath)) {
+    failures.push(`sims/${simId}/${expectedTest} is missing`);
+  } else if (!readFileSync(testPath, "utf8").includes("prediction-gate")) {
+    failures.push(`sims/${simId}/${expectedTest} does not contain the literal string \`prediction-gate\``);
+  }
+}
+
+function validateSims(containerDir, manifest, failures) {
+  const simsDir = join(containerDir, "sims");
+  if (!isDirectory(simsDir)) return;
+
+  const manifestSimIds = new Set(manifest?.items.sims.map((sim) => sim.id) ?? []);
+  for (const sim of manifest?.items.sims ?? []) {
+    validateKernelDeps(sim.kernel_deps, "concept-package.yaml items.sims", failures);
+    if (!isDirectory(join(simsDir, sim.id))) {
+      failures.push(`concept-package.yaml items.sims lists \`${sim.id}\`, but sims/${sim.id}/ is missing`);
+    }
+  }
+
+  for (const entry of readdirSync(simsDir)) {
+    if (isDirectory(join(simsDir, entry))) {
+      validateSimDirectory(containerDir, entry, manifestSimIds, failures);
+    }
+  }
+}
+
+function validateTransferFiles(containerDir, manifest, failures) {
+  const transferDir = join(containerDir, "transfer");
+  if (!isDirectory(transferDir)) return;
+  const transferIds = new Set(manifest?.items.transfer_problems.map((problem) => problem.id) ?? []);
+  for (const entry of readdirSync(transferDir)) {
+    if (!entry.endsWith(".md")) continue;
+    const problemId = entry.slice(0, -".md".length);
+    if (!transferIds.has(problemId)) {
+      failures.push(`transfer/${entry} exists but concept-package.yaml items.transfer_problems does not list \`${problemId}\``);
+    }
+  }
+}
+
+function validateContainer(containerDir) {
+  const failures = [];
+  validateTopLevelShape(containerDir, failures);
+  const manifest = isFile(join(containerDir, "concept-package.yaml"))
+    ? validateConceptPackage(containerDir, failures)
+    : null;
+  validateConceptCard(containerDir, manifest, failures);
+  validateTechnical(containerDir, failures);
+  validateSims(containerDir, manifest, failures);
+  validateTransferFiles(containerDir, manifest, failures);
+  return { container: relative(REPO_ROOT, containerDir), failures };
+}
+
+async function main() {
+  await loadSchemas();
   const containers = findContainers();
 
   if (containers.length === 0) {
@@ -198,26 +325,26 @@ function main() {
   }
 
   const results = containers.map(validateContainer);
-  const failed = results.filter((r) => r.failures.length > 0);
+  const failed = results.filter((result) => result.failures.length > 0);
 
   if (failed.length > 0) {
-    process.stderr.write(
-      `validate-containers: ${failed.length}/${containers.length} container(s) FAILED.\n\n`
-    );
-    for (const r of failed) {
-      process.stderr.write(`✗ ${r.container}\n`);
-      for (const f of r.failures) {
-        process.stderr.write(`    - ${f}\n`);
+    process.stderr.write(`validate-containers: ${failed.length}/${containers.length} container(s) FAILED.\n\n`);
+    for (const result of failed) {
+      process.stderr.write(`✗ ${result.container}\n`);
+      for (const failure of result.failures) {
+        process.stderr.write(`    - ${failure}\n`);
       }
       process.stderr.write("\n");
     }
     process.exit(1);
   }
 
-  process.stdout.write(
-    `validate-containers: OK — ${containers.length} container(s) passed.\n`
-  );
+  process.stdout.write(`validate-containers: OK — ${containers.length} container(s) passed.\n`);
   process.exit(0);
 }
 
-main();
+main().catch((error) => {
+  const message = error instanceof Error ? error.message : String(error);
+  process.stderr.write(`validate-containers: ${message}\n`);
+  process.exit(1);
+});
