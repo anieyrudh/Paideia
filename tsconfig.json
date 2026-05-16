@@ -3,6 +3,17 @@
   "references": [
     { "path": "./core/shared" },
     { "path": "./core/content-schema" },
-    { "path": "./core/prediction-gate" }
+    { "path": "./core/prediction-gate" },
+    { "path": "./core/function-eval" },
+    { "path": "./core/numerical-math" },
+    { "path": "./core/plotting" },
+    { "path": "./core/charting" },
+    { "path": "./core/graph-layout" },
+    { "path": "./core/timeline" },
+    { "path": "./core/annotation" },
+    { "path": "./core/mind-map" },
+    { "path": "./core/fsrs" },
+    { "path": "./core/bkt" },
+    { "path": "./core/algorithm-trace" }
   ]
 }
