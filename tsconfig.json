@@ -16,6 +16,7 @@
     { "path": "./core/bkt" },
     { "path": "./core/algorithm-trace" },
     { "path": "./a-level/packages/physics-sims" },
+    { "path": "./a-level/apps/shell" },
     { "path": "./testing/sim-harness" }
   ]
 }

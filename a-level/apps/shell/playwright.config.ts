@@ -1,0 +1,23 @@
+import { defineConfig, devices } from "@playwright/test";
+
+export default defineConfig({
+  testDir: "./tests",
+  fullyParallel: true,
+  retries: process.env.CI ? 2 : 0,
+  use: {
+    baseURL: "http://127.0.0.1:4174",
+    trace: "retain-on-failure",
+  },
+  projects: [
+    {
+      name: "chromium",
+      use: { ...devices["Desktop Chrome"] },
+    },
+  ],
+  webServer: {
+    command: "pnpm -F @paideia/a-level-shell dev",
+    url: "http://127.0.0.1:4174",
+    reuseExistingServer: !process.env.CI,
+    timeout: 120_000,
+  },
+});
