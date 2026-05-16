@@ -10,6 +10,9 @@ should be combined.
 
 - Predicts the resultant magnitude for two equal perpendicular
   displacements.
+- Manipulates two vector magnitudes and the angle between them in the
+  `resultant-magnitude` sim.
+- Observes the geometric resultant next to the scalar sum of magnitudes.
 - Explains why vector addition is not the same as adding magnitudes.
 - Transfers the distinction to later mechanics quantities such as displacement,
   velocity, force, and momentum.
@@ -17,8 +20,9 @@ should be combined.
 ## Pedagogical choices and why
 
 The package begins with a multiple-choice prediction because it exposes whether the
-student is adding magnitudes or reasoning with direction. The first build is
-content-only; the sim will later expose angle and components.
+student is adding magnitudes or reasoning with direction. The first sim keeps
+both vectors visible from a shared origin so students can see why equal lengths
+do not force a 10 m resultant.
 
 ## Citations and provenance
 

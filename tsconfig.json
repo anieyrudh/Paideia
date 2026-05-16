@@ -14,6 +14,8 @@
     { "path": "./core/mind-map" },
     { "path": "./core/fsrs" },
     { "path": "./core/bkt" },
-    { "path": "./core/algorithm-trace" }
+    { "path": "./core/algorithm-trace" },
+    { "path": "./a-level/packages/physics-sims" },
+    { "path": "./testing/sim-harness" }
   ]
 }
