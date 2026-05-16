@@ -3,8 +3,8 @@
 ## What Paideia Is
 
 Paideia is open educational infrastructure for concept-mastery learning across
-institutions. It ships curriculum as container-shaped ConceptPackages: each
-package owns one concept, the content and components it declares, citations,
+institutions. It ships curriculum as container-shaped concept products: each
+container owns one concept, the content and components it declares, citations,
 and a technical audit trail.
 
 ## The Doctrine

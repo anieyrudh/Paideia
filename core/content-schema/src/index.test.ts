@@ -1,29 +1,61 @@
 import { describe, expect, it } from "vitest";
 import {
+  ConceptMapSpec,
   ConceptPackageSpec,
   CourseMap,
   PredictSpec,
   SimulationSpec,
 } from "./index.js";
 
-describe("ConceptPackageSpec", () => {
+describe("ContainerSpec compatibility alias", () => {
   const minimal = {
     schema_version: "1.0.0" as const,
     id: "simple-harmonic-motion",
     branch: "a-level" as const,
     subject: "physics",
+    level: "H2",
     title: "Simple Harmonic Motion",
     one_line_summary: "Predict-driven exploration of period, amplitude, and energy in SHM.",
     aid_types: ["reasoning-lab" as const],
     predict_at: "none" as const,
-    items: {
+    components: {
       concept_card: "concept-card.md",
+      concept_map: "concept-map/concept-map.yaml",
+      mindmap: "concept-map/mindmap.md",
+      mermaid: "concept-map/graph.mmd",
+      media: "media",
+      embed: "embed",
+      problem_solving: "problem-solving",
       sources: "sources.md",
-      sims: [],
-      transfer_problems: [],
-      assessments: [],
     },
+    capabilities: {
+      sim_worthy: false,
+      interactive_simulation: false,
+    },
+    problem_solving: {
+      algorithm: "problem-solving/algorithm.md",
+      steps: "problem-solving/steps.yaml",
+    },
+    embed_api: {
+      entry: "embed/index.ts",
+      api: "embed/api.ts",
+      methods: ["load", "saveState", "score", "resume", "syncTheme", "destroy"] as const,
+    },
+    concept_map: {
+      spec: "concept-map/concept-map.yaml",
+      mindmap: "concept-map/mindmap.md",
+      mermaid: "concept-map/graph.mmd",
+    },
+    transfer_problems: [],
+    assessments: [],
     status: "skeleton" as const,
+    authoring: {
+      owner: "Anieyrudh R",
+      reviewers: [],
+      qa_status: "not-started" as const,
+      dependency_graph: "concept-map/concept-map.yaml",
+      changelog: [],
+    },
     authors: ["Anieyrudh R"],
     advisor_signoffs: [],
     misconceptions: [],
@@ -63,39 +95,19 @@ describe("ConceptPackageSpec", () => {
     expect(r.success).toBe(false);
   });
 
-  it("requires simulation aid_type when sims are declared", () => {
+  it("requires simulation aid_type when simulation is declared", () => {
     const r = ConceptPackageSpec.safeParse({
       ...minimal,
-      items: {
-        ...minimal.items,
-        sims: [
-          {
-            id: "shm-mass-spring",
-            title: "Mass on a spring",
-            interaction_type: "function-plot-with-draggable",
-            manipulate: {
-              controls: [
-                {
-                  id: "mass",
-                  label: "Mass",
-                  kind: "slider",
-                  kernel_binding: "state.mass",
-                },
-              ],
-            },
-            observe: {
-              renderers: [
-                {
-                  id: "spring-mass",
-                  module: "core/plotting",
-                  symbol: "FunctionPlot",
-                  props_binding: "state.position",
-                },
-              ],
-            },
-            explain: { prompt: "Why did the period stay the same?" },
-          },
-        ],
+      components: {
+        ...minimal.components,
+        simulation: "simulation",
+      },
+      simulation: {
+        spec: "simulation/simulation.yaml",
+        controls: "simulation/controls.yaml",
+        presets: "simulation/presets.yaml",
+        state_labels: "simulation/state-labels.yaml",
+        runtime: "simulation/runtime.yaml",
       },
     });
     expect(r.success).toBe(false);
@@ -139,6 +151,32 @@ describe("ConceptPackageSpec", () => {
       },
     });
     expect(published.success).toBe(false);
+  });
+
+  it("requires all mandatory embed API methods", () => {
+    const r = ConceptPackageSpec.safeParse({
+      ...minimal,
+      embed_api: {
+        ...minimal.embed_api,
+        methods: ["load", "saveState", "score", "resume", "destroy"],
+      },
+    });
+    expect(r.success).toBe(false);
+  });
+});
+
+describe("ConceptMapSpec", () => {
+  it("accepts an empty but explicit graph for a standalone concept", () => {
+    const r = ConceptMapSpec.safeParse({
+      schema_version: "1.0.0",
+      concept_id: "simple-harmonic-motion",
+      prerequisites: [],
+      downstream: [],
+      siblings: [],
+      misconception_graph: { nodes: [], edges: [] },
+      mermaid_source: "graph.mmd",
+    });
+    expect(r.success).toBe(true);
   });
 });
 

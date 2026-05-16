@@ -6,7 +6,7 @@
  * table of: branch | subject | concept (package id) | status.
  *
  * The status is read from the `status:` field at the root of each
- * concept-package.yaml.
+ * container.yaml.
  *
  * Used by .github/workflows/daily-coverage-report.yml.
  *
@@ -62,14 +62,14 @@ function walk() {
     for (const subject of readdirSync(contentDir)) {
       const subjectDir = join(contentDir, subject);
       if (!statSync(subjectDir).isDirectory()) continue;
-      const packagesDir = join(subjectDir, "concept-packages");
-      if (!existsSync(packagesDir) || !statSync(packagesDir).isDirectory()) continue;
-      for (const pkg of readdirSync(packagesDir)) {
-        const pkgDir = join(packagesDir, pkg);
-        if (!statSync(pkgDir).isDirectory()) continue;
-        const yamlPath = join(pkgDir, "concept-package.yaml");
+      const containersDir = join(subjectDir, "containers");
+      if (!existsSync(containersDir) || !statSync(containersDir).isDirectory()) continue;
+      for (const concept of readdirSync(containersDir)) {
+        const containerDir = join(containersDir, concept);
+        if (!statSync(containerDir).isDirectory()) continue;
+        const yamlPath = join(containerDir, "container.yaml");
         const status = existsSync(yamlPath) ? readStatus(yamlPath) : "missing-yaml";
-        const id = existsSync(yamlPath) ? readId(yamlPath, pkg) : pkg;
+        const id = existsSync(yamlPath) ? readId(yamlPath, concept) : concept;
         rows.push({ branch, subject, concept: id, status });
       }
     }

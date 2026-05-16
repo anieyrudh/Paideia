@@ -19,7 +19,7 @@ The shared foundation that every branch consumes. Each module owns a stable
 contract under `core/<module>/AGENTS.md`. See [docs/core-modules.md](docs/core-modules.md) for the full inventory.
 
 - [`core/aniegpt/`](./core/aniegpt/) — The Anieyrudh Filter (canonical critique engine)
-- [`core/content-schema/`](./core/content-schema/) — Zod schemas: `ConceptPackageSpec`, `SimulationSpec`, etc.
+- [`core/content-schema/`](./core/content-schema/) — Zod schemas: `ContainerSpec`, `ConceptMapSpec`, `SimulationSpec`, etc.
 - [`core/shared/`](./core/shared/) — Universal type vocabulary (`Function2D`, `Renderable<T>`, `KernelResult<T>`)
 - [`core/prediction-gate/`](./core/prediction-gate/) — Predict-before-reveal primitive
 - [`core/sim-runtime/`](./core/sim-runtime/) — PMOE-T state machine
@@ -27,11 +27,10 @@ contract under `core/<module>/AGENTS.md`. See [docs/core-modules.md](docs/core-m
 
 ## The Container model
 
-The unit of work is a **ConceptPackage** (a container). A container holds one
-or more sims plus its concept card, decision matrix, transfer problems,
-misconceptions, sources, and assessments. The student launches the container;
-the prediction gate opens; items inside become accessible. The catalogue lists
-containers, not sims.
+The unit of work is a **container**: a self-contained concept product with
+identity metadata, first-principles explanation, concept map, embed API, media,
+problem-solving strategy, and any declared simulation. Curriculum shells host
+search, navigation, mastery, and cross-container recommendations.
 
 See [docs/container-spec.md](docs/container-spec.md) for the canonical layout.
 
@@ -59,7 +58,7 @@ pnpm container:new
 ## Documentation
 
 - [Mission and governance](docs/README.md)
-- [Container specification](docs/container-spec.md) — uniform layout for every concept package
+- [Container specification](docs/container-spec.md) — uniform layout for every concept container
 - [Core module inventory](docs/core-modules.md)
 - [GitHub configuration](docs/github-setup.md)
 - [Anieyrudh Filter (canonical)](core/aniegpt/aniegpt-system-prompt.md)
@@ -73,6 +72,6 @@ pnpm container:new
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). All PRs run the Anieyrudh Filter, the
-container-auditor subagent, and a boundary check that forbids cross-branch
-imports.
+See [CONTRIBUTING.md](CONTRIBUTING.md). PRs run validation, tests, license
+checks, and a boundary check that forbids cross-branch imports. The Anieyrudh
+Filter is a status-based review gate for higher-risk educational work.

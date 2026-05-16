@@ -1,6 +1,10 @@
 import { useMemo, useState } from "react";
 import { clearPrediction } from "@paideia/prediction-gate";
-import { containers, type ShellContainer } from "./catalogue.js";
+import {
+  containers,
+  knowledgeGraph,
+  type ShellContainer,
+} from "./generated/knowledge-graph.js";
 
 const selectedContainer = containers[0];
 
@@ -38,10 +42,14 @@ const ContainerList = ({
 export const App = () => {
   const [resetVersion, setResetVersion] = useState(0);
   const active = selectedContainer;
-  const activeSim = active.sims[0];
-  const Sim = activeSim.component;
+  const activeSim = active.sims[0] ?? null;
+  const Sim = activeSim?.component ?? null;
 
   const aidText = useMemo(() => active.aidTypes.join(" / "), [active.aidTypes]);
+  const graphText = useMemo(
+    () => `${knowledgeGraph.nodes.length} concept node / ${knowledgeGraph.edges.length} links`,
+    [],
+  );
 
   const resetPrediction = () => {
     clearPrediction(active.packageId, active.simId);
@@ -68,7 +76,7 @@ export const App = () => {
         <aside className="sidebar" aria-label="Catalogue">
           <div>
             <h2>Catalogue</h2>
-            <p>1 concept package available</p>
+            <p>{containers.length} container available</p>
           </div>
           <ContainerList active={active} />
         </aside>
@@ -110,20 +118,47 @@ export const App = () => {
               <h2 id="transfer-title">Transfer target</h2>
               <p>{active.transferProblem}</p>
             </section>
+
+            <section className="doctrine-panel" aria-labelledby="graph-title">
+              <h2 id="graph-title">Knowledge graph</h2>
+              <p>{graphText}</p>
+              <ul>
+                {active.prerequisites.map((concept) => (
+                  <li key={`pre-${concept}`}>Prerequisite: {concept}</li>
+                ))}
+                {active.downstream.map((concept) => (
+                  <li key={`down-${concept}`}>Next: {concept}</li>
+                ))}
+                {active.siblings.map((concept) => (
+                  <li key={`sib-${concept}`}>Related: {concept}</li>
+                ))}
+              </ul>
+            </section>
           </div>
 
-          <section className="sim-panel" id="sim" aria-labelledby="sim-title">
-            <div className="sim-header">
-              <div>
-                <p className="meta-line">{activeSim.interactionType}</p>
-                <h2 id="sim-title">{activeSim.title}</h2>
+          {Sim === null || activeSim === null ? (
+            <section className="sim-panel" id="sim" aria-labelledby="sim-title">
+              <div className="sim-header">
+                <div>
+                  <p className="meta-line">content-only</p>
+                  <h2 id="sim-title">No interactive simulation yet</h2>
+                </div>
               </div>
-              <a href="#container-title">Back to concept</a>
-            </div>
-            <div className="sim-surface">
-              <Sim key={resetVersion} />
-            </div>
-          </section>
+            </section>
+          ) : (
+            <section className="sim-panel" id="sim" aria-labelledby="sim-title">
+              <div className="sim-header">
+                <div>
+                  <p className="meta-line">{activeSim.interactionType}</p>
+                  <h2 id="sim-title">{activeSim.title}</h2>
+                </div>
+                <a href="#container-title">Back to concept</a>
+              </div>
+              <div className="sim-surface">
+                <Sim key={resetVersion} />
+              </div>
+            </section>
+          )}
         </section>
       </div>
     </div>

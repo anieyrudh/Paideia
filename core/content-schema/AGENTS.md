@@ -1,20 +1,22 @@
 # core/content-schema · agent contract
 
 ## What this module is
-The single source of truth for the shape of every learner-facing artefact in the monorepo: concept packages, simulation specs, optional learning stages (Predict, Manipulate, Observe, Explain), transfer problems, assessments, rubrics, concept-card frontmatter, course maps, review gates, and provenance records. Schemas are defined with Zod and re-exported as TypeScript types. Validators (CI and runtime) consume these; sim authors and review tooling target them.
+The single source of truth for the shape of every learner-facing artefact in the monorepo: containers, concept maps, simulation specs, optional learning stages (Predict, Manipulate, Observe, Explain), transfer problems, assessments, rubrics, concept-card frontmatter, course maps, review gates, and provenance records. Schemas are defined with Zod and re-exported as TypeScript types. Validators (CI and runtime) consume these; sim authors and review tooling target them.
 
 ## Public interface
 All exports are `z.ZodSchema` paired with `z.infer` types under `@paideia/content-schema`:
 
-- `ConceptPackageSpec` / `ConceptPackageSpecT`
-- `SimulationSpec` / `SimulationSpecT`
+- `ContainerSpec` / `TContainerSpec`
+- `ConceptPackageSpec` / `TConceptPackageSpec` (compatibility alias for `ContainerSpec`)
+- `ConceptMapSpec` / `TConceptMapSpec`
+- `SimulationSpec` / `TSimulationSpec`
 - `PredictSpec`, `ManipulateSpec`, `ObserveSpec`, `ExplainSpec` (optional learning-stage specs)
-- `TransferProblem` / `TransferProblemT`
-- `AssessmentVariant` / `AssessmentVariantT`
-- `RubricTrace` / `RubricTraceT`
-- `ConceptCardFrontmatter` / `ConceptCardFrontmatterT`
-- `CourseMap` / `CourseMapT`
-- `ReviewGate` / `ReviewGateT`
+- `TransferProblem` / `TTransferProblem`
+- `AssessmentVariant` / `TAssessmentVariant`
+- `RubricTrace` / `TRubricTrace`
+- `ConceptCardFrontmatter` / `TConceptCardFrontmatter`
+- `CourseMap` / `TCourseMap`
+- `ReviewGate`, `ContainerComponentPaths`, `AuthoringMetadata`
 - `Provenance`, `Source`, `MisconceptionEntry`
 - `SCHEMA_VERSION: "1.0.0"` (string literal)
 
@@ -34,7 +36,7 @@ Anything not listed — internal helpers, regex constants, narrowing utilities �
 - Does **not** validate cross-package references (e.g. "concept_id X exists in course-map Y") — that is the validator/CI job, not the schema.
 
 ## When to consider this module
-Use `core/content-schema` any time you author, validate, persist, or load a concept package, simulation, assessment, rubric, or course map. If you find yourself defining the same field shape inline anywhere else, you should import from here instead.
+Use `core/content-schema` any time you author, validate, persist, or load a container, concept map, simulation, assessment, rubric, or course map. If you find yourself defining the same field shape inline anywhere else, you should import from here instead.
 
 ## Extension protocol
 1. Open a `core-change-proposal` issue naming every current consumer (sim-runtime, validator CI, authoring tools, both branch catalogues).

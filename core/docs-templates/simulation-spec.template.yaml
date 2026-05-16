@@ -2,8 +2,8 @@
 # Validates against SimulationSpec in core/content-schema.
 # The scaffolder fills <PLACEHOLDERS>; author replaces with real values.
 
-id: <sim-id>                              # kebab-case, matches sims/<sim-id>/ directory name
-title: "<Sim Title>"
+id: <SIM_ID>
+title: "<TITLE> Explorer"
 interaction_type: function-plot-with-draggable
 # Choices:
 # function-plot-with-draggable | 3D-spatial-manipulation | particle-simulation
@@ -16,10 +16,9 @@ interaction_type: function-plot-with-draggable
 kernel_deps:
   - core/sim-runtime
   - core/prediction-gate
-  - core/<kernel>                          # e.g., core/numerical-math, core/plotting
-  - core/<renderer>                        # e.g., core/three-scene, core/charting
+  - core/plotting
 
-# Per-sim predict — used only when concept-package.yaml predict_at === "per-sim" or "both"
+# Per-sim predict — used only when container.yaml predict_at === "per-sim" or "both"
 # Omit otherwise.
 # predict:
 #   prompt: |
@@ -31,23 +30,23 @@ kernel_deps:
 
 manipulate:
   controls:
-    - id: <control-id>
-      label: "<Human label>"
-      kind: slider                          # slider | stepper | toggle | selector | drag-point | drag-vector | text-input | code-editor
-      kernel_binding: state.<field>         # which kernel field this control writes
+    - id: primary-control
+      label: "Primary control"
+      kind: slider
+      kernel_binding: state.primaryControl
       bounds: { min: 0, max: 100, step: 1 }
 
 observe:
   renderers:
-    - id: <renderer-id>
-      module: core/plotting                 # which core/ module provides the renderer
-      symbol: FunctionPlot                  # which exported symbol from that module
+    - id: primary-renderer
+      module: core/plotting
+      symbol: FunctionPlot
       props_binding: |
-        <How kernel state maps to renderer props — one-line description>
+        Map state.primaryControl to the first visible learner readout.
 
 explain:
   prompt: |
     <Socratic explain prompt — asks rather than tells>
   socratic: true
   expected_misconceptions_surfaced:
-    - "<Misconception name from misconceptions.md>"
+    - "Replace with a misconception name when one is declared"

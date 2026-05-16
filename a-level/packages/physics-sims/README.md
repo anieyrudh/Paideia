@@ -1,11 +1,11 @@
 # A-Level Physics Sims
 
-Executable React harness for A-Level Physics ConceptPackage simulations.
+Executable React harness for A-Level Physics container simulations.
 
 ## Current sims
 
 - `resultant-magnitude` — first proof-of-concept sim for
-  `a-level/content/physics/concept-packages/scalars-and-vectors`.
+  `a-level/content/physics/containers/scalars-and-vectors`.
 
 ## Usage
 
@@ -15,7 +15,7 @@ import { ResultantMagnitudeSim } from "@paideia/a-level-physics-sims/resultant-m
 export const Page = () => <ResultantMagnitudeSim />;
 ```
 
-Content containers keep their canonical `sims/<sim-id>/index.tsx` entrypoint,
+Content containers keep their canonical `simulation/index.tsx` entrypoint,
 but executable code lives here until the A-Level learner app route exists. This
 keeps workspace typecheck and tests inside an installable package while the
 container remains the product record.

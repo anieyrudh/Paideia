@@ -2,7 +2,7 @@
 
 Generic browser mount for Paideia simulations.
 
-Content-level tests under `sims/<sim-id>/<sim-id>.test.ts` should import the
+Content-level tests under `simulation/simulation.test.ts` should import the
 Playwright contract helpers from this package and pass a registered sim id. The
 harness owns the Vite app and browser lifecycle, while each container owns its
 prediction-gate assertion next to the sim spec.

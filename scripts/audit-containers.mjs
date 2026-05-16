@@ -4,34 +4,15 @@
  *
  * Used by .github/workflows/daily-compliance-audit.yml.
  *
- * Walks every ConceptPackage container under:
- *   <branch>/content/<subject>/concept-packages/<package-id>/
+ * Walks every v2 container under:
+ *   <branch>/content/<subject>/containers/<concept-id>/
  * and checks compliance items the validator enforces at PR time but that may
- * regress on `main` (e.g., an empty `## Anieyrudh Filter pass` section that
- * slipped past a stale validator run).
+ * regress on main.
  *
- * Checks per container:
- *   - For each sims/<sim-id>/ with a declared predict step: a *.test.ts file
- *     exists that contains the literal string `prediction-gate`.
- *   - TECHNICAL.md has a non-empty `## Anieyrudh Filter pass` section once
- *     the container reaches the configured Filter lifecycle threshold.
- *   - concept-package.yaml parses (regex sanity).
- *
- * Output:
- *   - Prints a JSON array of violations to stdout:
- *       [
- *         { "container": "a-level/content/physics/concept-packages/shm",
- *           "failures": ["TECHNICAL.md ..." , "sims/oscillator/ ..."] },
- *         ...
- *       ]
- *     Empty array `[]` means no violations.
- *   - Always exits 0 (the workflow uses the JSON output, not the exit code,
- *     to decide whether to file Issues).
- *
- * No external dependencies — uses only Node built-ins.
+ * Always exits 0; the workflow uses the JSON output to file Issues.
  */
 
-import { readdirSync, readFileSync, statSync, existsSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
 import { join, relative, resolve } from "node:path";
 
 const REPO_ROOT = resolve(process.cwd());
@@ -45,6 +26,25 @@ const STATUS_RANK = {
   published: 5,
 };
 
+function findContainers() {
+  const containers = [];
+  for (const branch of BRANCHES) {
+    const contentDir = join(REPO_ROOT, branch, "content");
+    if (!existsSync(contentDir) || !statSync(contentDir).isDirectory()) continue;
+    for (const subject of readdirSync(contentDir)) {
+      const subjectDir = join(contentDir, subject);
+      if (!statSync(subjectDir).isDirectory()) continue;
+      const containersDir = join(subjectDir, "containers");
+      if (!existsSync(containersDir) || !statSync(containersDir).isDirectory()) continue;
+      for (const conceptId of readdirSync(containersDir)) {
+        const containerDir = join(containersDir, conceptId);
+        if (statSync(containerDir).isDirectory()) containers.push(containerDir);
+      }
+    }
+  }
+  return containers;
+}
+
 function scalarValue(raw, key) {
   const match = raw.match(new RegExp(`^${key}\\s*:\\s*['"]?([A-Za-z0-9_-]+)['"]?`, "m"));
   return match?.[1] ?? "";
@@ -56,84 +56,46 @@ function filterRequired(raw) {
   return (STATUS_RANK[status] ?? 0) >= (STATUS_RANK[requiredFor] ?? STATUS_RANK.published);
 }
 
-function findContainers() {
-  const containers = [];
-  for (const branch of BRANCHES) {
-    const contentDir = join(REPO_ROOT, branch, "content");
-    if (!existsSync(contentDir) || !statSync(contentDir).isDirectory()) continue;
-    for (const subject of readdirSync(contentDir)) {
-      const subjectDir = join(contentDir, subject);
-      if (!statSync(subjectDir).isDirectory()) continue;
-      const packagesDir = join(subjectDir, "concept-packages");
-      if (!existsSync(packagesDir) || !statSync(packagesDir).isDirectory()) continue;
-      for (const pkg of readdirSync(packagesDir)) {
-        const pkgDir = join(packagesDir, pkg);
-        if (statSync(pkgDir).isDirectory()) containers.push(pkgDir);
-      }
-    }
-  }
-  return containers;
-}
-
 function auditContainer(containerDir) {
   const failures = [];
+  const containerYaml = join(containerDir, "container.yaml");
+  let raw = "";
 
-  // concept-package.yaml parses (regex sanity)
-  const cpYaml = join(containerDir, "concept-package.yaml");
-  let cpRaw = "";
-  if (!existsSync(cpYaml)) {
-    failures.push("concept-package.yaml is missing");
+  if (!existsSync(containerYaml)) {
+    failures.push("container.yaml is missing");
   } else {
-    cpRaw = readFileSync(cpYaml, "utf8");
-    if (cpRaw.trim().length === 0) {
-      failures.push("concept-package.yaml is empty");
-    } else if (!/^id\s*:\s*\S+/m.test(cpRaw) || !/^status\s*:\s*\S+/m.test(cpRaw)) {
-      failures.push("concept-package.yaml fails minimal parse (missing `id:` or `status:`)");
+    raw = readFileSync(containerYaml, "utf8");
+    if (raw.trim().length === 0) {
+      failures.push("container.yaml is empty");
+    } else if (!/^id\s*:\s*\S+/m.test(raw) || !/^status\s*:\s*\S+/m.test(raw)) {
+      failures.push("container.yaml fails minimal parse (missing `id:` or `status:`)");
     }
   }
 
-  const hasPackagePredict = /^package_predict\s*:/m.test(cpRaw);
+  for (const dirname of ["concept-map", "embed", "media", "problem-solving"]) {
+    const dir = join(containerDir, dirname);
+    if (!existsSync(dir) || !statSync(dir).isDirectory()) failures.push(`${dirname}/ is missing`);
+  }
 
-  // Predict-gate Playwright file per sim with a declared predict path.
-  const simsDir = join(containerDir, "sims");
-  if (existsSync(simsDir) && statSync(simsDir).isDirectory()) {
-    for (const simId of readdirSync(simsDir)) {
-      const simDir = join(simsDir, simId);
-      if (!statSync(simDir).isDirectory()) continue;
-      const simSpec = join(simDir, "SimulationSpec.yaml");
-      const simHasPredict = existsSync(simSpec) && /^predict\s*:/m.test(readFileSync(simSpec, "utf8"));
-      if (!hasPackagePredict && !simHasPredict) continue;
-      const tests = readdirSync(simDir).filter((f) =>
-        f.endsWith(".test.ts") && statSync(join(simDir, f)).isFile()
-      );
-      if (tests.length === 0) {
-        failures.push(`sims/${simId}/ has no *.test.ts file (predict-gate Playwright required)`);
-        continue;
-      }
-      const anyHasGate = tests.some((f) =>
-        readFileSync(join(simDir, f), "utf8").includes("prediction-gate")
-      );
-      if (!anyHasGate) {
-        failures.push(
-          `sims/${simId}/ test files do not reference \`prediction-gate\` (predict-gate Playwright assertion missing)`
-        );
-      }
+  const hasPredict = /^package_predict\s*:/m.test(raw) || /^predict_at\s*:\s*(per-sim|both|package-level)/m.test(raw);
+  const simTest = join(containerDir, "simulation", "simulation.test.ts");
+  if (hasPredict) {
+    if (!existsSync(simTest)) {
+      failures.push("simulation/simulation.test.ts is missing for declared prediction path");
+    } else if (!readFileSync(simTest, "utf8").includes("prediction-gate")) {
+      failures.push("simulation/simulation.test.ts does not reference `prediction-gate`");
     }
   }
 
-  // TECHNICAL.md `## Anieyrudh Filter pass` section non-empty once required.
   const techPath = join(containerDir, "TECHNICAL.md");
   if (!existsSync(techPath)) {
     failures.push("TECHNICAL.md is missing");
-  } else {
+  } else if (filterRequired(raw)) {
     const tech = readFileSync(techPath, "utf8");
-    const header = /^##\s+Anieyrudh Filter pass\s*$/m;
-    const match = tech.match(header);
-    if (filterRequired(cpRaw)) {
-      if (!match) {
-        failures.push("TECHNICAL.md is missing the `## Anieyrudh Filter pass` section header required at this lifecycle status");
-        return { container: relative(REPO_ROOT, containerDir), failures };
-      }
+    const match = tech.match(/^##\s+Anieyrudh Filter pass\s*$/m);
+    if (!match) {
+      failures.push("TECHNICAL.md is missing the `## Anieyrudh Filter pass` section header required at this lifecycle status");
+    } else {
       const startIdx = (match.index ?? 0) + match[0].length;
       const after = tech.slice(startIdx);
       const nextHeader = after.search(/^##\s+/m);
@@ -148,14 +110,11 @@ function auditContainer(containerDir) {
 }
 
 function main() {
-  const containers = findContainers();
-  const violations = containers
+  const violations = findContainers()
     .map(auditContainer)
-    .filter((r) => r.failures.length > 0);
+    .filter((result) => result.failures.length > 0);
 
-  // ALWAYS print valid JSON, even for the empty case.
-  process.stdout.write(JSON.stringify(violations, null, 2) + "\n");
-  process.exit(0);
+  process.stdout.write(`${JSON.stringify(violations, null, 2)}\n`);
 }
 
 main();

@@ -1,0 +1,8 @@
+controls:
+  - id: primary-control
+    label: "Primary control"
+    kind: slider
+    default: 0
+    min: 0
+    max: 10
+    step: 1

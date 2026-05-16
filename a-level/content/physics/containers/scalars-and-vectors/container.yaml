@@ -1,11 +1,15 @@
 schema_version: "1.0.0"
 id: scalars-and-vectors
+aliases:
+  - vectors
+  - vector addition
 branch: a-level
 subject: physics
+level: "H2"
+module: "Foundations of Physics"
 title: "Scalars and Vectors"
 one_line_summary: "Distinguish scalar and vector quantities, then combine coplanar vectors without treating arrows as ordinary numbers."
 syllabus_ref: "9478 / Section I / 1(h)-1(j)"
-level: "H2"
 prerequisites: []
 aid_types:
   - simulation
@@ -23,70 +27,72 @@ package_predict:
       - "7.1 m"
       - "10 m"
   rationale_required: true
-items:
+components:
   concept_card: concept-card.md
-  misconceptions: misconceptions.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
   sources: sources.md
-  sims:
-    - id: resultant-magnitude
-      title: "Resultant Magnitude Explorer"
-      interaction_type: diagram-builder
-      kernel_deps:
-        - core/prediction-gate
-      predict:
-        prompt: |
-          Two displacement arrows each have length 5 m. One points east and one points north. Before seeing any construction, what resultant magnitude do you expect?
-        commit_format:
-          kind: multiple-choice
-          options:
-            - "0 m"
-            - "5 m"
-            - "7.1 m"
-            - "10 m"
-          correct_index: 2
-        rationale_required: true
-      manipulate:
-        controls:
-          - id: vector-a-magnitude
-            label: "Vector A magnitude"
-            kind: slider
-            kernel_binding: state.vectorA.magnitude
-            bounds: { min: 0, max: 10, step: 0.5 }
-          - id: vector-b-magnitude
-            label: "Vector B magnitude"
-            kind: slider
-            kernel_binding: state.vectorB.magnitude
-            bounds: { min: 0, max: 10, step: 0.5 }
-          - id: angle-between
-            label: "Angle between vectors"
-            kind: slider
-            kernel_binding: state.angleDegrees
-            bounds: { min: 0, max: 180, step: 5 }
-      observe:
-        renderers:
-          - id: resultant-vector-diagram
-            module: "@paideia/a-level-physics-sims/resultant-magnitude"
-            symbol: ResultantVectorDiagram
-            props_binding: |
-              Draw vector A east, vector B at the selected angle, and the geometric resultant from their component sum.
-      explain:
-        prompt: |
-          Why does changing only the angle between two vectors change the resultant magnitude even when both vector lengths stay fixed?
-        socratic: true
-        expected_misconceptions_surfaced:
-          - "Magnitude-only vector addition"
-  transfer_problems:
-    - id: field-trip-displacement
-      prompt: |
-        A class walks 300 m east from the school gate to a bus stop, then 400 m north to a field site. Decide whether the quantities should be combined as scalars or vectors, calculate the displacement magnitude from the school gate, and explain why total walking distance is not the same physical quantity as displacement.
-      surface_form: "field-trip route"
-      same_concept_check: "The surface changes from abstract arrows to a route context, but the required decision is still whether direction must be preserved before combining quantities."
-      rubric_path: transfer/field-trip-displacement.md
-  assessments: []
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods:
+    - load
+    - saveState
+    - score
+    - resume
+    - syncTheme
+    - destroy
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: field-trip-displacement
+    prompt: |
+      A class walks 300 m east from the school gate to a bus stop, then 400 m north to a field site. Decide whether the quantities should be combined as scalars or vectors, calculate the displacement magnitude from the school gate, and explain why total walking distance is not the same physical quantity as displacement.
+    surface_form: "field-trip route"
+    same_concept_check: "The surface changes from abstract arrows to a route context, but the required decision is still whether direction must be preserved before combining quantities."
+    rubric_path: problem-solving/field-trip-displacement.md
+assessments: []
 status: draft
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: in-review
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-16"
+      author: "Codex"
+      summary: "Migrated the first container to the v2 container architecture with concept-map, embed, media, simulation, and problem-solving surfaces."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []
+review:
+  anieyrudh_filter:
+    required_for_status: published
+    last_run: null
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: false
 misconceptions:
   - name: "Magnitude-only vector addition"
     description: |

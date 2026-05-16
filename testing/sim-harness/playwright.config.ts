@@ -3,8 +3,8 @@ import { defineConfig, devices } from "@playwright/test";
 export default defineConfig({
   testDir: "../..",
   testMatch: [
-    "a-level/content/**/concept-packages/**/sims/**/*.test.ts",
-    "sutd/content/**/concept-packages/**/sims/**/*.test.ts",
+    "a-level/content/**/containers/**/simulation/**/*.test.ts",
+    "sutd/content/**/containers/**/simulation/**/*.test.ts",
   ],
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,
