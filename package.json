@@ -13,6 +13,7 @@
     "test": "pnpm -r test",
     "lint": "pnpm -r lint",
     "typecheck": "tsc -b",
+    "catalogue:generate": "node scripts/generate-catalogue.mjs",
     "container:validate": "node scripts/validate-containers.mjs",
     "container:new": "node scripts/new-container.mjs",
     "test:a11y": "pnpm -F @paideia/a-level-shell test:a11y",

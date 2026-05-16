@@ -105,7 +105,12 @@ export const runResultantMagnitudeGateContract = () => {
       await click(commitButton());
       await change(controlByLabel("Angle between vectors"), "0");
 
-      expect(text().match(/10\.0 m/gu)).toHaveLength(2);
+      expect(document.querySelector("[aria-label='Observation unlocked']")?.textContent).toContain(
+        "10.0 m",
+      );
+      expect(document.querySelector("[aria-label='Formula used']")?.textContent).toContain(
+        "10.0 m",
+      );
     });
   });
 };

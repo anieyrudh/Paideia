@@ -30,9 +30,10 @@ export const definePredictionGateContract = ({
       await page.getByLabel("Rationale").fill(rationale);
       await page.getByRole("button", { name: "Commit prediction" }).click();
 
-      await expect(page.getByLabel(observationLabel)).toBeVisible();
+      const observation = page.getByLabel(observationLabel);
+      await expect(observation).toBeVisible();
       for (const text of expectedText) {
-        await expect(page.getByText(text)).toBeVisible();
+        await expect(observation.getByText(text)).toBeVisible();
       }
     });
   });

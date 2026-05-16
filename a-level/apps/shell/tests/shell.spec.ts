@@ -18,7 +18,8 @@ test("launches the first container sim through the learner shell", async ({ page
 
   await expect(page.getByLabel("Observation unlocked")).toBeVisible();
   await expect(page.getByText("Geometric resultant")).toBeVisible();
+  await expect(page.getByLabel("Formula used")).toContainText("|R| =");
 
-  await page.getByRole("button", { name: "Reset local prediction" }).click();
+  await page.getByRole("button", { name: "Reset prediction" }).click();
   await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
 });
