@@ -11,7 +11,7 @@
   "scripts": {
     "build": "tsc -b",
     "test": "vitest run",
-    "lint": "tsc --noEmit",
+    "lint": "tsc -b --pretty false",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

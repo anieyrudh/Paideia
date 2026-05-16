@@ -27,6 +27,8 @@ const parseValue = (predict: TPredictSpec, raw: string): unknown => {
     case "sketch":
       return raw;
   }
+
+  throw new Error("Unsupported prediction commit format.");
 };
 
 const formatHint = (predict: TPredictSpec): string => {
@@ -44,6 +46,8 @@ const formatHint = (predict: TPredictSpec): string => {
     case "sketch":
       return predict.commit_format.canvas_hint ?? "Describe or encode your sketch.";
   }
+
+  throw new Error("Unsupported prediction commit format.");
 };
 
 const CommitControl = ({
@@ -59,7 +63,7 @@ const CommitControl = ({
     return (
       <fieldset>
         <legend>Prediction</legend>
-        {predict.commit_format.options.map((option) => (
+        {predict.commit_format.options.map((option: string) => (
           <label key={option}>
             <input
               checked={rawValue === option}
