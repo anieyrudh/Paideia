@@ -1,0 +1,10 @@
+flowchart LR
+  units["Physical quantities and units"] --> current["Scalars and Vectors"]
+  current --> resolving["Resolving vectors"]
+  current --> kinematics["Kinematics"]
+  current --> forces["Forces and Newton's laws"]
+  classify["Classify by sign or unit"] --> magnitude["Magnitude-only addition"]
+  magnitude --> negative["Negative scalar direction error"]
+  current -. addresses .-> classify
+  current -. addresses .-> magnitude
+  current -. addresses .-> negative

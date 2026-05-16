@@ -90,7 +90,7 @@ promote this behavior through a `core-change-proposal`.
 - Executable prediction gate regression:
   `a-level/packages/physics-sims/src/resultant-magnitude.test.ts`
 - Route-level prediction-gate contract:
-  `sims/resultant-magnitude/resultant-magnitude.test.ts`
+  `simulation/simulation.test.ts`
 - Generic browser harness:
   `testing/sim-harness`
 
@@ -130,7 +130,7 @@ Filter version: aniegpt v1.0
 - Potential P0: sim not runnable through repository tests. Resolution:
   `@paideia/a-level-physics-sims` imports the container sim and runs a jsdom
   React test in `pnpm -r test`.
-- Resolved P0 under strict doctrine: `sims/<sim-id>/<sim-id>.test.ts` now imports
+- Resolved P0 under strict doctrine: `simulation/simulation.test.ts` now imports
   the generic browser contract from `testing/sim-harness` and runs through
   Playwright/Chromium as part of `pnpm test`.
 
@@ -141,12 +141,12 @@ Filter version: aniegpt v1.0
   Playwright coverage no longer depends on the future learner app route.
 - P1: Sim-level Predict metadata was initially missing because the container
   used `package_predict`. Resolution: duplicated the prediction spec into
-  `SimulationSpec.yaml` and `items.sims[].predict`, and set `predict_at: both`
+  `simulation.yaml` and `simulation.predict`, and set `predict_at: both`
   so the package and sim records are explicit.
 - P1: The first UI copy explained the mechanism too early. Resolution: replaced
   it with a Socratic observation prompt so the explain step remains student-authored.
 - P1: Transfer was initially described but not represented as an artifact.
-  Resolution: added `transfer/field-trip-displacement.md` and linked it from
+  Resolution: added `problem-solving/field-trip-displacement.md` and linked it from
   `items.transfer_problems`.
 - P1: Vector addition is local to this sim. Resolution: acceptable for the first
   concept-specific vertical slice; promote to `core/vector-math` only when a
@@ -174,14 +174,14 @@ Date: 2026-05-16
 | Install narrow sim harness offline | `pnpm install --offline --filter @paideia/a-level-physics-sims` | The local pnpm store lacked `@testing-library/react` | Replaced the harness test with plain `react-dom` + DOM events so the new package has fewer local tarball requirements |
 | Typecheck content sim directly from package | `pnpm typecheck` | The content sim file sat outside the package root and could not resolve package-local `react`, `@paideia/prediction-gate`, or JSX runtime types | Moved executable TSX to `a-level/packages/physics-sims/src/resultant-magnitude.tsx` and left the content sim entry as a thin route-facing re-export |
 | Exercise React-controlled inputs without Testing Library | `pnpm -F @paideia/a-level-physics-sims test` | Native DOM assignment did not update React-tracked textarea state, so the prediction gate did not reveal after commit | Updated the test helper to use the native value setter and wrapped interactions in React `act`; the prediction-gate regression now passes |
-| Pedagogy review | `pedagogy-reviewer` subagent | Blocked merge because transfer was absent and `sims/resultant-magnitude/resultant-magnitude.test.ts` was a comment-only placeholder | Added a transfer artifact and converted the required sim test file into an executable jsdom contract that asserts the prediction gate blocks observation until commit |
+| Pedagogy review | `pedagogy-reviewer` subagent | Blocked merge because transfer was absent and `simulation/simulation.test.ts` was a comment-only placeholder | Added a transfer artifact and converted the required sim test file into an executable jsdom contract that asserts the prediction gate blocks observation until commit |
 | Pedagogy recheck | `pedagogy-reviewer` subagent | Strict doctrine still wants Playwright in the sim test file, not jsdom | Added `testing/sim-harness`, changed the content-level sim test to import a Playwright contract, and wired Chromium installation into CI before `pnpm test` |
 
 ## Iteration log
 
 - Selected a small A-Level Physics foundation concept aligned to the current
   SEAB 9478 syllabus.
-- Added `sims/resultant-magnitude/` as the first observation-shaped sim.
+- Added `simulation/` as the first observation-shaped sim.
 - Added `a-level/packages/physics-sims` so content sims are exercised by the
   workspace test runner.
 - Rejected using the old scaffold template as-is because it points at missing

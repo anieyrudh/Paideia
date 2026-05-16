@@ -7,6 +7,8 @@ test("launches the first container sim through the learner shell", async ({ page
   await expect(page.getByRole("navigation", { name: "Concept packages" })).toContainText(
     "Physics / H2",
   );
+  await expect(page.getByRole("heading", { name: "Knowledge graph" })).toBeVisible();
+  await expect(page.getByText("Prerequisite: Physical Quantities and Units")).toBeVisible();
   await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
   await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
 

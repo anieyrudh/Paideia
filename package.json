@@ -15,6 +15,7 @@
     "typecheck": "tsc -b",
     "container:validate": "node scripts/validate-containers.mjs",
     "container:new": "node scripts/new-container.mjs",
+    "graph:generate": "node scripts/generate-knowledge-graph.mjs",
     "test:a11y": "pnpm -F @paideia/a-level-shell test:a11y",
     "axe": "pnpm -r axe",
     "boundary": "dependency-cruiser --config .dependency-cruiser.cjs core a-level sutd",

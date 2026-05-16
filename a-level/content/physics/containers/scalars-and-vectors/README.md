@@ -29,6 +29,15 @@ do not force a 10 m resultant.
 See `sources.md`. This package is original Paideia content aligned to SEAB 9478
 H2 Physics Section I, learning outcomes 1(h)-1(j).
 
+## Container surfaces
+
+- `container.yaml` owns identity, authoring metadata, capabilities, and embed API contract.
+- `concept-map/` owns prerequisites, downstream links, sibling concepts, misconception graph, and Mermaid source.
+- `simulation/` owns the main interactive explorable, controls, presets, runtime metadata, and state labels.
+- `embed/` owns the standalone host API.
+- `media/` owns fallback visuals and thumbnails.
+- `problem-solving/` owns the stepwise strategy and transfer problem.
+
 ## Author + date + advisor sign-offs
 
 - Author: Anieyrudh R

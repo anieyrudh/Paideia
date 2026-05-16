@@ -1,6 +1,6 @@
 // prediction-gate contract: mounted by the generic browser sim harness.
 
-import { definePredictionGateContract } from "../../../../../../../testing/sim-harness/src/playwright-contract.js";
+import { definePredictionGateContract } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 definePredictionGateContract({
   simId: "a-level/physics/scalars-and-vectors/resultant-magnitude",

@@ -6,12 +6,12 @@ level: H2
 syllabus_ref: "9478 / Section I / 1(h)-1(j)"
 prerequisites: []
 aid_types: [concept-card, simulation, misconception-audit, transfer-problem]
-status: ready-for-build
+status: draft
 ---
 
 # Scalars and Vectors
 
-## What this teaches
+## First-principles explanation
 
 Students learn that a physical quantity is not classified by its unit or by
 whether its number can be positive or negative. The useful test is whether the
@@ -20,18 +20,40 @@ with magnitude and unit; vector quantities need magnitude and direction, so
 vector addition must preserve direction instead of adding arrow lengths as
 ordinary numbers.
 
+## Key definitions
+
+- **Scalar:** a quantity fully described by magnitude and unit.
+- **Vector:** a quantity that needs magnitude, unit, and direction.
+- **Resultant:** the single vector with the same effect as two or more vectors
+  combined.
+- **Component:** the part of a vector acting along a chosen axis.
+
+## Why this matters
+
+Mechanics becomes unreliable if distance is treated as displacement, speed as
+velocity, or force magnitudes as ordinary numbers. Scalars and vectors are the
+classification step that tells a student which mathematical operation is legal.
+
+## Canonical examples
+
+- Distance travelled is scalar; displacement from start to finish is vector.
+- Speed is scalar; velocity is vector.
+- Mass is scalar; weight is a force vector.
+- Two perpendicular 5 m displacements produce a resultant of about 7.1 m, not
+  10 m.
+
+## Common misconceptions
+
+- Adding vector magnitudes as if direction is irrelevant.
+- Treating a negative vector component as only a smaller amount rather than as
+  direction-sensitive information.
+- Classifying quantities by unit or sign instead of physical meaning.
+
 ## What the student does
 
-- **Predict:** Choose a resultant magnitude before any vector construction is
-  shown.
-- **Manipulate:** Change the magnitudes of two coplanar vector arrows and the
-  angle between them.
-- **Observe:** Compare the geometric resultant with the simple sum of
-  magnitudes.
-- **Explain:** State why the same two magnitudes can produce different
-  resultants when the angle changes.
-- **Transfer:** Decide whether a quantity in a mechanics question should be
-  added algebraically or vectorially before calculating.
+The learner predicts the resultant magnitude first, manipulates two vector
+arrows, observes the geometric resultant, and then applies the same scalar versus
+vector decision to a route problem.
 
 ## Pedagogical choices and why
 

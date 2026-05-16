@@ -1,6 +1,6 @@
 ---
 name: Simulation spec proposal
-about: Propose a new sim inside an existing ConceptPackage
+about: Propose a new simulation inside an existing container
 title: "[simulation] "
 labels: simulation, pending-build
 ---
@@ -13,7 +13,7 @@ labels: simulation, pending-build
 
 ## Kernel deps
 
-## PMOE-T stages
+## Learning flow
 
 Predict:
 
