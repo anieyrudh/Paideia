@@ -18,11 +18,11 @@ level: "<LEVEL>"                       # e.g., "H2", "Freshmore"
 prerequisites:                         # other package ids the student should have completed
   - <prereq-package-id>
 
-# Pedagogy intent
+# Pedagogy intent. Declare only the item types this container actually provides.
 aid_types:                             # which item types this container provides
   - simulation
   - misconception-audit
-predict_at: package-level              # package-level | per-sim | both
+predict_at: package-level              # none | package-level | per-sim | both
 
 # Package-level predict (used when predict_at !== "per-sim")
 package_predict:
@@ -83,6 +83,16 @@ status: skeleton                       # skeleton | content-only | draft | revie
 authors:
   - "<Your Name>"
 advisor_signoffs: []
+
+# Review gates. The Filter is a critic for higher-risk lifecycle states, not a
+# universal authoring ritual for every draft.
+review:
+  anieyrudh_filter:
+    required_for_status: published      # reviewed | ready-for-build | published
+    last_run: null
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: false
 
 # Provenance (optional)
 # provenance:

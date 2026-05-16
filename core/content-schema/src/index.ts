@@ -3,10 +3,9 @@
  * structure across Paideia.
  *
  * Top-level type: ConceptPackageSpec (a container).
- * A container holds one or more sims plus its card, sources, transfer problems,
- * misconceptions, and assessments. The catalogue lists containers. The student
- * launches a container. The Anieyrudh Filter and the container-auditor read
- * containers.
+ * A container holds its card, sources, and any declared sims, transfer
+ * problems, misconceptions, and assessments. The catalogue lists containers.
+ * The student launches a container. Review tooling reads containers.
  *
  * Stability discipline:
  * - This schema freezes at week 12 of Phase B. Post-freeze changes need
@@ -83,10 +82,10 @@ export const MisconceptionEntry = z.object({
 });
 
 // ──────────────────────────────────────────────────────────────────────────
-// PMOE-T stage shapes
+// Learning-stage shapes
 // ──────────────────────────────────────────────────────────────────────────
 
-/** Predict stage — the gate. Committed prediction unlocks the rest. */
+/** Predict stage — when present, committed prediction unlocks observation. */
 export const PredictSpec = z.object({
   prompt: z.string().min(10).max(2000),
   commit_format: z.discriminatedUnion("kind", [
@@ -227,6 +226,24 @@ export const RubricTrace = z.object({
   performance_descriptors: z.array(z.string().min(10).max(500)).min(2).max(8),
 });
 
+export const ReviewGate = z.object({
+  anieyrudh_filter: z
+    .object({
+      required_for_status: z
+        .enum(["reviewed", "ready-for-build", "published"])
+        .default("published"),
+      last_run: z
+        .string()
+        .regex(/^\d{4}-\d{2}-\d{2}$/)
+        .nullable()
+        .default(null),
+      p0_open: z.number().int().nonnegative().default(0),
+      p1_open: z.number().int().nonnegative().default(0),
+      output_in_technical_md: z.boolean().default(false),
+    })
+    .optional(),
+});
+
 // ──────────────────────────────────────────────────────────────────────────
 // ConceptCard frontmatter — the .md card body lives separately
 // ──────────────────────────────────────────────────────────────────────────
@@ -261,6 +278,19 @@ export const ConceptCardFrontmatter = z.object({
 // ConceptPackageSpec — the container manifest (TOP-LEVEL TYPE)
 // ──────────────────────────────────────────────────────────────────────────
 
+const statusRank = {
+  skeleton: 0,
+  "content-only": 1,
+  draft: 2,
+  reviewed: 3,
+  "ready-for-build": 4,
+  published: 5,
+} as const;
+
+const addIssue = (ctx: z.RefinementCtx, path: (string | number)[], message: string): void => {
+  ctx.addIssue({ code: z.ZodIssueCode.custom, path, message });
+};
+
 export const ConceptPackageSpec = z.object({
   // LOCKED — never change without ADR + migration.
   schema_version: z.literal("1.0.0"),
@@ -290,9 +320,9 @@ export const ConceptPackageSpec = z.object({
       ]),
     )
     .min(1),
-  predict_at: z.enum(["package-level", "per-sim", "both"]).default("package-level"),
+  predict_at: z.enum(["none", "package-level", "per-sim", "both"]).default("none"),
 
-  // Package-level predict (used when predict_at !== "per-sim")
+  // Package-level predict (used when predict_at is "package-level" or "both")
   package_predict: PredictSpec.optional(),
 
   // Container items — these mirror the on-disk folder layout
@@ -332,6 +362,7 @@ export const ConceptPackageSpec = z.object({
       output_in_technical_md: z.boolean(),
     })
     .optional(),
+  review: ReviewGate.optional(),
 
   // Misconceptions surfaced by this container (cross-ref to misconceptions.md)
   misconceptions: z.array(MisconceptionEntry).default([]),
@@ -341,6 +372,83 @@ export const ConceptPackageSpec = z.object({
 
   // Localisation
   language: z.string().regex(/^[a-z]{2}(-[A-Z]{2})?$/).default("en"),
+}).superRefine((data, ctx) => {
+  const aidTypes = new Set(data.aid_types);
+  const simCount = data.items.sims.length;
+  const transferCount = data.items.transfer_problems.length;
+  const misconceptionCount = data.misconceptions.length;
+
+  if (aidTypes.has("simulation") && simCount === 0) {
+    addIssue(ctx, ["items", "sims"], "`simulation` aid_type requires at least one items.sims entry");
+  }
+  if (!aidTypes.has("simulation") && simCount > 0) {
+    addIssue(ctx, ["aid_types"], "items.sims is non-empty, so aid_types must include `simulation`");
+  }
+
+  if (aidTypes.has("transfer-problem") && transferCount === 0) {
+    addIssue(
+      ctx,
+      ["items", "transfer_problems"],
+      "`transfer-problem` aid_type requires at least one items.transfer_problems entry",
+    );
+  }
+  if (!aidTypes.has("transfer-problem") && transferCount > 0) {
+    addIssue(
+      ctx,
+      ["aid_types"],
+      "items.transfer_problems is non-empty, so aid_types must include `transfer-problem`",
+    );
+  }
+
+  if (aidTypes.has("misconception-audit")) {
+    if (!data.items.misconceptions) {
+      addIssue(ctx, ["items", "misconceptions"], "`misconception-audit` aid_type requires items.misconceptions");
+    }
+    if (misconceptionCount === 0) {
+      addIssue(ctx, ["misconceptions"], "`misconception-audit` aid_type requires at least one misconception entry");
+    }
+  }
+  if (!aidTypes.has("misconception-audit") && misconceptionCount > 0) {
+    addIssue(ctx, ["aid_types"], "misconceptions is non-empty, so aid_types must include `misconception-audit`");
+  }
+
+  if ((data.predict_at === "package-level" || data.predict_at === "both") && !data.package_predict) {
+    addIssue(ctx, ["package_predict"], `predict_at=${data.predict_at} requires package_predict`);
+  }
+  if ((data.predict_at === "none" || data.predict_at === "per-sim") && data.package_predict) {
+    addIssue(ctx, ["package_predict"], `package_predict must be omitted when predict_at is \`${data.predict_at}\``);
+  }
+  if ((data.predict_at === "per-sim" || data.predict_at === "both") && simCount > 0) {
+    data.items.sims.forEach((sim, index) => {
+      if (!sim.predict) {
+        addIssue(ctx, ["items", "sims", index, "predict"], `predict_at=${data.predict_at} requires each sim to declare predict`);
+      }
+    });
+  }
+  if (data.predict_at === "none") {
+    data.items.sims.forEach((sim, index) => {
+      if (sim.predict) {
+        addIssue(ctx, ["items", "sims", index, "predict"], "sim predict must be omitted when predict_at is `none`");
+      }
+    });
+  }
+
+  const filter = data.review?.anieyrudh_filter;
+  if (filter && statusRank[data.status] >= statusRank[filter.required_for_status]) {
+    if (!filter.last_run) {
+      addIssue(ctx, ["review", "anieyrudh_filter", "last_run"], "Filter last_run is required at this lifecycle status");
+    }
+    if (!filter.output_in_technical_md) {
+      addIssue(
+        ctx,
+        ["review", "anieyrudh_filter", "output_in_technical_md"],
+        "Filter output must be recorded in TECHNICAL.md at this lifecycle status",
+      );
+    }
+    if (filter.p0_open > 0) {
+      addIssue(ctx, ["review", "anieyrudh_filter", "p0_open"], "P0 Filter issues must be resolved");
+    }
+  }
 });
 
 // ──────────────────────────────────────────────────────────────────────────
@@ -380,6 +488,7 @@ export type TTransferProblem = z.infer<typeof TransferProblem>;
 export type TSimulationSpec = z.infer<typeof SimulationSpec>;
 export type TAssessmentVariant = z.infer<typeof AssessmentVariant>;
 export type TRubricTrace = z.infer<typeof RubricTrace>;
+export type TReviewGate = z.infer<typeof ReviewGate>;
 export type TConceptCardFrontmatter = z.infer<typeof ConceptCardFrontmatter>;
 export type TConceptPackageSpec = z.infer<typeof ConceptPackageSpec>;
 export type TCourseMap = z.infer<typeof CourseMap>;

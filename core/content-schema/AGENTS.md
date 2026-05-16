@@ -1,19 +1,20 @@
 # core/content-schema · agent contract
 
 ## What this module is
-The single source of truth for the shape of every learner-facing artefact in the monorepo: concept packages, simulation specs, the four PMOE-T stages (Predict, Manipulate, Observe, Explain), transfer problems, assessments, rubrics, concept-card frontmatter, course maps, and provenance records. Schemas are defined with Zod and re-exported as TypeScript types. Validators (CI and runtime) consume these; sim authors and the Filter both target them.
+The single source of truth for the shape of every learner-facing artefact in the monorepo: concept packages, simulation specs, optional learning stages (Predict, Manipulate, Observe, Explain), transfer problems, assessments, rubrics, concept-card frontmatter, course maps, review gates, and provenance records. Schemas are defined with Zod and re-exported as TypeScript types. Validators (CI and runtime) consume these; sim authors and review tooling target them.
 
 ## Public interface
 All exports are `z.ZodSchema` paired with `z.infer` types under `@paideia/content-schema`:
 
 - `ConceptPackageSpec` / `ConceptPackageSpecT`
 - `SimulationSpec` / `SimulationSpecT`
-- `PredictSpec`, `ManipulateSpec`, `ObserveSpec`, `ExplainSpec` (the four PMOE-T stage specs)
+- `PredictSpec`, `ManipulateSpec`, `ObserveSpec`, `ExplainSpec` (optional learning-stage specs)
 - `TransferProblem` / `TransferProblemT`
 - `AssessmentVariant` / `AssessmentVariantT`
 - `RubricTrace` / `RubricTraceT`
 - `ConceptCardFrontmatter` / `ConceptCardFrontmatterT`
 - `CourseMap` / `CourseMapT`
+- `ReviewGate` / `ReviewGateT`
 - `Provenance`, `Source`, `MisconceptionEntry`
 - `SCHEMA_VERSION: "1.0.0"` (string literal)
 
@@ -23,7 +24,7 @@ Anything not listed — internal helpers, regex constants, narrowing utilities �
 - Every artefact MUST validate with `<Schema>.parse(obj)` before it is persisted, rendered, or sent to a model. `safeParse` is acceptable when the caller handles the error path explicitly.
 - `schema_version` MUST equal `SCHEMA_VERSION` on every persisted artefact.
 - `Provenance.prompt_version` and `Provenance.prompt_sha256` MUST be filled from `core/aniegpt` — never hand-typed.
-- Refinements (e.g. PMOE-T stages must appear in order Predict → Manipulate → Observe → Explain) are enforced inside the schema; do not duplicate them in callers.
+- Refinements (e.g. optional declared pieces must be coherent with `aid_types` and `predict_at`) are enforced inside the schema; do not duplicate them in callers.
 
 ## What this module does NOT do
 - Does **not** render, evaluate, or simulate anything. Schemas are inert.

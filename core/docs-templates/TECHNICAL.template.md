@@ -52,15 +52,16 @@ pnpm dev --filter @paideia/<branch>-shell
 
 ## Anieyrudh Filter pass
 
-> **THIS SECTION MUST BE NON-EMPTY. The daily-compliance-audit workflow
-> creates an Issue if it is empty. CI blocks merge if it is empty.**
+> Required once `concept-package.yaml` reaches the configured Filter lifecycle
+> threshold, usually `published`. Draft UI and layout iterations may leave this
+> section as a short note explaining why the Filter was not run.
 
 Date: <YYYY-MM-DD>
 Filter version: aniegpt v1.0
 
 ### P0 issues
 
-(Each P0 must be resolved before merge. List them and resolution.)
+(Each P0 must be resolved before publishing. List them and resolution.)
 
 - ...
 
