@@ -64,6 +64,7 @@ licenses must pass `LICENSES.json`.
 
 - [Container specification](container-spec.md)
 - [Core module inventory](core-modules.md)
+- [Reuse boundaries and clean-room rewrites](reuse-boundaries.md)
 - [GitHub setup](github-setup.md)
 - [Anieyrudh Filter](../core/aniegpt/aniegpt-system-prompt.md)
 - [Contributing guide](../CONTRIBUTING.md)
