@@ -1,4 +1,5 @@
 import { err, ok, type KernelResult } from "@paideia/shared";
+import { z } from "zod";
 import type { Annotation } from "./types.js";
 
 interface ParsedMarker {
@@ -9,24 +10,47 @@ interface ParsedMarker {
 
 const markerPattern = /\[\[paideia-annotation:([^\]]+)\]\]/g;
 
+const intervalSchema = z.object({
+  min: z.number().min(0).max(1),
+  max: z.number().min(0).max(1),
+}).refine((value) => value.min < value.max, "interval must satisfy min < max");
+
+const textTargetSchema = z.object({
+  kind: z.literal("text"),
+  start: z.number().int().min(0),
+  end: z.number().int().min(0),
+}).refine((value) => value.start < value.end, "text target must satisfy start < end");
+
+const imageTargetSchema = z.object({
+  kind: z.literal("image"),
+  rect: z.object({
+    x: intervalSchema,
+    y: intervalSchema,
+  }),
+});
+
+const annotationSchema = z.object({
+  id: z.string().min(1),
+  target: z.union([textTargetSchema, imageTargetSchema]),
+  tag: z.string().min(1),
+  note: z.string().optional(),
+  createdAt: z.number().finite(),
+}).transform((value): Annotation => ({
+  id: value.id,
+  target: value.target,
+  tag: value.tag,
+  ...(value.note === undefined ? {} : { note: value.note }),
+  createdAt: value.createdAt,
+}));
+
+const annotationArraySchema = z.array(annotationSchema);
+
 const encode = (annotation: Annotation): string =>
   encodeURIComponent(JSON.stringify(annotation));
 
 const decode = (payload: string): Annotation | null => {
   try {
-    const parsed = JSON.parse(decodeURIComponent(payload)) as unknown;
-    if (typeof parsed !== "object" || parsed === null) return null;
-    const candidate = parsed as Partial<Annotation>;
-    if (
-      typeof candidate.id !== "string" ||
-      typeof candidate.tag !== "string" ||
-      typeof candidate.createdAt !== "number" ||
-      typeof candidate.target !== "object" ||
-      candidate.target === null
-    ) {
-      return null;
-    }
-    return candidate as Annotation;
+    return annotationSchema.parse(JSON.parse(decodeURIComponent(payload)));
   } catch {
     return null;
   }
@@ -80,10 +104,8 @@ export const parseAnnotations = (
   const imageMatch = md.match(/\n\n<!-- paideia-image-annotations:(.*) -->$/s);
   if (imageMatch?.[1] !== undefined) {
     try {
-      const parsed = JSON.parse(imageMatch[1]) as unknown;
-      if (Array.isArray(parsed)) {
-        return ok({ text, annotations: [...annotations, ...(parsed as Annotation[])] });
-      }
+      const parsed = annotationArraySchema.parse(JSON.parse(imageMatch[1]));
+      return ok({ text, annotations: [...annotations, ...parsed] });
     } catch {
       return err("precondition-violated", "Image annotation payload is invalid");
     }

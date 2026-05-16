@@ -5,11 +5,12 @@
 | Module | Symbols |
 | --- | --- |
 | `@paideia/shared` | `KernelResult`, `ok`, `err` |
+| `d3-force` | `forceSimulation`, `forceLink`, `forceManyBody`, `forceCenter` |
+| `d3-force-3d` | `forceSimulation`, `forceLink`, `forceManyBody`, `forceCenter` |
 | `react` | JSX peer dependency for renderers |
 
-No new runtime third-party layout dependency is bundled in this v0. `LICENSES.json`
-was checked on 2026-05-16; this package adds no runtime dependency beyond the
-workspace `@paideia/shared`.
+`d3-force` is ISC licensed and `d3-force-3d` is MIT licensed; both are allowed by
+`LICENSES.json`.
 
 ## Public interface
 
@@ -63,10 +64,14 @@ Filter version: aniegpt v1.0
 
 ### P1 issues
 
-- The AGENTS contract names d3-force/d3-force-3d, but Tier 1 delivery avoids new
-  runtime dependencies. Resolution: deterministic hand-rolled v0 physics is
-  documented here; replacing it later would be a `core!:` coordinate-shifting
-  change.
+- P1 found in PR review: the first implementation hand-rolled force physics
+  despite the AGENTS contract naming d3-force/d3-force-3d. Resolution:
+  `forceDirected2D()` and `forceDirected3D()` now run deterministic d3
+  simulations over copied node/link data.
+- P1 found in PR review: `ForceGraph3D` claimed to lazy-load `core/three-scene`
+  even though that Tier 2 package is not implemented yet. Resolution: the
+  graph-layout contract now names the current projected SVG renderer and leaves
+  full Three.js rendering to `core/three-scene` when it lands.
 
 ### High-bandwidth questions surfaced
 
@@ -78,3 +83,5 @@ Filter version: aniegpt v1.0
 - Mirrored `core/prediction-gate` package shape.
 - Kept React renderers passive: they consume `LayoutResult*` only.
 - Returned shared `KernelResult` errors without changing `@paideia/shared`.
+- Added narrow local TypeScript declarations for the d3 packages because these
+  runtime packages do not ship first-party `.d.ts` files.

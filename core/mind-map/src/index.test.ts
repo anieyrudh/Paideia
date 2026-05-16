@@ -66,4 +66,13 @@ mindmap
     expect(reparsed.ok).toBe(true);
     if (reparsed.ok) expect(reparsed.value).toEqual(root);
   });
+
+  it("throws instead of erasing invalid trees during serialization", () => {
+    const root: MindMapNode = {
+      id: "root",
+      label: "Root",
+      children: [{ id: "root", label: "Duplicate" }],
+    };
+    expect(() => serializeMarkmap(root)).toThrow(RangeError);
+  });
 });

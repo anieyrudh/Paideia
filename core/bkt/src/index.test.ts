@@ -67,9 +67,24 @@ describe("@paideia/bkt", () => {
     expect(first).toEqual(second);
   });
 
+  it("rejects stale evidence that predates the prior state", () => {
+    const result = updateMastery(state(0.42), evidence(true, 0));
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("precondition-violated");
+  });
+
   it("predicts next-answer correctness from mastery, slip, and guess", () => {
     expect(predictMastery(state(1))).toBeCloseTo(0.9);
     expect(predictMastery(state(0))).toBeCloseTo(0.2);
+  });
+
+  it("rejects corrupt unbranded prediction inputs instead of silently clamping", () => {
+    expect(() =>
+      predictMastery({
+        ...state(0.5),
+        pMastery: 2 as ReturnType<typeof p>,
+      }),
+    ).toThrow(RangeError);
   });
 
   it("rejects evidence for a different concept", () => {
@@ -105,6 +120,19 @@ describe("@paideia/bkt", () => {
 
   it("requires enough evidence to fit parameters", () => {
     const result = fitParameters([evidence(true, 1)]);
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("precondition-violated");
+  });
+
+  it("rejects mixed-concept histories during parameter fitting", () => {
+    const result = fitParameters([
+      evidence(true, 1),
+      {
+        ...evidence(false, 2),
+        conceptId: "cellular-respiration" as ConceptId,
+      },
+    ]);
 
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.error.code).toBe("precondition-violated");

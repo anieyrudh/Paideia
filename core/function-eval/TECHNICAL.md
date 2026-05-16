@@ -4,7 +4,7 @@
 
 The kernel uses a hand-rolled lexer and recursive-descent parser. The grammar has no production for member access, indexing, assignment, object literals, template strings, `this`, or JavaScript calls. Function calls are resolved only through the static `allowedFunctions` table.
 
-Compiled callables return `NaN` only because the public callable type is `Function2D`; callers that need the error contract should use `evaluate` or `evaluateAt`.
+Compiled callables throw if their closed AST evaluates to a kernel error; `evaluateAt()` catches that throw and returns `undefined-at-point`. This keeps downstream samplers from receiving silent `NaN` values.
 
 ## Error contract
 
@@ -19,3 +19,5 @@ Diagnosis: the trust boundary is explicit because learner text is converted into
 Falsifying scenario: an expression such as `sin.constructor('return process')()` or `__proto__.polluted` reaching runtime execution would fail the package; tests assert these shapes are rejected before evaluation.
 
 Boundary decision: determinism stays in parser/evaluator code, while caller-supplied expression text is treated as untrusted cargo and must pass the whitelist plus declared-free-variable checks.
+
+Remediation note: the previous hidden `WeakMap` for `safeFunction()` domains was replaced with a non-enumerable symbol on the returned function object, so there is no module-global mutable cache.

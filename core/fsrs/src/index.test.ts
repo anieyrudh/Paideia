@@ -25,7 +25,7 @@ describe("@paideia/fsrs", () => {
       id: id("card-1"),
       due: now,
       stability: 0,
-      difficulty: 5,
+      difficulty: 0,
       reps: 0,
       lapses: 0,
       state: "new",
@@ -51,8 +51,8 @@ describe("@paideia/fsrs", () => {
       expect(good.value.card.due.getTime()).toBeLessThan(
         easy.value.card.due.getTime(),
       );
-      expect(again.value.card.lapses).toBe(1);
-      expect(good.value.card.state).toBe("review");
+      expect(again.value.card.lapses).toBe(0);
+      expect(easy.value.card.state).toBe("review");
     }
   });
 

@@ -12,6 +12,7 @@ import type {
   Renderable,
   VectorField2D,
 } from "@paideia/shared";
+import { derivative, linearRegression } from "@paideia/numerical-math";
 import { createPlotScale, DEFAULT_HEIGHT, DEFAULT_WIDTH, pathFromPoints } from "./scales.js";
 import {
   inferRange,
@@ -235,44 +236,32 @@ export const VectorFieldPlot = ({
   );
 };
 
-const linearFit = (
+const fitLine = (
   points: readonly (readonly [number, number])[],
 ): readonly [readonly [number, number], readonly [number, number]] | null => {
   if (points.length < 2) return null;
-  const n = points.length;
-  const sums = points.reduce(
-    (acc, point) => ({
-      x: acc.x + point[0],
-      y: acc.y + point[1],
-      xx: acc.xx + point[0] * point[0],
-      xy: acc.xy + point[0] * point[1],
-    }),
-    { x: 0, y: 0, xx: 0, xy: 0 },
-  );
-  const denominator = n * sums.xx - sums.x * sums.x;
-  if (denominator === 0) return null;
-  const m = (n * sums.xy - sums.x * sums.y) / denominator;
-  const b = (sums.y - m * sums.x) / n;
+  const regression = linearRegression(points.map((point) => [point[0], point[1]]));
+  if (!regression.ok) return null;
   const xs = points.map((point) => point[0]);
   const min = Math.min(...xs);
   const max = Math.max(...xs);
   return [
-    [min, m * min + b],
-    [max, m * max + b],
+    [min, regression.value.m * min + regression.value.b],
+    [max, regression.value.m * max + regression.value.b],
   ];
 };
 
 export const ScatterPlot = ({ points, fit = "none" }: ScatterPlotProps) => {
   const rect = inferRectFromPoints(points);
   const scale = createPlotScale(rect);
-  const fitLine = fit === "linear" ? linearFit(points) : null;
+  const line = fit === "linear" ? fitLine(points) : null;
 
   return (
     <PlotFrame domain={rect}>
-      {fitLine === null ? null : (
+      {line === null ? null : (
         <path
           d={pathFromPoints(
-            fitLine.map((point) => ({ x: point[0], y: point[1] })),
+            line.map((point) => ({ x: point[0], y: point[1] })),
             scale,
           )}
           fill="none"
@@ -355,21 +344,13 @@ export const DraggablePoint = ({
   );
 };
 
-const slopeAt = (f: Function2D, x: number): number | null => {
-  const h = Math.max(1e-5, Math.abs(x) * 1e-5);
-  const left = f(x - h);
-  const right = f(x + h);
-  if (!Number.isFinite(left) || !Number.isFinite(right)) return null;
-  return (right - left) / (2 * h);
-};
-
 export const Tangent = ({ f, at, length = 2 }: TangentProps) => {
-  const slope = slopeAt(f, at);
+  const slope = derivative(f, at);
   const y = f(at);
-  if (slope === null || !Number.isFinite(y)) return null;
+  if (!slope.ok || !Number.isFinite(y)) return null;
   const half = length / 2;
-  const p1 = [at - half, y - slope * half] as const;
-  const p2 = [at + half, y + slope * half] as const;
+  const p1 = [at - half, y - slope.value * half] as const;
+  const p2 = [at + half, y + slope.value * half] as const;
   const rect = inferRectFromPoints([p1, p2]);
   const scale = createPlotScale(rect, 240, 160, 18);
   return (

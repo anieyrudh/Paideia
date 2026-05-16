@@ -5,6 +5,7 @@
 | Module | Symbols |
 | --- | --- |
 | `@paideia/shared` | `Function2D`, `ParametricCurve2D`, `VectorField2D`, `Interval`, `Rect`, `Renderable`, `KernelResult`, `ok`, `err` |
+| `@paideia/numerical-math` | `derivative`, `linearRegression` |
 | `react` | `useMemo`, `useRef`, React event/types |
 
 ## Public interface
@@ -52,14 +53,15 @@ Filter version: aniegpt v1.0
   non-finite number, or leaves the declared range; tests cover the `1/x`
   origin gap.
 - Potential P0: renderer mutates caller points while fitting. Resolution:
-  scatter fit uses `reduce()` and copied coordinate lists only.
+  scatter fit routes through `core/numerical-math.linearRegression()` with
+  copied coordinate tuples.
+- P0 found in PR review: `Tangent` computed derivatives locally. Resolution:
+  `Tangent` now calls `core/numerical-math.derivative()`.
 
 ### P1 issues
 
-- `Tangent` uses a local finite-difference fallback because
-  `core/numerical-math` is not implemented in this branch. It remains a
-  rendering affordance and should switch to `@paideia/numerical-math` when that
-  package lands.
+- Scatter regression no longer owns model fitting; plotting only converts the
+  upstream regression result into SVG geometry.
 
 ### High-bandwidth questions surfaced
 

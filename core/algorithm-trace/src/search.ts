@@ -9,8 +9,16 @@ export const traceSearch = (
   target: number,
   alg: SearchAlgorithm,
 ): KernelResult<Trace<number>> => {
+  if (alg !== "linear" && alg !== "binary") {
+    return err("precondition-violated", `Unsupported search algorithm: ${String(alg)}`);
+  }
   if (!Number.isFinite(target)) {
     return err("precondition-violated", "Search target must be finite");
+  }
+  for (const value of arr) {
+    if (!Number.isFinite(value)) {
+      return err("precondition-violated", `Search values must be finite, got ${value}`);
+    }
   }
 
   const initial = [...arr];

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { hasCycle, layoutTimeline } from "./layout.js";
+import { hasCycle, layoutTimeline, type BranchingTimelineNode } from "./layout.js";
 
 describe("timeline layout", () => {
   it("places items proportionally to time without mutating inputs", () => {
@@ -24,11 +24,25 @@ describe("timeline layout", () => {
   });
 
   it("detects cycles in branching timelines", () => {
+    const nodes: readonly BranchingTimelineNode[] = [
+      { id: "a", at: 0, label: "A", children: ["b"] },
+      { id: "b", at: 1, label: "B", children: ["a"] },
+    ];
     expect(
-      hasCycle([
-        { id: "a", at: 0, label: "A", children: ["b"] },
-        { id: "b", at: 1, label: "B", children: ["a"] },
-      ]),
+      hasCycle(nodes),
     ).toBe(true);
+    const result = layoutTimeline(
+      nodes,
+      [],
+      { branchNodes: nodes },
+    );
+    expect(result.ok).toBe(false);
+  });
+
+  it("rejects branching timelines with missing child references", () => {
+    const nodes = [{ id: "a", at: 0, label: "A", children: ["missing"] }] as const;
+    const result = layoutTimeline(nodes, [], { branchNodes: nodes });
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("precondition-violated");
   });
 });

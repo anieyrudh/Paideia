@@ -1,4 +1,4 @@
-export { ReviewQueue, type ReviewQueueProps } from "./ReviewQueue.js";
+export { ReviewQueue } from "./ReviewQueue.js";
 export {
   dueCards,
   newCard,
@@ -7,5 +7,4 @@ export {
   type NextReview,
   type ReviewCard,
   type ReviewRating,
-  type ReviewState,
 } from "./scheduler.js";

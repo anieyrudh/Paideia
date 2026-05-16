@@ -92,6 +92,50 @@ const axis = (margin: Required<Margin>) => (
   </g>
 );
 
+const lineSegments = (
+  values: readonly LineDatum[],
+  xDomain: Interval,
+  yDomain: Interval,
+  xSpec: AxisSpec | undefined,
+  ySpec: AxisSpec | undefined,
+  margin: Required<Margin>,
+): readonly string[] => {
+  const segments: string[] = [];
+  let commands: string[] = [];
+
+  for (const datum of values) {
+    const point = pointToSvg(
+      datum.x instanceof Date ? datum.x.getTime() : datum.x,
+      datum.y,
+      xDomain,
+      yDomain,
+      xSpec,
+      ySpec,
+      margin,
+    );
+    if (point === null) {
+      if (commands.length > 0) segments.push(commands.join(" "));
+      commands = [];
+      continue;
+    }
+    commands.push(`${commands.length === 0 ? "M" : "L"} ${point.x.toFixed(3)} ${point.y.toFixed(3)}`);
+  }
+
+  if (commands.length > 0) segments.push(commands.join(" "));
+  return segments;
+};
+
+const validSankeyLinks = (links: readonly SankeyLink[]): boolean =>
+  links.every((link) => Number.isFinite(link.value) && link.value >= 0);
+
+const domainSource = (
+  values: readonly number[],
+  spec: AxisSpec | undefined,
+): readonly number[] =>
+  spec?.scale === "log" && spec.domain === undefined
+    ? values.filter((value) => value > 0)
+    : values;
+
 export const ChartFrame = ({
   width = WIDTH,
   height = HEIGHT,
@@ -116,35 +160,23 @@ export const LineChart = ({ data, x, y }: LineChartProps) => {
   const margin = marginOf(undefined);
   const xs = lineNumericX(data);
   const ys = data.map((datum) => datum.y);
-  const xDomain = axisDomain(xs, x?.domain);
-  const yDomain = axisDomain(ys, y?.domain);
+  const xDomain = axisDomain(domainSource(xs, x), x?.domain);
+  const yDomain = axisDomain(domainSource(ys, y), y?.domain);
   const groups = groupLineData(data);
 
   return (
     <ChartFrame>
       {[...groups].map(([series, values], seriesIndex) => {
-        const commands = values.flatMap((datum, index) => {
-          const point = pointToSvg(
-            datum.x instanceof Date ? datum.x.getTime() : datum.x,
-            datum.y,
-            xDomain,
-            yDomain,
-            x,
-            y,
-            margin,
-          );
-          if (point === null) return [];
-          return [`${index === 0 ? "M" : "L"} ${point.x.toFixed(3)} ${point.y.toFixed(3)}`];
-        });
-        return (
+        const segments = lineSegments(values, xDomain, yDomain, x, y, margin);
+        return segments.map((commands, segmentIndex) => (
           <path
-            d={commands.join(" ")}
+            d={commands}
             fill="none"
-            key={series}
+            key={`${series}:${segmentIndex}`}
             stroke={palette[seriesIndex % palette.length]}
             strokeWidth="2"
           />
-        );
+        ));
       })}
     </ChartFrame>
   );
@@ -209,6 +241,16 @@ export const DensityPlot = ({
 };
 
 export const Sankey = ({ nodes, links }: SankeyProps) => {
+  if (!validSankeyLinks(links)) {
+    return (
+      <ChartFrame height={420}>
+        <text fill="#b42318" fontSize="12" x="54" y="48">
+          Invalid Sankey link value
+        </text>
+      </ChartFrame>
+    );
+  }
+
   const leftIds = new Set(links.map((link) => link.source));
   const rightIds = new Set(links.map((link) => link.target));
   const maxValue = Math.max(1, ...links.map((link) => Math.max(0, link.value)));

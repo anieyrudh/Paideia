@@ -37,6 +37,7 @@ interface LayoutOptions {
   readonly lanes?: readonly string[];
   readonly width?: number;
   readonly laneHeight?: number;
+  readonly branchNodes?: readonly BranchingTimelineNode[];
 }
 
 const PADDING_X = 40;
@@ -89,6 +90,11 @@ export const layoutTimeline = (
   readonly width: number;
   readonly height: number;
 }> => {
+  if (opts.branchNodes !== undefined) {
+    const branchValidation = validateBranchingTimeline(opts.branchNodes);
+    if (!branchValidation.ok) return branchValidation;
+  }
+
   for (const event of events) {
     if (!validMillis(event.at)) {
       return err("precondition-violated", `Timeline event ${event.id} has a non-finite time`);
@@ -172,4 +178,39 @@ export const hasCycle = (nodes: readonly BranchingTimelineNode[]): boolean => {
   };
 
   return nodes.some((node) => visit(node.id));
+};
+
+export const validateBranchingTimeline = (
+  nodes: readonly BranchingTimelineNode[],
+): KernelResult<void> => {
+  const ids = new Set<string>();
+  for (const node of nodes) {
+    if (ids.has(node.id)) {
+      return err("precondition-violated", `Duplicate branching timeline node id: ${node.id}`);
+    }
+    ids.add(node.id);
+  }
+
+  for (const node of nodes) {
+    for (const childId of node.children ?? []) {
+      if (!ids.has(childId)) {
+        return err(
+          "precondition-violated",
+          `Branching timeline child does not exist: ${childId}`,
+        );
+      }
+    }
+    for (const parentId of node.parents ?? []) {
+      if (!ids.has(parentId)) {
+        return err(
+          "precondition-violated",
+          `Branching timeline parent does not exist: ${parentId}`,
+        );
+      }
+    }
+  }
+
+  return hasCycle(nodes)
+    ? err("precondition-violated", "Branching timeline graph must be acyclic")
+    : ok(undefined);
 };

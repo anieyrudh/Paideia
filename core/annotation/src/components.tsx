@@ -1,4 +1,4 @@
-import { useId, useMemo, useState } from "react";
+import { useId, useMemo, useRef, useState, type PointerEvent } from "react";
 import type { Rect } from "@paideia/shared";
 import type { Annotation, TagDef } from "./types.js";
 import { filterAnnotations } from "./validation.js";
@@ -41,6 +41,22 @@ const buildAnnotation = (
   createdAt: Date.now(),
 });
 
+const textOffsetWithin = (
+  root: HTMLElement,
+  container: Node,
+  offset: number,
+): number | null => {
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+  let total = 0;
+  let node = walker.nextNode();
+  while (node !== null) {
+    if (node === container) return total + offset;
+    total += node.textContent?.length ?? 0;
+    node = walker.nextNode();
+  }
+  return null;
+};
+
 export const AnnotatableText = ({
   text,
   annotations,
@@ -53,14 +69,18 @@ export const AnnotatableText = ({
   const [note, setNote] = useState("");
   const filtered = useMemo(() => filterAnnotations(text, annotations, tags), [text, annotations, tags]);
   const inputId = useId();
+  const textRef = useRef<HTMLParagraphElement>(null);
 
   const captureSelection = () => {
     const selection = globalThis.getSelection?.();
-    const rangeText = selection?.toString() ?? "";
-    if (rangeText.length === 0) return;
-    const start = text.indexOf(rangeText);
-    if (start < 0) return;
-    setSelected({ start, end: start + rangeText.length });
+    const root = textRef.current;
+    if (selection === undefined || selection === null || root === null || selection.rangeCount === 0) return;
+    const range = selection.getRangeAt(0);
+    if (!root.contains(range.startContainer) || !root.contains(range.endContainer)) return;
+    const start = textOffsetWithin(root, range.startContainer, range.startOffset);
+    const end = textOffsetWithin(root, range.endContainer, range.endOffset);
+    if (start === null || end === null || start === end) return;
+    setSelected({ start: Math.min(start, end), end: Math.max(start, end) });
   };
 
   const add = () => {
@@ -72,7 +92,7 @@ export const AnnotatableText = ({
 
   return (
     <section>
-      <p onMouseUp={captureSelection}>
+      <p onMouseUp={captureSelection} ref={textRef}>
         {text.split("").map((char, index) => {
           const active = filtered.find(
             (annotation) =>
@@ -117,6 +137,18 @@ const rectStyle = (rect: Rect) => ({
   width: `${(rect.x.max - rect.x.min) * 100}%`,
 });
 
+const normaliseRect = (start: readonly [number, number], end: readonly [number, number]): Rect => ({
+  x: { min: Math.min(start[0], end[0]), max: Math.max(start[0], end[0]) },
+  y: { min: Math.min(start[1], end[1]), max: Math.max(start[1], end[1]) },
+});
+
+const pointInElement = (event: PointerEvent<HTMLElement>): readonly [number, number] => {
+  const bounds = event.currentTarget.getBoundingClientRect();
+  const x = (event.clientX - bounds.left) / Math.max(1, bounds.width);
+  const y = (event.clientY - bounds.top) / Math.max(1, bounds.height);
+  return [Math.min(1, Math.max(0, x)), Math.min(1, Math.max(0, y))];
+};
+
 export const AnnotatableImage = ({
   src,
   annotations,
@@ -126,24 +158,52 @@ export const AnnotatableImage = ({
 }: AnnotatableImageProps) => {
   const [tag, setTag] = useState(firstTag(tags)?.id ?? "");
   const [note, setNote] = useState("");
+  const [dragStart, setDragStart] = useState<readonly [number, number] | null>(null);
+  const [selectedRect, setSelectedRect] = useState<Rect | null>(null);
   const imageAnnotations = filterAnnotations("", annotations, tags).filter(
     (annotation) => annotation.target.kind === "image",
   );
   const add = () => {
-    if (tag === "") return;
+    if (tag === "" || selectedRect === null) return;
     onAdd?.(
-      buildAnnotation(
-        { kind: "image", rect: { x: { min: 0.25, max: 0.75 }, y: { min: 0.25, max: 0.75 } } },
-        tag,
-        note,
-      ),
+      buildAnnotation({ kind: "image", rect: selectedRect }, tag, note),
     );
+    setSelectedRect(null);
+    setNote("");
   };
 
   return (
     <section>
-      <div style={{ display: "inline-block", position: "relative" }}>
+      <div
+        onPointerDown={(event) => {
+          const point = pointInElement(event);
+          setDragStart(point);
+          setSelectedRect(normaliseRect(point, point));
+        }}
+        onPointerMove={(event) => {
+          if (dragStart === null) return;
+          setSelectedRect(normaliseRect(dragStart, pointInElement(event)));
+        }}
+        onPointerUp={(event) => {
+          if (dragStart === null) return;
+          setSelectedRect(normaliseRect(dragStart, pointInElement(event)));
+          setDragStart(null);
+        }}
+        style={{ display: "inline-block", position: "relative", touchAction: "none" }}
+      >
         <img alt="" src={src} style={{ display: "block", maxWidth: "100%" }} />
+        {selectedRect === null ? null : (
+          <div
+            aria-label="Selected annotation region"
+            style={{
+              ...rectStyle(selectedRect),
+              background: "rgb(31 95 139 / 0.18)",
+              border: "2px dashed #1f5f8b",
+              pointerEvents: "none",
+              position: "absolute",
+            }}
+          />
+        )}
         {imageAnnotations.map((annotation) =>
           annotation.target.kind === "image" ? (
             <button
@@ -169,7 +229,7 @@ export const AnnotatableImage = ({
         ))}
       </select>
       <textarea onChange={(event) => setNote(event.currentTarget.value)} value={note} />
-      <button disabled={tag === ""} onClick={add} type="button">
+      <button disabled={tag === "" || selectedRect === null} onClick={add} type="button">
         Add region
       </button>
     </section>

@@ -24,7 +24,8 @@
 - `TimelineSpan.from < TimelineSpan.to` is enforced by `layoutTimeline()`.
 - Timeline spacing is linear against the chosen domain. No non-linear
   compression is applied.
-- Branching timelines reject cycles before rendering links.
+- Branching timelines validate cycles and missing parent/child references
+  through `layoutTimeline(..., { branchNodes })` before rendering links.
 
 ## Tests
 

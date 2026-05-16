@@ -23,6 +23,15 @@ describe("annotation markdown", () => {
     }
   });
 
+  it("rejects malformed serialized payloads instead of trusting casts", () => {
+    const md = `Text\n\n<!-- paideia-image-annotations:${JSON.stringify([
+      { id: "bad", target: { kind: "image", rect: { x: { min: 0.8, max: 0.2 }, y: { min: 0, max: 1 } } }, tag: "claim", createdAt: 1 },
+    ])} -->`;
+    const result = parseAnnotations(md);
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("precondition-violated");
+  });
+
   it("filters unknown tags and out-of-range spans", () => {
     const annotations: readonly Annotation[] = [
       { id: "a", target: { kind: "text", start: 0, end: 5 }, tag: "claim", createdAt: 1 },

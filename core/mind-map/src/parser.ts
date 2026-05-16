@@ -188,7 +188,7 @@ const serializeNode = (node: MindMapNode, depth: number): readonly string[] => {
 export const serializeMarkmap = (root: MindMapNode): string => {
   const valid = validateMindMap(root);
   if (!valid.ok) {
-    return "";
+    throw new RangeError(valid.error.message);
   }
 
   return `${serializeNode(root, 0).join("\n")}\n`;

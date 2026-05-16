@@ -1,4 +1,13 @@
 import {
+  createEmptyCard,
+  fsrs,
+  generatorParameters,
+  Rating,
+  State,
+  type Card,
+  type Grade,
+} from "ts-fsrs";
+import {
   err,
   ok,
   type Brand,
@@ -29,50 +38,54 @@ export interface NextReview {
   };
 }
 
-const minuteMs = 60 * 1000;
-const dayMs = 24 * 60 * minuteMs;
+const defaultNow = (): Date => new Date();
 
-const ratingDifficultyDelta: Record<ReviewRating, number> = {
-  again: 0.8,
-  hard: 0.35,
-  good: -0.15,
-  easy: -0.35,
+const ratingToFsrs = (rating: ReviewRating): KernelResult<Grade> => {
+  switch (rating) {
+    case "again":
+      return ok(Rating.Again);
+    case "hard":
+      return ok(Rating.Hard);
+    case "good":
+      return ok(Rating.Good);
+    case "easy":
+      return ok(Rating.Easy);
+    default:
+      return err("precondition-violated", `Unsupported review rating: ${String(rating)}`);
+  }
 };
 
-const ratingStabilityFactor: Record<ReviewRating, number> = {
-  again: 0.45,
-  hard: 1.2,
-  good: 2.5,
-  easy: 3.6,
+const stateToFsrs = (state: ReviewState): KernelResult<State> => {
+  switch (state) {
+    case "new":
+      return ok(State.New);
+    case "learning":
+      return ok(State.Learning);
+    case "review":
+      return ok(State.Review);
+    case "relearning":
+      return ok(State.Relearning);
+    default:
+      return err("precondition-violated", `Unsupported review state: ${String(state)}`);
+  }
 };
 
-const initialIntervalsMs: Record<ReviewRating, number> = {
-  again: 5 * minuteMs,
-  hard: 10 * minuteMs,
-  good: dayMs,
-  easy: 4 * dayMs,
-};
-
-const initialStability: Record<ReviewRating, number> = {
-  again: 0.1,
-  hard: 0.4,
-  good: 1,
-  easy: 4,
-};
-
-const initialDifficulty: Record<ReviewRating, number> = {
-  again: 7,
-  hard: 6,
-  good: 5,
-  easy: 4,
+const stateFromFsrs = (state: State): ReviewState => {
+  switch (state) {
+    case State.New:
+      return "new";
+    case State.Learning:
+      return "learning";
+    case State.Review:
+      return "review";
+    case State.Relearning:
+      return "relearning";
+  }
 };
 
 const isValidDate = (date: Date): boolean => Number.isFinite(date.getTime());
 
 const cloneDate = (date: Date): Date => new Date(date.getTime());
-
-const clamp = (value: number, min: number, max: number): number =>
-  Math.min(max, Math.max(min, value));
 
 const validateCard = (card: ReviewCard): KernelResult<void> => {
   if (!isValidDate(card.due)) {
@@ -86,14 +99,16 @@ const validateCard = (card: ReviewCard): KernelResult<void> => {
     );
   }
 
+  const newCardDifficulty = card.state === "new" && card.reps === 0 && card.difficulty === 0;
   if (
-    !Number.isFinite(card.difficulty) ||
-    card.difficulty < 1 ||
-    card.difficulty > 10
+    !newCardDifficulty &&
+    (!Number.isFinite(card.difficulty) ||
+      card.difficulty < 1 ||
+      card.difficulty > 10)
   ) {
     return err(
       "precondition-violated",
-      `card.difficulty must be in [1,10], got ${card.difficulty}`,
+      `card.difficulty must be in [1,10] after first review, got ${card.difficulty}`,
     );
   }
 
@@ -111,130 +126,80 @@ const validateCard = (card: ReviewCard): KernelResult<void> => {
     );
   }
 
-  return ok(undefined);
+  return stateToFsrs(card.state).ok ? ok(undefined) : err("precondition-violated", "card.state is invalid");
 };
 
-const elapsedDays = (fromDue: Date, now: Date): number =>
-  Math.max(0, Math.floor((now.getTime() - fromDue.getTime()) / dayMs));
-
-const addMilliseconds = (date: Date, ms: number): Date =>
-  new Date(date.getTime() + ms);
-
-const scheduledDaysFromMs = (ms: number): number => Math.floor(ms / dayMs);
-
-const reviewStateFor = (
-  rating: ReviewRating,
-  scheduledDays: number,
-): ReviewState => {
-  if (rating === "again") return "relearning";
-  if (scheduledDays < 1) return "learning";
-  return "review";
+const toFsrsCard = (card: ReviewCard): KernelResult<Card> => {
+  const state = stateToFsrs(card.state);
+  if (!state.ok) return state;
+  return ok({
+    due: cloneDate(card.due),
+    stability: card.stability,
+    difficulty: card.difficulty,
+    elapsed_days: 0,
+    scheduled_days: 0,
+    learning_steps: 0,
+    reps: card.reps,
+    lapses: card.lapses,
+    state: state.value,
+    ...(card.reps === 0 ? {} : { last_review: cloneDate(card.due) }),
+  });
 };
 
-const retention = (stability: number, daysElapsed: number): number => {
-  if (stability <= 0) return 0;
-  return Math.exp(-daysElapsed / stability);
-};
-
-const nextStability = (
-  card: ReviewCard,
-  rating: ReviewRating,
-  daysElapsed: number,
-): number => {
-  if (card.reps === 0 || card.state === "new") {
-    return initialStability[rating];
-  }
-
-  if (rating === "again") {
-    return clamp(card.stability * ratingStabilityFactor.again, 0.1, 36500);
-  }
-
-  const recall = retention(card.stability, daysElapsed);
-  const difficultyPenalty = (11 - card.difficulty) / 10;
-  const recallBonus = 1 + (1 - recall) * 0.8;
-  return clamp(
-    card.stability *
-      ratingStabilityFactor[rating] *
-      difficultyPenalty *
-      recallBonus,
-    0.1,
-    36500,
-  );
-};
-
-const nextIntervalMs = (
-  card: ReviewCard,
-  rating: ReviewRating,
-  stability: number,
-): number => {
-  if (card.reps === 0 || card.state === "new") {
-    return initialIntervalsMs[rating];
-  }
-
-  if (rating === "again") return 10 * minuteMs;
-  if (rating === "hard") return Math.max(1, Math.round(stability)) * dayMs;
-  if (rating === "good") return Math.max(1, Math.round(stability)) * dayMs;
-  return Math.max(2, Math.round(stability * 1.3)) * dayMs;
-};
-
-export const newCard = (id: CardId, now: Date = new Date()): ReviewCard => ({
+const fromFsrsCard = (id: CardId, card: Card): ReviewCard => ({
   id,
-  due: cloneDate(now),
-  stability: 0,
-  difficulty: 5,
-  reps: 0,
-  lapses: 0,
-  state: "new",
+  due: cloneDate(card.due),
+  stability: card.stability,
+  difficulty: card.difficulty,
+  reps: card.reps,
+  lapses: card.lapses,
+  state: stateFromFsrs(card.state),
 });
+
+const scheduler = () =>
+  fsrs(generatorParameters({
+    enable_fuzz: false,
+  }));
+
+export const newCard = (id: CardId, now: Date = defaultNow()): ReviewCard => {
+  const card = createEmptyCard(now);
+  return fromFsrsCard(id, card);
+};
 
 export const scheduleReview = (
   card: ReviewCard,
   rating: ReviewRating,
-  now: Date = new Date(),
+  now: Date = defaultNow(),
 ): KernelResult<NextReview> => {
   const validCard = validateCard(card);
   if (!validCard.ok) return validCard;
+
+  const grade = ratingToFsrs(rating);
+  if (!grade.ok) return grade;
 
   if (!isValidDate(now)) {
     return err("precondition-violated", "now must be a valid Date");
   }
 
-  const daysElapsed = elapsedDays(card.due, now);
-  const stability = nextStability(card, rating, daysElapsed);
-  const difficulty = clamp(
-    (card.reps === 0 || card.state === "new"
-      ? initialDifficulty[rating]
-      : card.difficulty) + ratingDifficultyDelta[rating],
-    1,
-    10,
-  );
-  const intervalMs = nextIntervalMs(card, rating, stability);
-  const scheduledDays = scheduledDaysFromMs(intervalMs);
-  const nextDue = addMilliseconds(now, intervalMs);
-  const reviewedAt = cloneDate(now);
+  const fsrsCard = toFsrsCard(card);
+  if (!fsrsCard.ok) return fsrsCard;
+
+  const result = scheduler().next(fsrsCard.value, now, grade.value);
 
   return ok({
-    card: {
-      id: card.id,
-      due: nextDue,
-      stability,
-      difficulty,
-      reps: card.reps + 1,
-      lapses: card.lapses + (rating === "again" ? 1 : 0),
-      state: reviewStateFor(rating, scheduledDays),
-    },
+    card: fromFsrsCard(card.id, result.card),
     log: {
       rating,
-      reviewedAt,
-      elapsedDays: daysElapsed,
-      scheduledDays,
+      reviewedAt: cloneDate(result.log.review),
+      elapsedDays: result.log.elapsed_days,
+      scheduledDays: result.log.scheduled_days,
     },
   });
 };
 
 export const dueCards = (
   cards: readonly ReviewCard[],
-  now: Date = new Date(),
+  now: Date = defaultNow(),
 ): readonly ReviewCard[] =>
   cards
     .filter((card) => card.due.getTime() <= now.getTime())

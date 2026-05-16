@@ -1,6 +1,5 @@
 import type { Interval } from "@paideia/shared";
 import {
-  hasCycle,
   layoutTimeline,
   toMillis,
   type BranchingTimelineNode,
@@ -74,8 +73,9 @@ export const BranchingTimeline = ({
   nodes,
   onSelect,
 }: BranchingTimelineProps) => {
-  if (hasCycle(nodes)) {
-    return <svg aria-label="Branching timeline graph must be acyclic" role="img" viewBox="0 0 720 120" />;
+  const valid = layoutTimeline(nodes, [], { branchNodes: nodes });
+  if (!valid.ok) {
+    return <svg aria-label={valid.error.message} role="img" viewBox="0 0 720 120" />;
   }
 
   const sorted = [...nodes].sort((a, b) => toMillis(a.at) - toMillis(b.at));

@@ -1,4 +1,4 @@
-import { ok, type KernelResult } from "@paideia/shared";
+import { err, ok, type KernelResult } from "@paideia/shared";
 import type { SortAlgorithm, Trace, TraceStep } from "./types.js";
 
 interface TraceState {
@@ -180,6 +180,15 @@ export const traceSort = (
   arr: readonly number[],
   alg: SortAlgorithm,
 ): KernelResult<Trace<number>> => {
+  if (!["bubble", "insertion", "selection", "merge", "quick", "heap"].includes(alg)) {
+    return err("precondition-violated", `Unsupported sort algorithm: ${String(alg)}`);
+  }
+  for (const value of arr) {
+    if (!Number.isFinite(value)) {
+      return err("precondition-violated", `Sort values must be finite, got ${value}`);
+    }
+  }
+
   const initial = [...arr];
   const values = [...arr];
   const state: TraceState = { steps: [], comparisons: 0, swaps: 0 };

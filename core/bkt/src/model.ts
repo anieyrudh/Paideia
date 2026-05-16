@@ -7,7 +7,6 @@ import {
 } from "@paideia/shared";
 import {
   boundedEstimate,
-  clampProbability,
   probabilityConstant,
   toProbability,
   EPSILON,
@@ -34,12 +33,12 @@ export interface Evidence {
   readonly itemId?: string;
 }
 
-export const defaultParameters: BKTParameters = {
+export const defaultParameters: BKTParameters = Object.freeze({
   pInit: probabilityConstant(0.3),
   pLearn: probabilityConstant(0.15),
   pSlip: probabilityConstant(0.1),
   pGuess: probabilityConstant(0.2),
-};
+});
 
 const asNumber = (p: Probability): number => p;
 
@@ -126,6 +125,12 @@ export const updateMastery = (
 
   const evidenceDate = validateDate(evidence.observedAt, "evidence.observedAt");
   if (!evidenceDate.ok) return evidenceDate;
+  if (evidence.observedAt.getTime() < prior.lastUpdated.getTime()) {
+    return err(
+      "precondition-violated",
+      "Evidence observedAt must not be earlier than prior.lastUpdated",
+    );
+  }
 
   const validParams = validateParameters(params);
   if (!validParams.ok) return validParams;
@@ -154,11 +159,25 @@ export const updateMastery = (
 export const predictMastery = (
   state: MasteryState,
   params: BKTParameters = defaultParameters,
-): Probability =>
-  clampProbability(
+): Probability => {
+  const mastery = toProbability(state.pMastery, "state.pMastery");
+  if (!mastery.ok) {
+    throw new RangeError(mastery.error.message);
+  }
+  const validParams = validateParameters(params);
+  if (!validParams.ok) {
+    throw new RangeError(validParams.error.message);
+  }
+  const prediction = toProbability(
     asNumber(state.pMastery) * (1 - asNumber(params.pSlip)) +
       (1 - asNumber(state.pMastery)) * asNumber(params.pGuess),
+    "predicted mastery",
   );
+  if (!prediction.ok) {
+    throw new RangeError(prediction.error.message);
+  }
+  return prediction.value;
+};
 
 interface ForwardBackward {
   readonly gammaMastered: readonly number[];
@@ -307,9 +326,18 @@ export const fitParameters = (
     );
   }
 
+  const conceptIds = new Set<string>();
   for (const evidence of history) {
     const validDate = validateDate(evidence.observedAt, "evidence.observedAt");
     if (!validDate.ok) return validDate;
+    conceptIds.add(String(evidence.conceptId));
+  }
+
+  if (conceptIds.size !== 1) {
+    return err(
+      "precondition-violated",
+      "BKT parameter fitting requires evidence from exactly one concept",
+    );
   }
 
   const observations = sortEvidence(history).map((evidence) => evidence.correct);

@@ -5,6 +5,7 @@
 | Module | Symbols |
 | --- | --- |
 | `@paideia/shared` | `Brand`, `KernelResult`, `err`, `ok` |
+| `ts-fsrs` | `createEmptyCard`, `fsrs`, `generatorParameters`, `Rating`, `State` |
 | `react` | `createElement`, `ReactNode` |
 
 ## Public interface
@@ -16,9 +17,7 @@
 - `newCard`
 - `dueCards`
 - `ReviewQueue`
-- `ReviewQueueProps`
 - `CardId`
-- `ReviewState`
 
 ## Invariants
 
@@ -31,6 +30,8 @@
 - UTC-safe dates: the scheduler clones `Date` inputs and uses epoch
   millisecond arithmetic.
 - Four ratings only: the exported `ReviewRating` union matches the contract.
+- Scheduling delegates to canonical `ts-fsrs` with fuzz disabled, preserving
+  deterministic output for fixed `(card, rating, now)` inputs.
 
 ## Kernel extensions
 
@@ -61,6 +62,9 @@ Filter version: aniegpt v1.0
   filtering and sorting, and `ReviewQueue` consumes that function directly.
 - Potential P0: hidden persistence could make review state unauditable.
   Resolution: no storage APIs are imported or touched.
+- P0 found in PR review: bespoke scheduler arithmetic diverged from FSRS.
+  Resolution: `scheduleReview()` now maps Paideia cards/ratings to `ts-fsrs`
+  and maps the canonical result back to the Paideia public shape.
 
 ### P1 issues
 
@@ -68,9 +72,8 @@ Filter version: aniegpt v1.0
   `core/shared/AGENTS.md` listing it. Resolution: `@paideia/fsrs` exports its
   own `CardId` brand without modifying shared, preserving the requested write
   scope.
-- The package avoids adding `ts-fsrs` until dependency installation and lockfile
-  updates are explicitly allowed. The scheduler remains deterministic and keeps
-  the public FSRS-shaped state boundary.
+- `ts-fsrs` is MIT licensed and allowed by `LICENSES.json`. Fuzz is disabled so
+  tests can pin deterministic schedule ordering.
 
 ### High-bandwidth questions surfaced
 
@@ -79,7 +82,8 @@ Filter version: aniegpt v1.0
 
 ## Iteration log
 
-- Implemented the card state transition as a pure kernel first.
+- Replaced the initial hand-rolled transition with a `ts-fsrs` wrapper after
+  review flagged the contract mismatch.
 - Added queue rendering after `dueCards()` sorting was covered by tests.
-- Kept the module free of runtime dependencies beyond `@paideia/shared` and the
-  React peer required by the declared queue component.
+- Kept persistence caller-owned; the only scheduler runtime dependency is
+  `ts-fsrs`.

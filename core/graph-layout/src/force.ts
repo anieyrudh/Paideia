@@ -1,4 +1,20 @@
 import { err, ok, type KernelResult } from "@paideia/shared";
+import {
+  forceCenter,
+  forceLink,
+  forceManyBody,
+  forceSimulation,
+  type SimulationLinkDatum,
+  type SimulationNodeDatum,
+} from "d3-force";
+import {
+  forceCenter as forceCenter3D,
+  forceLink as forceLink3D,
+  forceManyBody as forceManyBody3D,
+  forceSimulation as forceSimulation3D,
+  type SimulationLinkDatum as SimulationLinkDatum3D,
+  type SimulationNodeDatum as SimulationNodeDatum3D,
+} from "d3-force-3d";
 import type {
   ForceDirected2DOptions,
   ForceDirected3DOptions,
@@ -12,15 +28,21 @@ interface MutablePoint2D {
   readonly id: string;
   x: number;
   y: number;
-  vx: number;
-  vy: number;
   readonly mass: number;
 }
 
 interface MutablePoint3D extends MutablePoint2D {
   z: number;
-  vz: number;
 }
+
+type D3Node2D = MutablePoint2D & SimulationNodeDatum;
+type D3Link2D = SimulationLinkDatum<D3Node2D> & {
+  readonly strengthValue: number;
+};
+type D3Node3D = MutablePoint3D & SimulationNodeDatum3D;
+type D3Link3D = SimulationLinkDatum3D<D3Node3D> & {
+  readonly strengthValue: number;
+};
 
 const normalizeIterations = (value: number | undefined, fallback: number): KernelResult<number> => {
   const iterations = value ?? fallback;
@@ -46,7 +68,15 @@ const seededUnit = (seed: number, index: number, axis: number): number => {
   return (state >>> 0) / 4_294_967_296;
 };
 
-const initial2D = (graph: Graph, seed: number): MutablePoint2D[] => {
+const seededRandom = (seed: number): () => number => {
+  let state = seed >>> 0;
+  return () => {
+    state = Math.imul(1664525, state) + 1013904223;
+    return (state >>> 0) / 4_294_967_296;
+  };
+};
+
+const initial2D = (graph: Graph, seed: number): D3Node2D[] => {
   const n = Math.max(graph.nodes.length, 1);
   return graph.nodes.map((node, index) => {
     const angle = (2 * Math.PI * index) / n + seededUnit(seed, index, 0) * 0.5;
@@ -55,22 +85,33 @@ const initial2D = (graph: Graph, seed: number): MutablePoint2D[] => {
       id: node.id,
       x: Math.cos(angle) * radius,
       y: Math.sin(angle) * radius,
-      vx: 0,
-      vy: 0,
       mass: node.weight ?? 1,
     };
   });
 };
 
-const initial3D = (graph: Graph, seed: number): MutablePoint3D[] =>
+const initial3D = (graph: Graph, seed: number): D3Node3D[] =>
   initial2D(graph, seed).map((node, index) => ({
     ...node,
     z: (seededUnit(seed, index, 2) - 0.5) * 48,
-    vz: 0,
   }));
 
 const exportedLinks = (graph: Graph) =>
   graph.links.map((link) => ({ source: link.source, target: link.target }));
+
+const d3Links2D = (graph: Graph): D3Link2D[] =>
+  graph.links.map((link) => ({
+    source: link.source,
+    target: link.target,
+    strengthValue: link.strength ?? 1,
+  }));
+
+const d3Links3D = (graph: Graph): D3Link3D[] =>
+  graph.links.map((link) => ({
+    source: link.source,
+    target: link.target,
+    strengthValue: link.strength ?? 1,
+  }));
 
 export const forceDirected2D = (
   graph: Graph,
@@ -86,61 +127,23 @@ export const forceDirected2D = (
   const distanceResult = finiteOr(opts.linkDistance, 80);
   if (!distanceResult.ok) return distanceResult;
 
-  const nodes = initial2D(graph, opts.seed ?? 0);
-  const iterations = iterationsResult.value;
-  const charge = chargeResult.value;
-  const linkDistance = distanceResult.value;
+  const seed = opts.seed ?? 0;
+  const nodes = initial2D(graph, seed);
+  const links = d3Links2D(graph);
 
-  for (let tick = 0; tick < iterations; tick += 1) {
-    const alpha = 1 - tick / Math.max(iterations, 1);
-
-    for (let i = 0; i < nodes.length; i += 1) {
-      const a = nodes[i];
-      if (a === undefined) continue;
-      for (let j = i + 1; j < nodes.length; j += 1) {
-        const b = nodes[j];
-        if (b === undefined) continue;
-        const dx = b.x - a.x || 0.0001;
-        const dy = b.y - a.y || 0.0001;
-        const distanceSquared = dx * dx + dy * dy + 0.01;
-        const distance = Math.sqrt(distanceSquared);
-        const force = (charge * alpha) / distanceSquared;
-        const fx = (dx / distance) * force;
-        const fy = (dy / distance) * force;
-        a.vx += fx / a.mass;
-        a.vy += fy / a.mass;
-        b.vx -= fx / b.mass;
-        b.vy -= fy / b.mass;
-      }
-    }
-
-    for (const link of graph.links) {
-      const sourceIndex = valid.value.get(link.source);
-      const targetIndex = valid.value.get(link.target);
-      if (sourceIndex === undefined || targetIndex === undefined) continue;
-      const source = nodes[sourceIndex];
-      const target = nodes[targetIndex];
-      if (source === undefined || target === undefined) continue;
-      const dx = target.x - source.x || 0.0001;
-      const dy = target.y - source.y || 0.0001;
-      const distance = Math.sqrt(dx * dx + dy * dy);
-      const strength = (link.strength ?? 1) * 0.08 * alpha;
-      const force = ((distance - linkDistance) / distance) * strength;
-      const fx = dx * force;
-      const fy = dy * force;
-      source.vx += fx / source.mass;
-      source.vy += fy / source.mass;
-      target.vx -= fx / target.mass;
-      target.vy -= fy / target.mass;
-    }
-
-    for (const node of nodes) {
-      node.vx = (node.vx - node.x * 0.002 * alpha) * 0.82;
-      node.vy = (node.vy - node.y * 0.002 * alpha) * 0.82;
-      node.x += node.vx;
-      node.y += node.vy;
-    }
-  }
+  forceSimulation(nodes)
+    .randomSource(seededRandom(seed))
+    .force("charge", forceManyBody<D3Node2D>().strength(chargeResult.value))
+    .force(
+      "link",
+      forceLink<D3Node2D, D3Link2D>(links)
+        .id((node) => node.id)
+        .distance(distanceResult.value)
+        .strength((link) => link.strengthValue),
+    )
+    .force("center", forceCenter<D3Node2D>(0, 0))
+    .stop()
+    .tick(iterationsResult.value);
 
   return ok({
     nodes: nodes.map((node) => ({ id: node.id, x: node.x, y: node.y })),
@@ -158,64 +161,23 @@ export const forceDirected3D = (
   const iterationsResult = normalizeIterations(opts.iterations, 140);
   if (!iterationsResult.ok) return iterationsResult;
 
-  const nodes = initial3D(graph, opts.seed ?? 0);
+  const seed = opts.seed ?? 0;
+  const nodes = initial3D(graph, seed);
+  const links = d3Links3D(graph);
 
-  for (let tick = 0; tick < iterationsResult.value; tick += 1) {
-    const alpha = 1 - tick / Math.max(iterationsResult.value, 1);
-
-    for (let i = 0; i < nodes.length; i += 1) {
-      const a = nodes[i];
-      if (a === undefined) continue;
-      for (let j = i + 1; j < nodes.length; j += 1) {
-        const b = nodes[j];
-        if (b === undefined) continue;
-        const dx = b.x - a.x || 0.0001;
-        const dy = b.y - a.y || 0.0001;
-        const dz = b.z - a.z || 0.0001;
-        const distanceSquared = dx * dx + dy * dy + dz * dz + 0.01;
-        const distance = Math.sqrt(distanceSquared);
-        const force = (-90 * alpha) / distanceSquared;
-        const fx = (dx / distance) * force;
-        const fy = (dy / distance) * force;
-        const fz = (dz / distance) * force;
-        a.vx += fx / a.mass;
-        a.vy += fy / a.mass;
-        a.vz += fz / a.mass;
-        b.vx -= fx / b.mass;
-        b.vy -= fy / b.mass;
-        b.vz -= fz / b.mass;
-      }
-    }
-
-    for (const link of graph.links) {
-      const sourceIndex = valid.value.get(link.source);
-      const targetIndex = valid.value.get(link.target);
-      if (sourceIndex === undefined || targetIndex === undefined) continue;
-      const source = nodes[sourceIndex];
-      const target = nodes[targetIndex];
-      if (source === undefined || target === undefined) continue;
-      const dx = target.x - source.x || 0.0001;
-      const dy = target.y - source.y || 0.0001;
-      const dz = target.z - source.z || 0.0001;
-      const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
-      const force = ((distance - 90) / distance) * (link.strength ?? 1) * 0.075 * alpha;
-      source.vx += (dx * force) / source.mass;
-      source.vy += (dy * force) / source.mass;
-      source.vz += (dz * force) / source.mass;
-      target.vx -= (dx * force) / target.mass;
-      target.vy -= (dy * force) / target.mass;
-      target.vz -= (dz * force) / target.mass;
-    }
-
-    for (const node of nodes) {
-      node.vx = (node.vx - node.x * 0.0015 * alpha) * 0.84;
-      node.vy = (node.vy - node.y * 0.0015 * alpha) * 0.84;
-      node.vz = (node.vz - node.z * 0.0015 * alpha) * 0.84;
-      node.x += node.vx;
-      node.y += node.vy;
-      node.z += node.vz;
-    }
-  }
+  forceSimulation3D(nodes, 3)
+    .randomSource(seededRandom(seed))
+    .force("charge", forceManyBody3D<D3Node3D>().strength(-90))
+    .force(
+      "link",
+      forceLink3D<D3Node3D, D3Link3D>(links)
+        .id((node) => node.id)
+        .distance(90)
+        .strength((link) => link.strengthValue),
+    )
+    .force("center", forceCenter3D<D3Node3D>(0, 0, 0))
+    .stop()
+    .tick(iterationsResult.value);
 
   return ok({
     nodes: nodes.map((node) => ({ id: node.id, x: node.x, y: node.y, z: node.z })),

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { traceSearch, traceSort, traceTraversal, type Graph } from "./index.js";
+import { replayTrace } from "./replay.js";
 
 describe("@paideia/algorithm-trace sorting", () => {
   it.each(["bubble", "insertion", "selection", "merge", "quick", "heap"] as const)(
@@ -30,6 +31,21 @@ describe("@paideia/algorithm-trace sorting", () => {
       );
     }
   });
+
+  it("rejects non-finite sort values and unsupported algorithms", () => {
+    expect(traceSort([1, Number.NaN], "bubble").ok).toBe(false);
+    expect(traceSort([1], "bogus" as Parameters<typeof traceSort>[1]).ok).toBe(false);
+  });
+
+  it("replays every sort trace to its declared final state", () => {
+    for (const algorithm of ["bubble", "insertion", "selection", "merge", "quick", "heap"] as const) {
+      const result = traceSort([5, 1, 4, 2, 8], algorithm);
+      expect(result.ok).toBe(true);
+      if (result.ok) {
+        expect(replayTrace(result.value, result.value.steps.length)).toEqual(result.value.final);
+      }
+    }
+  });
 });
 
 describe("@paideia/algorithm-trace search", () => {
@@ -48,6 +64,11 @@ describe("@paideia/algorithm-trace search", () => {
       expect(result.value.steps.some((step) => step.note === "found")).toBe(true);
       expect(result.value.final).toEqual([1, 2, 3, 4, 5]);
     }
+  });
+
+  it("rejects non-finite search values and unsupported algorithms", () => {
+    expect(traceSearch([1, Number.POSITIVE_INFINITY], 1, "linear").ok).toBe(false);
+    expect(traceSearch([1], 1, "jump" as Parameters<typeof traceSearch>[2]).ok).toBe(false);
   });
 });
 
@@ -73,6 +94,12 @@ describe("@paideia/algorithm-trace traversal", () => {
 
   it("rejects missing traversal starts", () => {
     const result = traceTraversal(graph, "missing", "dfs");
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("precondition-violated");
+  });
+
+  it("rejects unsupported traversal algorithms", () => {
+    const result = traceTraversal(graph, "a", "walk" as Parameters<typeof traceTraversal>[2]);
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.error.code).toBe("precondition-violated");
   });

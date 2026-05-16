@@ -8,7 +8,14 @@ import {
 import type { AstNode } from "./ast.js";
 import { applyAllowedFunction, isAllowedFunction } from "./functions.js";
 
-const safeDomains = new WeakMap<Function2D, Interval>();
+const safeDomainKey: unique symbol = Symbol("paideia.functionEval.safeDomain");
+
+type DomainBoundFunction = Function2D & {
+  readonly [safeDomainKey]?: Interval;
+};
+
+const domainFor = (f: Function2D): Interval | undefined =>
+  (f as DomainBoundFunction)[safeDomainKey];
 
 const finiteOrUndefined = (value: number, context: string): KernelResult<number> =>
   Number.isFinite(value)
@@ -134,7 +141,7 @@ export const evaluateAt = (
     return err("precondition-violated", `x must be finite; got ${x}`);
   }
 
-  const activeDomain = domain ?? safeDomains.get(f);
+  const activeDomain = domain ?? domainFor(f);
   if (activeDomain !== undefined) {
     const validDomain = validateDomain(activeDomain);
     if (!validDomain.ok) return validDomain;
@@ -158,6 +165,9 @@ export const safeFunction = (fn: Function2D, domain: Interval): Function2D => {
     const result = evaluateAt(fn, x, domain);
     return result.ok ? result.value : Number.NaN;
   };
-  safeDomains.set(wrapped, domain);
+  Object.defineProperty(wrapped, safeDomainKey, {
+    enumerable: false,
+    value: domain,
+  });
   return wrapped;
 };

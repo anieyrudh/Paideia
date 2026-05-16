@@ -33,6 +33,7 @@
 ## Tests
 
 - `src/kernels.test.ts`
+- `src/components.test.tsx`
 
 ## How to run locally
 
@@ -59,6 +60,10 @@ Filter version: aniegpt v1.0
 
 - Sankey layout is intentionally simple and deterministic. It is enough for
   Tier 1 flows but not a general crossing-minimising graph layout.
+- PR review found two visual-truth bugs: line charts connected across rejected
+  log-scale points, and negative Sankey values rendered as positive-width
+  flows. Resolution: line paths split into gap-aware segments, and invalid
+  Sankey link values render an error label instead of a flow.
 
 ### High-bandwidth questions surfaced
 

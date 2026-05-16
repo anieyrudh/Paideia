@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { replayTrace } from "./replay.js";
 import type { Trace, TraceStep } from "./types.js";
 
 export interface TraceVisualizerProps {
@@ -7,27 +8,6 @@ export interface TraceVisualizerProps {
   readonly onStep?: (i: number) => void;
   readonly controls?: "full" | "minimal" | "none";
 }
-
-const replay = (trace: Trace<unknown>, stepIndex: number): readonly unknown[] => {
-  const values = [...trace.initial];
-  for (let i = 0; i < stepIndex; i += 1) {
-    const step = trace.steps[i];
-    if (step === undefined) continue;
-    if (step.kind === "swap") {
-      const leftIndex = step.at[0];
-      const rightIndex = step.at[1];
-      if (leftIndex === undefined || rightIndex === undefined) continue;
-      const left = values[leftIndex];
-      values[leftIndex] = values[rightIndex];
-      values[rightIndex] = left;
-    }
-    if (step.kind === "set") {
-      const index = step.at[0];
-      if (index !== undefined) values[index] = step.value;
-    }
-  }
-  return values;
-};
 
 const stepLabel = (step: TraceStep | undefined): string =>
   step === undefined
@@ -41,7 +21,7 @@ export const TraceVisualizer = ({
   controls = "full",
 }: TraceVisualizerProps) => {
   const [stepIndex, setStepIndex] = useState(0);
-  const current = useMemo(() => replay(trace, stepIndex), [trace, stepIndex]);
+  const current = useMemo(() => replayTrace(trace, stepIndex), [trace, stepIndex]);
   const active = trace.steps[stepIndex - 1];
   const lastStep = trace.steps.length;
 
@@ -50,6 +30,13 @@ export const TraceVisualizer = ({
     setStepIndex(bounded);
     onStep?.(bounded);
   };
+
+  useEffect(() => {
+    if (speed <= 0 || stepIndex >= lastStep) return undefined;
+    const ms = Math.max(50, 1000 / speed);
+    const timer = globalThis.setTimeout(() => go(stepIndex + 1), ms);
+    return () => globalThis.clearTimeout(timer);
+  }, [lastStep, speed, stepIndex]);
 
   return (
     <section aria-label="Algorithm trace" data-speed={speed}>

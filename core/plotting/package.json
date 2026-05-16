@@ -15,6 +15,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@paideia/numerical-math": "workspace:*",
     "@paideia/shared": "workspace:*"
   },
   "peerDependencies": {

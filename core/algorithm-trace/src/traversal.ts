@@ -7,6 +7,10 @@ export const traceTraversal = (
   start: string,
   alg: TraversalAlgorithm,
 ): KernelResult<Trace<string>> => {
+  if (alg !== "bfs" && alg !== "dfs") {
+    return err("precondition-violated", `Unsupported traversal algorithm: ${String(alg)}`);
+  }
+
   const valid = validateGraph(graph);
   if (!valid.ok) return valid;
 

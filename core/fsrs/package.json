@@ -15,7 +15,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@paideia/shared": "workspace:*"
+    "@paideia/shared": "workspace:*",
+    "ts-fsrs": "^5.3.3"
   },
   "peerDependencies": {
     "react": ">=18"

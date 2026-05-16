@@ -40,10 +40,26 @@ describe("@paideia/function-eval", () => {
     if (result.ok) expect(result.value(5)).toBe(16);
   });
 
+  it("compiled functions surface runtime failures through evaluateAt", () => {
+    const result = compile("1 / (x - 1)", ["x"]);
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      const evaluated = evaluateAt(result.value, 1);
+      expect(evaluated.ok).toBe(false);
+      if (!evaluated.ok) expect(evaluated.error.code).toBe("undefined-at-point");
+    }
+  });
+
   it("compiles multi-variable expressions as record callables", () => {
     const result = compile("x*y + min(x, y)", ["x", "y"]);
     expect(result.ok).toBe(true);
     if (result.ok) expect(result.value({ x: 3, y: 4 })).toBe(15);
+  });
+
+  it("parses unary minus with standard exponent precedence", () => {
+    const result = evaluate("-x^2", { x: 3 });
+    expect(result.ok).toBe(true);
+    if (result.ok) expect(result.value).toBe(-9);
   });
 
   it("returns undefined-at-point for non-finite results", () => {
