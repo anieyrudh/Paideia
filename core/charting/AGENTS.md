@@ -1,7 +1,7 @@
 # core/charting · agent contract
 
 ## What this module is
-The statistical and data-shape chart layer: line charts over time or index, histograms over a sample, density plots, Sankey flows. It owns React renderers that wrap Observable Plot (declarative, opinionated) and D3 (where Plot's grammar runs out — custom interactions, exotic scales). It is the disciplined home for "draw a chart" so that sims and dashboards never reach for ad-hoc D3 in consumer code.
+The statistical and data-shape chart layer: line charts over time or index, histograms over a sample, density plots, Sankey flows. It owns small React/SVG renderers for Tier 1 charting; Observable Plot or D3 wrappers can be proposed later by ADR when a consumer needs richer chart grammar. It is the disciplined home for "draw a chart" so that sims and dashboards never reach for ad-hoc chart code.
 
 ## Public interface
 Exports from `@paideia/charting`:
@@ -37,7 +37,7 @@ Use `core/charting` for any quantitative chart over data: a histogram of student
 3. Use `core!:` commit prefix for any rendering or prop change that could shift a previously-pinned visual snapshot.
 
 ## Anti-patterns (will be rejected in PR review)
-- Ad-hoc D3 selections inside a sim package — implement the affordance here.
+- Ad-hoc chart rendering inside a sim package — implement the affordance here.
 - Tooltips that recompute the binning or KDE on every `mousemove` — cache the binned layer.
 - Mutating `samples` in place to sort or trim.
 - Auto-switching scale (linear → log) based on data shape without the caller asking.

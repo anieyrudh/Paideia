@@ -13,7 +13,7 @@ Exports from `@paideia/graph-layout`:
 - `forceDirected3D(g: Graph, opts?: { iterations?: number; seed?: number }): KernelResult<LayoutResult3D>`
 - `treeLayout(root: TreeNode, opts?: { orientation?: 'vertical' | 'horizontal'; nodeSpacing?: number }): KernelResult<LayoutResult2D>`
 - `<ForceGraph2D layout={LayoutResult2D} onNodeClick?={(id) => void} />`
-- `<ForceGraph3D layout={LayoutResult3D} />` (lazy-loads `core/three-scene`)
+- `<ForceGraph3D layout={LayoutResult3D} />` (lightweight projected SVG renderer; full Three.js rendering belongs to `core/three-scene` once that Tier 2 package lands)
 - `<Tree layout={LayoutResult2D} />`
 
 ## Invariants the caller must preserve
@@ -45,7 +45,7 @@ Use `core/graph-layout` when you have nodes and links and need positions on a pl
 - Mutating the input graph.
 - Re-implementing d3-force inside a sim — extend the module.
 - Branch-specific defaults (`if SUTD then more iterations`) — accept opts.
-- Embedding 3D rendering directly here (we lazy-load `core/three-scene` in the renderer to keep the bundle small).
+- Embedding a heavy Three.js renderer directly here. `ForceGraph3D` may provide a lightweight projected preview, but full 3D rendering belongs to `core/three-scene`.
 
 ## How the Anieyrudh Filter reads this module
 The Filter probes that **layout determinism holds across runs**, that no edge silently disappears or duplicates, and that a tree displayed as a tree is actually a tree (no cycles silently swallowed). A layout that misrepresents graph structure — orphaning nodes, fusing edges — fails review.

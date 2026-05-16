@@ -1,7 +1,7 @@
 # core/function-eval · agent contract
 
 ## What this module is
-The safe boundary between a string expression a learner (or author) typed and a `Function2D` the rest of the system can call. It owns expression parsing, compilation, and evaluation; wraps `mathjs` (and a thin layer of Mathigon `fermat.js` for algebraic manipulation where useful); and guarantees that arbitrary user input cannot reach the JS dynamic-eval escape hatch, network, or filesystem.
+The safe boundary between a string expression a learner (or author) typed and a `Function2D` the rest of the system can call. It owns expression parsing, compilation, and evaluation through a closed Paideia AST; v0 intentionally does not wrap `mathjs` so arbitrary user input cannot reach a dynamic-eval escape hatch, network, or filesystem.
 
 ## Public interface
 Exports from `@paideia/function-eval`:
@@ -38,7 +38,7 @@ Use `core/function-eval` whenever a learner or author supplies a math expression
 ## Anti-patterns (will be rejected in PR review)
 - Falling back to dynamic JS evaluation (`eval`, the `Function` constructor) "for performance".
 - Silently coercing `NaN` to `0` or to the last valid value.
-- Expanding `allowedFunctions` to "all of mathjs" without an ADR.
+- Expanding `allowedFunctions` to a broad external-math namespace without an ADR.
 - Caching with a module-global `Map` whose key is the raw string — caller-supplied caches only.
 - Throwing on bad input; always return a `KernelResult`.
 - Branch-specific syntax (`if SUTD allow Σ shorthand`) — extend the grammar, then both branches use it.

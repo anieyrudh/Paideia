@@ -1,7 +1,7 @@
 # core/plotting · agent contract
 
 ## What this module is
-The 2D mathematical plotting layer for the monorepo: function graphs, parametric curves, vector fields, and scatter overlays. It owns React components that wrap Mafs (declarative, React-first) and JSXGraph (where dynamic geometry — draggable points constrained by loci — is needed). It does not own statistical chart types, 3D scenes, or graph-network layouts; those have their own modules.
+The 2D mathematical plotting layer for the monorepo: function graphs, parametric curves, vector fields, and scatter overlays. It owns small React/SVG components for Tier 1 plotting; heavier Mafs or JSXGraph wrappers can be proposed later by ADR if a container needs richer dynamic geometry. It does not own statistical chart types, 3D scenes, or graph-network layouts; those have their own modules.
 
 ## Public interface
 Exports from `@paideia/plotting`:
@@ -40,7 +40,7 @@ Use `core/plotting` whenever the visual is a 2D mathematical object — a functi
 
 ## Anti-patterns (will be rejected in PR review)
 - Connecting samples across an undefined-at-point with a straight line (the "vertical-asymptote-as-cliff" bug).
-- Re-implementing Mafs or JSXGraph wrappers in a sim package — extend this module instead.
+- Re-implementing plotting primitives in a sim package — extend this module instead.
 - Mutating props (e.g. sorting `points` in place to draw a line).
 - Reaching into the underlying library's imperative API from a consumer; expose the affordance here.
 - Hard-coded colours/fonts — accept theme tokens.
