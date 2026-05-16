@@ -29,6 +29,8 @@ describe("@paideia/function-eval", () => {
 
   it("rejects member access and non-whitelisted calls", () => {
     expect(parseExpression("sin.constructor('return 1')()").ok).toBe(false);
+    expect(parseExpression("this").ok).toBe(false);
+    expect(parseExpression("this()").ok).toBe(false);
     const result = parseExpression("random()");
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.error.code).toBe("precondition-violated");
@@ -44,6 +46,8 @@ describe("@paideia/function-eval", () => {
     const result = compile("1 / (x - 1)", ["x"]);
     expect(result.ok).toBe(true);
     if (result.ok) {
+      expect(() => result.value(1)).not.toThrow();
+      expect(Number.isNaN(result.value(1))).toBe(true);
       const evaluated = evaluateAt(result.value, 1);
       expect(evaluated.ok).toBe(false);
       if (!evaluated.ok) expect(evaluated.error.code).toBe("undefined-at-point");

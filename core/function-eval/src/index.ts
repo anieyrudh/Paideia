@@ -7,9 +7,7 @@ import { parseExpressionSource } from "./parser.js";
 export type { AstNode } from "./ast.js";
 export { allowedFunctions, evaluateAt, safeFunction };
 
-const throwEvaluationFailure = (expr: string, message: string): never => {
-  throw new Error(`Compiled expression '${expr}' failed: ${message}`);
-};
+const evaluationFailureValue = (): number => Number.NaN;
 
 export const parseExpression = (expr: string): KernelResult<AstNode> =>
   parseExpressionSource(expr);
@@ -62,12 +60,12 @@ export function compile(
     }
     return ok((x: number): number => {
       const result = evaluateAst(ast.value, { [variable]: x });
-      return result.ok ? result.value : throwEvaluationFailure(expr, result.error.message);
+      return result.ok ? result.value : evaluationFailureValue();
     });
   }
 
   return ok((vars: Record<string, number>): number => {
     const result = evaluateAst(ast.value, vars);
-    return result.ok ? result.value : throwEvaluationFailure(expr, result.error.message);
+    return result.ok ? result.value : evaluationFailureValue();
   });
 }

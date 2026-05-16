@@ -64,12 +64,20 @@ export const projectValue = (
   scale: AxisSpec["scale"],
 ): number | null => {
   if (!Number.isFinite(value)) return null;
+  if (!Number.isFinite(domain.min) || !Number.isFinite(domain.max)) return null;
   if (scale === "log") {
     if (value <= 0 || domain.min <= 0 || domain.max <= 0) return null;
-    return (Math.log10(value) - Math.log10(domain.min)) /
-      (Math.log10(domain.max) - Math.log10(domain.min));
+    const min = Math.log10(domain.min);
+    const max = Math.log10(domain.max);
+    const denominator = max - min;
+    if (!Number.isFinite(denominator) || denominator === 0) return null;
+    const projected = (Math.log10(value) - min) / denominator;
+    return Number.isFinite(projected) ? projected : null;
   }
-  return (value - domain.min) / (domain.max - domain.min);
+  const denominator = domain.max - domain.min;
+  if (!Number.isFinite(denominator) || denominator === 0) return null;
+  const projected = (value - domain.min) / denominator;
+  return Number.isFinite(projected) ? projected : null;
 };
 
 export const groupLineData = (

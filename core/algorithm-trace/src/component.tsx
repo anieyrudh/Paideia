@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { replayTrace } from "./replay.js";
 import type { Trace, TraceStep } from "./types.js";
 
@@ -25,18 +25,18 @@ export const TraceVisualizer = ({
   const active = trace.steps[stepIndex - 1];
   const lastStep = trace.steps.length;
 
-  const go = (next: number) => {
+  const go = useCallback((next: number) => {
     const bounded = Math.min(Math.max(next, 0), lastStep);
     setStepIndex(bounded);
     onStep?.(bounded);
-  };
+  }, [lastStep, onStep]);
 
   useEffect(() => {
     if (speed <= 0 || stepIndex >= lastStep) return undefined;
     const ms = Math.max(50, 1000 / speed);
     const timer = globalThis.setTimeout(() => go(stepIndex + 1), ms);
     return () => globalThis.clearTimeout(timer);
-  }, [lastStep, speed, stepIndex]);
+  }, [go, lastStep, speed, stepIndex]);
 
   return (
     <section aria-label="Algorithm trace" data-speed={speed}>

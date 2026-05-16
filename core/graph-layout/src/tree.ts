@@ -64,6 +64,10 @@ export const treeLayout = (
   }
 
   const orientation = opts.orientation ?? "vertical";
+  if (orientation !== "vertical" && orientation !== "horizontal") {
+    return err("precondition-violated", "orientation must be vertical or horizontal");
+  }
+
   const slots = buildSlots(root, 0, { value: 0 });
   const nodes: LayoutNode2D[] = [];
   const links: { source: string; target: string }[] = [];

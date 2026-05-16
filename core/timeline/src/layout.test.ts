@@ -23,6 +23,24 @@ describe("timeline layout", () => {
     if (!result.ok) expect(result.error.code).toBe("precondition-violated");
   });
 
+  it("rejects invalid geometry options before laying out items", () => {
+    const narrow = layoutTimeline(
+      [{ id: "a", at: 0, label: "A" }],
+      [],
+      { width: 80 },
+    );
+    expect(narrow.ok).toBe(false);
+    if (!narrow.ok) expect(narrow.error.code).toBe("precondition-violated");
+
+    const invalidLaneHeight = layoutTimeline(
+      [{ id: "a", at: 0, label: "A" }],
+      [],
+      { laneHeight: 0 },
+    );
+    expect(invalidLaneHeight.ok).toBe(false);
+    if (!invalidLaneHeight.ok) expect(invalidLaneHeight.error.code).toBe("precondition-violated");
+  });
+
   it("detects cycles in branching timelines", () => {
     const nodes: readonly BranchingTimelineNode[] = [
       { id: "a", at: 0, label: "A", children: ["b"] },

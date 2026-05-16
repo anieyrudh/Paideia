@@ -182,6 +182,9 @@ class Parser {
 
     if (this.matches("identifier")) {
       const name = this.previous().lexeme;
+      if (name === "this") {
+        return this.fail("'this' is not allowed in Paideia expressions");
+      }
       if (this.matches("leftParen")) {
         return this.parseCall(name);
       }

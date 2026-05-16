@@ -142,27 +142,28 @@ const buildTree = (lines: readonly ParsedLine[]): KernelResult<MindMapNode> => {
 
 export const parseMarkmap = (source: string): KernelResult<MindMapNode> => {
   const lines: ParsedLine[] = [];
+  let listBaseDepth = 0;
 
   for (const rawLine of source.split(/\r?\n/u)) {
     if (rawLine.trim() === "") continue;
     const heading = rawLine.match(/^(#{1,6})\s+(.+)$/u);
     if (heading !== null) {
-      lines.push({ depth: heading[1]?.length ?? 1, text: heading[2] ?? "" });
+      const depth = Math.max(0, (heading[1]?.length ?? 1) - 1);
+      lines.push({ depth, text: heading[2] ?? "" });
+      listBaseDepth = depth + 1;
       continue;
     }
 
     const bullet = rawLine.match(/^(\s*)([-*+])\s+(.+)$/u);
     if (bullet !== null) {
       lines.push({
-        depth: Math.floor((bullet[1]?.replace(/\t/gu, "  ").length ?? 0) / 2),
+        depth: listBaseDepth + Math.floor((bullet[1]?.replace(/\t/gu, "  ").length ?? 0) / 2),
         text: bullet[3] ?? "",
       });
     }
   }
 
-  const normalized =
-    lines.length === 0 ? lines : lines.map((line) => ({ ...line, depth: line.depth - lines[0]!.depth }));
-  return buildTree(normalized);
+  return buildTree(lines);
 };
 
 export const parseMermaidMindmap = (source: string): KernelResult<MindMapNode> => {

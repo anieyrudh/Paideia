@@ -1,5 +1,26 @@
-import { describe, expect, it } from "vitest";
-import { forceDirected2D, forceDirected3D, treeLayout, type Graph } from "./index.js";
+import { isValidElement, type ReactElement } from "react";
+import { describe, expect, it, vi } from "vitest";
+import {
+  ForceGraph2D,
+  forceDirected2D,
+  forceDirected3D,
+  treeLayout,
+  type Graph,
+  type LayoutResult2D,
+} from "./index.js";
+
+interface ElementWithChildren {
+  readonly children?: unknown;
+}
+
+interface NodeGroupProps {
+  readonly onKeyDown?: (event: { readonly key: string; preventDefault: () => void }) => void;
+  readonly role?: string;
+  readonly tabIndex?: number;
+}
+
+const asElementArray = (children: unknown): readonly ReactElement[] =>
+  Array.isArray(children) ? children.filter(isValidElement) : isValidElement(children) ? [children] : [];
 
 const graph: Graph = {
   nodes: [{ id: "a" }, { id: "b", weight: 2 }, { id: "c" }],
@@ -70,5 +91,46 @@ describe("@paideia/graph-layout", () => {
         { source: "right", target: "leaf" },
       ]);
     }
+  });
+
+  it("rejects unsupported tree orientations at runtime", () => {
+    const result = treeLayout(
+      { id: "root" },
+      { orientation: "diagonal" as "vertical" },
+    );
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("precondition-violated");
+  });
+
+  it("activates clickable SVG nodes with Enter and Space", () => {
+    const clicked: string[] = [];
+    const layout: LayoutResult2D = { nodes: [{ id: "a", x: 0, y: 0 }], links: [] };
+    const element = ForceGraph2D({ layout, onNodeClick: (id) => clicked.push(id) });
+    expect(isValidElement<ElementWithChildren>(element)).toBe(true);
+    if (!isValidElement<ElementWithChildren>(element)) return;
+
+    const svgChildren = asElementArray(element.props.children);
+    const nodeLayer = svgChildren[1];
+    expect(isValidElement<ElementWithChildren>(nodeLayer)).toBe(true);
+    if (!isValidElement<ElementWithChildren>(nodeLayer)) return;
+
+    const nodeGroup = asElementArray(nodeLayer.props.children)[0] as
+      | ReactElement<NodeGroupProps>
+      | undefined;
+    expect(nodeGroup?.props.role).toBe("button");
+    expect(nodeGroup?.props.tabIndex).toBe(0);
+
+    const enterPreventDefault = vi.fn();
+    nodeGroup?.props.onKeyDown?.({ key: "Enter", preventDefault: enterPreventDefault });
+    expect(enterPreventDefault).toHaveBeenCalledOnce();
+
+    const spacePreventDefault = vi.fn();
+    nodeGroup?.props.onKeyDown?.({ key: " ", preventDefault: spacePreventDefault });
+    expect(spacePreventDefault).toHaveBeenCalledOnce();
+
+    const tabPreventDefault = vi.fn();
+    nodeGroup?.props.onKeyDown?.({ key: "Tab", preventDefault: tabPreventDefault });
+    expect(tabPreventDefault).not.toHaveBeenCalled();
+    expect(clicked).toEqual(["a", "a"]);
   });
 });

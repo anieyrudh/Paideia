@@ -7,10 +7,10 @@ export interface MindMapEditorProps {
   readonly onChange: (root: MindMapNode) => void;
 }
 
-const nextChildId = (parent: MindMapNode): string => {
+const nextChildId = (root: MindMapNode, parent: MindMapNode): string => {
   let suffix = (parent.children ?? []).length + 1;
   let id = `${parent.id}-child-${suffix}`;
-  while (containsId(parent, id)) {
+  while (containsId(root, id)) {
     suffix += 1;
     id = `${parent.id}-child-${suffix}`;
   }
@@ -32,7 +32,7 @@ export const MindMapEditor = ({ initial, onChange }: MindMapEditorProps) => {
   };
 
   const addChild = () => {
-    const child: MindMapNode = { id: nextChildId(selected), label: "New node" };
+    const child: MindMapNode = { id: nextChildId(root, selected), label: "New node" };
     const next = mapNode(root, selected.id, (node) => ({
       ...node,
       children: [...(node.children ?? []), child],

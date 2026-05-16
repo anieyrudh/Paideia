@@ -41,6 +41,21 @@ describe("@paideia/mind-map", () => {
     if (!result.ok) expect(result.error.code).toBe("precondition-violated");
   });
 
+  it("parses a heading root followed by an unindented list child", () => {
+    const result = parseMarkmap(`
+# Root {#root}
+- Child {#child}
+`);
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.value).toEqual({
+        id: "root",
+        label: "Root",
+        children: [{ id: "child", label: "Child" }],
+      });
+    }
+  });
+
   it("parses Mermaid mindmap syntax without a Mermaid runtime", () => {
     const result = parseMermaidMindmap(`
 mindmap

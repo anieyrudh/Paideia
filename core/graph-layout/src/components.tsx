@@ -1,3 +1,4 @@
+import type { KeyboardEvent } from "react";
 import type { LayoutResult2D, LayoutResult3D } from "./types.js";
 
 export interface ForceGraph2DProps {
@@ -29,6 +30,14 @@ const nodeMap2D = (layout: LayoutResult2D): ReadonlyMap<string, { readonly x: nu
 
 export const ForceGraph2D = ({ layout, onNodeClick }: ForceGraph2DProps) => {
   const positions = nodeMap2D(layout);
+  const activateNode = (id: string) => {
+    onNodeClick?.(id);
+  };
+  const handleNodeKeyDown = (event: KeyboardEvent<SVGGElement>, id: string) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    activateNode(id);
+  };
 
   return (
     <svg aria-label="Force-directed graph" role="img" viewBox={viewBox2D(layout)}>
@@ -53,7 +62,10 @@ export const ForceGraph2D = ({ layout, onNodeClick }: ForceGraph2DProps) => {
           <g
             aria-label={node.id}
             key={node.id}
-            onClick={onNodeClick === undefined ? undefined : () => onNodeClick(node.id)}
+            onClick={onNodeClick === undefined ? undefined : () => activateNode(node.id)}
+            onKeyDown={
+              onNodeClick === undefined ? undefined : (event) => handleNodeKeyDown(event, node.id)
+            }
             role={onNodeClick === undefined ? "img" : "button"}
             tabIndex={onNodeClick === undefined ? undefined : 0}
           >

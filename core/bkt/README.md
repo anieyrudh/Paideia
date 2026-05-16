@@ -8,14 +8,14 @@ parameter fitting from already-graded evidence.
 import { updateMastery, type MasteryState } from "@paideia/bkt";
 
 const prior: MasteryState = {
-  conceptId,
-  pMastery,
+  conceptId: "photosynthesis-light-dependent-reactions",
+  pMastery: 0.42,
   evidenceCount: 0,
   lastUpdated: new Date("2026-01-01T00:00:00.000Z"),
 };
 
 const next = updateMastery(prior, {
-  conceptId,
+  conceptId: "photosynthesis-light-dependent-reactions",
   correct: true,
   observedAt: new Date("2026-01-02T00:00:00.000Z"),
   itemId: "quiz-1",

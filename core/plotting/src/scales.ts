@@ -21,12 +21,36 @@ export const isFiniteInterval = (interval: Interval): boolean =>
 
 const span = (interval: Interval): number => interval.max - interval.min;
 
+const describeInterval = (interval: Interval): string => `[${interval.min}, ${interval.max}]`;
+
+const assertFiniteInterval = (interval: Interval, axis: "x" | "y"): void => {
+  if (!isFiniteInterval(interval)) {
+    throw new Error(
+      `Invalid plot domain: ${axis} interval must contain finite values with min < max; got ${describeInterval(interval)}`,
+    );
+  }
+};
+
 export const createPlotScale = (
   domain: Rect,
   width = DEFAULT_WIDTH,
   height = DEFAULT_HEIGHT,
   padding = DEFAULT_PADDING,
 ): PlotScale => {
+  assertFiniteInterval(domain.x, "x");
+  assertFiniteInterval(domain.y, "y");
+  if (!Number.isFinite(width) || width <= 0) {
+    throw new Error(`Invalid plot viewport: width must be a positive finite number; got ${width}`);
+  }
+  if (!Number.isFinite(height) || height <= 0) {
+    throw new Error(`Invalid plot viewport: height must be a positive finite number; got ${height}`);
+  }
+  if (!Number.isFinite(padding) || padding < 0) {
+    throw new Error(
+      `Invalid plot viewport: padding must be a non-negative finite number; got ${padding}`,
+    );
+  }
+
   const drawableWidth = Math.max(1, width - padding * 2);
   const drawableHeight = Math.max(1, height - padding * 2);
 

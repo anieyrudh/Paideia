@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { traceSearch, traceSort, traceTraversal, type Graph } from "./index.js";
+import { adjacency } from "./graph.js";
 import { replayTrace } from "./replay.js";
 
 describe("@paideia/algorithm-trace sorting", () => {
@@ -46,6 +47,24 @@ describe("@paideia/algorithm-trace sorting", () => {
       }
     }
   });
+
+  it("ignores replay writes with out-of-bounds or non-integer indices", () => {
+    const result = replayTrace(
+      {
+        initial: [1, 2],
+        steps: [
+          { kind: "swap", at: [0, 99] },
+          { kind: "set", at: [-1], value: 7 },
+          { kind: "set", at: [1.5], value: 8 },
+        ],
+        final: [1, 2],
+        meta: { algorithm: "test", n: 2, comparisons: 0, swaps: 0 },
+      },
+      3,
+    );
+
+    expect(result).toEqual([1, 2]);
+  });
 });
 
 describe("@paideia/algorithm-trace search", () => {
@@ -90,6 +109,35 @@ describe("@paideia/algorithm-trace traversal", () => {
       expect(result.value.final).toEqual(["a", "b", "c", "d"]);
       expect(result.value.steps[0]).toEqual({ kind: "visit", at: [0], value: "a" });
     }
+  });
+
+  it.each(["bfs", "dfs"] as const)("does not duplicate %s frontier mark steps", (algorithm) => {
+    const diamond: Graph = {
+      nodes: [{ id: "a" }, { id: "b" }, { id: "c" }, { id: "d" }],
+      links: [
+        { source: "a", target: "b" },
+        { source: "a", target: "c" },
+        { source: "b", target: "d" },
+        { source: "c", target: "d" },
+      ],
+    };
+
+    const result = traceTraversal(diamond, "a", algorithm);
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(
+        result.value.steps.filter((step) => step.kind === "mark" && step.value === "d"),
+      ).toHaveLength(1);
+    }
+  });
+
+  it("rejects adjacency links that reference missing nodes", () => {
+    const result = adjacency({
+      nodes: [{ id: "a" }],
+      links: [{ source: "a", target: "missing" }],
+    });
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("precondition-violated");
   });
 
   it("rejects missing traversal starts", () => {

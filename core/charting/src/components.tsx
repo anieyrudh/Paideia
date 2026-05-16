@@ -263,15 +263,15 @@ export const Sankey = ({ nodes, links }: SankeyProps) => {
 
   return (
     <ChartFrame height={420}>
-      {links.map((link) => {
+      {links.map((link, linkIndex) => {
         const y1 = yFor(link.source);
         const y2 = yFor(link.target);
-        const width = Math.max(1, (link.value / maxValue) * 18);
+        const width = link.value === 0 ? 0 : Math.max(1, (link.value / maxValue) * 18);
         return (
           <path
             d={`M 110 ${y1} C 270 ${y1}, 370 ${y2}, 530 ${y2}`}
             fill="none"
-            key={`${link.source}:${link.target}`}
+            key={`${link.source}:${link.target}:${linkIndex}`}
             opacity="0.72"
             stroke="#1f5f8b"
             strokeWidth={width}

@@ -8,7 +8,7 @@ interface ParsedMarker {
   readonly annotation: Annotation;
 }
 
-const markerPattern = /\[\[paideia-annotation:([^\]]+)\]\]/g;
+const annotationMarkerPattern = (): RegExp => /\[\[paideia-annotation:([^\]]+)\]\]/g;
 
 const intervalSchema = z.object({
   min: z.number().min(0).max(1),
@@ -82,6 +82,7 @@ export const serializeAnnotations = (
 export const parseAnnotations = (
   md: string,
 ): KernelResult<{ readonly text: string; readonly annotations: readonly Annotation[] }> => {
+  const markerPattern = annotationMarkerPattern();
   const markers: ParsedMarker[] = [];
   let match: RegExpExecArray | null;
   while ((match = markerPattern.exec(md)) !== null) {

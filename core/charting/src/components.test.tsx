@@ -38,4 +38,34 @@ describe("chart renderers", () => {
     expect(paths).toHaveLength(0);
     expect(collectElements(chart, "text")).toHaveLength(1);
   });
+
+  it("renders zero Sankey values with zero width but keeps tiny positives visible", () => {
+    const chart = Sankey({
+      nodes: [{ id: "a", label: "A" }, { id: "b", label: "B" }],
+      links: [
+        { source: "a", target: "b", value: 0 },
+        { source: "a", target: "b", value: 0.001 },
+      ],
+    });
+
+    const paths = collectElements(chart, "path");
+    expect(paths).toHaveLength(2);
+    const widths = paths.flatMap((path) => isValidElement(path) ? [path.props.strokeWidth] : []);
+    expect(widths).toEqual([0, 1]);
+  });
+
+  it("uses unique keys for parallel Sankey links", () => {
+    const chart = Sankey({
+      nodes: [{ id: "a", label: "A" }, { id: "b", label: "B" }],
+      links: [
+        { source: "a", target: "b", value: 1 },
+        { source: "a", target: "b", value: 2 },
+      ],
+    });
+
+    const keys = collectElements(chart, "path").flatMap((path) =>
+      isValidElement(path) && path.key !== null ? [path.key] : [],
+    );
+    expect(new Set(keys).size).toBe(keys.length);
+  });
 });

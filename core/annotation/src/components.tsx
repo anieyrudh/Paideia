@@ -1,7 +1,7 @@
-import { useId, useMemo, useRef, useState, type PointerEvent } from "react";
+import { useId, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import type { Rect } from "@paideia/shared";
 import type { Annotation, TagDef } from "./types.js";
-import { filterAnnotations } from "./validation.js";
+import { filterAnnotations, validImageRect } from "./validation.js";
 
 interface AnnotatableTextProps {
   readonly text: string;
@@ -142,6 +142,9 @@ const normaliseRect = (start: readonly [number, number], end: readonly [number, 
   y: { min: Math.min(start[1], end[1]), max: Math.max(start[1], end[1]) },
 });
 
+export const canAddImageRegion = (tag: string, selectedRect: Rect | null): boolean =>
+  tag !== "" && selectedRect !== null && validImageRect(selectedRect);
+
 const pointInElement = (event: PointerEvent<HTMLElement>): readonly [number, number] => {
   const bounds = event.currentTarget.getBoundingClientRect();
   const x = (event.clientX - bounds.left) / Math.max(1, bounds.width);
@@ -160,11 +163,14 @@ export const AnnotatableImage = ({
   const [note, setNote] = useState("");
   const [dragStart, setDragStart] = useState<readonly [number, number] | null>(null);
   const [selectedRect, setSelectedRect] = useState<Rect | null>(null);
+  const tagId = useId();
+  const noteId = useId();
   const imageAnnotations = filterAnnotations("", annotations, tags).filter(
     (annotation) => annotation.target.kind === "image",
   );
+  const canAdd = canAddImageRegion(tag, selectedRect);
   const add = () => {
-    if (tag === "" || selectedRect === null) return;
+    if (tag === "" || selectedRect === null || !validImageRect(selectedRect)) return;
     onAdd?.(
       buildAnnotation({ kind: "image", rect: selectedRect }, tag, note),
     );
@@ -221,19 +227,31 @@ export const AnnotatableImage = ({
           ) : null,
         )}
       </div>
-      <select onChange={(event) => setTag(event.currentTarget.value)} value={tag}>
+      <label htmlFor={tagId}>Tag</label>
+      <select id={tagId} onChange={(event) => setTag(event.currentTarget.value)} value={tag}>
         {tags.map((item) => (
           <option key={item.id} value={item.id}>
             {item.label}
           </option>
         ))}
       </select>
-      <textarea onChange={(event) => setNote(event.currentTarget.value)} value={note} />
-      <button disabled={tag === "" || selectedRect === null} onClick={add} type="button">
+      <label htmlFor={noteId}>Note</label>
+      <textarea id={noteId} onChange={(event) => setNote(event.currentTarget.value)} value={note} />
+      <button disabled={!canAdd} onClick={add} type="button">
         Add region
       </button>
     </section>
   );
+};
+
+const selectOnKeyboard = (
+  event: KeyboardEvent<SVGRectElement>,
+  annotationId: string,
+  onSelect: ((id: string) => void) | undefined,
+) => {
+  if (event.key !== "Enter" && event.key !== " ") return;
+  event.preventDefault();
+  onSelect?.(annotationId);
 };
 
 export const AnnotationLayer = ({
@@ -244,12 +262,16 @@ export const AnnotationLayer = ({
     {annotations.map((annotation) =>
       annotation.target.kind === "image" ? (
         <rect
+          aria-label={`Select ${annotation.tag} annotation`}
           fill="transparent"
           height={annotation.target.rect.y.max - annotation.target.rect.y.min}
           key={annotation.id}
           onClick={() => onSelect?.(annotation.id)}
+          onKeyDown={(event) => selectOnKeyboard(event, annotation.id, onSelect)}
+          role="button"
           stroke="#f59e0b"
           strokeWidth="0.005"
+          tabIndex={0}
           width={annotation.target.rect.x.max - annotation.target.rect.x.min}
           x={annotation.target.rect.x.min}
           y={annotation.target.rect.y.min}

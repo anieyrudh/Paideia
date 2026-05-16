@@ -1,5 +1,8 @@
 import type { Trace } from "./types.js";
 
+const isValidReplayIndex = (index: number, length: number): boolean =>
+  Number.isInteger(index) && index >= 0 && index < length;
+
 export const replayTrace = <T>(trace: Trace<T>, stepIndex: number): readonly (T | number | string)[] => {
   const values: (T | number | string)[] = [...trace.initial];
   const bounded = Math.min(Math.max(0, Math.floor(stepIndex)), trace.steps.length);
@@ -10,14 +13,27 @@ export const replayTrace = <T>(trace: Trace<T>, stepIndex: number): readonly (T 
     if (step.kind === "swap") {
       const leftIndex = step.at[0];
       const rightIndex = step.at[1];
-      if (leftIndex === undefined || rightIndex === undefined) continue;
+      if (
+        leftIndex === undefined ||
+        rightIndex === undefined ||
+        !isValidReplayIndex(leftIndex, values.length) ||
+        !isValidReplayIndex(rightIndex, values.length)
+      ) {
+        continue;
+      }
       const left = values[leftIndex];
       values[leftIndex] = values[rightIndex] as T | number | string;
       values[rightIndex] = left as T | number | string;
     }
     if (step.kind === "set") {
       const index = step.at[0];
-      if (index !== undefined && step.value !== undefined) values[index] = step.value;
+      if (
+        index !== undefined &&
+        isValidReplayIndex(index, values.length) &&
+        step.value !== undefined
+      ) {
+        values[index] = step.value;
+      }
     }
   }
 

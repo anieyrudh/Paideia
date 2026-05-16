@@ -25,6 +25,13 @@ describe("charting kernels", () => {
     expect(projectValue(0, { min: 0, max: 100 }, "linear")).toBe(0);
   });
 
+  it("returns null for degenerate or non-finite projection domains", () => {
+    expect(projectValue(1, { min: 1, max: 1 }, "linear")).toBeNull();
+    expect(projectValue(10, { min: 10, max: 10 }, "log")).toBeNull();
+    expect(projectValue(1, { min: Number.NEGATIVE_INFINITY, max: 1 }, "linear")).toBeNull();
+    expect(projectValue(10, { min: 1, max: Number.POSITIVE_INFINITY }, "log")).toBeNull();
+  });
+
   it("computes density from samples without changing histogram semantics", () => {
     const density = kernelDensity([0, 1, 2, 3], "silverman", 12);
     expect(density).toHaveLength(12);

@@ -15,6 +15,7 @@ import type {
 import { derivative, linearRegression } from "@paideia/numerical-math";
 import { createPlotScale, DEFAULT_HEIGHT, DEFAULT_WIDTH, pathFromPoints } from "./scales.js";
 import {
+  evaluateAt,
   inferRange,
   inferRectFromPoints,
   sampleFunction,
@@ -22,64 +23,64 @@ import {
   sampleVectorField,
 } from "./sampling.js";
 
-const stroke = "#1f5f8b";
-const mutedStroke = "#98a2b3";
-const accentStroke = "#b42318";
+const plotStroke = "var(--plot-stroke)";
+const plotMutedStroke = "var(--plot-muted-stroke)";
+const plotAccentStroke = "var(--plot-accent-stroke)";
 
-interface FunctionPlotProps {
-  readonly f: Function2D;
-  readonly domain: Interval;
-  readonly range?: Interval;
-  readonly samples?: number;
-  readonly overlays?: readonly Renderable<ReactNode>[];
-}
+type FunctionPlotProps = Readonly<{
+  f: Function2D;
+  domain: Interval;
+  range?: Interval;
+  samples?: number;
+  overlays?: readonly Renderable<ReactNode>[];
+}>;
 
-interface ParametricPlotProps {
-  readonly curve: ParametricCurve2D;
-  readonly t: Interval;
-  readonly samples?: number;
-}
+type ParametricPlotProps = Readonly<{
+  curve: ParametricCurve2D;
+  t: Interval;
+  samples?: number;
+}>;
 
-interface VectorFieldPlotProps {
-  readonly field: VectorField2D;
-  readonly region: Rect;
-  readonly density?: number;
-  readonly normalize?: boolean;
-}
+type VectorFieldPlotProps = Readonly<{
+  field: VectorField2D;
+  region: Rect;
+  density?: number;
+  normalize?: boolean;
+}>;
 
-interface ScatterPlotProps {
-  readonly points: readonly (readonly [number, number])[];
-  readonly fit?: "linear" | "none";
-}
+type ScatterPlotProps = Readonly<{
+  points: readonly (readonly [number, number])[];
+  fit?: "linear" | "none";
+}>;
 
-interface PlotFrameProps {
-  readonly domain: Rect;
-  readonly grid?: "cartesian" | "polar" | "none";
-  readonly aspect?: "equal" | "auto";
-  readonly children: ReactNode;
-}
+type PlotFrameProps = Readonly<{
+  domain: Rect;
+  grid?: "cartesian" | "polar" | "none";
+  aspect?: "equal" | "auto";
+  children: ReactNode;
+}>;
 
-interface DraggablePointProps {
-  readonly constraint?: "free" | "on-curve";
-  readonly curve?: Function2D | ParametricCurve2D;
-  readonly initial: readonly [number, number];
-  readonly onMove: (p: readonly [number, number]) => void;
-}
+type DraggablePointProps = Readonly<{
+  constraint?: "free" | "on-curve";
+  curve?: Function2D | ParametricCurve2D;
+  initial: readonly [number, number];
+  onMove: (p: readonly [number, number]) => void;
+}>;
 
-interface TangentProps {
-  readonly f: Function2D;
-  readonly at: number;
-  readonly length?: number;
-}
+type TangentProps = Readonly<{
+  f: Function2D;
+  at: number;
+  length?: number;
+}>;
 
-interface SecantLineProps {
-  readonly f: Function2D;
-  readonly a: number;
-  readonly b: number;
-}
+type SecantLineProps = Readonly<{
+  f: Function2D;
+  a: number;
+  b: number;
+}>;
 
 const axisLine = (x1: number, y1: number, x2: number, y2: number, key: string) => (
-  <line key={key} stroke={mutedStroke} strokeWidth="1" x1={x1} x2={x2} y1={y1} y2={y2} />
+  <line key={key} stroke={plotMutedStroke} strokeWidth="1" x1={x1} x2={x2} y1={y1} y2={y2} />
 );
 
 const renderGrid = (domain: Rect, grid: "cartesian" | "polar" | "none") => {
@@ -97,7 +98,7 @@ const renderGrid = (domain: Rect, grid: "cartesian" | "polar" | "none") => {
             fill="none"
             key={ratio}
             r={maxRadius * ratio}
-            stroke={mutedStroke}
+            stroke={plotMutedStroke}
             strokeDasharray="3 5"
           />
         ))}
@@ -158,7 +159,7 @@ export const FunctionPlot = ({
             d={pathFromPoints(segment, scale)}
             fill="none"
             key={`segment-${index}`}
-            stroke={stroke}
+            stroke={plotStroke}
             strokeWidth="2"
           />
         ))}
@@ -187,7 +188,7 @@ export const ParametricPlot = ({
           d={pathFromPoints(segment, scale)}
           fill="none"
           key={`curve-${index}`}
-          stroke={stroke}
+          stroke={plotStroke}
           strokeWidth="2"
         />
       ))}
@@ -222,7 +223,7 @@ export const VectorFieldPlot = ({
         return (
           <line
             key={`${vector.x}:${vector.y}`}
-            stroke={stroke}
+            stroke={plotStroke}
             strokeLinecap="round"
             strokeWidth="1.5"
             x1={from.x}
@@ -265,13 +266,13 @@ export const ScatterPlot = ({ points, fit = "none" }: ScatterPlotProps) => {
             scale,
           )}
           fill="none"
-          stroke={accentStroke}
+          stroke={plotAccentStroke}
           strokeWidth="2"
         />
       )}
       {points.map((point, index) => {
         const svg = scale.toSvg({ x: point[0], y: point[1] });
-        return <circle cx={svg.x} cy={svg.y} fill={stroke} key={`${index}:${point[0]}`} r="3" />;
+        return <circle cx={svg.x} cy={svg.y} fill={plotStroke} key={`${index}:${point[0]}`} r="3" />;
       })}
     </PlotFrame>
   );
@@ -339,18 +340,19 @@ export const DraggablePoint = ({
       role="img"
       viewBox="0 0 160 160"
     >
-      <circle cx={current.x} cy={current.y} fill={accentStroke} r="6" />
+      <circle cx={current.x} cy={current.y} fill={plotAccentStroke} r="6" />
     </svg>
   );
 };
 
 export const Tangent = ({ f, at, length = 2 }: TangentProps) => {
+  if (!Number.isFinite(at) || !Number.isFinite(length) || length <= 0) return null;
   const slope = derivative(f, at);
-  const y = f(at);
-  if (!slope.ok || !Number.isFinite(y)) return null;
+  const y = evaluateAt(f, at);
+  if (!slope.ok || !Number.isFinite(slope.value) || !y.ok) return null;
   const half = length / 2;
-  const p1 = [at - half, y - slope.value * half] as const;
-  const p2 = [at + half, y + slope.value * half] as const;
+  const p1 = [at - half, y.value - slope.value * half] as const;
+  const p2 = [at + half, y.value + slope.value * half] as const;
   const rect = inferRectFromPoints([p1, p2]);
   const scale = createPlotScale(rect, 240, 160, 18);
   return (
@@ -364,7 +366,7 @@ export const Tangent = ({ f, at, length = 2 }: TangentProps) => {
           scale,
         )}
         fill="none"
-        stroke={accentStroke}
+        stroke={plotAccentStroke}
         strokeWidth="2"
       />
     </svg>
@@ -372,12 +374,13 @@ export const Tangent = ({ f, at, length = 2 }: TangentProps) => {
 };
 
 export const SecantLine = ({ f, a, b }: SecantLineProps) => {
-  const fa = f(a);
-  const fb = f(b);
-  if (!Number.isFinite(fa) || !Number.isFinite(fb) || a === b) return null;
+  if (!Number.isFinite(a) || !Number.isFinite(b) || a === b) return null;
+  const fa = evaluateAt(f, a);
+  const fb = evaluateAt(f, b);
+  if (!fa.ok || !fb.ok) return null;
   const rect = inferRectFromPoints([
-    [a, fa],
-    [b, fb],
+    [a, fa.value],
+    [b, fb.value],
   ]);
   const scale = createPlotScale(rect, 240, 160, 18);
   return (
@@ -385,13 +388,13 @@ export const SecantLine = ({ f, a, b }: SecantLineProps) => {
       <path
         d={pathFromPoints(
           [
-            { x: a, y: fa },
-            { x: b, y: fb },
+            { x: a, y: fa.value },
+            { x: b, y: fb.value },
           ],
           scale,
         )}
         fill="none"
-        stroke={accentStroke}
+        stroke={plotAccentStroke}
         strokeWidth="2"
       />
     </svg>

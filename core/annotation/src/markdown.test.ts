@@ -32,6 +32,24 @@ describe("annotation markdown", () => {
     if (!result.ok) expect(result.error.code).toBe("precondition-violated");
   });
 
+  it("does not let failed global marker scans affect later parses", () => {
+    const invalid = parseAnnotations("[[paideia-annotation:not%20json]] before");
+    expect(invalid.ok).toBe(false);
+
+    const annotation: Annotation = {
+      id: "a1",
+      target: { kind: "text", start: 0, end: 5 },
+      tag: "claim",
+      createdAt: 1,
+    };
+    const parsed = parseAnnotations(serializeAnnotations("after", [annotation]));
+
+    expect(parsed.ok).toBe(true);
+    if (parsed.ok) {
+      expect(parsed.value.annotations.map((item) => item.id)).toEqual(["a1"]);
+    }
+  });
+
   it("filters unknown tags and out-of-range spans", () => {
     const annotations: readonly Annotation[] = [
       { id: "a", target: { kind: "text", start: 0, end: 5 }, tag: "claim", createdAt: 1 },

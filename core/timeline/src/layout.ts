@@ -116,6 +116,16 @@ export const layoutTimeline = (
   const lanes = laneOrder(events, spans, opts.lanes);
   const width = opts.width ?? 720;
   const laneHeight = opts.laneHeight ?? 54;
+  if (!Number.isFinite(width) || width <= PADDING_X * 2) {
+    return err(
+      "precondition-violated",
+      "Timeline width must be finite and greater than horizontal padding",
+    );
+  }
+  if (!Number.isFinite(laneHeight) || laneHeight <= 0) {
+    return err("precondition-violated", "Timeline laneHeight must be finite and positive");
+  }
+
   const laneY = new Map(lanes.map((lane, index) => [lane, PADDING_Y + index * laneHeight]));
   const laneFor = (lane: string | undefined): string =>
     lane !== undefined && laneY.has(lane) ? lane : lanes[0] ?? "default";

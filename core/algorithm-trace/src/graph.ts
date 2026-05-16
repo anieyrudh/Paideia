@@ -26,11 +26,23 @@ export const validateGraph = (graph: Graph): KernelResult<ReadonlyMap<string, nu
   return ok(ids);
 };
 
-export const adjacency = (graph: Graph): ReadonlyMap<string, readonly string[]> => {
+export const adjacency = (
+  graph: Graph,
+): KernelResult<ReadonlyMap<string, readonly string[]>> => {
+  const valid = validateGraph(graph);
+  if (!valid.ok) return valid;
+
   const next = new Map<string, string[]>();
   for (const node of graph.nodes) next.set(node.id, []);
   for (const link of graph.links) {
-    next.get(link.source)?.push(link.target);
+    const targets = next.get(link.source);
+    if (targets === undefined) {
+      return err("precondition-violated", `Graph link source does not exist: ${link.source}`);
+    }
+    if (!valid.value.has(link.target)) {
+      return err("precondition-violated", `Graph link target does not exist: ${link.target}`);
+    }
+    targets.push(link.target);
   }
-  return next;
+  return ok(next);
 };
