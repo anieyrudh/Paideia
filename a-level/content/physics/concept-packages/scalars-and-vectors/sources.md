@@ -17,4 +17,5 @@
 
 ## Reuse and attribution
 
-- No sim, image, or third-party media is reused in this content-only package.
+- The `resultant-magnitude` sim is original Paideia code. No third-party sim,
+  image, or media asset is reused.

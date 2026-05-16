@@ -2,5 +2,6 @@ packages:
   - "core/*"
   - "a-level/packages/*"
   - "a-level/apps/*"
+  - "testing/*"
   - "sutd/packages/*"
   - "sutd/apps/*"

@@ -5,8 +5,8 @@ branch: a-level
 level: H2
 syllabus_ref: "9478 / Section I / 1(h)-1(j)"
 prerequisites: []
-aid_types: [concept-card, misconception-audit]
-status: draft
+aid_types: [concept-card, simulation, misconception-audit, transfer-problem]
+status: ready-for-build
 ---
 
 # Scalars and Vectors
@@ -24,8 +24,8 @@ ordinary numbers.
 
 - **Predict:** Choose a resultant magnitude before any vector construction is
   shown.
-- **Manipulate:** In the later sim build, drag two coplanar vector arrows and
-  change the angle between them.
+- **Manipulate:** Change the magnitudes of two coplanar vector arrows and the
+  angle between them.
 - **Observe:** Compare the geometric resultant with the simple sum of
   magnitudes.
 - **Explain:** State why the same two magnitudes can produce different
