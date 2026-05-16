@@ -1,0 +1,8 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./core/shared" },
+    { "path": "./core/content-schema" },
+    { "path": "./core/prediction-gate" }
+  ]
+}
