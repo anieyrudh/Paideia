@@ -2,6 +2,13 @@
 
 ## Imports
 
+- `@paideia/linear-algebra`
+  - `vector2`, `add2`, and `norm2` own finite 2D vector construction, addition,
+    and magnitude for the resultant readout.
+- `@paideia/shared`
+  - `Metres` and `Degrees` brand the public sim state at the container boundary.
+- `@paideia/ui-sim`
+  - `ControlGroup` and `Slider` provide the labelled student-facing controls.
 - `@paideia/prediction-gate`
   - `PredictionGate` gates the `resultant-magnitude` observation until the
     package-level prediction is committed.
@@ -19,7 +26,10 @@ id: resultant-magnitude
 title: "Resultant Magnitude Explorer"
 interaction_type: diagram-builder
 kernel_deps:
+  - core/linear-algebra
   - core/prediction-gate
+  - core/shared
+  - core/ui-sim
 
 predict:
   prompt: |
@@ -39,12 +49,12 @@ manipulate:
     - id: vector-a-magnitude
       label: "Vector A magnitude"
       kind: slider
-      kernel_binding: state.vectorA.magnitude
+      kernel_binding: state.vectorAMetres
       bounds: { min: 0, max: 10, step: 0.5 }
     - id: vector-b-magnitude
       label: "Vector B magnitude"
       kind: slider
-      kernel_binding: state.vectorB.magnitude
+      kernel_binding: state.vectorBMetres
       bounds: { min: 0, max: 10, step: 0.5 }
     - id: angle-between
       label: "Angle between vectors"
@@ -68,20 +78,22 @@ explain:
     - "Magnitude-only vector addition"
 ```
 
-## Kernel extensions
+## Kernel boundaries
 
-None. The sim uses a local two-vector component sum because no shared
-`core/vector-math` kernel exists yet. If more containers need vector operations,
-promote this behavior through a `core-change-proposal`.
+No concept-local physics kernel was added. The sim converts the student-selected
+arrow magnitudes and angle into SI metre components at the boundary, then
+delegates finite vector construction, addition, and magnitude to
+`core/linear-algebra`. The visual layer may format, label, and draw the vectors,
+but it must not teach a different numerical resultant.
 
 ## Accessibility
 
 - Prediction gate uses labelled radio controls and a labelled rationale field.
 - Sim controls are labelled range inputs.
 - The SVG diagram has `role="img"` and an accessible label.
-- Axe summary: pending. There is no branch learner app route or Playwright/axe
-  harness yet, so this PR documents the gap and relies on labelled native
-  controls plus jsdom regression coverage until the app shell exists.
+- The A-Level shell runs Playwright and axe coverage against the generated
+  catalogue route that hosts this simulation, including the post-prediction
+  revealed state.
 
 ## Tests
 
@@ -94,7 +106,7 @@ promote this behavior through a `core-change-proposal`.
 - Generic browser harness:
   `testing/sim-harness`
 
-Latest local gate run on 2026-05-16:
+Latest fully passing local gate run on 2026-05-16 (newer PR #22 fix runs are recorded below):
 
 - `pnpm -F @paideia/a-level-physics-sims build` passed.
 - `pnpm -F @paideia/a-level-physics-sims test` passed.
@@ -115,10 +127,11 @@ pnpm -F @paideia/a-level-physics-sims test
 
 ## Anieyrudh Filter pass
 
-Date: 2026-05-15
+Date: 2026-05-17
+Reviewers: local container audit, local sim-architecture audit, local pedagogy audit
 Filter version: aniegpt v1.0
 
-### P0 issues
+### P0 resolved
 
 - Potential P0: content package without a prediction gate. Resolution: package
   includes `package_predict`; the `resultant-magnitude` sim wraps observation
@@ -133,6 +146,11 @@ Filter version: aniegpt v1.0
 - Resolved P0 under strict doctrine: `simulation/simulation.test.ts` now imports
   the generic browser contract from `testing/sim-harness` and runs through
   Playwright/Chromium as part of `pnpm test`.
+- Resolved P0 from PR #22 review: displacement vectors were briefly routed
+  through `core/mechanics.netForce`, which is semantically force-specific.
+  Resolution: replaced that dependency with `core/linear-algebra` vector
+  construction, addition, and norm operations; the UI no longer names internal
+  kernels to learners.
 
 ### P1 issues
 
@@ -148,9 +166,13 @@ Filter version: aniegpt v1.0
 - P1: Transfer was initially described but not represented as an artifact.
   Resolution: added `problem-solving/field-trip-displacement.md` and linked it from
   `items.transfer_problems`.
-- P1: Vector addition is local to this sim. Resolution: acceptable for the first
-  concept-specific vertical slice; promote to `core/vector-math` only when a
-  second container needs the same behavior.
+- P1: Vector addition was local to this sim. Resolution: the sim now uses
+  `core/linear-algebra` for finite vector construction, addition, and magnitude,
+  and keeps only display formatting plus metre/degree boundary conversion in the
+  sim package.
+- P1: Learner UI exposed implementation and authoring metadata. Resolution:
+  removed code-facing kernel language from the formula note and mapped container
+  status/aid tokens to student-facing labels in the A-Level shell.
 
 ### High-bandwidth questions surfaced
 
@@ -186,3 +208,20 @@ Date: 2026-05-16
   workspace test runner.
 - Rejected using the old scaffold template as-is because it points at missing
   runtime infrastructure.
+
+
+## Deferred fixes
+
+- Advisor sign-off remains deferred until a human Physics reviewer checks the final copy against the classroom sequence. Future fix location: `a-level/content/physics/containers/scalars-and-vectors/container.yaml` `advisor_signoffs`.
+- More vector operations such as polar-to-Cartesian construction with branded
+  units should move to a dedicated core kernel only after a second or third
+  container proves the shared API shape. Future fix location:
+  `core/linear-algebra` or a proposed `core/vector-math` ADR.
+
+Date: 2026-05-17
+
+| Attempt | Failed where | Symptom | Resolution |
+| --- | --- | --- | --- |
+| Dependency refresh | `pnpm install` | Registry returned HTTP 403 for `playwright-core` metadata in this environment. | Existing workspace links were used for local validation; future CI should run install in a network environment with registry access. |
+| Browser installation | `pnpm -F @paideia/a-level-shell exec playwright install chromium` | Playwright CDN returned HTTP 403 for Chromium v1223, so browser E2E could not launch locally. | Vitest, typecheck, lint, boundary, license, and container validation were run; Playwright remains a CI/environment follow-up. |
+| Full workspace tests | `pnpm test` | Unit and jsdom suites passed up to the Playwright shell and sim-harness stage, then failed because the Chromium executable was missing. | Treat as an environment limitation; rerun `pnpm test` after browsers are installed. |

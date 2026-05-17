@@ -4,6 +4,7 @@ import { z } from "zod";
 import {
   containers,
   knowledgeGraph,
+  type AidType,
   type ShellContainer,
 } from "./generated/knowledge-graph.js";
 
@@ -19,6 +20,25 @@ const masteryLabels = {
   practicing: "Practicing",
   mastered: "Mastered",
 } satisfies Record<MasteryStatus, string>;
+
+const statusLabels: Record<string, string> = {
+  "content-only": "Read first",
+  draft: "Try it",
+  reviewed: "Ready to practise",
+};
+
+const aidTypeLabels = {
+  simulation: "Interactive lab",
+  "misconception-audit": "Misconception check",
+  "transfer-problem": "Transfer challenge",
+  "reasoning-lab": "Reasoning lab",
+  notebook: "Notebook lab",
+  "annotated-source": "Annotated source",
+} satisfies Record<AidType, string>;
+
+const learnerStatus = (status: string): string => statusLabels[status] ?? "Learning material";
+const learnerAidTypes = (aidTypes: readonly AidType[]): string =>
+  aidTypes.map((aidType) => aidTypeLabels[aidType]).join(" / ");
 
 const readContainerFromHash = (): ShellContainer => {
   const hash = globalThis.location?.hash.slice(1) ?? "";
@@ -79,7 +99,7 @@ const StageList = () => {
     { name: "Predict", detail: "commit first" },
     { name: "Manipulate", detail: "move the model" },
     { name: "Observe", detail: "read the result" },
-    { name: "Explain", detail: "name the rule" },
+    { name: "Explain", detail: "explain the cause" },
     { name: "Transfer", detail: "use it elsewhere" },
   ] as const;
 
@@ -378,8 +398,8 @@ export const App = () => {
               <p>{active.summary}</p>
             </div>
             <div className="status-stack" aria-label="Container status">
-              <span>{active.status}</span>
-              <span>{active.aidTypes.join(" / ")}</span>
+              <span>{learnerStatus(active.status)}</span>
+              <span>{learnerAidTypes(active.aidTypes)}</span>
             </div>
           </div>
 
@@ -395,7 +415,7 @@ export const App = () => {
                 <section className="sim-panel" aria-labelledby="sim-title">
                   <div className="sim-header">
                     <div>
-                      <p className="meta-line">content-only</p>
+                      <p className="meta-line">{learnerStatus(active.status)}</p>
                       <h2 id="sim-title">No interactive simulation yet</h2>
                     </div>
                   </div>

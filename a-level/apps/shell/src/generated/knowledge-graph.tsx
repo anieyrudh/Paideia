@@ -81,7 +81,7 @@ export const knowledgeGraph = {
     subject: "physics",
     level: "H2",
     module: "Foundations of Physics",
-    status: "draft",
+    status: "reviewed",
   }
   ],
   edges: [
@@ -221,7 +221,7 @@ export const containers = [
     title: "Scalars and Vectors",
     summary: "Distinguish scalar and vector quantities, then combine coplanar vectors without treating arrows as ordinary numbers.",
     syllabusRef: "9478 / Section I / 1(h)-1(j)",
-    status: "draft",
+    status: "reviewed",
     packageId: "scalars-and-vectors",
     simId: "resultant-magnitude",
     predictPrompt: "Two displacement arrows each have length 5 m. One points east and one points north. Before seeing any construction, what resultant magnitude do you expect?",
@@ -235,18 +235,18 @@ export const containers = [
       "Negative scalar does not reverse direction",
     ],
     transferProblem: "A class walks 300 m east from the school gate to a bus stop, then 400 m north to a field site. Decide whether the quantities should be combined as scalars or vectors, calculate the displacement magnitude from the school gate, and explain why total walking distance is not the same physical quantity as displacement.",
-    firstPrinciples: "Students learn that a physical quantity is not classified by its unit or by whether its number can be positive or negative. The useful test is whether the quantity needs direction as part of its meaning. Scalar quantities are complete with magnitude and unit; vector quantities need magnitude and direction, so vector addition must preserve direction instead of adding arrow lengths as ordinary numbers.",
+    firstPrinciples: "A physical quantity is not classified by its unit or by whether its number can be positive or negative. The useful test is whether the quantity needs direction as part of its meaning. Scalar quantities are complete with magnitude and unit; vector quantities need magnitude and direction, so vector addition must preserve direction instead of adding arrow lengths as ordinary numbers.",
     keyDefinitions: [
       "Scalar: a quantity fully described by magnitude and unit.",
       "Vector: a quantity that needs magnitude, unit, and direction.",
-      "Resultant: the single vector with the same effect as two or more vectors",
+      "Resultant: the single vector with the same effect as two or more vectors combined.",
       "Component: the part of a vector acting along a chosen axis.",
     ],
     canonicalExamples: [
       "Distance travelled is scalar; displacement from start to finish is vector.",
       "Speed is scalar; velocity is vector.",
       "Mass is scalar; weight is a force vector.",
-      "Two perpendicular 5 m displacements produce a resultant of about 7.1 m, not",
+      "Two perpendicular 5 m displacements produce a resultant of about 7.1 m, not 10 m.",
     ],
     problemSolvingSteps: [
       "Is direction part of the physical quantity?",

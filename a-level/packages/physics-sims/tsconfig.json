@@ -8,7 +8,20 @@
     "src/**/*"
   ],
   "references": [
-    { "path": "../../../core/content-schema" },
-    { "path": "../../../core/prediction-gate" }
+    {
+      "path": "../../../core/content-schema"
+    },
+    {
+      "path": "../../../core/linear-algebra"
+    },
+    {
+      "path": "../../../core/prediction-gate"
+    },
+    {
+      "path": "../../../core/shared"
+    },
+    {
+      "path": "../../../core/ui-sim"
+    }
   ]
 }

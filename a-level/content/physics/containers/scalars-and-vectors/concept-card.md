@@ -7,19 +7,18 @@ syllabus_ref: "9478 / Section I / 1(h)-1(j)"
 prerequisites:
   - physical-quantities-and-units
 aid_types: [concept-card, simulation, misconception-audit, transfer-problem]
-status: draft
+status: reviewed
 ---
 
 # Scalars and Vectors
 
 ## First-principles explanation
 
-Students learn that a physical quantity is not classified by its unit or by
-whether its number can be positive or negative. The useful test is whether the
-quantity needs direction as part of its meaning. Scalar quantities are complete
-with magnitude and unit; vector quantities need magnitude and direction, so
-vector addition must preserve direction instead of adding arrow lengths as
-ordinary numbers.
+A physical quantity is not classified by its unit or by whether its number can
+be positive or negative. The useful test is whether the quantity needs direction
+as part of its meaning. Scalar quantities are complete with magnitude and unit;
+vector quantities need magnitude and direction, so vector addition must preserve
+direction instead of adding arrow lengths as ordinary numbers.
 
 ## Key definitions
 

@@ -1,6 +1,16 @@
 import { useMemo, useState } from "react";
 import type { TPredictSpec } from "@paideia/content-schema";
+import {
+  add2,
+  matrix2,
+  multiplyMatrixVector2,
+  norm2,
+  vector2,
+  type Vector2 as LinearVector2,
+} from "@paideia/linear-algebra";
 import { PredictionGate } from "@paideia/prediction-gate";
+import { degrees, metres, ok, type Degrees, type KernelResult, type Metres } from "@paideia/shared";
+import { ControlGroup, Slider } from "@paideia/ui-sim";
 
 export const packageId = "scalars-and-vectors";
 export const simId = "resultant-magnitude";
@@ -17,35 +27,92 @@ export const perpendicularPredict: TPredictSpec = {
 };
 
 export interface VectorState {
-  readonly vectorA: number;
-  readonly vectorB: number;
-  readonly angleDegrees: number;
+  readonly vectorAMetres: Metres;
+  readonly vectorBMetres: Metres;
+  readonly angleDegrees: Degrees;
 }
 
 export interface ResultantVectorDiagramProps {
   readonly state: VectorState;
 }
 
+export type MetreVector2 = readonly [xMetres: Metres, yMetres: Metres];
+
+export interface ResultantVectorModel {
+  readonly vectorAComponentsMetres: MetreVector2;
+  readonly vectorBComponentsMetres: MetreVector2;
+  readonly resultantComponentsMetres: MetreVector2;
+  readonly magnitudeMetres: Metres;
+  readonly scalarSumMetres: Metres;
+  readonly cosine: number;
+}
+
 const toRadians = (degrees: number): number => (degrees * Math.PI) / 180;
 const roundTenths = (value: number): number => Math.round(value * 10) / 10;
 const formatTenths = (value: number): string => roundTenths(value).toFixed(1);
-
-export const resultantComponents = (
-  vectorA: number,
-  vectorB: number,
-  angleDegrees: number,
-): readonly [number, number] => [
-  vectorA + vectorB * Math.cos(toRadians(angleDegrees)),
-  vectorB * Math.sin(toRadians(angleDegrees)),
+const formatHundredths = (value: number): string => (Math.round(value * 100) / 100).toFixed(2);
+const metreVector2 = (vector: LinearVector2): MetreVector2 => [
+  metres(vector[0]),
+  metres(vector[1]),
 ];
 
+const vectorBComponentsMetres = (
+  vectorBMetres: Metres,
+  angleDegrees: Degrees,
+): KernelResult<LinearVector2> => {
+  const base = vector2(vectorBMetres, 0);
+  if (!base.ok) return base;
+  const theta = toRadians(angleDegrees);
+  const rotation = matrix2(
+    Math.cos(theta),
+    -Math.sin(theta),
+    Math.sin(theta),
+    Math.cos(theta),
+  );
+  if (!rotation.ok) return rotation;
+  return multiplyMatrixVector2(rotation.value, base.value);
+};
+
+const resultantVectorModel = (
+  vectorAMetres: Metres,
+  vectorBMetres: Metres,
+  angleDegrees: Degrees,
+): KernelResult<ResultantVectorModel> => {
+  const first = vector2(vectorAMetres, 0);
+  if (!first.ok) return first;
+  const second = vectorBComponentsMetres(vectorBMetres, angleDegrees);
+  if (!second.ok) return second;
+  const resultant = add2(first.value, second.value);
+  if (!resultant.ok) return resultant;
+  const magnitude = norm2(resultant.value);
+  if (!magnitude.ok) return magnitude;
+
+  return ok({
+    vectorAComponentsMetres: metreVector2(first.value),
+    vectorBComponentsMetres: metreVector2(second.value),
+    resultantComponentsMetres: metreVector2(resultant.value),
+    magnitudeMetres: metres(magnitude.value),
+    scalarSumMetres: metres(vectorAMetres + vectorBMetres),
+    cosine: Math.cos(toRadians(angleDegrees)),
+  });
+};
+
+export const resultantComponents = (
+  vectorAMetres: Metres,
+  vectorBMetres: Metres,
+  angleDegrees: Degrees,
+): KernelResult<MetreVector2> => {
+  const model = resultantVectorModel(vectorAMetres, vectorBMetres, angleDegrees);
+  return model.ok ? ok(model.value.resultantComponentsMetres) : model;
+};
+
 export const resultantMagnitude = (
-  vectorA: number,
-  vectorB: number,
-  angleDegrees: number,
-): number => {
-  const [x, y] = resultantComponents(vectorA, vectorB, angleDegrees);
-  return Math.hypot(x, y);
+  vectorAMetres: Metres,
+  vectorBMetres: Metres,
+  angleDegrees: Degrees,
+): KernelResult<Metres> => {
+  const model = resultantVectorModel(vectorAMetres, vectorBMetres, angleDegrees);
+  return model.ok ? ok(model.value.magnitudeMetres) : model;
 };
 
 const arrowHead = (
@@ -55,7 +122,7 @@ const arrowHead = (
   color: string,
   key: string,
 ) => {
-  const size = 8;
+  const size = 9;
   const left = angle + Math.PI * 0.82;
   const right = angle - Math.PI * 0.82;
   const points = [
@@ -74,6 +141,7 @@ const vectorLine = (
   y2: number,
   color: string,
   label: string,
+  width = 4,
 ) => {
   const angle = Math.atan2(y2 - y1, x2 - x1);
 
@@ -82,7 +150,7 @@ const vectorLine = (
       <line
         stroke={color}
         strokeLinecap="round"
-        strokeWidth="4"
+        strokeWidth={width}
         x1={x1}
         x2={x2}
         y1={y1}
@@ -95,131 +163,207 @@ const vectorLine = (
 
 export const ResultantVectorDiagram = ({ state }: ResultantVectorDiagramProps) => {
   const scale = 16;
-  const origin = { x: 70, y: 160 };
-  const aEnd = { x: origin.x + state.vectorA * scale, y: origin.y };
-  const bEnd = {
-    x: origin.x + state.vectorB * scale * Math.cos(toRadians(state.angleDegrees)),
-    y: origin.y - state.vectorB * scale * Math.sin(toRadians(state.angleDegrees)),
+  const origin = { x: 72, y: 168 };
+  const model = resultantVectorModel(state.vectorAMetres, state.vectorBMetres, state.angleDegrees);
+  if (!model.ok) {
+    return <p role="alert">The current vector settings are outside the supported range.</p>;
+  }
+
+  const aEnd = {
+    x: origin.x + model.value.vectorAComponentsMetres[0] * scale,
+    y: origin.y - model.value.vectorAComponentsMetres[1] * scale,
   };
-  const [resultX, resultY] = resultantComponents(
-    state.vectorA,
-    state.vectorB,
-    state.angleDegrees,
-  );
-  const rEnd = { x: origin.x + resultX * scale, y: origin.y - resultY * scale };
+  const bEnd = {
+    x: origin.x + model.value.vectorBComponentsMetres[0] * scale,
+    y: origin.y - model.value.vectorBComponentsMetres[1] * scale,
+  };
+  const rEnd = {
+    x: origin.x + model.value.resultantComponentsMetres[0] * scale,
+    y: origin.y - model.value.resultantComponentsMetres[1] * scale,
+  };
+  const angleArcEnd = {
+    x: origin.x + 28 * Math.cos(toRadians(state.angleDegrees)),
+    y: origin.y - 28 * Math.sin(toRadians(state.angleDegrees)),
+  };
 
   return (
-    <svg aria-label="Vector resultant diagram" role="img" viewBox="0 0 300 210">
-      <rect fill="#f8fafc" height="210" width="300" />
-      <line stroke="#d0d5dd" strokeWidth="1" x1="30" x2="270" y1={origin.y} y2={origin.y} />
-      <line stroke="#d0d5dd" strokeWidth="1" x1={origin.x} x2={origin.x} y1="30" y2="185" />
+    <svg aria-label="Vector resultant diagram" role="img" viewBox="0 0 330 230">
+      <defs>
+        <linearGradient id="vector-sky" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0%" stopColor="#f8fbff" />
+          <stop offset="100%" stopColor="#ecfdf3" />
+        </linearGradient>
+      </defs>
+      <rect fill="url(#vector-sky)" height="230" rx="18" width="330" />
+      <path d="M32 168 H300 M72 34 V198" stroke="#cbd5e1" strokeDasharray="3 7" strokeWidth="1.5" />
+      <path
+        d={`M100 ${origin.y} A28 28 0 0 0 ${angleArcEnd.x} ${angleArcEnd.y}`}
+        fill="none"
+        stroke="#f59e0b"
+        strokeLinecap="round"
+        strokeWidth="3"
+      />
+      <line
+        stroke="#94a3b8"
+        strokeDasharray="5 5"
+        strokeWidth="2"
+        x1={aEnd.x}
+        x2={rEnd.x}
+        y1={aEnd.y}
+        y2={rEnd.y}
+      />
+      <line
+        stroke="#94a3b8"
+        strokeDasharray="5 5"
+        strokeWidth="2"
+        x1={bEnd.x}
+        x2={rEnd.x}
+        y1={bEnd.y}
+        y2={rEnd.y}
+      />
       {vectorLine(origin.x, origin.y, aEnd.x, aEnd.y, "#1f5f8b", "Vector A")}
-      {vectorLine(origin.x, origin.y, bEnd.x, bEnd.y, "#7a5af8", "Vector B")}
-      {vectorLine(origin.x, origin.y, rEnd.x, rEnd.y, "#b42318", "Resultant vector")}
-      <text fill="#101828" fontSize="12" x={aEnd.x + 6} y={aEnd.y + 4}>
+      {vectorLine(origin.x, origin.y, bEnd.x, bEnd.y, "#7657d8", "Vector B")}
+      {vectorLine(origin.x, origin.y, rEnd.x, rEnd.y, "#b42318", "Resultant vector", 5)}
+      <circle cx={origin.x} cy={origin.y} fill="#10201a" r="4" />
+      <text fill="#10201a" fontSize="12" fontWeight="800" x={aEnd.x + 7} y={aEnd.y + 4}>
         A
       </text>
-      <text fill="#101828" fontSize="12" x={bEnd.x + 6} y={bEnd.y - 6}>
+      <text fill="#10201a" fontSize="12" fontWeight="800" x={bEnd.x + 7} y={bEnd.y - 7}>
         B
       </text>
-      <text fill="#101828" fontSize="12" x={rEnd.x + 6} y={rEnd.y + 4}>
+      <text fill="#7f1d1d" fontSize="12" fontWeight="900" x={rEnd.x + 8} y={rEnd.y + 4}>
         R
+      </text>
+      <text fill="#92400e" fontSize="11" fontWeight="800" x={origin.x + 33} y={origin.y - 10}>
+        θ
       </text>
     </svg>
   );
 };
 
-const sliderId = (id: string): string => `resultant-${id}`;
+const presets = [
+  {
+    label: "right-angle route",
+    state: { vectorAMetres: metres(5), vectorBMetres: metres(5), angleDegrees: degrees(90) },
+  },
+  {
+    label: "same direction",
+    state: { vectorAMetres: metres(5), vectorBMetres: metres(5), angleDegrees: degrees(0) },
+  },
+  {
+    label: "return path",
+    state: { vectorAMetres: metres(5), vectorBMetres: metres(5), angleDegrees: degrees(180) },
+  },
+] as const;
 
 export const ResultantMagnitudeSim = () => {
   const [state, setState] = useState<VectorState>({
-    vectorA: 5,
-    vectorB: 5,
-    angleDegrees: 90,
+    vectorAMetres: metres(5),
+    vectorBMetres: metres(5),
+    angleDegrees: degrees(90),
   });
 
-  const resultant = useMemo(
-    () => resultantMagnitude(state.vectorA, state.vectorB, state.angleDegrees),
+  const model = useMemo(
+    () => resultantVectorModel(state.vectorAMetres, state.vectorBMetres, state.angleDegrees),
     [state],
   );
-  const scalarSum = state.vectorA + state.vectorB;
-  const cosine = Math.cos(toRadians(state.angleDegrees));
 
-  const update = (key: keyof VectorState) => (raw: string) => {
-    const value = Number(raw);
-    if (!Number.isFinite(value)) return;
-    setState((current) => ({ ...current, [key]: value }));
-  };
+  const setVectorA = (vectorAMetres: number) =>
+    setState((current) => ({ ...current, vectorAMetres: metres(vectorAMetres) }));
+  const setVectorB = (vectorBMetres: number) =>
+    setState((current) => ({ ...current, vectorBMetres: metres(vectorBMetres) }));
+  const setAngle = (angleDegrees: number) =>
+    setState((current) => ({ ...current, angleDegrees: degrees(angleDegrees) }));
 
   return (
     <PredictionGate packageId={packageId} predict={perpendicularPredict} simId={simId}>
-      <section aria-label="Resultant magnitude explorer" className="vector-lab">
-        <div className="vector-controls" aria-label="Vector controls">
-          <label htmlFor={sliderId("vector-a")}>
-            <span>Vector A</span>
-            <strong>{state.vectorA.toFixed(1)} m</strong>
-          </label>
-          <input
-            id={sliderId("vector-a")}
-            max="10"
-            min="0"
-            onChange={(event) => update("vectorA")(event.currentTarget.value)}
-            step="0.5"
-            type="range"
-            value={state.vectorA}
-          />
-
-          <label htmlFor={sliderId("vector-b")}>
-            <span>Vector B</span>
-            <strong>{state.vectorB.toFixed(1)} m</strong>
-          </label>
-          <input
-            id={sliderId("vector-b")}
-            max="10"
-            min="0"
-            onChange={(event) => update("vectorB")(event.currentTarget.value)}
-            step="0.5"
-            type="range"
-            value={state.vectorB}
-          />
-
-          <label htmlFor={sliderId("angle")}>
-            <span>Angle between vectors</span>
-            <strong>{state.angleDegrees.toFixed(0)} degrees</strong>
-          </label>
-          <input
-            id={sliderId("angle")}
-            max="180"
-            min="0"
-            onChange={(event) => update("angleDegrees")(event.currentTarget.value)}
-            step="5"
-            type="range"
-            value={state.angleDegrees}
-          />
+      <section aria-label="Resultant magnitude explorer" className="vector-lab vector-lab--product">
+        <div className="vector-controls vector-controls--product" aria-label="Vector controls">
+          <p className="lab-kicker">Shape the route</p>
+          <ControlGroup legend="Vector controls">
+            <Slider
+              label="Vector A magnitude"
+              max={10}
+              min={0}
+              onChange={setVectorA}
+              step={0.5}
+              unit="m"
+              value={state.vectorAMetres}
+            />
+            <Slider
+              label="Vector B magnitude"
+              max={10}
+              min={0}
+              onChange={setVectorB}
+              step={0.5}
+              unit="m"
+              value={state.vectorBMetres}
+            />
+            <Slider
+              label="Angle between vectors"
+              max={180}
+              min={0}
+              onChange={setAngle}
+              step={5}
+              unit="°"
+              value={state.angleDegrees}
+            />
+          </ControlGroup>
+          <div className="preset-strip" aria-label="Scenario presets">
+            {presets.map((preset) => (
+              <button key={preset.label} onClick={() => setState(preset.state)} type="button">
+                {preset.label}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="vector-stage">
+        <div className="vector-stage vector-stage--product">
           <ResultantVectorDiagram state={state} />
-          <dl aria-label="Observation unlocked" className="result-readout">
-            <dt>Geometric resultant</dt>
-            <dd>{formatTenths(resultant)} m</dd>
-            <dt>Scalar sum</dt>
-            <dd>{formatTenths(scalarSum)} m</dd>
-          </dl>
+          {model.ok ? (
+            <dl aria-label="Observation unlocked" className="result-readout result-readout--cards">
+              <div>
+                <dt>Geometric resultant</dt>
+                <dd>{formatTenths(model.value.magnitudeMetres)} m</dd>
+              </div>
+              <div>
+                <dt>Scalar sum trap</dt>
+                <dd>{formatTenths(model.value.scalarSumMetres)} m</dd>
+              </div>
+              <div>
+                <dt>Direction gap</dt>
+                <dd>{formatTenths(model.value.scalarSumMetres - model.value.magnitudeMetres)} m</dd>
+              </div>
+            </dl>
+          ) : (
+            <p role="alert">The resultant cannot be calculated for the current inputs.</p>
+          )}
         </div>
 
-        <section className="formula-panel" aria-label="Formula used">
-          <h3>Formula used</h3>
+        <section className="formula-panel formula-panel--product" aria-label="Formula used">
+          <div>
+            <p className="lab-kicker">Why the number changes</p>
+            <h3>Formula used</h3>
+          </div>
           <p className="formula">|R| = √(A² + B² + 2AB cos θ)</p>
-          <p>
-            √({formatTenths(state.vectorA)}² + {formatTenths(state.vectorB)}² + 2(
-            {formatTenths(state.vectorA)})({formatTenths(state.vectorB)})cos(
-            {state.angleDegrees.toFixed(0)}°)) = {formatTenths(resultant)} m
-          </p>
-          <p className="formula-note">
-            cos θ = {cosine.toFixed(2)}. Direction changes the component sum, so equal
-            lengths do not always add to the same resultant.
-          </p>
+          {model.ok ? (
+            <>
+              <p>
+                √({formatTenths(state.vectorAMetres)}² + {formatTenths(state.vectorBMetres)}² + 2(
+                {formatTenths(state.vectorAMetres)})({formatTenths(state.vectorBMetres)})cos(
+                {state.angleDegrees.toFixed(0)}°)) = {formatTenths(model.value.magnitudeMetres)} m
+              </p>
+              <p className="formula-note">
+                cos θ = {formatHundredths(model.value.cosine)}. When direction opens up, the
+                component sum no longer equals the magnitude-only sum.
+              </p>
+              <p className="formula-note">
+                Why does changing only the angle change the result when the two lengths stay fixed?
+              </p>
+            </>
+          ) : (
+            <p role="alert">The formula cannot be evaluated for the current inputs.</p>
+          )}
         </section>
       </section>
     </PredictionGate>

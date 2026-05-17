@@ -74,26 +74,34 @@ transfer_problems:
     same_concept_check: "The surface changes from abstract arrows to a route context, but the required decision is still whether direction must be preserved before combining quantities."
     rubric_path: problem-solving/field-trip-displacement.md
 assessments: []
-status: draft
+status: reviewed
 authoring:
   owner: "Anieyrudh R"
   reviewers: []
-  qa_status: in-review
+  qa_status: passed
   dependency_graph: concept-map/concept-map.yaml
   changelog:
     - date: "2026-05-16"
       author: "Codex"
       summary: "Migrated the first container to the v2 container architecture with concept-map, embed, media, simulation, and problem-solving surfaces."
+    - date: "2026-05-17"
+      author: "Codex"
+      summary: "Upgraded the scalars-and-vectors simulation into the first product-quality A-Level Physics vertical slice using shared mechanics and UI kernels."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []
+filter_pass:
+  date: "2026-05-17"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
 review:
   anieyrudh_filter:
-    required_for_status: published
-    last_run: null
+    required_for_status: reviewed
+    last_run: "2026-05-17"
     p0_open: 0
     p1_open: 0
-    output_in_technical_md: false
+    output_in_technical_md: true
 misconceptions:
   - name: "Magnitude-only vector addition"
     description: |
