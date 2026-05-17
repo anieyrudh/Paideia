@@ -2,8 +2,11 @@
 
 ## Imports
 
-- `@paideia/mechanics`
-  - `netForce` owns the reusable two-dimensional vector sum used by the resultant readout.
+- `@paideia/linear-algebra`
+  - `vector2`, `add2`, and `norm2` own finite 2D vector construction, addition,
+    and magnitude for the resultant readout.
+- `@paideia/shared`
+  - `Metres` and `Degrees` brand the public sim state at the container boundary.
 - `@paideia/ui-sim`
   - `ControlGroup` and `Slider` provide the labelled student-facing controls.
 - `@paideia/prediction-gate`
@@ -23,8 +26,9 @@ id: resultant-magnitude
 title: "Resultant Magnitude Explorer"
 interaction_type: diagram-builder
 kernel_deps:
-  - core/mechanics
+  - core/linear-algebra
   - core/prediction-gate
+  - core/shared
   - core/ui-sim
 
 predict:
@@ -45,12 +49,12 @@ manipulate:
     - id: vector-a-magnitude
       label: "Vector A magnitude"
       kind: slider
-      kernel_binding: state.vectorA.magnitude
+      kernel_binding: state.vectorAMetres
       bounds: { min: 0, max: 10, step: 0.5 }
     - id: vector-b-magnitude
       label: "Vector B magnitude"
       kind: slider
-      kernel_binding: state.vectorB.magnitude
+      kernel_binding: state.vectorBMetres
       bounds: { min: 0, max: 10, step: 0.5 }
     - id: angle-between
       label: "Angle between vectors"
@@ -77,9 +81,10 @@ explain:
 ## Kernel boundaries
 
 No concept-local physics kernel was added. The sim converts the student-selected
-arrow magnitudes and angle into SI component vectors, then delegates the vector
-sum to `core/mechanics` via `netForce`. The visual layer may format, label, and
-draw the vectors, but it must not teach a different numerical resultant.
+arrow magnitudes and angle into SI metre components at the boundary, then
+delegates finite vector construction, addition, and magnitude to
+`core/linear-algebra`. The visual layer may format, label, and draw the vectors,
+but it must not teach a different numerical resultant.
 
 ## Accessibility
 
@@ -87,7 +92,8 @@ draw the vectors, but it must not teach a different numerical resultant.
 - Sim controls are labelled range inputs.
 - The SVG diagram has `role="img"` and an accessible label.
 - The A-Level shell runs Playwright and axe coverage against the generated
-  catalogue route that hosts this simulation.
+  catalogue route that hosts this simulation, including the post-prediction
+  revealed state.
 
 ## Tests
 
@@ -140,6 +146,11 @@ Filter version: aniegpt v1.0
 - Resolved P0 under strict doctrine: `simulation/simulation.test.ts` now imports
   the generic browser contract from `testing/sim-harness` and runs through
   Playwright/Chromium as part of `pnpm test`.
+- Resolved P0 from PR #22 review: displacement vectors were briefly routed
+  through `core/mechanics.netForce`, which is semantically force-specific.
+  Resolution: replaced that dependency with `core/linear-algebra` vector
+  construction, addition, and norm operations; the UI no longer names internal
+  kernels to learners.
 
 ### P1 issues
 
@@ -155,9 +166,13 @@ Filter version: aniegpt v1.0
 - P1: Transfer was initially described but not represented as an artifact.
   Resolution: added `problem-solving/field-trip-displacement.md` and linked it from
   `items.transfer_problems`.
-- P1: Vector addition was local to this sim. Resolution: moved the reusable sum to
-  the existing `core/mechanics` `netForce` kernel and kept only display formatting
-  in the sim package.
+- P1: Vector addition was local to this sim. Resolution: the sim now uses
+  `core/linear-algebra` for finite vector construction, addition, and magnitude,
+  and keeps only display formatting plus metre/degree boundary conversion in the
+  sim package.
+- P1: Learner UI exposed implementation and authoring metadata. Resolution:
+  removed code-facing kernel language from the formula note and mapped container
+  status/aid tokens to student-facing labels in the A-Level shell.
 
 ### High-bandwidth questions surfaced
 
@@ -198,7 +213,10 @@ Date: 2026-05-16
 ## Deferred fixes
 
 - Advisor sign-off remains deferred until a human Physics reviewer checks the final copy against the classroom sequence. Future fix location: `a-level/content/physics/containers/scalars-and-vectors/container.yaml` `advisor_signoffs`.
-- More vector operations such as dot products and unit-vector notation should move to a dedicated core kernel only after a second or third container proves the shared API shape. Future fix location: `core/mechanics` or a proposed `core/vector-math` ADR.
+- More vector operations such as polar-to-Cartesian construction with branded
+  units should move to a dedicated core kernel only after a second or third
+  container proves the shared API shape. Future fix location:
+  `core/linear-algebra` or a proposed `core/vector-math` ADR.
 
 Date: 2026-05-17
 

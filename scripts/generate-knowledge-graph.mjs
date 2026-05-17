@@ -108,13 +108,28 @@ const firstParagraph = (markdown) => {
   return paragraphs[0] ?? "";
 };
 
-const bulletItems = (markdown, limit = 5) =>
-  markdown
-    .split("\n")
-    .map((line) => line.match(/^\s*-\s+(.*)$/)?.[1] ?? "")
-    .map(normalizeMarkdownText)
-    .filter(Boolean)
-    .slice(0, limit);
+const bulletItems = (markdown, limit = 5) => {
+  const items = [];
+  let current = "";
+
+  for (const line of markdown.split("\n")) {
+    const bullet = line.match(/^\s*-\s+(.*)$/);
+    if (bullet) {
+      if (current.length > 0) items.push(normalizeMarkdownText(current));
+      current = bullet[1] ?? "";
+      continue;
+    }
+
+    if (current.length === 0) continue;
+    if (/^\s*$/.test(line)) continue;
+    if (/^#{1,6}\s+/u.test(line)) break;
+
+    current = `${current} ${line.trim()}`;
+  }
+
+  if (current.length > 0) items.push(normalizeMarkdownText(current));
+  return items.filter(Boolean).slice(0, limit);
+};
 
 const conceptCardSummary = (containerDir) => {
   const card = stripFrontmatter(readOptionalText(join(containerDir, "concept-card.md")));

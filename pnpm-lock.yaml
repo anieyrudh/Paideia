@@ -69,12 +69,15 @@ importers:
       '@paideia/content-schema':
         specifier: workspace:*
         version: link:../../../core/content-schema
-      '@paideia/mechanics':
+      '@paideia/linear-algebra':
         specifier: workspace:*
-        version: link:../../../core/mechanics
+        version: link:../../../core/linear-algebra
       '@paideia/prediction-gate':
         specifier: workspace:*
         version: link:../../../core/prediction-gate
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../../../core/shared
       '@paideia/ui-sim':
         specifier: workspace:*
         version: link:../../../core/ui-sim

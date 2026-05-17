@@ -12,6 +12,8 @@ export {
   resolveVectorComponents,
 } from "./resolving-vectors.js";
 export type {
+  MetreVector2,
+  ResultantVectorModel,
   ResultantVectorDiagramProps,
   VectorState,
 } from "./resultant-magnitude.js";

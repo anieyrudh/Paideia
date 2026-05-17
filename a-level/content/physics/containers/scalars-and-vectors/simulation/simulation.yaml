@@ -2,8 +2,9 @@ id: resultant-magnitude
 title: "Resultant Magnitude Explorer"
 interaction_type: diagram-builder
 kernel_deps:
-  - core/mechanics
+  - core/linear-algebra
   - core/prediction-gate
+  - core/shared
   - core/ui-sim
 
 predict:
@@ -24,12 +25,12 @@ manipulate:
     - id: vector-a-magnitude
       label: "Vector A magnitude"
       kind: slider
-      kernel_binding: state.vectorA.magnitude
+      kernel_binding: state.vectorAMetres
       bounds: { min: 0, max: 10, step: 0.5 }
     - id: vector-b-magnitude
       label: "Vector B magnitude"
       kind: slider
-      kernel_binding: state.vectorB.magnitude
+      kernel_binding: state.vectorBMetres
       bounds: { min: 0, max: 10, step: 0.5 }
     - id: angle-between
       label: "Angle between vectors"

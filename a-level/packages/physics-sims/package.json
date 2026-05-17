@@ -18,8 +18,9 @@
   },
   "dependencies": {
     "@paideia/content-schema": "workspace:*",
+    "@paideia/linear-algebra": "workspace:*",
     "@paideia/prediction-gate": "workspace:*",
-    "@paideia/mechanics": "workspace:*",
+    "@paideia/shared": "workspace:*",
     "@paideia/ui-sim": "workspace:*"
   },
   "peerDependencies": {
