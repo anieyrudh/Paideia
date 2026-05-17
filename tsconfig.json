@@ -9,6 +9,7 @@
     { "path": "./core/plotting" },
     { "path": "./core/charting" },
     { "path": "./core/graph-layout" },
+    { "path": "./core/graph-algorithms" },
     { "path": "./core/timeline" },
     { "path": "./core/annotation" },
     { "path": "./core/mind-map" },
