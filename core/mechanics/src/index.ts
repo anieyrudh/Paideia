@@ -88,10 +88,21 @@ const finite = (value: number, label: string): KernelResult<void> =>
     ? ok(undefined)
     : err("precondition-violated", `${label} must be finite; got ${value}`);
 
+const finiteDerived = (value: number, label: string): KernelResult<void> =>
+  Number.isFinite(value)
+    ? ok(undefined)
+    : err("numerical-instability", `${label} must be finite after computation; got ${value}`);
+
 const finiteVector = (vector: Vector2, label: string): KernelResult<void> => {
   const x = finite(vector.x, `${label}.x`);
   if (!x.ok) return x;
   return finite(vector.y, `${label}.y`);
+};
+
+const finiteDerivedVector = (vector: Vector2, label: string): KernelResult<void> => {
+  const x = finiteDerived(vector.x, `${label}.x`);
+  if (!x.ok) return x;
+  return finiteDerived(vector.y, `${label}.y`);
 };
 
 const nonNegative = (value: number, label: string): KernelResult<void> => {
@@ -141,11 +152,21 @@ export const kinematics1D = (input: Kinematics1DInput): KernelResult<Kinematics1
   const displacement =
     input.initialVelocityMetresPerSecond * t +
     0.5 * input.accelerationMetresPerSecondSquared * t * t;
+  const positionMetres = input.initialPositionMetres + displacement;
+  const velocityMetresPerSecond =
+    input.initialVelocityMetresPerSecond + input.accelerationMetresPerSecondSquared * t;
+
+  const computedDisplacement = finiteDerived(displacement, "displacementMetres");
+  if (!computedDisplacement.ok) return computedDisplacement;
+  const computedPosition = finiteDerived(positionMetres, "positionMetres");
+  if (!computedPosition.ok) return computedPosition;
+  const computedVelocity = finiteDerived(velocityMetresPerSecond, "velocityMetresPerSecond");
+  if (!computedVelocity.ok) return computedVelocity;
+
   return ok({
-    positionMetres: metres(input.initialPositionMetres + displacement),
+    positionMetres: metres(positionMetres),
     displacementMetres: metres(displacement),
-    velocityMetresPerSecond:
-      input.initialVelocityMetresPerSecond + input.accelerationMetresPerSecondSquared * t,
+    velocityMetresPerSecond,
     accelerationMetresPerSecondSquared: input.accelerationMetresPerSecondSquared,
     elapsedSeconds: input.elapsedSeconds,
   });
@@ -182,6 +203,11 @@ export const projectileAt = (
     ),
   );
 
+  const computedPosition = finiteDerivedVector(position, "positionMetres");
+  if (!computedPosition.ok) return computedPosition;
+  const computedVelocity = finiteDerivedVector(velocity, "velocityMetresPerSecond");
+  if (!computedVelocity.ok) return computedVelocity;
+
   return ok({
     positionMetres: position,
     velocityMetresPerSecond: velocity,
@@ -197,6 +223,8 @@ export const netForce = (forces: readonly Vector2[]): KernelResult<Vector2> => {
     if (!valid.ok) return valid;
     total = add(total, force);
   }
+  const computedTotal = finiteDerivedVector(total, "netForce");
+  if (!computedTotal.ok) return computedTotal;
   return ok(total);
 };
 
@@ -209,7 +237,10 @@ export const accelerationFromForce = (
   const mass = positive(massKilograms, "massKilograms");
   if (!mass.ok) return mass;
 
-  return ok(scale(forceNewtons, 1 / massKilograms));
+  const acceleration = scale(forceNewtons, 1 / massKilograms);
+  const computedAcceleration = finiteDerivedVector(acceleration, "accelerationMetresPerSecondSquared");
+  if (!computedAcceleration.ok) return computedAcceleration;
+  return ok(acceleration);
 };
 
 export const workDone = (
@@ -224,7 +255,10 @@ export const workDone = (
   const angle = finite(angleRadians, "angleRadians");
   if (!angle.ok) return angle;
 
-  return ok(joules(forceNewtons * displacementMetres * Math.cos(angleRadians)));
+  const workJoules = forceNewtons * displacementMetres * Math.cos(angleRadians);
+  const computedWork = finiteDerived(workJoules, "workJoules");
+  if (!computedWork.ok) return computedWork;
+  return ok(joules(workJoules));
 };
 
 export const kineticEnergy = (
@@ -236,7 +270,10 @@ export const kineticEnergy = (
   const speed = nonNegative(speedMetresPerSecond, "speedMetresPerSecond");
   if (!speed.ok) return speed;
 
-  return ok(joules(kineticEnergyValue(massKilograms, speedMetresPerSecond)));
+  const energyJoules = kineticEnergyValue(massKilograms, speedMetresPerSecond);
+  const computedEnergy = finiteDerived(energyJoules, "kineticEnergyJoules");
+  if (!computedEnergy.ok) return computedEnergy;
+  return ok(joules(energyJoules));
 };
 
 export const momentum1D = (
@@ -248,7 +285,10 @@ export const momentum1D = (
   const velocity = finite(velocityMetresPerSecond, "velocityMetresPerSecond");
   if (!velocity.ok) return velocity;
 
-  return ok(massKilograms * velocityMetresPerSecond);
+  const momentum = massKilograms * velocityMetresPerSecond;
+  const computedMomentum = finiteDerived(momentum, "momentumKilogramMetresPerSecond");
+  if (!computedMomentum.ok) return computedMomentum;
+  return ok(momentum);
 };
 
 export const elasticCollision1D = (
@@ -264,6 +304,9 @@ export const elasticCollision1D = (
   if (!velocity2.ok) return velocity2;
 
   const totalMass = input.mass1Kilograms + input.mass2Kilograms;
+  const computedTotalMass = finiteDerived(totalMass, "totalMassKilograms");
+  if (!computedTotalMass.ok) return computedTotalMass;
+
   const finalVelocity1 =
     ((input.mass1Kilograms - input.mass2Kilograms) / totalMass) *
       input.velocity1MetresPerSecond +
@@ -272,23 +315,44 @@ export const elasticCollision1D = (
     ((2 * input.mass1Kilograms) / totalMass) * input.velocity1MetresPerSecond +
     ((input.mass2Kilograms - input.mass1Kilograms) / totalMass) *
       input.velocity2MetresPerSecond;
+  const totalMomentumBefore =
+    input.mass1Kilograms * input.velocity1MetresPerSecond +
+    input.mass2Kilograms * input.velocity2MetresPerSecond;
+  const totalMomentumAfter =
+    input.mass1Kilograms * finalVelocity1 + input.mass2Kilograms * finalVelocity2;
+  const totalKineticEnergyBefore =
+    kineticEnergyValue(input.mass1Kilograms, input.velocity1MetresPerSecond) +
+    kineticEnergyValue(input.mass2Kilograms, input.velocity2MetresPerSecond);
+  const totalKineticEnergyAfter =
+    kineticEnergyValue(input.mass1Kilograms, finalVelocity1) +
+    kineticEnergyValue(input.mass2Kilograms, finalVelocity2);
+
+  const computedFinalVelocity1 = finiteDerived(finalVelocity1, "finalVelocity1MetresPerSecond");
+  if (!computedFinalVelocity1.ok) return computedFinalVelocity1;
+  const computedFinalVelocity2 = finiteDerived(finalVelocity2, "finalVelocity2MetresPerSecond");
+  if (!computedFinalVelocity2.ok) return computedFinalVelocity2;
+  const computedMomentumBefore = finiteDerived(
+    totalMomentumBefore,
+    "totalMomentumBeforeKilogramMetresPerSecond",
+  );
+  if (!computedMomentumBefore.ok) return computedMomentumBefore;
+  const computedMomentumAfter = finiteDerived(
+    totalMomentumAfter,
+    "totalMomentumAfterKilogramMetresPerSecond",
+  );
+  if (!computedMomentumAfter.ok) return computedMomentumAfter;
+  const computedEnergyBefore = finiteDerived(totalKineticEnergyBefore, "totalKineticEnergyBeforeJoules");
+  if (!computedEnergyBefore.ok) return computedEnergyBefore;
+  const computedEnergyAfter = finiteDerived(totalKineticEnergyAfter, "totalKineticEnergyAfterJoules");
+  if (!computedEnergyAfter.ok) return computedEnergyAfter;
 
   return ok({
     finalVelocity1MetresPerSecond: finalVelocity1,
     finalVelocity2MetresPerSecond: finalVelocity2,
-    totalMomentumBeforeKilogramMetresPerSecond:
-      input.mass1Kilograms * input.velocity1MetresPerSecond +
-      input.mass2Kilograms * input.velocity2MetresPerSecond,
-    totalMomentumAfterKilogramMetresPerSecond:
-      input.mass1Kilograms * finalVelocity1 + input.mass2Kilograms * finalVelocity2,
-    totalKineticEnergyBeforeJoules: joules(
-      kineticEnergyValue(input.mass1Kilograms, input.velocity1MetresPerSecond) +
-        kineticEnergyValue(input.mass2Kilograms, input.velocity2MetresPerSecond),
-    ),
-    totalKineticEnergyAfterJoules: joules(
-      kineticEnergyValue(input.mass1Kilograms, finalVelocity1) +
-        kineticEnergyValue(input.mass2Kilograms, finalVelocity2),
-    ),
+    totalMomentumBeforeKilogramMetresPerSecond: totalMomentumBefore,
+    totalMomentumAfterKilogramMetresPerSecond: totalMomentumAfter,
+    totalKineticEnergyBeforeJoules: joules(totalKineticEnergyBefore),
+    totalKineticEnergyAfterJoules: joules(totalKineticEnergyAfter),
   });
 };
 
@@ -311,14 +375,33 @@ export const simpleHarmonicMotion = (
   if (!phase.ok) return phase;
 
   const angle = input.angularFrequencyRadiansPerSecond * elapsedSeconds + input.phaseRadians;
+  const computedAngle = finiteDerived(angle, "oscillationAngleRadians");
+  if (!computedAngle.ok) return computedAngle;
+
   const displacement = input.amplitudeMetres * Math.cos(angle);
+  const position = input.equilibriumMetres + displacement;
+  const velocityMetresPerSecond =
+    -input.amplitudeMetres * input.angularFrequencyRadiansPerSecond * Math.sin(angle);
+  const accelerationMetresPerSecondSquared =
+    -input.angularFrequencyRadiansPerSecond * input.angularFrequencyRadiansPerSecond * displacement;
+
+  const computedDisplacement = finiteDerived(displacement, "displacementFromEquilibriumMetres");
+  if (!computedDisplacement.ok) return computedDisplacement;
+  const computedPosition = finiteDerived(position, "positionMetres");
+  if (!computedPosition.ok) return computedPosition;
+  const computedVelocity = finiteDerived(velocityMetresPerSecond, "velocityMetresPerSecond");
+  if (!computedVelocity.ok) return computedVelocity;
+  const computedAcceleration = finiteDerived(
+    accelerationMetresPerSecondSquared,
+    "accelerationMetresPerSecondSquared",
+  );
+  if (!computedAcceleration.ok) return computedAcceleration;
+
   return ok({
-    positionMetres: metres(input.equilibriumMetres + displacement),
+    positionMetres: metres(position),
     displacementFromEquilibriumMetres: metres(displacement),
-    velocityMetresPerSecond:
-      -input.amplitudeMetres * input.angularFrequencyRadiansPerSecond * Math.sin(angle),
-    accelerationMetresPerSecondSquared:
-      -input.angularFrequencyRadiansPerSecond * input.angularFrequencyRadiansPerSecond * displacement,
+    velocityMetresPerSecond,
+    accelerationMetresPerSecondSquared,
     elapsedSeconds,
   });
 };

@@ -182,4 +182,39 @@ describe("@paideia/mechanics", () => {
     expect(invalidForce.ok).toBe(false);
     if (!invalidForce.ok) expect(invalidForce.error.code).toBe("precondition-violated");
   });
+
+  it("rejects elastic collision outputs that overflow from finite inputs", () => {
+    const result = elasticCollision1D({
+      mass1Kilograms: kilograms(Number.MAX_VALUE),
+      mass2Kilograms: kilograms(Number.MAX_VALUE),
+      velocity1MetresPerSecond: 1,
+      velocity2MetresPerSecond: -1,
+    });
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("numerical-instability");
+  });
+
+  it("rejects scalar helper outputs that overflow from finite inputs", () => {
+    const kinematics = kinematics1D({
+      initialPositionMetres: metres(Number.MAX_VALUE),
+      initialVelocityMetresPerSecond: Number.MAX_VALUE,
+      accelerationMetresPerSecondSquared: 0,
+      elapsedSeconds: seconds(1),
+    });
+    expect(kinematics.ok).toBe(false);
+    if (!kinematics.ok) expect(kinematics.error.code).toBe("numerical-instability");
+
+    const work = workDone(newtons(Number.MAX_VALUE), metres(2));
+    expect(work.ok).toBe(false);
+    if (!work.ok) expect(work.error.code).toBe("numerical-instability");
+
+    const energy = kineticEnergy(kilograms(Number.MAX_VALUE), 2);
+    expect(energy.ok).toBe(false);
+    if (!energy.ok) expect(energy.error.code).toBe("numerical-instability");
+
+    const momentum = momentum1D(kilograms(Number.MAX_VALUE), 2);
+    expect(momentum.ok).toBe(false);
+    if (!momentum.ok) expect(momentum.error.code).toBe("numerical-instability");
+  });
 });
