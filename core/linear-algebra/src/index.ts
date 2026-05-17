@@ -189,6 +189,9 @@ export const eigenvalues2 = (
   if (!trace.ok) return trace;
 
   const discriminant = trace.value * trace.value - 4 * determinant.value;
+  const finiteDiscriminant = finiteResult(discriminant, "Eigenvalue discriminant");
+  if (!finiteDiscriminant.ok) return finiteDiscriminant;
+
   if (discriminant < -linearAlgebraTolerance.loose) {
     return err(
       "out-of-domain",
@@ -198,7 +201,18 @@ export const eigenvalues2 = (
 
   const clampedDiscriminant = Math.max(0, discriminant);
   const root = Math.sqrt(clampedDiscriminant);
-  return ok([(trace.value + root) / 2, (trace.value - root) / 2]);
+  const finiteRoot = finiteResult(root, "Eigenvalue discriminant root");
+  if (!finiteRoot.ok) return finiteRoot;
+
+  const lambda1 = (trace.value + root) / 2;
+  const finiteLambda1 = finiteResult(lambda1, "First eigenvalue");
+  if (!finiteLambda1.ok) return finiteLambda1;
+
+  const lambda2 = (trace.value - root) / 2;
+  const finiteLambda2 = finiteResult(lambda2, "Second eigenvalue");
+  if (!finiteLambda2.ok) return finiteLambda2;
+
+  return ok([lambda1, lambda2]);
 };
 
 const residualNorm = (

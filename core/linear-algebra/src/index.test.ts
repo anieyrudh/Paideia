@@ -125,6 +125,12 @@ describe("@paideia/linear-algebra", () => {
     if (!defective.ok) expect(defective.error.code).toBe("precondition-violated");
   });
 
+  it("rejects eigenvalues that would overflow from finite inputs", () => {
+    const result = eigenvalues2([[1e154, 0], [0, 1e154]]);
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("precondition-violated");
+  });
+
   it("property: dot product is distributive over vector addition", () => {
     const vectors: readonly Vector2[] = [
       [-3, 2],
