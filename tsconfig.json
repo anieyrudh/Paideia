@@ -6,6 +6,7 @@
     { "path": "./core/prediction-gate" },
     { "path": "./core/function-eval" },
     { "path": "./core/numerical-math" },
+    { "path": "./core/control-systems" },
     { "path": "./core/plotting" },
     { "path": "./core/charting" },
     { "path": "./core/graph-layout" },
