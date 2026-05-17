@@ -163,6 +163,7 @@ const renderKnowledgeGraph = (branch, manifests) => {
     title: ${jsString(manifest.title)},
     subject: ${jsString(manifest.subject)},
     level: ${jsString(manifest.level ?? "")},
+    module: ${jsString(manifest.module ?? "")},
     status: ${jsString(manifest.status)},
   }`);
 
@@ -199,6 +200,7 @@ const renderKnowledgeGraph = (branch, manifests) => {
     branch: ${jsString(branch)},
     subject: ${jsString(subjectLabel(manifest.subject))},
     level: ${jsString(manifest.level ?? "")},
+    module: ${jsString(manifest.module ?? "")},
     title: ${jsString(manifest.title)},
     summary: ${jsString(manifest.one_line_summary)},
     syllabusRef: ${jsString(manifest.syllabus_ref ?? "")},
@@ -242,6 +244,7 @@ export interface ShellContainer {
   readonly branch: "${branch}";
   readonly subject: string;
   readonly level: string;
+  readonly module: string;
   readonly title: string;
   readonly summary: string;
   readonly syllabusRef: string;
@@ -268,6 +271,7 @@ export interface KnowledgeGraphNode {
   readonly title: string;
   readonly subject: string;
   readonly level: string;
+  readonly module: string;
   readonly status: string;
 }
 

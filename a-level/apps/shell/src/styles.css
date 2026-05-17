@@ -150,7 +150,61 @@ textarea:focus-visible {
 .package-list {
   display: grid;
   gap: 0.6rem;
-  margin-top: 1.4rem;
+  margin-top: 0.7rem;
+}
+
+.curriculum-browser {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 1.2rem;
+}
+
+.search-control {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.search-control span,
+.result-count {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.search-control input {
+  background: rgba(255, 253, 247, 0.84);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--ink);
+  min-height: 44px;
+  padding: 0.62rem 0.72rem;
+  width: 100%;
+}
+
+.module-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.module-nav button,
+.mastery-actions button {
+  background: transparent;
+  border-color: color-mix(in srgb, var(--deep) 18%, transparent);
+  color: var(--ink);
+  min-height: 34px;
+  padding: 0.38rem 0.62rem;
+}
+
+.module-nav button[aria-pressed="true"],
+.mastery-actions button[aria-pressed="true"] {
+  background: var(--deep);
+  border-color: var(--deep);
+  color: var(--paper);
+}
+
+.result-count {
+  margin: 0;
 }
 
 .package-row {
@@ -230,6 +284,83 @@ textarea:focus-visible {
 
 .stage-list strong {
   font-size: 0.95rem;
+}
+
+.mastery-map {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.9rem;
+  padding-top: 1rem;
+}
+
+.mastery-header {
+  align-items: end;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.mastery-header h2,
+.mastery-header p,
+.mastery-node p {
+  margin: 0;
+}
+
+.mastery-header strong {
+  color: var(--accent-strong);
+}
+
+.mastery-path {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mastery-node {
+  border-top: 3px solid var(--line);
+  display: grid;
+  gap: 0.65rem;
+  min-width: 0;
+  padding-top: 0.75rem;
+}
+
+.mastery-node[data-status="practicing"] {
+  border-top-color: var(--sun);
+}
+
+.mastery-node[data-status="mastered"] {
+  border-top-color: var(--accent);
+}
+
+.mastery-node[aria-current="step"] {
+  background: rgba(255, 253, 247, 0.72);
+  border-radius: 12px;
+  margin: -0.65rem;
+  padding: 0.65rem;
+}
+
+.mastery-node a {
+  display: grid;
+  gap: 0.22rem;
+}
+
+.mastery-node a span {
+  font-weight: 900;
+}
+
+.mastery-node a small,
+.mastery-node p {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.mastery-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
 }
 
 .lab-layout {
@@ -511,6 +642,15 @@ textarea:focus-visible {
   }
 
   .stage-list {
+    grid-template-columns: 1fr;
+  }
+
+  .mastery-header {
+    align-items: start;
+    display: grid;
+  }
+
+  .mastery-path {
     grid-template-columns: 1fr;
   }
 
