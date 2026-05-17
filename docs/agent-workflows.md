@@ -98,10 +98,46 @@ pnpm boundary
 pnpm license:check
 ```
 
+## Prompt: Clean-Room Rebuild A Non-Friendly Dependency
+
+Use this when a GPL/AGPL/LGPL or otherwise non-allowlisted repository has a
+capability Paideia needs.
+
+```text
+You are working on a clean-room replacement for a non-friendly dependency.
+
+Target capability:
+- <capability>
+- Original repo for benchmarking only: <url>
+- Paideia target module/package: <path>
+
+Read first:
+- docs/dependency-clean-room.md
+- LICENSES.json
+- core/<target-module>/AGENTS.md if this is a kernel
+- docs/container-spec.md if this is container-facing
+
+Role for this Codex instance:
+- <research | builder | evaluation>
+
+Follow the role split in docs/dependency-clean-room.md. Research agents may
+inspect the original repo and write benchmark/spec artifacts, but must not write
+replacement code. Builder agents must implement only from the clean spec and
+benchmarks, not the original source. Evaluation agents compare the replacement
+against the committed benchmark suite and report gaps.
+
+Run:
+
+pnpm license:check
+pnpm test
+pnpm typecheck
+```
+
 ## Where Agents Should Look
 
 - Root orientation: `AGENTS.md`, `README.md`, `CONTRIBUTING.md`.
 - Container shape: `docs/container-spec.md`.
+- Clean-room dependency replacements: `docs/dependency-clean-room.md`.
 - Product roadmap: `docs/product/container-roadmap.md`.
 - Core contracts: `core/<module>/AGENTS.md`.
 - Reusable skills: `.agents/skills/*/SKILL.md`.

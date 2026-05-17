@@ -16,6 +16,7 @@ const CLAUDE_SKILLS = join(REPO_ROOT, ".claude", "skills");
 
 const requiredFiles = [
   "docs/agent-workflows.md",
+  "docs/dependency-clean-room.md",
   "docs/product/container-roadmap.md",
   ".agents/skills/new-kernel/SKILL.md",
   ".claude/skills/new-kernel/SKILL.md",

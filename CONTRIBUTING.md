@@ -100,6 +100,11 @@ remix helper can be added later.
 - **Code is MIT.** New code goes under `LICENSE`.
 - **Content is CC-BY-4.0.** Concept cards, decision matrices, transfer problems, sources go under `LICENSE-content`.
 - **No GPL deps bundled into runtime.** `LICENSES.json` is the allowlist; `pnpm license:check` enforces. GPL services (e.g., Argdown) are integrated via iframe and never bundled.
+- **Clean-room replacements require evidence.** If a non-friendly dependency is
+  strategically important, follow
+  [`docs/dependency-clean-room.md`](docs/dependency-clean-room.md): benchmark the
+  original, implement independently from a clean spec, and evaluate with a
+  separate reviewer agent before merge.
 - **Provenance is mandatory.** If your work derives from PhET, an existing
   textbook example, or another open project, record provenance in
   `container.yaml` where applicable and cite in `sources.md`.
