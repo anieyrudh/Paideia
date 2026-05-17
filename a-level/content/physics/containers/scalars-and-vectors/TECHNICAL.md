@@ -2,6 +2,10 @@
 
 ## Imports
 
+- `@paideia/mechanics`
+  - `netForce` owns the reusable two-dimensional vector sum used by the resultant readout.
+- `@paideia/ui-sim`
+  - `ControlGroup` and `Slider` provide the labelled student-facing controls.
 - `@paideia/prediction-gate`
   - `PredictionGate` gates the `resultant-magnitude` observation until the
     package-level prediction is committed.
@@ -19,7 +23,9 @@ id: resultant-magnitude
 title: "Resultant Magnitude Explorer"
 interaction_type: diagram-builder
 kernel_deps:
+  - core/mechanics
   - core/prediction-gate
+  - core/ui-sim
 
 predict:
   prompt: |
@@ -68,20 +74,20 @@ explain:
     - "Magnitude-only vector addition"
 ```
 
-## Kernel extensions
+## Kernel boundaries
 
-None. The sim uses a local two-vector component sum because no shared
-`core/vector-math` kernel exists yet. If more containers need vector operations,
-promote this behavior through a `core-change-proposal`.
+No concept-local physics kernel was added. The sim converts the student-selected
+arrow magnitudes and angle into SI component vectors, then delegates the vector
+sum to `core/mechanics` via `netForce`. The visual layer may format, label, and
+draw the vectors, but it must not teach a different numerical resultant.
 
 ## Accessibility
 
 - Prediction gate uses labelled radio controls and a labelled rationale field.
 - Sim controls are labelled range inputs.
 - The SVG diagram has `role="img"` and an accessible label.
-- Axe summary: pending. There is no branch learner app route or Playwright/axe
-  harness yet, so this PR documents the gap and relies on labelled native
-  controls plus jsdom regression coverage until the app shell exists.
+- The A-Level shell runs Playwright and axe coverage against the generated
+  catalogue route that hosts this simulation.
 
 ## Tests
 
@@ -115,10 +121,11 @@ pnpm -F @paideia/a-level-physics-sims test
 
 ## Anieyrudh Filter pass
 
-Date: 2026-05-15
+Date: 2026-05-17
+Reviewers: local container audit, local sim-architecture audit, local pedagogy audit
 Filter version: aniegpt v1.0
 
-### P0 issues
+### P0 resolved
 
 - Potential P0: content package without a prediction gate. Resolution: package
   includes `package_predict`; the `resultant-magnitude` sim wraps observation
@@ -148,9 +155,9 @@ Filter version: aniegpt v1.0
 - P1: Transfer was initially described but not represented as an artifact.
   Resolution: added `problem-solving/field-trip-displacement.md` and linked it from
   `items.transfer_problems`.
-- P1: Vector addition is local to this sim. Resolution: acceptable for the first
-  concept-specific vertical slice; promote to `core/vector-math` only when a
-  second container needs the same behavior.
+- P1: Vector addition was local to this sim. Resolution: moved the reusable sum to
+  the existing `core/mechanics` `netForce` kernel and kept only display formatting
+  in the sim package.
 
 ### High-bandwidth questions surfaced
 
@@ -186,3 +193,17 @@ Date: 2026-05-16
   workspace test runner.
 - Rejected using the old scaffold template as-is because it points at missing
   runtime infrastructure.
+
+
+## Deferred fixes
+
+- Advisor sign-off remains deferred until a human Physics reviewer checks the final copy against the classroom sequence. Future fix location: `a-level/content/physics/containers/scalars-and-vectors/container.yaml` `advisor_signoffs`.
+- More vector operations such as dot products and unit-vector notation should move to a dedicated core kernel only after a second or third container proves the shared API shape. Future fix location: `core/mechanics` or a proposed `core/vector-math` ADR.
+
+Date: 2026-05-17
+
+| Attempt | Failed where | Symptom | Resolution |
+| --- | --- | --- | --- |
+| Dependency refresh | `pnpm install` | Registry returned HTTP 403 for `playwright-core` metadata in this environment. | Existing workspace links were used for local validation; future CI should run install in a network environment with registry access. |
+| Browser installation | `pnpm -F @paideia/a-level-shell exec playwright install chromium` | Playwright CDN returned HTTP 403 for Chromium v1223, so browser E2E could not launch locally. | Vitest, typecheck, lint, boundary, license, and container validation were run; Playwright remains a CI/environment follow-up. |
+| Full workspace tests | `pnpm test` | Unit and jsdom suites passed up to the Playwright shell and sim-harness stage, then failed because the Chromium executable was missing. | Treat as an environment limitation; rerun `pnpm test` after browsers are installed. |

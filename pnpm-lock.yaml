@@ -69,9 +69,15 @@ importers:
       '@paideia/content-schema':
         specifier: workspace:*
         version: link:../../../core/content-schema
+      '@paideia/mechanics':
+        specifier: workspace:*
+        version: link:../../../core/mechanics
       '@paideia/prediction-gate':
         specifier: workspace:*
         version: link:../../../core/prediction-gate
+      '@paideia/ui-sim':
+        specifier: workspace:*
+        version: link:../../../core/ui-sim
     devDependencies:
       '@types/react':
         specifier: ^18.3.0

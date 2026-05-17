@@ -81,7 +81,7 @@ export const knowledgeGraph = {
     subject: "physics",
     level: "H2",
     module: "Foundations of Physics",
-    status: "draft",
+    status: "reviewed",
   }
   ],
   edges: [
@@ -221,7 +221,7 @@ export const containers = [
     title: "Scalars and Vectors",
     summary: "Distinguish scalar and vector quantities, then combine coplanar vectors without treating arrows as ordinary numbers.",
     syllabusRef: "9478 / Section I / 1(h)-1(j)",
-    status: "draft",
+    status: "reviewed",
     packageId: "scalars-and-vectors",
     simId: "resultant-magnitude",
     predictPrompt: "Two displacement arrows each have length 5 m. One points east and one points north. Before seeing any construction, what resultant magnitude do you expect?",

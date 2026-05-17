@@ -2,7 +2,9 @@ id: resultant-magnitude
 title: "Resultant Magnitude Explorer"
 interaction_type: diagram-builder
 kernel_deps:
+  - core/mechanics
   - core/prediction-gate
+  - core/ui-sim
 
 predict:
   prompt: |

@@ -18,7 +18,9 @@
   },
   "dependencies": {
     "@paideia/content-schema": "workspace:*",
-    "@paideia/prediction-gate": "workspace:*"
+    "@paideia/prediction-gate": "workspace:*",
+    "@paideia/mechanics": "workspace:*",
+    "@paideia/ui-sim": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18"
