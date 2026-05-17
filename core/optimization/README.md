@@ -15,6 +15,10 @@ const trace = gradientDescent((x, y) => (x - 2) ** 2 + (y + 1) ** 2, [5, 3], {
   learningRate: 0.2,
 });
 
+if (!trace.ok) {
+  throw new Error(trace.error.message);
+}
+
 const region = linearFeasibleRegion(
   [
     { a: 1, b: 1, relation: "<=", c: 1 },
@@ -24,13 +28,21 @@ const region = linearFeasibleRegion(
   { x: { min: 0, max: 1 }, y: { min: 0, max: 1 } },
 );
 
-if (region.ok) {
-  const optimum = optimizeLinearObjective(region.value, {
-    cx: 2,
-    cy: 1,
-    direction: "max",
-  });
+if (!region.ok) {
+  throw new Error(region.error.message);
 }
+
+const optimum = optimizeLinearObjective(region.value, {
+  cx: 2,
+  cy: 1,
+  direction: "max",
+});
+
+if (!optimum.ok) {
+  throw new Error(optimum.error.message);
+}
+
+console.log(trace.value.reason, region.value.vertices, optimum.value.point);
 ```
 
 `gradientDescent()` samples finite-difference gradients and returns every point in the trace. `linearFeasibleRegion()` clips a 2D linear program to a supplied `Rect`, and `optimizeLinearObjective()` chooses the best vertex in that clipped region.

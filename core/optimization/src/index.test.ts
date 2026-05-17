@@ -16,6 +16,9 @@ const unitSquare = {
 const distance = (left: Point2, right: Point2): number =>
   Math.hypot(left[0] - right[0], left[1] - right[1]);
 
+const approxEqual = (left: number, right: number, tolerance: number): boolean =>
+  Number.isFinite(left) && Number.isFinite(right) && Math.abs(left - right) <= tolerance;
+
 describe("@paideia/optimization", () => {
   it("traces gradient descent toward a convex quadratic minimizer", () => {
     const result = gradientDescent(
@@ -88,9 +91,9 @@ describe("@paideia/optimization", () => {
     });
     expect(optimum.ok).toBe(true);
     if (optimum.ok) {
-      expect(optimum.value.point[0]).toBeCloseTo(1, 10);
-      expect(optimum.value.point[1]).toBeCloseTo(0, 10);
-      expect(optimum.value.value).toBeCloseTo(2, 10);
+      expect(approxEqual(optimum.value.point[0], 1, optimizationTolerance.tight)).toBe(true);
+      expect(approxEqual(optimum.value.point[1], 0, optimizationTolerance.tight)).toBe(true);
+      expect(approxEqual(optimum.value.value, 2, optimizationTolerance.tight)).toBe(true);
     }
   });
 
@@ -181,7 +184,7 @@ describe("@paideia/optimization", () => {
             } else if (constraint.relation === ">=") {
               expect(value).toBeGreaterThanOrEqual(constraint.c - optimizationTolerance.loose);
             } else {
-              expect(Math.abs(value - constraint.c)).toBeLessThanOrEqual(optimizationTolerance.loose);
+              expect(approxEqual(value, constraint.c, optimizationTolerance.loose)).toBe(true);
             }
           }
         }
