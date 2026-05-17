@@ -1,67 +1,81 @@
 ---
 name: new-sim-in-container
-description: Add a new sim to an existing ConceptPackage container. Use when the user says "add a sim", "new sim in <container>", "/new-sim-in-container", or wants a second simulation in an existing concept-package.
+description: Add or replace the declared simulation surface in an existing Paideia v2 container. Use when the user says "add a sim", "new sim in <container>", "/new-sim-in-container", or wants a simulation for an existing container.
 disable-model-invocation: false
 ---
 
 # new-sim-in-container
 
-Adds a sim under `<container>/sims/<sim-id>/` and registers it in the manifest. Use when the container already exists and a new interaction view is needed.
+Adds the canonical `simulation/` surface to an existing v2 container or replaces
+placeholder simulation files that were created by `pnpm container:new`.
 
 ## When to invoke
 
-- "add a sim to <package-id>"
-- "I need a second sim for SHM showing the energy view"
-- "/new-sim-in-container <package-id>"
+- "add a sim to <concept-id>"
+- "make the SHM container interactive"
+- "/new-sim-in-container <container-path>"
 
 ## Inputs
 
-Required:
-
-| Field | Example |
-|---|---|
-| package_path | path to the existing container |
-| sim_id | kebab-case, unique within the container |
-| sim_title | human title |
-| interaction_type | enum from `SimulationSpec.interaction_type` |
-| kernel_deps | list of `core/<module>` paths |
-
-If not passed inline, prompt for each. Read `concept-package.yaml` first to show the user existing sims so they don't pick a duplicate id.
+| Field | Example | Required |
+|---|---|---|
+| container_path | `a-level/content/physics/containers/simple-harmonic-motion` | yes |
+| sim_id | `oscillation-explorer` | yes |
+| sim_title | `Oscillation Explorer` | yes |
+| interaction_type | `diagram-builder` | yes |
+| kernel_deps | `core/numerical-math`, `core/plotting`, `core/ui-sim` | yes |
 
 ## Procedure
 
-1. Verify the container exists and `concept-package.yaml` parses. If not, abort and tell the user to run `/new-container` first or fix the manifest.
+1. Verify `container_path/container.yaml` exists and parses.
 
-2. Verify `sim_id` does NOT already appear in `items.sims[]` and `sims/<sim_id>/` does NOT exist. Abort on conflict.
+2. Read:
+   - `docs/container-spec.md`
+   - `core/content-schema/src/index.ts`
+   - target `container.yaml`
+   - any kernel `AGENTS.md` files listed in `kernel_deps`
 
-3. Verify each entry in `kernel_deps` resolves to an existing `core/<module>/` directory. If a dep is missing, list the missing ones and abort — kernels are owned via contracts, not created on the fly here.
+3. Verify every `kernel_deps` entry resolves to an existing `core/<module>/`
+   directory. If a dependency is missing, stop. Kernels are created through
+   `/new-kernel`, not opportunistically inside a container.
 
-4. Invoke the `sim-scaffold` skill with:
-   - target directory: `<package_path>/sims/<sim_id>/`
-   - placeholders: `<SIM_ID>`, `<SIM_TITLE>`, `<INTERACTION_TYPE>`, `<KERNEL_DEPS>`, `<PACKAGE_ID>` (read from manifest)
-   - produces: `SimulationSpec.yaml`, `index.tsx`, `<sim_id>.test.ts` (with the prediction-gate scaffold).
+4. Update the canonical files:
 
-5. Append the sim entry to `concept-package.yaml` under `items.sims`. Preserve formatting; insert a fresh `SimulationSpec` block matching the schema with minimal `manipulate.controls`, `observe.renderers`, `explain.prompt` stubs. Do NOT remove existing sims.
-
-6. Run:
+   ```text
+   simulation/simulation.yaml
+   simulation/index.tsx
+   simulation/controls.yaml
+   simulation/presets.yaml
+   simulation/runtime.yaml
+   simulation/state-labels.yaml
+   simulation/simulation.test.ts
    ```
-   pnpm container:validate <package_path>
-   pnpm --filter <pkg> typecheck
-   ```
-   Both must pass on the fresh scaffold.
 
-7. Print next steps:
-   ```
-   Sim scaffolded: sims/<sim_id>/
-   Next:
-     1. Flesh out SimulationSpec.yaml (manipulate / observe / explain).
-     2. Implement the kernel bindings in index.tsx.
-     3. Replace the prediction-gate test scaffold with real selectors (the gate assertion is mandatory).
-     4. Run /review-container before opening a PR.
+   Preserve existing useful content. Do not create nested sim directories unless
+   the container spec is changed by ADR.
+
+5. Update `container.yaml`:
+   - `capabilities.sim_worthy: true`
+   - `capabilities.interactive_simulation: true`
+   - `simulation.spec: simulation/simulation.yaml`
+   - `aid_types` includes `simulation`
+   - `kernel_deps` in `simulation/simulation.yaml` list the core modules used
+
+6. The simulation test must include a prediction-gate assertion when prediction
+   is declared. It should prove observation is blocked before commit.
+
+7. Run:
+
+   ```bash
+   pnpm container:validate
+   pnpm graph:generate
+   pnpm test
    ```
 
 ## Refuse to do
 
-- Do not silently add a missing kernel under `core/`. That requires a separate core-change-proposal.
-- Do not remove or overwrite existing sims in the manifest.
-- Do not omit the prediction-gate test scaffold. It must ship in `<sim_id>.test.ts` even if the selectors are placeholders.
+- Do not add missing core kernels here.
+- Do not bypass `core/prediction-gate`.
+- Do not inline reusable physics, maths, plotting, or control logic that belongs
+  in `core/`.
+- Do not weaken the container validator to make a sim pass.

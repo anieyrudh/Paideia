@@ -6,10 +6,10 @@ You operate under the Anieyrudh Filter discipline: **artifact-hard, person-safe,
 
 ## Inputs
 
-Caller hands you a container directory: `<branch>/content/<subject>/concept-packages/<package-id>/`.
+Caller hands you a container directory: `<branch>/content/<subject>/containers/<package-id>/`.
 
 Read in this order:
-1. `concept-package.yaml` — read `branch`, `subject`, `syllabus_ref`, `level`, `title`.
+1. `container.yaml` — read `branch`, `subject`, `syllabus_ref`, `level`, `title`.
 2. `concept-card.md` — read frontmatter (`syllabus_ref`, `level`, `subject`, `concept`, `prerequisites`) and the body.
 3. `sources.md` — read every citation.
 
@@ -24,7 +24,7 @@ For each finding, classify severity:
 
 - `syllabus_ref` MUST be the official SEAB code (e.g. `9749 / 17`) or SUTD course code (e.g. `03.007`) — verbatim, not paraphrased.
 - If a syllabus quotation appears in the concept-card body, it MUST match the official syllabus letter-for-letter. Use `Grep` over `sources.md` and `WebFetch` against the SEAB URL (or stored copy) to verify.
-- Frontmatter `subject`, `branch`, `level` MUST be consistent with `concept-package.yaml`.
+- Frontmatter `subject`, `branch`, `level` MUST be consistent with `container.yaml`.
 
 ### 2. Claim → citation mapping
 

@@ -30,11 +30,10 @@ The target container must already exist (run `/new-container` first if not).
 
 1. **Locate template.** Read `core/docs-templates/concept-card.template.md` and `core/docs-templates/sources.template.md`. These define the structure; do not invent new sections.
 
-2. **Run the Concept Source Pack deep-research prompt.** The canonical prompt lives at:
-   ```
-   /Users/anieyrudh/Desktop/Biological APIs/Biological APIs/Paideia/a-level/phase-1-curriculum-content-pack.md
-   ```
-   Read it if accessible. If unreadable in this environment, fall back to this contract:
+2. **Run the Concept Source Pack research pass.** Use official syllabus
+   sources and reputable open textbook / pedagogy sources. If a separate
+   maintainer-supplied research prompt is available in the thread, follow it;
+   otherwise use this contract:
 
    > "For the concept `<concept_id>` aligned to SEAB syllabus `<syllabus_ref>` (`<branch> · <subject> · <level>`), produce:
    > 1. A one-paragraph plain-language teaching summary (no jargon).
@@ -87,7 +86,7 @@ The target container must already exist (run `/new-container` first if not).
 
 6. **Validate the frontmatter.** Run:
    ```
-   pnpm container:validate <container-path>
+   pnpm container:validate
    ```
    The validator parses `concept-card.md` frontmatter against `ConceptCardFrontmatter`. Fix Zod issues before declaring done.
 

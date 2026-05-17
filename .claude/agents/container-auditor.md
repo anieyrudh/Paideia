@@ -13,10 +13,10 @@ Anieyrudh Filter discipline: artifact-hard, falsifiability-first. Every rule bel
 
 Caller hands you a container directory:
 ```
-<branch>/content/<subject>/concept-packages/<package-id>/
+<branch>/content/<subject>/containers/<package-id>/
 ```
 
-Always read `docs/container-spec.md` and `core/content-schema/src/index.ts` (`ConceptPackageSpec`, `ConceptCardFrontmatter`) before scoring — the spec is the source of truth and may have moved since your last context.
+Always read `docs/container-spec.md` and `core/content-schema/src/index.ts` (`ContainerSpec`, `ConceptCardFrontmatter`) before scoring — the spec is the source of truth and may have moved since your last context.
 
 ## Checks
 
@@ -25,14 +25,14 @@ Always read `docs/container-spec.md` and `core/content-schema/src/index.ts` (`Co
 Use `Glob` to inventory the container. Compare to the canonical layout:
 
 REQUIRED files at container root:
-- `concept-package.yaml`
+- `container.yaml`
 - `concept-card.md`
 - `sources.md`
 - `README.md`
 - `TECHNICAL.md`
 
 REQUIRED directories:
-- `sims/` (may be empty)
+- `simulation/` (may be empty)
 
 OPTIONAL files/dirs:
 - `decision-matrix.md`, `misconceptions.md`
@@ -41,14 +41,14 @@ OPTIONAL files/dirs:
 Findings:
 - Any **missing required** file/dir → **P0**.
 - Any **unexpected top-level file** not in the canonical list and not under `extras/` → **P0** (case-sensitive: `Readme.md`, `concept card.md`, etc. all fail).
-- Sim subdir present without `SimulationSpec.yaml`, `index.tsx`, OR `<sim-id>.test.ts` → **P0**.
+- Sim subdir present without `simulation.yaml`, `index.tsx`, OR `simulation.test.ts` → **P0**.
 - Sim subdir name does not match `<sim-id>` kebab-case → **P0**.
 
 ### 2. Manifest validity
 
-- `concept-package.yaml` parses against `ConceptPackageSpec` (Zod). Use the project script:
+- `container.yaml` parses against `ContainerSpec` (Zod). Use the project script:
   ```
-  pnpm container:validate <path>
+  pnpm container:validate
   ```
   (You have `Bash` only via the runner — if not available, request the caller to run it, but still report the YAML structural checks you can do statically.)
 - Parse failure → **P0** with the Zod issue path.
@@ -57,17 +57,17 @@ Findings:
 
 | Field | Must equal | Failure |
 |---|---|---|
-| Container directory name | `concept-package.yaml.id` | **P0** |
-| `concept-card.md` frontmatter `concept` | `concept-package.yaml.id` | **P0** |
-| `concept-card.md` frontmatter `branch` | `concept-package.yaml.branch` | **P0** |
-| `concept-card.md` frontmatter `subject` | `concept-package.yaml.subject` | **P0** |
-| Each `sims/<sim-id>/` directory name | A matching `items.sims[].id` in YAML | **P0** |
-| Each `SimulationSpec.yaml` `id` | Its containing directory name | **P0** |
-| Each `transfer/<problem-id>.md` filename stem | A matching `items.transfer_problems[].id` | **P0** |
+| Container directory name | `container.yaml.id` | **P0** |
+| `concept-card.md` frontmatter `concept` | `container.yaml.id` | **P0** |
+| `concept-card.md` frontmatter `branch` | `container.yaml.branch` | **P0** |
+| `concept-card.md` frontmatter `subject` | `container.yaml.subject` | **P0** |
+| Each `simulation/` directory name | A matching `simulation.id` in YAML | **P0** |
+| Each `simulation.yaml` `id` | Its containing directory name | **P0** |
+| Each `transfer/<problem-id>.md` filename stem | A matching `transfer_problems.id` | **P0** |
 
 ### 4. Prediction-gate token (lint-level proxy)
 
-In each `sims/<sim-id>/<sim-id>.test.ts`, the literal string `prediction-gate` MUST appear somewhere. Use `Grep`. Absence → **P0**.
+In each `simulation/simulation.test.ts`, the literal string `prediction-gate` MUST appear somewhere. Use `Grep`. Absence → **P0**.
 
 ### 5. TECHNICAL.md Anieyrudh Filter section
 
@@ -79,7 +79,7 @@ In each `sims/<sim-id>/<sim-id>.test.ts`, the literal string `prediction-gate` M
 
 ### 7. Kernel dep resolution
 
-For every `kernel_deps` entry in each `SimulationSpec.yaml`, the path `core/<module>/` MUST exist. Missing → **P0**.
+For every `kernel_deps` entry in each `simulation.yaml`, the path `core/<module>/` MUST exist. Missing → **P0**.
 
 ## Output
 

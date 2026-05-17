@@ -85,7 +85,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer
 - <item>
 ```
 
-Also update `concept-package.yaml`:
+Also update `container.yaml`:
 ```yaml
 filter_pass:
   date: <YYYY-MM-DD>
@@ -101,7 +101,7 @@ Re-run the docs generator against the now-final manifest so the descriptive doc 
 ### 6. Final validator pass
 
 ```
-pnpm container:validate <path>
+pnpm container:validate
 pnpm --filter <pkg> typecheck
 pnpm --filter <pkg> test --run
 ```
