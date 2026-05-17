@@ -1,69 +1,63 @@
 ---
 name: sim-scaffold
-description: Low-level primitive — read templates from core/docs-templates/, perform <PLACEHOLDER> substitution, write files into a target sim directory. Consumed by /new-container and /new-sim-in-container. Do not invoke directly unless you know the placeholder contract.
+description: Low-level primitive that renders simulation templates from core/docs-templates/ into a v2 container's simulation/ directory. Consumed by higher-level container skills.
 disable-model-invocation: false
 ---
 
 # sim-scaffold
 
-Internal primitive. Does NOT prompt. Does NOT validate against the schema. Does NOT register the sim in `concept-package.yaml`. Higher-level skills (`/new-container`, `/new-sim-in-container`) wrap this.
+Internal primitive. It writes the canonical simulation surface for one v2
+container. Prefer `/new-container` or `/new-sim-in-container` unless you are
+maintaining scaffolding itself.
 
 ## Contract
 
-### Inputs (caller MUST provide all)
+### Inputs
 
 | Key | Type | Example |
 |---|---|---|
-| `target_dir` | absolute path | `.../sims/oscillator/` |
-| `placeholders` | map of `<KEY>` → string | see below |
+| `target_dir` | absolute path | `.../containers/oscillations/simulation/` |
+| `placeholders` | map of placeholder to string | see below |
 
 Required placeholders:
 
 | Placeholder | Meaning |
 |---|---|
-| `<SIM_ID>` | kebab-case sim id; matches the leaf directory name |
-| `<SIM_TITLE>` | human-readable title |
-| `<INTERACTION_TYPE>` | one of the `SimulationSpec.interaction_type` enum |
-| `<KERNEL_DEPS>` | YAML array literal, e.g. `["core/numerical-math", "core/plotting"]` |
+| `<SIM_ID>` | simulation id |
+| `<TITLE>` | parent container title |
 | `<PACKAGE_ID>` | parent container id |
 | `<BRANCH>` | `a-level` or `sutd` |
 | `<SUBJECT>` | parent subject |
+| `<SimComponent>` | React component name |
 
-Caller is responsible for ensuring these are well-formed. This skill does NO validation.
-
-### Behaviour
+## Behaviour
 
 1. Read templates from `core/docs-templates/`:
-   - `simulation-spec.template.yaml` → `<target_dir>/SimulationSpec.yaml`
-   - `sim-index.template.tsx` → `<target_dir>/index.tsx`
-   - `sim-test.template.ts` → `<target_dir>/<SIM_ID>.test.ts`
+   - `simulation-spec.template.yaml` -> `simulation.yaml`
+   - `sim-index.template.tsx` -> `index.tsx`
+   - `sim-test.template.ts` -> `simulation.test.ts`
+   - `simulation-controls.template.yaml` -> `controls.yaml`
+   - `simulation-presets.template.yaml` -> `presets.yaml`
+   - `simulation-runtime.template.yaml` -> `runtime.yaml`
+   - `simulation-state-labels.template.yaml` -> `state-labels.yaml`
 
-2. For each template, substitute every `<PLACEHOLDER>` occurrence with the matching value from `placeholders`. Substitution is literal string replace; placeholders are case-sensitive.
+2. Substitute placeholders literally.
 
-3. Write the three files to `target_dir`. Create the directory if missing. **Fail-fast** if any target file already exists — do not overwrite. The caller is responsible for conflict checks.
+3. Write to the target `simulation/` directory. Fail if a target file already
+   exists unless the caller explicitly requested replacement.
 
-4. Return:
-   ```
-   sim-scaffold · <SIM_ID>
-   - SimulationSpec.yaml: written
-   - index.tsx: written
-   - <SIM_ID>.test.ts: written (contains prediction-gate token)
-   ```
+4. Check `simulation.test.ts` contains the token `prediction-gate`. If absent,
+   the template is broken and the scaffold must fail.
 
-5. After writing the test file, `Grep` it for the literal token `prediction-gate`. If absent, the template is broken — emit a P0 error and abort. (This is a self-test of the templates themselves, not of the caller's input.)
+## What This Skill Does Not Do
 
-## What this skill does NOT do
+- Does not modify `container.yaml`.
+- Does not create container-level files.
+- Does not run validators.
+- Does not add missing kernels.
 
-- Does not prompt the user.
-- Does not modify `concept-package.yaml`.
-- Does not run validators or typecheck.
-- Does not check that `<KERNEL_DEPS>` resolve to real `core/` modules.
-- Does not create container-level files (`concept-card.md`, `sources.md`, etc.) — those are produced by `/new-container` directly from the container templates.
+## Refuse To Do
 
-All of that is the caller's job. Keep this primitive small and predictable.
-
-## Refuse to do
-
-- Do not overwrite existing files. Abort with a clear error and let the caller resolve.
-- Do not edit templates in-place; only substitute and write copies.
-- Do not silently drop a missing placeholder. If the template contains a `<KEY>` that the caller did not supply, fail with: `missing placeholder: <KEY>`.
+- Do not overwrite files silently.
+- Do not edit templates in-place.
+- Do not drop missing placeholders.

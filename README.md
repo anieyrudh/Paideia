@@ -23,7 +23,7 @@ contract under `core/<module>/AGENTS.md`. See [docs/core-modules.md](docs/core-m
 - [`core/shared/`](./core/shared/) — Universal type vocabulary (`Function2D`, `Renderable<T>`, `KernelResult<T>`)
 - [`core/prediction-gate/`](./core/prediction-gate/) — Predict-before-reveal primitive
 - [`core/sim-runtime/`](./core/sim-runtime/) — PMOE-T state machine
-- [`core/scaffolder/`](./core/scaffolder/) — `new-container` CLI
+- [`scripts/new-container.mjs`](./scripts/new-container.mjs) — v2 container scaffolder
 
 ## The Container model
 

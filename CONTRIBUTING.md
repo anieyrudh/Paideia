@@ -91,13 +91,17 @@ pnpm container:new
 
 Prompts for branch, subject, package id, title, primary interaction type. Produces the full canonical directory tree from `core/docs-templates/`. Do not hand-author the structure — compose your content into the shape.
 
-To remix an existing container: `pnpm container:remix <source-id> <new-id>`. Attribution is auto-injected.
+To remix an existing container, copy it in a feature branch, preserve
+attribution in `sources.md`, and run `pnpm container:validate`. A dedicated
+remix helper can be added later.
 
 ## License discipline
 
 - **Code is MIT.** New code goes under `LICENSE`.
 - **Content is CC-BY-4.0.** Concept cards, decision matrices, transfer problems, sources go under `LICENSE-content`.
 - **No GPL deps bundled into runtime.** `LICENSES.json` is the allowlist; `pnpm license:check` enforces. GPL services (e.g., Argdown) are integrated via iframe and never bundled.
-- **Provenance is mandatory.** If your work derives from PhET, an existing textbook example, or another open project, fill `provenance` in `concept-package.yaml` and cite in `sources.md`.
+- **Provenance is mandatory.** If your work derives from PhET, an existing
+  textbook example, or another open project, record provenance in
+  `container.yaml` where applicable and cite in `sources.md`.
 
 When in doubt, ask in Discussions or open an `escalation` issue. Don't invent.

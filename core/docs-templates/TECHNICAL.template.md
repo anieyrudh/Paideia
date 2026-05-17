@@ -45,9 +45,8 @@ axe results at last green build:
 ## How to run locally
 
 ```bash
-pnpm container:dev <package-id>
-# or, for full LMS context:
 pnpm dev --filter @paideia/<branch>-shell
+pnpm container:validate
 ```
 
 ## Anieyrudh Filter pass

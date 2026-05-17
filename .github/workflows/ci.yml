@@ -83,6 +83,9 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Validate agent docs
+        run: pnpm agent:validate
+
   test:
     name: Test
     runs-on: ubuntu-latest

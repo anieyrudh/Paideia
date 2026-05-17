@@ -15,6 +15,9 @@
     { "path": "./core/fsrs" },
     { "path": "./core/bkt" },
     { "path": "./core/algorithm-trace" },
+    { "path": "./core/sim-runtime" },
+    { "path": "./core/ui-sim" },
+    { "path": "./core/three-scene" },
     { "path": "./a-level/packages/physics-sims" },
     { "path": "./a-level/apps/shell" },
     { "path": "./testing/sim-harness" }
