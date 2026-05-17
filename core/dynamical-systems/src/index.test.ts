@@ -106,6 +106,13 @@ describe("@paideia/dynamical-systems", () => {
     }
   });
 
+  it("rejects finite 2D field samples whose central differences overflow", () => {
+    const result = jacobian2D(([x]) => [Math.sign(x ?? 0) * Number.MAX_VALUE, 0], [0, 0]);
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("numerical-instability");
+  });
+
   it("classifies planar linear equilibria", () => {
     const cases = [
       { matrix: [[-2, 0], [0, -1]] as const, kind: "stable-node" },
@@ -122,6 +129,16 @@ describe("@paideia/dynamical-systems", () => {
       expect(result.ok).toBe(true);
       if (result.ok) expect(result.value.kind).toBe(testCase.kind);
     }
+  });
+
+  it("rejects finite 2D linear systems whose derived classification values overflow", () => {
+    const result = classifyLinear2D([
+      [Number.MAX_VALUE, 0],
+      [0, Number.MAX_VALUE],
+    ]);
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("numerical-instability");
   });
 
   it("reports every expected error category as KernelResult.err", () => {

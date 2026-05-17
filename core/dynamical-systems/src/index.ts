@@ -136,6 +136,11 @@ const validateDt = (dt: number): KernelResult<void> =>
 const validateTime = (t: number): KernelResult<void> =>
   Number.isFinite(t) ? ok(undefined) : err("precondition-violated", `t must be finite; got ${t}`);
 
+const validateFiniteDerivedNumber = (value: number, label: string): KernelResult<void> =>
+  Number.isFinite(value)
+    ? ok(undefined)
+    : err("numerical-instability", `${label} must be finite; got ${value}`);
+
 const addScaled = (state: StateVector, derivative: StateVector, scale: number): StateVector =>
   freezeVector(state.map((value, index) => value + scale * (derivative[index] ?? 0)));
 
@@ -419,8 +424,26 @@ export const jacobian2D = (
     ((xPlus.value[1] ?? 0) - (xMinus.value[1] ?? 0)) / (2 * h),
     ((yPlus.value[1] ?? 0) - (yMinus.value[1] ?? 0)) / (2 * h),
   ] as const);
+  const matrix = Object.freeze([row0, row1] as const);
+  const finiteOutput = validateFiniteMatrix2x2(matrix, "Jacobian");
+  if (!finiteOutput.ok) return finiteOutput;
 
-  return ok(Object.freeze([row0, row1] as const));
+  return ok(matrix);
+};
+
+const validateFiniteMatrix2x2 = (matrix: Matrix2x2, label: string): KernelResult<void> => {
+  for (let row = 0; row < 2; row += 1) {
+    for (let column = 0; column < 2; column += 1) {
+      const value = matrix[row]?.[column];
+      const finite = validateFiniteDerivedNumber(
+        value ?? Number.NaN,
+        `${label}[${row}][${column}]`,
+      );
+      if (!finite.ok) return finite;
+    }
+  }
+
+  return ok(undefined);
 };
 
 const validateMatrix2x2 = (matrix: Matrix2x2): KernelResult<void> => {
@@ -439,6 +462,36 @@ const validateMatrix2x2 = (matrix: Matrix2x2): KernelResult<void> => {
   return ok(undefined);
 };
 
+const finishLinearStability2D = (stability: LinearStability2D): KernelResult<LinearStability2D> => {
+  const trace = validateFiniteDerivedNumber(stability.trace, "trace");
+  if (!trace.ok) return trace;
+
+  const determinant = validateFiniteDerivedNumber(stability.determinant, "determinant");
+  if (!determinant.ok) return determinant;
+
+  const discriminant = validateFiniteDerivedNumber(stability.discriminant, "discriminant");
+  if (!discriminant.ok) return discriminant;
+
+  if (stability.eigenvalues.kind === "real") {
+    const lambda1 = validateFiniteDerivedNumber(stability.eigenvalues.lambda1, "lambda1");
+    if (!lambda1.ok) return lambda1;
+
+    const lambda2 = validateFiniteDerivedNumber(stability.eigenvalues.lambda2, "lambda2");
+    if (!lambda2.ok) return lambda2;
+  } else {
+    const real = validateFiniteDerivedNumber(stability.eigenvalues.real, "real eigenvalue part");
+    if (!real.ok) return real;
+
+    const imaginary = validateFiniteDerivedNumber(
+      stability.eigenvalues.imaginaryMagnitude,
+      "imaginary eigenvalue magnitude",
+    );
+    if (!imaginary.ok) return imaginary;
+  }
+
+  return ok(stability);
+};
+
 export const classifyLinear2D = (matrix: Matrix2x2): KernelResult<LinearStability2D> => {
   const validMatrix = validateMatrix2x2(matrix);
   if (!validMatrix.ok) return validMatrix;
@@ -453,7 +506,7 @@ export const classifyLinear2D = (matrix: Matrix2x2): KernelResult<LinearStabilit
 
   if (Math.abs(determinant) <= equilibriumTolerance || Math.abs(discriminant) <= equilibriumTolerance) {
     const root = trace / 2;
-    return ok({
+    return finishLinearStability2D({
       trace,
       determinant,
       discriminant,
@@ -464,7 +517,7 @@ export const classifyLinear2D = (matrix: Matrix2x2): KernelResult<LinearStabilit
 
   if (determinant < 0) {
     const root = Math.sqrt(discriminant);
-    return ok({
+    return finishLinearStability2D({
       trace,
       determinant,
       discriminant,
@@ -477,7 +530,7 @@ export const classifyLinear2D = (matrix: Matrix2x2): KernelResult<LinearStabilit
     const root = Math.sqrt(discriminant);
     const lambda1 = (trace + root) / 2;
     const lambda2 = (trace - root) / 2;
-    return ok({
+    return finishLinearStability2D({
       trace,
       determinant,
       discriminant,
@@ -495,7 +548,7 @@ export const classifyLinear2D = (matrix: Matrix2x2): KernelResult<LinearStabilit
         ? "stable-spiral"
         : "unstable-spiral";
 
-  return ok({
+  return finishLinearStability2D({
     trace,
     determinant,
     discriminant,
