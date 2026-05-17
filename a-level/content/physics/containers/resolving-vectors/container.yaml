@@ -68,33 +68,41 @@ concept_map:
   mindmap: concept-map/mindmap.md
   mermaid: concept-map/graph.mmd
 transfer_problems:
-  - id: ramp-force-components
+  - id: drone-velocity-components
     prompt: |
-      A 12 N force pulls a trolley at 25 degrees above the horizontal. Resolve the force into horizontal and vertical components, then explain which component changes the trolley's horizontal motion.
-    surface_form: "inclined pull on a trolley"
-    same_concept_check: "The surface changes from abstract vector resolution to a force context, but the task remains resolving one vector into perpendicular components."
-    rubric_path: problem-solving/ramp-force-components.md
+      A drone flies at 14 m/s on a heading 35 degrees north of east. Resolve the velocity into eastward and northward components, then explain why this is the same component idea even though the vector is no longer a force.
+    surface_form: "drone velocity heading"
+    same_concept_check: "The surface changes from a force-at-angle setup to velocity navigation, but the task remains replacing one vector by perpendicular components with the same direction reference."
+    rubric_path: problem-solving/drone-velocity-components.md
 assessments: []
-status: draft
+status: reviewed
 authoring:
   owner: "Anieyrudh R"
   reviewers: []
-  qa_status: in-review
+  qa_status: passed
   dependency_graph: concept-map/concept-map.yaml
   changelog:
     - date: "2026-05-17"
       author: "Codex"
       summary: "Added the first downstream simulation container for vector components."
+    - date: "2026-05-17"
+      author: "Codex"
+      summary: "Upgraded the resolving-vectors simulation into the second product slice using shared vector kernels, formula readouts, presets, and shell test coverage."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []
+filter_pass:
+  date: "2026-05-17"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
 review:
   anieyrudh_filter:
-    required_for_status: published
-    last_run: null
+    required_for_status: reviewed
+    last_run: "2026-05-17"
     p0_open: 0
     p1_open: 0
-    output_in_technical_md: false
+    output_in_technical_md: true
 misconceptions:
   - name: "Sine-cosine swap"
     description: |

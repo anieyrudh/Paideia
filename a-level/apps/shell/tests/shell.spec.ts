@@ -30,7 +30,7 @@ test("navigates the generated mini knowledge graph", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByRole("heading", { name: "Physical Quantities and Units" })).toBeVisible();
-  await expect(page.getByText("3 container ready")).toBeVisible();
+  await expect(page.getByText("3 concepts ready")).toBeVisible();
   await expect(page.getByRole("heading", { name: "First principles" })).toBeVisible();
   await expect(page.getByText("A physical quantity is something about the world")).toBeVisible();
   await expect(page.getByText("Name the quantity")).toBeVisible();
@@ -44,6 +44,13 @@ test("navigates the generated mini knowledge graph", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Resolving Vectors" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Component Resolution Explorer" })).toBeVisible();
   await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+  await page.getByLabel("8.7 N").check();
+  await page
+    .getByLabel("Rationale")
+    .fill("The horizontal component is adjacent to the angle, so cosine applies.");
+  await page.getByRole("button", { name: "Commit prediction" }).click();
+  await expect(page.getByLabel("Observation unlocked")).toBeVisible();
+  await expect(page.getByLabel("Formula used")).toContainText("Fx = F cos θ");
 });
 
 test("searches modules and keeps local mastery progress", async ({ page }) => {

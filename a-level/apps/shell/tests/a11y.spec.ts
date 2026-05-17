@@ -31,3 +31,23 @@ test("has no critical accessibility violations after the scalars-and-vectors sim
 
   expect(criticalViolations).toEqual([]);
 });
+
+test("has no critical accessibility violations after the resolving-vectors sim is revealed", async ({
+  page,
+}) => {
+  await page.goto("/#a-level/physics/resolving-vectors");
+
+  await page.getByLabel("8.7 N").check();
+  await page
+    .getByLabel("Rationale")
+    .fill("The horizontal component is adjacent to the 30 degree angle, so cosine applies.");
+  await page.getByRole("button", { name: "Commit prediction" }).click();
+  await page.getByLabel("Observation unlocked").waitFor();
+
+  const results = await new AxeBuilder({ page }).analyze();
+  const criticalViolations = results.violations.filter(
+    (violation) => violation.impact === "critical",
+  );
+
+  expect(criticalViolations).toEqual([]);
+});

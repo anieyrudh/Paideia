@@ -12,7 +12,7 @@ aid_types:
   - simulation
   - misconception-audit
   - transfer-problem
-status: draft
+status: reviewed
 ---
 
 # Resolving Vectors
@@ -23,6 +23,11 @@ A vector can be replaced by perpendicular components along chosen axes. The
 components are not extra vectors added to the original; together they are an
 equivalent representation of the same vector.
 
+The angle reference comes first. If the angle is measured from the horizontal,
+the horizontal component is adjacent to the angle and the vertical component is
+opposite the angle. If the angle is measured from the vertical, those roles
+switch.
+
 For a vector of magnitude `R` at angle `theta` above the horizontal:
 
 ```text
@@ -30,9 +35,8 @@ x = R cos theta
 y = R sin theta
 ```
 
-The formula is not magic. The horizontal component is the side adjacent to the
-angle in the right triangle, so it uses cosine. The vertical component is the
-opposite side, so it uses sine.
+The formula follows from the right-triangle labels, not from memorising sine
+and cosine as fixed words.
 
 ## Key Definitions
 
@@ -49,8 +53,8 @@ handled separately while preserving the original direction information.
 
 ## Canonical Examples
 
-- A `10 N` force at `30 degrees` has horizontal component `10 cos 30 = 8.7 N`.
-- The same force has vertical component `10 sin 30 = 5.0 N`.
+- A shallow upward pull has a larger horizontal component than vertical component when the angle is measured from the horizontal.
+- A vertical vector has zero horizontal component.
 - If the angle is measured from the vertical instead, the sine/cosine roles switch.
 
 ## Common Misconceptions

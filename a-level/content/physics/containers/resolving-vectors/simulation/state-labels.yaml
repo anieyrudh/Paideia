@@ -1,5 +1,13 @@
 state_labels:
-  magnitude: "Vector magnitude"
-  angleDegrees: "Angle above horizontal"
-  componentX: "Horizontal component"
-  componentY: "Vertical component"
+  magnitudeNewtons:
+    label: "Vector magnitude"
+    meaning: "Original vector size before it is split into perpendicular parts."
+  angleDegrees:
+    label: "Angle above horizontal"
+    meaning: "The reference angle that decides which component is adjacent and which is opposite."
+  componentX:
+    label: "Horizontal component"
+    meaning: "Adjacent component when the angle is measured from the horizontal."
+  componentY:
+    label: "Vertical component"
+    meaning: "Opposite component when the angle is measured from the horizontal."
