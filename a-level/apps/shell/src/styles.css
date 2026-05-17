@@ -239,6 +239,59 @@ textarea:focus-visible {
   grid-template-columns: minmax(0, 1fr) minmax(250px, 320px);
 }
 
+.learning-column {
+  display: grid;
+  gap: 1rem;
+}
+
+.concept-panel {
+  background: rgba(255, 253, 247, 0.72);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.concept-grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.concept-section {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.55rem;
+  padding-top: 0.8rem;
+}
+
+.concept-lead {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.concept-section h2,
+.concept-section h3,
+.concept-section p,
+.concept-section ul,
+.concept-section ol {
+  margin: 0;
+}
+
+.concept-section h2 {
+  font-size: clamp(1.45rem, 3vw, 2rem);
+}
+
+.concept-section h3 {
+  font-size: 1rem;
+}
+
+.concept-section ul,
+.concept-section ol {
+  padding-left: 1.1rem;
+}
+
 .sim-panel {
   background: var(--surface);
   border: 1px solid var(--line);
@@ -429,6 +482,7 @@ textarea:focus-visible {
   .workspace,
   .container-header,
   .lab-layout,
+  .concept-grid,
   .vector-lab {
     display: grid;
     grid-template-columns: 1fr;

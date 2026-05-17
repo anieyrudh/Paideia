@@ -30,6 +30,7 @@ const TARGETS = [
 
 const isDirectory = (path) => existsSync(path) && statSync(path).isDirectory();
 const readYaml = (path) => YAML.parse(readFileSync(path, "utf8"));
+const readOptionalText = (path) => (existsSync(path) ? readFileSync(path, "utf8") : "");
 const jsString = (value) => JSON.stringify(value);
 
 const subjectLabel = (subject) =>
@@ -78,6 +79,65 @@ const firstRendererModule = (simSpec, manifestPath) => {
 
 const readOptionalYaml = (path) => (existsSync(path) ? readYaml(path) : null);
 
+const stripFrontmatter = (markdown) =>
+  markdown.replace(/^---\s*\n[\s\S]*?\n---\s*(\n|$)/, "");
+
+const sectionBody = (markdown, heading) => {
+  const escaped = heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const match = markdown.match(new RegExp(`^##\\s+${escaped}\\s*$`, "im"));
+  if (!match) return "";
+  const startIdx = (match.index ?? 0) + match[0].length;
+  const after = markdown.slice(startIdx);
+  const nextHeader = after.search(/^##\s+/m);
+  return nextHeader === -1 ? after : after.slice(0, nextHeader);
+};
+
+const normalizeMarkdownText = (markdown) =>
+  markdown
+    .replace(/```[\s\S]*?```/g, "")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const firstParagraph = (markdown) => {
+  const paragraphs = markdown
+    .split(/\n\s*\n/g)
+    .map(normalizeMarkdownText)
+    .filter(Boolean);
+  return paragraphs[0] ?? "";
+};
+
+const bulletItems = (markdown, limit = 5) =>
+  markdown
+    .split("\n")
+    .map((line) => line.match(/^\s*-\s+(.*)$/)?.[1] ?? "")
+    .map(normalizeMarkdownText)
+    .filter(Boolean)
+    .slice(0, limit);
+
+const conceptCardSummary = (containerDir) => {
+  const card = stripFrontmatter(readOptionalText(join(containerDir, "concept-card.md")));
+  return {
+    firstPrinciples: firstParagraph(sectionBody(card, "First-Principles Explanation") || sectionBody(card, "First-principles explanation")),
+    keyDefinitions: bulletItems(sectionBody(card, "Key Definitions") || sectionBody(card, "Key definitions")),
+    canonicalExamples: bulletItems(sectionBody(card, "Canonical Examples") || sectionBody(card, "Canonical examples")),
+  };
+};
+
+const problemSolvingSteps = (containerDir, manifest) => {
+  const stepsPath = join(containerDir, manifest.problem_solving?.steps ?? "problem-solving/steps.yaml");
+  const parsed = readOptionalYaml(stepsPath);
+  return (parsed?.steps ?? [])
+    .map((step) => {
+      if (typeof step.label === "string") return step.label;
+      if (typeof step.prompt === "string") return step.prompt;
+      return "";
+    })
+    .filter(Boolean)
+    .slice(0, 7);
+};
+
 const renderKnowledgeGraph = (branch, manifests) => {
   const imports = [];
   const containers = [];
@@ -92,6 +152,8 @@ const renderKnowledgeGraph = (branch, manifests) => {
     const conceptMap = readOptionalYaml(conceptMapPath);
     const simSpecPath = manifest.simulation?.spec ? join(containerDir, manifest.simulation.spec) : null;
     const simSpec = simSpecPath === null ? null : readOptionalYaml(simSpecPath);
+    const cardSummary = conceptCardSummary(containerDir);
+    const steps = problemSolvingSteps(containerDir, manifest);
     const conceptId = basename(containerDir);
     const nodeId = `${branch}/${manifest.subject}/${manifest.id}`;
 
@@ -147,6 +209,10 @@ const renderKnowledgeGraph = (branch, manifests) => {
     aidTypes: ${renderStringArray(manifest.aid_types ?? [], "      ")},
     misconceptions: ${renderStringArray((manifest.misconceptions ?? []).map((entry) => entry.name), "      ")},
     transferProblem: ${jsString((manifest.transfer_problems?.[0]?.prompt ?? "No transfer problem registered yet.").trim())},
+    firstPrinciples: ${jsString(cardSummary.firstPrinciples)},
+    keyDefinitions: ${renderStringArray(cardSummary.keyDefinitions, "      ")},
+    canonicalExamples: ${renderStringArray(cardSummary.canonicalExamples, "      ")},
+    problemSolvingSteps: ${renderStringArray(steps, "      ")},
     prerequisites: ${renderStringArray((conceptMap?.prerequisites ?? []).map((entry) => entry.title), "      ")},
     downstream: ${renderStringArray((conceptMap?.downstream ?? []).map((entry) => entry.title), "      ")},
     siblings: ${renderStringArray((conceptMap?.siblings ?? []).map((entry) => entry.title), "      ")},
@@ -186,6 +252,10 @@ export interface ShellContainer {
   readonly aidTypes: readonly AidType[];
   readonly misconceptions: readonly string[];
   readonly transferProblem: string;
+  readonly firstPrinciples: string;
+  readonly keyDefinitions: readonly string[];
+  readonly canonicalExamples: readonly string[];
+  readonly problemSolvingSteps: readonly string[];
   readonly prerequisites: readonly string[];
   readonly downstream: readonly string[];
   readonly siblings: readonly string[];
