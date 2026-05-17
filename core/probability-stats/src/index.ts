@@ -50,6 +50,11 @@ const finite = (value: number, label: string): KernelResult<number> =>
     ? ok(value)
     : err("precondition-violated", `${label} must be finite; got ${value}`);
 
+const finiteOutput = (value: number, label: string): KernelResult<number> =>
+  Number.isFinite(value)
+    ? ok(value)
+    : err("numerical-instability", `${label} overflowed to a non-finite value`);
+
 const validateValues = (
   values: readonly number[],
   label: string,
@@ -101,7 +106,7 @@ export const normalizeDistribution = <TId extends string>(
     return err("precondition-violated", "Distribution requires at least one outcome");
   }
 
-  let totalWeight = 0;
+  let maxWeight = 0;
   for (const outcome of outcomes) {
     const weight = finite(outcome.weight, `Outcome ${outcome.id} weight`);
     if (!weight.ok) return weight;
@@ -110,16 +115,26 @@ export const normalizeDistribution = <TId extends string>(
     if (outcome.weight < 0) {
       return err("out-of-domain", `Outcome ${outcome.id} weight must be non-negative`);
     }
-    totalWeight += outcome.weight;
+    maxWeight = Math.max(maxWeight, outcome.weight);
   }
 
-  if (totalWeight <= 0) {
+  if (maxWeight <= 0) {
+    return err("out-of-domain", "Total distribution weight must be positive");
+  }
+
+  let totalScaledWeight = 0;
+  for (const outcome of outcomes) {
+    totalScaledWeight += outcome.weight / maxWeight;
+  }
+  const validTotalScaledWeight = finiteOutput(totalScaledWeight, "Total distribution weight");
+  if (!validTotalScaledWeight.ok) return validTotalScaledWeight;
+  if (totalScaledWeight <= 0) {
     return err("out-of-domain", "Total distribution weight must be positive");
   }
 
   const distribution: DistributionOutcome<TId>[] = [];
   for (const outcome of outcomes) {
-    const probabilityResult = probability(outcome.weight / totalWeight);
+    const probabilityResult = probability((outcome.weight / maxWeight) / totalScaledWeight);
     if (!probabilityResult.ok) return probabilityResult;
     distribution.push({
       id: outcome.id,
@@ -140,9 +155,11 @@ export const expectedValue = (
   let mean = 0;
   for (const outcome of distribution) {
     mean += outcome.value * Number(outcome.probability);
+    const validMean = finiteOutput(mean, "Expected value");
+    if (!validMean.ok) return validMean;
   }
 
-  return ok(mean);
+  return finiteOutput(mean, "Expected value");
 };
 
 export const variance = (
@@ -154,10 +171,14 @@ export const variance = (
   let total = 0;
   for (const outcome of distribution) {
     const delta = outcome.value - mean.value;
+    const validDelta = finiteOutput(delta, "Variance delta");
+    if (!validDelta.ok) return validDelta;
     total += Number(outcome.probability) * delta * delta;
+    const validTotal = finiteOutput(total, "Variance");
+    if (!validTotal.ok) return validTotal;
   }
 
-  return ok(Math.max(0, total));
+  return finiteOutput(Math.max(0, total), "Variance");
 };
 
 export const summarize = (
@@ -184,21 +205,32 @@ export const summarize = (
     }
 
     const delta = value - mean;
+    const validDelta = finiteOutput(delta, "Summary delta");
+    if (!validDelta.ok) return validDelta;
     mean += delta / (index + 1);
+    const validMean = finiteOutput(mean, "Summary mean");
+    if (!validMean.ok) return validMean;
     sumSquaredDeltas += delta * (value - mean);
+    const validSumSquaredDeltas = finiteOutput(sumSquaredDeltas, "Summary variance accumulator");
+    if (!validSumSquaredDeltas.ok) return validSumSquaredDeltas;
     min = Math.min(min, value);
     max = Math.max(max, value);
   }
 
   const denominator = mode === "sample" ? values.length - 1 : values.length;
   const computedVariance = sumSquaredDeltas / denominator;
+  const validComputedVariance = finiteOutput(computedVariance, "Summary variance");
+  if (!validComputedVariance.ok) return validComputedVariance;
   const nonNegativeVariance = Math.max(0, computedVariance);
+  const standardDeviation = Math.sqrt(nonNegativeVariance);
+  const validStandardDeviation = finiteOutput(standardDeviation, "Summary standard deviation");
+  if (!validStandardDeviation.ok) return validStandardDeviation;
 
   return ok({
     count: values.length,
     mean,
     variance: nonNegativeVariance,
-    standardDeviation: Math.sqrt(nonNegativeVariance),
+    standardDeviation,
     min,
     max,
   });

@@ -46,6 +46,24 @@ describe("@paideia/probability-stats", () => {
     if (!zero.ok) expect(zero.error.code).toBe("out-of-domain");
   });
 
+  it("normalizes very large finite weights without overflowing mass", () => {
+    const result = normalizeDistribution([
+      { id: "huge-a", weight: Number.MAX_VALUE, value: 1 },
+      { id: "huge-b", weight: Number.MAX_VALUE, value: 2 },
+    ]);
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(Number(result.value[0]?.probability)).toBeCloseTo(0.5, 12);
+      expect(Number(result.value[1]?.probability)).toBeCloseTo(0.5, 12);
+      const totalMass = result.value.reduce(
+        (total, outcome) => total + Number(outcome.probability),
+        0,
+      );
+      expect(totalMass).toBeCloseTo(1, 12);
+    }
+  });
+
   it("computes expected value and variance for a discrete distribution", () => {
     const distribution: DiscreteDistribution = [
       { id: "one", probability: p(0.25), value: 1 },
@@ -59,6 +77,21 @@ describe("@paideia/probability-stats", () => {
     if (mean.ok) expect(mean.value).toBeCloseTo(2.5, 12);
     expect(spread.ok).toBe(true);
     if (spread.ok) expect(spread.value).toBeCloseTo(0.75, 12);
+  });
+
+  it("returns errors instead of non-finite derived moments", () => {
+    const hugeDistribution: DiscreteDistribution = [
+      { id: "low", probability: p(0.5), value: -Number.MAX_VALUE },
+      { id: "high", probability: p(0.5), value: Number.MAX_VALUE },
+    ];
+
+    const mean = expectedValue(hugeDistribution);
+    expect(mean.ok).toBe(true);
+    if (mean.ok) expect(Number.isFinite(mean.value)).toBe(true);
+
+    const spread = variance(hugeDistribution);
+    expect(spread.ok).toBe(false);
+    if (!spread.ok) expect(spread.error.code).toBe("numerical-instability");
   });
 
   it("rejects distributions whose branded probabilities do not sum to one", () => {
@@ -92,6 +125,13 @@ describe("@paideia/probability-stats", () => {
     const result = summarize([2]);
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.error.code).toBe("precondition-violated");
+  });
+
+  it("rejects non-finite summary outputs from extreme finite inputs", () => {
+    const result = summarize([Number.MAX_VALUE, -Number.MAX_VALUE]);
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("numerical-instability");
   });
 
   it("computes interpolated quantiles without mutating values", () => {
