@@ -1,0 +1,9 @@
+controls:
+  - id: magnitude
+    label: "Vector magnitude"
+    default: 10
+    unit: N
+  - id: angle
+    label: "Angle above horizontal"
+    default: 30
+    unit: degrees

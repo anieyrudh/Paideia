@@ -1,0 +1,11 @@
+presets:
+  - id: canonical-force
+    label: "10 N at 30 degrees"
+    state:
+      magnitude: 10
+      angleDegrees: 30
+  - id: horizontal-force
+    label: "10 N horizontal"
+    state:
+      magnitude: 10
+      angleDegrees: 0

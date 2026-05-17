@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Resolving vectors thumbnail">
+  <rect width="320" height="180" fill="#f7f4ea"/>
+  <line x1="60" y1="135" x2="260" y2="135" stroke="#d8d0bf" stroke-width="2"/>
+  <line x1="60" y1="135" x2="60" y2="30" stroke="#d8d0bf" stroke-width="2"/>
+  <line x1="60" y1="135" x2="230" y2="62" stroke="#b42318" stroke-width="6"/>
+  <line x1="60" y1="135" x2="230" y2="135" stroke="#1f5f8b" stroke-width="5"/>
+  <line x1="230" y1="135" x2="230" y2="62" stroke="#7657d8" stroke-width="5"/>
+  <text x="72" y="44" fill="#13251e" font-family="Arial, sans-serif" font-size="20" font-weight="700">x = R cos theta</text>
+</svg>

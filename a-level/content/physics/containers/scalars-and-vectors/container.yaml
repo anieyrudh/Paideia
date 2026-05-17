@@ -10,7 +10,8 @@ module: "Foundations of Physics"
 title: "Scalars and Vectors"
 one_line_summary: "Distinguish scalar and vector quantities, then combine coplanar vectors without treating arrows as ordinary numbers."
 syllabus_ref: "9478 / Section I / 1(h)-1(j)"
-prerequisites: []
+prerequisites:
+  - physical-quantities-and-units
 aid_types:
   - simulation
   - misconception-audit

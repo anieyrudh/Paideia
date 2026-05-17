@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Component formula fallback">
+  <rect width="320" height="180" fill="#fffdf7"/>
+  <text x="32" y="62" fill="#13251e" font-family="Arial, sans-serif" font-size="28" font-weight="700">Resolve into axes</text>
+  <text x="32" y="108" fill="#1f5f8b" font-family="Arial, sans-serif" font-size="22">x = R cos theta</text>
+  <text x="32" y="140" fill="#7657d8" font-family="Arial, sans-serif" font-size="22">y = R sin theta</text>
+</svg>

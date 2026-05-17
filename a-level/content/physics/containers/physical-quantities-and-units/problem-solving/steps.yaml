@@ -1,0 +1,12 @@
+schema_version: "1.0.0"
+steps:
+  - id: name-quantity
+    label: "Name the quantity"
+  - id: attach-unit
+    label: "Attach the unit to the value"
+  - id: expand-derived
+    label: "Expand derived units if needed"
+  - id: check-dimensions
+    label: "Check dimensions before operating"
+  - id: convert
+    label: "Convert using unit ratios"

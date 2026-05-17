@@ -1,0 +1,8 @@
+flowchart LR
+  current["Physical quantities and units"] --> scalars["Scalars and vectors"]
+  current --> resolving["Resolving vectors"]
+  number["Quantity equals number"] --> decoration["Unit as decoration"]
+  decoration --> mismatch["Dimension mismatch"]
+  current -. addresses .-> number
+  current -. addresses .-> decoration
+  current -. addresses .-> mismatch

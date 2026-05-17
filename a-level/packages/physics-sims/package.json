@@ -7,11 +7,12 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
-    "./resultant-magnitude": "./src/resultant-magnitude.tsx"
+    "./resultant-magnitude": "./src/resultant-magnitude.tsx",
+    "./resolving-vectors": "./src/resolving-vectors.tsx"
   },
   "scripts": {
     "build": "tsc -b",
-    "test": "vitest run src/resultant-magnitude.test.ts",
+    "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts",
     "lint": "tsc -b --pretty false",
     "typecheck": "tsc --noEmit"
   },

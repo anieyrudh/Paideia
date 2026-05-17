@@ -1,5 +1,6 @@
 import type { ComponentType } from "react";
 import { ResultantMagnitudeSim } from "@paideia/a-level-physics-sims/resultant-magnitude";
+import { ResolvingVectorsSim } from "@paideia/a-level-physics-sims/resolving-vectors";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -12,6 +13,11 @@ export const simRegistry = {
     id: "a-level/physics/scalars-and-vectors/resultant-magnitude",
     title: "Resultant Magnitude Explorer",
     Component: ResultantMagnitudeSim,
+  },
+  "a-level/physics/resolving-vectors/component-resolution": {
+    id: "a-level/physics/resolving-vectors/component-resolution",
+    title: "Component Resolution Explorer",
+    Component: ResolvingVectorsSim,
   },
 } satisfies Record<string, SimHarnessEntry>;
 
