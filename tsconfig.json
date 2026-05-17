@@ -12,6 +12,7 @@
     { "path": "./core/optimization" },
     { "path": "./core/circuits" },
     { "path": "./core/control-systems" },
+    { "path": "./core/mechanics" },
     { "path": "./core/plotting" },
     { "path": "./core/charting" },
     { "path": "./core/graph-layout" },
