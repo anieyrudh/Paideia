@@ -80,6 +80,18 @@ describe("@paideia/circuits", () => {
     const inconsistent = ohmsLaw({ voltageVolts: 12, currentAmps: 1, resistanceOhms: 6 });
     expect(inconsistent.ok).toBe(false);
     if (!inconsistent.ok) expect(inconsistent.error.code).toBe("precondition-violated");
+
+    const overflowingPower = ohmsLaw({
+      voltageVolts: Number.MAX_VALUE,
+      currentAmps: 2,
+      resistanceOhms: Number.MAX_VALUE / 2,
+    });
+    expect(overflowingPower.ok).toBe(false);
+    if (!overflowingPower.ok) expect(overflowingPower.error.code).toBe("numerical-instability");
+
+    const nearZeroCurrent = ohmsLaw({ voltageVolts: 1, currentAmps: circuitTolerance.tight / 2 });
+    expect(nearZeroCurrent.ok).toBe(false);
+    if (!nearZeroCurrent.ok) expect(nearZeroCurrent.error.code).toBe("precondition-violated");
   });
 
   it("combines series and parallel resistances", () => {

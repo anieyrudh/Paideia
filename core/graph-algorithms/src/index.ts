@@ -464,15 +464,23 @@ export const minimumSpanningTree = (
     parent: new Map(valid.value.ids.map((id) => [id, id])),
     rank: new Map(valid.value.ids.map((id) => [id, 0])),
   };
-  const indexedEdges = valid.value.edges.map((edge, index) => ({ edge, index }));
-  indexedEdges.sort((a, b) => a.edge.weight - b.edge.weight || a.index - b.index);
+  const edgeBuckets = new Map<number, Array<{ readonly edge: Required<WeightedEdge>; readonly index: number }>>();
+  valid.value.edges.forEach((edge, index) => {
+    const bucket = edgeBuckets.get(edge.weight) ?? [];
+    bucket.push({ edge, index });
+    edgeBuckets.set(edge.weight, bucket);
+  });
+  const sortedWeights = [...edgeBuckets.keys()].sort((a, b) => a - b);
 
   const edges: Required<WeightedEdge>[] = [];
   let totalWeight = 0;
-  for (const { edge } of indexedEdges) {
-    if (union(set, edge.source, edge.target)) {
-      edges.push(edge);
-      totalWeight += edge.weight;
+  for (const weight of sortedWeights) {
+    const bucket = edgeBuckets.get(weight) ?? [];
+    for (const { edge } of bucket) {
+      if (union(set, edge.source, edge.target)) {
+        edges.push(edge);
+        totalWeight += edge.weight;
+      }
     }
   }
 

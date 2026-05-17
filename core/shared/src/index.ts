@@ -31,6 +31,18 @@ export type VectorField3D = (
   z: number,
 ) => readonly [number, number, number];
 
+/** Relative/absolute floating-point comparison for kernel tests and guards. */
+export const approxEqual = (
+  actual: number,
+  expected: number,
+  tolerance = 1e-9,
+): boolean =>
+  Number.isFinite(actual) &&
+  Number.isFinite(expected) &&
+  Number.isFinite(tolerance) &&
+  tolerance >= 0 &&
+  Math.abs(actual - expected) <= tolerance * Math.max(1, Math.abs(expected));
+
 /** A parametric curve in 2D. Pure. */
 export type ParametricCurve2D = (t: number) => readonly [number, number];
 

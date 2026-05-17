@@ -283,7 +283,10 @@ export const zScore = (
     return err("out-of-domain", "standardDeviation must be positive");
   }
 
-  return ok((value - mean) / standardDeviation);
+  const z = (value - mean) / standardDeviation;
+  return Number.isFinite(z)
+    ? ok(z)
+    : err("numerical-instability", "z-score must be finite");
 };
 
 const validateHistogramDomain = (
@@ -331,6 +334,9 @@ export const histogram = (
   if (!domain.ok) return domain;
 
   const width = (domain.value.max - domain.value.min) / opts.binCount;
+  if (!Number.isFinite(width) || width <= 0) {
+    return err("numerical-instability", "Histogram bin width must be finite and positive");
+  }
   const counts = Array.from({ length: opts.binCount }, () => 0);
 
   for (const value of values) {
@@ -350,11 +356,15 @@ export const histogram = (
     const min = domain.value.min + width * index;
     const max = index === opts.binCount - 1 ? domain.value.max : min + width;
     const count = counts[index] ?? 0;
+    const density = count / (values.length * width);
+    if (!Number.isFinite(density)) {
+      return err("numerical-instability", "Histogram density must be finite");
+    }
     bins.push({
       min,
       max,
       count,
-      density: count / (values.length * width),
+      density,
     });
   }
 

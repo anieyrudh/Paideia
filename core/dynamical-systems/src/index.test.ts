@@ -169,6 +169,13 @@ describe("@paideia/dynamical-systems", () => {
     const invalidSteps = iterateMap((state) => state, [1], { steps: 1.5 });
     expect(invalidSteps.ok).toBe(false);
     if (!invalidSteps.ok) expect(invalidSteps.error.code).toBe("precondition-violated");
+
+    const invalidMethod = stepFlow(() => [1], [0], {
+      dt: 0.1,
+      method: "verlet" as never,
+    });
+    expect(invalidMethod.ok).toBe(false);
+    if (!invalidMethod.ok) expect(invalidMethod.error.code).toBe("precondition-violated");
   });
 
   it("exposes declared tolerances for downstream sim assertions", () => {

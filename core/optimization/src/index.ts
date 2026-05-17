@@ -400,9 +400,15 @@ export const optimizeLinearObjective = (
     return err("precondition-violated", "Feasible region has no vertices");
   }
   let bestValue = objectiveValue(objective, bestPoint);
+  if (!Number.isFinite(bestValue)) {
+    return err("numerical-instability", "Linear objective value must be finite");
+  }
 
   for (const point of vertices.slice(1)) {
     const value = objectiveValue(objective, point);
+    if (!Number.isFinite(value)) {
+      return err("numerical-instability", "Linear objective value must be finite");
+    }
     const isBetter =
       objective.direction === "max"
         ? value > bestValue + optimizationTolerance.tight

@@ -151,14 +151,15 @@ describe("@paideia/graph-algorithms", () => {
   });
 
   it("computes a minimum spanning tree with stable tie-breaking", () => {
+    const sourceEdges = [
+      { source: "a", target: "b", weight: 1 },
+      { source: "b", target: "c", weight: 1 },
+      { source: "a", target: "c", weight: 2 },
+      { source: "c", target: "d", weight: 3 },
+    ] as const;
     const result = minimumSpanningTree({
       nodes: [{ id: "a" }, { id: "b" }, { id: "c" }, { id: "d" }],
-      edges: [
-        { source: "a", target: "b", weight: 1 },
-        { source: "b", target: "c", weight: 1 },
-        { source: "a", target: "c", weight: 2 },
-        { source: "c", target: "d", weight: 3 },
-      ],
+      edges: sourceEdges,
     });
 
     expect(result.ok).toBe(true);
@@ -170,6 +171,7 @@ describe("@paideia/graph-algorithms", () => {
         { source: "c", target: "d", weight: 3 },
       ]);
     }
+    expect(sourceEdges.map((edge) => edge.weight)).toEqual([1, 1, 2, 3]);
   });
 
   it("returns KernelResult errors for invalid graph preconditions", () => {

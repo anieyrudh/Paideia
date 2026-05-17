@@ -1,4 +1,4 @@
-import { probability } from "@paideia/shared";
+import { approxEqual, probability } from "@paideia/shared";
 import { describe, expect, it } from "vitest";
 import {
   expectedValue,
@@ -31,8 +31,8 @@ describe("@paideia/probability-stats", () => {
     expect(JSON.stringify(outcomes)).toBe(before);
     expect(result.ok).toBe(true);
     if (result.ok) {
-      expect(Number(result.value[0]?.probability)).toBeCloseTo(0.4, 12);
-      expect(Number(result.value[1]?.probability)).toBeCloseTo(0.6, 12);
+      expect(approxEqual(Number(result.value[0]?.probability), 0.4, probabilityStatsTolerance.tight)).toBe(true);
+      expect(approxEqual(Number(result.value[1]?.probability), 0.6, probabilityStatsTolerance.tight)).toBe(true);
     }
   });
 
@@ -54,13 +54,13 @@ describe("@paideia/probability-stats", () => {
 
     expect(result.ok).toBe(true);
     if (result.ok) {
-      expect(Number(result.value[0]?.probability)).toBeCloseTo(0.5, 12);
-      expect(Number(result.value[1]?.probability)).toBeCloseTo(0.5, 12);
+      expect(approxEqual(Number(result.value[0]?.probability), 0.5, probabilityStatsTolerance.tight)).toBe(true);
+      expect(approxEqual(Number(result.value[1]?.probability), 0.5, probabilityStatsTolerance.tight)).toBe(true);
       const totalMass = result.value.reduce(
         (total, outcome) => total + Number(outcome.probability),
         0,
       );
-      expect(totalMass).toBeCloseTo(1, 12);
+      expect(approxEqual(totalMass, 1, probabilityStatsTolerance.tight)).toBe(true);
     }
   });
 
@@ -74,9 +74,9 @@ describe("@paideia/probability-stats", () => {
     const spread = variance(distribution);
 
     expect(mean.ok).toBe(true);
-    if (mean.ok) expect(mean.value).toBeCloseTo(2.5, 12);
+    if (mean.ok) expect(approxEqual(mean.value, 2.5, probabilityStatsTolerance.tight)).toBe(true);
     expect(spread.ok).toBe(true);
-    if (spread.ok) expect(spread.value).toBeCloseTo(0.75, 12);
+    if (spread.ok) expect(approxEqual(spread.value, 0.75, probabilityStatsTolerance.tight)).toBe(true);
   });
 
   it("returns errors instead of non-finite derived moments", () => {
@@ -110,15 +110,15 @@ describe("@paideia/probability-stats", () => {
     if (sample.ok) {
       expect(sample.value.count).toBe(4);
       expect(sample.value.mean).toBe(2.5);
-      expect(sample.value.variance).toBeCloseTo(5 / 3, 12);
-      expect(sample.value.standardDeviation).toBeCloseTo(Math.sqrt(5 / 3), 12);
+      expect(approxEqual(sample.value.variance, 5 / 3, probabilityStatsTolerance.tight)).toBe(true);
+      expect(approxEqual(sample.value.standardDeviation, Math.sqrt(5 / 3), probabilityStatsTolerance.tight)).toBe(true);
       expect(sample.value.min).toBe(1);
       expect(sample.value.max).toBe(4);
     }
 
     const population = summarize([1, 2, 3, 4], { variance: "population" });
     expect(population.ok).toBe(true);
-    if (population.ok) expect(population.value.variance).toBeCloseTo(1.25, 12);
+    if (population.ok) expect(approxEqual(population.value.variance, 1.25, probabilityStatsTolerance.tight)).toBe(true);
   });
 
   it("rejects sample variance for a singleton", () => {
@@ -156,6 +156,10 @@ describe("@paideia/probability-stats", () => {
     const invalid = zScore(13, 10, 0);
     expect(invalid.ok).toBe(false);
     if (!invalid.ok) expect(invalid.error.code).toBe("out-of-domain");
+
+    const overflowing = zScore(Number.MAX_VALUE, -Number.MAX_VALUE, Number.MIN_VALUE);
+    expect(overflowing.ok).toBe(false);
+    if (!overflowing.ok) expect(overflowing.error.code).toBe("numerical-instability");
   });
 
   it("bins histograms and preserves density mass", () => {
@@ -168,7 +172,7 @@ describe("@paideia/probability-stats", () => {
         (total, bin) => total + bin.density * (bin.max - bin.min),
         0,
       );
-      expect(integratedDensity).toBeCloseTo(1, 12);
+      expect(approxEqual(integratedDensity, 1, probabilityStatsTolerance.tight)).toBe(true);
     }
   });
 
@@ -176,6 +180,16 @@ describe("@paideia/probability-stats", () => {
     const result = histogram([0, 1, 5], { binCount: 2, domain: { min: 0, max: 4 } });
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.error.code).toBe("out-of-domain");
+  });
+
+  it("rejects histogram densities that cannot remain finite", () => {
+    const result = histogram([0, Number.MIN_VALUE], {
+      binCount: 2,
+      domain: { min: 0, max: Number.MIN_VALUE },
+    });
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("numerical-instability");
   });
 
   it("preserves distribution mass and non-negative variance across generated weights", () => {
@@ -194,7 +208,7 @@ describe("@paideia/probability-stats", () => {
         (total, outcome) => total + Number(outcome.probability),
         0,
       );
-      expect(Math.abs(totalMass - 1)).toBeLessThan(probabilityStatsTolerance.default);
+      expect(approxEqual(totalMass, 1, probabilityStatsTolerance.default)).toBe(true);
 
       const spread = variance(distribution.value);
       expect(spread.ok).toBe(true);
@@ -214,8 +228,8 @@ describe("@paideia/probability-stats", () => {
       expect(forward.ok).toBe(true);
       expect(backward.ok).toBe(true);
       if (forward.ok && backward.ok) {
-        expect(forward.value.mean).toBeCloseTo(backward.value.mean, 12);
-        expect(forward.value.variance).toBeCloseTo(backward.value.variance, 12);
+        expect(approxEqual(forward.value.mean, backward.value.mean, probabilityStatsTolerance.tight)).toBe(true);
+        expect(approxEqual(forward.value.variance, backward.value.variance, probabilityStatsTolerance.tight)).toBe(true);
       }
     }
   });

@@ -125,6 +125,16 @@ const positiveResistance = (
 const withinTolerance = (actual: number, expected: number): boolean =>
   Math.abs(actual - expected) <= circuitTolerance.loose * Math.max(1, Math.abs(expected));
 
+const finiteOhmsLawResult = (
+  result: OhmsLawResult,
+): KernelResult<OhmsLawResult> =>
+  Number.isFinite(result.voltageVolts) &&
+  Number.isFinite(result.currentAmps) &&
+  Number.isFinite(result.resistanceOhms) &&
+  Number.isFinite(result.powerWatts)
+    ? ok(result)
+    : err("numerical-instability", "Ohm's law derived outputs must be finite");
+
 export const ohmsLaw = (input: OhmsLawInput): KernelResult<OhmsLawResult> => {
   const values = [
     present(input.voltageVolts),
@@ -157,7 +167,7 @@ export const ohmsLaw = (input: OhmsLawInput): KernelResult<OhmsLawResult> => {
         `Ohm's law inputs are inconsistent: expected ${expectedVoltage} V, got ${input.voltageVolts} V`,
       );
     }
-    return ok({
+    return finiteOhmsLawResult({
       voltageVolts: input.voltageVolts,
       currentAmps: input.currentAmps,
       resistanceOhms: input.resistanceOhms,
@@ -167,7 +177,7 @@ export const ohmsLaw = (input: OhmsLawInput): KernelResult<OhmsLawResult> => {
 
   if (!present(input.voltageVolts) && present(input.currentAmps) && present(input.resistanceOhms)) {
     const voltageVolts = input.currentAmps * input.resistanceOhms;
-    return ok({
+    return finiteOhmsLawResult({
       voltageVolts,
       currentAmps: input.currentAmps,
       resistanceOhms: input.resistanceOhms,
@@ -177,7 +187,7 @@ export const ohmsLaw = (input: OhmsLawInput): KernelResult<OhmsLawResult> => {
 
   if (present(input.voltageVolts) && !present(input.currentAmps) && present(input.resistanceOhms)) {
     const currentAmps = input.voltageVolts / input.resistanceOhms;
-    return ok({
+    return finiteOhmsLawResult({
       voltageVolts: input.voltageVolts,
       currentAmps,
       resistanceOhms: input.resistanceOhms,
@@ -186,13 +196,13 @@ export const ohmsLaw = (input: OhmsLawInput): KernelResult<OhmsLawResult> => {
   }
 
   if (present(input.voltageVolts) && present(input.currentAmps) && !present(input.resistanceOhms)) {
-    if (input.currentAmps === 0) {
+    if (Math.abs(input.currentAmps) <= circuitTolerance.tight) {
       return err("precondition-violated", "Cannot solve resistance from zero current");
     }
     const resistanceOhms = input.voltageVolts / input.currentAmps;
     const validResistance = positiveResistance(resistanceOhms, "solved resistanceOhms");
     if (!validResistance.ok) return validResistance;
-    return ok({
+    return finiteOhmsLawResult({
       voltageVolts: input.voltageVolts,
       currentAmps: input.currentAmps,
       resistanceOhms,

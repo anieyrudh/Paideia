@@ -293,6 +293,8 @@ export const stepFlow = (
         return stepMidpoint(field, start, t, opts.dt);
       case "rk4":
         return stepRk4(field, start, t, opts.dt);
+      default:
+        return err("precondition-violated", `Unknown integration method: ${String(method)}`);
     }
   })();
 

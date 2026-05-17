@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { kilograms, metres, newtons, radians, seconds } from "@paideia/shared";
+import { approxEqual, kilograms, metres, newtons, radians, seconds } from "@paideia/shared";
 import {
   accelerationFromForce,
   elasticCollision1D,
@@ -13,14 +13,6 @@ import {
   workDone,
   type Vector2,
 } from "./index.js";
-
-const expectClose = (
-  actual: number,
-  expected: number,
-  tolerance: number = mechanicsTolerance.default,
-) => {
-  expect(Math.abs(actual - expected)).toBeLessThanOrEqual(tolerance);
-};
 
 const deterministicCases = (count: number): readonly number[] =>
   Array.from({ length: count }, (_, index) => (index - count / 2) / 7);
@@ -58,7 +50,7 @@ describe("@paideia/mechanics", () => {
       if (state.ok) {
         const left = state.value.velocityMetresPerSecond ** 2;
         const right = initialVelocity ** 2 + 2 * acceleration * state.value.displacementMetres;
-        expectClose(left, right, mechanicsTolerance.loose);
+        expect(approxEqual(left, right, mechanicsTolerance.loose)).toBe(true);
       }
     }
   });
@@ -76,9 +68,9 @@ describe("@paideia/mechanics", () => {
     expect(sample.ok).toBe(true);
     if (sample.ok) {
       expect(sample.value.positionMetres.x).toBe(24);
-      expectClose(sample.value.positionMetres.y, -2.6);
+      expect(approxEqual(sample.value.positionMetres.y, -2.6, mechanicsTolerance.default)).toBe(true);
       expect(sample.value.velocityMetresPerSecond.x).toBe(12);
-      expectClose(sample.value.velocityMetresPerSecond.y, -11.6);
+      expect(approxEqual(sample.value.velocityMetresPerSecond.y, -11.6, mechanicsTolerance.default)).toBe(true);
     }
   });
 
@@ -106,7 +98,7 @@ describe("@paideia/mechanics", () => {
   it("computes work, kinetic energy, and momentum helpers", () => {
     const work = workDone(newtons(10), metres(3), radians(Math.PI / 3));
     expect(work.ok).toBe(true);
-    if (work.ok) expectClose(work.value, 15, mechanicsTolerance.loose);
+    if (work.ok) expect(approxEqual(work.value, 15, mechanicsTolerance.loose)).toBe(true);
 
     const energy = kineticEnergy(kilograms(4), 6);
     expect(energy.ok).toBe(true);
@@ -128,16 +120,16 @@ describe("@paideia/mechanics", () => {
 
       expect(result.ok).toBe(true);
       if (result.ok) {
-        expectClose(
+        expect(approxEqual(
           result.value.totalMomentumAfterKilogramMetresPerSecond,
           result.value.totalMomentumBeforeKilogramMetresPerSecond,
           mechanicsTolerance.loose,
-        );
-        expectClose(
+        )).toBe(true);
+        expect(approxEqual(
           result.value.totalKineticEnergyAfterJoules,
           result.value.totalKineticEnergyBeforeJoules,
           mechanicsTolerance.loose,
-        );
+        )).toBe(true);
       }
     }
   });
@@ -155,10 +147,10 @@ describe("@paideia/mechanics", () => {
 
     expect(sample.ok).toBe(true);
     if (sample.ok) {
-      expectClose(sample.value.positionMetres, 1);
-      expectClose(sample.value.displacementFromEquilibriumMetres, 0);
-      expectClose(sample.value.velocityMetresPerSecond, -6);
-      expectClose(sample.value.accelerationMetresPerSecondSquared, 0, mechanicsTolerance.loose);
+      expect(approxEqual(sample.value.positionMetres, 1, mechanicsTolerance.default)).toBe(true);
+      expect(approxEqual(sample.value.displacementFromEquilibriumMetres, 0, mechanicsTolerance.default)).toBe(true);
+      expect(approxEqual(sample.value.velocityMetresPerSecond, -6, mechanicsTolerance.default)).toBe(true);
+      expect(approxEqual(sample.value.accelerationMetresPerSecondSquared, 0, mechanicsTolerance.loose)).toBe(true);
     }
   });
 

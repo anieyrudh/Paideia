@@ -127,6 +127,20 @@ describe("@paideia/optimization", () => {
     if (!result.ok) expect(result.error.code).toBe("precondition-violated");
   });
 
+  it("rejects non-finite objective values before returning a solution", () => {
+    const result = optimizeLinearObjective(
+      {
+        domain: unitSquare,
+        constraints: [],
+        vertices: [[Number.MAX_VALUE, 0]],
+      },
+      { cx: Number.MAX_VALUE, cy: 0, direction: "max" },
+    );
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("numerical-instability");
+  });
+
   it("property: quadratic descent values do not increase for conservative rates", () => {
     for (let seed = 1; seed <= 30; seed += 1) {
       const start: Point2 = [seed / 5 - 3, 2 - seed / 7];
