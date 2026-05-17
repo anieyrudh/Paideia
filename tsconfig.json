@@ -9,6 +9,7 @@
     { "path": "./core/probability-stats" },
     { "path": "./core/linear-algebra" },
     { "path": "./core/dynamical-systems" },
+    { "path": "./core/optimization" },
     { "path": "./core/plotting" },
     { "path": "./core/charting" },
     { "path": "./core/graph-layout" },
