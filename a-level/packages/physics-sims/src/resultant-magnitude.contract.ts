@@ -93,6 +93,7 @@ export const runResultantMagnitudeGateContract = () => {
 
       expect(document.querySelector("[aria-label='Observation unlocked']")).toBeTruthy();
       expect(text()).toContain("Geometric resultant");
+      expect(text()).toContain("|R| = √(A² + B² + 2AB cos θ)");
       expect(text()).toContain("7.1 m");
       expect(text()).toContain("10.0 m");
     });
@@ -105,7 +106,12 @@ export const runResultantMagnitudeGateContract = () => {
       await click(commitButton());
       await change(controlByLabel("Angle between vectors"), "0");
 
-      expect(text().match(/10\.0 m/gu)).toHaveLength(2);
+      expect(document.querySelector("[aria-label='Observation unlocked']")?.textContent).toContain(
+        "10.0 m",
+      );
+      expect(document.querySelector("[aria-label='Formula used']")?.textContent).toContain(
+        "cos(0°)",
+      );
     });
   });
 };

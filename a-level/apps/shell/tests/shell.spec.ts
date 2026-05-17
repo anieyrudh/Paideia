@@ -4,7 +4,7 @@ test("launches the first container sim through the learner shell", async ({ page
   await page.goto("/");
 
   await expect(page.getByRole("heading", { name: "Scalars and Vectors" })).toBeVisible();
-  await expect(page.getByRole("navigation", { name: "Concept packages" })).toContainText(
+  await expect(page.getByRole("navigation", { name: "Concept containers" })).toContainText(
     "Physics / H2",
   );
   await expect(page.getByRole("heading", { name: "Knowledge graph" })).toBeVisible();
@@ -20,7 +20,8 @@ test("launches the first container sim through the learner shell", async ({ page
 
   await expect(page.getByLabel("Observation unlocked")).toBeVisible();
   await expect(page.getByText("Geometric resultant")).toBeVisible();
+  await expect(page.getByLabel("Formula used")).toContainText("|R| = √(A² + B² + 2AB cos θ)");
 
-  await page.getByRole("button", { name: "Reset local prediction" }).click();
+  await page.getByRole("button", { name: "Reset prediction" }).click();
   await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
 });

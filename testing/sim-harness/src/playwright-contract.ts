@@ -32,7 +32,7 @@ export const definePredictionGateContract = ({
 
       await expect(page.getByLabel(observationLabel)).toBeVisible();
       for (const text of expectedText) {
-        await expect(page.getByText(text)).toBeVisible();
+        await expect(page.getByText(text).first()).toBeVisible();
       }
     });
   });
