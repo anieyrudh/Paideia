@@ -28,6 +28,7 @@ export interface ResultantVectorDiagramProps {
 
 const toRadians = (degrees: number): number => (degrees * Math.PI) / 180;
 const roundTenths = (value: number): number => Math.round(value * 10) / 10;
+const formatTenths = (value: number): string => roundTenths(value).toFixed(1);
 
 export const resultantComponents = (
   vectorA: number,
@@ -142,6 +143,7 @@ export const ResultantMagnitudeSim = () => {
     [state],
   );
   const scalarSum = state.vectorA + state.vectorB;
+  const cosine = Math.cos(toRadians(state.angleDegrees));
 
   const update = (key: keyof VectorState) => (raw: string) => {
     const value = Number(raw);
@@ -151,11 +153,11 @@ export const ResultantMagnitudeSim = () => {
 
   return (
     <PredictionGate packageId={packageId} predict={perpendicularPredict} simId={simId}>
-      <section aria-label="Resultant magnitude explorer">
-        <h2>Resultant magnitude explorer</h2>
-        <div>
+      <section aria-label="Resultant magnitude explorer" className="vector-lab">
+        <div className="vector-controls" aria-label="Vector controls">
           <label htmlFor={sliderId("vector-a")}>
-            Vector A magnitude: {state.vectorA.toFixed(1)} m
+            <span>Vector A</span>
+            <strong>{state.vectorA.toFixed(1)} m</strong>
           </label>
           <input
             id={sliderId("vector-a")}
@@ -166,10 +168,10 @@ export const ResultantMagnitudeSim = () => {
             type="range"
             value={state.vectorA}
           />
-        </div>
-        <div>
+
           <label htmlFor={sliderId("vector-b")}>
-            Vector B magnitude: {state.vectorB.toFixed(1)} m
+            <span>Vector B</span>
+            <strong>{state.vectorB.toFixed(1)} m</strong>
           </label>
           <input
             id={sliderId("vector-b")}
@@ -180,10 +182,10 @@ export const ResultantMagnitudeSim = () => {
             type="range"
             value={state.vectorB}
           />
-        </div>
-        <div>
+
           <label htmlFor={sliderId("angle")}>
-            Angle between vectors: {state.angleDegrees.toFixed(0)} degrees
+            <span>Angle between vectors</span>
+            <strong>{state.angleDegrees.toFixed(0)} degrees</strong>
           </label>
           <input
             id={sliderId("angle")}
@@ -195,14 +197,30 @@ export const ResultantMagnitudeSim = () => {
             value={state.angleDegrees}
           />
         </div>
-        <ResultantVectorDiagram state={state} />
-        <dl aria-label="Observation unlocked">
-          <dt>Geometric resultant</dt>
-          <dd>{roundTenths(resultant).toFixed(1)} m</dd>
-          <dt>Scalar sum of magnitudes</dt>
-          <dd>{roundTenths(scalarSum).toFixed(1)} m</dd>
-        </dl>
-        <p>What stayed the same, and what changed as the angle moved?</p>
+
+        <div className="vector-stage">
+          <ResultantVectorDiagram state={state} />
+          <dl aria-label="Observation unlocked" className="result-readout">
+            <dt>Geometric resultant</dt>
+            <dd>{formatTenths(resultant)} m</dd>
+            <dt>Scalar sum</dt>
+            <dd>{formatTenths(scalarSum)} m</dd>
+          </dl>
+        </div>
+
+        <section className="formula-panel" aria-label="Formula used">
+          <h3>Formula used</h3>
+          <p className="formula">|R| = √(A² + B² + 2AB cos θ)</p>
+          <p>
+            √({formatTenths(state.vectorA)}² + {formatTenths(state.vectorB)}² + 2(
+            {formatTenths(state.vectorA)})({formatTenths(state.vectorB)})cos(
+            {state.angleDegrees.toFixed(0)}°)) = {formatTenths(resultant)} m
+          </p>
+          <p className="formula-note">
+            cos θ = {cosine.toFixed(2)}. Direction changes the component sum, so equal
+            lengths do not always add to the same resultant.
+          </p>
+        </section>
       </section>
     </PredictionGate>
   );

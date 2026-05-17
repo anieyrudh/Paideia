@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { clearPrediction } from "@paideia/prediction-gate";
 import {
   containers,
@@ -9,11 +9,21 @@ import {
 const selectedContainer = containers[0];
 
 const StageList = () => {
-  const stages = ["Predict", "Manipulate", "Observe", "Explain", "Transfer"] as const;
+  const stages = [
+    { name: "Predict", detail: "commit first" },
+    { name: "Manipulate", detail: "move the model" },
+    { name: "Observe", detail: "read the result" },
+    { name: "Explain", detail: "name the rule" },
+    { name: "Transfer", detail: "use it elsewhere" },
+  ] as const;
+
   return (
     <ol className="stage-list" aria-label="PMOE-T stages">
       {stages.map((stage) => (
-        <li key={stage}>{stage}</li>
+        <li key={stage.name}>
+          <strong>{stage.name}</strong>
+          <span>{stage.detail}</span>
+        </li>
       ))}
     </ol>
   );
@@ -24,7 +34,7 @@ const ContainerList = ({
 }: {
   readonly active: ShellContainer;
 }) => (
-  <nav aria-label="Concept packages" className="package-list">
+  <nav aria-label="Concept containers" className="package-list">
     {containers.map((container) => (
       <a
         aria-current={container.id === active.id ? "page" : undefined}
@@ -39,17 +49,36 @@ const ContainerList = ({
   </nav>
 );
 
+const KnowledgeGraphBrief = ({
+  active,
+}: {
+  readonly active: ShellContainer;
+}) => {
+  const graphText = `${knowledgeGraph.nodes.length} concept node / ${knowledgeGraph.edges.length} links`;
+  const graphItems = [
+    ...active.prerequisites.map((concept) => `Prerequisite: ${concept}`),
+    ...active.downstream.map((concept) => `Next: ${concept}`),
+    ...active.siblings.map((concept) => `Related: ${concept}`),
+  ];
+
+  return (
+    <section className="brief-section" aria-labelledby="graph-title">
+      <h2 id="graph-title">Knowledge graph</h2>
+      <p>{graphText}</p>
+      <ul>
+        {graphItems.map((item) => (
+          <li key={item}>{item}</li>
+        ))}
+      </ul>
+    </section>
+  );
+};
+
 export const App = () => {
   const [resetVersion, setResetVersion] = useState(0);
   const active = selectedContainer;
   const activeSim = active.sims[0] ?? null;
   const Sim = activeSim?.component ?? null;
-
-  const aidText = useMemo(() => active.aidTypes.join(" / "), [active.aidTypes]);
-  const graphText = useMemo(
-    () => `${knowledgeGraph.nodes.length} concept node / ${knowledgeGraph.edges.length} links`,
-    [],
-  );
 
   const resetPrediction = () => {
     clearPrediction(active.packageId, active.simId);
@@ -63,20 +92,20 @@ export const App = () => {
           <span className="brand-mark">P</span>
           <span>
             <strong>Paideia A-Level</strong>
-            <small>Concept mastery workspace</small>
+            <small>Physics lab</small>
           </span>
         </a>
         <div className="topbar-actions">
-          <a href="#sim">Launch sim</a>
-          <a href="#transfer">Transfer</a>
+          <a href="#lab">Start lab</a>
+          <a href="#transfer">Challenge</a>
         </div>
       </header>
 
       <div className="workspace">
-        <aside className="sidebar" aria-label="Catalogue">
+        <aside className="sidebar" aria-label="Physics labs">
           <div>
-            <h2>Catalogue</h2>
-            <p>{containers.length} container available</p>
+            <h2>Physics labs</h2>
+            <p>{containers.length} container ready</p>
           </div>
           <ContainerList active={active} />
         </aside>
@@ -88,77 +117,64 @@ export const App = () => {
               <h1 id="container-title">{active.title}</h1>
               <p>{active.summary}</p>
             </div>
-            <div className="status-stack" aria-label="Package status">
+            <div className="status-stack" aria-label="Container status">
               <span>{active.status}</span>
-              <span>{aidText}</span>
+              <span>{active.aidTypes.join(" / ")}</span>
             </div>
           </div>
 
           <StageList />
 
-          <div className="learning-grid">
-            <section className="doctrine-panel" aria-labelledby="predict-title">
-              <h2 id="predict-title">Prediction gate</h2>
-              <p>{active.predictPrompt}</p>
-              <button type="button" onClick={resetPrediction}>
-                Reset local prediction
-              </button>
-            </section>
+          <div className="lab-layout" id="lab">
+            {Sim === null || activeSim === null ? (
+              <section className="sim-panel" aria-labelledby="sim-title">
+                <div className="sim-header">
+                  <div>
+                    <p className="meta-line">content-only</p>
+                    <h2 id="sim-title">No interactive simulation yet</h2>
+                  </div>
+                </div>
+              </section>
+            ) : (
+              <section className="sim-panel" aria-labelledby="sim-title">
+                <div className="sim-header">
+                  <div>
+                    <p className="meta-line">{activeSim.interactionType}</p>
+                    <h2 id="sim-title">{activeSim.title}</h2>
+                  </div>
+                  <button type="button" onClick={resetPrediction}>
+                    Reset prediction
+                  </button>
+                </div>
+                <div className="sim-surface">
+                  <Sim key={resetVersion} />
+                </div>
+              </section>
+            )}
 
-            <section className="doctrine-panel" aria-labelledby="misconception-title">
-              <h2 id="misconception-title">Misconceptions surfaced</h2>
-              <ul>
-                {active.misconceptions.map((misconception) => (
-                  <li key={misconception}>{misconception}</li>
-                ))}
-              </ul>
-            </section>
+            <aside className="lab-brief" aria-label="Lab brief">
+              <section className="brief-section" aria-labelledby="predict-title">
+                <h2 id="predict-title">First move</h2>
+                <p>{active.predictPrompt}</p>
+              </section>
 
-            <section className="doctrine-panel" id="transfer" aria-labelledby="transfer-title">
-              <h2 id="transfer-title">Transfer target</h2>
-              <p>{active.transferProblem}</p>
-            </section>
+              <section className="brief-section" aria-labelledby="misconception-title">
+                <h2 id="misconception-title">Watch for</h2>
+                <ul>
+                  {active.misconceptions.map((misconception) => (
+                    <li key={misconception}>{misconception}</li>
+                  ))}
+                </ul>
+              </section>
 
-            <section className="doctrine-panel" aria-labelledby="graph-title">
-              <h2 id="graph-title">Knowledge graph</h2>
-              <p>{graphText}</p>
-              <ul>
-                {active.prerequisites.map((concept) => (
-                  <li key={`pre-${concept}`}>Prerequisite: {concept}</li>
-                ))}
-                {active.downstream.map((concept) => (
-                  <li key={`down-${concept}`}>Next: {concept}</li>
-                ))}
-                {active.siblings.map((concept) => (
-                  <li key={`sib-${concept}`}>Related: {concept}</li>
-                ))}
-              </ul>
-            </section>
+              <KnowledgeGraphBrief active={active} />
+
+              <section className="brief-section" id="transfer" aria-labelledby="transfer-title">
+                <h2 id="transfer-title">Next challenge</h2>
+                <p>{active.transferProblem}</p>
+              </section>
+            </aside>
           </div>
-
-          {Sim === null || activeSim === null ? (
-            <section className="sim-panel" id="sim" aria-labelledby="sim-title">
-              <div className="sim-header">
-                <div>
-                  <p className="meta-line">content-only</p>
-                  <h2 id="sim-title">No interactive simulation yet</h2>
-                </div>
-              </div>
-            </section>
-          ) : (
-            <section className="sim-panel" id="sim" aria-labelledby="sim-title">
-              <div className="sim-header">
-                <div>
-                  <p className="meta-line">{activeSim.interactionType}</p>
-                  <h2 id="sim-title">{activeSim.title}</h2>
-                </div>
-                <a href="#container-title">Back to concept</a>
-              </div>
-              <div className="sim-surface">
-                <Sim key={resetVersion} />
-              </div>
-            </section>
-          )}
         </section>
       </div>
     </div>
