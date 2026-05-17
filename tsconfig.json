@@ -11,6 +11,7 @@
     { "path": "./core/dynamical-systems" },
     { "path": "./core/optimization" },
     { "path": "./core/circuits" },
+    { "path": "./core/control-systems" },
     { "path": "./core/plotting" },
     { "path": "./core/charting" },
     { "path": "./core/graph-layout" },
