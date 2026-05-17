@@ -4,7 +4,7 @@ prerequisites:
   - id: physical-quantities-and-units
     title: "Physical Quantities and Units"
     relationship: "Students should already distinguish quantity, numerical value, and unit."
-    status: missing
+    status: available
 downstream:
   - id: kinematics-in-one-dimension
     title: "Kinematics in One Dimension"
@@ -18,7 +18,7 @@ siblings:
   - id: resolving-vectors
     title: "Resolving Vectors"
     relationship: "Component form is the next representation after geometric vector addition."
-    status: planned
+    status: available
 misconception_graph:
   nodes:
     - id: magnitude-only-vector-addition

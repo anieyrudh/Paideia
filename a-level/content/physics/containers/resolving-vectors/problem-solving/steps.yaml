@@ -1,0 +1,12 @@
+schema_version: "1.0.0"
+steps:
+  - id: draw-vector
+    label: "Draw the vector and axes"
+  - id: mark-angle
+    label: "Mark the angle reference"
+  - id: adjacent-opposite
+    label: "Identify adjacent and opposite sides"
+  - id: compute-components
+    label: "Compute components with sine and cosine"
+  - id: unit-check
+    label: "Keep the vector unit on each component"

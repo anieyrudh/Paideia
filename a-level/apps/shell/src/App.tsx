@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { clearPrediction } from "@paideia/prediction-gate";
 import {
   containers,
@@ -6,7 +6,12 @@ import {
   type ShellContainer,
 } from "./generated/knowledge-graph.js";
 
-const selectedContainer = containers[0];
+const containerById = new Map(containers.map((container) => [container.id, container]));
+
+const readContainerFromHash = (): ShellContainer => {
+  const hash = globalThis.location?.hash.slice(1) ?? "";
+  return containerById.get(decodeURIComponent(hash)) ?? containers[0];
+};
 
 const StageList = () => {
   const stages = [
@@ -76,9 +81,18 @@ const KnowledgeGraphBrief = ({
 
 export const App = () => {
   const [resetVersion, setResetVersion] = useState(0);
-  const active = selectedContainer;
+  const [active, setActive] = useState<ShellContainer>(() => readContainerFromHash());
   const activeSim = active.sims[0] ?? null;
   const Sim = activeSim?.component ?? null;
+
+  useEffect(() => {
+    const onHashChange = () => {
+      setActive(readContainerFromHash());
+      setResetVersion((current) => current + 1);
+    };
+    globalThis.addEventListener("hashchange", onHashChange);
+    return () => globalThis.removeEventListener("hashchange", onHashChange);
+  }, []);
 
   const resetPrediction = () => {
     clearPrediction(active.packageId, active.simId);
@@ -153,10 +167,12 @@ export const App = () => {
             )}
 
             <aside className="lab-brief" aria-label="Lab brief">
-              <section className="brief-section" aria-labelledby="predict-title">
-                <h2 id="predict-title">First move</h2>
-                <p>{active.predictPrompt}</p>
-              </section>
+              {active.predictPrompt.length > 0 ? (
+                <section className="brief-section" aria-labelledby="predict-title">
+                  <h2 id="predict-title">First move</h2>
+                  <p>{active.predictPrompt}</p>
+                </section>
+              ) : null}
 
               <section className="brief-section" aria-labelledby="misconception-title">
                 <h2 id="misconception-title">Watch for</h2>

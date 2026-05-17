@@ -4,7 +4,8 @@ concept: scalars-and-vectors
 branch: a-level
 level: H2
 syllabus_ref: "9478 / Section I / 1(h)-1(j)"
-prerequisites: []
+prerequisites:
+  - physical-quantities-and-units
 aid_types: [concept-card, simulation, misconception-audit, transfer-problem]
 status: draft
 ---

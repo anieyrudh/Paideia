@@ -1,0 +1,5 @@
+state_labels:
+  magnitude: "Vector magnitude"
+  angleDegrees: "Angle above horizontal"
+  componentX: "Horizontal component"
+  componentY: "Vertical component"

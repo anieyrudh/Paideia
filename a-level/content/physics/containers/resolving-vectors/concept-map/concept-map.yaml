@@ -1,0 +1,41 @@
+schema_version: "1.0.0"
+concept_id: resolving-vectors
+prerequisites:
+  - id: physical-quantities-and-units
+    title: "Physical Quantities and Units"
+    relationship: "Vector components keep the unit of the original physical quantity."
+    status: available
+  - id: scalars-and-vectors
+    title: "Scalars and Vectors"
+    relationship: "Students must already treat direction as part of vector meaning."
+    status: available
+downstream:
+  - id: kinematics-in-one-dimension
+    title: "Kinematics in One Dimension"
+    relationship: "Components allow two-dimensional motion to be separated into one-dimensional equations."
+    status: planned
+  - id: forces-and-newtons-laws
+    title: "Forces and Newton's Laws"
+    relationship: "Forces are resolved before applying equilibrium or acceleration along axes."
+    status: planned
+siblings:
+  - id: scalars-and-vectors
+    title: "Scalars and Vectors"
+    relationship: "Resolving vectors is a component representation of the same vector ideas."
+    status: available
+misconception_graph:
+  nodes:
+    - id: sine-cosine-swap
+      label: "Sine-cosine swap"
+    - id: components-as-extra-forces
+      label: "Components as extra forces"
+    - id: dropped-component-units
+      label: "Dropped component units"
+  edges:
+    - from: sine-cosine-swap
+      to: components-as-extra-forces
+      label: "shares weak diagram link"
+    - from: dropped-component-units
+      to: components-as-extra-forces
+      label: "hides physical meaning"
+mermaid_source: graph.mmd
