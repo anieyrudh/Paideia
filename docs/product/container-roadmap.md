@@ -67,6 +67,50 @@ alevel-sim-waves
 ib-core-tok-essay
 ```
 
+## Kernel Foundation Status
+
+As of the kernel-wave integration branch, the repository has the foundation needed to start building real reusable containers rather than one-off demos.
+
+Completed platform kernels:
+
+- `core/prediction-gate`
+- `core/sim-runtime`
+- `core/ui-sim`
+- `core/three-scene`
+
+Completed P0 domain kernels:
+
+- `core/probability-stats`
+- `core/linear-algebra`
+- `core/dynamical-systems`
+- `core/optimization`
+- `core/mechanics`
+- `core/circuits`
+- `core/control-systems`
+- `core/graph-algorithms`
+
+Existing Tier 1 support kernels already available for first product work:
+
+- `core/function-eval`
+- `core/numerical-math`
+- `core/plotting`
+- `core/charting`
+- `core/graph-layout`
+- `core/timeline`
+- `core/annotation`
+- `core/mind-map`
+- `core/fsrs`
+- `core/bkt`
+- `core/algorithm-trace`
+
+Next missing foundations:
+
+- Container registry: turn the candidate registry below into checked structured data, then generate shell navigation, dependency graph views, and build queues from it.
+- Notebook lab runtime: needed for computational topics, data analysis, and Python-first exploration.
+- Media pipeline: thumbnails, diagrams, narrated walkthroughs, and fallback visuals should be generated and validated consistently.
+- Assessment adapter: connect problem-solving algorithms, mastery state, FSRS/BKT, and curriculum-specific exam wrappers.
+- Domain-specific heavy kernels: molecule, systems dynamics, argument graph, corpus, and comparator kernels should wait until a concrete first container needs them.
+
 ## Priority Tiers
 
 ### P0: Universal Theory Infrastructure
