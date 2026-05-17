@@ -15,7 +15,8 @@
     "@paideia/a-level-physics-sims": "workspace:*",
     "@paideia/prediction-gate": "workspace:*",
     "react": "^18.3.0",
-    "react-dom": "^18.3.0"
+    "react-dom": "^18.3.0",
+    "zod": "^3.23.0"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.0",

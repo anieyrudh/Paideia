@@ -37,8 +37,35 @@ test("navigates the generated mini knowledge graph", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "No interactive simulation yet" })).toBeVisible();
   await expect(page.getByText("Next: Scalars and Vectors")).toBeVisible();
 
-  await page.getByRole("link", { name: /Resolving Vectors/ }).click();
+  await page
+    .getByRole("navigation", { name: "Concept containers" })
+    .getByRole("link", { name: /Resolving Vectors/ })
+    .click();
   await expect(page.getByRole("heading", { name: "Resolving Vectors" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Component Resolution Explorer" })).toBeVisible();
   await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+});
+
+test("searches modules and keeps local mastery progress", async ({ page }) => {
+  await page.goto("/");
+
+  await expect(page.getByRole("heading", { name: "Mastery map" })).toBeVisible();
+  await page.getByLabel("Search curriculum").fill("base quantity");
+
+  const conceptNav = page.getByRole("navigation", { name: "Concept containers" });
+  await expect(conceptNav).toContainText("Physical Quantities and Units");
+  await expect(conceptNav).not.toContainText("Resolving Vectors");
+
+  await page.getByLabel("Search curriculum").fill("");
+  await page.getByRole("button", { name: "Foundations of Physics" }).click();
+  await expect(page.getByText("3 of 3 containers")).toBeVisible();
+
+  await page
+    .getByLabel("Physical Quantities and Units mastery")
+    .getByRole("button", { name: "Mastered" })
+    .click();
+  await expect(page.getByText("1/3 mastered")).toBeVisible();
+
+  await page.reload();
+  await expect(page.getByText("1/3 mastered")).toBeVisible();
 });

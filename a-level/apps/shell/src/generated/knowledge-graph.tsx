@@ -17,6 +17,7 @@ export interface ShellContainer {
   readonly branch: "a-level";
   readonly subject: string;
   readonly level: string;
+  readonly module: string;
   readonly title: string;
   readonly summary: string;
   readonly syllabusRef: string;
@@ -43,6 +44,7 @@ export interface KnowledgeGraphNode {
   readonly title: string;
   readonly subject: string;
   readonly level: string;
+  readonly module: string;
   readonly status: string;
 }
 
@@ -60,6 +62,7 @@ export const knowledgeGraph = {
     title: "Physical Quantities and Units",
     subject: "physics",
     level: "H2",
+    module: "Foundations of Physics",
     status: "content-only",
   },
   {
@@ -68,6 +71,7 @@ export const knowledgeGraph = {
     title: "Resolving Vectors",
     subject: "physics",
     level: "H2",
+    module: "Foundations of Physics",
     status: "draft",
   },
   {
@@ -76,6 +80,7 @@ export const knowledgeGraph = {
     title: "Scalars and Vectors",
     subject: "physics",
     level: "H2",
+    module: "Foundations of Physics",
     status: "draft",
   }
   ],
@@ -100,6 +105,7 @@ export const containers = [
     branch: "a-level",
     subject: "Physics",
     level: "H2",
+    module: "Foundations of Physics",
     title: "Physical Quantities and Units",
     summary: "Separate a physical quantity from its numerical value and unit, then use SI base and derived units consistently.",
     syllabusRef: "9478 / Section I / 1(a)-1(g)",
@@ -149,6 +155,7 @@ export const containers = [
     branch: "a-level",
     subject: "Physics",
     level: "H2",
+    module: "Foundations of Physics",
     title: "Resolving Vectors",
     summary: "Break a vector into perpendicular components and use trigonometry to preserve both magnitude and direction.",
     syllabusRef: "9478 / Section I / 1(j)",
@@ -210,6 +217,7 @@ export const containers = [
     branch: "a-level",
     subject: "Physics",
     level: "H2",
+    module: "Foundations of Physics",
     title: "Scalars and Vectors",
     summary: "Distinguish scalar and vector quantities, then combine coplanar vectors without treating arrows as ordinary numbers.",
     syllabusRef: "9478 / Section I / 1(h)-1(j)",
