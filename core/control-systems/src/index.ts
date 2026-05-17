@@ -195,6 +195,13 @@ export const transferFunction = (
     (coefficient) => coefficient / denominatorLead,
   );
 
+  if (
+    !normalizedNumerator.every(isFiniteNumber) ||
+    !normalizedDenominator.every(isFiniteNumber)
+  ) {
+    return err("numerical-instability", "normalized transfer-function coefficients must be finite");
+  }
+
   return ok(
     Object.freeze({
       numerator: freezeNumbers(normalizedNumerator),

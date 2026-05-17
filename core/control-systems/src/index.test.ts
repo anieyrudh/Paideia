@@ -69,6 +69,7 @@ describe("@paideia/control-systems transfer functions", () => {
     expectErrCode(transferFunction([], [1]), "precondition-violated");
     expectErrCode(transferFunction([1], [0, 0]), "precondition-violated");
     expectErrCode(transferFunction([Number.NaN], [1]), "precondition-violated");
+    expectErrCode(transferFunction([Number.MAX_VALUE], [1e-11]), "numerical-instability");
 
     const integrator = expectOk(transferFunction([1], [1, 0]));
     expectErrCode(evaluateTransferFunction(integrator, { re: 0, im: 0 }), "undefined-at-point");
