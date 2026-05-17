@@ -1,0 +1,324 @@
+import {
+  err,
+  joules,
+  metres,
+  ok,
+  radians,
+  type Joules,
+  type KernelResult,
+  type Kilograms,
+  type Metres,
+  type Newtons,
+  type Radians,
+  type Seconds,
+} from "@paideia/shared";
+
+export const mechanicsTolerance = {
+  default: 1e-9,
+  tight: 1e-12,
+  loose: 1e-6,
+} as const;
+
+export interface Vector2 {
+  readonly x: number;
+  readonly y: number;
+}
+
+export interface Kinematics1DInput {
+  readonly initialPositionMetres: Metres;
+  readonly initialVelocityMetresPerSecond: number;
+  readonly accelerationMetresPerSecondSquared: number;
+  readonly elapsedSeconds: Seconds;
+}
+
+export interface Kinematics1DState {
+  readonly positionMetres: Metres;
+  readonly displacementMetres: Metres;
+  readonly velocityMetresPerSecond: number;
+  readonly accelerationMetresPerSecondSquared: number;
+  readonly elapsedSeconds: Seconds;
+}
+
+export interface ProjectileInput {
+  readonly initialPositionMetres: Vector2;
+  readonly initialVelocityMetresPerSecond: Vector2;
+  readonly accelerationMetresPerSecondSquared: Vector2;
+}
+
+export interface ProjectileSample {
+  readonly positionMetres: Vector2;
+  readonly velocityMetresPerSecond: Vector2;
+  readonly accelerationMetresPerSecondSquared: Vector2;
+  readonly elapsedSeconds: Seconds;
+}
+
+export interface SimpleHarmonicMotionInput {
+  readonly equilibriumMetres: Metres;
+  readonly amplitudeMetres: Metres;
+  readonly angularFrequencyRadiansPerSecond: number;
+  readonly phaseRadians: Radians;
+}
+
+export interface SimpleHarmonicMotionSample {
+  readonly positionMetres: Metres;
+  readonly displacementFromEquilibriumMetres: Metres;
+  readonly velocityMetresPerSecond: number;
+  readonly accelerationMetresPerSecondSquared: number;
+  readonly elapsedSeconds: Seconds;
+}
+
+export interface ElasticCollision1DInput {
+  readonly mass1Kilograms: Kilograms;
+  readonly mass2Kilograms: Kilograms;
+  readonly velocity1MetresPerSecond: number;
+  readonly velocity2MetresPerSecond: number;
+}
+
+export interface ElasticCollision1DResult {
+  readonly finalVelocity1MetresPerSecond: number;
+  readonly finalVelocity2MetresPerSecond: number;
+  readonly totalMomentumBeforeKilogramMetresPerSecond: number;
+  readonly totalMomentumAfterKilogramMetresPerSecond: number;
+  readonly totalKineticEnergyBeforeJoules: Joules;
+  readonly totalKineticEnergyAfterJoules: Joules;
+}
+
+const finite = (value: number, label: string): KernelResult<void> =>
+  Number.isFinite(value)
+    ? ok(undefined)
+    : err("precondition-violated", `${label} must be finite; got ${value}`);
+
+const finiteVector = (vector: Vector2, label: string): KernelResult<void> => {
+  const x = finite(vector.x, `${label}.x`);
+  if (!x.ok) return x;
+  return finite(vector.y, `${label}.y`);
+};
+
+const nonNegative = (value: number, label: string): KernelResult<void> => {
+  const valid = finite(value, label);
+  if (!valid.ok) return valid;
+  return value >= 0
+    ? ok(undefined)
+    : err("precondition-violated", `${label} must be non-negative; got ${value}`);
+};
+
+const positive = (value: number, label: string): KernelResult<void> => {
+  const valid = finite(value, label);
+  if (!valid.ok) return valid;
+  return value > 0
+    ? ok(undefined)
+    : err("precondition-violated", `${label} must be positive; got ${value}`);
+};
+
+const add = (a: Vector2, b: Vector2): Vector2 => ({
+  x: a.x + b.x,
+  y: a.y + b.y,
+});
+
+const scale = (vector: Vector2, scalar: number): Vector2 => ({
+  x: vector.x * scalar,
+  y: vector.y * scalar,
+});
+
+const kineticEnergyValue = (massKilograms: number, speedMetresPerSecond: number): number =>
+  0.5 * massKilograms * speedMetresPerSecond * speedMetresPerSecond;
+
+export const kinematics1D = (input: Kinematics1DInput): KernelResult<Kinematics1DState> => {
+  const t = input.elapsedSeconds;
+  const time = nonNegative(t, "elapsedSeconds");
+  if (!time.ok) return time;
+
+  const position = finite(input.initialPositionMetres, "initialPositionMetres");
+  if (!position.ok) return position;
+  const velocity = finite(input.initialVelocityMetresPerSecond, "initialVelocityMetresPerSecond");
+  if (!velocity.ok) return velocity;
+  const acceleration = finite(
+    input.accelerationMetresPerSecondSquared,
+    "accelerationMetresPerSecondSquared",
+  );
+  if (!acceleration.ok) return acceleration;
+
+  const displacement =
+    input.initialVelocityMetresPerSecond * t +
+    0.5 * input.accelerationMetresPerSecondSquared * t * t;
+  return ok({
+    positionMetres: metres(input.initialPositionMetres + displacement),
+    displacementMetres: metres(displacement),
+    velocityMetresPerSecond:
+      input.initialVelocityMetresPerSecond + input.accelerationMetresPerSecondSquared * t,
+    accelerationMetresPerSecondSquared: input.accelerationMetresPerSecondSquared,
+    elapsedSeconds: input.elapsedSeconds,
+  });
+};
+
+export const projectileAt = (
+  input: ProjectileInput,
+  elapsedSeconds: Seconds,
+): KernelResult<ProjectileSample> => {
+  const time = nonNegative(elapsedSeconds, "elapsedSeconds");
+  if (!time.ok) return time;
+  const initialPosition = finiteVector(input.initialPositionMetres, "initialPositionMetres");
+  if (!initialPosition.ok) return initialPosition;
+  const initialVelocity = finiteVector(
+    input.initialVelocityMetresPerSecond,
+    "initialVelocityMetresPerSecond",
+  );
+  if (!initialVelocity.ok) return initialVelocity;
+  const acceleration = finiteVector(
+    input.accelerationMetresPerSecondSquared,
+    "accelerationMetresPerSecondSquared",
+  );
+  if (!acceleration.ok) return acceleration;
+
+  const velocity = add(
+    input.initialVelocityMetresPerSecond,
+    scale(input.accelerationMetresPerSecondSquared, elapsedSeconds),
+  );
+  const position = add(
+    input.initialPositionMetres,
+    add(
+      scale(input.initialVelocityMetresPerSecond, elapsedSeconds),
+      scale(input.accelerationMetresPerSecondSquared, 0.5 * elapsedSeconds * elapsedSeconds),
+    ),
+  );
+
+  return ok({
+    positionMetres: position,
+    velocityMetresPerSecond: velocity,
+    accelerationMetresPerSecondSquared: { ...input.accelerationMetresPerSecondSquared },
+    elapsedSeconds,
+  });
+};
+
+export const netForce = (forces: readonly Vector2[]): KernelResult<Vector2> => {
+  let total: Vector2 = { x: 0, y: 0 };
+  for (const force of forces) {
+    const valid = finiteVector(force, "force");
+    if (!valid.ok) return valid;
+    total = add(total, force);
+  }
+  return ok(total);
+};
+
+export const accelerationFromForce = (
+  forceNewtons: Vector2,
+  massKilograms: Kilograms,
+): KernelResult<Vector2> => {
+  const force = finiteVector(forceNewtons, "forceNewtons");
+  if (!force.ok) return force;
+  const mass = positive(massKilograms, "massKilograms");
+  if (!mass.ok) return mass;
+
+  return ok(scale(forceNewtons, 1 / massKilograms));
+};
+
+export const workDone = (
+  forceNewtons: Newtons,
+  displacementMetres: Metres,
+  angleRadians: Radians = radians(0),
+): KernelResult<Joules> => {
+  const force = nonNegative(forceNewtons, "forceNewtons");
+  if (!force.ok) return force;
+  const displacement = nonNegative(displacementMetres, "displacementMetres");
+  if (!displacement.ok) return displacement;
+  const angle = finite(angleRadians, "angleRadians");
+  if (!angle.ok) return angle;
+
+  return ok(joules(forceNewtons * displacementMetres * Math.cos(angleRadians)));
+};
+
+export const kineticEnergy = (
+  massKilograms: Kilograms,
+  speedMetresPerSecond: number,
+): KernelResult<Joules> => {
+  const mass = positive(massKilograms, "massKilograms");
+  if (!mass.ok) return mass;
+  const speed = nonNegative(speedMetresPerSecond, "speedMetresPerSecond");
+  if (!speed.ok) return speed;
+
+  return ok(joules(kineticEnergyValue(massKilograms, speedMetresPerSecond)));
+};
+
+export const momentum1D = (
+  massKilograms: Kilograms,
+  velocityMetresPerSecond: number,
+): KernelResult<number> => {
+  const mass = positive(massKilograms, "massKilograms");
+  if (!mass.ok) return mass;
+  const velocity = finite(velocityMetresPerSecond, "velocityMetresPerSecond");
+  if (!velocity.ok) return velocity;
+
+  return ok(massKilograms * velocityMetresPerSecond);
+};
+
+export const elasticCollision1D = (
+  input: ElasticCollision1DInput,
+): KernelResult<ElasticCollision1DResult> => {
+  const mass1 = positive(input.mass1Kilograms, "mass1Kilograms");
+  if (!mass1.ok) return mass1;
+  const mass2 = positive(input.mass2Kilograms, "mass2Kilograms");
+  if (!mass2.ok) return mass2;
+  const velocity1 = finite(input.velocity1MetresPerSecond, "velocity1MetresPerSecond");
+  if (!velocity1.ok) return velocity1;
+  const velocity2 = finite(input.velocity2MetresPerSecond, "velocity2MetresPerSecond");
+  if (!velocity2.ok) return velocity2;
+
+  const totalMass = input.mass1Kilograms + input.mass2Kilograms;
+  const finalVelocity1 =
+    ((input.mass1Kilograms - input.mass2Kilograms) / totalMass) *
+      input.velocity1MetresPerSecond +
+    ((2 * input.mass2Kilograms) / totalMass) * input.velocity2MetresPerSecond;
+  const finalVelocity2 =
+    ((2 * input.mass1Kilograms) / totalMass) * input.velocity1MetresPerSecond +
+    ((input.mass2Kilograms - input.mass1Kilograms) / totalMass) *
+      input.velocity2MetresPerSecond;
+
+  return ok({
+    finalVelocity1MetresPerSecond: finalVelocity1,
+    finalVelocity2MetresPerSecond: finalVelocity2,
+    totalMomentumBeforeKilogramMetresPerSecond:
+      input.mass1Kilograms * input.velocity1MetresPerSecond +
+      input.mass2Kilograms * input.velocity2MetresPerSecond,
+    totalMomentumAfterKilogramMetresPerSecond:
+      input.mass1Kilograms * finalVelocity1 + input.mass2Kilograms * finalVelocity2,
+    totalKineticEnergyBeforeJoules: joules(
+      kineticEnergyValue(input.mass1Kilograms, input.velocity1MetresPerSecond) +
+        kineticEnergyValue(input.mass2Kilograms, input.velocity2MetresPerSecond),
+    ),
+    totalKineticEnergyAfterJoules: joules(
+      kineticEnergyValue(input.mass1Kilograms, finalVelocity1) +
+        kineticEnergyValue(input.mass2Kilograms, finalVelocity2),
+    ),
+  });
+};
+
+export const simpleHarmonicMotion = (
+  input: SimpleHarmonicMotionInput,
+  elapsedSeconds: Seconds,
+): KernelResult<SimpleHarmonicMotionSample> => {
+  const time = nonNegative(elapsedSeconds, "elapsedSeconds");
+  if (!time.ok) return time;
+  const equilibrium = finite(input.equilibriumMetres, "equilibriumMetres");
+  if (!equilibrium.ok) return equilibrium;
+  const amplitude = nonNegative(input.amplitudeMetres, "amplitudeMetres");
+  if (!amplitude.ok) return amplitude;
+  const angularFrequency = positive(
+    input.angularFrequencyRadiansPerSecond,
+    "angularFrequencyRadiansPerSecond",
+  );
+  if (!angularFrequency.ok) return angularFrequency;
+  const phase = finite(input.phaseRadians, "phaseRadians");
+  if (!phase.ok) return phase;
+
+  const angle = input.angularFrequencyRadiansPerSecond * elapsedSeconds + input.phaseRadians;
+  const displacement = input.amplitudeMetres * Math.cos(angle);
+  return ok({
+    positionMetres: metres(input.equilibriumMetres + displacement),
+    displacementFromEquilibriumMetres: metres(displacement),
+    velocityMetresPerSecond:
+      -input.amplitudeMetres * input.angularFrequencyRadiansPerSecond * Math.sin(angle),
+    accelerationMetresPerSecondSquared:
+      -input.angularFrequencyRadiansPerSecond * input.angularFrequencyRadiansPerSecond * displacement,
+    elapsedSeconds,
+  });
+};
