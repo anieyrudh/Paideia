@@ -106,7 +106,7 @@ but it must not teach a different numerical resultant.
 - Generic browser harness:
   `testing/sim-harness`
 
-Latest local gate run on 2026-05-16:
+Latest fully passing local gate run on 2026-05-16 (newer PR #22 fix runs are recorded below):
 
 - `pnpm -F @paideia/a-level-physics-sims build` passed.
 - `pnpm -F @paideia/a-level-physics-sims test` passed.
