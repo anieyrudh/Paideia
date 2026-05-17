@@ -27,6 +27,10 @@ export interface ShellContainer {
   readonly aidTypes: readonly AidType[];
   readonly misconceptions: readonly string[];
   readonly transferProblem: string;
+  readonly firstPrinciples: string;
+  readonly keyDefinitions: readonly string[];
+  readonly canonicalExamples: readonly string[];
+  readonly problemSolvingSteps: readonly string[];
   readonly prerequisites: readonly string[];
   readonly downstream: readonly string[];
   readonly siblings: readonly string[];
@@ -112,6 +116,26 @@ export const containers = [
       "Quantity equals number",
     ],
     transferProblem: "A student writes a measured acceleration as 9.8 m s^-1. Decide whether the unit is dimensionally consistent with acceleration, correct it if needed, and explain which base units are involved.",
+    firstPrinciples: "A physical quantity is something about the world that can be measured. The measurement is incomplete unless it gives both a numerical value and a unit. Writing 5 is just a number; writing 5 m says the quantity is a length and the metre is the comparison standard.",
+    keyDefinitions: [
+      "Physical quantity: a measurable property such as length, time, mass, or force.",
+      "Numerical value: how many units are counted.",
+      "Unit: the agreed standard used for comparison.",
+      "Base quantity: a quantity such as length, mass, time, electric current, temperature, amount of substance, or luminous intensity.",
+      "Derived quantity: a quantity built from base quantities, such as speed in m s^-1 or force in kg m s^-2.",
+    ],
+    canonicalExamples: [
+      "Distance may be measured as 2.0 m, 200 cm, or 0.002 km; the physical length is the same.",
+      "Speed has units m s^-1 because it is distance divided by time.",
+      "Acceleration has units m s^-2, not m s^-1, because velocity changes per unit time.",
+    ],
+    problemSolvingSteps: [
+      "Name the quantity",
+      "Attach the unit to the value",
+      "Expand derived units if needed",
+      "Check dimensions before operating",
+      "Convert using unit ratios",
+    ],
     prerequisites: [],
     downstream: [
       "Scalars and Vectors",
@@ -142,6 +166,25 @@ export const containers = [
       "Components as extra forces",
     ],
     transferProblem: "A 12 N force pulls a trolley at 25 degrees above the horizontal. Resolve the force into horizontal and vertical components, then explain which component changes the trolley's horizontal motion.",
+    firstPrinciples: "A vector can be replaced by perpendicular components along chosen axes. The components are not extra vectors added to the original; together they are an equivalent representation of the same vector.",
+    keyDefinitions: [
+      "Component: the part of a vector along a chosen axis.",
+      "Resolving: replacing a vector by perpendicular components.",
+      "Axis: a chosen direction used to describe components.",
+      "Resultant: the single vector equivalent to adding components.",
+    ],
+    canonicalExamples: [
+      "A 10 N force at 30 degrees has horizontal component 10 cos 30 = 8.7 N.",
+      "The same force has vertical component 10 sin 30 = 5.0 N.",
+      "If the angle is measured from the vertical instead, the sine/cosine roles switch.",
+    ],
+    problemSolvingSteps: [
+      "Draw the vector and axes",
+      "Mark the angle reference",
+      "Identify adjacent and opposite sides",
+      "Compute components with sine and cosine",
+      "Keep the vector unit on each component",
+    ],
     prerequisites: [
       "Physical Quantities and Units",
       "Scalars and Vectors",
@@ -184,6 +227,25 @@ export const containers = [
       "Negative scalar does not reverse direction",
     ],
     transferProblem: "A class walks 300 m east from the school gate to a bus stop, then 400 m north to a field site. Decide whether the quantities should be combined as scalars or vectors, calculate the displacement magnitude from the school gate, and explain why total walking distance is not the same physical quantity as displacement.",
+    firstPrinciples: "Students learn that a physical quantity is not classified by its unit or by whether its number can be positive or negative. The useful test is whether the quantity needs direction as part of its meaning. Scalar quantities are complete with magnitude and unit; vector quantities need magnitude and direction, so vector addition must preserve direction instead of adding arrow lengths as ordinary numbers.",
+    keyDefinitions: [
+      "Scalar: a quantity fully described by magnitude and unit.",
+      "Vector: a quantity that needs magnitude, unit, and direction.",
+      "Resultant: the single vector with the same effect as two or more vectors",
+      "Component: the part of a vector acting along a chosen axis.",
+    ],
+    canonicalExamples: [
+      "Distance travelled is scalar; displacement from start to finish is vector.",
+      "Speed is scalar; velocity is vector.",
+      "Mass is scalar; weight is a force vector.",
+      "Two perpendicular 5 m displacements produce a resultant of about 7.1 m, not",
+    ],
+    problemSolvingSteps: [
+      "Is direction part of the physical quantity?",
+      "How should the vector be represented?",
+      "What operation preserves direction?",
+      "What physical quantity does the result describe?",
+    ],
     prerequisites: [
       "Physical Quantities and Units",
     ],

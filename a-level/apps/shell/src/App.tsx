@@ -79,6 +79,49 @@ const KnowledgeGraphBrief = ({
   );
 };
 
+const ConceptContent = ({
+  active,
+}: {
+  readonly active: ShellContainer;
+}) => (
+  <section className="concept-panel" aria-labelledby="concept-brief-title">
+    <div className="concept-section concept-lead">
+      <p className="meta-line">concept card</p>
+      <h2 id="concept-brief-title">First principles</h2>
+      <p>{active.firstPrinciples}</p>
+    </div>
+
+    <div className="concept-grid">
+      <section className="concept-section" aria-labelledby="definitions-title">
+        <h3 id="definitions-title">Key definitions</h3>
+        <ul>
+          {active.keyDefinitions.map((definition) => (
+            <li key={definition}>{definition}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="concept-section" aria-labelledby="examples-title">
+        <h3 id="examples-title">Canonical examples</h3>
+        <ul>
+          {active.canonicalExamples.map((example) => (
+            <li key={example}>{example}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="concept-section" aria-labelledby="strategy-title">
+        <h3 id="strategy-title">Problem-solving algorithm</h3>
+        <ol>
+          {active.problemSolvingSteps.map((step) => (
+            <li key={step}>{step}</li>
+          ))}
+        </ol>
+      </section>
+    </div>
+  </section>
+);
+
 export const App = () => {
   const [resetVersion, setResetVersion] = useState(0);
   const [active, setActive] = useState<ShellContainer>(() => readContainerFromHash());
@@ -140,31 +183,35 @@ export const App = () => {
           <StageList />
 
           <div className="lab-layout" id="lab">
-            {Sim === null || activeSim === null ? (
-              <section className="sim-panel" aria-labelledby="sim-title">
-                <div className="sim-header">
-                  <div>
-                    <p className="meta-line">content-only</p>
-                    <h2 id="sim-title">No interactive simulation yet</h2>
+            <div className="learning-column">
+              <ConceptContent active={active} />
+
+              {Sim === null || activeSim === null ? (
+                <section className="sim-panel" aria-labelledby="sim-title">
+                  <div className="sim-header">
+                    <div>
+                      <p className="meta-line">content-only</p>
+                      <h2 id="sim-title">No interactive simulation yet</h2>
+                    </div>
                   </div>
-                </div>
-              </section>
-            ) : (
-              <section className="sim-panel" aria-labelledby="sim-title">
-                <div className="sim-header">
-                  <div>
-                    <p className="meta-line">{activeSim.interactionType}</p>
-                    <h2 id="sim-title">{activeSim.title}</h2>
+                </section>
+              ) : (
+                <section className="sim-panel" aria-labelledby="sim-title">
+                  <div className="sim-header">
+                    <div>
+                      <p className="meta-line">{activeSim.interactionType}</p>
+                      <h2 id="sim-title">{activeSim.title}</h2>
+                    </div>
+                    <button type="button" onClick={resetPrediction}>
+                      Reset prediction
+                    </button>
                   </div>
-                  <button type="button" onClick={resetPrediction}>
-                    Reset prediction
-                  </button>
-                </div>
-                <div className="sim-surface">
-                  <Sim key={resetVersion} />
-                </div>
-              </section>
-            )}
+                  <div className="sim-surface">
+                    <Sim key={resetVersion} />
+                  </div>
+                </section>
+              )}
+            </div>
 
             <aside className="lab-brief" aria-label="Lab brief">
               {active.predictPrompt.length > 0 ? (
