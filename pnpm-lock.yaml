@@ -168,6 +168,19 @@ importers:
         specifier: ^2.1.0
         version: 2.1.9(@types/node@22.19.19)(jsdom@25.0.1)
 
+  core/circuits:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.0
+        version: 2.1.9(@types/node@22.19.19)(jsdom@25.0.1)
+
   core/content-schema:
     dependencies:
       '@paideia/shared':
@@ -176,6 +189,32 @@ importers:
       zod:
         specifier: ^3.23.0
         version: 3.25.76
+    devDependencies:
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.0
+        version: 2.1.9(@types/node@22.19.19)(jsdom@25.0.1)
+
+  core/control-systems:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.0
+        version: 2.1.9(@types/node@22.19.19)(jsdom@25.0.1)
+
+  core/dynamical-systems:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
     devDependencies:
       typescript:
         specifier: ^5.6.0
@@ -219,6 +258,19 @@ importers:
         specifier: ^2.1.0
         version: 2.1.9(@types/node@22.19.19)(jsdom@25.0.1)
 
+  core/graph-algorithms:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.0
+        version: 2.1.9(@types/node@22.19.19)(jsdom@25.0.1)
+
   core/graph-layout:
     dependencies:
       '@paideia/shared':
@@ -237,6 +289,32 @@ importers:
       react:
         specifier: ^18.3.0
         version: 18.3.1
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.0
+        version: 2.1.9(@types/node@22.19.19)(jsdom@25.0.1)
+
+  core/linear-algebra:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.0
+        version: 2.1.9(@types/node@22.19.19)(jsdom@25.0.1)
+
+  core/mechanics:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
       typescript:
         specifier: ^5.6.0
         version: 5.9.3
@@ -270,6 +348,19 @@ importers:
         version: 2.1.9(@types/node@22.19.19)(jsdom@25.0.1)
 
   core/numerical-math:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.0
+        version: 2.1.9(@types/node@22.19.19)(jsdom@25.0.1)
+
+  core/optimization:
     dependencies:
       '@paideia/shared':
         specifier: workspace:*
@@ -334,6 +425,19 @@ importers:
       react-dom:
         specifier: ^18.3.0
         version: 18.3.1(react@18.3.1)
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.0
+        version: 2.1.9(@types/node@22.19.19)(jsdom@25.0.1)
+
+  core/probability-stats:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
       typescript:
         specifier: ^5.6.0
         version: 5.9.3
