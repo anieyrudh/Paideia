@@ -54,6 +54,10 @@ describe("@paideia/optimization", () => {
     expect(badStep.ok).toBe(false);
     if (!badStep.ok) expect(badStep.error.code).toBe("precondition-violated");
 
+    const badMaxSteps = gradientDescent((x, y) => x + y, [0, 0], { maxSteps: 0 });
+    expect(badMaxSteps.ok).toBe(false);
+    if (!badMaxSteps.ok) expect(badMaxSteps.error.code).toBe("precondition-violated");
+
     const undefinedObjective = gradientDescent((x) => 1 / x, [0, 0]);
     expect(undefinedObjective.ok).toBe(false);
     if (!undefinedObjective.ok) expect(undefinedObjective.error.code).toBe("undefined-at-point");
@@ -104,6 +108,20 @@ describe("@paideia/optimization", () => {
     const malformed = linearFeasibleRegion([{ a: 0, b: 0, relation: "<=", c: 1 }], unitSquare);
     expect(malformed.ok).toBe(false);
     if (!malformed.ok) expect(malformed.error.code).toBe("precondition-violated");
+  });
+
+  it("rejects non-finite feasible-region vertices before optimizing", () => {
+    const result = optimizeLinearObjective(
+      {
+        domain: unitSquare,
+        constraints: [],
+        vertices: [[Number.NaN, 0], [1, 0], [0, 1]],
+      },
+      { cx: 1, cy: 1, direction: "max" },
+    );
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("precondition-violated");
   });
 
   it("property: quadratic descent values do not increase for conservative rates", () => {

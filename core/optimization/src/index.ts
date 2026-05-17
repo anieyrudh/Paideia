@@ -172,8 +172,8 @@ export const gradientDescent = (
   if (!validTolerance.ok) return validTolerance;
   const validH = positiveFinite(h, "h");
   if (!validH.ok) return validH;
-  if (!Number.isInteger(maxSteps) || maxSteps < 0) {
-    return err("precondition-violated", `maxSteps must be a non-negative integer; got ${maxSteps}`);
+  if (!Number.isInteger(maxSteps) || maxSteps <= 0) {
+    return err("precondition-violated", `maxSteps must be a positive integer; got ${maxSteps}`);
   }
   if (opts.domain !== undefined) {
     const validDomain = validateDomain(opts.domain);
@@ -384,15 +384,24 @@ export const optimizeLinearObjective = (
     return err("precondition-violated", "Feasible region has no vertices");
   }
 
-  let bestPoint = region.vertices[0];
+  const vertices: Point2[] = [];
+  for (let i = 0; i < region.vertices.length; i += 1) {
+    const point = region.vertices[i];
+    if (point === undefined) {
+      return err("precondition-violated", `region.vertices[${i}] is missing`);
+    }
+    const validPoint = validatePoint(point, `region.vertices[${i}]`);
+    if (!validPoint.ok) return validPoint;
+    vertices.push(validPoint.value);
+  }
+
+  let bestPoint = vertices[0];
   if (bestPoint === undefined) {
     return err("precondition-violated", "Feasible region has no vertices");
   }
   let bestValue = objectiveValue(objective, bestPoint);
 
-  for (const point of region.vertices.slice(1)) {
-    const validPoint = validatePoint(point, "region.vertices[]");
-    if (!validPoint.ok) return validPoint;
+  for (const point of vertices.slice(1)) {
     const value = objectiveValue(objective, point);
     const isBetter =
       objective.direction === "max"
