@@ -531,10 +531,37 @@ export const solveDcCircuit = (
   const unknownCount = nodeCount + voltageSources.length;
 
   if (unknownCount === 0) {
+    const elementCurrents: ElementCurrent[] = [];
+    const elementPowers: ElementPower[] = [];
+
+    for (const element of circuit.elements) {
+      switch (element.kind) {
+        case "resistor":
+          elementCurrents.push({ element: element.id, currentAmps: 0 });
+          elementPowers.push({ element: element.id, powerWatts: 0 });
+          break;
+        case "current-source":
+          if (Math.abs(element.currentAmps) > circuitTolerance.tight) {
+            return err(
+              "precondition-violated",
+              `All-reference current source ${element.id} must have zero current`,
+            );
+          }
+          elementCurrents.push({ element: element.id, currentAmps: 0 });
+          elementPowers.push({ element: element.id, powerWatts: 0 });
+          break;
+        case "voltage-source":
+          return err(
+            "numerical-instability",
+            `Unexpected voltage source ${element.id} in zero-unknown circuit`,
+          );
+      }
+    }
+
     return ok({
       nodeVoltages: [{ node: circuit.referenceNode, voltageVolts: 0 }],
-      elementCurrents: [],
-      elementPowers: [],
+      elementCurrents,
+      elementPowers,
     });
   }
 

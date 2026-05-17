@@ -46,6 +46,18 @@ const valueForCurrent = (
 const totalPower = (powers: readonly ElementPower[]): number =>
   powers.reduce((sum, entry) => sum + entry.powerWatts, 0);
 
+const expectApprox = (
+  actual: number,
+  expected: number,
+  tolerance = circuitTolerance.tight,
+): void => {
+  expect(
+    Number.isFinite(actual) &&
+      Number.isFinite(expected) &&
+      Math.abs(actual - expected) <= tolerance,
+  ).toBe(true);
+};
+
 describe("@paideia/circuits", () => {
   it("constructs stable non-empty IDs", () => {
     const node = nodeId("  n1  ");
@@ -76,7 +88,7 @@ describe("@paideia/circuits", () => {
 
     const parallel = combineParallel([6, 3]);
     expect(parallel.ok).toBe(true);
-    if (parallel.ok) expect(parallel.value).toBeCloseTo(2, 12);
+    if (parallel.ok) expectApprox(parallel.value, 2);
 
     const invalid = combineParallel([10, 0]);
     expect(invalid.ok).toBe(false);
@@ -91,8 +103,8 @@ describe("@paideia/circuits", () => {
         expect(series.ok).toBe(true);
         expect(parallel.ok).toBe(true);
         if (series.ok && parallel.ok) {
-          expect(series.value).toBeCloseTo(first + second, 12);
-          expect(1 / parallel.value).toBeCloseTo(1 / first + 1 / second, 12);
+          expectApprox(series.value, first + second);
+          expectApprox(1 / parallel.value, 1 / first + 1 / second);
           expect(parallel.value).toBeLessThanOrEqual(Math.min(first, second));
         }
       }
@@ -104,7 +116,43 @@ describe("@paideia/circuits", () => {
     expect(drops.ok).toBe(true);
     if (drops.ok) {
       expect(drops.value).toEqual([2, 4, 6]);
-      expect(drops.value.reduce((sum, value) => sum + value, 0)).toBeCloseTo(12, 12);
+      expectApprox(drops.value.reduce((sum, value) => sum + value, 0), 12);
+    }
+  });
+
+  it("returns complete zero results for all-reference zero-current circuits", () => {
+    const gnd = mustNode("gnd");
+    const r1 = mustElement("r1");
+    const i1 = mustElement("i1");
+    const i2 = mustElement("i2");
+
+    const result = solveDcCircuit({
+      referenceNode: gnd,
+      elements: [
+        { kind: "resistor", id: r1, from: gnd, to: gnd, resistanceOhms: 10 },
+        { kind: "current-source", id: i1, from: gnd, to: gnd, currentAmps: 0 },
+      ],
+    });
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(valueForNode(result.value.nodeVoltages, gnd)).toBe(0);
+      expect(valueForCurrent(result.value.elementCurrents, r1)).toBe(0);
+      expect(valueForCurrent(result.value.elementCurrents, i1)).toBe(0);
+      expect(totalPower(result.value.elementPowers)).toBe(0);
+      expect(result.value.elementCurrents).toHaveLength(2);
+      expect(result.value.elementPowers).toHaveLength(2);
+    }
+
+    const nonZeroReferenceCurrent = solveDcCircuit({
+      referenceNode: gnd,
+      elements: [
+        { kind: "current-source", id: i2, from: gnd, to: gnd, currentAmps: 1 },
+      ],
+    });
+    expect(nonZeroReferenceCurrent.ok).toBe(false);
+    if (!nonZeroReferenceCurrent.ok) {
+      expect(nonZeroReferenceCurrent.error.code).toBe("precondition-violated");
     }
   });
 
@@ -125,10 +173,10 @@ describe("@paideia/circuits", () => {
     expect(result.ok).toBe(true);
     if (result.ok) {
       expect(valueForNode(result.value.nodeVoltages, gnd)).toBe(0);
-      expect(valueForNode(result.value.nodeVoltages, n1)).toBeCloseTo(10, 12);
-      expect(valueForCurrent(result.value.elementCurrents, r1)).toBeCloseTo(2, 12);
-      expect(valueForCurrent(result.value.elementCurrents, v1)).toBeCloseTo(-2, 12);
-      expect(totalPower(result.value.elementPowers)).toBeCloseTo(0, 12);
+      expectApprox(valueForNode(result.value.nodeVoltages, n1), 10);
+      expectApprox(valueForCurrent(result.value.elementCurrents, r1), 2);
+      expectApprox(valueForCurrent(result.value.elementCurrents, v1), -2);
+      expectApprox(totalPower(result.value.elementPowers), 0);
     }
   });
 
@@ -148,10 +196,10 @@ describe("@paideia/circuits", () => {
 
     expect(result.ok).toBe(true);
     if (result.ok) {
-      expect(valueForNode(result.value.nodeVoltages, n1)).toBeCloseTo(2, 12);
-      expect(valueForCurrent(result.value.elementCurrents, r1)).toBeCloseTo(0.25, 12);
-      expect(valueForCurrent(result.value.elementCurrents, i1)).toBeCloseTo(0.25, 12);
-      expect(totalPower(result.value.elementPowers)).toBeCloseTo(0, 12);
+      expectApprox(valueForNode(result.value.nodeVoltages, n1), 2);
+      expectApprox(valueForCurrent(result.value.elementCurrents, r1), 0.25);
+      expectApprox(valueForCurrent(result.value.elementCurrents, i1), 0.25);
+      expectApprox(totalPower(result.value.elementPowers), 0);
     }
   });
 
@@ -176,10 +224,10 @@ describe("@paideia/circuits", () => {
           expect(result.ok).toBe(true);
           if (result.ok) {
             const expectedCurrent = supply / (top + bottom);
-            expect(valueForCurrent(result.value.elementCurrents, r1)).toBeCloseTo(expectedCurrent, 10);
-            expect(valueForCurrent(result.value.elementCurrents, r2)).toBeCloseTo(expectedCurrent, 10);
-            expect(valueForNode(result.value.nodeVoltages, n2)).toBeCloseTo(expectedCurrent * bottom, 10);
-            expect(Math.abs(totalPower(result.value.elementPowers))).toBeLessThan(circuitTolerance.loose);
+            expectApprox(valueForCurrent(result.value.elementCurrents, r1), expectedCurrent, circuitTolerance.loose);
+            expectApprox(valueForCurrent(result.value.elementCurrents, r2), expectedCurrent, circuitTolerance.loose);
+            expectApprox(valueForNode(result.value.nodeVoltages, n2), expectedCurrent * bottom, circuitTolerance.loose);
+            expectApprox(totalPower(result.value.elementPowers), 0, circuitTolerance.loose);
           }
         }
       }

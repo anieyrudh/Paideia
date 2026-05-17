@@ -36,6 +36,7 @@ Exports from `@paideia/circuits`:
 - `DcCircuit.referenceNode` is the ground node and is always reported at `0 V`.
 - Element current signs follow each element's declared orientation: resistor `from -> to`, current source `from -> to`, voltage source `positive -> negative`.
 - Element power uses the passive sign convention for the same orientation: positive power is absorbed, negative power is delivered.
+- `ohmsLaw` consistency checks compare `V` against `IR` with `circuitTolerance.loose`, scaled by `max(1, abs(expectedVoltage))`.
 
 ## What this module does NOT do
 - Does **not** render schematics, waveforms, phasors, or UI controls.
