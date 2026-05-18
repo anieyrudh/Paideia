@@ -7,14 +7,27 @@ const containerById = new Map<string, ShellContainer>(
 );
 const pillarById = new Map<string, SutdPillar>(sutdPillars.map((pillar) => [pillar.id, pillar]));
 
+type HashRoute =
+  | { readonly kind: "container"; readonly id: string }
+  | { readonly kind: "pillar"; readonly id: string }
+  | { readonly kind: "empty"; readonly id: "" };
+
+const parseHashRoute = (): HashRoute => {
+  const hash = decodeURIComponent(globalThis.location?.hash.slice(1) ?? "");
+  if (hash.length === 0) return { kind: "empty", id: "" };
+  if (hash.startsWith("pillar/")) return { kind: "pillar", id: hash.slice("pillar/".length) };
+  return { kind: "container", id: hash };
+};
+
 const readContainerFromHash = (): ShellContainer | null => {
-  const hash = globalThis.location?.hash.slice(1) ?? "";
-  return containerById.get(decodeURIComponent(hash)) ?? containers[0] ?? null;
+  const route = parseHashRoute();
+  const containerId = route.kind === "container" ? route.id : "";
+  return containerById.get(containerId) ?? containers[0] ?? null;
 };
 
 const readPillarFromHash = (): SutdPillar => {
-  const hash = globalThis.location?.hash.slice(1) ?? "";
-  const pillarId = hash.startsWith("pillar/") ? hash.slice("pillar/".length) : "";
+  const route = parseHashRoute();
+  const pillarId = route.kind === "pillar" ? route.id : "";
   return pillarById.get(pillarId) ?? sutdPillars[0];
 };
 
