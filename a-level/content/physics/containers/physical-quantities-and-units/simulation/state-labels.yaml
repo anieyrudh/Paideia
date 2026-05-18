@@ -1,0 +1,8 @@
+state_labels:
+  distanceCentimetres: "Measured distance"
+  distanceUncertaintyMillimetres: "Distance uncertainty"
+  timeSeconds: "Measured time"
+  timeUncertaintySeconds: "Time uncertainty"
+  speedMetresPerSecond: "Average speed"
+  speedUncertaintyMetresPerSecond: "Speed uncertainty"
+  speedRelativeUncertaintyPercent: "Fractional uncertainty"

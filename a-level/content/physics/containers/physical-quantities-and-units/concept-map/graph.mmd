@@ -1,8 +1,18 @@
 flowchart LR
-  current["Physical quantities and units"] --> scalars["Scalars and vectors"]
-  current --> resolving["Resolving vectors"]
+  current["Physical quantities and units"] --> lab["Measurement and uncertainty lab"]
+  current --> scalars["Scalars and vectors"]
+  scalars --> resolving["Resolving vectors"]
+  current --> resolving
+  value["Numerical value"] --> unit["Unit"]
+  unit --> dimension["Dimension"]
+  uncertainty["Uncertainty"] --> unit
+  dimension --> checker["Dimensional consistency"]
+  checker --> derived["Derived quantities"]
   number["Quantity equals number"] --> decoration["Unit as decoration"]
+  number --> bareUncertainty["Uncertainty without unit"]
   decoration --> mismatch["Dimension mismatch"]
+  bareUncertainty --> mismatch
   current -. addresses .-> number
   current -. addresses .-> decoration
-  current -. addresses .-> mismatch
+  lab -. surfaces .-> bareUncertainty
+  lab -. blocks .-> mismatch

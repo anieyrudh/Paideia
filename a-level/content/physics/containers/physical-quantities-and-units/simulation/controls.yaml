@@ -1,0 +1,17 @@
+controls:
+  - id: distance-centimetres
+    label: "Measured distance"
+    default: 80
+    unit: cm
+  - id: distance-uncertainty-millimetres
+    label: "Distance uncertainty"
+    default: 5
+    unit: mm
+  - id: time-seconds
+    label: "Measured time"
+    default: 2.0
+    unit: s
+  - id: time-uncertainty-seconds
+    label: "Time uncertainty"
+    default: 0.10
+    unit: s

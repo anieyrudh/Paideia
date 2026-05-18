@@ -17,6 +17,8 @@ misconception_graph:
       label: "Unit as decoration"
     - id: quantity-equals-number
       label: "Quantity equals number"
+    - id: uncertainty-without-unit
+      label: "Uncertainty without unit"
     - id: dimension-mismatch
       label: "Dimension mismatch"
   edges:
@@ -26,4 +28,10 @@ misconception_graph:
     - from: unit-as-decoration
       to: dimension-mismatch
       label: "hides"
+    - from: quantity-equals-number
+      to: uncertainty-without-unit
+      label: "encourages"
+    - from: uncertainty-without-unit
+      to: dimension-mismatch
+      label: "masks"
 mermaid_source: graph.mmd

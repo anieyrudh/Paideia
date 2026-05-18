@@ -1,6 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Unit consistency fallback">
-  <rect width="320" height="180" fill="#fffdf7"/>
-  <text x="32" y="54" fill="#13251e" font-family="Arial, sans-serif" font-size="22" font-weight="700">Unit check</text>
-  <text x="32" y="92" fill="#10201a" font-family="Arial, sans-serif" font-size="20">speed: m s^-1</text>
-  <text x="32" y="124" fill="#10201a" font-family="Arial, sans-serif" font-size="20">acceleration: m s^-2</text>
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Static measurement and units explanation</title>
+  <desc id="desc">A static formula card showing average speed equals distance over time with uncertainty.</desc>
+  <rect width="640" height="360" rx="28" fill="#f8fafc"/>
+  <rect x="52" y="46" width="536" height="268" rx="24" fill="#ecfeff" stroke="#0f766e" stroke-width="3"/>
+  <text x="86" y="98" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">Quantity = value ± uncertainty + unit</text>
+  <text x="86" y="154" fill="#334155" font-family="Inter, Arial, sans-serif" font-size="24">distance = 0.80 ± 0.005 m</text>
+  <text x="86" y="196" fill="#334155" font-family="Inter, Arial, sans-serif" font-size="24">time = 2.0 ± 0.1 s</text>
+  <path d="M86 228 H554" stroke="#94a3b8" stroke-width="2" stroke-dasharray="8 8"/>
+  <text x="86" y="270" fill="#0f766e" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">speed = distance / time = 0.40 m s⁻¹</text>
 </svg>

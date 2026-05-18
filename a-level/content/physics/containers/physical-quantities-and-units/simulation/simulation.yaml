@@ -1,0 +1,59 @@
+id: measurement-uncertainty-lab
+title: "Measurement and Uncertainty Lab"
+interaction_type: other
+kernel_deps:
+  - core/prediction-gate
+  - core/shared
+
+predict:
+  prompt: |
+    A trolley travels 0.80 m in 2.0 s. Before seeing the lab's working, which unit must its average speed have?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "metre (m)"
+      - "second (s)"
+      - "m s^-1"
+      - "m s^-2"
+    correct_index: 2
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: measured-distance
+      label: "Measured distance"
+      kind: slider
+      kernel_binding: state.distanceCentimetres
+      bounds: { min: 40, max: 160, step: 5 }
+    - id: distance-uncertainty
+      label: "Distance uncertainty"
+      kind: slider
+      kernel_binding: state.distanceUncertaintyMillimetres
+      bounds: { min: 1, max: 20, step: 1 }
+    - id: measured-time
+      label: "Measured time"
+      kind: slider
+      kernel_binding: state.timeSeconds
+      bounds: { min: 1, max: 6, step: 0.1 }
+    - id: time-uncertainty
+      label: "Time uncertainty"
+      kind: slider
+      kernel_binding: state.timeUncertaintySeconds
+      bounds: { min: 0.05, max: 0.5, step: 0.05 }
+
+observe:
+  renderers:
+    - id: measurement-bench
+      module: "@paideia/a-level-physics-sims/measurement-uncertainty"
+      symbol: MeasurementUncertaintySim
+      props_binding: |
+        Convert distance and time readings to SI base units, calculate average speed, propagate fractional uncertainty, and show why unlike dimensions cannot be added.
+
+explain:
+  prompt: |
+    How did the unit m s^-1 emerge from the measured quantities, and why does the same dimensional reasoning reject adding distance to time?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Unit as decoration"
+    - "Quantity equals number"
+    - "Uncertainty as separate from units"

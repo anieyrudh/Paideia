@@ -11,6 +11,15 @@ export {
   componentPredict,
   resolveVectorComponents,
 } from "./resolving-vectors.js";
+export {
+  MeasurementTrack,
+  MeasurementUncertaintySim,
+  defaultMeasurementState,
+  measurementModel,
+  measurementUncertaintyPackageId,
+  measurementUncertaintyPredict,
+  measurementUncertaintySimId,
+} from "./measurement-uncertainty.js";
 export type {
   MetreVector2,
   ResultantVectorModel,
@@ -21,3 +30,8 @@ export type {
   ResolutionDiagramProps,
   ResolutionState,
 } from "./resolving-vectors.js";
+export type {
+  EquationCheck,
+  MeasurementModel,
+  MeasurementState,
+} from "./measurement-uncertainty.js";

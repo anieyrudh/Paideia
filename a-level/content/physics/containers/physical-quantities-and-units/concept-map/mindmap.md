@@ -1,18 +1,30 @@
-# Mindmap
+# Mindmap: Physical Quantities and Units
 
 - Physical quantities and units
-  - Measurement
-    - quantity
+  - Measurement record
+    - quantity name
     - numerical value
     - unit
-  - SI structure
-    - base quantities
-    - derived quantities
-    - prefixes
-  - Checks
-    - dimensional consistency
-    - unit conversion
-    - significant figures later
-  - Leads to
-    - scalar/vector classification
-    - vector components with units
+    - uncertainty
+  - SI base quantities
+    - length: metre, m
+    - mass: kilogram, kg
+    - time: second, s
+    - electric current: ampere, A
+    - thermodynamic temperature: kelvin, K
+    - amount of substance: mole, mol
+    - luminous intensity: candela, cd
+  - Derived quantities
+    - speed: `m s^-1`
+    - acceleration: `m s^-2`
+    - force: `kg m s^-2`
+  - Scalar/vector awareness
+    - distance and speed are scalars
+    - displacement, velocity, acceleration, and force require direction
+  - Dimensional consistency
+    - addition requires matching dimensions
+    - multiplication and division create derived dimensions
+    - uncertainty must keep the unit of the quantity or a dimensionless percentage
+  - Downstream
+    - scalars and vectors
+    - resolving vectors

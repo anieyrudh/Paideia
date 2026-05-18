@@ -1,6 +1,12 @@
 export interface PhysicalQuantitiesEmbedState {
   readonly selectedExample: string;
   readonly completed: boolean;
+  readonly lab: {
+    readonly distanceCentimetres: number;
+    readonly distanceUncertaintyMillimetres: number;
+    readonly timeSeconds: number;
+    readonly timeUncertaintySeconds: number;
+  };
 }
 
 export interface PhysicalQuantitiesEmbedTheme {

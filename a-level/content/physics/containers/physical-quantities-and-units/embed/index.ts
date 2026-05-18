@@ -6,8 +6,14 @@ import type {
 } from "./api.js";
 
 const defaultState: PhysicalQuantitiesEmbedState = {
-  selectedExample: "acceleration-unit-check",
+  selectedExample: "measurement-uncertainty-lab",
   completed: false,
+  lab: {
+    distanceCentimetres: 80,
+    distanceUncertaintyMillimetres: 5,
+    timeSeconds: 2,
+    timeUncertaintySeconds: 0.1,
+  },
 };
 
 export const createPhysicalQuantitiesEmbed = (): PhysicalQuantitiesEmbedApi => {
@@ -19,6 +25,7 @@ export const createPhysicalQuantitiesEmbed = (): PhysicalQuantitiesEmbedApi => {
     async load(target: Element): Promise<void> {
       targetElement = target;
       targetElement.setAttribute("data-paideia-container", "physical-quantities-and-units");
+      targetElement.setAttribute("data-paideia-surface", "measurement-uncertainty-lab");
     },
     saveState(): PhysicalQuantitiesEmbedState {
       return state;
@@ -39,6 +46,7 @@ export const createPhysicalQuantitiesEmbed = (): PhysicalQuantitiesEmbedApi => {
     destroy(): void {
       targetElement?.removeAttribute("data-paideia-container");
       targetElement?.removeAttribute("data-paideia-theme");
+      targetElement?.removeAttribute("data-paideia-surface");
       targetElement = null;
       state = defaultState;
     },

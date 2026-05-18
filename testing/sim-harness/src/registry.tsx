@@ -1,4 +1,5 @@
 import type { ComponentType } from "react";
+import { MeasurementUncertaintySim } from "@paideia/a-level-physics-sims/measurement-uncertainty";
 import { ResultantMagnitudeSim } from "@paideia/a-level-physics-sims/resultant-magnitude";
 import { ResolvingVectorsSim } from "@paideia/a-level-physics-sims/resolving-vectors";
 
@@ -9,6 +10,11 @@ export interface SimHarnessEntry {
 }
 
 export const simRegistry = {
+  "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab": {
+    id: "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab",
+    title: "Measurement and Uncertainty Lab",
+    Component: MeasurementUncertaintySim,
+  },
   "a-level/physics/scalars-and-vectors/resultant-magnitude": {
     id: "a-level/physics/scalars-and-vectors/resultant-magnitude",
     title: "Resultant Magnitude Explorer",

@@ -3,10 +3,16 @@ steps:
   - id: name-quantity
     label: "Name the quantity"
   - id: attach-unit
-    label: "Attach the unit to the value"
+    label: "Attach the unit and uncertainty"
+  - id: classify
+    label: "Classify base/derived and scalar/vector"
   - id: expand-derived
     label: "Expand derived units if needed"
   - id: check-dimensions
     label: "Check dimensions before operating"
+  - id: propagate-uncertainty
+    label: "Propagate uncertainty with the operation"
   - id: convert
     label: "Convert using unit ratios"
+  - id: report
+    label: "Report value, uncertainty, and unit"

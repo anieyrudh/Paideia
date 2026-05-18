@@ -1,0 +1,22 @@
+presets:
+  - id: trolley-baseline
+    label: "Trolley baseline"
+    state:
+      distanceCentimetres: 80
+      distanceUncertaintyMillimetres: 5
+      timeSeconds: 2.0
+      timeUncertaintySeconds: 0.10
+  - id: longer-run-lower-fractional-error
+    label: "Longer run"
+    state:
+      distanceCentimetres: 150
+      distanceUncertaintyMillimetres: 5
+      timeSeconds: 3.0
+      timeUncertaintySeconds: 0.10
+  - id: rushed-stopwatch
+    label: "Rushed stopwatch"
+    state:
+      distanceCentimetres: 80
+      distanceUncertaintyMillimetres: 5
+      timeSeconds: 1.5
+      timeUncertaintySeconds: 0.30
