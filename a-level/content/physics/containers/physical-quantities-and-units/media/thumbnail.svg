@@ -1,7 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Units thumbnail">
-  <rect width="320" height="180" fill="#f7f4ea"/>
-  <text x="34" y="72" fill="#13251e" font-family="Arial, sans-serif" font-size="36" font-weight="700">9.8</text>
-  <text x="114" y="72" fill="#1f5f8b" font-family="Arial, sans-serif" font-size="28" font-weight="700">m s^-2</text>
-  <line x1="34" x2="250" y1="96" y2="96" stroke="#d8d0bf" stroke-width="3"/>
-  <text x="34" y="130" fill="#66736b" font-family="Arial, sans-serif" font-size="18">quantity = value + unit</text>
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Measurement and uncertainty lab thumbnail</title>
+  <desc id="desc">A ruler with two readings, a mean marker, and unit reasoning cards.</desc>
+  <rect width="640" height="360" fill="#f7f4ea"/>
+  <circle cx="538" cy="52" r="118" fill="#f0b429" opacity="0.24"/>
+  <rect x="64" y="96" width="512" height="96" rx="24" fill="#fffdf7" stroke="#d8d0bf" stroke-width="4"/>
+  <rect x="92" y="130" width="456" height="34" rx="12" fill="#dbeafe"/>
+  <g stroke="#10201a" stroke-linecap="round">
+    <line x1="112" x2="112" y1="130" y2="164" stroke-width="4"/>
+    <line x1="168" x2="168" y1="140" y2="164" stroke-width="3"/>
+    <line x1="224" x2="224" y1="130" y2="164" stroke-width="4"/>
+    <line x1="280" x2="280" y1="140" y2="164" stroke-width="3"/>
+    <line x1="336" x2="336" y1="130" y2="164" stroke-width="4"/>
+    <line x1="392" x2="392" y1="140" y2="164" stroke-width="3"/>
+    <line x1="448" x2="448" y1="130" y2="164" stroke-width="4"/>
+    <line x1="504" x2="504" y1="140" y2="164" stroke-width="3"/>
+  </g>
+  <line x1="220" x2="220" y1="74" y2="205" stroke="#256b8f" stroke-width="8" stroke-linecap="round"/>
+  <line x1="326" x2="326" y1="74" y2="205" stroke="#7657d8" stroke-width="8" stroke-linecap="round"/>
+  <line x1="273" x2="273" y1="52" y2="226" stroke="#b42318" stroke-width="10" stroke-linecap="round"/>
+  <rect x="86" y="236" width="142" height="58" rx="16" fill="#10201a"/>
+  <rect x="249" y="236" width="142" height="58" rx="16" fill="#10201a"/>
+  <rect x="412" y="236" width="142" height="58" rx="16" fill="#10201a"/>
+  <text x="111" y="272" fill="#fffdf7" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">18.40 cm</text>
+  <text x="279" y="272" fill="#fffdf7" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">±0.30</text>
+  <text x="440" y="272" fill="#fffdf7" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">cm s⁻¹</text>
 </svg>

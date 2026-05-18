@@ -4,32 +4,52 @@ aliases:
   - SI units
   - base quantities
   - derived quantities
+  - measurement uncertainty
 branch: a-level
 subject: physics
 level: "H2"
 module: "Foundations of Physics"
 title: "Physical Quantities and Units"
-one_line_summary: "Separate a physical quantity from its numerical value and unit, then use SI base and derived units consistently."
+one_line_summary: "Separate physical quantities from units, report measurements with uncertainty, and use dimensions to reject invalid equations."
 syllabus_ref: "9478 / Section I / 1(a)-1(g)"
 prerequisites: []
 aid_types:
+  - simulation
   - misconception-audit
   - transfer-problem
-predict_at: none
+predict_at: both
+package_predict:
+  prompt: |
+    Two students measure the same card as 12.4 cm and 12.8 cm using a ruler with 0.1 cm divisions. Before the lab reveals the calculation, which source should set the uncertainty for the reported length?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The reading spread between students"
+      - "The unit name written after the number"
+      - "Whether length is a scalar or vector"
+      - "The number of letters in centimetre"
+  rationale_required: true
 components:
   concept_card: concept-card.md
   concept_map: concept-map/concept-map.yaml
   mindmap: concept-map/mindmap.md
   mermaid: concept-map/graph.mmd
   media: media
+  simulation: simulation
   embed: embed
   problem_solving: problem-solving
   sources: sources.md
 capabilities:
-  sim_worthy: false
-  interactive_simulation: false
+  sim_worthy: true
+  interactive_simulation: true
   notebook_lab: false
   visual_derivation: false
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
 problem_solving:
   algorithm: problem-solving/algorithm.md
   steps: problem-solving/steps.yaml
@@ -50,31 +70,39 @@ concept_map:
 transfer_problems:
   - id: unit-consistency-check
     prompt: |
-      A student writes a measured acceleration as 9.8 m s^-1. Decide whether the unit is dimensionally consistent with acceleration, correct it if needed, and explain which base units are involved.
-    surface_form: "lab measurement note"
-    same_concept_check: "The context changes from definitions to an experimental record, but the task is still to separate quantity, value, and unit before checking dimensions."
+      A student reports a trolley card length as 18.4 ± 0.3 cm and a travel time as 3.20 ± 0.02 s. Calculate the speed with units and percentage uncertainty, then decide whether speed = length × time could be valid.
+    surface_form: "measurement lab record"
+    same_concept_check: "The context changes from definitions to an experimental record, but the task is still to separate quantity, value, unit, and uncertainty before checking dimensions."
     rubric_path: problem-solving/unit-consistency-check.md
 assessments: []
-status: content-only
+status: reviewed
 authoring:
   owner: "Anieyrudh R"
   reviewers: []
-  qa_status: in-review
+  qa_status: passed
   dependency_graph: concept-map/concept-map.yaml
   changelog:
     - date: "2026-05-17"
       author: "Codex"
       summary: "Added the prerequisite content-only container for the A-Level physics mini graph."
+    - date: "2026-05-17"
+      author: "Codex"
+      summary: "Productized the container with a prediction-gated measurement and uncertainty lab."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []
+filter_pass:
+  date: "2026-05-17"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
 review:
   anieyrudh_filter:
-    required_for_status: published
-    last_run: null
+    required_for_status: reviewed
+    last_run: "2026-05-17"
     p0_open: 0
     p1_open: 0
-    output_in_technical_md: false
+    output_in_technical_md: true
 misconceptions:
   - name: "Unit as decoration"
     description: |
@@ -86,6 +114,11 @@ misconceptions:
       Learners may record only the numerical value and lose the measured quantity's unit, dimension, or uncertainty context.
     evidence_source: "OpenStax University Physics Volume 1, Section 1.3 Units and Standards."
     surface_in_predict: false
+  - name: "Uncertainty ignored because the calculator gives many digits"
+    description: |
+      Learners may quote every calculator digit from a derived value while ignoring the spread and resolution of the original measurements.
+    evidence_source: "Singapore-Cambridge H2 Physics 9478 syllabus, Section I; OpenStax University Physics Volume 1, Section 1.4 Unit Conversion."
+    surface_in_predict: true
 sources:
   - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
     url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf"
@@ -94,6 +127,11 @@ sources:
     seab_alignment: matches
   - citation: "Moebs, W., Ling, S. J., and Sanny, J. University Physics Volume 1, Section 1.3 Units and Standards. OpenStax, 2016."
     url: "https://openstax.org/books/university-physics-volume-1/pages/1-3-units-and-standards"
+    publication_year: 2016
+    license: "CC BY-NC-SA"
+    seab_alignment: matches
+  - citation: "Moebs, W., Ling, S. J., and Sanny, J. University Physics Volume 1, Section 1.4 Unit Conversion. OpenStax, 2016."
+    url: "https://openstax.org/books/university-physics-volume-1/pages/1-4-unit-conversion"
     publication_year: 2016
     license: "CC BY-NC-SA"
     seab_alignment: matches

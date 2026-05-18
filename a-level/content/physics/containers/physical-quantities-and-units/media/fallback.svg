@@ -1,6 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Unit consistency fallback">
-  <rect width="320" height="180" fill="#fffdf7"/>
-  <text x="32" y="54" fill="#13251e" font-family="Arial, sans-serif" font-size="22" font-weight="700">Unit check</text>
-  <text x="32" y="92" fill="#10201a" font-family="Arial, sans-serif" font-size="20">speed: m s^-1</text>
-  <text x="32" y="124" fill="#10201a" font-family="Arial, sans-serif" font-size="20">acceleration: m s^-2</text>
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Measurement uncertainty fallback</title>
+  <desc id="desc">Formula summary for length uncertainty and speed units.</desc>
+  <rect width="640" height="360" fill="#10201a"/>
+  <rect x="56" y="56" width="528" height="248" rx="28" fill="#fffdf7"/>
+  <text x="96" y="122" fill="#10201a" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="900">Measurement record</text>
+  <text x="96" y="178" fill="#256b8f" font-family="Consolas, monospace" font-size="28" font-weight="800">L = (18.1 + 18.7) ÷ 2</text>
+  <text x="96" y="224" fill="#b42318" font-family="Consolas, monospace" font-size="28" font-weight="800">L = 18.40 ± 0.20 cm</text>
+  <text x="96" y="270" fill="#10201a" font-family="Consolas, monospace" font-size="28" font-weight="800">speed = length ÷ time</text>
 </svg>

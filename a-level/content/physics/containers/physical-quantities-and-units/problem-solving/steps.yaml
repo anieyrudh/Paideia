@@ -4,9 +4,13 @@ steps:
     label: "Name the quantity"
   - id: attach-unit
     label: "Attach the unit to the value"
+  - id: estimate-uncertainty
+    label: "Estimate measurement uncertainty"
   - id: expand-derived
     label: "Expand derived units if needed"
   - id: check-dimensions
     label: "Check dimensions before operating"
+  - id: combine-uncertainties
+    label: "Combine percentage uncertainties for derived quantities"
   - id: convert
     label: "Convert using unit ratios"

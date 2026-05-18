@@ -1,0 +1,8 @@
+state_labels:
+  firstReadingCm: "Reading 1"
+  secondReadingCm: "Reading 2"
+  rulerDivisionCm: "Smallest ruler division"
+  timeS: "Travel time"
+  meanLengthCm: "Best estimate"
+  absoluteUncertaintyCm: "Absolute uncertainty"
+  speedCmPerS: "Derived speed"

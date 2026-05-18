@@ -1,21 +1,35 @@
-# Transfer Problem: Unit Consistency Check
+# Transfer Problem: Measurement Speed Check
 
-A student writes a measured acceleration as `9.8 m s^-1`.
+A student reports a trolley card length as `18.4 ± 0.3 cm` and a travel time as
+`3.20 ± 0.02 s`.
+
+1. Calculate the speed with a unit.
+2. Estimate the percentage uncertainty in the speed.
+3. Decide whether `speed = length × time` could be valid.
 
 ## Expected Reasoning
 
-Acceleration is change in velocity per unit time. Velocity has unit `m s^-1`, so
-acceleration has unit `(m s^-1) s^-1 = m s^-2`.
-
-The corrected record is:
+Speed is a derived quantity: length divided by time.
 
 ```text
-9.8 m s^-2
+speed = 18.4 cm ÷ 3.20 s = 5.75 cm s^-1
 ```
+
+For a quotient, percentage uncertainties add:
+
+```text
+length percentage uncertainty = (0.3 ÷ 18.4) × 100% = 1.6%
+time percentage uncertainty = (0.02 ÷ 3.20) × 100% = 0.6%
+speed percentage uncertainty ≈ 2.2%
+```
+
+The equation `speed = length × time` is rejected by units because `cm × s` gives
+`cm s`, not `cm s^-1`.
 
 ## Rubric
 
-- Identifies acceleration as the physical quantity.
-- Distinguishes velocity units from acceleration units.
-- Reduces the unit to base SI form.
-- Explains why `m s^-1` is not dimensionally consistent for acceleration.
+- Identifies speed as the derived physical quantity.
+- Keeps the unit attached throughout the calculation.
+- Converts or interprets `cm s^-1` and `m s^-1` correctly.
+- Adds percentage uncertainties for the quotient.
+- Uses dimensional consistency to reject `length × time` for speed.

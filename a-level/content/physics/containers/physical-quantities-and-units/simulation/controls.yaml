@@ -1,0 +1,17 @@
+controls:
+  - id: first-reading
+    label: "Reading 1"
+    default: 12.4
+    unit: cm
+  - id: second-reading
+    label: "Reading 2"
+    default: 12.8
+    unit: cm
+  - id: ruler-division
+    label: "Smallest ruler division"
+    default: 0.1
+    unit: cm
+  - id: travel-time
+    label: "Travel time"
+    default: 2.5
+    unit: s

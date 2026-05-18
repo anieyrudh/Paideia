@@ -1,0 +1,22 @@
+presets:
+  - id: card-length
+    label: "Card length"
+    state:
+      firstReadingCm: 12.4
+      secondReadingCm: 12.8
+      rulerDivisionCm: 0.1
+      timeS: 2.5
+  - id: toy-car-track
+    label: "Toy car track"
+    state:
+      firstReadingCm: 48.6
+      secondReadingCm: 49.0
+      rulerDivisionCm: 0.2
+      timeS: 3.8
+  - id: pendulum-path
+    label: "Pendulum bob path"
+    state:
+      firstReadingCm: 31.8
+      secondReadingCm: 32.4
+      rulerDivisionCm: 0.1
+      timeS: 1.7

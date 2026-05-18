@@ -5,14 +5,18 @@
     - quantity
     - numerical value
     - unit
+    - uncertainty
   - SI structure
     - base quantities
     - derived quantities
     - prefixes
   - Checks
+    - repeated-reading spread
+    - instrument resolution
     - dimensional consistency
     - unit conversion
     - significant figures later
   - Leads to
     - scalar/vector classification
     - vector components with units
+    - uncertainty in derived quantities
