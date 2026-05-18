@@ -80,3 +80,23 @@ test("has no critical accessibility violations after the resolving-vectors sim i
 
   expect(criticalViolations).toEqual([]);
 });
+
+test("has no critical accessibility violations after the kinematics sim is revealed", async ({
+  page,
+}) => {
+  await page.goto("/#a-level/physics/kinematics-in-one-dimension");
+
+  await page.getByLabel("9.0 m").check();
+  await page
+    .getByLabel("Rationale")
+    .fill("Starting from rest leaves only the acceleration term in the displacement equation.");
+  await page.getByRole("button", { name: "Commit prediction" }).click();
+  await page.getByLabel("Observation unlocked").waitFor();
+
+  const results = await new AxeBuilder({ page }).analyze();
+  const criticalViolations = results.violations.filter(
+    (violation) => violation.impact === "critical",
+  );
+
+  expect(criticalViolations).toEqual([]);
+});

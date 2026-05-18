@@ -72,6 +72,9 @@ importers:
       '@paideia/linear-algebra':
         specifier: workspace:*
         version: link:../../../core/linear-algebra
+      '@paideia/mechanics':
+        specifier: workspace:*
+        version: link:../../../core/mechanics
       '@paideia/prediction-gate':
         specifier: workspace:*
         version: link:../../../core/prediction-gate
