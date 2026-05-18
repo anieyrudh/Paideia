@@ -147,9 +147,11 @@ function validateCurriculumMappings(value, entry, path, failures) {
       seenCurricula.add(mapping.curriculum);
     }
 
-    const hasMappingDetail = ["modules", "subjects", "courses", "syllabus_refs"].some((field) =>
-      validateMappingDetailArray(mapping[field], `${itemPath}.${field}`, failures),
-    );
+    let hasMappingDetail = false;
+    for (const field of ["modules", "subjects", "courses", "syllabus_refs"]) {
+      const hasValidDetail = validateMappingDetailArray(mapping[field], `${itemPath}.${field}`, failures);
+      if (hasValidDetail) hasMappingDetail = true;
+    }
     if (!hasMappingDetail) {
       failures.push(`${itemPath} must include at least one of modules, subjects, courses, or syllabus_refs`);
     }
