@@ -19,7 +19,10 @@ import {
 const speed = divideDimensions(baseDimensions.length, baseDimensions.time);
 
 if (speed.ok) {
-  console.log(formatDimension(speed.value)); // "L T^-1"
+  const formatted = formatDimension(speed.value);
+  if (formatted.ok) {
+    console.log(formatted.value); // "L T^-1"
+  }
 }
 
 const invalid = diagnoseEquation(baseDimensions.length, baseDimensions.time, {

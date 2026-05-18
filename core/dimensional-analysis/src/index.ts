@@ -51,6 +51,8 @@ const dimensionKeys = [
   "luminousIntensity",
 ] as const satisfies readonly BaseDimension[];
 
+const dimensionKeySet: ReadonlySet<string> = new Set(dimensionKeys);
+
 const dimensionSymbols: Readonly<Record<BaseDimension, string>> = {
   mass: "M",
   length: "L",
@@ -81,6 +83,9 @@ const isRecord = (value: unknown): value is Readonly<Record<string, unknown>> =>
 const cleanExponent = (value: number): number =>
   Math.abs(value) <= dimensionalAnalysisTolerance.zero ? 0 : value;
 
+const approxExponent = (left: number, right: number): boolean =>
+  Math.abs(left - right) <= dimensionalAnalysisTolerance.default;
+
 const finiteNumber = (value: unknown, label: string): KernelResult<number> =>
   typeof value === "number" && isFiniteNumber(value)
     ? ok(value)
@@ -92,6 +97,12 @@ const makeExponents = (
 ): KernelResult<DimensionExponents> => {
   if (!isRecord(source)) {
     return err("precondition-violated", "Dimension exponents must be an object");
+  }
+
+  for (const key of Object.keys(source)) {
+    if (!dimensionKeySet.has(key)) {
+      return err("precondition-violated", `Unknown dimension key: ${key}`);
+    }
   }
 
   const exponents: Record<BaseDimension, number> = {
@@ -394,7 +405,7 @@ export const formatDimension = (input: Dimension): KernelResult<string> => {
     const exponent = validInput.value.exponents[key];
     if (Math.abs(exponent) <= dimensionalAnalysisTolerance.zero) return [];
     const symbol = dimensionSymbols[key];
-    return exponent === 1 ? [symbol] : [`${symbol}^${formatNumber(exponent)}`];
+    return approxExponent(exponent, 1) ? [symbol] : [`${symbol}^${formatNumber(exponent)}`];
   });
 
   return ok(factors.length === 0 ? "1" : factors.join(" "));

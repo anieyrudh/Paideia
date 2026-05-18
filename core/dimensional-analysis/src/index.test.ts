@@ -119,6 +119,10 @@ describe("@paideia/dimensional-analysis", () => {
 
   it("returns KernelResult errors for invalid preconditions", () => {
     expectErrCode(dimension({ length: Number.NaN }), "precondition-violated");
+    expectErrCode(
+      dimension({ lenght: 1 } as unknown as Partial<Record<"length", number>>),
+      "precondition-violated",
+    );
     expectErrCode(powerDimension(baseDimensions.length, Number.POSITIVE_INFINITY), "precondition-violated");
     expectErrCode(unit("", baseDimensions.length), "precondition-violated");
     expectErrCode(unit("cm", baseDimensions.length, 0), "precondition-violated");
@@ -192,5 +196,8 @@ describe("@paideia/dimensional-analysis", () => {
     const nearlyDimensionless = expectOk(dimension({ length: dimensionalAnalysisTolerance.zero / 2 }));
     expect(expectOk(formatDimension(nearlyDimensionless))).toBe("1");
     expect(expectOk(dimensionsEqual(nearlyDimensionless, expectOk(dimension())))).toBe(true);
+
+    const nearlyLength = expectOk(dimension({ length: 1 + dimensionalAnalysisTolerance.default / 2 }));
+    expect(expectOk(formatDimension(nearlyLength))).toBe("L");
   });
 });
