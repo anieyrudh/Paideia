@@ -111,6 +111,47 @@ Next missing foundations:
 - Assessment adapter: connect problem-solving algorithms, mastery state, FSRS/BKT, and curriculum-specific exam wrappers.
 - Domain-specific heavy kernels: molecule, systems dynamics, argument graph, corpus, and comparator kernels should wait until a concrete first container needs them.
 
+## Product Slice Proofs
+
+### A-Level Physics: Scalars And Vectors
+
+Status: landed on `main` as the first product-quality container slice.
+
+What it proved:
+
+- A v2 container can drive the generated A-Level shell without hand-written
+  catalogue metadata.
+- `core/prediction-gate` blocks reveal in the learner route and remains
+  testable through package and shell tests.
+- Content markdown, `container.yaml`, `simulation.yaml`, concept-map files,
+  problem-solving artifacts, media, embed API, and generated graph data can stay
+  in one auditable container shape.
+- Learner UI must map authoring tokens to student-facing labels; internal
+  kernel names, package names, and file paths do not belong in the student
+  surface.
+- Formula substitution is part of the simulation contract, not optional copy.
+- Route-level Playwright and axe checks are required after reveal, because
+  pre-reveal tests do not prove the actual sim is usable.
+
+### Repeatable Container Build Loop
+
+Use this loop for every product-quality container:
+
+1. Start from `main`, read `docs/container-spec.md`, the existing product slice,
+   and the target container files.
+2. Keep the v2 container layout intact: `container.yaml`, `concept-card.md`,
+   `concept-map/`, `simulation/`, `problem-solving/`, `media/`, `embed/`,
+   `sources.md`, `README.md`, and `TECHNICAL.md`.
+3. Put reusable math, physics, rendering, state, or learning logic in `core/`;
+   the container only composes kernels into a student-facing experience.
+4. Gate observation with `PredictionGate` whenever prediction metadata exists.
+5. Make calculations visible with the formula, substituted values, units, and
+   the conceptual reason the formula applies.
+6. Regenerate graph data, run package tests, run shell tests, run container
+   validation, and record failures in `TECHNICAL.md`.
+7. Mark the container `reviewed` only after P0/P1 issues are resolved or
+   explicitly deferred with a tracked reason.
+
 ## Priority Tiers
 
 ### P0: Universal Theory Infrastructure
@@ -200,9 +241,9 @@ Initial focus:
 
 First useful A-Level sequence:
 
-1. Physical quantities and units.
-2. Scalars and vectors.
-3. Resolving vectors.
+1. Physical quantities and units. Status: content-only foundation.
+2. Scalars and vectors. Status: first product-quality slice landed.
+3. Resolving vectors. Status: second product slice in progress.
 4. Kinematics.
 5. Forces and equilibrium.
 6. Work, energy, power.

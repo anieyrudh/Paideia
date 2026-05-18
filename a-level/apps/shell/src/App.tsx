@@ -36,9 +36,18 @@ const aidTypeLabels = {
   "annotated-source": "Annotated source",
 } satisfies Record<AidType, string>;
 
+const interactionTypeLabels: Record<string, string> = {
+  "diagram-builder": "Interactive diagram",
+  visualizer: "Interactive visualizer",
+  "data-lab": "Data lab",
+  "decision-lab": "Decision lab",
+};
+
 const learnerStatus = (status: string): string => statusLabels[status] ?? "Learning material";
 const learnerAidTypes = (aidTypes: readonly AidType[]): string =>
   aidTypes.map((aidType) => aidTypeLabels[aidType]).join(" / ");
+const learnerInteractionType = (interactionType: string): string =>
+  interactionTypeLabels[interactionType] ?? "Interactive lab";
 
 const readContainerFromHash = (): ShellContainer => {
   const hash = globalThis.location?.hash.slice(1) ?? "";
@@ -378,7 +387,7 @@ export const App = () => {
         <aside className="sidebar" aria-label="Physics labs">
           <div>
             <h2>A-Level Physics</h2>
-            <p>{containers.length} container ready</p>
+            <p>{containers.length} concepts ready</p>
           </div>
           <ContainerList
             active={active}
@@ -424,7 +433,7 @@ export const App = () => {
                 <section className="sim-panel" aria-labelledby="sim-title">
                   <div className="sim-header">
                     <div>
-                      <p className="meta-line">{activeSim.interactionType}</p>
+                      <p className="meta-line">{learnerInteractionType(activeSim.interactionType)}</p>
                       <h2 id="sim-title">{activeSim.title}</h2>
                     </div>
                     <button type="button" onClick={resetPrediction}>
@@ -445,15 +454,6 @@ export const App = () => {
                   <p>{active.predictPrompt}</p>
                 </section>
               ) : null}
-
-              <section className="brief-section" aria-labelledby="misconception-title">
-                <h2 id="misconception-title">Watch for</h2>
-                <ul>
-                  {active.misconceptions.map((misconception) => (
-                    <li key={misconception}>{misconception}</li>
-                  ))}
-                </ul>
-              </section>
 
               <KnowledgeGraphBrief active={active} />
 

@@ -2,7 +2,10 @@ id: component-resolution
 title: "Component Resolution Explorer"
 interaction_type: diagram-builder
 kernel_deps:
-  - core/numerical-math
+  - core/linear-algebra
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
 predict:
   prompt: |
     A 10 N force acts at 30 degrees above the horizontal. Before revealing the components, which horizontal component is closest?
@@ -19,7 +22,7 @@ manipulate:
     - id: magnitude
       label: "Vector magnitude"
       kind: slider
-      kernel_binding: "core/numerical-math.scalar"
+      kernel_binding: state.magnitudeNewtons
       bounds:
         min: 0
         max: 20
@@ -27,7 +30,7 @@ manipulate:
     - id: angle
       label: "Angle above horizontal"
       kind: slider
-      kernel_binding: "core/numerical-math.angle"
+      kernel_binding: state.angleDegrees
       bounds:
         min: 0
         max: 90
@@ -39,7 +42,7 @@ observe:
       symbol: "ResolvingVectorsSim"
       props_binding: "state -> component vector diagram and formula readout"
 explain:
-  prompt: "Explain why the horizontal component uses cosine when the angle is measured from the horizontal."
+  prompt: "After marking the angle reference, which component is adjacent and which is opposite? How do you know?"
   socratic: true
   expected_misconceptions_surfaced:
     - "Sine-cosine swap"

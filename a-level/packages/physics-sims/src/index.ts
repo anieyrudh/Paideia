@@ -18,6 +18,8 @@ export type {
   VectorState,
 } from "./resultant-magnitude.js";
 export type {
+  NewtonVector2,
   ResolutionDiagramProps,
+  ResolutionModel,
   ResolutionState,
 } from "./resolving-vectors.js";

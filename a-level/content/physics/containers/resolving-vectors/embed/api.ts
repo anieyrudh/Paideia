@@ -1,11 +1,12 @@
 export interface ResolvingVectorsEmbedState {
-  readonly magnitude: number;
+  readonly magnitudeNewtons: number;
   readonly angleDegrees: number;
   readonly predictionCommitted: boolean;
 }
 
 export interface ResolvingVectorsEmbedTheme {
   readonly colorScheme: "light" | "dark";
+  readonly accentColor?: string;
 }
 
 export interface ResolvingVectorsEmbedScore {

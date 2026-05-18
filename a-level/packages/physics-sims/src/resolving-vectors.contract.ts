@@ -92,7 +92,7 @@ export const runResolvingVectorsGateContract = () => {
       expect(document.querySelector("[aria-label='Observation unlocked']")).toBeTruthy();
       expect(document.body.textContent).toContain("Horizontal component");
       expect(document.body.textContent).toContain("8.7 N");
-      expect(document.body.textContent).toContain("x = R cos theta");
+      expect(document.body.textContent).toContain("Fx = F cos");
     });
 
     it("updates components when the angle changes", async () => {
@@ -107,7 +107,7 @@ export const runResolvingVectorsGateContract = () => {
         "10.0 N",
       );
       expect(document.querySelector("[aria-label='Formula used']")?.textContent).toContain(
-        "sin(0 degrees)",
+        "sin(0°)",
       );
     });
   });

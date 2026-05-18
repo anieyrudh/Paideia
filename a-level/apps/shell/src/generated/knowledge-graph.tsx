@@ -72,7 +72,7 @@ export const knowledgeGraph = {
     subject: "physics",
     level: "H2",
     module: "Foundations of Physics",
-    status: "draft",
+    status: "reviewed",
   },
   {
     id: "a-level/physics/scalars-and-vectors",
@@ -159,7 +159,7 @@ export const containers = [
     title: "Resolving Vectors",
     summary: "Break a vector into perpendicular components and use trigonometry to preserve both magnitude and direction.",
     syllabusRef: "9478 / Section I / 1(j)",
-    status: "draft",
+    status: "reviewed",
     packageId: "resolving-vectors",
     simId: "component-resolution",
     predictPrompt: "A 10 N force acts at 30 degrees above the horizontal. Before revealing the components, which horizontal component is closest?",
@@ -172,7 +172,7 @@ export const containers = [
       "Sine-cosine swap",
       "Components as extra forces",
     ],
-    transferProblem: "A 12 N force pulls a trolley at 25 degrees above the horizontal. Resolve the force into horizontal and vertical components, then explain which component changes the trolley's horizontal motion.",
+    transferProblem: "A drone flies at 14 m/s on a heading 35 degrees north of east. Resolve the velocity into eastward and northward components, then explain why this is the same component idea even though the vector is no longer a force.",
     firstPrinciples: "A vector can be replaced by perpendicular components along chosen axes. The components are not extra vectors added to the original; together they are an equivalent representation of the same vector.",
     keyDefinitions: [
       "Component: the part of a vector along a chosen axis.",
@@ -181,8 +181,8 @@ export const containers = [
       "Resultant: the single vector equivalent to adding components.",
     ],
     canonicalExamples: [
-      "A 10 N force at 30 degrees has horizontal component 10 cos 30 = 8.7 N.",
-      "The same force has vertical component 10 sin 30 = 5.0 N.",
+      "A shallow upward pull has a larger horizontal component than vertical component when the angle is measured from the horizontal.",
+      "A vertical vector has zero horizontal component.",
       "If the angle is measured from the vertical instead, the sine/cosine roles switch.",
     ],
     problemSolvingSteps: [

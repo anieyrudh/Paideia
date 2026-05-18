@@ -1,11 +1,16 @@
 presets:
-  - id: canonical-force
-    label: "10 N at 30 degrees"
+  - id: standard-pull
+    label: "Standard pull"
     state:
-      magnitude: 10
+      magnitudeNewtons: 10
       angleDegrees: 30
-  - id: horizontal-force
-    label: "10 N horizontal"
+  - id: mostly-sideways
+    label: "Mostly sideways"
     state:
-      magnitude: 10
-      angleDegrees: 0
+      magnitudeNewtons: 12
+      angleDegrees: 15
+  - id: steep-lift
+    label: "Steep lift"
+    state:
+      magnitudeNewtons: 8
+      angleDegrees: 70
