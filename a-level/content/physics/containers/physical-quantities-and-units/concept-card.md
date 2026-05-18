@@ -7,9 +7,10 @@ syllabus_ref: "9478 / Section I / 1(a)-1(g)"
 prerequisites: []
 aid_types:
   - concept-card
+  - simulation
   - misconception-audit
   - transfer-problem
-status: content-only
+status: reviewed
 ---
 
 # Physical Quantities and Units
@@ -50,6 +51,11 @@ been used incorrectly.
 - Treating units as labels added after the calculation.
 - Thinking the number alone is the measurement.
 - Adding unlike quantities because the numerical values look compatible.
+- Treating two quantities with related units, such as speed and acceleration, as interchangeable.
+
+## Unit classification lab
+
+The learner predicts what is missing from a bare number, then explores a deck of quantity cards. Each card connects the physical quantity to its SI unit, base-dimension pattern, and scalar/vector status. The equation detector then asks whether units allow an equation before any numerical substitution.
 
 ## Problem-Solving Pattern
 

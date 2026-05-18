@@ -1,0 +1,7 @@
+runtime:
+  entry: simulation/index.tsx
+  package_entry: "@paideia/a-level-physics-sims/unit-classification"
+  mount_mode: react-component
+  state_model: local
+  persistence: prediction-gate-local-storage
+  deterministic: true

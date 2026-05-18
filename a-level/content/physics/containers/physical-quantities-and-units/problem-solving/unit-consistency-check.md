@@ -15,7 +15,8 @@ The corrected record is:
 
 ## Rubric
 
-- Identifies acceleration as the physical quantity.
+- Identifies acceleration as the physical quantity, not just the number `9.8`.
+- Classifies acceleration as a derived vector quantity.
 - Distinguishes velocity units from acceleration units.
 - Reduces the unit to base SI form.
 - Explains why `m s^-1` is not dimensionally consistent for acceleration.

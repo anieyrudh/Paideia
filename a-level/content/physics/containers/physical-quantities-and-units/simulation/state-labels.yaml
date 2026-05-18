@@ -1,0 +1,13 @@
+state_labels:
+  selectedQuantity:
+    label: "Selected quantity"
+    meaning: "The quantity card currently being inspected for base/derived and scalar/vector classification."
+  selectedEquation:
+    label: "Selected equation"
+    meaning: "The equation currently being checked for dimensional consistency."
+  family:
+    label: "Base or derived"
+    meaning: "Whether the quantity is an SI starting quantity or built from other quantities."
+  dimension:
+    label: "Dimension"
+    meaning: "The base-dimension pattern that must match across a valid equation."

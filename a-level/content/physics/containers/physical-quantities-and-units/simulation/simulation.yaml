@@ -1,0 +1,44 @@
+id: unit-classification-lab
+title: "Unit Classification Lab"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/prediction-gate
+
+predict:
+  prompt: |
+    Before opening the unit lab, which kind of mistake do you think you are most likely to make when reading a measurement or equation?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Trusting numbers before units"
+      - "Mixing up quantity and unit"
+      - "Treating a derived unit as magic"
+      - "Ignoring direction when it matters"
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: quantity-card
+      label: "Quantity card"
+      kind: selector
+      kernel_binding: state.selectedQuantity
+    - id: equation-card
+      label: "Equation card"
+      kind: selector
+      kernel_binding: state.selectedEquation
+
+observe:
+  renderers:
+    - id: unit-classification-lab
+      module: "@paideia/a-level-physics-sims/unit-classification"
+      symbol: UnitClassificationLab
+      props_binding: |
+        Reveal quantity passports and dimensional checks only after the learner commits a prediction.
+
+explain:
+  prompt: |
+    How do the unit and dimension tell you whether a number is a complete measurement and whether an equation can be valid?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Unit as decoration"
+    - "Quantity equals number"

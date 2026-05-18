@@ -1,0 +1,16 @@
+presets:
+  - id: speed-scalar
+    label: "Speed as a derived scalar"
+    state:
+      selectedQuantity: speed
+      selectedEquation: distance-speed-time
+  - id: acceleration-vector
+    label: "Acceleration as a derived vector"
+    state:
+      selectedQuantity: acceleration
+      selectedEquation: acceleration-speed-time
+  - id: force-newton
+    label: "Force in base units"
+    state:
+      selectedQuantity: force
+      selectedEquation: force-mass-acceleration

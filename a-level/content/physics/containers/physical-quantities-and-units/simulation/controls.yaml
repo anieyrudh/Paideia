@@ -1,0 +1,19 @@
+controls:
+  - id: quantity-card
+    label: "Quantity card"
+    kind: selector
+    default: speed
+    options:
+      - length
+      - time
+      - speed
+      - acceleration
+      - force
+  - id: equation-card
+    label: "Equation card"
+    kind: selector
+    default: distance-speed-time
+    options:
+      - distance-speed-time
+      - acceleration-speed-time
+      - force-mass-acceleration

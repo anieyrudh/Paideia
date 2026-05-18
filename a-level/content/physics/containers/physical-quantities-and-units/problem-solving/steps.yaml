@@ -1,12 +1,16 @@
 schema_version: "1.0.0"
 steps:
   - id: name-quantity
-    label: "Name the quantity"
+    label: "Name the physical quantity"
+  - id: classify-quantity
+    label: "Classify it as base or derived"
+  - id: check-direction
+    label: "Ask whether direction is part of the meaning"
   - id: attach-unit
     label: "Attach the unit to the value"
   - id: expand-derived
     label: "Expand derived units if needed"
-  - id: check-dimensions
-    label: "Check dimensions before operating"
+  - id: compare-dimensions
+    label: "Compare dimensions on both sides"
   - id: convert
     label: "Convert using unit ratios"

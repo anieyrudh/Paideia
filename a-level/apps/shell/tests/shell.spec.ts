@@ -34,7 +34,18 @@ test("navigates the generated mini knowledge graph", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "First principles" })).toBeVisible();
   await expect(page.getByText("A physical quantity is something about the world")).toBeVisible();
   await expect(page.getByText("Name the quantity")).toBeVisible();
-  await expect(page.getByRole("heading", { name: "No interactive simulation yet" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Unit Classification Lab" })).toBeVisible();
+  await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+  await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
+
+  await page.getByLabel("Trusting numbers before units").check();
+  await page
+    .getByLabel("Rationale")
+    .fill("I often start with the number before checking what the unit allows.");
+  await page.getByRole("button", { name: "Commit prediction" }).click();
+  await expect(page.getByLabel("Observation unlocked")).toBeVisible();
+  await expect(page.getByText("Unit classification lab")).toBeVisible();
+  await expect(page.getByLabel("Formula used")).toContainText("speed = distance ÷ time");
   await expect(page.getByText("Next: Scalars and Vectors")).toBeVisible();
 
   await page

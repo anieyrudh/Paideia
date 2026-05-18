@@ -19,3 +19,14 @@ export type {
   ResolutionDiagramProps,
   ResolutionState,
 } from "./resolving-vectors.js";
+export {
+  UnitClassificationLab,
+  countByDirectionKind,
+  countByFamily,
+  equationCards,
+  physicalQuantitiesPackageId,
+  quantityCards,
+  quantityUnitPredict,
+  unitClassificationSimId,
+} from "./unit-classification.js";
+export type { EquationCard, QuantityCard } from "./unit-classification.js";
