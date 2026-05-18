@@ -1,8 +1,13 @@
 flowchart LR
-  current["Physical quantities and units"] --> scalars["Scalars and vectors"]
+  current["Physical quantities and units"] --> map["Quantity dependency map lab"]
+  current --> scalars["Scalars and vectors"]
   current --> resolving["Resolving vectors"]
+  base["SI base quantities"] --> derived["Derived quantities"]
+  derived --> named["Named units: N, J"]
+  named --> equations["Dimensional consistency"]
   number["Quantity equals number"] --> decoration["Unit as decoration"]
   decoration --> mismatch["Dimension mismatch"]
-  current -. addresses .-> number
-  current -. addresses .-> decoration
-  current -. addresses .-> mismatch
+  derivedBase["Derived quantity as base quantity"] --> mismatch
+  map -. addresses .-> number
+  map -. addresses .-> decoration
+  map -. addresses .-> derivedBase

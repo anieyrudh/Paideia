@@ -7,9 +7,24 @@
     - unit
   - SI structure
     - base quantities
+      - length: metre
+      - mass: kilogram
+      - time: second
     - derived quantities
-    - prefixes
+      - velocity: m s^-1
+      - acceleration: m s^-2
+      - force: kg m s^-2
+      - energy: kg m^2 s^-2
+    - named units
+      - newton
+      - joule
+  - Quantity dependency map lab
+    - predict dependency trail
+    - manipulate focus quantity
+    - observe base-unit reduction
+    - explain dimensional consistency
   - Checks
+    - scalar or vector where relevant
     - dimensional consistency
     - unit conversion
     - significant figures later

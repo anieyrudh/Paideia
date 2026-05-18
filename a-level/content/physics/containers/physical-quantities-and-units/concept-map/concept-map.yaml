@@ -19,6 +19,8 @@ misconception_graph:
       label: "Quantity equals number"
     - id: dimension-mismatch
       label: "Dimension mismatch"
+    - id: derived-as-base
+      label: "Derived quantity as base quantity"
   edges:
     - from: quantity-equals-number
       to: unit-as-decoration
@@ -26,4 +28,7 @@ misconception_graph:
     - from: unit-as-decoration
       to: dimension-mismatch
       label: "hides"
+    - from: derived-as-base
+      to: dimension-mismatch
+      label: "prevents base-unit check"
 mermaid_source: graph.mmd

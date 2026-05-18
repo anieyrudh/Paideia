@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Unit consistency fallback">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Unit dependency fallback">
   <rect width="320" height="180" fill="#fffdf7"/>
-  <text x="32" y="54" fill="#13251e" font-family="Arial, sans-serif" font-size="22" font-weight="700">Unit check</text>
-  <text x="32" y="92" fill="#10201a" font-family="Arial, sans-serif" font-size="20">speed: m s^-1</text>
-  <text x="32" y="124" fill="#10201a" font-family="Arial, sans-serif" font-size="20">acceleration: m s^-2</text>
+  <text x="30" y="42" fill="#13251e" font-family="Arial, sans-serif" font-size="22" font-weight="800">Follow the unit trail</text>
+  <text x="42" y="86" fill="#10201a" font-family="Arial, sans-serif" font-size="19">velocity = m s^-1</text>
+  <text x="42" y="118" fill="#10201a" font-family="Arial, sans-serif" font-size="19">acceleration = m s^-2</text>
+  <text x="42" y="150" fill="#10201a" font-family="Arial, sans-serif" font-size="19">force = kg m s^-2</text>
 </svg>

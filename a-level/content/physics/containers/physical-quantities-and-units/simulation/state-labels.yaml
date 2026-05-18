@@ -1,0 +1,6 @@
+schema_version: "1.0.0"
+labels:
+  selectedQuantity: "Focus quantity"
+  showAllLabels: "Show every link label"
+  baseUnitText: "Base SI unit form"
+  highlightedNodeIds: "Dependency trail"

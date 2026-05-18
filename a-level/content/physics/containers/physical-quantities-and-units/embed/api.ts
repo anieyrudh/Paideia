@@ -1,14 +1,18 @@
 export interface PhysicalQuantitiesEmbedState {
-  readonly selectedExample: string;
+  readonly selectedQuantity: string;
+  readonly showAllLabels: boolean;
+  readonly predictionCommitted: boolean;
   readonly completed: boolean;
 }
 
 export interface PhysicalQuantitiesEmbedTheme {
   readonly colorScheme: "light" | "dark";
+  readonly accentColor?: string;
 }
 
 export interface PhysicalQuantitiesEmbedScore {
   readonly completed: boolean;
+  readonly predictionCommitted: boolean;
   readonly score: number;
 }
 

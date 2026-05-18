@@ -1,0 +1,18 @@
+schema_version: "1.0.0"
+controls:
+  - id: focus-quantity
+    label: "Focus quantity"
+    kind: selector
+    options:
+      - length
+      - mass
+      - time
+      - velocity
+      - acceleration
+      - force
+      - energy
+    default: force
+  - id: link-labels
+    label: "Show every link label"
+    kind: toggle
+    default: false

@@ -21,3 +21,21 @@ export type {
   ResolutionDiagramProps,
   ResolutionState,
 } from "./resolving-vectors.js";
+
+export {
+  QuantityDependencyMapSim,
+  QuantityMapGraph,
+  physicalQuantitiesPackageId,
+  quantityMapModel,
+  quantityMapPredict,
+  quantityMapSimId,
+} from "./physical-quantities.js";
+export type {
+  DimensionVector,
+  QuantityDependency,
+  QuantityId,
+  QuantityKind,
+  QuantityMapGraphProps,
+  QuantityMapModel,
+  QuantityNode,
+} from "./physical-quantities.js";

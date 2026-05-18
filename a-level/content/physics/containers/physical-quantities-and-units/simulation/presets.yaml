@@ -1,0 +1,17 @@
+schema_version: "1.0.0"
+presets:
+  - id: force-newton
+    label: "Why a newton is kg m s^-2"
+    state:
+      selectedQuantity: force
+      showAllLabels: false
+  - id: acceleration-unit
+    label: "Why acceleration is m s^-2"
+    state:
+      selectedQuantity: acceleration
+      showAllLabels: true
+  - id: energy-joule
+    label: "Why a joule is kg m^2 s^-2"
+    state:
+      selectedQuantity: energy
+      showAllLabels: true

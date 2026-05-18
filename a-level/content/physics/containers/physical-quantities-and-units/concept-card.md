@@ -7,9 +7,11 @@ syllabus_ref: "9478 / Section I / 1(a)-1(g)"
 prerequisites: []
 aid_types:
   - concept-card
+  - simulation
+  - reasoning-lab
   - misconception-audit
   - transfer-problem
-status: content-only
+status: reviewed
 ---
 
 # Physical Quantities and Units
@@ -44,12 +46,15 @@ been used incorrectly.
 - Distance may be measured as `2.0 m`, `200 cm`, or `0.002 km`; the physical length is the same.
 - Speed has units `m s^-1` because it is distance divided by time.
 - Acceleration has units `m s^-2`, not `m s^-1`, because velocity changes per unit time.
+- Force has the named unit newton (`N`), but `F = ma` shows `1 N = 1 kg m s^-2`.
+- Energy has the named unit joule (`J`), but work done by a force over a distance gives `1 J = 1 kg m^2 s^-2`.
 
 ## Common Misconceptions
 
 - Treating units as labels added after the calculation.
 - Thinking the number alone is the measurement.
 - Adding unlike quantities because the numerical values look compatible.
+- Treating named units such as `N` or `J` as if they were independent of SI base units.
 
 ## Problem-Solving Pattern
 

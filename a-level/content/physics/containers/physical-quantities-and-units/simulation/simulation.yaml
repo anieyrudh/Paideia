@@ -1,0 +1,48 @@
+id: quantity-dependency-map
+title: "Quantity Dependency Map Lab"
+interaction_type: force-directed-graph
+kernel_deps:
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A newton is the unit of force. Which dependency chain should prove that N reduces to kg m s^-2?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "force → mass and acceleration → length and time"
+      - "force → length and time only"
+      - "force → mass and length only"
+      - "force is an SI base quantity"
+    correct_index: 0
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: focus-quantity
+      label: "Focus quantity"
+      kind: selector
+      kernel_binding: state.selectedQuantity
+    - id: link-labels
+      label: "Show every link label"
+      kind: toggle
+      kernel_binding: state.showAllLabels
+
+observe:
+  renderers:
+    - id: quantity-dependency-graph
+      module: "@paideia/a-level-physics-sims/physical-quantities"
+      symbol: QuantityMapGraph
+      props_binding: |
+        Show the selected quantity's upstream dependency path and base-unit reduction.
+
+explain:
+  prompt: |
+    How does tracing a derived quantity back to SI base quantities help you reject an equation whose left and right sides have different units?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Unit as decoration"
+    - "Quantity equals number"
+    - "Derived quantity as base quantity"

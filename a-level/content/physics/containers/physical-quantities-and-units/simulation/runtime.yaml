@@ -1,0 +1,8 @@
+schema_version: "1.0.0"
+runtime:
+  initial_stage: predict
+  reset_clears_prediction: true
+  reveal_requires_prediction: true
+  local_state:
+    selectedQuantity: force
+    showAllLabels: false

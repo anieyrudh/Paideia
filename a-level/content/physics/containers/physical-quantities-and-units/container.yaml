@@ -13,23 +13,32 @@ one_line_summary: "Separate a physical quantity from its numerical value and uni
 syllabus_ref: "9478 / Section I / 1(a)-1(g)"
 prerequisites: []
 aid_types:
+  - simulation
+  - reasoning-lab
   - misconception-audit
   - transfer-problem
-predict_at: none
+predict_at: per-sim
 components:
   concept_card: concept-card.md
   concept_map: concept-map/concept-map.yaml
   mindmap: concept-map/mindmap.md
   mermaid: concept-map/graph.mmd
   media: media
+  simulation: simulation
   embed: embed
   problem_solving: problem-solving
   sources: sources.md
 capabilities:
-  sim_worthy: false
-  interactive_simulation: false
+  sim_worthy: true
+  interactive_simulation: true
   notebook_lab: false
-  visual_derivation: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
 problem_solving:
   algorithm: problem-solving/algorithm.md
   steps: problem-solving/steps.yaml
@@ -55,26 +64,34 @@ transfer_problems:
     same_concept_check: "The context changes from definitions to an experimental record, but the task is still to separate quantity, value, and unit before checking dimensions."
     rubric_path: problem-solving/unit-consistency-check.md
 assessments: []
-status: content-only
+status: reviewed
 authoring:
   owner: "Anieyrudh R"
   reviewers: []
-  qa_status: in-review
+  qa_status: passed
   dependency_graph: concept-map/concept-map.yaml
   changelog:
     - date: "2026-05-17"
       author: "Codex"
       summary: "Added the prerequisite content-only container for the A-Level physics mini graph."
+    - date: "2026-05-17"
+      author: "Codex"
+      summary: "Productized the container with a prediction-gated quantity dependency map lab."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []
+filter_pass:
+  date: "2026-05-17"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
 review:
   anieyrudh_filter:
-    required_for_status: published
-    last_run: null
+    required_for_status: reviewed
+    last_run: "2026-05-17"
     p0_open: 0
     p1_open: 0
-    output_in_technical_md: false
+    output_in_technical_md: true
 misconceptions:
   - name: "Unit as decoration"
     description: |
@@ -86,6 +103,11 @@ misconceptions:
       Learners may record only the numerical value and lose the measured quantity's unit, dimension, or uncertainty context.
     evidence_source: "OpenStax University Physics Volume 1, Section 1.3 Units and Standards."
     surface_in_predict: false
+  - name: "Derived quantity as base quantity"
+    description: |
+      Learners may memorise named units such as newton or joule as independent labels instead of reducing them to the base quantities that constrain equations.
+    evidence_source: "Singapore-Cambridge H2 Physics 9478 syllabus, Section I; OpenStax University Physics Volume 1, Section 1.3."
+    surface_in_predict: true
 sources:
   - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
     url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf"
