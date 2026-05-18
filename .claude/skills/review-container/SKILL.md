@@ -96,7 +96,13 @@ filter_pass:
 
 ### 5. Regenerate README.md and TECHNICAL.md
 
-Re-run the docs generator against the now-final manifest so the descriptive doc and the technical doc reflect the as-shipped state. Preserve hand-edited sections of TECHNICAL.md outside the auto-generated regions; the Filter pass section is authoritative and must not be clobbered.
+Re-run the docs generator against the now-final manifest so the descriptive doc and the technical doc reflect the as-shipped state:
+
+```
+pnpm container:docs <container-path>
+```
+
+The generator preserves hand-edited review sections of TECHNICAL.md, including the Filter pass section. The Filter pass section is authoritative and must not be clobbered.
 
 ### 6. Final validator pass
 
