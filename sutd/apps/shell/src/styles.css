@@ -1,0 +1,239 @@
+:root {
+  --ink: #16211f;
+  --muted: #5f6b68;
+  --paper: #f4f6f2;
+  --surface: #ffffff;
+  --line: #d5ddd6;
+  --accent: #0f6b68;
+  --accent-soft: #dcecea;
+  --gold: #c58a1a;
+  color: var(--ink);
+  background: var(--paper);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background:
+    linear-gradient(90deg, rgba(15, 107, 104, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, #eef5f4 0, var(--paper) 24rem);
+  background-size: 56px 56px, auto;
+}
+
+button {
+  font: inherit;
+}
+
+.app-shell {
+  display: grid;
+  gap: 1.4rem;
+  min-height: 100vh;
+  padding: 1.4rem;
+}
+
+.hero,
+.workspace {
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.84);
+}
+
+.hero {
+  align-items: end;
+  display: grid;
+  gap: 1.4rem;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  min-height: 300px;
+  padding: 2rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 6vw, 5.6rem);
+  letter-spacing: 0;
+  line-height: 0.92;
+  margin: 0;
+  max-width: 11ch;
+}
+
+.hero p {
+  max-width: 62ch;
+}
+
+.meta-line,
+.pillar-nav small,
+.panel-header p,
+.stats-grid dd,
+.cluster-card li {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.meta-line {
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.45rem;
+  text-transform: uppercase;
+}
+
+.stats-grid {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+}
+
+.stats-grid div {
+  border-top: 2px solid var(--accent);
+  padding-top: 0.7rem;
+}
+
+.stats-grid dt {
+  color: var(--accent);
+  font-size: 2.1rem;
+  font-weight: 900;
+}
+
+.stats-grid dd {
+  margin: 0;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+  min-height: 460px;
+}
+
+.pillar-nav {
+  border-right: 1px solid var(--line);
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+  padding: 1rem;
+}
+
+.pillar-nav button {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--ink);
+  cursor: pointer;
+  display: grid;
+  gap: 0.12rem;
+  min-height: 58px;
+  padding: 0.8rem;
+  text-align: left;
+}
+
+.pillar-nav button[aria-pressed="true"],
+.pillar-nav button:hover,
+.pillar-nav button:focus-visible {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  outline: none;
+}
+
+.pillar-nav span {
+  font-weight: 900;
+}
+
+.pillar-panel {
+  display: grid;
+  gap: 1rem;
+  padding: 1.3rem;
+}
+
+.panel-header {
+  align-items: end;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.panel-header h2,
+.cluster-card h3,
+.empty-state h2,
+.container-preview h2 {
+  margin: 0;
+}
+
+.panel-header h2 {
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 0.95;
+}
+
+.cluster-grid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.cluster-card,
+.empty-state,
+.container-preview {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 0.8rem;
+  padding: 1rem;
+}
+
+.cluster-card {
+  min-height: 220px;
+}
+
+.cluster-card > span {
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.cluster-card > span[data-status="planned"] {
+  color: var(--gold);
+}
+
+.cluster-card ul {
+  display: grid;
+  gap: 0.36rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cluster-card li {
+  overflow-wrap: anywhere;
+}
+
+.empty-state,
+.container-preview {
+  border-left: 4px solid var(--accent);
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    padding: 0.8rem;
+  }
+
+  .hero,
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .pillar-nav {
+    border-bottom: 1px solid var(--line);
+    border-right: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .panel-header {
+    align-items: start;
+    display: grid;
+  }
+}

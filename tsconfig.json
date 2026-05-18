@@ -28,6 +28,7 @@
     { "path": "./core/three-scene" },
     { "path": "./a-level/packages/physics-sims" },
     { "path": "./a-level/apps/shell" },
+    { "path": "./sutd/apps/shell" },
     { "path": "./testing/sim-harness" }
   ]
 }
