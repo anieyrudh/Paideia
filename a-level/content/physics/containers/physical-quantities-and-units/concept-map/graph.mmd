@@ -1,8 +1,21 @@
 flowchart LR
   current["Physical quantities and units"] --> scalars["Scalars and vectors"]
   current --> resolving["Resolving vectors"]
+  length["Length L"] --> speed["Speed L T^-1"]
+  time["Time T"] --> speed
+  length --> area["Area L^2"]
+  speed --> velocity["Velocity L T^-1 + direction"]
+  velocity --> acceleration["Acceleration L T^-2"]
+  time --> acceleration
+  mass["Mass M"] --> force["Force M L T^-2"]
+  acceleration --> force
+  force --> pressure["Pressure M L^-1 T^-2"]
+  area --> pressure
   number["Quantity equals number"] --> decoration["Unit as decoration"]
   decoration --> mismatch["Dimension mismatch"]
+  baseDerived["Base/derived confusion"] --> mismatch
+  number --> direction["Direction ignored"]
   current -. addresses .-> number
   current -. addresses .-> decoration
-  current -. addresses .-> mismatch
+  current -. addresses .-> baseDerived
+  current -. addresses .-> direction

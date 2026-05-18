@@ -1,0 +1,7 @@
+schema_version: "1.0.0"
+labels:
+  focusQuantityId: "selected quantity"
+  equationId: "equation being tested"
+  dimensions: "base-dimension signature"
+  unit: "SI unit"
+  direction: "scalar or vector"

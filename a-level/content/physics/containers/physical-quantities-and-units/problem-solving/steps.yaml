@@ -4,9 +4,15 @@ steps:
     label: "Name the quantity"
   - id: attach-unit
     label: "Attach the unit to the value"
+  - id: classify-quantity
+    label: "Classify as base or derived"
+  - id: map-dependencies
+    label: "Map dependencies to base quantities"
   - id: expand-derived
     label: "Expand derived units if needed"
   - id: check-dimensions
     label: "Check dimensions before operating"
   - id: convert
     label: "Convert using unit ratios"
+  - id: include-direction
+    label: "Include direction for vector quantities"

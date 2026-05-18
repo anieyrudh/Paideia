@@ -1,6 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Unit consistency fallback">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Static quantity map fallback">
   <rect width="320" height="180" fill="#fffdf7"/>
-  <text x="32" y="54" fill="#13251e" font-family="Arial, sans-serif" font-size="22" font-weight="700">Unit check</text>
-  <text x="32" y="92" fill="#10201a" font-family="Arial, sans-serif" font-size="20">speed: m s^-1</text>
-  <text x="32" y="124" fill="#10201a" font-family="Arial, sans-serif" font-size="20">acceleration: m s^-2</text>
+  <text x="28" y="42" fill="#13251e" font-family="Arial, sans-serif" font-size="22" font-weight="700">Quantity map</text>
+  <text x="34" y="78" fill="#14532d" font-family="Arial, sans-serif" font-size="18">length L</text>
+  <text x="34" y="112" fill="#14532d" font-family="Arial, sans-serif" font-size="18">time T</text>
+  <path d="M112 72 L172 88" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M96 106 L172 98" stroke="#64748b" stroke-width="3" marker-end="url(#arrow)"/>
+  <rect x="176" y="70" width="112" height="48" rx="10" fill="#dbeafe" stroke="#1d4ed8" stroke-width="3"/>
+  <text x="190" y="91" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="17" font-weight="700">speed</text>
+  <text x="190" y="111" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="15">L T^-1</text>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L7,3 z" fill="#64748b"/>
+    </marker>
+  </defs>
 </svg>

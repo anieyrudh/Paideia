@@ -1,0 +1,17 @@
+schema_version: "1.0.0"
+presets:
+  - id: speed-check
+    label: "Speed from distance and time"
+    state:
+      focusQuantityId: speed
+      equationId: speed-distance-time
+  - id: impossible-force
+    label: "Impossible force equation"
+    state:
+      focusQuantityId: force
+      equationId: force-mass-speed
+  - id: pressure-map
+    label: "Pressure from force and area"
+    state:
+      focusQuantityId: pressure
+      equationId: pressure-force-area

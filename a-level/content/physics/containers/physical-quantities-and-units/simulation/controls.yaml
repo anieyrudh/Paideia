@@ -1,0 +1,26 @@
+schema_version: "1.0.0"
+controls:
+  - id: focus-quantity
+    label: "Quantity to inspect"
+    type: selector
+    default: speed
+    options:
+      - length
+      - time
+      - mass
+      - area
+      - speed
+      - velocity
+      - acceleration
+      - force
+      - pressure
+  - id: equation-to-test
+    label: "Equation to test"
+    type: selector
+    default: speed-distance-time
+    options:
+      - speed-distance-time
+      - speed-distance-times-time
+      - force-mass-acceleration
+      - force-mass-speed
+      - pressure-force-area

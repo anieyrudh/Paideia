@@ -1,0 +1,48 @@
+id: quantity-dependency-map
+title: "Quantity Dependency Map"
+interaction_type: force-directed-graph
+kernel_deps:
+  - core/graph-algorithms
+  - core/prediction-gate
+  - core/ui-sim
+
+predict:
+  prompt: |
+    Before opening the map, which equation keeps the units of speed consistent with distance and time?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "speed = distance / time"
+      - "speed = distance × time"
+      - "speed = distance + time"
+      - "speed = time / distance"
+    correct_index: 0
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: focus-quantity
+      label: "Quantity to inspect"
+      kind: selector
+      kernel_binding: state.focusQuantityId
+    - id: equation-to-test
+      label: "Equation to test"
+      kind: selector
+      kernel_binding: state.equationId
+
+observe:
+  renderers:
+    - id: quantity-dependency-graph
+      module: "@paideia/a-level-physics-sims/quantity-map"
+      symbol: QuantityMapGraph
+      props_binding: |
+        Show the selected quantity, its base and derived dependencies, scalar/vector classification, SI unit, and dimensional signature.
+
+explain:
+  prompt: |
+    How does the dependency graph prove that a proposed equation has the right or wrong units before any numbers are substituted?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Unit as decoration"
+    - "Quantity equals number"
+    - "Base and derived quantities are interchangeable"

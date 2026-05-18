@@ -5,13 +5,29 @@
     - quantity
     - numerical value
     - unit
+    - dimension
   - SI structure
     - base quantities
+      - length `m`
+      - mass `kg`
+      - time `s`
     - derived quantities
+      - area `m^2`
+      - speed `m s^-1`
+      - acceleration `m s^-2`
+      - force `kg m s^-2`
+      - pressure `kg m^-1 s^-2`
     - prefixes
+  - Quantity map lab
+    - predict unit-consistent speed equation
+    - inspect dependency graph
+    - classify base vs derived
+    - classify scalar vs vector
+    - compare left and right dimensions
   - Checks
     - dimensional consistency
     - unit conversion
+    - direction where relevant
     - significant figures later
   - Leads to
     - scalar/vector classification

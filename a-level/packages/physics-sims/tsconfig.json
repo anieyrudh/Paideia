@@ -12,6 +12,9 @@
       "path": "../../../core/content-schema"
     },
     {
+      "path": "../../../core/graph-algorithms"
+    },
+    {
       "path": "../../../core/linear-algebra"
     },
     {
