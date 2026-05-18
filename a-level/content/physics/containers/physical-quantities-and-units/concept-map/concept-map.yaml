@@ -8,8 +8,12 @@ downstream:
     status: available
   - id: resolving-vectors
     title: "Resolving Vectors"
-    relationship: "Components must keep the unit of the original vector quantity."
+    relationship: "Components must keep the unit and dimension of the original vector quantity."
     status: available
+  - id: kinematics-in-one-dimension
+    title: "Kinematics in One Dimension"
+    relationship: "Kinematics equations are valid only when displacement, velocity, acceleration, and time terms match dimensions."
+    status: planned
 siblings: []
 misconception_graph:
   nodes:
@@ -19,6 +23,8 @@ misconception_graph:
       label: "Quantity equals number"
     - id: dimension-mismatch
       label: "Dimension mismatch"
+    - id: familiar-equation-trust
+      label: "Familiar equation trust"
   edges:
     - from: quantity-equals-number
       to: unit-as-decoration
@@ -26,4 +32,7 @@ misconception_graph:
     - from: unit-as-decoration
       to: dimension-mismatch
       label: "hides"
+    - from: familiar-equation-trust
+      to: dimension-mismatch
+      label: "bypasses"
 mermaid_source: graph.mmd

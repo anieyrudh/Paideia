@@ -21,3 +21,23 @@ export type {
   ResolutionDiagramProps,
   ResolutionState,
 } from "./resolving-vectors.js";
+
+export {
+  DimensionBar,
+  PhysicalQuantitiesSim,
+  combinedDimensionDemo,
+  dimensionalCheckerSimId,
+  dimensionalPredict,
+  evaluateEquation,
+  formatDimension,
+  physicalQuantitiesPackageId,
+} from "./physical-quantities.js";
+export type {
+  BaseDimensionKey,
+  DimensionBarProps,
+  DimensionVector,
+  EquationChallenge,
+  EquationCheck,
+  QuantityCard,
+  TermModel,
+} from "./physical-quantities.js";

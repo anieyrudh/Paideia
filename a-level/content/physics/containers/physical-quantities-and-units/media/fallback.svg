@@ -1,6 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Unit consistency fallback">
-  <rect width="320" height="180" fill="#fffdf7"/>
-  <text x="32" y="54" fill="#13251e" font-family="Arial, sans-serif" font-size="22" font-weight="700">Unit check</text>
-  <text x="32" y="92" fill="#10201a" font-family="Arial, sans-serif" font-size="20">speed: m s^-1</text>
-  <text x="32" y="124" fill="#10201a" font-family="Arial, sans-serif" font-size="20">acceleration: m s^-2</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Physical quantities fallback visual</title>
+  <desc id="desc">A static explanation that equations must match dimensions term by term.</desc>
+  <rect width="640" height="360" fill="#f7f4ea"/>
+  <rect x="64" y="54" width="512" height="252" rx="26" fill="#fffdf7" stroke="#d8d0bf"/>
+  <text x="94" y="104" fill="#10201a" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="900">Check the units first</text>
+  <text x="94" y="158" fill="#10201a" font-family="SFMono-Regular,Consolas,monospace" font-size="34" font-weight="800">quantity = number × unit</text>
+  <text x="94" y="212" fill="#1f5f8b" font-family="Inter,Arial,sans-serif" font-size="23" font-weight="800">Add or equate only matching dimensions</text>
+  <text x="94" y="258" fill="#66736b" font-family="Inter,Arial,sans-serif" font-size="20">Example: length L cannot be added to velocity L T⁻¹.</text>
 </svg>

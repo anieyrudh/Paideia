@@ -1,0 +1,44 @@
+id: dimensional-consistency-checker
+title: "Dimensional Consistency Checker"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A learner proposes three equations: v = s/t, F = ma, and s = vt + 1/2 at. Before opening the checker, which one do you think the units will reject?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "v = s/t"
+      - "F = ma"
+      - "s = vt + 1/2 at"
+      - "All three are consistent"
+    correct_index: 2
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: equation-choice
+      label: "Equation"
+      kind: selector
+      kernel_binding: state.challengeId
+
+observe:
+  renderers:
+    - id: dimensional-consistency-checker
+      module: "@paideia/a-level-physics-sims/physical-quantities"
+      symbol: PhysicalQuantitiesSim
+      props_binding: |
+        Let learners choose an equation, expand each term into SI base dimensions, and display whether all addable/equated terms match.
+
+explain:
+  prompt: |
+    Why does a unit mismatch prove that an equation cannot be physically valid, even if the numerical values could be made to fit?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Unit as decoration"
+    - "Quantity equals number"
+    - "Dimension mismatch"

@@ -1,0 +1,13 @@
+presets:
+  - id: impossible-kinematics
+    label: "Find the missing time factor"
+    state:
+      challengeId: kinematics-missing-time
+  - id: derived-force
+    label: "Expand a newton"
+    state:
+      challengeId: newton-second-law
+  - id: velocity-ratio
+    label: "Distance per time"
+    state:
+      challengeId: speed-from-distance-time

@@ -1,18 +1,29 @@
-# Mindmap
+# Mind Map — Physical Quantities and Units
 
 - Physical quantities and units
-  - Measurement
-    - quantity
+  - Measurement structure
+    - quantity name
     - numerical value
     - unit
-  - SI structure
-    - base quantities
-    - derived quantities
-    - prefixes
-  - Checks
-    - dimensional consistency
-    - unit conversion
-    - significant figures later
-  - Leads to
-    - scalar/vector classification
-    - vector components with units
+  - SI base quantities
+    - length: metre
+    - mass: kilogram
+    - time: second
+    - electric current, temperature, amount of substance, luminous intensity
+  - Derived quantities
+    - velocity: `m s^-1`
+    - acceleration: `m s^-2`
+    - force: `kg m s^-2`
+  - Dimensional consistency
+    - expand derived units
+    - compare each addable term
+    - compare both sides of an equation
+    - reject mismatches before substituting numbers
+  - Links forward
+    - scalar/vector classification asks whether direction is part of the quantity
+    - vector resolution preserves the same unit on each component
+    - kinematics equations must match dimensions term by term
+  - Misconceptions
+    - units as decoration
+    - quantity equals number
+    - familiar-looking equation accepted without a unit check

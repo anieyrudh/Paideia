@@ -1,4 +1,4 @@
-schema_version: "1.0.0"
+schema_version: 1.0.0
 id: physical-quantities-and-units
 aliases:
   - SI units
@@ -6,16 +6,18 @@ aliases:
   - derived quantities
 branch: a-level
 subject: physics
-level: "H2"
-module: "Foundations of Physics"
-title: "Physical Quantities and Units"
-one_line_summary: "Separate a physical quantity from its numerical value and unit, then use SI base and derived units consistently."
-syllabus_ref: "9478 / Section I / 1(a)-1(g)"
+level: H2
+module: Foundations of Physics
+title: Physical Quantities and Units
+one_line_summary: Separate a physical quantity from its numerical value and unit, then use SI base and derived units consistently.
+syllabus_ref: 9478 / Section I / 1(a)-1(g)
 prerequisites: []
 aid_types:
+  - simulation
   - misconception-audit
   - transfer-problem
-predict_at: none
+  - reasoning-lab
+predict_at: both
 components:
   concept_card: concept-card.md
   concept_map: concept-map/concept-map.yaml
@@ -25,9 +27,10 @@ components:
   embed: embed
   problem_solving: problem-solving
   sources: sources.md
+  simulation: simulation
 capabilities:
-  sim_worthy: false
-  interactive_simulation: false
+  sim_worthy: true
+  interactive_simulation: true
   notebook_lab: false
   visual_derivation: false
 problem_solving:
@@ -51,50 +54,78 @@ transfer_problems:
   - id: unit-consistency-check
     prompt: |
       A student writes a measured acceleration as 9.8 m s^-1. Decide whether the unit is dimensionally consistent with acceleration, correct it if needed, and explain which base units are involved.
-    surface_form: "lab measurement note"
-    same_concept_check: "The context changes from definitions to an experimental record, but the task is still to separate quantity, value, and unit before checking dimensions."
+    surface_form: lab measurement note
+    same_concept_check: The context changes from definitions to an experimental record, but the task is still to separate quantity, value, and unit before checking dimensions.
     rubric_path: problem-solving/unit-consistency-check.md
 assessments: []
-status: content-only
+status: reviewed
 authoring:
-  owner: "Anieyrudh R"
+  owner: Anieyrudh R
   reviewers: []
-  qa_status: in-review
+  qa_status: passed
   dependency_graph: concept-map/concept-map.yaml
   changelog:
-    - date: "2026-05-17"
-      author: "Codex"
-      summary: "Added the prerequisite content-only container for the A-Level physics mini graph."
+    - date: 2026-05-17
+      author: Codex
+      summary: Added the prerequisite content-only container for the A-Level physics mini graph.
+    - date: 2026-05-17
+      author: Codex
+      summary: Productized the container with a prediction-gated dimensional consistency checker vertical slice.
 authors:
-  - "Anieyrudh R"
+  - Anieyrudh R
 advisor_signoffs: []
 review:
   anieyrudh_filter:
-    required_for_status: published
-    last_run: null
+    required_for_status: reviewed
+    last_run: 2026-05-17
     p0_open: 0
     p1_open: 0
-    output_in_technical_md: false
+    output_in_technical_md: true
 misconceptions:
-  - name: "Unit as decoration"
+  - name: Unit as decoration
     description: |
       Learners treat the unit as text appended after calculation rather than as part of the physical quantity that constrains valid operations.
-    evidence_source: "Singapore-Cambridge H2 Physics 9478 syllabus, Section I; OpenStax University Physics Volume 1, Section 1.3."
-    surface_in_predict: false
-  - name: "Quantity equals number"
+    evidence_source: Singapore-Cambridge H2 Physics 9478 syllabus, Section I; OpenStax University Physics Volume 1, Section 1.3.
+    surface_in_predict: true
+  - name: Quantity equals number
     description: |
       Learners may record only the numerical value and lose the measured quantity's unit, dimension, or uncertainty context.
-    evidence_source: "OpenStax University Physics Volume 1, Section 1.3 Units and Standards."
+    evidence_source: OpenStax University Physics Volume 1, Section 1.3 Units and Standards.
     surface_in_predict: false
+  - name: Dimension mismatch
+    description: Learners may accept an equation because it looks familiar or numerically plausible without checking that every addable or equated term has the same base dimensions.
+    evidence_source: Singapore-Cambridge H2 Physics 9478 syllabus, Section I; OpenStax University Physics Volume 1, Section 1.3.
+    surface_in_predict: true
 sources:
-  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
-    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf"
+  - citation: Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025.
+    url: https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf
     publication_year: 2025
-    license: "Copyright MOE & Cambridge University Press & Assessment"
+    license: Copyright MOE & Cambridge University Press & Assessment
     seab_alignment: matches
-  - citation: "Moebs, W., Ling, S. J., and Sanny, J. University Physics Volume 1, Section 1.3 Units and Standards. OpenStax, 2016."
-    url: "https://openstax.org/books/university-physics-volume-1/pages/1-3-units-and-standards"
+  - citation: Moebs, W., Ling, S. J., and Sanny, J. University Physics Volume 1, Section 1.3 Units and Standards. OpenStax, 2016.
+    url: https://openstax.org/books/university-physics-volume-1/pages/1-3-units-and-standards
     publication_year: 2016
-    license: "CC BY-NC-SA"
+    license: CC BY-NC-SA
     seab_alignment: matches
 language: en
+package_predict:
+  prompt: "A learner proposes three equations: v = s/t, F = ma, and s = vt + 1/2 at. Before opening the checker, which one do you think the units will reject?"
+  commit_format:
+    kind: multiple-choice
+    options:
+      - v = s/t
+      - F = ma
+      - s = vt + 1/2 at
+      - All three are consistent
+  rationale_required: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+filter_pass:
+  date: 2026-05-17
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true

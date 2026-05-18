@@ -6,7 +6,8 @@ import type {
 } from "./api.js";
 
 const defaultState: PhysicalQuantitiesEmbedState = {
-  selectedExample: "acceleration-unit-check",
+  selectedChallenge: "kinematics-missing-time",
+  predictionCommitted: false,
   completed: false,
 };
 
@@ -24,9 +25,11 @@ export const createPhysicalQuantitiesEmbed = (): PhysicalQuantitiesEmbedApi => {
       return state;
     },
     score(): PhysicalQuantitiesEmbedScore {
+      const completed = state.completed || state.predictionCommitted;
       return {
-        completed: state.completed,
-        score: state.completed ? 1 : 0,
+        completed,
+        predictionCommitted: state.predictionCommitted,
+        score: completed ? 1 : 0,
       };
     },
     resume(nextState: PhysicalQuantitiesEmbedState): void {

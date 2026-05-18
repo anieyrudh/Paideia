@@ -1,0 +1,12 @@
+controls:
+  - id: equation-choice
+    label: "Equation"
+    kind: selector
+    default: kinematics-missing-time
+    options:
+      - id: speed-from-distance-time
+        label: "v = s / t"
+      - id: newton-second-law
+        label: "F = ma"
+      - id: kinematics-missing-time
+        label: "s = vt + 1/2 at"

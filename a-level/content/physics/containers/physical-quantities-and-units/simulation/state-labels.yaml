@@ -1,0 +1,13 @@
+state_labels:
+  challengeId:
+    label: "Equation choice"
+    meaning: "The proposed equation being checked for dimensional consistency."
+  leftDimension:
+    label: "Left-side dimension"
+    meaning: "The SI base-dimension expansion of the quantity on the left side."
+  rightDimensions:
+    label: "Right-side term dimensions"
+    meaning: "The SI base-dimension expansion of each addable term on the right side."
+  verdict:
+    label: "Dimensional verdict"
+    meaning: "Whether the units allow or reject the equation before any numerical substitution."

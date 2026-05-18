@@ -1,8 +1,27 @@
-flowchart LR
-  current["Physical quantities and units"] --> scalars["Scalars and vectors"]
-  current --> resolving["Resolving vectors"]
-  number["Quantity equals number"] --> decoration["Unit as decoration"]
-  decoration --> mismatch["Dimension mismatch"]
-  current -. addresses .-> number
-  current -. addresses .-> decoration
-  current -. addresses .-> mismatch
+graph TD
+  PQU[Physical quantities and units]
+  Q[Physical quantity]
+  V[Numerical value]
+  U[Unit]
+  B[Base quantities]
+  D[Derived quantities]
+  C[Dimensional consistency]
+  SV[Scalars and vectors]
+  RV[Resolving vectors]
+  K[Kinematics]
+  M1[Misconception: unit as decoration]
+  M2[Misconception: quantity equals number]
+  M3[Misconception: familiar equation trust]
+
+  PQU --> Q
+  Q --> V
+  Q --> U
+  U --> B
+  B --> D
+  D --> C
+  C --> SV
+  C --> RV
+  C --> K
+  M2 --> M1
+  M1 --> C
+  M3 --> C

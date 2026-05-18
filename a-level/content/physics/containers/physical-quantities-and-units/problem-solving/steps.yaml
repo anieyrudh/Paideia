@@ -6,7 +6,9 @@ steps:
     label: "Attach the unit to the value"
   - id: expand-derived
     label: "Expand derived units if needed"
+  - id: compare-terms
+    label: "Compare every addable or equated term"
   - id: check-dimensions
-    label: "Check dimensions before operating"
+    label: "Reject dimension mismatches before substituting numbers"
   - id: convert
     label: "Convert using unit ratios"
