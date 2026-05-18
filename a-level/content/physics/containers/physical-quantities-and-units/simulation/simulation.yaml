@@ -1,0 +1,44 @@
+id: impossible-equation-detector
+title: "Impossible-Equation Detector"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/content-schema
+  - core/prediction-gate
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A student proposes s = ut + 1/2at for motion. Before the detector opens, predict whether the equation can be valid just by checking units.
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "valid: both sides are length"
+      - "invalid: one right-hand term is velocity"
+      - "valid: all symbols are motion quantities"
+      - "invalid: units never decide equations"
+    correct_index: 1
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: proposed-equation
+      label: "Proposed equation"
+      kind: selector
+      kernel_binding: state.caseId
+
+observe:
+  renderers:
+    - id: dimension-checker
+      module: "@paideia/a-level-physics-sims/impossible-equation-detector"
+      symbol: ImpossibleEquationDetector
+      props_binding: |
+        Select a proposed equation, expand every quantity into base dimensions, and compare the dimensions of terms that are added or set equal.
+
+explain:
+  prompt: |
+    Explain why unit agreement is a necessary test for an equation but not enough to prove the equation is physically true.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Unit as decoration"
+    - "Quantity equals number"
+    - "Dimension mismatch"

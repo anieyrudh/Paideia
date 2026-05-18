@@ -1,0 +1,13 @@
+state_labels:
+  caseId:
+    label: "Proposed equation"
+    meaning: "The equation selected for dimensional consistency testing."
+  leftDimension:
+    label: "Left-side dimensions"
+    meaning: "Base-dimension signature of the quantity on the left of the equals sign."
+  rightDimensions:
+    label: "Right-side dimensions"
+    meaning: "Base-dimension signatures of terms being added or compared on the right."
+  verdict:
+    label: "Detector verdict"
+    meaning: "Whether every compared term has matching dimensions."

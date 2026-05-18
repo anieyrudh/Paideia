@@ -10,7 +10,11 @@ downstream:
     title: "Resolving Vectors"
     relationship: "Components must keep the unit of the original vector quantity."
     status: available
-siblings: []
+siblings:
+  - id: dimensional-analysis
+    title: "Dimensional Analysis"
+    relationship: "The detector uses the same base-dimension reasoning but keeps the focus on A-Level unit discipline."
+    status: planned
 misconception_graph:
   nodes:
     - id: unit-as-decoration
@@ -19,6 +23,8 @@ misconception_graph:
       label: "Quantity equals number"
     - id: dimension-mismatch
       label: "Dimension mismatch"
+    - id: dimension-match-proves-truth
+      label: "Dimension match proves truth"
   edges:
     - from: quantity-equals-number
       to: unit-as-decoration
@@ -26,4 +32,7 @@ misconception_graph:
     - from: unit-as-decoration
       to: dimension-mismatch
       label: "hides"
+    - from: dimension-mismatch
+      to: dimension-match-proves-truth
+      label: "overcorrection risk"
 mermaid_source: graph.mmd

@@ -6,13 +6,19 @@
     - numerical value
     - unit
   - SI structure
-    - base quantities
-    - derived quantities
-    - prefixes
-  - Checks
-    - dimensional consistency
-    - unit conversion
-    - significant figures later
+    - base quantities: length, mass, time, current, temperature, amount, luminous intensity
+    - derived quantities: speed, acceleration, force, energy
+    - prefixes and equivalent unit sizes
+  - Impossible-equation detector
+    - expand units into base dimensions
+    - compare every added or equated term
+    - reject equations with mismatched dimensions
+    - remember that a dimensional match is necessary, not proof of truth
+  - Quantity properties
+    - scalar quantities have magnitude only
+    - vector quantities have magnitude and direction
+    - a scalar and vector may share dimensions but not physical meaning
   - Leads to
     - scalar/vector classification
     - vector components with units
+    - kinematics formula checks

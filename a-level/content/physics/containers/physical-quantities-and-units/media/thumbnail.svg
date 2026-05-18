@@ -1,7 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Units thumbnail">
-  <rect width="320" height="180" fill="#f7f4ea"/>
-  <text x="34" y="72" fill="#13251e" font-family="Arial, sans-serif" font-size="36" font-weight="700">9.8</text>
-  <text x="114" y="72" fill="#1f5f8b" font-family="Arial, sans-serif" font-size="28" font-weight="700">m s^-2</text>
-  <line x1="34" x2="250" y1="96" y2="96" stroke="#d8d0bf" stroke-width="3"/>
-  <text x="34" y="130" fill="#66736b" font-family="Arial, sans-serif" font-size="18">quantity = value + unit</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Impossible-equation detector thumbnail</title>
+  <desc id="desc">A learner-facing card checks whether equation terms have matching dimensions.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#eff6ff"/>
+      <stop offset="1" stop-color="#ecfdf5"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" rx="32" fill="url(#bg)"/>
+  <rect x="64" y="54" width="512" height="252" rx="28" fill="#ffffff" stroke="#bfdbfe" stroke-width="4"/>
+  <text x="96" y="110" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700">Unit lie detector</text>
+  <text x="96" y="158" fill="#1d4ed8" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">s = ut + 1/2at</text>
+  <g font-family="Inter, Arial, sans-serif" font-size="22">
+    <rect x="96" y="190" width="154" height="64" rx="18" fill="#dbeafe"/>
+    <text x="118" y="230" fill="#1e3a8a">left: L</text>
+    <rect x="274" y="190" width="154" height="64" rx="18" fill="#dcfce7"/>
+    <text x="296" y="230" fill="#166534">ut: L</text>
+    <rect x="452" y="190" width="92" height="64" rx="18" fill="#fee2e2"/>
+    <text x="475" y="230" fill="#991b1b">at: LT⁻¹</text>
+  </g>
+  <path d="M104 282h314" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="504" cy="282" r="26" fill="#ef4444"/>
+  <path d="M493 282l8 8 16-20" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
 </svg>

@@ -4,9 +4,15 @@ steps:
     label: "Name the quantity"
   - id: attach-unit
     label: "Attach the unit to the value"
+  - id: classify-quantity
+    label: "Classify base/derived and scalar/vector status"
   - id: expand-derived
     label: "Expand derived units if needed"
-  - id: check-dimensions
-    label: "Check dimensions before operating"
+  - id: compare-terms
+    label: "Compare added or equated dimensions"
+  - id: reject-mismatch
+    label: "Reject dimension mismatches as impossible"
+  - id: continue-physics
+    label: "Use physics reasoning after dimensions pass"
   - id: convert
     label: "Convert using unit ratios"

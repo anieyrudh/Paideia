@@ -13,23 +13,42 @@ one_line_summary: "Separate a physical quantity from its numerical value and uni
 syllabus_ref: "9478 / Section I / 1(a)-1(g)"
 prerequisites: []
 aid_types:
+  - simulation
   - misconception-audit
   - transfer-problem
-predict_at: none
+predict_at: both
+package_predict:
+  prompt: |
+    A student proposes s = ut + 1/2at for motion. Before the detector opens, predict whether the equation can be valid just by checking units.
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "valid: both sides are length"
+      - "invalid: one right-hand term is velocity"
+      - "valid: all symbols are motion quantities"
+      - "invalid: units never decide equations"
+  rationale_required: true
 components:
   concept_card: concept-card.md
   concept_map: concept-map/concept-map.yaml
   mindmap: concept-map/mindmap.md
   mermaid: concept-map/graph.mmd
   media: media
+  simulation: simulation
   embed: embed
   problem_solving: problem-solving
   sources: sources.md
 capabilities:
-  sim_worthy: false
-  interactive_simulation: false
+  sim_worthy: true
+  interactive_simulation: true
   notebook_lab: false
   visual_derivation: false
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
 problem_solving:
   algorithm: problem-solving/algorithm.md
   steps: problem-solving/steps.yaml
@@ -55,7 +74,7 @@ transfer_problems:
     same_concept_check: "The context changes from definitions to an experimental record, but the task is still to separate quantity, value, and unit before checking dimensions."
     rubric_path: problem-solving/unit-consistency-check.md
 assessments: []
-status: content-only
+status: draft
 authoring:
   owner: "Anieyrudh R"
   reviewers: []
@@ -65,25 +84,33 @@ authoring:
     - date: "2026-05-17"
       author: "Codex"
       summary: "Added the prerequisite content-only container for the A-Level physics mini graph."
+    - date: "2026-05-17"
+      author: "Codex"
+      summary: "Upgraded the container into an impossible-equation detector product slice with prediction-gated dimensional reasoning."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []
 review:
   anieyrudh_filter:
     required_for_status: published
-    last_run: null
+    last_run: "2026-05-17"
     p0_open: 0
-    p1_open: 0
-    output_in_technical_md: false
+    p1_open: 1
+    output_in_technical_md: true
 misconceptions:
   - name: "Unit as decoration"
     description: |
       Learners treat the unit as text appended after calculation rather than as part of the physical quantity that constrains valid operations.
     evidence_source: "Singapore-Cambridge H2 Physics 9478 syllabus, Section I; OpenStax University Physics Volume 1, Section 1.3."
-    surface_in_predict: false
+    surface_in_predict: true
   - name: "Quantity equals number"
     description: |
       Learners may record only the numerical value and lose the measured quantity's unit, dimension, or uncertainty context.
+    evidence_source: "OpenStax University Physics Volume 1, Section 1.3 Units and Standards."
+    surface_in_predict: true
+  - name: "Dimension match proves truth"
+    description: |
+      Learners may overcorrect and think dimensional consistency proves an equation is physically true, rather than seeing it as a necessary but not sufficient test.
     evidence_source: "OpenStax University Physics Volume 1, Section 1.3 Units and Standards."
     surface_in_predict: false
 sources:

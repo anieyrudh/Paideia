@@ -1,5 +1,6 @@
 export interface PhysicalQuantitiesEmbedState {
-  readonly selectedExample: string;
+  readonly selectedEquation: string;
+  readonly predictionCommitted: boolean;
   readonly completed: boolean;
 }
 
@@ -9,6 +10,7 @@ export interface PhysicalQuantitiesEmbedTheme {
 
 export interface PhysicalQuantitiesEmbedScore {
   readonly completed: boolean;
+  readonly predictionCommitted: boolean;
   readonly score: number;
 }
 

@@ -1,0 +1,18 @@
+controls:
+  - id: proposed-equation
+    label: "Proposed equation"
+    kind: selector
+    default: missing-time-factor
+    options:
+      - id: missing-time-factor
+        label: "Missing a time factor"
+      - id: valid-suvat
+        label: "Classic constant-acceleration equation"
+      - id: force-speed-confusion
+        label: "Force confused with speed"
+      - id: valid-newton-two
+        label: "Newton's second law"
+      - id: energy-from-speed
+        label: "Kinetic energy without the square"
+      - id: valid-kinetic-energy
+        label: "Kinetic energy with speed squared"

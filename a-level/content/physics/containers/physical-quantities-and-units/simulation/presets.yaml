@@ -1,0 +1,13 @@
+presets:
+  - id: trap-motion
+    label: "Motion trap: missing t"
+    state:
+      caseId: missing-time-factor
+  - id: corrected-motion
+    label: "Corrected motion equation"
+    state:
+      caseId: valid-suvat
+  - id: force-check
+    label: "Force unit check"
+    state:
+      caseId: valid-newton-two

@@ -1,8 +1,13 @@
 flowchart LR
-  current["Physical quantities and units"] --> scalars["Scalars and vectors"]
+  current["Physical quantities and units"] --> sim["Impossible-equation detector"]
+  current --> scalars["Scalars and vectors"]
   current --> resolving["Resolving vectors"]
+  base["Base quantities"] --> derived["Derived quantities"]
+  derived --> dimensions["Dimensional consistency"]
+  dimensions --> sim
+  scalarvector["Scalar vs vector property"] --> scalars
   number["Quantity equals number"] --> decoration["Unit as decoration"]
   decoration --> mismatch["Dimension mismatch"]
+  dimensions -. addresses .-> mismatch
   current -. addresses .-> number
   current -. addresses .-> decoration
-  current -. addresses .-> mismatch
