@@ -99,6 +99,30 @@ function validateConceptMapNeeds(value, path, failures) {
   validateStringArray(value.misconceptions ?? [], `${path}.misconceptions`, failures, { min: 0 });
 }
 
+function validateMappingDetailArray(value, path, failures) {
+  if (value === undefined) return false;
+  if (!Array.isArray(value)) {
+    failures.push(`${path} must be an array when present`);
+    return false;
+  }
+
+  let hasValidDetail = false;
+  for (const [index, item] of value.entries()) {
+    const itemPath = `${path}[${index}]`;
+    if (isNonEmptyString(item)) {
+      hasValidDetail = true;
+      continue;
+    }
+    if (isObject(item) && Object.keys(item).length > 0) {
+      hasValidDetail = true;
+      continue;
+    }
+    failures.push(`${itemPath} must be a non-empty string or non-empty object`);
+  }
+
+  return hasValidDetail;
+}
+
 function validateCurriculumMappings(value, entry, path, failures) {
   if (!Array.isArray(value) || value.length === 0) {
     failures.push(`${path} must be a non-empty array`);
@@ -106,6 +130,7 @@ function validateCurriculumMappings(value, entry, path, failures) {
   }
 
   const curricula = new Set(entry.curricula);
+  const seenCurricula = new Set();
   for (const [index, mapping] of value.entries()) {
     const itemPath = `${path}[${index}]`;
     if (!isObject(mapping)) {
@@ -116,10 +141,14 @@ function validateCurriculumMappings(value, entry, path, failures) {
       failures.push(`${itemPath}.curriculum must be one of: ${[...CURRICULA].join(", ")}`);
     } else if (!curricula.has(mapping.curriculum)) {
       failures.push(`${itemPath}.curriculum \`${mapping.curriculum}\` is not listed in ${path.replace(/\.curriculum_mappings$/u, ".curricula")}`);
+    } else if (seenCurricula.has(mapping.curriculum)) {
+      failures.push(`${itemPath}.curriculum \`${mapping.curriculum}\` is duplicated in ${path}`);
+    } else {
+      seenCurricula.add(mapping.curriculum);
     }
 
-    const hasMappingDetail = ["modules", "subjects", "courses", "syllabus_refs"].some(
-      (field) => Array.isArray(mapping[field]) && mapping[field].length > 0,
+    const hasMappingDetail = ["modules", "subjects", "courses", "syllabus_refs"].some((field) =>
+      validateMappingDetailArray(mapping[field], `${itemPath}.${field}`, failures),
     );
     if (!hasMappingDetail) {
       failures.push(`${itemPath} must include at least one of modules, subjects, courses, or syllabus_refs`);
