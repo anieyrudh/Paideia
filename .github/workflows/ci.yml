@@ -162,3 +162,6 @@ jobs:
 
       - name: Validate containers
         run: pnpm container:validate
+
+      - name: Validate roadmap
+        run: pnpm roadmap:validate

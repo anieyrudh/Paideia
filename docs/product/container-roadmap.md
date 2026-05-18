@@ -105,7 +105,7 @@ Existing Tier 1 support kernels already available for first product work:
 
 Next missing foundations:
 
-- Container registry: turn the candidate registry below into checked structured data, then generate shell navigation, dependency graph views, and build queues from it.
+- Container registry: keep the checked seed in [`container-build-queue.yaml`](./container-build-queue.yaml), then generate shell navigation, dependency graph views, and build queues from it.
 - Notebook lab runtime: needed for computational topics, data analysis, and Python-first exploration.
 - Media pipeline: thumbnails, diagrams, narrated walkthroughs, and fallback visuals should be generated and validated consistently.
 - Assessment adapter: connect problem-solving algorithms, mastery state, FSRS/BKT, and curriculum-specific exam wrappers.
@@ -346,7 +346,13 @@ ib-language-arts
 
 ## Candidate Registry Seed
 
-The long curriculum inventory should become a structured registry, not prose. The prose roadmap explains architecture and build order; the registry should hold every candidate container with consistent fields.
+The long curriculum inventory should live as structured registry data, not only prose. The prose roadmap explains architecture and build order; [`container-build-queue.yaml`](./container-build-queue.yaml) holds the initial machine-readable build queue and is validated with:
+
+```bash
+pnpm roadmap:validate
+```
+
+Keep this table as the human-readable field contract. Add or reorder candidates in the YAML queue so future tooling can assign work by concept cluster, curriculum mapping, priority, kernel dependencies, and status.
 
 Recommended registry fields:
 
