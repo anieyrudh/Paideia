@@ -19,3 +19,11 @@ export type {
   ResolutionDiagramProps,
   ResolutionState,
 } from "./resolving-vectors.js";
+
+export {
+  UnitClassificationLab,
+  physicalQuantitiesPackageId,
+  unitClassificationPredict,
+  unitClassificationSimId,
+  classifyQuantityCard,
+} from "./physical-quantities-lab.js";

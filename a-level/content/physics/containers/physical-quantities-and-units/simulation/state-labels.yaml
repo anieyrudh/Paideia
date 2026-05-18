@@ -1,0 +1,16 @@
+state_labels:
+  activeCard:
+    label: "Active card"
+    meaning: "The measurement record the learner is classifying."
+  classification:
+    label: "Record kind"
+    meaning: "Whether the card names a base quantity, derived quantity, unit only, or number only."
+  directionKind:
+    label: "Direction role"
+    meaning: "Whether direction is part of the physical quantity."
+  dimension:
+    label: "Dimension"
+    meaning: "The base-dimension pattern used to check valid equations."
+  score:
+    label: "Classification score"
+    meaning: "How many classification and direction decisions currently match the unit reasoning."

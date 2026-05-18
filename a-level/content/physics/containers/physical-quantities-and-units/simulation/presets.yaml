@@ -1,0 +1,19 @@
+presets:
+  - id: acceleration-note
+    label: "Acceleration note"
+    state:
+      activeCard: acceleration
+      classification: derived
+      directionKind: vector
+  - id: bare-number-trap
+    label: "Bare number trap"
+    state:
+      activeCard: bare-number
+      classification: number
+      directionKind: not-applicable
+  - id: named-unit-trap
+    label: "Named unit trap"
+    state:
+      activeCard: metre-unit
+      classification: unit
+      directionKind: not-applicable

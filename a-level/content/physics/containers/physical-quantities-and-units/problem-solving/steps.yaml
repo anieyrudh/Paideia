@@ -4,6 +4,8 @@ steps:
     label: "Name the quantity"
   - id: attach-unit
     label: "Attach the unit to the value"
+  - id: classify-record
+    label: "Classify the record as base, derived, unit only, or number only"
   - id: expand-derived
     label: "Expand derived units if needed"
   - id: check-dimensions

@@ -8,11 +8,12 @@
   "exports": {
     ".": "./src/index.ts",
     "./resultant-magnitude": "./src/resultant-magnitude.tsx",
-    "./resolving-vectors": "./src/resolving-vectors.tsx"
+    "./resolving-vectors": "./src/resolving-vectors.tsx",
+    "./physical-quantities-lab": "./src/physical-quantities-lab.tsx"
   },
   "scripts": {
     "build": "tsc -b",
-    "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts",
+    "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts src/physical-quantities-lab.test.ts",
     "lint": "tsc -b --pretty false",
     "typecheck": "tsc --noEmit"
   },

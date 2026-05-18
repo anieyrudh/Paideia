@@ -666,3 +666,168 @@ textarea:focus-visible {
     grid-template-columns: 1fr;
   }
 }
+
+.unit-lab {
+  display: grid;
+  gap: 1rem;
+}
+
+.unit-lab__intro {
+  background:
+    radial-gradient(circle at top right, rgba(240, 180, 41, 0.22), transparent 14rem),
+    #fffdf7;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 1rem;
+}
+
+.unit-lab__intro h3,
+.unit-lab__intro p,
+.unit-workbench h3,
+.unit-workbench h4,
+.unit-workbench p {
+  margin: 0;
+}
+
+.unit-card-grid {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.unit-card {
+  align-items: start;
+  background: #fffdf7;
+  border-color: var(--line);
+  border-radius: 16px;
+  color: var(--ink);
+  display: grid;
+  gap: 0.22rem;
+  justify-items: start;
+  min-height: 104px;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.unit-card--active,
+.unit-card:focus-visible {
+  border-color: var(--accent-strong);
+  box-shadow: 0 14px 34px rgba(16, 32, 26, 0.1);
+}
+
+.unit-card strong {
+  color: var(--accent-strong);
+  font-size: 1.05rem;
+}
+
+.unit-card small {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.unit-workbench {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(190px, 0.8fr) minmax(0, 1.2fr);
+  padding: 1rem;
+}
+
+.unit-workbench__card,
+.unit-choice-panel,
+.unit-equation,
+.unit-score {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 0.85rem;
+}
+
+.unit-record {
+  color: var(--accent-strong);
+  font-size: clamp(1.45rem, 3vw, 2.2rem);
+  font-weight: 950;
+}
+
+.unit-choice-panel {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.unit-choice-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.unit-choice {
+  background: transparent;
+  border-color: color-mix(in srgb, var(--deep) 18%, transparent);
+  color: var(--ink);
+  min-height: 36px;
+  padding: 0.42rem 0.68rem;
+}
+
+.unit-choice--selected {
+  background: #e8f2ef;
+  border-color: var(--accent-strong);
+}
+
+.unit-choice--correct {
+  background: #ecfdf3;
+  border-color: #15803d;
+  color: #14532d;
+}
+
+.unit-choice--wrong {
+  background: #fff1f2;
+  border-color: #be123c;
+  color: #881337;
+}
+
+.unit-formula,
+.unit-equation-panel {
+  grid-column: 1 / -1;
+}
+
+.unit-equation-panel {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.unit-equation-grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.unit-equation[data-verdict="consistent"] {
+  border-top: 4px solid #15803d;
+}
+
+.unit-equation[data-verdict="inconsistent"] {
+  border-top: 4px solid #be123c;
+}
+
+.unit-score {
+  align-items: center;
+  background: #13251e;
+  color: #fffdf7;
+  display: flex;
+  gap: 0.8rem;
+  grid-column: 1 / -1;
+  justify-content: space-between;
+}
+
+.unit-score strong {
+  font-size: 1.6rem;
+}
+
+@media (max-width: 980px) {
+  .unit-card-grid,
+  .unit-workbench,
+  .unit-equation-grid {
+    grid-template-columns: 1fr;
+  }
+}

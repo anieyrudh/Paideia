@@ -6,7 +6,9 @@ import type {
 } from "./api.js";
 
 const defaultState: PhysicalQuantitiesEmbedState = {
-  selectedExample: "acceleration-unit-check",
+  selectedCard: "acceleration",
+  attemptedCards: [],
+  predictionCommitted: false,
   completed: false,
 };
 
@@ -24,9 +26,12 @@ export const createPhysicalQuantitiesEmbed = (): PhysicalQuantitiesEmbedApi => {
       return state;
     },
     score(): PhysicalQuantitiesEmbedScore {
+      const attemptedCards = state.attemptedCards.length;
       return {
         completed: state.completed,
-        score: state.completed ? 1 : 0,
+        predictionCommitted: state.predictionCommitted,
+        attemptedCards,
+        score: state.completed ? 1 : attemptedCards / 7,
       };
     },
     resume(nextState: PhysicalQuantitiesEmbedState): void {
@@ -35,10 +40,14 @@ export const createPhysicalQuantitiesEmbed = (): PhysicalQuantitiesEmbedApi => {
     syncTheme(nextTheme: PhysicalQuantitiesEmbedTheme): void {
       theme = nextTheme;
       targetElement?.setAttribute("data-paideia-theme", theme.colorScheme);
+      if (theme.accentColor !== undefined) {
+        targetElement?.setAttribute("data-paideia-accent", theme.accentColor);
+      }
     },
     destroy(): void {
       targetElement?.removeAttribute("data-paideia-container");
       targetElement?.removeAttribute("data-paideia-theme");
+      targetElement?.removeAttribute("data-paideia-accent");
       targetElement = null;
       state = defaultState;
     },

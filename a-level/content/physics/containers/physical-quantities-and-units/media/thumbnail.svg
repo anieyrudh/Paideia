@@ -1,7 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Units thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Unit classification lab thumbnail">
   <rect width="320" height="180" fill="#f7f4ea"/>
-  <text x="34" y="72" fill="#13251e" font-family="Arial, sans-serif" font-size="36" font-weight="700">9.8</text>
-  <text x="114" y="72" fill="#1f5f8b" font-family="Arial, sans-serif" font-size="28" font-weight="700">m s^-2</text>
-  <line x1="34" x2="250" y1="96" y2="96" stroke="#d8d0bf" stroke-width="3"/>
-  <text x="34" y="130" fill="#66736b" font-family="Arial, sans-serif" font-size="18">quantity = value + unit</text>
+  <rect x="22" y="24" width="128" height="62" rx="14" fill="#fffdf7" stroke="#d8d0bf"/>
+  <text x="38" y="52" fill="#13251e" font-family="Arial, sans-serif" font-size="18" font-weight="700">acceleration</text>
+  <text x="38" y="75" fill="#1f5f8b" font-family="Arial, sans-serif" font-size="18" font-weight="700">9.8 m s^-2</text>
+  <rect x="170" y="24" width="128" height="62" rx="14" fill="#eaf5ec" stroke="#256b8f"/>
+  <text x="186" y="52" fill="#13251e" font-family="Arial, sans-serif" font-size="18" font-weight="700">derived</text>
+  <text x="186" y="75" fill="#256b8f" font-family="Arial, sans-serif" font-size="16">L T^-2</text>
+  <path d="M150 55 H170" stroke="#f0b429" stroke-width="5" stroke-linecap="round"/>
+  <rect x="22" y="112" width="276" height="36" rx="18" fill="#13251e"/>
+  <text x="42" y="136" fill="#fffdf7" font-family="Arial, sans-serif" font-size="17" font-weight="700">unit reasoning before equations</text>
 </svg>

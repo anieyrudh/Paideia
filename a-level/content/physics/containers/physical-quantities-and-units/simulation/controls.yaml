@@ -1,0 +1,30 @@
+controls:
+  - id: quantity-card
+    label: "Quantity card"
+    kind: selector
+    default: acceleration
+    options:
+      - length
+      - time
+      - speed
+      - acceleration
+      - force
+      - metre-unit
+      - bare-number
+  - id: quantity-kind
+    label: "Record kind"
+    kind: selector
+    default: unanswered
+    options:
+      - base
+      - derived
+      - unit
+      - number
+  - id: direction-kind
+    label: "Direction role"
+    kind: selector
+    default: unanswered
+    options:
+      - scalar
+      - vector
+      - not-applicable

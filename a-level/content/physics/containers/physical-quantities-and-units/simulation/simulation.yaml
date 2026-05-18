@@ -1,0 +1,49 @@
+id: unit-classification-lab
+title: "Unit Classification Lab"
+interaction_type: comparative-matrix
+kernel_deps:
+  - core/prediction-gate
+
+predict:
+  prompt: |
+    A lab note says acceleration = 9.8 m s^-2. Before checking the card wall, which statement is safest?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The unit alone makes it a base quantity."
+      - "It is likely derived because the unit combines metre and second."
+      - "It is unitless because 9.8 is a number."
+      - "It must be scalar because no arrow is drawn."
+    correct_index: 1
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: quantity-card
+      label: "Quantity card"
+      kind: selector
+      kernel_binding: state.activeCard
+    - id: quantity-kind
+      label: "Record kind"
+      kind: selector
+      kernel_binding: state.classification
+    - id: direction-kind
+      label: "Direction role"
+      kind: selector
+      kernel_binding: state.directionKind
+
+observe:
+  renderers:
+    - id: unit-classification-workbench
+      module: "@paideia/a-level-physics-sims/physical-quantities-lab"
+      symbol: UnitClassificationLab
+      props_binding: |
+        Show the selected quantity card, learner classifications, formula or unit reasoning, and dimensional consistency checks after prediction commit.
+
+explain:
+  prompt: |
+    Pick one card you revised. What did the unit tell you about the physical quantity, and what did it not tell you?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Unit as decoration"
+    - "Quantity equals number"

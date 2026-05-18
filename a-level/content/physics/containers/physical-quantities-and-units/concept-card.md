@@ -7,9 +7,10 @@ syllabus_ref: "9478 / Section I / 1(a)-1(g)"
 prerequisites: []
 aid_types:
   - concept-card
+  - simulation
   - misconception-audit
   - transfer-problem
-status: content-only
+status: reviewed
 ---
 
 # Physical Quantities and Units
@@ -51,10 +52,15 @@ been used incorrectly.
 - Thinking the number alone is the measurement.
 - Adding unlike quantities because the numerical values look compatible.
 
+## Unit classification lab
+
+The interactive lab presents measurement records as cards. Students decide whether each card is a base quantity, derived quantity, unit only, or number only, then decide whether direction belongs to the record. The lab keeps formula and unit reasoning visible after prediction, for example `speed = distance ÷ time`, so students can see how derived units are built from base quantities.
+
 ## Problem-Solving Pattern
 
 1. Name the physical quantity.
 2. Write the numerical value with its unit.
-3. Reduce derived units to base units if needed.
-4. Check whether operations preserve dimensions.
-5. Convert units only by multiplying by a ratio equal to one.
+3. Decide whether the record is a base quantity, derived quantity, unit only, or number only.
+4. Reduce derived units to base units if needed.
+5. Check whether operations preserve dimensions.
+6. Convert units only by multiplying by a ratio equal to one.
