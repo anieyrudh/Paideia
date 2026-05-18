@@ -1,0 +1,22 @@
+presets:
+  - id: cart-timer
+    label: "Cart and stopwatch"
+    state:
+      distanceMetres: 2
+      distanceUncertaintyMetres: 0.02
+      timeSeconds: 0.8
+      timeUncertaintySeconds: 0.02
+  - id: careful-distance
+    label: "Careful distance, slower timing"
+    state:
+      distanceMetres: 4
+      distanceUncertaintyMetres: 0.01
+      timeSeconds: 2
+      timeUncertaintySeconds: 0.05
+  - id: noisy-stopwatch
+    label: "Noisy stopwatch"
+    state:
+      distanceMetres: 1.5
+      distanceUncertaintyMetres: 0.02
+      timeSeconds: 0.5
+      timeUncertaintySeconds: 0.1

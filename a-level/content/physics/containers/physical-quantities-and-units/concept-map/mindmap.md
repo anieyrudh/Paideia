@@ -1,18 +1,26 @@
 # Mindmap
 
 - Physical quantities and units
-  - Measurement
+  - Measurement record
     - quantity
     - numerical value
     - unit
+    - uncertainty
   - SI structure
     - base quantities
     - derived quantities
     - prefixes
+  - Classification
+    - scalar when magnitude is enough
+    - vector when direction is part of the quantity
   - Checks
     - dimensional consistency
     - unit conversion
-    - significant figures later
+    - percentage uncertainty for products and quotients
+  - Interactive lab
+    - predict a complete speed record
+    - manipulate distance, time, and uncertainty
+    - observe why speed has unit `m s^-1`
   - Leads to
     - scalar/vector classification
     - vector components with units

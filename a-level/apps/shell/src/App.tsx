@@ -41,6 +41,7 @@ const interactionTypeLabels: Record<string, string> = {
   visualizer: "Interactive visualizer",
   "data-lab": "Data lab",
   "decision-lab": "Decision lab",
+  "decision-matrix": "Decision lab",
 };
 
 const learnerStatus = (status: string): string => statusLabels[status] ?? "Learning material";

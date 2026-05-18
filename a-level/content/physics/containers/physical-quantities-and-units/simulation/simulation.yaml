@@ -1,0 +1,59 @@
+id: measurement-uncertainty-lab
+title: "Measurement and Uncertainty Lab"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/prediction-gate
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A cart travels 2.00 m in 0.80 s. Before opening the lab notebook, which speed record is complete enough for physics?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "2.5"
+      - "2.5 m"
+      - "2.50 m s^-1 ± 0.09 m s^-1"
+      - "2.50 m s^-2"
+    correct_index: 2
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: distance-travelled
+      label: "Distance travelled"
+      kind: slider
+      kernel_binding: state.distanceMetres
+      bounds: { min: 0.5, max: 5, step: 0.05 }
+    - id: distance-uncertainty
+      label: "Distance uncertainty"
+      kind: slider
+      kernel_binding: state.distanceUncertaintyMetres
+      bounds: { min: 0.005, max: 0.1, step: 0.005 }
+    - id: time-measured
+      label: "Time measured"
+      kind: slider
+      kernel_binding: state.timeSeconds
+      bounds: { min: 0.2, max: 3, step: 0.05 }
+    - id: time-uncertainty
+      label: "Time uncertainty"
+      kind: slider
+      kernel_binding: state.timeUncertaintySeconds
+      bounds: { min: 0.005, max: 0.2, step: 0.005 }
+
+observe:
+  renderers:
+    - id: measurement-notebook
+      module: "@paideia/a-level-physics-sims/measurement-uncertainty"
+      symbol: MeasurementNotebook
+      props_binding: |
+        Show the completed measurement record, quantity classifications, dimensional unit check, and uncertainty propagation from the current raw measurements.
+
+explain:
+  prompt: |
+    Why is "2.5" or "2.5 m" not a complete answer for the cart's speed, and how does the unit m s^-1 prove that distance was divided by time?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Quantity equals number"
+    - "Unit as decoration"
+    - "Uncertainty ignored"

@@ -4,9 +4,15 @@ steps:
     label: "Name the quantity"
   - id: attach-unit
     label: "Attach the unit to the value"
+  - id: include-uncertainty
+    label: "Include uncertainty for measured values"
+  - id: classify-quantity
+    label: "Classify base/derived and scalar/vector"
   - id: expand-derived
     label: "Expand derived units if needed"
   - id: check-dimensions
     label: "Check dimensions before operating"
+  - id: propagate-uncertainty
+    label: "Combine percentage uncertainties for products or quotients"
   - id: convert
     label: "Convert using unit ratios"
