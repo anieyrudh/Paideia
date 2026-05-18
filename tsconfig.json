@@ -9,6 +9,7 @@
     { "path": "./core/probability-stats" },
     { "path": "./core/uncertainty-propagation" },
     { "path": "./core/linear-algebra" },
+    { "path": "./core/dimensional-analysis" },
     { "path": "./core/dynamical-systems" },
     { "path": "./core/optimization" },
     { "path": "./core/circuits" },
@@ -29,6 +30,7 @@
     { "path": "./core/three-scene" },
     { "path": "./a-level/packages/physics-sims" },
     { "path": "./a-level/apps/shell" },
+    { "path": "./sutd/apps/shell" },
     { "path": "./testing/sim-harness" }
   ]
 }

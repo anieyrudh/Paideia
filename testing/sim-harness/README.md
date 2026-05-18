@@ -9,17 +9,19 @@ prediction-gate assertion next to the sim spec.
 
 ## Register a sim
 
-Add the exported sim component to `src/registry.tsx`:
+Declare the simulation in the container metadata:
 
-```tsx
-export const simRegistry = {
-  "a-level/physics/scalars-and-vectors/resultant-magnitude": {
-    id: "a-level/physics/scalars-and-vectors/resultant-magnitude",
-    title: "Resultant Magnitude Explorer",
-    Component: ResultantMagnitudeSim,
-  },
-};
+```yaml
+simulation:
+  spec: simulation/simulation.yaml
+
+observe:
+  renderers:
+    - module: "@paideia/a-level-physics-sims/resultant-magnitude"
 ```
+
+Then run `pnpm graph:generate`. The generator emits
+`src/generated/sim-registry.tsx` with static imports for Vite and Playwright.
 
 ## Run
 

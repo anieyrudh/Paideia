@@ -105,7 +105,38 @@ a-level/apps/shell/src/generated/knowledge-graph.tsx
 
 Future curriculum shells get their own generated output from the same script.
 
-## 5. Validation
+## 5. Generated Container Docs
+
+Container `README.md` and `TECHNICAL.md` are generated from the canonical
+container sources:
+
+```text
+container.yaml + concept-card.md + simulation/simulation.yaml + concept-map/ + problem-solving/ + sources.md
+```
+
+Run:
+
+```bash
+pnpm container:docs <container-path>
+```
+
+For all containers:
+
+```bash
+pnpm container:docs
+```
+
+To check whether generated docs are current without writing files:
+
+```bash
+pnpm container:docs --check
+```
+
+`TECHNICAL.md` preserves the human review sections that should not be
+clobbered by regeneration, including the Anieyrudh Filter pass and iteration
+or failure logs.
+
+## 6. Validation
 
 Run:
 
@@ -127,7 +158,7 @@ The validator enforces:
 
 Failures block merge.
 
-## 6. Lifecycle
+## 7. Lifecycle
 
 `status` values:
 
@@ -138,9 +169,10 @@ Failures block merge.
 5. `ready-for-build` — final integration check passed.
 6. `published` — advisor sign-off recorded; Filter P0 count is zero.
 
-## 7. Reference
+## 8. Reference
 
 - Schema: [`core/content-schema/src/index.ts`](../core/content-schema/src/index.ts)
 - Templates: [`core/docs-templates/`](../core/docs-templates/)
 - Validator: [`scripts/validate-containers.mjs`](../scripts/validate-containers.mjs)
+- Container docs generator: [`scripts/generate-container-docs.mjs`](../scripts/generate-container-docs.mjs)
 - Generator: [`scripts/generate-knowledge-graph.mjs`](../scripts/generate-knowledge-graph.mjs)

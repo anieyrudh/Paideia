@@ -36,6 +36,7 @@ Use the new-container skill or `pnpm container:new` to scaffold. Fill only this
 container. Do not edit unrelated containers or core packages. Run:
 
 pnpm container:validate
+pnpm container:docs <container-path>
 pnpm graph:generate
 pnpm -F @paideia/a-level-shell test
 
@@ -63,6 +64,7 @@ Use existing core kernels for math, plotting, graph layout, controls, and
 runtime. Do not inline reusable math or bypass the prediction gate. Run:
 
 pnpm container:validate
+pnpm container:docs <container-path>
 pnpm graph:generate
 pnpm test
 

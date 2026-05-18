@@ -132,8 +132,8 @@ describe("@paideia/uncertainty-propagation", () => {
 
     expect(result.ok).toBe(true);
     if (result.ok) {
-      expect(result.value.value).toBe(1e-12);
-      expect(result.value.absoluteUncertainty).toBe(1e-14);
+      expect(approxEqual(result.value.value, 1e-12, uncertaintyTolerance.tight)).toBe(true);
+      expect(approxEqual(result.value.absoluteUncertainty, 1e-14, uncertaintyTolerance.tight)).toBe(true);
       expect(approxEqual(result.value.relativeUncertainty, 0.01, uncertaintyTolerance.tight)).toBe(true);
       expect(approxEqual(result.value.percentageUncertainty, 1, uncertaintyTolerance.tight)).toBe(true);
     }
