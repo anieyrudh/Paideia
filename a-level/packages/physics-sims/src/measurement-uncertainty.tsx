@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { TPredictSpec } from "@paideia/content-schema";
 import { PredictionGate } from "@paideia/prediction-gate";
+import { err, metres, ok, seconds, type KernelResult, type Metres, type Seconds } from "@paideia/shared";
 import { ControlGroup, Slider } from "@paideia/ui-sim";
 
 export const physicalQuantitiesPackageId = "physical-quantities-and-units";
@@ -18,10 +19,10 @@ export const measurementPredict: TPredictSpec = {
 };
 
 export interface MeasurementState {
-  readonly distanceMetres: number;
-  readonly distanceUncertaintyMetres: number;
-  readonly timeSeconds: number;
-  readonly timeUncertaintySeconds: number;
+  readonly distanceMetres: Metres;
+  readonly distanceUncertaintyMetres: Metres;
+  readonly timeSeconds: Seconds;
+  readonly timeUncertaintySeconds: Seconds;
 }
 
 export interface MeasurementModel {
@@ -39,12 +40,19 @@ const roundTo = (value: number, places: number): number => {
   return Math.round(value * factor) / factor;
 };
 
-const positiveOr = (value: number, fallback: number): number =>
-  Number.isFinite(value) && value > 0 ? value : fallback;
+const positiveFinite = (value: number, label: string): KernelResult<void> =>
+  Number.isFinite(value) && value > 0
+    ? ok(undefined)
+    : err("precondition-violated", `${label} must be finite and positive; got ${value}`);
 
-export const measurementModel = (state: MeasurementState): MeasurementModel => {
-  const distance = positiveOr(state.distanceMetres, 0.01);
-  const time = positiveOr(state.timeSeconds, 0.01);
+export const measurementModel = (state: MeasurementState): KernelResult<MeasurementModel> => {
+  const validDistance = positiveFinite(state.distanceMetres, "distanceMetres");
+  if (!validDistance.ok) return validDistance;
+  const validTime = positiveFinite(state.timeSeconds, "timeSeconds");
+  if (!validTime.ok) return validTime;
+
+  const distance = state.distanceMetres;
+  const time = state.timeSeconds;
   const distanceUncertainty = Math.max(0, state.distanceUncertaintyMetres);
   const timeUncertainty = Math.max(0, state.timeUncertaintySeconds);
   const speed = distance / time;
@@ -52,7 +60,7 @@ export const measurementModel = (state: MeasurementState): MeasurementModel => {
   const timeRelative = timeUncertainty / time;
   const combinedRelative = distanceRelative + timeRelative;
 
-  return {
+  return ok({
     speedMetresPerSecond: speed,
     speedUncertaintyMetresPerSecond: speed * combinedRelative,
     distanceRelativeUncertainty: distanceRelative,
@@ -60,14 +68,19 @@ export const measurementModel = (state: MeasurementState): MeasurementModel => {
     combinedRelativeUncertainty: combinedRelative,
     validEquationUnit: "m s^-1",
     invalidEquationUnit: "m + s",
-  };
+  });
 };
 
 const formatNumber = (value: number, places = 2): string => roundTo(value, places).toFixed(places);
 const formatPercent = (value: number): string => `${formatNumber(value * 100, 1)}%`;
 
 export const MeasurementNotebook = ({ state }: { readonly state: MeasurementState }) => {
-  const model = measurementModel(state);
+  const modelResult = measurementModel(state);
+  if (!modelResult.ok) {
+    return <p role="alert">The current measurement settings are outside the supported range.</p>;
+  }
+
+  const model = modelResult.value;
   const barWidth = Math.min(100, model.combinedRelativeUncertainty * 600);
 
   return (
@@ -147,15 +160,18 @@ export const MeasurementNotebook = ({ state }: { readonly state: MeasurementStat
 
 export const MeasurementUncertaintyLab = () => {
   const [state, setState] = useState<MeasurementState>({
-    distanceMetres: 2,
-    distanceUncertaintyMetres: 0.02,
-    timeSeconds: 0.8,
-    timeUncertaintySeconds: 0.02,
+    distanceMetres: metres(2),
+    distanceUncertaintyMetres: metres(0.02),
+    timeSeconds: seconds(0.8),
+    timeUncertaintySeconds: seconds(0.02),
   });
 
   const model = useMemo(() => measurementModel(state), [state]);
   const set = (key: keyof MeasurementState) => (value: number) => {
-    setState((current) => ({ ...current, [key]: value }));
+    setState((current) => ({
+      ...current,
+      [key]: key.includes("Metres") ? metres(value) : seconds(value),
+    }));
   };
 
   return (
@@ -220,7 +236,9 @@ export const MeasurementUncertaintyLab = () => {
               Larger uncertainty makes the final speed less precise. Changing distance or time
               changes the numerical value, but not the unit logic: speed remains m s^-1.
             </p>
-            <strong>{formatNumber(model.speedMetresPerSecond)} m s^-1</strong>
+            <strong>
+              {model.ok ? formatNumber(model.value.speedMetresPerSecond) : "outside range"} m s^-1
+            </strong>
             <small>calculated from the current raw measurements</small>
           </aside>
         </div>
