@@ -98,7 +98,7 @@ filter_pass:
 
 Re-run the docs generator against the now-final manifest so the descriptive doc and the technical doc reflect the as-shipped state:
 
-```
+```bash
 pnpm container:docs <container-path>
 ```
 

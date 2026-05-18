@@ -13,9 +13,12 @@ import YAML from "yaml";
 
 const REPO_ROOT = resolve(process.cwd());
 const BRANCHES = ["a-level", "sutd"];
-const CHECK = process.argv.includes("--check");
-const HELP = process.argv.includes("--help") || process.argv.includes("-h");
-const TARGETS = process.argv.slice(2).filter((arg) => !arg.startsWith("--"));
+const ARGS = process.argv.slice(2);
+const ALLOWED_FLAGS = new Set(["--check", "--help", "-h"]);
+const UNKNOWN_FLAGS = ARGS.filter((arg) => arg.startsWith("-") && !ALLOWED_FLAGS.has(arg));
+const CHECK = ARGS.includes("--check");
+const HELP = ARGS.includes("--help") || ARGS.includes("-h");
+const TARGETS = ARGS.filter((arg) => !arg.startsWith("-"));
 
 function usage() {
   process.stdout.write(`Usage:
@@ -31,6 +34,12 @@ Examples:
 if (HELP) {
   usage();
   process.exit(0);
+}
+
+if (UNKNOWN_FLAGS.length > 0) {
+  process.stderr.write(`container:docs: unknown option(s): ${UNKNOWN_FLAGS.join(", ")}\n`);
+  usage();
+  process.exit(1);
 }
 
 function isDirectory(path) {
