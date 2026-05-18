@@ -116,6 +116,29 @@ describe("@paideia/uncertainty-propagation", () => {
     if (!result.ok) expect(result.error.code).toBe("out-of-domain");
   });
 
+  it("rejects exact zero propagated values with non-zero uncertainty", () => {
+    const result = addSubtractAbsoluteUncertainty([
+      { measurement: mustMeasure(q(0), q(1e-14)) },
+    ]);
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("out-of-domain");
+  });
+
+  it("preserves small non-zero propagated values within the default tolerance", () => {
+    const result = addSubtractAbsoluteUncertainty([
+      { measurement: mustMeasure(q(1e-12), q(1e-14)) },
+    ]);
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.value.value).toBe(1e-12);
+      expect(result.value.absoluteUncertainty).toBe(1e-14);
+      expect(approxEqual(result.value.relativeUncertainty, 0.01, uncertaintyTolerance.tight)).toBe(true);
+      expect(approxEqual(result.value.percentageUncertainty, 1, uncertaintyTolerance.tight)).toBe(true);
+    }
+  });
+
   it("rejects unknown add/subtract operations at runtime", () => {
     const result = addSubtractAbsoluteUncertainty([
       { operation: "bad" as "add", measurement: mustMeasure(metres(1), metres(0.1)) },

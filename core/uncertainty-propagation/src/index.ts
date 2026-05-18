@@ -1,4 +1,4 @@
-import { approxEqual, err, ok, type Brand, type KernelResult } from "@paideia/shared";
+import { err, ok, type Brand, type KernelResult } from "@paideia/shared";
 
 export type UncertaintyQuantity = Brand<number, string>;
 export type DimensionlessQuantity = Brand<number, "DimensionlessQuantity">;
@@ -150,7 +150,7 @@ const toPropagation = <
   if (absolute < 0) {
     return err("out-of-domain", "Propagated absolute uncertainty must be non-negative");
   }
-  if (approxEqual(value, 0, uncertaintyTolerance.default)) {
+  if (value === 0) {
     if (absolute === 0) {
       return ok({
         value: value as TValue,
