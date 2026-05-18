@@ -1,0 +1,35 @@
+controls:
+  - id: quantity-card
+    label: "Quantity card"
+    kind: selector
+    options:
+      - length
+      - time
+      - velocity
+      - acceleration
+      - mass
+      - force
+    default: acceleration
+  - id: quantity-family
+    label: "Quantity family"
+    kind: selector
+    options:
+      - base
+      - derived
+    default: derived
+  - id: direction-needed
+    label: "Direction needed"
+    kind: selector
+    options:
+      - scalar
+      - vector
+    default: vector
+  - id: equation-to-test
+    label: "Equation to test"
+    kind: selector
+    options:
+      - speed
+      - acceleration
+      - bad-acceleration-note
+      - bad-sum
+    default: bad-acceleration-note

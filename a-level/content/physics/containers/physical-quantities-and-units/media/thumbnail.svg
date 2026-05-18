@@ -1,7 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Units thumbnail">
-  <rect width="320" height="180" fill="#f7f4ea"/>
-  <text x="34" y="72" fill="#13251e" font-family="Arial, sans-serif" font-size="36" font-weight="700">9.8</text>
-  <text x="114" y="72" fill="#1f5f8b" font-family="Arial, sans-serif" font-size="28" font-weight="700">m s^-2</text>
-  <line x1="34" x2="250" y1="96" y2="96" stroke="#d8d0bf" stroke-width="3"/>
-  <text x="34" y="130" fill="#66736b" font-family="Arial, sans-serif" font-size="18">quantity = value + unit</text>
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Unit Classification Lab thumbnail</title>
+  <desc id="desc">A measurement card moving through base, derived, scalar, vector, and unit-balance shelves.</desc>
+  <rect width="640" height="360" rx="34" fill="#f7f4ea"/>
+  <circle cx="548" cy="48" r="96" fill="#f0b429" opacity="0.22"/>
+  <rect x="50" y="54" width="250" height="252" rx="24" fill="#10201a"/>
+  <text x="82" y="104" fill="#f9f5e9" font-family="Inter,Arial,sans-serif" font-size="24" font-weight="800">9.8 m s^-1</text>
+  <text x="82" y="142" fill="#d8e4dc" font-family="Inter,Arial,sans-serif" font-size="16">claimed acceleration</text>
+  <path d="M86 200h174" stroke="#f9f5e9" stroke-width="5" stroke-linecap="round"/>
+  <path d="M86 236h116" stroke="#f0b429" stroke-width="5" stroke-linecap="round"/>
+  <rect x="354" y="62" width="208" height="56" rx="18" fill="#fffdf7" stroke="#d8d0bf" stroke-width="3"/>
+  <rect x="354" y="144" width="208" height="56" rx="18" fill="#fffdf7" stroke="#1f5f8b" stroke-width="3"/>
+  <rect x="354" y="226" width="208" height="56" rx="18" fill="#fffdf7" stroke="#b42318" stroke-width="3"/>
+  <text x="382" y="97" fill="#10201a" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="800">base or derived?</text>
+  <text x="382" y="179" fill="#10201a" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="800">scalar or vector?</text>
+  <text x="382" y="261" fill="#10201a" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="800">units balance?</text>
+  <path d="M302 180 C326 180 326 90 354 90" fill="none" stroke="#66736b" stroke-width="4" stroke-linecap="round"/>
+  <path d="M302 180 C328 180 328 172 354 172" fill="none" stroke="#66736b" stroke-width="4" stroke-linecap="round"/>
+  <path d="M302 180 C326 180 326 254 354 254" fill="none" stroke="#66736b" stroke-width="4" stroke-linecap="round"/>
 </svg>

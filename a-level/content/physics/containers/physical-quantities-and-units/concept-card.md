@@ -7,9 +7,10 @@ syllabus_ref: "9478 / Section I / 1(a)-1(g)"
 prerequisites: []
 aid_types:
   - concept-card
+  - simulation
   - misconception-audit
   - transfer-problem
-status: content-only
+status: reviewed
 ---
 
 # Physical Quantities and Units
@@ -51,6 +52,12 @@ been used incorrectly.
 - Thinking the number alone is the measurement.
 - Adding unlike quantities because the numerical values look compatible.
 
+## Product lab: Unit Classification Lab
+
+The learner predicts what is wrong with an acceleration unit, then opens a unit classification lab. The lab asks them to sort quantities as base or derived, decide whether direction matters, and test whether an equation is allowed by its units.
+
+The lab deliberately shows both a valid balance, such as `speed = distance / time`, and impossible statements, such as treating acceleration as `m s^-1` or adding speed to time.
+
 ## Problem-Solving Pattern
 
 1. Name the physical quantity.
@@ -58,3 +65,4 @@ been used incorrectly.
 3. Reduce derived units to base units if needed.
 4. Check whether operations preserve dimensions.
 5. Convert units only by multiplying by a ratio equal to one.
+6. Explain the result using the unit reasoning, not only the final number.

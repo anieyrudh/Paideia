@@ -2,11 +2,15 @@ schema_version: "1.0.0"
 steps:
   - id: name-quantity
     label: "Name the quantity"
-  - id: attach-unit
-    label: "Attach the unit to the value"
-  - id: expand-derived
-    label: "Expand derived units if needed"
-  - id: check-dimensions
+  - id: separate-value-unit
+    label: "Separate value from unit"
+  - id: classify-unit
+    label: "Classify base or derived"
+  - id: reduce-dimensions
+    label: "Reduce to base dimensions"
+  - id: check-operations
     label: "Check dimensions before operating"
+  - id: explain-verdict
+    label: "Explain why the unit allows or blocks the equation"
   - id: convert
     label: "Convert using unit ratios"

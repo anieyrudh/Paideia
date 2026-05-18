@@ -1,0 +1,22 @@
+presets:
+  - id: acceleration-note
+    label: "Acceleration lab note"
+    state:
+      quantityCard: acceleration
+      quantityKind: derived
+      directionKind: vector
+      equationCheck: bad-acceleration-note
+  - id: base-length
+    label: "Base quantity check"
+    state:
+      quantityCard: length
+      quantityKind: base
+      directionKind: scalar
+      equationCheck: speed
+  - id: force-derived
+    label: "Derived vector check"
+    state:
+      quantityCard: force
+      quantityKind: derived
+      directionKind: vector
+      equationCheck: bad-sum

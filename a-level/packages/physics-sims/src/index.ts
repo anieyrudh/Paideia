@@ -1,4 +1,13 @@
 export {
+  UnitClassificationLab,
+  getEquationChecks,
+  getQuantityCards,
+  isCorrectClassification,
+  physicalQuantitiesPackageId,
+  physicalQuantitiesSimId,
+  unitClassificationPredict,
+} from "./physical-quantities.js";
+export {
   ResultantMagnitudeSim,
   ResultantVectorDiagram,
   perpendicularPredict,
@@ -11,6 +20,12 @@ export {
   componentPredict,
   resolveVectorComponents,
 } from "./resolving-vectors.js";
+export type {
+  EquationCheck,
+  QuantityCard,
+  DirectionKind,
+  QuantityKind,
+} from "./physical-quantities.js";
 export type {
   ResultantVectorDiagramProps,
   VectorState,

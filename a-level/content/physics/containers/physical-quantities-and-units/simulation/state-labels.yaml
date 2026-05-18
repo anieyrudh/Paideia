@@ -1,0 +1,16 @@
+state_labels:
+  quantityCard:
+    label: "Quantity card"
+    meaning: "The physical quantity being inspected."
+  quantityKind:
+    label: "Base or derived"
+    meaning: "Whether the unit is fundamental or built from other units."
+  directionKind:
+    label: "Scalar or vector"
+    meaning: "Whether direction is part of the physical meaning."
+  equationCheck:
+    label: "Equation check"
+    meaning: "The unit-balance statement currently being tested."
+  unitBalance:
+    label: "Unit balance"
+    meaning: "Comparison of the left-hand and right-hand units after reducing to base dimensions."

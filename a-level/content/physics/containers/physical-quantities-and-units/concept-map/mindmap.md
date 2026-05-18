@@ -12,6 +12,8 @@
   - Checks
     - dimensional consistency
     - unit conversion
+    - base versus derived sorting
+    - scalar/vector flag where relevant
     - significant figures later
   - Leads to
     - scalar/vector classification

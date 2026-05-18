@@ -8,7 +8,14 @@
     "src/**/*"
   ],
   "references": [
-    { "path": "../../../core/content-schema" },
-    { "path": "../../../core/prediction-gate" }
+    {
+      "path": "../../../core/content-schema"
+    },
+    {
+      "path": "../../../core/prediction-gate"
+    },
+    {
+      "path": "../../../core/ui-sim"
+    }
   ]
 }

@@ -35,6 +35,9 @@ importers:
       '@paideia/prediction-gate':
         specifier: workspace:*
         version: link:../../../core/prediction-gate
+      '@paideia/ui-sim':
+        specifier: workspace:*
+        version: link:../../../core/ui-sim
       react:
         specifier: ^18.3.0
         version: 18.3.1

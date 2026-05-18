@@ -1,0 +1,54 @@
+id: unit-classification-lab
+title: "Unit Classification Lab"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/prediction-gate
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A lab note says an acceleration is 9.8 m s^-1. Before opening the lab, what kind of mistake do you expect to find?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The number is too large for an acceleration."
+      - "The unit describes speed, not acceleration."
+      - "The unit is acceptable because it contains metres and seconds."
+      - "The issue is only the missing direction."
+    correct_index: 1
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: quantity-card
+      label: "Quantity card"
+      kind: selector
+      kernel_binding: state.quantityCard
+    - id: quantity-family
+      label: "Quantity family"
+      kind: selector
+      kernel_binding: state.quantityKind
+    - id: direction-needed
+      label: "Direction needed"
+      kind: selector
+      kernel_binding: state.directionKind
+    - id: equation-to-test
+      label: "Equation to test"
+      kind: selector
+      kernel_binding: state.equationCheck
+
+observe:
+  renderers:
+    - id: unit-classification-panel
+      module: "@paideia/a-level-physics-sims/physical-quantities"
+      symbol: UnitClassificationLab
+      props_binding: |
+        Show the selected quantity's unit, base dimensions, scalar/vector status, and a unit-balance check for the selected equation.
+
+explain:
+  prompt: |
+    How did the unit or dimension tell you whether the selected quantity or equation was physically valid?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Unit as decoration"
+    - "Quantity equals number"
