@@ -9,7 +9,7 @@
 
 import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { basename, isAbsolute, join, relative, resolve } from "node:path";
-import YAML from "yaml";
+import { parse, stringify } from "yaml";
 
 const REPO_ROOT = resolve(process.cwd());
 const BRANCHES = ["a-level", "sutd"];
@@ -55,7 +55,7 @@ function readText(path) {
 }
 
 function parseYaml(path) {
-  return YAML.parse(readText(path));
+  return parse(readText(path));
 }
 
 function findContainers() {
@@ -94,21 +94,25 @@ function asList(value) {
 }
 
 function yamlBlock(value) {
-  return YAML.stringify(value, { lineWidth: 0 }).trimEnd();
+  return stringify(value, { lineWidth: 0 }).trimEnd();
 }
 
 function stripFrontmatter(markdown) {
   return markdown.replace(/^---\s*\n[\s\S]*?\n---\s*/, "").trim();
 }
 
-function extractSection(markdown, heading) {
+function getSection(markdown, heading, fallback) {
   const escaped = heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const match = markdown.match(new RegExp(`^##\\s+${escaped}\\s*$`, "im"));
-  if (!match) return "";
+  if (!match) return fallback;
   const start = (match.index ?? 0) + match[0].length;
   const after = markdown.slice(start);
   const next = after.search(/^##\s+/m);
   return (next === -1 ? after : after.slice(0, next)).trim();
+}
+
+function extractSection(markdown, heading) {
+  return getSection(markdown, heading, "");
 }
 
 function firstParagraph(text) {
@@ -120,13 +124,7 @@ function firstParagraph(text) {
 }
 
 function sectionBody(markdown, heading) {
-  const escaped = heading.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const match = markdown.match(new RegExp(`^##\\s+${escaped}\\s*$`, "im"));
-  if (!match) return null;
-  const start = (match.index ?? 0) + match[0].length;
-  const after = markdown.slice(start);
-  const next = after.search(/^##\s+/m);
-  return (next === -1 ? after : after.slice(0, next)).trim();
+  return getSection(markdown, heading, null);
 }
 
 function preserveSection(existing, heading, fallback) {
