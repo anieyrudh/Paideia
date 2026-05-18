@@ -139,6 +139,22 @@ describe("@paideia/uncertainty-propagation", () => {
     }
   });
 
+  it("preserves small non-zero add/subtract cancellation results", () => {
+    const result = addSubtractAbsoluteUncertainty([
+      { measurement: mustMeasure(q(1e-12), q(1e-15), { label: "a" }) },
+      { operation: "subtract", measurement: mustMeasure(q(9.999e-13), q(1e-15), { label: "b" }) },
+    ]);
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(approxEqual(result.value.value, 1e-16, uncertaintyTolerance.tight)).toBe(true);
+      expect(approxEqual(result.value.absoluteUncertainty, 2e-15, uncertaintyTolerance.tight)).toBe(true);
+      expect(Number.isFinite(result.value.relativeUncertainty)).toBe(true);
+      expect(Number.isFinite(result.value.percentageUncertainty)).toBe(true);
+      expect(result.value.steps[0]?.expression).toBe("a - b");
+    }
+  });
+
   it("rejects unknown add/subtract operations at runtime", () => {
     const result = addSubtractAbsoluteUncertainty([
       { operation: "bad" as "add", measurement: mustMeasure(metres(1), metres(0.1)) },

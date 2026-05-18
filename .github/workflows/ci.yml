@@ -165,3 +165,6 @@ jobs:
 
       - name: Validate roadmap
         run: pnpm roadmap:validate
+
+      - name: Validate generated graph freshness
+        run: pnpm graph:check

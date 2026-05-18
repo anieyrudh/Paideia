@@ -202,14 +202,14 @@ export const unit = (
   inputDimension: Dimension,
   scale = 1,
 ): KernelResult<Unit> => {
+  if (typeof symbol !== "string" || symbol.trim().length === 0) {
+    return err("precondition-violated", "Unit symbol must be non-empty");
+  }
+
   const validScale = finiteNumber(scale, "Unit scale");
   if (!validScale.ok) return validScale;
   if (validScale.value <= 0) {
     return err("precondition-violated", `Unit scale must be positive; got ${scale}`);
-  }
-
-  if (symbol.trim().length === 0) {
-    return err("precondition-violated", "Unit symbol must be non-empty");
   }
 
   const validDimension = validateDimension(inputDimension, "Unit dimension");
@@ -395,7 +395,7 @@ export const diagnoseEquation = (
 };
 
 const formatNumber = (value: number): string =>
-  Number.isInteger(value) ? `${value}` : `${Number(value.toPrecision(8))}`;
+  Number.isInteger(value) ? `${value}` : `${Number(value.toPrecision(15))}`;
 
 export const formatDimension = (input: Dimension): KernelResult<string> => {
   const validInput = validateDimension(input, "input");
