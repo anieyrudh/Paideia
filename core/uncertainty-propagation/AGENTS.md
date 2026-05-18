@@ -32,6 +32,9 @@ Exports from `@paideia/uncertainty-propagation`:
 
 ## Invariants the caller must preserve
 - Values and uncertainties are finite SI-scaled numbers at the call boundary.
+- Add/subtract terms represent the same physical unit. Type brands help callers
+  preserve that at compile time, but runtime values are numbers and this kernel
+  does not infer or convert units.
 - Absolute uncertainties are non-negative; instrument resolutions must be strictly positive.
 - Relative uncertainty is defined only for non-zero measured values.
 - Add/subtract propagation adds absolute uncertainties.

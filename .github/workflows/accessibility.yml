@@ -57,7 +57,7 @@ jobs:
         id: detect
         shell: bash
         run: |
-          SUTD_APP="sutd/apps/catalogue"
+          SUTD_APP="sutd/apps/shell"
           ALEVEL_APP="a-level/apps/shell"
           HAS_ANY="false"
           if [ -d "$SUTD_APP" ]; then HAS_ANY="true"; fi
@@ -74,7 +74,7 @@ jobs:
           HAS_ANY: ${{ steps.detect.outputs.has_any }}
         run: |
           if [ "$HAS_ANY" != "true" ]; then
-            echo "No catalogue apps detected (sutd/apps/catalogue, a-level/apps/shell). Running placeholder no-op axe scan that passes."
+            echo "No shell apps detected (sutd/apps/shell, a-level/apps/shell). Running placeholder no-op axe scan that passes."
             exit 0
           fi
           set -e

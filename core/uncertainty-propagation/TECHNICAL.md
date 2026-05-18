@@ -29,6 +29,7 @@ unit brands.
 | Invariant | Enforcement |
 | --- | --- |
 | Finite input values | Runtime guards return `precondition-violated` |
+| Same-unit add/subtract terms | Caller invariant documented in `AGENTS.md`; TypeScript brands help at the boundary |
 | Non-negative absolute uncertainty | Runtime guards return `out-of-domain` |
 | Positive instrument resolution | Runtime guard returns `out-of-domain` |
 | Relative uncertainty requires non-zero value | Runtime guard returns `out-of-domain` |

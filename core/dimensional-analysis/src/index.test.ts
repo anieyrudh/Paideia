@@ -125,6 +125,7 @@ describe("@paideia/dimensional-analysis", () => {
     );
     expectErrCode(powerDimension(baseDimensions.length, Number.POSITIVE_INFINITY), "precondition-violated");
     expectErrCode(unit("", baseDimensions.length), "precondition-violated");
+    expectErrCode(unit(42 as unknown as string, baseDimensions.length), "precondition-violated");
     expectErrCode(unit("cm", baseDimensions.length, 0), "precondition-violated");
 
     const invalidDimension = { exponents: { ...baseDimensions.length.exponents, time: Number.NaN } };
@@ -199,5 +200,23 @@ describe("@paideia/dimensional-analysis", () => {
 
     const nearlyLength = expectOk(dimension({ length: 1 + dimensionalAnalysisTolerance.default / 2 }));
     expect(expectOk(formatDimension(nearlyLength))).toBe("L");
+  });
+
+  it("keeps diagnostic formatting precise past the compatibility tolerance", () => {
+    const barelyInvalid = expectOk(dimension({
+      length: 1 + dimensionalAnalysisTolerance.default * 1000,
+    }));
+    const diagnostic = expectOk(diagnoseEquation(baseDimensions.length, barelyInvalid));
+
+    expect(diagnostic.valid).toBe(false);
+    expect(diagnostic.right).toBe("L^1.000000001");
+    expect(diagnostic.differences).toEqual([
+      {
+        dimension: "length",
+        left: 1,
+        right: 1.000000001,
+        delta: -1.000000082740371e-9,
+      },
+    ]);
   });
 });
