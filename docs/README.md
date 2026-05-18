@@ -65,6 +65,7 @@ licenses must pass `LICENSES.json`.
 ## Where To Read Next
 
 - [Container specification](container-spec.md)
+- [Public CFE onboarding brief](public/cfe-onboarding.html)
 - [Core module inventory](core-modules.md)
 - [Reuse boundaries and clean-room rewrites](reuse-boundaries.md)
 - [GitHub setup](github-setup.md)

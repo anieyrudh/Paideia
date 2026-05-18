@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Paideia Curriculum Field Engineers</title>
+  <meta
+    name="description"
+    content="A public Paideia onboarding brief for Curriculum Field Engineers, Concepts For Everyone contributors, and agent-assisted education builders."
+  />
+  <style>
+    @page {
+      size: A4;
+      margin: 16mm;
+    }
+
+    :root {
+      color-scheme: light;
+      --ink: #17201c;
+      --muted: #536158;
+      --paper: #f7f8f3;
+      --green: #0d2f23;
+      --green-2: #19563e;
+      --sage: #dce8dc;
+      --mint: #a7d5bd;
+      --gold: #e7b85b;
+      --coral: #b94d3c;
+      --blue: #5b8fc9;
+      --line: #c7d2c4;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family:
+        Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-color: var(--coral);
+      text-decoration-thickness: 0.12em;
+      text-underline-offset: 0.18em;
+    }
+
+    .section {
+      padding: 72px max(24px, calc((100vw - 1120px) / 2));
+    }
+
+    .section.dark {
+      color: #f9fff7;
+      background: var(--green);
+    }
+
+    .section.light {
+      background: var(--paper);
+    }
+
+    .section.sage {
+      background: var(--sage);
+    }
+
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--coral);
+      font-size: 0.82rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .dark .eyebrow {
+      color: var(--gold);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      font-size: clamp(3rem, 8vw, 6.4rem);
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      max-width: 760px;
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: clamp(1.2rem, 2.4vw, 1.85rem);
+      line-height: 1.28;
+      font-weight: 500;
+    }
+
+    .dark .lead {
+      color: #d9eadc;
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 48px;
+    }
+
+    .hero-main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+      gap: 48px;
+      align-items: end;
+    }
+
+    .hero-copy {
+      align-self: start;
+    }
+
+    .mission-box {
+      max-width: 620px;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 1.05rem;
+    }
+
+    .mission-box strong {
+      color: var(--white);
+    }
+
+    .node-map {
+      min-height: 360px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 28% 28%, var(--gold) 0 8%, transparent 8.5%),
+        radial-gradient(circle at 76% 35%, var(--mint) 0 10%, transparent 10.5%),
+        radial-gradient(circle at 48% 70%, var(--blue) 0 10%, transparent 10.5%),
+        radial-gradient(circle at 83% 82%, var(--coral) 0 7%, transparent 7.5%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .node-map::before {
+      content: "";
+      position: absolute;
+      inset: 60px;
+      background:
+        linear-gradient(26deg, transparent 0 35%, rgba(255, 255, 255, 0.38) 36% 37%, transparent 38%),
+        linear-gradient(142deg, transparent 0 42%, rgba(255, 255, 255, 0.3) 43% 44%, transparent 45%),
+        linear-gradient(82deg, transparent 0 50%, rgba(255, 255, 255, 0.2) 51% 52%, transparent 53%);
+    }
+
+    .footer-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      color: #bfd3c2;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 44px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 44px;
+    }
+
+    .card,
+    .path,
+    .safety-box {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.64);
+    }
+
+    .card {
+      min-height: 170px;
+      padding: 24px;
+    }
+
+    .card p,
+    .path p,
+    .safety-box p,
+    .small-copy {
+      color: var(--muted);
+    }
+
+    .card p {
+      margin-top: 10px;
+      font-size: 1rem;
+    }
+
+    .number {
+      color: var(--coral);
+      font-size: 0.82rem;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .quote {
+      max-width: 900px;
+      margin-top: 48px;
+      padding-left: 22px;
+      border-left: 7px solid var(--gold);
+      font-size: clamp(1.8rem, 4vw, 3.3rem);
+      line-height: 1.08;
+      font-weight: 850;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+      gap: 44px;
+      align-items: start;
+      margin-top: 48px;
+    }
+
+    .large-note {
+      padding: 28px;
+      border-radius: 24px;
+      background: var(--sage);
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      line-height: 1.12;
+      font-weight: 850;
+    }
+
+    .dark .large-note {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      position: relative;
+      margin: 0 0 16px;
+      padding-left: 28px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.58em;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--coral);
+    }
+
+    .dark li {
+      color: #dce9dd;
+    }
+
+    .dark li::before {
+      background: var(--gold);
+    }
+
+    .callout {
+      margin-top: 44px;
+      padding: 28px;
+      border-radius: 22px;
+      background: var(--white);
+      border: 1px solid var(--line);
+    }
+
+    .callout p {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 52px;
+    }
+
+    .workflow div {
+      min-height: 150px;
+      padding: 20px 16px;
+      border-radius: 18px;
+      background: var(--white);
+      color: var(--ink);
+      text-align: center;
+      font-size: 1.28rem;
+      font-weight: 850;
+    }
+
+    .workflow span {
+      display: block;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 650;
+    }
+
+    .path {
+      padding: 24px;
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .path h3 {
+      color: var(--ink);
+    }
+
+    .path a {
+      font-weight: 800;
+    }
+
+    .safety-box {
+      margin-top: 44px;
+      padding: 30px;
+      background: var(--green);
+      color: var(--white);
+      border-color: var(--green-2);
+    }
+
+    .safety-box p,
+    .safety-box li {
+      color: #e0eee3;
+    }
+
+    .safety-box li::before {
+      background: var(--gold);
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--green);
+      font-weight: 850;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    @media (max-width: 840px) {
+      .section {
+        padding: 56px 22px;
+      }
+
+      .hero-main,
+      .split,
+      .grid-2,
+      .grid-4,
+      .workflow {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .node-map {
+        min-height: 280px;
+      }
+    }
+
+    @media print {
+      html {
+        scroll-behavior: auto;
+      }
+
+      body {
+        background: var(--white);
+      }
+
+      .section {
+        min-height: 265mm;
+        break-after: page;
+        padding: 0;
+      }
+
+      .section:last-of-type {
+        break-after: auto;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="section dark hero" aria-labelledby="title">
+      <div class="hero-copy">
+        <p class="eyebrow">Paideia collaborator brief</p>
+        <h1 id="title">Help build the learning infrastructure we wish existed.</h1>
+        <p class="lead">
+          Paideia, including the Concepts For Everyone public effort, turns hard
+          ideas into clear explanations, concept maps, interactive simulations,
+          and reusable learning tools.
+        </p>
+      </div>
+      <div class="hero-main">
+        <div class="mission-box">
+          <p>
+            <strong>Our mission:</strong> make deep learning easier to build,
+            easier to improve, and easier for every learner to use.
+          </p>
+        </div>
+        <div class="node-map" role="img" aria-label="A concept map visual showing connected learning ideas"></div>
+      </div>
+      <div class="footer-line">
+        <span>Paideia</span>
+        <span>Curriculum Field Engineers</span>
+      </div>
+    </section>
+
+    <section class="section light" aria-labelledby="role">
+      <p class="eyebrow">The role</p>
+      <h2 id="role">We need people who stand close to the learner.</h2>
+      <p class="lead">
+        A Curriculum Field Engineer, or CFE, is the bridge between real learners
+        and the Paideia platform. You do not need to start as a professional
+        engineer. You need sharp eyes, care for learners, and the will to
+        improve what exists.
+      </p>
+      <div class="callout">
+        <h3>You can contribute without writing code.</h3>
+        <p>
+          A useful CFE contribution can be a classroom observation, a clearer
+          explanation, a misconception report, a tested worksheet path, source
+          notes, review feedback, or a request for a better simulation.
+        </p>
+      </div>
+      <div class="grid-2">
+        <article class="card">
+          <div class="number">01</div>
+          <h3>Stress-test the work</h3>
+          <p>Try lessons, maps, and simulations with real people. Find what confuses them and what finally clicks.</p>
+        </article>
+        <article class="card">
+          <div class="number">02</div>
+          <h3>Shape it for context</h3>
+          <p>Adapt containers for a class, syllabus, school, cohort, or learner group without breaking the shared structure.</p>
+        </article>
+        <article class="card">
+          <div class="number">03</div>
+          <h3>Find the gaps</h3>
+          <p>Spot missing explanations, weak examples, absent concept maps, or simulations that do not yet exist.</p>
+        </article>
+        <article class="card">
+          <div class="number">04</div>
+          <h3>Feed the core</h3>
+          <p>When a local need repeats, turn it into a request for a reusable tool that everyone can use.</p>
+        </article>
+      </div>
+      <div class="quote">The core team cannot see every classroom. CFEs make Paideia real in the field.</div>
+    </section>
+
+    <section class="section light" aria-labelledby="words">
+      <p class="eyebrow">Words we use</p>
+      <h2 id="words">The system has a few names. The idea is simple.</h2>
+      <p class="lead">
+        These terms keep the project organized so humans and agents can work on
+        one useful piece at a time.
+      </p>
+      <div class="grid-4">
+        <article class="path">
+          <h3>Container</h3>
+          <p>One complete concept package: explanation, concept map, problem-solving path, media, embed API, and any declared simulation.</p>
+        </article>
+        <article class="path">
+          <h3>Core</h3>
+          <p>Reusable tools shared across many concepts, such as math kernels, graph layout, simulation runtime, and UI controls.</p>
+        </article>
+        <article class="path">
+          <h3>Kernel</h3>
+          <p>The tested math or logic a simulation relies on. Kernels keep calculations consistent across containers.</p>
+        </article>
+        <article class="path">
+          <h3>Agent-friendly</h3>
+          <p>Structured enough that AI tools can help build, test, and review without replacing human judgment.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section sage" aria-labelledby="why">
+      <p class="eyebrow">Why it matters</p>
+      <h2 id="why">Good learning tools are not made in a vacuum.</h2>
+      <p class="lead">
+        A simulation can be beautiful and still miss the misconception. A
+        concept map can be correct and still fail a student. The field is where
+        truth shows up.
+      </p>
+      <div class="split">
+        <div class="large-note">Your feedback can become a shared platform upgrade.</div>
+        <ul>
+          <li>A better vector tool can help every physics container.</li>
+          <li>A clearer problem-solving path can help every learner stuck on the same pattern.</li>
+          <li>A missing concept map can reveal a gap across a whole syllabus.</li>
+          <li>A request from one classroom can become infrastructure for thousands.</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <h3>Local pain should become shared capability.</h3>
+        <p>
+          That is the core idea. A CFE turns real friction into better
+          containers, better maps, better simulations, and better reusable tools.
+        </p>
+      </div>
+    </section>
+
+    <section class="section dark" aria-labelledby="workflow">
+      <p class="eyebrow">How the work flows</p>
+      <h2 id="workflow">Simple loop. Serious impact.</h2>
+      <p class="lead">
+        The loop is practical: observe a learner, adapt a small part of the
+        system, test it, report evidence, and improve the shared platform.
+      </p>
+      <div class="workflow" aria-label="Curriculum Field Engineer workflow">
+        <div>Observe<span>What is hard for learners?</span></div>
+        <div>Adapt<span>Make the container fit the context.</span></div>
+        <div>Test<span>Use it with real people.</span></div>
+        <div>Report<span>Show what worked and failed.</span></div>
+        <div>Improve<span>Turn the lesson into shared tools.</span></div>
+      </div>
+      <div class="callout" style="background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18);">
+        <h3 style="color: #ffffff;">AI can help with the coding. Humans must protect the learning.</h3>
+        <p style="color: #dce9dd;">
+          Paideia is built to be agent-friendly for development and
+          human-friendly for learners. CFEs help keep both promises true.
+        </p>
+      </div>
+    </section>
+
+    <section class="section light" aria-labelledby="start">
+      <p class="eyebrow">Start here</p>
+      <h2 id="start">Pick the entry point that matches what you can see.</h2>
+      <p class="lead">
+        You can contribute without writing code. Start with one observed
+        learning friction, one concept, and evidence from a real learner or
+        source.
+      </p>
+      <div class="grid-4">
+        <article class="path">
+          <h3>I have no code experience</h3>
+          <p>Write down what a learner misunderstood, what helped, and what still failed.</p>
+          <p><a href="../agent-workflows.md">Use the agent workflow guide</a> to turn that observation into a narrow task.</p>
+        </article>
+        <article class="path">
+          <h3>I found a learning problem</h3>
+          <p>Open an issue or field note with the concept, learner context, evidence, and what outcome would count as success.</p>
+          <p><a href="https://github.com/anieyrudh/Paideia/issues/new/choose">Start from the issue templates</a>, then attach citations or mark uncertain claims as needing verification.</p>
+        </article>
+        <article class="path">
+          <h3>I want an agent to help me</h3>
+          <p>Give the agent one target and tell it to read the repo contracts before writing.</p>
+          <p>Start with prompts from <a href="../agent-workflows.md">Agent Workflows</a>.</p>
+        </article>
+        <article class="path">
+          <h3>I want to build a container</h3>
+          <p>Use the v2 container shape: explanation, concept map, simulation, problem-solving path, media, embed API, sources, and audit notes.</p>
+          <p>Read <a href="../container-spec.md">the container specification</a> before changing files.</p>
+        </article>
+      </div>
+      <div class="callout">
+        <h3>Agent-ready issue format</h3>
+        <p>
+          Include the concept, learner group, observed friction, attempted
+          explanation or simulation, evidence, proposed container or core
+          request, and safety/provenance notes. Anonymous observations are
+          enough; do not include private learner data.
+        </p>
+      </div>
+    </section>
+
+    <section class="section light" aria-labelledby="build">
+      <p class="eyebrow">What you can build</p>
+      <h2 id="build">Pick the gap you can see clearly.</h2>
+      <p class="lead">
+        A single useful improvement is better than a broad plan no learner has
+        touched.
+      </p>
+      <div class="grid-2">
+        <article class="card">
+          <h3>Containers</h3>
+          <p>Complete concept packages with explanations, simulations, maps, media, and problem-solving paths.</p>
+        </article>
+        <article class="card">
+          <h3>Concept maps</h3>
+          <p>Prerequisites, downstream ideas, sibling ideas, and misconception graphs that help learners orient themselves.</p>
+        </article>
+        <article class="card">
+          <h3>Simulations</h3>
+          <p>Interactive tools that let learners change something and see why the result changes.</p>
+        </article>
+        <article class="card">
+          <h3>Core requests</h3>
+          <p>Better shared components, kernels, validators, and authoring tools when many containers need the same thing.</p>
+        </article>
+      </div>
+      <div class="callout">
+        <h3>The rule of thumb</h3>
+        <p>
+          If it is specific to one lesson, improve the container. If many
+          lessons need it, ask for a core feature. Reusable math and rendering
+          logic belongs in <code>core/</code>, not inside one container.
+        </p>
+      </div>
+    </section>
+
+    <section class="section sage" aria-labelledby="safety">
+      <p class="eyebrow">Safety and reuse</p>
+      <h2 id="safety">Protect the project while you help it grow.</h2>
+      <p class="lead">
+        Public contributors can move fast only if source, licensing, and reuse
+        boundaries are clear.
+      </p>
+      <div class="safety-box">
+        <h3>Plain-language safety box</h3>
+        <ul>
+          <li>Cite sources. If a claim is not verified, mark it as needing verification.</li>
+          <li>Do not include student names, grades, private messages, school records, or identifiable classroom data.</li>
+          <li>Get permission before sharing classroom artifacts, and anonymize learner feedback before it enters an issue or PR.</li>
+          <li>Do not paste proprietary textbook chapters, paid course material, or copyrighted worksheets into the repo.</li>
+          <li>Do not copy GPL, AGPL, LGPL, proprietary, or unclear-license simulation code into Paideia.</li>
+          <li>Paideia code is MIT. Curriculum content is CC-BY-4.0.</li>
+          <li>When a non-friendly dependency has behavior we need, use the <a href="../dependency-clean-room.md">clean-room process</a>.</li>
+          <li>AI may help draft, test, or refactor, but humans own accuracy, provenance, learner safety, and educational judgment.</li>
+        </ul>
+      </div>
+      <div class="callout">
+        <h3>The Filter is a critic, not an author.</h3>
+        <p>
+          The Anieyrudh Filter helps block weak claims and unsafe educational
+          work. It does not replace sources, classroom evidence, or human review.
+        </p>
+      </div>
+    </section>
+
+    <section class="section dark" aria-labelledby="join">
+      <p class="eyebrow">Invitation</p>
+      <h2 id="join">You are shaping the system, not just contributing content.</h2>
+      <p class="lead">
+        Paideia needs people who can see the learner, see the concept, and help
+        the platform close the gap between them.
+      </p>
+      <div class="split">
+        <div class="large-note">Bring real learning pressure into the build process.</div>
+        <ul>
+          <li>Bring a learner problem.</li>
+          <li>Pick a concept.</li>
+          <li>Test what exists.</li>
+          <li>Improve the container.</li>
+          <li>Ask for core support when the gap is bigger than one lesson.</li>
+        </ul>
+      </div>
+      <div class="button-row" aria-label="Next steps">
+        <a class="button" href="https://github.com/anieyrudh/Paideia">Open the repository</a>
+        <a class="button secondary" href="../agent-workflows.md">Use an agent prompt</a>
+        <a class="button secondary" href="../container-spec.md">Read the container spec</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -58,6 +58,7 @@ pnpm container:new
 ## Documentation
 
 - [Mission and governance](docs/README.md)
+- [Public CFE onboarding brief](docs/public/cfe-onboarding.html)
 - [Container specification](docs/container-spec.md) — uniform layout for every concept container
 - [Core module inventory](docs/core-modules.md)
 - [GitHub configuration](docs/github-setup.md)
