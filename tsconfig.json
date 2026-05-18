@@ -8,6 +8,7 @@
     { "path": "./core/numerical-math" },
     { "path": "./core/probability-stats" },
     { "path": "./core/linear-algebra" },
+    { "path": "./core/dimensional-analysis" },
     { "path": "./core/dynamical-systems" },
     { "path": "./core/optimization" },
     { "path": "./core/circuits" },
