@@ -8,8 +8,8 @@ Anieyrudh Filter discipline: artifact-hard, no fluff. A test that does not falsi
 
 The caller will tell you one of:
 - "write kernel tests for `core/<module>`"
-- "write sim tests for `<container>/sims/<sim-id>`"
-- "the prediction-gate assertion is missing in `<sim-id>.test.ts` — add it"
+- "write sim tests for `<container>/simulation`"
+- "the prediction-gate assertion is missing in `simulation.test.ts` — add it"
 
 Read the package's `AGENTS.md` first; it is authoritative over generic conventions.
 
@@ -28,7 +28,7 @@ Run: `pnpm --filter <package> test --run`. Iterate until green or until you have
 
 ## Sim tests (Playwright)
 
-For `<container>/sims/<sim-id>/<sim-id>.test.ts`:
+For `<container>/simulation/simulation.test.ts`:
 
 1. **The prediction-gate test is mandatory.** Write it first. Pattern:
    ```ts
@@ -45,7 +45,7 @@ For `<container>/sims/<sim-id>/<sim-id>.test.ts`:
      await expect(page.getByTestId('observe-region')).toBeVisible();
    });
    ```
-   Adjust selectors to the sim's controls (read `SimulationSpec.yaml` for control ids/labels).
+   Adjust selectors to the sim's controls (read `simulation.yaml` for control ids/labels).
 
 2. Add a **PMOE-T smoke test** that walks the full loop: predict → manipulate one control → observe state changes → explain prompt renders → transfer link visible.
 

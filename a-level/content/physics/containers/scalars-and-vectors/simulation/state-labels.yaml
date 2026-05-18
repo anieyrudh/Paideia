@@ -1,0 +1,16 @@
+state_labels:
+  vectorA:
+    label: "Vector A"
+    meaning: "First displacement magnitude, drawn east by default."
+  vectorB:
+    label: "Vector B"
+    meaning: "Second displacement magnitude, rotated by the selected angle."
+  angleDegrees:
+    label: "Angle between vectors"
+    meaning: "The direction difference that changes the component sum."
+  resultantMagnitude:
+    label: "Geometric resultant"
+    meaning: "Magnitude of the component sum, not the scalar sum of lengths."
+  scalarSum:
+    label: "Scalar sum"
+    meaning: "What a magnitude-only misconception would calculate."

@@ -1,0 +1,16 @@
+presets:
+  - id: standard-pull
+    label: "Standard pull"
+    state:
+      magnitudeNewtons: 10
+      angleDegrees: 30
+  - id: mostly-sideways
+    label: "Mostly sideways"
+    state:
+      magnitudeNewtons: 12
+      angleDegrees: 15
+  - id: steep-lift
+    label: "Steep lift"
+    state:
+      magnitudeNewtons: 8
+      angleDegrees: 70

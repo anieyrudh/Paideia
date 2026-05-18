@@ -15,6 +15,11 @@
     "typecheck": "tsc -b",
     "container:validate": "node scripts/validate-containers.mjs",
     "container:new": "node scripts/new-container.mjs",
+    "container:docs": "node scripts/generate-container-docs.mjs",
+    "graph:generate": "node scripts/generate-knowledge-graph.mjs",
+    "roadmap:validate": "node scripts/validate-container-build-queue.mjs",
+    "agent:validate": "node scripts/validate-agent-docs.mjs",
+    "test:a11y": "pnpm -F @paideia/a-level-shell test:a11y",
     "axe": "pnpm -r axe",
     "boundary": "dependency-cruiser --config .dependency-cruiser.cjs core a-level sutd",
     "license:check": "node scripts/check-licenses.mjs"

@@ -1,320 +1,178 @@
-# Container Specification (ConceptPackage)
+# Container Specification
 
-**Status:** Locked at Phase A · day 2 · v1.0.0. Any change requires an ADR and a numbered schema migration.
+**Status:** Phase B · v2 container architecture. Schema-breaking changes require
+an ADR and a migration.
 
-A **container** (formally: ConceptPackage) is the unit of work, of authoring, and of student-facing delivery. The catalogue lists containers. The student launches a container. An agent scaffolds a container. The Anieyrudh Filter and `container-auditor` subagent read a container.
+A **container** is a self-contained concept product. The curriculum shell owns
+search, subject/module navigation, learner profile, mastery map, and
+cross-container recommendations. Each container owns its own explanation,
+concept graph, simulation, media, embed contract, and problem-solving logic.
 
-A container holds **one concept**, exposed through **one or more sims** plus all supporting items — concept card, decision matrix, misconceptions, sources, transfer problems, assessments. The PMOE-T loop runs at the container level.
+The UI/UX is deliberately flexible. Predict -> Manipulate -> Observe -> Explain
+-> Transfer is a useful learning pattern, not a required visible layout.
 
-## 1. Canonical directory layout (REQUIRED EXACTLY)
+## 1. Canonical Layout
 
-```
-<branch>/content/<subject>/concept-packages/<package-id>/
-├── concept-package.yaml         REQUIRED · validates against ConceptPackageSpec
-├── concept-card.md              REQUIRED · explanatory body
-├── sources.md                   REQUIRED · citations
-├── decision-matrix.md           OPTIONAL · 6-panel pedagogy decisions
-├── misconceptions.md            OPTIONAL · named misconceptions + evidence
-├── sims/                        REQUIRED (may be empty for content-only)
-│   └── <sim-id>/
-│       ├── SimulationSpec.yaml  REQUIRED if sim/ directory exists
-│       ├── index.tsx            REQUIRED if sim/ directory exists
-│       └── <sim-id>.test.ts     REQUIRED · MUST contain prediction-gate Playwright
-├── transfer/                    OPTIONAL
-│   └── <problem-id>.md
-├── assessments/                 OPTIONAL
-│   └── fsrs-cards.yaml
-├── README.md                    REQUIRED · auto-generated descriptive doc
-└── TECHNICAL.md                 REQUIRED · auto-generated technical doc + Filter section
-```
-
-### 1.1 Path conventions
-
-- `<branch>` — exactly one of `a-level` or `sutd` (future branches added via ADR).
-- `<subject>` — kebab-case. Examples: `physics`, `general-paper`, `calculus`, `programming`.
-- `<package-id>` — kebab-case. MUST match `concept-package.yaml` `id` field. Examples: `simple-harmonic-motion`, `derivative-microscope`.
-- `<sim-id>` — kebab-case. MUST match `SimulationSpec.yaml` `id` field.
-- `<problem-id>` — kebab-case. MUST match the `id` in the corresponding `TransferProblem` entry in `concept-package.yaml`.
-
-### 1.2 Files MUST be exactly these names
-
-The validator (`pnpm container:validate`) rejects containers with:
-- Extra top-level files outside the canonical list.
-- Top-level files named differently (e.g., `readme.md`, `README.MD`, `Concept Card.md`).
-- Sim directories without `SimulationSpec.yaml`.
-- Sim directories without a `*.test.ts` file matching `<sim-id>.test.ts`.
-
-This rigidity is intentional. **The container shape is the API.** Authors compose their work into the shape; tools (catalogue glob, RAG retrieval, validator, scaffolder) depend on the shape being predictable.
-
-### 1.3 What MAY appear
-
-Per-package extension files (e.g., `historical-context.md`, `lab-procedure.md`) are allowed under a single optional subfolder:
-
-```
-<package-id>/
-└── extras/
-    └── <whatever>.md
+```text
+<branch>/content/<subject>/containers/<concept-id>/
+├── container.yaml              REQUIRED · validates against ContainerSpec
+├── concept-card.md             REQUIRED · first-principles explanation
+├── concept-map/                REQUIRED
+│   ├── concept-map.yaml        REQUIRED · validates against ConceptMapSpec
+│   ├── mindmap.md              REQUIRED · human-friendly overview
+│   └── graph.mmd               REQUIRED · Mermaid graph source
+├── simulation/                 REQUIRED for sim-worthy concepts
+│   ├── simulation.yaml         REQUIRED · validates against SimulationSpec
+│   ├── index.tsx               REQUIRED
+│   ├── controls.yaml           REQUIRED
+│   ├── presets.yaml            REQUIRED
+│   ├── runtime.yaml            REQUIRED
+│   ├── state-labels.yaml       REQUIRED
+│   └── simulation.test.ts      REQUIRED · prediction-gate assertion if predict is declared
+├── embed/                      REQUIRED
+│   ├── api.ts                  REQUIRED · load/saveState/score/resume/syncTheme/destroy
+│   ├── index.ts                REQUIRED
+│   └── embed.test.ts           REQUIRED · contract marker or executable tests
+├── media/                      REQUIRED
+│   ├── thumbnail.svg           REQUIRED
+│   └── fallback.svg            REQUIRED
+├── problem-solving/            REQUIRED
+│   ├── algorithm.md            REQUIRED
+│   ├── steps.yaml              REQUIRED
+│   └── <transfer-id>.md        REQUIRED for each transfer problem
+├── sources.md                  OPTIONAL but expected for cited curriculum work
+├── README.md                   REQUIRED
+└── TECHNICAL.md                REQUIRED
 ```
 
-`extras/` is opaque to the validator. Tooling does not index it. Authors use it for branch-specific or subject-specific supplementary content that doesn't fit the canonical items. Do not over-rely on `extras/`; if content belongs in the standard items, put it there.
+## 2. Minimum Complete Container
 
-## 2. File contents (canonical templates)
+A complete container must include:
 
-Every file follows a canonical template. The scaffolder produces these on `pnpm container:new`. Author edits content, never structure.
+- **Concept identity:** stable `id`, aliases, subject, level/module, syllabus references.
+- **First-principles explanation:** `concept-card.md` with definitions, why the concept matters, canonical examples, and common misconceptions.
+- **Concept map:** prerequisites, downstream links, sibling concepts, misconception graph, and Mermaid source.
+- **Interactive simulation:** mandatory when `capabilities.sim_worthy` or `capabilities.interactive_simulation` is true.
+- **Problem-solving algorithm:** stepwise solver, strategy tree, proof outline, or decision procedure.
+- **Embed API:** `load`, `saveState`, `score`, `resume`, `syncTheme`, and `destroy`.
+- **Authoring metadata:** owner, reviewers, QA status, dependency graph, and changelog.
+- **Media:** thumbnail plus fallback static visual.
 
-### 2.1 `concept-package.yaml`
+Optional but high-value surfaces:
 
-The container manifest. Validates against `ConceptPackageSpec` in `core/content-schema`. Single source of truth — every other file's metadata defers to this.
+- `notebook-lab/` for computational or data-driven topics.
+- `visual-derivation/` for interactive derivations in maths and physics.
 
-See `core/docs-templates/concept-package.template.yaml`.
+## 3. `container.yaml`
 
-### 2.2 `concept-card.md`
+`container.yaml` is the source of truth. It validates against
+`ContainerSpec` in `core/content-schema`.
 
-Frontmatter (validates against `ConceptCardFrontmatter`) + body.
+It records:
 
-```markdown
----
-subject: physics
-concept: simple-harmonic-motion
-branch: a-level
-level: H2
-syllabus_ref: "9749 / 17"
-prerequisites: [calculus-derivatives, vectors]
-aid_types: [concept-card, simulation, misconception-audit]
-status: draft
----
+- concept identity and aliases
+- curriculum mapping
+- declared aid types and capabilities
+- component paths
+- simulation, embed, concept-map, and problem-solving contracts
+- transfer problems, assessments, sources, and misconceptions
+- authoring metadata and review gates
 
-# Simple Harmonic Motion
+The validator rejects dangling declarations. If a container declares a
+simulation, transfer problem, misconception audit, or prediction path, the
+corresponding files and tests must exist.
 
-## What this teaches
+## 4. Generated Graph Data
 
-(One paragraph. Plain language. No jargon. A teacher should know within
-30 seconds whether to assign this.)
+Curriculum shells must not hand-code container relationships. The generated
+knowledge graph index is built from:
 
-## What the student does
-
-- **Predict:** ...
-- **Manipulate:** ...
-- **Observe:** ...
-- **Explain:** ...
-- **Transfer:** ...
-
-## Pedagogical choices and why
-
-- Why this predict format?
-- Why this transfer problem?
-- What misconceptions does this surface?
-
-## Notes for the teacher
-
-(Anything that doesn't fit on the student-facing surface.)
+```text
+container.yaml + concept-map/concept-map.yaml + simulation/simulation.yaml
 ```
 
-### 2.3 `sources.md`
+Run:
 
-```markdown
-# Sources
-
-## Primary references
-
-- (full citation with URL, year, license, SEAB-alignment annotation)
-
-## SEAB / syllabus anchors
-
-- (exact section reference + quotation if material)
-
-## Misconception evidence
-
-- (PER paper or textbook chapter naming the misconception)
-
-## Reuse and attribution
-
-- (Note any reused PhET sims, CC-licensed materials, etc.)
+```bash
+pnpm graph:generate
 ```
 
-### 2.4 `decision-matrix.md` (optional but recommended)
+For A-Level this emits:
 
-6-panel pedagogy decision record (per A-Level Product Details §7). Used at Phase 1 of branch work; persists as the rationale record for the container.
-
-```markdown
-# Decision Matrix · <Concept>
-
-## 1. Concept boundary
-What's in this container? What's deliberately out?
-
-## 2. Predict format
-Why ranking / value / sketch / freetext?
-
-## 3. Manipulate variables
-Which kernel knobs are exposed? Which are intentionally hidden?
-
-## 4. Observe rendering
-Why this renderer? What does the student see first?
-
-## 5. Explain prompt
-Socratic question + expected misconceptions to surface.
-
-## 6. Transfer surface
-Why is the transfer problem genuinely different from the manipulate stage?
+```text
+a-level/apps/shell/src/generated/knowledge-graph.tsx
 ```
 
-### 2.5 `misconceptions.md`
+Future curriculum shells get their own generated output from the same script.
 
-```markdown
-# Misconceptions
+## 5. Generated Container Docs
 
-## <Misconception name>
-**Evidence**: (PER paper or textbook citation)
-**Surface in predict?** yes/no
-**Description**: ...
+Container `README.md` and `TECHNICAL.md` are generated from the canonical
+container sources:
 
-(Repeat per misconception. At least 2 expected.)
+```text
+container.yaml + concept-card.md + simulation/simulation.yaml + concept-map/ + problem-solving/ + sources.md
 ```
 
-### 2.6 `sims/<sim-id>/SimulationSpec.yaml`
+Run:
 
-Validates against `SimulationSpec`. See `core/docs-templates/simulation-spec.template.yaml`.
+```bash
+pnpm container:docs <container-path>
+```
 
-### 2.7 `sims/<sim-id>/index.tsx`
+For all containers:
 
-The React entry point. Imports the prediction gate, the PMOE-T runtime, the kernel(s), the renderer(s). Hot-reloadable.
+```bash
+pnpm container:docs
+```
 
-See `core/docs-templates/sim-index.template.tsx`.
+To check whether generated docs are current without writing files:
 
-### 2.8 `sims/<sim-id>/<sim-id>.test.ts`
+```bash
+pnpm container:docs --check
+```
 
-Playwright test. MUST include at least one test asserting the prediction gate blocks reveal until commit. CI fails the build if this assertion is absent.
+`TECHNICAL.md` preserves the human review sections that should not be
+clobbered by regeneration, including the Anieyrudh Filter pass and iteration
+or failure logs.
 
-See `core/docs-templates/sim-test.template.ts`.
+## 6. Validation
 
-### 2.9 `transfer/<problem-id>.md`
+Run:
 
-Markdown body of the transfer problem. Each problem must correspond to a `TransferProblem` entry in `concept-package.yaml`.
-
-### 2.10 `assessments/fsrs-cards.yaml`
-
-Optional. List of `AssessmentVariant` entries. Consumed by `core/fsrs`.
-
-### 2.11 `README.md` (auto-generated, do not edit by hand)
-
-The descriptive doc — for teachers, students, advisors. Generated by `/new-container` and updated by `/review-container`. See `core/docs-templates/README.template.md`.
-
-Required sections:
-- What this teaches
-- What the student does (PMOE-T)
-- Pedagogical choices and why
-- Citations and provenance
-- Author + date + advisor sign-offs
-
-### 2.12 `TECHNICAL.md` (auto-generated, do not edit by hand)
-
-The technical doc — for maintainers and future agents. Generated by `/new-container`, updated by `/review-container`, and (mandatorily) by the agent on every change.
-
-Required sections:
-- Imports (`core/` modules consumed with specific exported symbols)
-- SimulationSpec (frozen, full validated YAML)
-- Kernel extensions (core-change-proposal issue links)
-- Accessibility (axe report summary)
-- Tests (file paths)
-- How to run locally
-- **Anieyrudh Filter pass** (P0/P1 items + resolution) — **MUST be non-empty before merge**
-- Iteration log (what the agent did, what was rejected)
-
-The `daily-compliance-audit.yml` scheduled workflow scans every container's `TECHNICAL.md` and creates Issues for any with an empty Filter section.
-
-## 3. Validation
-
-Validator: `scripts/validate-containers.mjs` (added in Phase A · CI workflow). Runs on every PR via `boundary-check.yml` and once per container on every push.
+```bash
+pnpm container:validate
+```
 
 The validator enforces:
-1. Directory tree matches §1.
-2. `concept-package.yaml` parses against `ConceptPackageSpec`.
-3. Each `sims/<sim-id>/SimulationSpec.yaml` parses against `SimulationSpec`.
-4. Each sim has a `*.test.ts` containing the literal token `prediction-gate` somewhere in the file (lint-level proxy for the real Playwright assertion).
-5. `concept-card.md` frontmatter parses against `ConceptCardFrontmatter`.
-6. `TECHNICAL.md` has a non-empty section under `## Anieyrudh Filter pass`.
-7. Every kernel listed in `kernel_deps` resolves to an existing `core/<module>/` directory.
-8. No file in the container imports from another branch (`a-level/` cannot import `sutd/` and vice versa). This is enforced by `boundary-check.yml` via dependency-cruiser.
 
-Failures BLOCK MERGE. There is no opt-out.
+1. The v2 directory layout.
+2. `container.yaml` parses against `ContainerSpec`.
+3. `concept-map/concept-map.yaml` parses against `ConceptMapSpec`.
+4. `simulation/simulation.yaml` parses against `SimulationSpec` when simulation is declared.
+5. All embed API methods are present.
+6. `simulation/simulation.test.ts` contains `prediction-gate` when prediction is declared.
+7. Transfer problem markdown exists for each declared transfer problem.
+8. Filter output is required only once the container reaches its configured review lifecycle threshold.
+9. Kernel dependencies resolve to existing `core/<module>/` directories.
 
-## 4. Scaffolding
+Failures block merge.
 
-```bash
-pnpm container:new
-# Prompts:
-#   Branch (a-level / sutd):
-#   Subject (physics / general-paper / ...):
-#   Package id (kebab-case, e.g., simple-harmonic-motion):
-#   Title:
-#   Primary interaction type (function-plot-with-draggable / 3D-spatial-manipulation / ...):
-# Produces the full §1 directory tree, populated with §2 templates.
-```
+## 7. Lifecycle
 
-Or use the Claude skill `/new-container` for an agent-driven flow.
+`status` values:
 
-## 5. Lifecycle
+1. `skeleton` — scaffolded, not useful yet.
+2. `content-only` — explanation and concept map exist; sim may still be absent.
+3. `draft` — declared pieces are implemented enough for product iteration.
+4. `reviewed` — reviewer pass green; CI green.
+5. `ready-for-build` — final integration check passed.
+6. `published` — advisor sign-off recorded; Filter P0 count is zero.
 
-A container moves through these states (the `status` field in `concept-package.yaml`):
-
-1. `skeleton` — scaffolded, no real content yet.
-2. `content-only` — concept card + sources + misconceptions filled by B5 (Codex content pack). Sims still stubbed.
-3. `draft` — sims implemented; Anieyrudh Filter pass run; ready for review.
-4. `reviewed` — fresh-session reviewer pass green; CI green.
-5. `ready-for-build` — final integration check passed; ready for advisor sign-off.
-6. `published` — advisor sign-off recorded; live on production catalogue.
-
-The `daily-coverage-report.yml` workflow aggregates these states into `docs/_meta/coverage.md`.
-
-## 6. Remixing
-
-To remix an existing container:
-
-```bash
-pnpm container:remix <source-package-id> <new-package-id>
-```
-
-This:
-1. Copies the source container to a new directory.
-2. Populates `concept-package.yaml`'s `provenance.remixed_from` with the source id and current commit SHA.
-3. Resets `status` to `draft`.
-4. Resets `advisor_signoffs` to `[]`.
-5. Preserves `authors` from source, prepends the remixer.
-
-Attribution to the original author is auto-injected into `README.md` by the validator on every build.
-
-## 7. Cross-references between files
-
-| File | Source-of-truth field | Cross-referenced from |
-|---|---|---|
-| `concept-package.yaml`: `id` | Authority | Directory name; SimulationSpecs' `package_id`; CourseMap |
-| `concept-package.yaml`: `items.sims[].id` | Authority | Sim directory name |
-| `concept-package.yaml`: `items.transfer_problems[].id` | Authority | Transfer file name |
-| `concept-card.md` frontmatter `concept` | Equals `concept-package.yaml.id` | Validator rejects mismatch |
-| `concept-card.md` frontmatter `branch`, `subject` | Equals top-level fields in `concept-package.yaml` | Validator rejects mismatch |
-
-The validator hard-fails any divergence. Single source of truth for every fact: `concept-package.yaml`.
-
-## 8. Why this rigidity
-
-Three things become free when the container shape is locked:
-
-- **Catalogue glob discovery** — `import.meta.glob('**/concept-package.yaml')` produces the catalogue with zero registry maintenance.
-- **AI tutor RAG scope** — the tutor retrieves over a single container's files when answering a student question. Predictable shape means predictable retrieval.
-- **Agent reasoning** — every coding agent reads `concept-package.yaml` first, then knows where to find everything else without searching.
-
-The cost is small: authors learn one shape. The benefit compounds for every subsequent sim, every contributor, every tool.
-
-## 9. Open conventions
-
-- **Image assets** for sims live in `sims/<sim-id>/assets/`. The validator does not check inside `assets/`.
-- **Localisation** (multi-language content) is deferred to v1.1. v0 ships English; the `language` field in `ConceptPackageSpec` defaults to `en`. Future: sibling files like `concept-card.zh.md`.
-- **Telemetry hooks** are wired in `core/sim-runtime`; sims do not emit telemetry directly. Container authors never write telemetry code.
-
-## 10. Reference
+## 8. Reference
 
 - Schema: [`core/content-schema/src/index.ts`](../core/content-schema/src/index.ts)
 - Templates: [`core/docs-templates/`](../core/docs-templates/)
 - Validator: [`scripts/validate-containers.mjs`](../scripts/validate-containers.mjs)
-- Scaffolder: [`core/scaffolder/`](../core/scaffolder/) and skill `/new-container`
-- ADRs that affect this spec: [`docs/adr/`](./adr/)
+- Container docs generator: [`scripts/generate-container-docs.mjs`](../scripts/generate-container-docs.mjs)
+- Generator: [`scripts/generate-knowledge-graph.mjs`](../scripts/generate-knowledge-graph.mjs)

@@ -85,7 +85,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer
 - <item>
 ```
 
-Also update `concept-package.yaml`:
+Also update `container.yaml`:
 ```yaml
 filter_pass:
   date: <YYYY-MM-DD>
@@ -96,12 +96,18 @@ filter_pass:
 
 ### 5. Regenerate README.md and TECHNICAL.md
 
-Re-run the docs generator against the now-final manifest so the descriptive doc and the technical doc reflect the as-shipped state. Preserve hand-edited sections of TECHNICAL.md outside the auto-generated regions; the Filter pass section is authoritative and must not be clobbered.
+Re-run the docs generator against the now-final manifest so the descriptive doc and the technical doc reflect the as-shipped state:
+
+```bash
+pnpm container:docs <container-path>
+```
+
+The generator preserves hand-edited review sections of TECHNICAL.md, including the Filter pass section. The Filter pass section is authoritative and must not be clobbered.
 
 ### 6. Final validator pass
 
 ```
-pnpm container:validate <path>
+pnpm container:validate
 pnpm --filter <pkg> typecheck
 pnpm --filter <pkg> test --run
 ```

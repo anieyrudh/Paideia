@@ -8,7 +8,7 @@
 import { SimRuntime, type PMOETState } from "@paideia/sim-runtime";
 import { PredictionGate } from "@paideia/prediction-gate";
 import { FunctionPlot } from "@paideia/plotting"; // example renderer — replace per spec
-import spec from "./SimulationSpec.yaml";
+import spec from "./simulation.yaml";
 
 export default function <SimComponent>() {
   return (
@@ -31,7 +31,7 @@ export default function <SimComponent>() {
           return <div>{spec.explain.prompt}</div>;
 
         case "transfer":
-          // Transfer problems live in the parent container's transfer/ folder.
+          // Transfer problems live in the parent container's problem-solving/ folder.
           // This stage links out to them. Do NOT inline a transfer problem here.
           return null;
       }

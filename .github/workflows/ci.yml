@@ -83,6 +83,9 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Validate agent docs
+        run: pnpm agent:validate
+
   test:
     name: Test
     runs-on: ubuntu-latest
@@ -116,6 +119,9 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: pnpm -F @paideia/sim-harness exec playwright install --with-deps chromium
 
       - name: Test
         run: pnpm test
@@ -156,3 +162,6 @@ jobs:
 
       - name: Validate containers
         run: pnpm container:validate
+
+      - name: Validate roadmap
+        run: pnpm roadmap:validate

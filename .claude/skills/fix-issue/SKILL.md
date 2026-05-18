@@ -26,7 +26,10 @@ Test-first issue resolution. The discipline: a fix that has no failing test befo
    - Reproduction steps if provided.
    - Labels — note `bug`, `regression`, `p0`, `container-spec`, `core` etc. for scope.
 
-2. **Locate the surface area.** Use `Glob` + `Grep` to find the files referenced by the issue. If the issue cites a container or sim, read its `AGENTS.md` and `concept-package.yaml` first.
+2. **Locate the surface area.** Use `rg --files` and `rg` to find the files
+   referenced by the issue. If the issue cites a container or sim, read
+   `docs/container-spec.md`, the nearest `AGENTS.md`, and the target
+   `container.yaml` first.
 
 3. **Write a failing test that reproduces the bug.** Hand off to the `test-writer` agent if substantial; otherwise write inline. The test MUST fail BEFORE any source change. Run:
    ```

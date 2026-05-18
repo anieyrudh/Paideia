@@ -1,0 +1,17 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./"
+  },
+  "include": [
+    "src/**/*",
+    "tests/**/*",
+    "playwright.config.ts",
+    "vite.config.ts"
+  ],
+  "references": [
+    { "path": "../../packages/physics-sims" },
+    { "path": "../../../core/prediction-gate" }
+  ]
+}

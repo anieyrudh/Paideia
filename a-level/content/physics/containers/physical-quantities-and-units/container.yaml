@@ -1,0 +1,145 @@
+schema_version: "1.0.0"
+id: physical-quantities-and-units
+aliases:
+  - SI units
+  - base quantities
+  - derived quantities
+  - measurement uncertainty
+branch: a-level
+subject: physics
+level: "H2"
+module: "Foundations of Physics"
+title: "Physical Quantities and Units"
+one_line_summary: "Use a measurement-and-uncertainty lab to keep physical quantities, units, dimensions, and valid equations inseparable."
+syllabus_ref: "9478 / Section I / 1(a)-1(g)"
+prerequisites: []
+aid_types:
+  - simulation
+  - reasoning-lab
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A cart travels 2.00 m in 0.80 s. Before opening the lab notebook, which speed record is complete enough for physics?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "2.5"
+      - "2.5 m"
+      - "2.50 m s^-1 ± 0.09 m s^-1"
+      - "2.50 m s^-2"
+    correct_index: 2
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods:
+    - load
+    - saveState
+    - score
+    - resume
+    - syncTheme
+    - destroy
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: unit-consistency-check
+    prompt: |
+      A student writes a measured acceleration as 9.8 m s^-1. Decide whether the unit is dimensionally consistent with acceleration, correct it if needed, and explain which base units are involved.
+    surface_form: "lab measurement note"
+    same_concept_check: "The context changes from definitions to an experimental record, but the task is still to separate quantity, value, unit, and dimensional form before checking consistency."
+    rubric_path: problem-solving/unit-consistency-check.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-17"
+      author: "Codex"
+      summary: "Added the prerequisite content-only container for the A-Level physics mini graph."
+    - date: "2026-05-17"
+      author: "Codex"
+      summary: "Upgraded the container into a product-quality measurement and uncertainty lab with prediction-gated unit reasoning."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-17"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-17"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Unit as decoration"
+    description: |
+      Learners treat the unit as text appended after calculation rather than as part of the physical quantity that constrains valid operations.
+    evidence_source: "Singapore-Cambridge H2 Physics 9478 syllabus, Section I; OpenStax University Physics Volume 1, Section 1.3."
+    surface_in_predict: true
+  - name: "Quantity equals number"
+    description: |
+      Learners may record only the numerical value and lose the measured quantity's unit, dimension, or uncertainty context.
+    evidence_source: "OpenStax University Physics Volume 1, Section 1.3 Units and Standards."
+    surface_in_predict: true
+  - name: "Uncertainty ignored"
+    description: |
+      Learners may report a calculated value as exact even though the measured inputs have finite precision and uncertainty.
+    evidence_source: "Singapore-Cambridge H2 Physics 9478 syllabus, Section I; OpenStax University Physics Volume 1, Section 1.4 Unit Conversion and Dimensional Analysis."
+    surface_in_predict: true
+  - name: "Dimensional consistency proves truth"
+    description: |
+      Learners may treat a passed unit check as proof that an equation is physically correct, rather than as a necessary but insufficient filter.
+    evidence_source: "OpenStax University Physics Volume 1, Section 1.4 Unit Conversion and Dimensional Analysis."
+    surface_in_predict: false
+sources:
+  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
+    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf"
+    publication_year: 2025
+    license: "Copyright MOE & Cambridge University Press & Assessment"
+    seab_alignment: matches
+  - citation: "Moebs, W., Ling, S. J., and Sanny, J. University Physics Volume 1, Section 1.3 Units and Standards. OpenStax, 2016."
+    url: "https://openstax.org/books/university-physics-volume-1/pages/1-3-units-and-standards"
+    publication_year: 2016
+    license: "CC BY-NC-SA"
+    seab_alignment: matches
+  - citation: "Moebs, W., Ling, S. J., and Sanny, J. University Physics Volume 1, Section 1.4 Unit Conversion and Dimensional Analysis. OpenStax, 2016."
+    url: "https://openstax.org/books/university-physics-volume-1/pages/1-4-unit-conversion-and-dimensional-analysis"
+    publication_year: 2016
+    license: "CC BY-NC-SA"
+    seab_alignment: matches
+language: en

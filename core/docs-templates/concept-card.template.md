@@ -1,35 +1,44 @@
 ---
 subject: <SUBJECT>
 concept: <PACKAGE_ID>
-branch: <a-level | sutd>
+branch: <BRANCH>
 level: "<LEVEL>"
 syllabus_ref: "<SEAB CODE>"
-prerequisites:
-  - <prereq-package-id>
+prerequisites: []
 aid_types:
-  - concept-card
   - simulation
-  - misconception-audit
 status: draft
 ---
 
-# <Concept Title>
+# <TITLE>
 
-## What this teaches
+## First-principles explanation
 
 (One paragraph. Plain language. No jargon. A teacher should know within
 30 seconds whether to assign this. Avoid syllabus-speak; use a sentence that
 a student could say back to a peer.)
 
+## Key definitions
+
+- **<Term>**: <definition>
+
+## Why this matters
+
+(Explain what breaks if the learner does not understand this concept.)
+
+## Canonical examples
+
+- <Example 1>
+- <Example 2>
+
+## Common misconceptions
+
+- <Misconception 1>
+- <Misconception 2>
+
 ## What the student does
 
-- **Predict:** What the student must commit before reveal — phrased as the
-  exact prompt they will see.
-- **Manipulate:** What they can change in the sim(s); what happens when they do.
-- **Observe:** What's drawn in response to their manipulation.
-- **Explain:** What the sim asks them to articulate after reveal.
-- **Transfer:** What problem they solve in a different surface form to prove
-  the concept transferred.
+(Describe the actual learner experience. PMOE-T labels are optional.)
 
 ## Pedagogical choices and why
 

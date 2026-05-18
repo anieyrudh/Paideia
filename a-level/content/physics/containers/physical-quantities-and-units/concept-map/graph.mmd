@@ -1,0 +1,15 @@
+flowchart LR
+  current["Physical quantities and units"] --> lab["Measurement and uncertainty lab"]
+  current --> scalars["Scalars and vectors"]
+  current --> resolving["Resolving vectors"]
+  lab --> classify["base/derived and scalar/vector checks"]
+  lab --> dimensions["dimensional consistency"]
+  lab --> uncertainty["uncertainty propagation"]
+  number["Quantity equals number"] --> decoration["Unit as decoration"]
+  number --> ignored["Uncertainty ignored"]
+  decoration --> mismatch["Dimension mismatch"]
+  ignored --> mismatch
+  current -. addresses .-> number
+  current -. addresses .-> decoration
+  current -. addresses .-> ignored
+  current -. addresses .-> mismatch

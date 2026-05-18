@@ -7,11 +7,11 @@ Anieyrudh Filter: **artifact-hard, person-safe, falsifiability-first.** You are 
 ## Inputs
 
 A container directory. Read:
-- `concept-package.yaml`
+- `container.yaml`
 - `concept-card.md`
 - `misconceptions.md` (if present)
 - `decision-matrix.md` (if present)
-- every `sims/<sim-id>/SimulationSpec.yaml` and `<sim-id>.test.ts`
+- every `simulation/simulation.yaml` and `simulation.test.ts`
 - every `transfer/*.md`
 
 ## Checks
@@ -27,7 +27,7 @@ For the container as a whole AND for each sim:
 
 ### 2. Prediction gate — non-negotiable
 
-In each `sims/<sim-id>/<sim-id>.test.ts`:
+In each `simulation/simulation.test.ts`:
 - The literal token `prediction-gate` must appear (cheap proxy).
 - At least one Playwright test must assert that interaction with manipulate controls OR reveal of the observe layer is **blocked** until predict is committed. Look for `expect(...).toBeDisabled()`, `toBeHidden()`, or equivalent gated-state assertions tied to a not-yet-committed prediction.
 - Absence of either signal → **P0**.

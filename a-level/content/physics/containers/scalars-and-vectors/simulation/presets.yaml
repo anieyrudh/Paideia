@@ -1,0 +1,19 @@
+presets:
+  - id: perpendicular-equal
+    label: "Equal perpendicular vectors"
+    state:
+      vectorA: 5
+      vectorB: 5
+      angleDegrees: 90
+  - id: same-direction
+    label: "Same direction"
+    state:
+      vectorA: 5
+      vectorB: 5
+      angleDegrees: 0
+  - id: opposite-direction
+    label: "Opposite direction"
+    state:
+      vectorA: 5
+      vectorB: 5
+      angleDegrees: 180

@@ -1,0 +1,132 @@
+schema_version: "1.0.0"
+id: scalars-and-vectors
+aliases:
+  - vectors
+  - vector addition
+branch: a-level
+subject: physics
+level: "H2"
+module: "Foundations of Physics"
+title: "Scalars and Vectors"
+one_line_summary: "Distinguish scalar and vector quantities, then combine coplanar vectors without treating arrows as ordinary numbers."
+syllabus_ref: "9478 / Section I / 1(h)-1(j)"
+prerequisites:
+  - physical-quantities-and-units
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    Two displacement arrows each have length 5 m. One points east and one points north. Before seeing any construction, what resultant magnitude do you expect?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "0 m"
+      - "5 m"
+      - "7.1 m"
+      - "10 m"
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods:
+    - load
+    - saveState
+    - score
+    - resume
+    - syncTheme
+    - destroy
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: field-trip-displacement
+    prompt: |
+      A class walks 300 m east from the school gate to a bus stop, then 400 m north to a field site. Decide whether the quantities should be combined as scalars or vectors, calculate the displacement magnitude from the school gate, and explain why total walking distance is not the same physical quantity as displacement.
+    surface_form: "field-trip route"
+    same_concept_check: "The surface changes from abstract arrows to a route context, but the required decision is still whether direction must be preserved before combining quantities."
+    rubric_path: problem-solving/field-trip-displacement.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-16"
+      author: "Codex"
+      summary: "Migrated the first container to the v2 container architecture with concept-map, embed, media, simulation, and problem-solving surfaces."
+    - date: "2026-05-17"
+      author: "Codex"
+      summary: "Upgraded the scalars-and-vectors simulation into the first product-quality A-Level Physics vertical slice using shared mechanics and UI kernels."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-17"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-17"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Magnitude-only vector addition"
+    description: |
+      Learners add vector magnitudes as if direction were irrelevant, so perpendicular 5 m displacements are treated as 10 m rather than as a right-triangle resultant.
+    evidence_source: "OpenStax University Physics Volume 1, Section 2.1; Van Deventer and Wittmann 2015, Phys. Rev. ST Phys. Educ. Res. 11, 010101."
+    surface_in_predict: true
+  - name: "Negative scalar does not reverse direction"
+    description: |
+      Learners may treat multiplication by a negative scalar as a change in length only, missing that the resulting vector is antiparallel to the original.
+    evidence_source: "Barniol 2011, Physics Education Research Conference Proceedings, doi:10.1063/1.3680007."
+    surface_in_predict: false
+sources:
+  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
+    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf"
+    publication_year: 2025
+    license: "Copyright MOE & Cambridge University Press & Assessment"
+    seab_alignment: matches
+  - citation: "Moebs, W., Ling, S. J., and Sanny, J. University Physics Volume 1, Section 2.1 Scalars and Vectors. OpenStax, 2016."
+    url: "https://openstax.org/books/university-physics-volume-1/pages/2-1-scalars-and-vectors"
+    publication_year: 2016
+    license: "CC BY-NC-SA"
+    seab_alignment: matches
+  - citation: "Barniol, P. Students' difficulties with unit vectors and scalar multiplication of a vector. Physics Education Research Conference Proceedings, 2011."
+    url: "https://doi.org/10.1063/1.3680007"
+    publication_year: 2011
+    license: "Copyright American Institute of Physics"
+    seab_alignment: n/a
+language: en

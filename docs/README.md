@@ -3,22 +3,24 @@
 ## What Paideia Is
 
 Paideia is open educational infrastructure for concept-mastery learning across
-institutions. It ships curriculum as container-shaped ConceptPackages: each
-package owns one concept, its prediction gate, sims, concept card, transfer
-work, assessments, citations, and technical audit trail.
+institutions. It ships curriculum as container-shaped concept products: each
+container owns one concept, the content and components it declares, citations,
+and a technical audit trail.
 
 ## The Doctrine
 
-1. **Prediction gate:** every observation-shaped sim must require a committed
-   prediction before reveal.
-2. **PMOE-T:** containers run Predict -> Manipulate -> Observe -> Explain ->
-   Transfer at the container level.
+1. **Declared prediction gate:** when a container declares prediction, any
+   observation-shaped reveal must require a committed prediction first.
+2. **Flexible learning flow:** Predict -> Manipulate -> Observe -> Explain ->
+   Transfer is a useful pattern, not a required UI layout. Containers may use
+   any learner experience that preserves the declared interactions.
 3. **Own the kernels:** reusable math, rendering, state, and pedagogy logic
    belongs in `core/` packages with explicit contracts.
 4. **Local-first AI:** learner state and draft authoring stay local unless a
    deliberate integration says otherwise.
-5. **AI as critic:** the Anieyrudh Filter blocks weak work; it does not author
-   student-facing truth on its own.
+5. **AI as critic:** the Anieyrudh Filter is a targeted review gate for
+   published or high-risk educational work; it does not author student-facing
+   truth on its own.
 6. **Build-first:** demos must be runnable, tested, and inspectable before they
    are treated as design decisions.
 7. **Falsifiability:** claims in concept cards, sources, and assessments need

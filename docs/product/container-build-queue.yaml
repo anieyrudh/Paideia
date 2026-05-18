@@ -1,0 +1,1096 @@
+schema_version: "1.0.0"
+source: docs/product/container-roadmap.md
+description: "Machine-readable build queue seed for future agent assignment by concept cluster, curriculum mapping, priority, kernel dependencies, and status."
+
+workstreams:
+  - shared-math
+  - shared-probability-stats
+  - shared-physics-core
+  - shared-algorithms-ai
+  - sutd-freshmore
+  - sutd-istd
+  - sutd-epd
+  - sutd-esd
+  - alevel-math
+  - alevel-physics
+  - alevel-chemistry
+  - alevel-biology
+  - ib-core-tok-ee-cas
+  - ib-sciences
+  - ib-math-aa
+  - ib-math-ai
+  - ib-economics-history-psychology
+  - ib-language-arts
+
+roadmap_coverage:
+  p0_universal_theory_infrastructure:
+    - shared.probability.bayes-updating
+    - shared.probability.central-limit-theorem
+    - shared.inference.hypothesis-test-decision
+    - shared.linear-algebra.eigenvector-transformations
+    - shared.dynamical-systems.ode-phase-portrait
+    - shared.optimization.gradient-descent-landscape
+    - shared.algorithms.graph-algorithm-explorer
+    - shared.physics.free-body-diagram-mechanics
+    - shared.circuits.circuit-phasor-reasoning
+    - shared.control.pid-bode-builder
+    - shared.optimization.linear-programming-feasible-region
+    - ib.tok.knowledge-framework-explorer
+  alevel_initial_sequence:
+    - alevel.physics.physical-quantities-and-units
+    - alevel.physics.scalars-and-vectors
+    - alevel.physics.resolving-vectors
+    - alevel.physics.kinematics
+    - alevel.physics.forces-and-equilibrium
+    - alevel.physics.work-energy-power
+    - alevel.physics.momentum
+    - alevel.physics.waves
+    - alevel.physics.circuits
+    - alevel.math.probability-statistics
+
+sutd_cluster_mappings:
+  - id: sutd.freshmore.probability-statistics
+    title: "Freshmore probability and statistics"
+    workstreams:
+      - sutd-freshmore
+      - shared-probability-stats
+    entry_ids:
+      - shared.probability.bayes-updating
+      - shared.probability.central-limit-theorem
+      - shared.inference.hypothesis-test-decision
+  - id: sutd.freshmore.linear-algebra-differential-equations
+    title: "Freshmore linear algebra and differential equations"
+    workstreams:
+      - sutd-freshmore
+      - shared-math
+    entry_ids:
+      - shared.linear-algebra.eigenvector-transformations
+      - shared.dynamical-systems.ode-phase-portrait
+  - id: sutd.freshmore.mechanics-circuits
+    title: "Freshmore mechanics, circuits, and signals"
+    workstreams:
+      - sutd-freshmore
+      - shared-physics-core
+    entry_ids:
+      - shared.physics.free-body-diagram-mechanics
+      - shared.circuits.circuit-phasor-reasoning
+  - id: sutd.istd.algorithms-ai
+    title: "ISTD/CSD algorithms and AI foundations"
+    workstreams:
+      - sutd-istd
+      - shared-algorithms-ai
+    entry_ids:
+      - shared.algorithms.graph-algorithm-explorer
+      - shared.optimization.gradient-descent-landscape
+  - id: sutd.epd.control-systems
+    title: "EPD control and engineering systems"
+    workstreams:
+      - sutd-epd
+      - shared-physics-core
+    entry_ids:
+      - shared.control.pid-bode-builder
+      - shared.dynamical-systems.ode-phase-portrait
+      - shared.circuits.circuit-phasor-reasoning
+  - id: sutd.esd.optimization-systems
+    title: "ESD optimisation and stochastic systems"
+    workstreams:
+      - sutd-esd
+      - shared-math
+      - shared-probability-stats
+    entry_ids:
+      - shared.optimization.linear-programming-feasible-region
+      - shared.optimization.gradient-descent-landscape
+      - shared.inference.hypothesis-test-decision
+
+entries:
+  - id: shared.probability.bayes-updating
+    title: "Bayes Theorem Visualiser"
+    priority: P0
+    status: planned
+    cluster: Bayesian reasoning
+    discipline: math
+    reuse_status: shared-core
+    curricula:
+      - shared
+      - sutd
+      - alevel
+      - ib
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - Freshmore probability and statistics
+          - ESD stochastic modelling
+      - curriculum: alevel
+        subjects:
+          - Mathematics
+          - Computing
+      - curriculum: ib
+        courses:
+          - Mathematics AI
+          - Psychology research methods
+    simulation_type: probability-tree-updater
+    problem_solving_elements:
+      - prior-likelihood-posterior table
+      - base-rate check
+      - evidence update trace
+    concept_map_needs:
+      prerequisites:
+        - conditional probability
+        - tree diagrams
+      downstream:
+        - Bayesian inference
+        - machine learning classifiers
+      misconceptions:
+        - base-rate neglect
+        - confusing P(A|B) with P(B|A)
+    kernel_dependencies:
+      - core/probability-stats
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sim-bayes
+    estimated_effort: M
+    assignment:
+      workstream: shared-probability-stats
+      concept_cluster: Bayesian reasoning
+      target_container_kind: shared-core
+
+  - id: shared.probability.central-limit-theorem
+    title: "Central Limit Theorem Sampler"
+    priority: P0
+    status: planned
+    cluster: Probability
+    discipline: math
+    reuse_status: shared-core
+    curricula:
+      - shared
+      - sutd
+      - alevel
+      - ib
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - Freshmore probability and statistics
+          - ESD data and uncertainty
+      - curriculum: alevel
+        subjects:
+          - Mathematics
+      - curriculum: ib
+        courses:
+          - Mathematics AA
+          - Mathematics AI
+    simulation_type: sampler-histogram
+    problem_solving_elements:
+      - sampling distribution setup
+      - mean and standard-error calculation
+      - normal-approximation decision
+    concept_map_needs:
+      prerequisites:
+        - random variables
+        - mean and variance
+      downstream:
+        - confidence intervals
+        - hypothesis testing
+      misconceptions:
+        - sample distribution equals population distribution
+        - larger samples change the population
+    kernel_dependencies:
+      - core/probability-stats
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sim-clt-sampler
+    estimated_effort: M
+    assignment:
+      workstream: shared-probability-stats
+      concept_cluster: Probability
+      target_container_kind: shared-core
+
+  - id: shared.inference.hypothesis-test-decision
+    title: "Hypothesis Test Decision Lab"
+    priority: P0
+    status: planned
+    cluster: Inference
+    discipline: math
+    reuse_status: shared-core
+    curricula:
+      - shared
+      - sutd
+      - alevel
+      - ib
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - Freshmore probability and statistics
+          - ESD data analysis
+      - curriculum: alevel
+        subjects:
+          - Mathematics
+      - curriculum: ib
+        courses:
+          - Mathematics AA
+          - Mathematics AI
+    simulation_type: decision-region-visualizer
+    problem_solving_elements:
+      - null-alternative declaration
+      - test-statistic calculation
+      - p-value and rejection-region comparison
+    concept_map_needs:
+      prerequisites:
+        - probability distributions
+        - central limit theorem
+      downstream:
+        - confidence intervals
+        - experimental design
+      misconceptions:
+        - p-value as probability the null is true
+        - statistical significance as practical importance
+    kernel_dependencies:
+      - core/probability-stats
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sim-hypothesis-test
+    estimated_effort: M
+    assignment:
+      workstream: shared-probability-stats
+      concept_cluster: Inference
+      target_container_kind: shared-core
+
+  - id: shared.linear-algebra.eigenvector-transformations
+    title: "Eigenvector Transformation Lab"
+    priority: P0
+    status: planned
+    cluster: Linear algebra
+    discipline: math
+    reuse_status: shared-core
+    curricula:
+      - shared
+      - sutd
+      - ib
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - Freshmore linear algebra
+          - Control
+          - Data science
+      - curriculum: ib
+        courses:
+          - Mathematics AA HL enrichment
+          - Mathematics AI HL enrichment
+    simulation_type: draggable-basis-transformation
+    problem_solving_elements:
+      - matrix-vector multiplication trace
+      - invariant-direction test
+      - eigenvalue scale-factor explanation
+    concept_map_needs:
+      prerequisites:
+        - vectors
+        - matrices
+        - linear transformations
+      downstream:
+        - diagonalisation
+        - PCA
+        - modal analysis
+      misconceptions:
+        - every vector is an eigenvector
+        - eigenvalue is a rotation angle
+    kernel_dependencies:
+      - core/linear-algebra
+      - core/plotting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sim-eigenlab
+    estimated_effort: M
+    assignment:
+      workstream: shared-math
+      concept_cluster: Linear algebra
+      target_container_kind: shared-core
+
+  - id: shared.dynamical-systems.ode-phase-portrait
+    title: "ODE Phase Portrait Lab"
+    priority: P0
+    status: planned
+    cluster: Dynamical systems
+    discipline: math
+    reuse_status: shared-core
+    curricula:
+      - shared
+      - sutd
+      - ib
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - Freshmore differential equations
+          - EPD systems
+          - Control
+      - curriculum: ib
+        courses:
+          - Mathematics AA HL enrichment
+    simulation_type: vector-field-phase-plane
+    problem_solving_elements:
+      - equilibrium classification
+      - nullcline sketch
+      - trajectory interpretation
+    concept_map_needs:
+      prerequisites:
+        - derivatives
+        - vector fields
+      downstream:
+        - stability
+        - feedback control
+        - population models
+      misconceptions:
+        - slope field arrows as particle velocity only
+        - equilibrium means no forces exist
+    kernel_dependencies:
+      - core/dynamical-systems
+      - core/plotting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sim-ode-phase
+    estimated_effort: M
+    assignment:
+      workstream: shared-math
+      concept_cluster: Dynamical systems
+      target_container_kind: shared-core
+
+  - id: shared.optimization.gradient-descent-landscape
+    title: "Gradient Descent Landscape"
+    priority: P0
+    status: planned
+    cluster: Optimisation / ML
+    discipline: cs
+    reuse_status: shared-core
+    curricula:
+      - shared
+      - sutd
+      - alevel
+      - ib
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - AI/ML
+          - ESD optimisation
+      - curriculum: alevel
+        subjects:
+          - Computing
+      - curriculum: ib
+        courses:
+          - Computer Science
+          - Mathematics AI
+    simulation_type: loss-surface-stepper
+    problem_solving_elements:
+      - gradient direction check
+      - learning-rate stability comparison
+      - convergence trace
+    concept_map_needs:
+      prerequisites:
+        - derivatives
+        - functions
+      downstream:
+        - neural-network training
+        - convex optimisation
+      misconceptions:
+        - larger learning rate is always faster
+        - local slope reveals global minimum
+    kernel_dependencies:
+      - core/optimization
+      - core/plotting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sim-gradient-descent
+    estimated_effort: M
+    assignment:
+      workstream: shared-algorithms-ai
+      concept_cluster: Optimisation / ML
+      target_container_kind: shared-core
+
+  - id: shared.algorithms.graph-algorithm-explorer
+    title: "Graph Algorithm Explorer"
+    priority: P0
+    status: planned
+    cluster: Algorithms / networks
+    discipline: cs
+    reuse_status: shared-core
+    curricula:
+      - shared
+      - sutd
+      - alevel
+      - ib
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - ISTD algorithms
+          - ESD networks
+      - curriculum: alevel
+        subjects:
+          - Computing
+      - curriculum: ib
+        courses:
+          - Computer Science
+          - Mathematics AI
+    simulation_type: algorithm-state-visualisation
+    problem_solving_elements:
+      - invariant tracker
+      - frontier and visited-set trace
+      - complexity comparison
+    concept_map_needs:
+      prerequisites:
+        - graph representation
+        - recursion or iteration
+      downstream:
+        - shortest paths
+        - spanning trees
+        - network flow
+      misconceptions:
+        - visual distance equals edge weight
+        - visited order is unique for every graph
+    kernel_dependencies:
+      - core/graph-algorithms
+      - core/graph-layout
+      - core/algorithm-trace
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sim-graph-algorithms
+    estimated_effort: H
+    assignment:
+      workstream: shared-algorithms-ai
+      concept_cluster: Algorithms / networks
+      target_container_kind: shared-core
+
+  - id: shared.physics.free-body-diagram-mechanics
+    title: "Free-Body Diagram / Mechanics Lab"
+    priority: P0
+    status: planned
+    cluster: Physics / engineering
+    discipline: physics
+    reuse_status: shared-core
+    curricula:
+      - shared
+      - sutd
+      - alevel
+      - ib
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - Freshmore physics
+          - EPD mechanics
+      - curriculum: alevel
+        subjects:
+          - Physics
+      - curriculum: ib
+        courses:
+          - Physics
+    simulation_type: force-diagram-builder
+    problem_solving_elements:
+      - system boundary selection
+      - force inventory
+      - equilibrium or acceleration equation setup
+    concept_map_needs:
+      prerequisites:
+        - vectors
+        - resolving vectors
+      downstream:
+        - Newton's laws
+        - energy and momentum
+      misconceptions:
+        - motion requires net force
+        - action-reaction pairs act on the same body
+    kernel_dependencies:
+      - core/mechanics
+      - core/linear-algebra
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sim-free-body
+    estimated_effort: H
+    assignment:
+      workstream: shared-physics-core
+      concept_cluster: Physics / engineering
+      target_container_kind: shared-core
+
+  - id: shared.circuits.circuit-phasor-reasoning
+    title: "Circuit & Phasor Lab"
+    priority: P0
+    status: planned
+    cluster: Signals / circuits
+    discipline: physics
+    reuse_status: shared-core
+    curricula:
+      - shared
+      - sutd
+      - alevel
+      - ib
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - EPD circuits
+          - Signals and systems
+      - curriculum: alevel
+        subjects:
+          - Physics
+      - curriculum: ib
+        courses:
+          - Physics
+    simulation_type: circuit-and-phasor-builder
+    problem_solving_elements:
+      - circuit law selection
+      - impedance vector construction
+      - phase relationship explanation
+    concept_map_needs:
+      prerequisites:
+        - voltage and current
+        - sinusoidal functions
+      downstream:
+        - filters
+        - resonance
+        - signal processing
+      misconceptions:
+        - current is used up around a circuit
+        - phasors are physical rotating wires
+    kernel_dependencies:
+      - core/circuits
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sim-circuit-phasor
+    estimated_effort: H
+    assignment:
+      workstream: shared-physics-core
+      concept_cluster: Signals / circuits
+      target_container_kind: shared-core
+
+  - id: shared.control.pid-bode-builder
+    title: "PID Tuner & Bode Builder"
+    priority: P0
+    status: planned
+    cluster: Control theory
+    discipline: systems
+    reuse_status: shared-core
+    curricula:
+      - shared
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - EPD control
+          - Engineering systems
+    simulation_type: closed-loop-response-and-bode-builder
+    problem_solving_elements:
+      - controller term effect comparison
+      - stability margin readout
+      - time-response versus frequency-response link
+    concept_map_needs:
+      prerequisites:
+        - ODEs
+        - transfer functions
+      downstream:
+        - state-space control
+        - system identification
+      misconceptions:
+        - high gain always improves control
+        - Bode magnitude alone determines stability
+    kernel_dependencies:
+      - core/control-systems
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sim-pid-bode
+    estimated_effort: H
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: Control theory
+      target_container_kind: shared-core
+
+  - id: shared.optimization.linear-programming-feasible-region
+    title: "LP Feasible Region Visualiser"
+    priority: P0
+    status: planned
+    cluster: Optimisation
+    discipline: math
+    reuse_status: shared-core
+    curricula:
+      - shared
+      - sutd
+      - ib
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - ESD optimisation
+          - Design under constraints
+      - curriculum: ib
+        courses:
+          - Mathematics AI
+    simulation_type: constraint-region-dragger
+    problem_solving_elements:
+      - inequality translation
+      - feasible-region shading
+      - objective-line sweep
+    concept_map_needs:
+      prerequisites:
+        - linear equations
+        - inequalities
+      downstream:
+        - simplex method
+        - operations research
+      misconceptions:
+        - optimum must sit at the visual centre
+        - infeasible means no equation exists
+    kernel_dependencies:
+      - core/optimization
+      - core/plotting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sim-lp-feasible-region
+    estimated_effort: M
+    assignment:
+      workstream: sutd-esd
+      concept_cluster: Optimisation
+      target_container_kind: shared-core
+
+  - id: ib.tok.knowledge-framework-explorer
+    title: "TOK Knowledge Framework Explorer"
+    priority: P0
+    status: planned
+    cluster: IB core
+    discipline: psych
+    reuse_status: subject-specific
+    curricula:
+      - ib
+    curriculum_mappings:
+      - curriculum: ib
+        courses:
+          - Theory of Knowledge
+    simulation_type: argument-map-and-comparative-matrix
+    problem_solving_elements:
+      - claim-counterclaim map
+      - scope-methods-tools comparison
+      - real-life situation transfer
+    concept_map_needs:
+      prerequisites:
+        - claim and evidence
+        - ways of knowing vocabulary
+      downstream:
+        - TOK exhibition
+        - TOK essay
+      misconceptions:
+        - all knowledge questions are opinion prompts
+        - personal knowledge and shared knowledge are isolated
+    kernel_dependencies:
+      - core/annotation
+      - core/mind-map
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: ib-core-tok-framework
+    estimated_effort: M
+    assignment:
+      workstream: ib-core-tok-ee-cas
+      concept_cluster: IB core
+      target_container_kind: subject-specific
+
+  - id: alevel.physics.physical-quantities-and-units
+    title: "Physical quantities and units"
+    priority: P0
+    status: reviewed
+    cluster: A-Level physics foundations
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+        syllabus_refs:
+          - "9478 / Section I / 1(a)-1(g)"
+    simulation_type: decision-matrix
+    problem_solving_elements:
+      - unit and dimension check
+      - uncertainty propagation
+      - significant-figure decision
+    concept_map_needs:
+      prerequisites: []
+      downstream:
+        - scalars and vectors
+        - kinematics
+      misconceptions:
+        - unit as decoration
+        - quantity equals number
+    kernel_dependencies:
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: alevel-sim-measurement-uncertainty
+    estimated_effort: S
+    repo:
+      container_path: a-level/content/physics/containers/physical-quantities-and-units
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level physics foundations
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.scalars-and-vectors
+    title: "Scalars and vectors"
+    priority: P0
+    status: reviewed
+    cluster: A-Level physics foundations
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+        syllabus_refs:
+          - "9478 / Section I / 1(h)-1(j)"
+    simulation_type: diagram-builder
+    problem_solving_elements:
+      - scalar-vector classification
+      - resultant construction
+      - direction-sensitive explanation
+    concept_map_needs:
+      prerequisites:
+        - physical quantities and units
+      downstream:
+        - resolving vectors
+        - forces and equilibrium
+      misconceptions:
+        - magnitude-only vector addition
+        - negative scalar does not reverse direction
+    kernel_dependencies:
+      - core/linear-algebra
+      - core/prediction-gate
+      - core/shared
+      - core/ui-sim
+    repo_package_name: alevel-sim-resultant-magnitude
+    estimated_effort: S
+    repo:
+      container_path: a-level/content/physics/containers/scalars-and-vectors
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level physics foundations
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.resolving-vectors
+    title: "Resolving vectors"
+    priority: P0
+    status: reviewed
+    cluster: A-Level physics foundations
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+        syllabus_refs:
+          - "9478 / Section I / 1(j)"
+    simulation_type: diagram-builder
+    problem_solving_elements:
+      - angle-reference selection
+      - sine-cosine component choice
+      - vector recomposition check
+    concept_map_needs:
+      prerequisites:
+        - physical quantities and units
+        - scalars and vectors
+      downstream:
+        - forces and equilibrium
+        - projectile motion
+      misconceptions:
+        - sine-cosine swap
+        - components as extra forces
+    kernel_dependencies:
+      - core/linear-algebra
+      - core/prediction-gate
+      - core/shared
+      - core/ui-sim
+    repo_package_name: alevel-sim-component-resolution
+    estimated_effort: S
+    repo:
+      container_path: a-level/content/physics/containers/resolving-vectors
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level physics foundations
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.kinematics
+    title: "Kinematics"
+    priority: P0
+    status: planned
+    cluster: A-Level mechanics
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+    simulation_type: motion-graph-linker
+    problem_solving_elements:
+      - quantity identification
+      - graph-gradient-area reasoning
+      - equation-of-motion selection
+    concept_map_needs:
+      prerequisites:
+        - physical quantities and units
+        - resolving vectors
+      downstream:
+        - forces and equilibrium
+        - momentum
+      misconceptions:
+        - position-time graph shape equals path shape
+        - velocity and acceleration must share direction
+    kernel_dependencies:
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: alevel-sim-kinematics
+    estimated_effort: M
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level mechanics
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.forces-and-equilibrium
+    title: "Forces and equilibrium"
+    priority: P0
+    status: planned
+    cluster: A-Level mechanics
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+    simulation_type: free-body-diagram-builder
+    problem_solving_elements:
+      - force inventory
+      - component resolution
+      - net-force equilibrium check
+    concept_map_needs:
+      prerequisites:
+        - resolving vectors
+        - kinematics
+      downstream:
+        - work energy power
+        - momentum
+      misconceptions:
+        - equilibrium means no forces act
+        - heavier objects always have larger net force
+    kernel_dependencies:
+      - core/mechanics
+      - core/linear-algebra
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: alevel-sim-forces-equilibrium
+    estimated_effort: M
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level mechanics
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.work-energy-power
+    title: "Work, energy, power"
+    priority: P0
+    status: planned
+    cluster: A-Level mechanics
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+    simulation_type: energy-bar-and-path-lab
+    problem_solving_elements:
+      - work sign decision
+      - energy-store transfer
+      - power-rate comparison
+    concept_map_needs:
+      prerequisites:
+        - forces and equilibrium
+        - kinematics
+      downstream:
+        - momentum
+        - oscillations
+      misconceptions:
+        - energy is lost rather than transferred
+        - work equals force regardless of displacement direction
+    kernel_dependencies:
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: alevel-sim-work-energy-power
+    estimated_effort: M
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level mechanics
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.momentum
+    title: "Momentum"
+    priority: P0
+    status: planned
+    cluster: A-Level mechanics
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+    simulation_type: collision-and-impulse-lab
+    problem_solving_elements:
+      - system boundary selection
+      - conservation condition check
+      - impulse-area interpretation
+    concept_map_needs:
+      prerequisites:
+        - vectors
+        - kinematics
+        - forces and equilibrium
+      downstream:
+        - circular motion
+        - oscillations
+      misconceptions:
+        - momentum is conserved for one object alone
+        - impulse is always the same as force
+    kernel_dependencies:
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: alevel-sim-momentum
+    estimated_effort: M
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level mechanics
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.waves
+    title: "Waves"
+    priority: P0
+    status: planned
+    cluster: A-Level waves
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+    simulation_type: wave-superposition-lab
+    problem_solving_elements:
+      - amplitude-wavelength-period readout
+      - phase comparison
+      - interference condition check
+    concept_map_needs:
+      prerequisites:
+        - kinematics
+        - oscillations
+      downstream:
+        - stationary waves
+        - diffraction
+      misconceptions:
+        - particles travel with the wave profile
+        - higher frequency means larger amplitude
+    kernel_dependencies:
+      - core/function-eval
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: alevel-sim-waves
+    estimated_effort: H
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level waves
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.circuits
+    title: "Circuits"
+    priority: P0
+    status: planned
+    cluster: A-Level electricity
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+    simulation_type: circuit-builder
+    problem_solving_elements:
+      - series-parallel reduction
+      - Kirchhoff law selection
+      - power and resistance relation
+    concept_map_needs:
+      prerequisites:
+        - physical quantities and units
+      downstream:
+        - alternating current
+        - electromagnetism
+      misconceptions:
+        - current is consumed by components
+        - battery voltage is a current source
+    kernel_dependencies:
+      - core/circuits
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: alevel-sim-circuits
+    estimated_effort: H
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level electricity
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.math.probability-statistics
+    title: "Probability and statistics"
+    priority: P0
+    status: planned
+    cluster: A-Level probability and statistics
+    discipline: math
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Mathematics
+    simulation_type: probability-distribution-and-inference-lab
+    problem_solving_elements:
+      - distribution choice
+      - expectation and variance calculation
+      - hypothesis-test decision
+    concept_map_needs:
+      prerequisites:
+        - algebra
+        - functions
+      downstream:
+        - inference
+        - modelling
+      misconceptions:
+        - independent and mutually exclusive mean the same thing
+        - expected value is the most likely outcome
+    kernel_dependencies:
+      - core/probability-stats
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: alevel-sim-probability-statistics
+    estimated_effort: H
+    assignment:
+      workstream: alevel-math
+      concept_cluster: A-Level probability and statistics
+      target_container_kind: curriculum-wrapper

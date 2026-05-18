@@ -1,0 +1,10 @@
+flowchart LR
+  units["Physical quantities and units"] --> current["Resolving vectors"]
+  scalars["Scalars and vectors"] --> current
+  current --> kinematics["Kinematics"]
+  current --> forces["Forces and Newton's laws"]
+  swap["Sine-cosine swap"] --> extra["Components as extra forces"]
+  dropped["Dropped component units"] --> extra
+  current -. addresses .-> swap
+  current -. addresses .-> extra
+  current -. addresses .-> dropped

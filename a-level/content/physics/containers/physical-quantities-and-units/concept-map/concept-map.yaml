@@ -1,0 +1,37 @@
+schema_version: "1.0.0"
+concept_id: physical-quantities-and-units
+prerequisites: []
+downstream:
+  - id: scalars-and-vectors
+    title: "Scalars and Vectors"
+    relationship: "Students need quantity and unit discipline before deciding whether direction is part of a quantity."
+    status: available
+  - id: resolving-vectors
+    title: "Resolving Vectors"
+    relationship: "Components must keep the unit of the original vector quantity."
+    status: available
+siblings: []
+misconception_graph:
+  nodes:
+    - id: unit-as-decoration
+      label: "Unit as decoration"
+    - id: quantity-equals-number
+      label: "Quantity equals number"
+    - id: uncertainty-ignored
+      label: "Uncertainty ignored"
+    - id: dimension-mismatch
+      label: "Dimension mismatch"
+  edges:
+    - from: quantity-equals-number
+      to: unit-as-decoration
+      label: "causes"
+    - from: unit-as-decoration
+      to: dimension-mismatch
+      label: "hides"
+    - from: quantity-equals-number
+      to: uncertainty-ignored
+      label: "encourages exact-looking answers"
+    - from: uncertainty-ignored
+      to: dimension-mismatch
+      label: "can hide invalid precision"
+mermaid_source: graph.mmd

@@ -1,8 +1,8 @@
 ---
-name: ConceptPackage proposal
-about: Propose a new container-shaped concept package
-title: "[concept-package] "
-labels: concept-package, pending-design
+name: Container proposal
+about: Propose a new concept container
+title: "[container] "
+labels: container, pending-design
 ---
 
 ## Concept name
@@ -16,6 +16,16 @@ labels: concept-package, pending-design
 ## Prerequisites
 
 ## Primary aid types
+
+## Required surfaces
+
+- [ ] container.yaml identity
+- [ ] concept-card.md
+- [ ] concept-map/
+- [ ] embed/
+- [ ] media/
+- [ ] problem-solving/
+- [ ] simulation/ if sim-worthy
 
 ## Proposed interaction types
 

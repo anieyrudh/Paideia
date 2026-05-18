@@ -4,6 +4,8 @@ build/
 .tsbuildinfo
 *.tsbuildinfo
 coverage/
+test-results/
+playwright-report/
 .next/
 .vercel/
 .turbo/

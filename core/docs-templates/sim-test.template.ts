@@ -10,7 +10,7 @@ import { expect, test } from "@playwright/test";
 
 test.describe("<Sim Title>", () => {
   test("prediction-gate blocks reveal until commit", async ({ page }) => {
-    await page.goto("/<branch>/<subject>/<package-id>/manipulate/<sim-id>");
+    await page.goto("/?sim=<BRANCH>/<SUBJECT>/<PACKAGE_ID>/<SIM_ID>");
 
     // Reveal locked initially
     await expect(page.getByTestId("reveal")).toBeHidden();
@@ -25,7 +25,7 @@ test.describe("<Sim Title>", () => {
   });
 
   test("manipulate controls write to kernel state", async ({ page }) => {
-    await page.goto("/<branch>/<subject>/<package-id>/manipulate/<sim-id>");
+    await page.goto("/?sim=<BRANCH>/<SUBJECT>/<PACKAGE_ID>/<SIM_ID>");
     // ... commit prediction first ...
     // ... interact with control, assert observed-stage updates ...
   });
