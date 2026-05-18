@@ -7,9 +7,10 @@ syllabus_ref: "9478 / Section I / 1(a)-1(g)"
 prerequisites: []
 aid_types:
   - concept-card
+  - simulation
   - misconception-audit
   - transfer-problem
-status: content-only
+status: reviewed
 ---
 
 # Physical Quantities and Units
@@ -37,19 +38,23 @@ change it to `5 s` without changing the kind of quantity.
 
 Every later physics calculation depends on this layer. Units catch impossible
 answers, show whether two quantities can be added, and expose when a formula has
-been used incorrectly.
+been used incorrectly. The interactive quantity map turns this into a visible
+dependency graph: base quantities feed derived quantities, and each equation
+must land on the same base dimensions as its target quantity.
 
 ## Canonical Examples
 
 - Distance may be measured as `2.0 m`, `200 cm`, or `0.002 km`; the physical length is the same.
 - Speed has units `m s^-1` because it is distance divided by time.
 - Acceleration has units `m s^-2`, not `m s^-1`, because velocity changes per unit time.
+- Force has units `kg m s^-2` because `F = ma` combines mass with acceleration.
 
 ## Common Misconceptions
 
 - Treating units as labels added after the calculation.
 - Thinking the number alone is the measurement.
 - Adding unlike quantities because the numerical values look compatible.
+- Accepting an equation because the symbols look familiar before checking its base dimensions.
 
 ## Problem-Solving Pattern
 

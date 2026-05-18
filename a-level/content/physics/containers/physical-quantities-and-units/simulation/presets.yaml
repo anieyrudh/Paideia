@@ -1,0 +1,16 @@
+presets:
+  - id: newton-check
+    label: "Force from mass and acceleration"
+    state:
+      targetId: force
+      equationId: force-mass-acceleration
+  - id: impossible-force
+    label: "Force from mass and velocity"
+    state:
+      targetId: force
+      equationId: force-mass-velocity
+  - id: speed-check
+    label: "Speed from distance over time"
+    state:
+      targetId: speed
+      equationId: speed-distance-time

@@ -8,16 +8,18 @@
   "exports": {
     ".": "./src/index.ts",
     "./resultant-magnitude": "./src/resultant-magnitude.tsx",
-    "./resolving-vectors": "./src/resolving-vectors.tsx"
+    "./resolving-vectors": "./src/resolving-vectors.tsx",
+    "./quantity-map": "./src/quantity-map.tsx"
   },
   "scripts": {
     "build": "tsc -b",
-    "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts",
+    "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts src/quantity-map.test.ts",
     "lint": "tsc -b --pretty false",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@paideia/content-schema": "workspace:*",
+    "@paideia/graph-algorithms": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/prediction-gate": "workspace:*",
     "@paideia/shared": "workspace:*",

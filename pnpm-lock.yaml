@@ -69,6 +69,9 @@ importers:
       '@paideia/content-schema':
         specifier: workspace:*
         version: link:../../../core/content-schema
+      '@paideia/graph-algorithms':
+        specifier: workspace:*
+        version: link:../../../core/graph-algorithms
       '@paideia/linear-algebra':
         specifier: workspace:*
         version: link:../../../core/linear-algebra

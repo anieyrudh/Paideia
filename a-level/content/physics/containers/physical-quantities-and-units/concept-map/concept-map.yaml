@@ -19,6 +19,8 @@ misconception_graph:
       label: "Quantity equals number"
     - id: dimension-mismatch
       label: "Dimension mismatch"
+    - id: equation-shape-overrides-dimensions
+      label: "Equation shape overrides dimensions"
   edges:
     - from: quantity-equals-number
       to: unit-as-decoration
@@ -26,4 +28,7 @@ misconception_graph:
     - from: unit-as-decoration
       to: dimension-mismatch
       label: "hides"
+    - from: equation-shape-overrides-dimensions
+      to: dimension-mismatch
+      label: "causes"
 mermaid_source: graph.mmd

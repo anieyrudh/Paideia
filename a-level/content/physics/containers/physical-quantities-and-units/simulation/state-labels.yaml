@@ -1,0 +1,7 @@
+state_labels:
+  targetId: "Target quantity"
+  equationId: "Equation to test"
+  dependencyOrder: "Dependency path"
+  targetDimension: "Target dimension"
+  equationDimension: "Equation dimension"
+  verdict: "Dimensional verdict"

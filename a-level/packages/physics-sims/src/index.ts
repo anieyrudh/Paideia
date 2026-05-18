@@ -21,3 +21,18 @@ export type {
   ResolutionDiagramProps,
   ResolutionState,
 } from "./resolving-vectors.js";
+
+export {
+  QuantityMapLab,
+  buildQuantityMapModel,
+  formatDimension,
+  quantityMapPredict,
+} from "./quantity-map.js";
+export type {
+  DimensionVector,
+  EquationCandidate,
+  EquationId,
+  QuantityId,
+  QuantityMapModel,
+  QuantityNode,
+} from "./quantity-map.js";

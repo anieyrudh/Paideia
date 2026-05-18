@@ -1,0 +1,58 @@
+id: quantity-map-lab
+title: "Quantity Map Lab"
+interaction_type: force-directed-graph
+kernel_deps:
+  - core/graph-algorithms
+  - core/prediction-gate
+  - core/ui-sim
+
+predict:
+  prompt: |
+    Before opening the map: force is measured in newtons. Which base dimensions must a correct expression for force contain?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "mass + length + time^-2"
+      - "length + time^-1"
+      - "mass + length + time^-1"
+      - "length + time^2"
+    correct_index: 0
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: target-quantity
+      label: "Target quantity"
+      kind: selector
+      kernel_binding: "core/graph-algorithms.node"
+      options:
+        - speed
+        - acceleration
+        - force
+        - energy
+        - frequency
+    - id: equation-to-test
+      label: "Equation to test"
+      kind: selector
+      kernel_binding: "core/graph-algorithms.edge-path"
+      options:
+        - speed-distance-time
+        - speed-distance-times-time
+        - acceleration-velocity-time
+        - force-mass-acceleration
+        - force-mass-velocity
+        - energy-force-distance
+        - frequency-one-over-time
+observe:
+  renderers:
+    - id: quantity-map-lab
+      module: "@paideia/a-level-physics-sims/quantity-map"
+      symbol: "QuantityMapLab"
+      props_binding: "state -> highlighted dependency graph and dimensional verdict"
+explain:
+  prompt: "Explain how the dependency path tells you which base dimensions must appear on both sides of an equation."
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Unit as decoration"
+    - "Quantity equals number"
+    - "Equation shape overrides dimensions"

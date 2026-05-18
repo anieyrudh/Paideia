@@ -1,8 +1,22 @@
 flowchart LR
+  length["Length · m"] --> displacement["Displacement · vector m"]
+  length --> speed["Speed · scalar m s^-1"]
+  time["Time · s"] --> speed
+  displacement --> velocity["Velocity · vector m s^-1"]
+  time --> velocity
+  velocity --> acceleration["Acceleration · vector m s^-2"]
+  time --> acceleration
+  mass["Mass · kg"] --> force["Force · vector kg m s^-2"]
+  acceleration --> force
+  force --> energy["Energy · scalar kg m^2 s^-2"]
+  length --> energy
+  time --> frequency["Frequency · scalar s^-1"]
   current["Physical quantities and units"] --> scalars["Scalars and vectors"]
   current --> resolving["Resolving vectors"]
   number["Quantity equals number"] --> decoration["Unit as decoration"]
   decoration --> mismatch["Dimension mismatch"]
+  familiar["Equation shape overrides dimensions"] --> mismatch
   current -. addresses .-> number
   current -. addresses .-> decoration
   current -. addresses .-> mismatch
+  current -. addresses .-> familiar

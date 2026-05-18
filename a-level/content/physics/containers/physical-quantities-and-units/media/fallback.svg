@@ -1,6 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Unit consistency fallback">
-  <rect width="320" height="180" fill="#fffdf7"/>
-  <text x="32" y="54" fill="#13251e" font-family="Arial, sans-serif" font-size="22" font-weight="700">Unit check</text>
-  <text x="32" y="92" fill="#10201a" font-family="Arial, sans-serif" font-size="20">speed: m s^-1</text>
-  <text x="32" y="124" fill="#10201a" font-family="Arial, sans-serif" font-size="20">acceleration: m s^-2</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Quantity dependency fallback">
+  <rect width="320" height="180" rx="18" fill="#fffdf7"/>
+  <text x="26" y="38" fill="#13251e" font-family="Arial, sans-serif" font-size="22" font-weight="700">Quantity dependency map</text>
+  <text x="30" y="78" fill="#10201a" font-family="Arial, sans-serif" font-size="18">length ÷ time → speed</text>
+  <text x="30" y="110" fill="#10201a" font-family="Arial, sans-serif" font-size="18">velocity ÷ time → acceleration</text>
+  <text x="30" y="142" fill="#10201a" font-family="Arial, sans-serif" font-size="18">mass × acceleration → force</text>
+  <text x="236" y="142" fill="#1f5f8b" font-family="Arial, sans-serif" font-size="18" font-weight="700">M L T^-2</text>
 </svg>

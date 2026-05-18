@@ -7,8 +7,20 @@
     - unit
   - SI structure
     - base quantities
+      - length in m
+      - mass in kg
+      - time in s
     - derived quantities
+      - speed: m s^-1
+      - acceleration: m s^-2
+      - force: kg m s^-2
+      - energy: kg m^2 s^-2
     - prefixes
+  - Quantity map lab
+    - predict before reveal
+    - trace dependency paths
+    - compare target dimensions against equation dimensions
+    - distinguish scalar/vector nature where relevant
   - Checks
     - dimensional consistency
     - unit conversion

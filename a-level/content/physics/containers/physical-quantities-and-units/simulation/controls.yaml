@@ -1,0 +1,7 @@
+controls:
+  - id: target-quantity
+    label: "Target quantity"
+    default: force
+  - id: equation-to-test
+    label: "Equation to test"
+    default: force-mass-acceleration

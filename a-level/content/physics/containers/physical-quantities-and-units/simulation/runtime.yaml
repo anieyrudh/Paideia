@@ -1,0 +1,5 @@
+runtime:
+  renderer: react
+  package: "@paideia/a-level-physics-sims"
+  export: "QuantityMapLab"
+  local_state_only: true
