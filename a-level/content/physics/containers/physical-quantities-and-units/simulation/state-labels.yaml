@@ -1,0 +1,19 @@
+state_labels:
+  distanceMetres:
+    label: "Distance travelled"
+    meaning: "Measured length interval for the cart track."
+  distanceUncertaintyMetres:
+    label: "Distance uncertainty"
+    meaning: "Estimated absolute uncertainty attached to the distance reading."
+  timeSeconds:
+    label: "Time measured"
+    meaning: "Measured time interval for the cart journey."
+  timeUncertaintySeconds:
+    label: "Time uncertainty"
+    meaning: "Estimated absolute uncertainty attached to the time reading."
+  speedMetresPerSecond:
+    label: "Speed"
+    meaning: "Derived scalar quantity from distance divided by time."
+  speedUncertaintyMetresPerSecond:
+    label: "Speed uncertainty"
+    meaning: "Absolute uncertainty after adding percentage uncertainties for a division."

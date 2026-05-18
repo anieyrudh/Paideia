@@ -21,3 +21,13 @@ export type {
   ResolutionDiagramProps,
   ResolutionState,
 } from "./resolving-vectors.js";
+export {
+  MeasurementNotebook,
+  MeasurementUncertaintyLab,
+  measurementModel,
+  measurementPredict,
+} from "./measurement-uncertainty.js";
+export type {
+  MeasurementModel,
+  MeasurementState,
+} from "./measurement-uncertainty.js";

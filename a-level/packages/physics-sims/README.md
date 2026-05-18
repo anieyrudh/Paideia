@@ -4,15 +4,19 @@ Executable React harness for A-Level Physics container simulations.
 
 ## Current sims
 
-- `resultant-magnitude` — first proof-of-concept sim for
+- `measurement-uncertainty` — product-slice lab for
+  `a-level/content/physics/containers/physical-quantities-and-units`.
+- `resultant-magnitude` — vector resultant lab for
   `a-level/content/physics/containers/scalars-and-vectors`.
+- `resolving-vectors` — component resolution lab for
+  `a-level/content/physics/containers/resolving-vectors`.
 
 ## Usage
 
 ```tsx
-import { ResultantMagnitudeSim } from "@paideia/a-level-physics-sims/resultant-magnitude";
+import { MeasurementUncertaintyLab } from "@paideia/a-level-physics-sims/measurement-uncertainty";
 
-export const Page = () => <ResultantMagnitudeSim />;
+export const Page = () => <MeasurementUncertaintyLab />;
 ```
 
 Content containers keep their canonical `simulation/index.tsx` entrypoint,

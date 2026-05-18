@@ -13,9 +13,14 @@ The corrected record is:
 9.8 m s^-2
 ```
 
+If the value came from an experiment, the final record also needs an uncertainty
+or a justified precision, for example `9.8 ± 0.2 m s^-2` when the apparatus
+supports that estimate.
+
 ## Rubric
 
 - Identifies acceleration as the physical quantity.
 - Distinguishes velocity units from acceleration units.
 - Reduces the unit to base SI form.
 - Explains why `m s^-1` is not dimensionally consistent for acceleration.
+- Notes that measured values need uncertainty or appropriate precision.
