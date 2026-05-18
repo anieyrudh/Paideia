@@ -1,8 +1,13 @@
 flowchart LR
-  current["Physical quantities and units"] --> scalars["Scalars and vectors"]
+  current["Physical quantities and units"] --> detector["Impossible equation detector"]
+  current --> scalars["Scalars and vectors"]
   current --> resolving["Resolving vectors"]
   number["Quantity equals number"] --> decoration["Unit as decoration"]
   decoration --> mismatch["Dimension mismatch"]
+  mismatch --> direction["Scalar-vector units are enough"]
+  detector -. challenges .-> decoration
+  detector -. reveals .-> mismatch
+  detector -. extends to .-> direction
   current -. addresses .-> number
   current -. addresses .-> decoration
   current -. addresses .-> mismatch

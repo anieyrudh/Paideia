@@ -1,0 +1,16 @@
+controls:
+  - id: equation-card
+    label: "Equation to test"
+    kind: select
+    default: distance-speed-plus-acceleration
+    options:
+      - id: distance-speed-time
+        label: "distance = speed × time"
+      - id: force-mass-acceleration
+        label: "force = mass × acceleration"
+      - id: distance-speed-plus-acceleration
+        label: "distance = speed + acceleration"
+      - id: velocity-change-acceleration-time
+        label: "change in velocity = acceleration × time"
+      - id: displacement-speed-time
+        label: "displacement = speed × time"

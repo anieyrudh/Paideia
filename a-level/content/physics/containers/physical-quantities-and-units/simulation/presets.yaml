@@ -1,0 +1,13 @@
+presets:
+  - id: common-trap
+    label: "Common trap"
+    state:
+      equationId: distance-speed-plus-acceleration
+  - id: newton-second-law
+    label: "Newton's second law"
+    state:
+      equationId: force-mass-acceleration
+  - id: scalar-vector-trap
+    label: "Direction trap"
+    state:
+      equationId: displacement-speed-time

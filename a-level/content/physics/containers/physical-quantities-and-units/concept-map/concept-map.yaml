@@ -4,11 +4,11 @@ prerequisites: []
 downstream:
   - id: scalars-and-vectors
     title: "Scalars and Vectors"
-    relationship: "Students need quantity and unit discipline before deciding whether direction is part of a quantity."
+    relationship: "Students need quantity, unit, and direction discipline before deciding whether direction is part of a quantity."
     status: available
   - id: resolving-vectors
     title: "Resolving Vectors"
-    relationship: "Components must keep the unit of the original vector quantity."
+    relationship: "Components must keep the unit and vector meaning of the original quantity."
     status: available
 siblings: []
 misconception_graph:
@@ -19,6 +19,8 @@ misconception_graph:
       label: "Quantity equals number"
     - id: dimension-mismatch
       label: "Dimension mismatch"
+    - id: scalar-vector-units-enough
+      label: "Scalar-vector units are enough"
   edges:
     - from: quantity-equals-number
       to: unit-as-decoration
@@ -26,4 +28,7 @@ misconception_graph:
     - from: unit-as-decoration
       to: dimension-mismatch
       label: "hides"
+    - from: dimension-mismatch
+      to: scalar-vector-units-enough
+      label: "is an incomplete check before direction"
 mermaid_source: graph.mmd

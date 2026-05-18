@@ -21,3 +21,16 @@ export type {
   ResolutionDiagramProps,
   ResolutionState,
 } from "./resolving-vectors.js";
+
+export {
+  ImpossibleEquationDetectorSim,
+  analyzeEquation,
+  equationCases,
+  formatDimension,
+  impossibleEquationPredict,
+} from "./impossible-equation-detector.js";
+export type {
+  EquationAnalysis,
+  EquationCase,
+  QuantityProfile,
+} from "./impossible-equation-detector.js";

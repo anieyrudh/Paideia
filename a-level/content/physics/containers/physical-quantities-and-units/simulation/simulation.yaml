@@ -1,0 +1,48 @@
+id: impossible-equation-detector
+title: "Impossible Equation Detector"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/prediction-gate
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A student proposes four equations. Before opening the unit detector, which one must be impossible because its units do not match?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "distance = speed × time"
+      - "force = mass × acceleration"
+      - "distance = speed + acceleration"
+      - "change in velocity = acceleration × time"
+    correct_index: 2
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: equation-card
+      label: "Equation to test"
+      kind: selector
+      kernel_binding: state.equationId
+      options:
+        - distance-speed-time
+        - force-mass-acceleration
+        - distance-speed-plus-acceleration
+        - velocity-change-acceleration-time
+        - displacement-speed-time
+
+observe:
+  renderers:
+    - id: detector-verdict
+      module: "@paideia/a-level-physics-sims/impossible-equation-detector"
+      symbol: ImpossibleEquationDetectorSim
+      props_binding: |
+        Expand equation-card units into SI base dimensions, compare both sides, and show the scalar/vector verdict.
+
+explain:
+  prompt: |
+    Explain why matching numbers are not enough: what must be true about dimensions before quantities can be added or equated?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Unit as decoration"
+    - "Scalar-vector units are enough"

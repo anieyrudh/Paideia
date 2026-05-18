@@ -1,0 +1,13 @@
+state_labels:
+  equationId:
+    label: "Equation card"
+    meaning: "The learner-selected equation currently being tested by the detector."
+  leftDimension:
+    label: "Left-side dimension"
+    meaning: "The SI base-dimension signature of the target physical quantity."
+  rightDimension:
+    label: "Right-side dimension"
+    meaning: "The SI base-dimension signature produced by the proposed expression."
+  verdict:
+    label: "Detector verdict"
+    meaning: "Whether the equation is dimensionally and directionally consistent."

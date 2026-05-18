@@ -6,7 +6,11 @@ steps:
     label: "Attach the unit to the value"
   - id: expand-derived
     label: "Expand derived units if needed"
-  - id: check-dimensions
-    label: "Check dimensions before operating"
+  - id: check-term-dimensions
+    label: "Check dimensions before adding terms"
+  - id: compare-sides
+    label: "Compare left and right dimensions"
+  - id: check-direction
+    label: "Check scalar or vector direction requirements"
   - id: convert
     label: "Convert using unit ratios"

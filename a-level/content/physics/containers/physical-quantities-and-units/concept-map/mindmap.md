@@ -2,17 +2,22 @@
 
 - Physical quantities and units
   - Measurement
-    - quantity
+    - physical quantity
     - numerical value
     - unit
   - SI structure
     - base quantities
     - derived quantities
     - prefixes
-  - Checks
-    - dimensional consistency
-    - unit conversion
-    - significant figures later
+  - Equation checks
+    - expand units to base dimensions
+    - add only matching dimensions
+    - compare left and right sides
+    - reject impossible equations early
+  - Direction layer
+    - scalar quantities
+    - vector quantities
+    - matching units do not restore missing direction
   - Leads to
     - scalar/vector classification
     - vector components with units
