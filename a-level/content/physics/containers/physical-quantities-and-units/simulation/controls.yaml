@@ -1,0 +1,33 @@
+controls:
+  - id: distance-travelled
+    label: "Distance travelled"
+    kind: slider
+    unit: m
+    default: 2
+    min: 0.5
+    max: 5
+    step: 0.05
+  - id: distance-uncertainty
+    label: "Distance uncertainty"
+    kind: slider
+    unit: m
+    default: 0.02
+    min: 0.005
+    max: 0.1
+    step: 0.005
+  - id: time-measured
+    label: "Time measured"
+    kind: slider
+    unit: s
+    default: 0.8
+    min: 0.2
+    max: 3
+    step: 0.05
+  - id: time-uncertainty
+    label: "Time uncertainty"
+    kind: slider
+    unit: s
+    default: 0.02
+    min: 0.005
+    max: 0.2
+    step: 0.005
