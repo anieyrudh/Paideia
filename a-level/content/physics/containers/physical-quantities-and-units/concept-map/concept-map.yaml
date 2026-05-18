@@ -19,6 +19,8 @@ misconception_graph:
       label: "Quantity equals number"
     - id: dimension-mismatch
       label: "Dimension mismatch"
+    - id: scalar-vector-by-unit
+      label: "Scalar/vector decided by unit"
   edges:
     - from: quantity-equals-number
       to: unit-as-decoration
@@ -26,4 +28,7 @@ misconception_graph:
     - from: unit-as-decoration
       to: dimension-mismatch
       label: "hides"
+    - from: dimension-mismatch
+      to: scalar-vector-by-unit
+      label: "can mask"
 mermaid_source: graph.mmd

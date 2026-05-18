@@ -1,0 +1,64 @@
+controls:
+  - id: equation-to-test
+    label: "Equation to test"
+    kind: selector
+    default: impossible-sum
+    options:
+      - speed-definition
+      - force-definition
+      - energy-definition
+      - impossible-sum
+      - acceleration-trap
+      - custom
+  - id: left-side-quantity
+    label: "Left side quantity"
+    kind: selector
+    default: length
+    options:
+      - length
+      - displacement
+      - time
+      - mass
+      - speed
+      - velocity
+      - acceleration
+      - force
+      - energy
+  - id: operation
+    label: "Operation"
+    kind: selector
+    default: add
+    options:
+      - identity
+      - multiply
+      - divide
+      - add
+      - square
+  - id: first-right-side-quantity
+    label: "First right-side quantity"
+    kind: selector
+    default: speed
+    options:
+      - length
+      - displacement
+      - time
+      - mass
+      - speed
+      - velocity
+      - acceleration
+      - force
+      - energy
+  - id: second-right-side-quantity
+    label: "Second right-side quantity"
+    kind: selector
+    default: time
+    options:
+      - length
+      - displacement
+      - time
+      - mass
+      - speed
+      - velocity
+      - acceleration
+      - force
+      - energy

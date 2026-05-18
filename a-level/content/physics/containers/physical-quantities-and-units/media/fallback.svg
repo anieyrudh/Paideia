@@ -1,6 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Unit consistency fallback">
-  <rect width="320" height="180" fill="#fffdf7"/>
-  <text x="32" y="54" fill="#13251e" font-family="Arial, sans-serif" font-size="22" font-weight="700">Unit check</text>
-  <text x="32" y="92" fill="#10201a" font-family="Arial, sans-serif" font-size="20">speed: m s^-1</text>
-  <text x="32" y="124" fill="#10201a" font-family="Arial, sans-serif" font-size="20">acceleration: m s^-2</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Static dimensional consistency fallback</title>
+  <desc id="desc">A static unit-check diagram shows that speed plus time cannot equal distance.</desc>
+  <rect width="640" height="360" rx="28" fill="#f8fafc"/>
+  <rect x="70" y="66" width="500" height="228" rx="22" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"/>
+  <text x="102" y="122" fill="#0f172a" font-family="Arial, sans-serif" font-size="30" font-weight="700">Check the dimensions first</text>
+  <text x="102" y="174" fill="#1d4ed8" font-family="Arial, sans-serif" font-size="28" font-weight="700">distance</text>
+  <text x="265" y="174" fill="#64748b" font-family="Arial, sans-serif" font-size="28" font-weight="700">=</text>
+  <text x="318" y="174" fill="#be123c" font-family="Arial, sans-serif" font-size="28" font-weight="700">speed + time</text>
+  <text x="126" y="226" fill="#1d4ed8" font-family="Arial, sans-serif" font-size="24">L</text>
+  <text x="346" y="226" fill="#be123c" font-family="Arial, sans-serif" font-size="24">L T⁻¹ + T</text>
+  <text x="102" y="268" fill="#334155" font-family="Arial, sans-serif" font-size="20">The units do not describe the same kind of quantity.</text>
 </svg>

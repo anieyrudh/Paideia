@@ -1,0 +1,74 @@
+id: dimensional-consistency-checker
+title: "Dimensional Consistency Checker"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/content-schema
+  - core/prediction-gate
+  - core/ui-sim
+
+predict:
+  prompt: |
+    Before opening the checker, which equation is impossible because the units on the two sides cannot match?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "speed = distance / time"
+      - "force = mass × acceleration"
+      - "distance = speed + time"
+    correct_index: 2
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: equation-to-test
+      label: "Equation to test"
+      kind: selector
+      kernel_binding: state.scenarioId
+      options:
+        - speed-definition
+        - force-definition
+        - energy-definition
+        - impossible-sum
+        - acceleration-trap
+        - custom
+    - id: left-side-quantity
+      label: "Left side quantity"
+      kind: selector
+      kernel_binding: state.leftQuantityId
+      options:
+        - length
+        - displacement
+        - time
+        - mass
+        - speed
+        - velocity
+        - acceleration
+        - force
+        - energy
+    - id: operation
+      label: "Operation"
+      kind: selector
+      kernel_binding: state.operation
+      options:
+        - identity
+        - multiply
+        - divide
+        - add
+        - square
+
+observe:
+  renderers:
+    - id: dimensional-checker
+      module: "@paideia/a-level-physics-sims/dimensional-consistency"
+      symbol: DimensionalConsistencyChecker
+      props_binding: |
+        Compare the selected equation's left-side dimensions with the dimensions produced by combining the right-side units.
+
+explain:
+  prompt: |
+    Why can a unit check prove that an equation is impossible even before any numbers are substituted?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Unit as decoration"
+    - "Quantity equals number"
+    - "Dimension mismatch"

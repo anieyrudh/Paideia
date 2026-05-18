@@ -1,0 +1,19 @@
+state_labels:
+  scenarioId:
+    label: "Equation to test"
+    meaning: "The learner-facing physics claim whose units are being checked."
+  leftQuantityId:
+    label: "Left-side quantity"
+    meaning: "The physical quantity named on the left side of a custom equation."
+  operation:
+    label: "Operation"
+    meaning: "How right-side quantities are combined: multiplying adds exponents, dividing subtracts exponents, and adding requires equality."
+  firstQuantityId:
+    label: "First right-side quantity"
+    meaning: "The first physical quantity used to construct the right side."
+  secondQuantityId:
+    label: "Second right-side quantity"
+    meaning: "The second physical quantity used when the selected operation needs another term."
+  verdict:
+    label: "Dimensional verdict"
+    meaning: "Whether the two sides have matching base dimensions before numbers are substituted."

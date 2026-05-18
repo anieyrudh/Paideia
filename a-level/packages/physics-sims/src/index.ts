@@ -1,4 +1,12 @@
 export {
+  DimensionalConsistencyChecker,
+  checkDimensions,
+  dimensionalConsistencySimId,
+  dimensionalPredict,
+  formatDimensions,
+  physicalQuantitiesPackageId,
+} from "./dimensional-consistency.js";
+export {
   ResultantMagnitudeSim,
   ResultantVectorDiagram,
   perpendicularPredict,
@@ -11,6 +19,9 @@ export {
   componentPredict,
   resolveVectorComponents,
 } from "./resolving-vectors.js";
+export type {
+  DimensionCheckResult,
+} from "./dimensional-consistency.js";
 export type {
   MetreVector2,
   ResultantVectorModel,

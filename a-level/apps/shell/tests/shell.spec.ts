@@ -34,7 +34,15 @@ test("navigates the generated mini knowledge graph", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "First principles" })).toBeVisible();
   await expect(page.getByText("A physical quantity is something about the world")).toBeVisible();
   await expect(page.getByText("Name the quantity")).toBeVisible();
-  await expect(page.getByRole("heading", { name: "No interactive simulation yet" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Dimensional Consistency Checker" })).toBeVisible();
+  await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+  await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
+  await page.getByLabel("distance = speed + time").check();
+  await page
+    .getByLabel("Rationale")
+    .fill("Speed and time do not have matching dimensions, so they cannot be added.");
+  await page.getByRole("button", { name: "Commit prediction" }).click();
+  await expect(page.getByLabel("Observation unlocked")).toContainText("Impossible as written");
   await expect(page.getByText("Next: Scalars and Vectors")).toBeVisible();
 
   await page

@@ -2,17 +2,23 @@
 
 - Physical quantities and units
   - Measurement
-    - quantity
+    - physical quantity
     - numerical value
     - unit
   - SI structure
     - base quantities
     - derived quantities
     - prefixes
-  - Checks
-    - dimensional consistency
-    - unit conversion
-    - significant figures later
+  - Dimensional checker
+    - reduce units to base dimensions
+    - multiply means add exponents
+    - divide means subtract exponents
+    - addition requires matching dimensions
+    - equations require matching dimensions on both sides
+  - Scalar/vector bridge
+    - units do not decide direction
+    - speed and velocity can share dimensions
+    - vector components keep the original unit
   - Leads to
     - scalar/vector classification
     - vector components with units

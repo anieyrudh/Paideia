@@ -1,0 +1,25 @@
+presets:
+  - id: impossible-sum
+    label: "Impossible addition trap"
+    state:
+      scenarioId: impossible-sum
+      leftQuantityId: length
+      operation: add
+      firstQuantityId: speed
+      secondQuantityId: time
+  - id: force-definition
+    label: "Force from mass and acceleration"
+    state:
+      scenarioId: force-definition
+  - id: acceleration-unit
+    label: "Why acceleration is m s^-2"
+    state:
+      scenarioId: acceleration-trap
+  - id: custom-builder
+    label: "Build a custom equation"
+    state:
+      scenarioId: custom
+      leftQuantityId: force
+      operation: multiply
+      firstQuantityId: mass
+      secondQuantityId: acceleration
