@@ -1,7 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Units thumbnail">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Impossible equation detector thumbnail">
   <rect width="320" height="180" fill="#f7f4ea"/>
-  <text x="34" y="72" fill="#13251e" font-family="Arial, sans-serif" font-size="36" font-weight="700">9.8</text>
-  <text x="114" y="72" fill="#1f5f8b" font-family="Arial, sans-serif" font-size="28" font-weight="700">m s^-2</text>
-  <line x1="34" x2="250" y1="96" y2="96" stroke="#d8d0bf" stroke-width="3"/>
-  <text x="34" y="130" fill="#66736b" font-family="Arial, sans-serif" font-size="18">quantity = value + unit</text>
+  <rect x="22" y="22" width="276" height="136" rx="18" fill="#fffdf7" stroke="#d8d0bf"/>
+  <text x="38" y="58" fill="#13251e" font-family="Arial, sans-serif" font-size="18" font-weight="700">Impossible equation?</text>
+  <text x="38" y="96" fill="#1f5f8b" font-family="Arial, sans-serif" font-size="24" font-weight="700">v = u + 1/2 at^2</text>
+  <path d="M42 122h82" stroke="#b42318" stroke-width="5" stroke-linecap="round"/>
+  <path d="M42 139h138" stroke="#1f5f8b" stroke-width="5" stroke-linecap="round"/>
+  <text x="202" y="130" fill="#b42318" font-family="Arial, sans-serif" font-size="18" font-weight="700">L ≠ L T^-1</text>
 </svg>

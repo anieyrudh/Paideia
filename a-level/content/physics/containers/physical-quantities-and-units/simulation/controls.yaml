@@ -1,0 +1,10 @@
+controls:
+  - id: equation
+    label: "Equation to audit"
+    kind: selector
+    default: velocity-area
+    options:
+      - velocity-update
+      - displacement
+      - velocity-area
+      - force-law

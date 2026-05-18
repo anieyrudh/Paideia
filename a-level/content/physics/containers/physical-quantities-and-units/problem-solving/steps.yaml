@@ -4,9 +4,13 @@ steps:
     label: "Name the quantity"
   - id: attach-unit
     label: "Attach the unit to the value"
+  - id: classify-scalar-vector
+    label: "Decide scalar or vector in context"
   - id: expand-derived
-    label: "Expand derived units if needed"
+    label: "Expand derived units into base dimensions"
   - id: check-dimensions
-    label: "Check dimensions before operating"
+    label: "Check dimensions before adding or equating"
   - id: convert
     label: "Convert using unit ratios"
+  - id: state-limits
+    label: "State what the unit check proves"

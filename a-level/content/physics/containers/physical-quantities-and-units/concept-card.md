@@ -7,9 +7,10 @@ syllabus_ref: "9478 / Section I / 1(a)-1(g)"
 prerequisites: []
 aid_types:
   - concept-card
+  - simulation
   - misconception-audit
   - transfer-problem
-status: content-only
+status: draft
 ---
 
 # Physical Quantities and Units
@@ -23,7 +24,8 @@ the metre is the comparison standard.
 
 Units are not decoration. They carry the dimension of the quantity. You can
 change `5 m` to `500 cm` without changing the physical length, but you cannot
-change it to `5 s` without changing the kind of quantity.
+change it to `5 s` without changing the kind of quantity. In equations, this
+means each term being added or equated must reduce to the same base dimensions.
 
 ## Key Definitions
 
@@ -50,6 +52,14 @@ been used incorrectly.
 - Treating units as labels added after the calculation.
 - Thinking the number alone is the measurement.
 - Adding unlike quantities because the numerical values look compatible.
+- Assuming a dimensionally possible equation has been proved true; it has only passed one necessary check.
+
+## Interactive Lab
+
+The impossible-equation detector asks you to predict which familiar-looking
+equation cannot be right, then reveals a term-by-term unit audit. It shows the
+quantity, scalar/vector status, unit, and base dimensions so you can see why an
+equation such as `v = u + 1/2 at^2` fails before numbers are substituted.
 
 ## Problem-Solving Pattern
 

@@ -1,0 +1,13 @@
+state_labels:
+  equation:
+    label: "Equation under test"
+    meaning: "The proposed equation the learner audits using dimensions."
+  verdict:
+    label: "Unit verdict"
+    meaning: "Whether every term has matching base dimensions."
+  quantityKind:
+    label: "Scalar or vector"
+    meaning: "Whether direction is part of the quantity in the chosen one-dimensional context."
+  baseDimensions:
+    label: "Base dimensions"
+    meaning: "The M, L, and T exponents used to compare units."

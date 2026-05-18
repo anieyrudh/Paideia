@@ -3,6 +3,9 @@ flowchart LR
   current --> resolving["Resolving vectors"]
   number["Quantity equals number"] --> decoration["Unit as decoration"]
   decoration --> mismatch["Dimension mismatch"]
+  possible["Dimensionally possible means proven"]
   current -. addresses .-> number
   current -. addresses .-> decoration
   current -. addresses .-> mismatch
+  current -. addresses .-> possible
+  mismatch -. rules out .-> possible

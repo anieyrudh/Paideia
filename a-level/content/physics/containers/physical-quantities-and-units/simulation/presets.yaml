@@ -1,0 +1,13 @@
+presets:
+  - id: impossible-velocity
+    label: "Suspicious velocity equation"
+    state:
+      equation: velocity-area
+  - id: valid-velocity
+    label: "Velocity update"
+    state:
+      equation: velocity-update
+  - id: valid-force
+    label: "Force law"
+    state:
+      equation: force-law
