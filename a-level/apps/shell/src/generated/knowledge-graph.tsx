@@ -8,6 +8,7 @@ export type AidType = "simulation" | "misconception-audit" | "transfer-problem" 
 
 export interface ShellSim {
   readonly id: string;
+  readonly harnessId: string;
   readonly title: string;
   readonly interactionType: string;
   readonly component: ComponentType;
@@ -159,6 +160,7 @@ export const containers = [
     sims: [
       {
         id: "measurement-uncertainty-lab",
+        harnessId: "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab",
         title: "Measurement and Uncertainty Lab",
         interactionType: "decision-matrix",
         component: GeneratedSim0PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
@@ -221,6 +223,7 @@ export const containers = [
     sims: [
       {
         id: "component-resolution",
+        harnessId: "a-level/physics/resolving-vectors/component-resolution",
         title: "Component Resolution Explorer",
         interactionType: "diagram-builder",
         component: GeneratedSim1ResolvingVectorsComponentResolution,
@@ -282,6 +285,7 @@ export const containers = [
     sims: [
       {
         id: "resultant-magnitude",
+        harnessId: "a-level/physics/scalars-and-vectors/resultant-magnitude",
         title: "Resultant Magnitude Explorer",
         interactionType: "diagram-builder",
         component: GeneratedSim2ScalarsAndVectorsResultantMagnitude,
