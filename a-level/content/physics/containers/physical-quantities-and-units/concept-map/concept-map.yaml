@@ -8,7 +8,7 @@ downstream:
     status: available
   - id: resolving-vectors
     title: "Resolving Vectors"
-    relationship: "Components must keep the unit of the original vector quantity."
+    relationship: "Components must keep the unit and dimension of the original vector quantity."
     status: available
 siblings: []
 misconception_graph:
@@ -19,6 +19,8 @@ misconception_graph:
       label: "Quantity equals number"
     - id: dimension-mismatch
       label: "Dimension mismatch"
+    - id: plausible-number-trap
+      label: "Plausible number trap"
   edges:
     - from: quantity-equals-number
       to: unit-as-decoration
@@ -26,4 +28,7 @@ misconception_graph:
     - from: unit-as-decoration
       to: dimension-mismatch
       label: "hides"
+    - from: dimension-mismatch
+      to: plausible-number-trap
+      label: "permits"
 mermaid_source: graph.mmd

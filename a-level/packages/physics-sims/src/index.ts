@@ -21,3 +21,23 @@ export type {
   ResolutionDiagramProps,
   ResolutionState,
 } from "./resolving-vectors.js";
+
+export {
+  DimensionalConsistencySim,
+  checkEquation,
+  dimensionalConsistencySimId,
+  equationScenarios,
+  formatDimension,
+  physicalQuantitiesPackageId,
+  quantityCards,
+  unitConstraintPredict,
+} from "./dimensional-consistency.js";
+export type {
+  BaseDimension,
+  DimensionVector,
+  EquationCheck,
+  EquationScenario,
+  EquationScenarioId,
+  EquationTerm,
+  QuantityCard,
+} from "./dimensional-consistency.js";

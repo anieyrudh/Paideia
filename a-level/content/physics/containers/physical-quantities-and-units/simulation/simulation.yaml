@@ -1,0 +1,35 @@
+id: dimensional-consistency-checker
+title: "Dimensional Consistency Checker"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/shared
+predict:
+  prompt: |
+    A student proposes force = mass × speed. Before opening the checker, which unit fingerprint will the right-hand side have?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "kg m s^-2"
+      - "kg m s^-1"
+      - "m s^-2"
+      - "kg m^2 s^-2"
+  rationale_required: true
+manipulate:
+  controls:
+    - id: equation-card
+      label: "Choose an equation card"
+      kind: selector
+      kernel_binding: "a-level-physics-sims.dimensional-consistency.scenario"
+observe:
+  renderers:
+    - id: dimensional-consistency-checker
+      module: "@paideia/a-level-physics-sims/dimensional-consistency"
+      symbol: "DimensionalConsistencySim"
+      props_binding: "scenario id -> base-unit fingerprint comparison and equation verdict"
+explain:
+  prompt: "Explain why matching numbers are not enough unless the base-unit fingerprints on both sides also match."
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Unit as decoration"
+    - "Quantity equals number"
+    - "Dimension mismatch"

@@ -1,0 +1,13 @@
+state_labels:
+  scenarioId:
+    label: "Equation card"
+    meaning: "The learner-selected equation whose left and right unit fingerprints are compared."
+  leftDimension:
+    label: "Left-side dimension"
+    meaning: "The base-unit powers for the named result quantity."
+  rightDimension:
+    label: "Right-side dimension"
+    meaning: "The base-unit powers produced by multiplying or dividing the proposed input units."
+  verdict:
+    label: "Unit verdict"
+    meaning: "Whether dimensional consistency permits the equation before any numerical substitution."

@@ -1,0 +1,14 @@
+controls:
+  - id: equation-card
+    label: "Choose an equation card"
+    kind: selector
+    default: force-mass-speed
+    options:
+      - id: force-mass-speed
+        label: "A suspicious force equation"
+      - id: speed-distance-time
+        label: "Speed from distance and time"
+      - id: kinetic-energy
+        label: "Kinetic energy check"
+      - id: pressure-force-area
+        label: "Pressure from force and area"

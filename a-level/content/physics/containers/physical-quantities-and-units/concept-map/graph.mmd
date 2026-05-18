@@ -1,8 +1,12 @@
 flowchart LR
-  current["Physical quantities and units"] --> scalars["Scalars and vectors"]
+  current["Physical quantities and units"] --> lab["Dimensional consistency checker"]
+  lab --> fingerprints["Base-unit fingerprints"]
+  fingerprints --> reject["Reject impossible equations"]
+  current --> scalars["Scalars and vectors"]
   current --> resolving["Resolving vectors"]
   number["Quantity equals number"] --> decoration["Unit as decoration"]
   decoration --> mismatch["Dimension mismatch"]
+  mismatch --> plausible["Plausible number trap"]
   current -. addresses .-> number
-  current -. addresses .-> decoration
-  current -. addresses .-> mismatch
+  lab -. exposes .-> decoration
+  lab -. exposes .-> mismatch

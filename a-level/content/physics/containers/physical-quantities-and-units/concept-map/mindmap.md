@@ -9,10 +9,16 @@
     - base quantities
     - derived quantities
     - prefixes
-  - Checks
-    - dimensional consistency
-    - unit conversion
-    - significant figures later
+  - Equation checks
+    - expand derived units
+    - compare base-unit powers
+    - reject dimension mismatches
+    - remember consistency is necessary, not sufficient
+  - Interactive lab
+    - predict the unit fingerprint
+    - choose an equation card
+    - observe left/right dimension balance
+    - explain why units constrain equations
   - Leads to
     - scalar/vector classification
     - vector components with units

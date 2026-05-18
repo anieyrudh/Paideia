@@ -6,7 +6,8 @@ import type {
 } from "./api.js";
 
 const defaultState: PhysicalQuantitiesEmbedState = {
-  selectedExample: "acceleration-unit-check",
+  selectedScenario: "force-mass-speed",
+  predictionCommitted: false,
   completed: false,
 };
 
@@ -26,7 +27,8 @@ export const createPhysicalQuantitiesEmbed = (): PhysicalQuantitiesEmbedApi => {
     score(): PhysicalQuantitiesEmbedScore {
       return {
         completed: state.completed,
-        score: state.completed ? 1 : 0,
+        predictionCommitted: state.predictionCommitted,
+        score: state.completed ? 1 : state.predictionCommitted ? 0.6 : 0,
       };
     },
     resume(nextState: PhysicalQuantitiesEmbedState): void {

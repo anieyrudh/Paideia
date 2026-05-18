@@ -1,6 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Unit consistency fallback">
-  <rect width="320" height="180" fill="#fffdf7"/>
-  <text x="32" y="54" fill="#13251e" font-family="Arial, sans-serif" font-size="22" font-weight="700">Unit check</text>
-  <text x="32" y="92" fill="#10201a" font-family="Arial, sans-serif" font-size="20">speed: m s^-1</text>
-  <text x="32" y="124" fill="#10201a" font-family="Arial, sans-serif" font-size="20">acceleration: m s^-2</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Static dimensional consistency fallback</title>
+  <desc id="desc">Static comparison showing force has kg m s^-2 while mass times speed has kg m s^-1.</desc>
+  <rect width="640" height="360" fill="#f7f4ea"/>
+  <text x="64" y="70" fill="#10201a" font-family="Inter,Arial,sans-serif" font-size="30" font-weight="900">Dimensional consistency</text>
+  <text x="64" y="118" fill="#66736b" font-family="Inter,Arial,sans-serif" font-size="20">Check equations before substituting numbers.</text>
+  <line x1="82" x2="558" y1="178" y2="178" stroke="#d8d0bf" stroke-width="6"/>
+  <circle cx="184" cy="178" r="58" fill="#ffffff" stroke="#d8d0bf" stroke-width="4"/>
+  <text x="143" y="171" fill="#10201a" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="800">force</text>
+  <text x="128" y="202" fill="#1f5f8b" font-family="Consolas,monospace" font-size="19" font-weight="800">kg m s^-2</text>
+  <circle cx="456" cy="178" r="58" fill="#ffffff" stroke="#d8d0bf" stroke-width="4"/>
+  <text x="395" y="171" fill="#10201a" font-family="Inter,Arial,sans-serif" font-size="19" font-weight="800">mass × speed</text>
+  <text x="400" y="202" fill="#1f5f8b" font-family="Consolas,monospace" font-size="19" font-weight="800">kg m s^-1</text>
+  <text x="304" y="190" fill="#b42318" font-family="Inter,Arial,sans-serif" font-size="48" font-weight="900">≠</text>
+  <text x="64" y="292" fill="#10201a" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="800">Mismatch: no numerical trick can fix the equation as written.</text>
 </svg>

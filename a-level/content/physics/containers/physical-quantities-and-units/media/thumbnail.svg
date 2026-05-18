@@ -1,7 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Units thumbnail">
-  <rect width="320" height="180" fill="#f7f4ea"/>
-  <text x="34" y="72" fill="#13251e" font-family="Arial, sans-serif" font-size="36" font-weight="700">9.8</text>
-  <text x="114" y="72" fill="#1f5f8b" font-family="Arial, sans-serif" font-size="28" font-weight="700">m s^-2</text>
-  <line x1="34" x2="250" y1="96" y2="96" stroke="#d8d0bf" stroke-width="3"/>
-  <text x="34" y="130" fill="#66736b" font-family="Arial, sans-serif" font-size="18">quantity = value + unit</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Dimensional consistency checker thumbnail</title>
+  <desc id="desc">A unit balance compares force against mass times speed using SI base-unit fingerprints.</desc>
+  <rect width="640" height="360" rx="32" fill="#fffdf7"/>
+  <circle cx="548" cy="74" r="94" fill="#f0b429" opacity="0.22"/>
+  <rect x="54" y="52" width="532" height="256" rx="28" fill="#f7f4ea" stroke="#d8d0bf" stroke-width="4"/>
+  <text x="84" y="104" fill="#256b8f" font-family="Inter,Arial,sans-serif" font-size="24" font-weight="800">Unit fingerprint</text>
+  <rect x="86" y="136" width="166" height="88" rx="18" fill="#f8fafc" stroke="#d8d0bf" stroke-width="3"/>
+  <text x="112" y="171" fill="#10201a" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="800">force</text>
+  <text x="112" y="202" fill="#1f5f8b" font-family="Consolas,monospace" font-size="22" font-weight="800">M L T^-2</text>
+  <circle cx="320" cy="180" r="32" fill="#b42318"/>
+  <text x="306" y="190" fill="#ffffff" font-family="Inter,Arial,sans-serif" font-size="34" font-weight="900">≠</text>
+  <rect x="388" y="136" width="166" height="88" rx="18" fill="#f8fafc" stroke="#d8d0bf" stroke-width="3"/>
+  <text x="414" y="171" fill="#10201a" font-family="Inter,Arial,sans-serif" font-size="20" font-weight="800">mass × speed</text>
+  <text x="414" y="202" fill="#1f5f8b" font-family="Consolas,monospace" font-size="22" font-weight="800">M L T^-1</text>
+  <rect x="164" y="252" width="312" height="34" rx="17" fill="#10201a"/>
+  <text x="201" y="275" fill="#fffdf7" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="800">Impossible as written</text>
 </svg>

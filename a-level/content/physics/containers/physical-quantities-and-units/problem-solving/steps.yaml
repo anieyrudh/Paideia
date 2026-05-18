@@ -1,12 +1,16 @@
 schema_version: "1.0.0"
 steps:
   - id: name-quantity
-    label: "Name the quantity"
+    label: "Name the physical quantity"
   - id: attach-unit
     label: "Attach the unit to the value"
   - id: expand-derived
-    label: "Expand derived units if needed"
+    label: "Expand derived units into SI base units"
+  - id: combine-powers
+    label: "Combine base-unit powers"
   - id: check-dimensions
-    label: "Check dimensions before operating"
+    label: "Compare dimensions before operating"
+  - id: reject-or-continue
+    label: "Reject mismatches or continue with the physics"
   - id: convert
     label: "Convert using unit ratios"

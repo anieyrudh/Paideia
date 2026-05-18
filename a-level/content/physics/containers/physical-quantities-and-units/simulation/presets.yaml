@@ -1,0 +1,13 @@
+presets:
+  - id: suspicious-force
+    label: "Find the impossible equation"
+    state:
+      scenarioId: force-mass-speed
+  - id: speed-definition
+    label: "Check a definition"
+    state:
+      scenarioId: speed-distance-time
+  - id: energy-fingerprint
+    label: "Compare derived units"
+    state:
+      scenarioId: kinetic-energy
