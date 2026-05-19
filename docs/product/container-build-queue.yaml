@@ -92,6 +92,7 @@ sutd_cluster_mappings:
       - sutd-istd
       - shared-algorithms-ai
     entry_ids:
+      - sutd.csd.graph-search-and-shortest-paths
       - shared.algorithms.graph-algorithm-explorer
       - shared.optimization.gradient-descent-landscape
   - id: sutd.epd.control-systems
@@ -100,6 +101,7 @@ sutd_cluster_mappings:
       - sutd-epd
       - shared-physics-core
     entry_ids:
+      - sutd.epd.pid-step-response
       - shared.control.pid-bode-builder
       - shared.dynamical-systems.ode-phase-portrait
       - shared.circuits.circuit-phasor-reasoning
@@ -110,6 +112,7 @@ sutd_cluster_mappings:
       - shared-math
       - shared-probability-stats
     entry_ids:
+      - sutd.esd.linear-programming-feasible-region
       - shared.optimization.linear-programming-feasible-region
       - shared.optimization.gradient-descent-landscape
       - shared.inference.hypothesis-test-decision
@@ -759,6 +762,7 @@ entries:
         - matrix multiplication is only arithmetic
         - all vectors rotate by the same angle
     kernel_dependencies:
+      - core/sim-runtime
       - core/linear-algebra
       - core/plotting
       - core/prediction-gate
@@ -800,6 +804,7 @@ entries:
         - higher gain is always better
         - derivative control removes noise sensitivity
     kernel_dependencies:
+      - core/sim-runtime
       - core/control-systems
       - core/charting
       - core/prediction-gate
@@ -841,6 +846,7 @@ entries:
         - optimum must be visually central
         - every constraint must bind at optimum
     kernel_dependencies:
+      - core/sim-runtime
       - core/optimization
       - core/plotting
       - core/prediction-gate

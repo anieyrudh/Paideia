@@ -134,7 +134,7 @@ Base branch: main
 Create branch: codex/a-level-<subject>-<concept-id>
 
 Target:
-- Branch: a-level
+- Curriculum: A-Level
 - Subject: <subject>
 - Queue id: <id from docs/product/container-build-queue.yaml>
 - Title: <title from queue>
