@@ -1,0 +1,104 @@
+schema_version: "1.0.0"
+id: vector-transformations
+aliases:
+  - 2d linear transformations
+  - matrix-vector mapping
+branch: sutd
+subject: freshmore
+level: "Freshmore"
+module: "Linear Algebra and Differential Equations"
+title: "Vector Transformations"
+one_line_summary: "Explore how 2×2 matrices move basis vectors and any target vector, then check when one direction stays on the same line."
+syllabus_ref: "SUTD Freshmore Mathematics / Linear Algebra"
+prerequisites:
+  - vectors
+  - matrix-multiplication
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    If matrix A = [[2, 1], [0, 1]] acts on vector (1, 1), predict the transformed x-value before reveal.
+  commit_format:
+    kind: multiple-choice
+    options: ["x = 1", "x = 2", "x = 3", "x = 4"]
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: camera-sensor-axis-change
+    prompt: |
+      A camera coordinate frame is remapped by T = [[0, -1], [1, 0]]. Transform v=(3,1), then explain one invariant direction check and what it means physically.
+    surface_form: "coordinate-frame remap"
+    same_concept_check: "Same concept: matrix acting on vectors using basis movement and line-preserving direction check."
+    rubric_path: problem-solving/camera-sensor-axis-change.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-19"
+      author: "Codex"
+      summary: "Built SUTD Freshmore product slice for vector transformations."
+authors: ["Codex"]
+advisor_signoffs: []
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-19"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Columns are outputs for basis vectors"
+    description: "Learners treat matrix entries as random coefficients instead of basis-image columns."
+    evidence_source: "Strang, Introduction to Linear Algebra, matrix-column interpretation."
+    surface_in_predict: true
+sources:
+  - citation: "SUTD Freshmore Mathematics learning outcomes for linear algebra and matrix transformations."
+    url: "https://www.sutd.edu.sg"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+  - citation: "OpenStax Precalculus 2e, Matrix Transformations."
+    url: "https://openstax.org/details/books/precalculus-2e"
+    publication_year: 2022
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+language: en

@@ -5,7 +5,7 @@ test("renders the first SUTD curriculum wrapper container", async ({ page }) => 
 
   await expect(page.getByRole("heading", { name: "SUTD curriculum wrapper substrate" })).toBeVisible();
   const status = page.getByLabel("SUTD shell status");
-  await expect(status).toContainText("3");
+  await expect(status).toContainText("4");
   await expect(status.getByText("product containers wired", { exact: true })).toBeVisible();
 
   await page.getByRole("button", { name: /EPD/ }).click();
@@ -16,6 +16,9 @@ test("renders the first SUTD curriculum wrapper container", async ({ page }) => 
 
   await page.getByRole("button", { name: /ISTD\/CSD/ }).click();
   await expect(page.getByRole("heading", { name: "Graph Search and Shortest Paths" })).toBeVisible();
+
+  await page.getByRole("button", { name: /Freshmore/ }).click();
+  await expect(page.getByRole("heading", { name: "Vector Transformations" })).toBeVisible();
 });
 
 test("maps concept clusters across all SUTD pillars", async ({ page }) => {
@@ -37,4 +40,8 @@ test("maps concept clusters across all SUTD pillars", async ({ page }) => {
   await page.getByRole("button", { name: /EPD/ }).click();
   await expect(page.getByRole("heading", { name: "EPD" })).toBeVisible();
   await expect(page.getByText("sutd.epd.pid-step-response")).toBeVisible();
+
+  await page.getByRole("button", { name: /Freshmore/ }).click();
+  await expect(page.getByRole("heading", { name: "Freshmore" })).toBeVisible();
+  await expect(page.getByText("sutd.freshmore.vector-transformations")).toBeVisible();
 });

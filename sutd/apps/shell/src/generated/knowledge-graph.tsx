@@ -3,6 +3,7 @@ import type { ComponentType } from "react";
 import GeneratedSim0GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
 import GeneratedSim1PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
 import GeneratedSim2LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim3VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -84,6 +85,15 @@ export const knowledgeGraph = {
     level: "Freshmore",
     module: "esd",
     status: "draft",
+  },
+  {
+    id: "sutd/freshmore/vector-transformations",
+    conceptId: "vector-transformations",
+    title: "Vector Transformations",
+    subject: "freshmore",
+    level: "Freshmore",
+    module: "Linear Algebra and Differential Equations",
+    status: "reviewed",
   }
   ],
   edges: [
@@ -241,6 +251,58 @@ export const containers = [
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
         component: GeneratedSim2LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+      },
+    ],
+  },
+  {
+    id: "sutd/freshmore/vector-transformations",
+    branch: "sutd",
+    subject: "Freshmore",
+    level: "Freshmore",
+    module: "Linear Algebra and Differential Equations",
+    title: "Vector Transformations",
+    summary: "Explore how 2×2 matrices move basis vectors and any target vector, then check when one direction stays on the same line.",
+    syllabusRef: "SUTD Freshmore Mathematics / Linear Algebra",
+    status: "reviewed",
+    packageId: "vector-transformations",
+    simId: "vector-transformations",
+    predictPrompt: "If matrix A = [[2, 1], [0, 1]] acts on vector (1, 1), predict the transformed x-value before reveal.",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Columns are outputs for basis vectors",
+    ],
+    transferProblem: "A camera coordinate frame is remapped by T = [[0, -1], [1, 0]]. Transform v=(3,1), then explain one invariant direction check and what it means physically.",
+    firstPrinciples: "A 2D matrix is a rule for moving the plane. The easiest way to read it is to watch where the two basis arrows go: the first column shows where e1 lands, and the second column shows where e2 lands. Any vector is built from copies of e1 and e2, so its transformed position is the same combination of those two new landing arrows.",
+    keyDefinitions: [
+      "Basis vector: one of the reference arrows e1 = (1, 0) and e2 = (0, 1).",
+      "Matrix column: the transformed landing position of a basis vector.",
+      "Linear transformation: a rule that preserves vector addition and scalar multiplication.",
+      "Determinant: the signed area scale factor of the transformation.",
+    ],
+    canonicalExamples: [
+      "A shear matrix that keeps horizontal arrows on the same line while shifting vertical arrows.",
+      "A quarter-turn rotation matrix that sends e1 to e2 and e2 to -e1.",
+    ],
+    problemSolvingSteps: [
+      "What concept is being tested?",
+      "Which representation or method applies?",
+      "Carry out the method.",
+      "Does the result make sense?",
+    ],
+    prerequisites: [],
+    downstream: [],
+    siblings: [],
+    sims: [
+      {
+        id: "vector-transformations",
+        harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
+        title: "2D Matrix-Vector Transformation Explorer",
+        interactionType: "diagram-builder",
+        component: GeneratedSim3VectorTransformationsVectorTransformations,
       },
     ],
   }
