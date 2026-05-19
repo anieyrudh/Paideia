@@ -4,6 +4,7 @@ import GeneratedSim0ALevelPhysicsKinematicsInOneDimensionMotionEquationsLab from
 import GeneratedSim1ALevelPhysicsPhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
 import GeneratedSim2ALevelPhysicsResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
 import GeneratedSim3ALevelPhysicsScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
+import GeneratedSim4SutdDaiTrustCalibrationTrustCalibration from "@paideia/a-level-physics-sims/resultant-magnitude";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -31,6 +32,11 @@ export const simRegistry = {
     id: "a-level/physics/scalars-and-vectors/resultant-magnitude",
     title: "Resultant Magnitude Explorer",
     Component: GeneratedSim3ALevelPhysicsScalarsAndVectorsResultantMagnitude,
+  },
+  "sutd/dai/trust-calibration/trust-calibration": {
+    id: "sutd/dai/trust-calibration/trust-calibration",
+    title: "Trust Calibration Explorer",
+    Component: GeneratedSim4SutdDaiTrustCalibrationTrustCalibration,
   }
 } satisfies Record<string, SimHarnessEntry>;
 

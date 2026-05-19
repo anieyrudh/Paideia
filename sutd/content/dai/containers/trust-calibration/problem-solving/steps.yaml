@@ -1,0 +1,13 @@
+steps:
+  - id: identify
+    prompt: "What concept is being tested?"
+    expected_action: "Name the concept before calculating."
+  - id: choose-strategy
+    prompt: "Which representation or method applies?"
+    expected_action: "Select a strategy and justify it."
+  - id: solve
+    prompt: "Carry out the method."
+    expected_action: "Show each step and intermediate state."
+  - id: check
+    prompt: "Does the result make sense?"
+    expected_action: "Check units, constraints, and interpretation."

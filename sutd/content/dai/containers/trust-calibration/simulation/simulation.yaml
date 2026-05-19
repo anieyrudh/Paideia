@@ -1,0 +1,52 @@
+# SimulationSpec · template
+# Validates against SimulationSpec in core/content-schema.
+# The scaffolder fills <PLACEHOLDERS>; author replaces with real values.
+
+id: trust-calibration
+title: "Trust Calibration Explorer"
+interaction_type: function-plot-with-draggable
+# Choices:
+# function-plot-with-draggable | 3D-spatial-manipulation | particle-simulation
+# force-directed-graph | argument-tree | text-corpus-analysis | mind-map-editor
+# code-execution-notebook | diagram-builder | animation-playback | decision-matrix
+# source-annotation | timeline-builder | map-with-data-layers
+# algorithm-state-visualisation | comparative-matrix | systems-flow-diagram
+# sketch-input | other
+
+kernel_deps:
+  - core/sim-runtime
+  - core/prediction-gate
+
+# Per-sim predict — used only when container.yaml predict_at === "per-sim" or "both"
+# Omit otherwise.
+# predict:
+#   prompt: |
+#     <Per-sim predict prompt>
+#   commit_format:
+#     kind: value
+#     unit: seconds
+#   rationale_required: true
+
+manipulate:
+  controls:
+    - id: primary-control
+      label: "Primary control"
+      kind: slider
+      kernel_binding: state.primaryControl
+      bounds: { min: 0, max: 100, step: 1 }
+
+observe:
+  renderers:
+    - id: trust-calibration-renderer
+      module: "@paideia/a-level-physics-sims/resultant-magnitude"
+      symbol: ResultantMagnitudeSim
+      props_binding: |
+        Static renderer hook for shell preview; learner-facing interaction is described in this container documentation.
+
+explain:
+  prompt: |
+    How did your confidence threshold affect both accuracy and total cost, and why can a lower-accuracy policy still be preferable under asymmetric error costs?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Confidence equals correctness"
+    - "Accuracy is the only metric"
