@@ -1,0 +1,37 @@
+id: graph-search-and-shortest-paths
+title: "Graph Search and Shortest Paths"
+interaction_type: algorithm-state-visualisation
+kernel_deps:
+  - core/sim-runtime
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+predict:
+  prompt: |
+    Which statement is correct for directed non-negative weighted graphs?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "BFS and Dijkstra optimize the same objective."
+      - "BFS minimizes edge count; Dijkstra minimizes total non-negative weight."
+      - "DFS always returns a minimum-cost path first."
+    correct_index: 1
+  rationale_required: true
+manipulate:
+  controls:
+    - id: traversal-mode
+      label: "Traversal mode"
+      kind: selector
+      kernel_binding: state.mode
+      options: ["BFS", "DFS"]
+observe:
+  renderers:
+    - id: traversal-and-cost-panel
+      module: "local"
+      symbol: "ObservePanel"
+      props_binding: "Traversal order and Dijkstra cost comparison."
+explain:
+  prompt: "Explain why edge-count shortest paths can differ from weighted shortest paths."
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "BFS minimizes weighted cost"
