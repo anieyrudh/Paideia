@@ -57,3 +57,6 @@ export type {
   WorkEnergyPowerModel,
   WorkEnergyPowerState,
 } from "./work-energy-power.js";
+
+export { MomentumSim } from './momentum.js';
+export type { MomentumState } from './momentum.js';

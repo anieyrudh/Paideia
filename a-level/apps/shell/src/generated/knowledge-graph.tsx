@@ -2,10 +2,11 @@
 import type { ComponentType } from "react";
 import GeneratedSim0ForcesAndEquilibriumForceBalance from "@paideia/a-level-physics-sims/forces-and-equilibrium";
 import GeneratedSim1KinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
-import GeneratedSim2PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
-import GeneratedSim3ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
-import GeneratedSim4ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
-import GeneratedSim5WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
+import GeneratedSim2MomentumEnergyTransferLab from "@paideia/a-level-physics-sims/momentum";
+import GeneratedSim3PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
+import GeneratedSim4ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
+import GeneratedSim5ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
+import GeneratedSim6WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -80,6 +81,15 @@ export const knowledgeGraph = {
     status: "reviewed",
   },
   {
+    id: "a-level/physics/momentum",
+    conceptId: "momentum",
+    title: "Momentum and Impulse",
+    subject: "physics",
+    level: "H2",
+    module: "Forces and Motion",
+    status: "reviewed",
+  },
+  {
     id: "a-level/physics/physical-quantities-and-units",
     conceptId: "physical-quantities-and-units",
     title: "Physical Quantities and Units",
@@ -123,6 +133,11 @@ export const knowledgeGraph = {
   { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/forces-and-newtons-laws", kind: "downstream" },
   { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/momentum", kind: "downstream" },
   { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/motion-graphs", kind: "sibling" },
+  { from: "a-level/physics/forces-and-equilibrium", to: "a-level/physics/momentum", kind: "prerequisite" },
+  { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/momentum", kind: "prerequisite" },
+  { from: "a-level/physics/momentum", to: "a-level/physics/momentum", kind: "downstream" },
+  { from: "a-level/physics/momentum", to: "a-level/physics/oscillations", kind: "downstream" },
+  { from: "a-level/physics/momentum", to: "a-level/physics/forces-and-newtons-laws", kind: "sibling" },
   { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/scalars-and-vectors", kind: "downstream" },
   { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/resolving-vectors", kind: "downstream" },
   { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/resolving-vectors", kind: "prerequisite" },
@@ -265,6 +280,71 @@ export const containers = [
     ],
   },
   {
+    id: "a-level/physics/momentum",
+    branch: "a-level",
+    subject: "Physics",
+    level: "H2",
+    module: "Forces and Motion",
+    title: "Momentum and Impulse",
+    summary: "Connect momentum change to impulse and apply conservation of momentum in collisions.",
+    syllabusRef: "9478 / Section II / Momentum",
+    status: "reviewed",
+    packageId: "momentum",
+    simId: "energy-transfer-lab",
+    predictPrompt: "Two carts collide head-on on a low-friction track. Before revealing the lab, predict which statement about total momentum is correct for the isolated two-cart system.",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "Momentum and force are the same quantity",
+      "Momentum conservation needs equal masses",
+      "Conservation means each object keeps its own momentum",
+    ],
+    transferProblem: "Two motors lift the same load through the same height. Cart A (0.50 kg) moves at +2.0 m/s and cart B (1.0 kg) moves at -0.5 m/s before collision. They stick together. Find final velocity and interpret the sign.",
+    firstPrinciples: "Work is energy transferred by a force acting through a displacement. The direction matters. Only the component of the force along the displacement does work, so a sideways force can be large and still transfer no energy along the path.",
+    keyDefinitions: [
+      "Work done: energy transferred when a force has a component along a displacement.",
+      "Joule: unit of work and energy; 1 J = 1 N m.",
+      "Kinetic energy: energy associated with motion, E_k = 1/2 mv^2.",
+      "Power: rate of energy transfer, measured in watts; 1 W = 1 J s^-1.",
+      "Negative work: work done by a force with a component opposite the displacement.",
+    ],
+    canonicalExamples: [
+      "A pull in the same direction as motion does positive work and can increase kinetic energy.",
+      "A braking force opposite the motion does negative work and reduces kinetic energy.",
+      "Two motors can do the same work while having different power if one takes less time.",
+    ],
+    problemSolvingSteps: [
+      "Identify the displacement",
+      "Use the force component along the path",
+      "Calculate work",
+      "Name the energy-store change",
+      "Calculate power if time is given",
+    ],
+    prerequisites: [
+      "Forces and Equilibrium",
+      "Kinematics in One Dimension",
+    ],
+    downstream: [
+      "Momentum",
+      "Oscillations",
+    ],
+    siblings: [
+      "Forces and Newton's Laws",
+    ],
+    sims: [
+      {
+        id: "energy-transfer-lab",
+        harnessId: "a-level/physics/momentum/energy-transfer-lab",
+        title: "Energy Transfer Lab",
+        interactionType: "animation-playback",
+        component: GeneratedSim2MomentumEnergyTransferLab,
+      },
+    ],
+  },
+  {
     id: "a-level/physics/physical-quantities-and-units",
     branch: "a-level",
     subject: "Physics",
@@ -325,7 +405,7 @@ export const containers = [
         harnessId: "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab",
         title: "Measurement and Uncertainty Lab",
         interactionType: "decision-matrix",
-        component: GeneratedSim2PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
+        component: GeneratedSim3PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
       },
     ],
   },
@@ -388,7 +468,7 @@ export const containers = [
         harnessId: "a-level/physics/resolving-vectors/component-resolution",
         title: "Component Resolution Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim3ResolvingVectorsComponentResolution,
+        component: GeneratedSim4ResolvingVectorsComponentResolution,
       },
     ],
   },
@@ -450,7 +530,7 @@ export const containers = [
         harnessId: "a-level/physics/scalars-and-vectors/resultant-magnitude",
         title: "Resultant Magnitude Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim4ScalarsAndVectorsResultantMagnitude,
+        component: GeneratedSim5ScalarsAndVectorsResultantMagnitude,
       },
     ],
   },
@@ -515,7 +595,7 @@ export const containers = [
         harnessId: "a-level/physics/work-energy-power/energy-transfer-lab",
         title: "Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim5WorkEnergyPowerEnergyTransferLab,
+        component: GeneratedSim6WorkEnergyPowerEnergyTransferLab,
       },
     ],
   }

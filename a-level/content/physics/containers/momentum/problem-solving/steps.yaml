@@ -1,0 +1,16 @@
+steps:
+  - id: identify-path
+    label: "Identify the displacement"
+    check: "The path and direction of displacement are clear."
+  - id: force-component
+    label: "Use the force component along the path"
+    check: "The angle theta is between the force and displacement."
+  - id: work
+    label: "Calculate work"
+    formula: "W = F s cos(theta)"
+  - id: energy-store
+    label: "Name the energy-store change"
+    check: "Positive work adds to the kinetic store; negative work removes from it."
+  - id: power
+    label: "Calculate power if time is given"
+    formula: "P = W / t"

@@ -2,17 +2,18 @@
 import type { ComponentType } from "react";
 import GeneratedSim0ALevelPhysicsForcesAndEquilibriumForceBalance from "@paideia/a-level-physics-sims/forces-and-equilibrium";
 import GeneratedSim1ALevelPhysicsKinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
-import GeneratedSim2ALevelPhysicsPhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
-import GeneratedSim3ALevelPhysicsResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
-import GeneratedSim4ALevelPhysicsScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
-import GeneratedSim5ALevelPhysicsWorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
-import GeneratedSim6SutdAsdLoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
-import GeneratedSim7SutdCsdGraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim8SutdDaiTrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim9SutdEpdPidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim10SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim11SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim12SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim2ALevelPhysicsMomentumEnergyTransferLab from "@paideia/a-level-physics-sims/momentum";
+import GeneratedSim3ALevelPhysicsPhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
+import GeneratedSim4ALevelPhysicsResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
+import GeneratedSim5ALevelPhysicsScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
+import GeneratedSim6ALevelPhysicsWorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
+import GeneratedSim7SutdAsdLoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
+import GeneratedSim8SutdCsdGraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
+import GeneratedSim9SutdDaiTrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim10SutdEpdPidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim11SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim12SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim13SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -31,60 +32,65 @@ export const simRegistry = {
     title: "Motion Equations Lab",
     Component: GeneratedSim1ALevelPhysicsKinematicsInOneDimensionMotionEquationsLab,
   },
+  "a-level/physics/momentum/energy-transfer-lab": {
+    id: "a-level/physics/momentum/energy-transfer-lab",
+    title: "Energy Transfer Lab",
+    Component: GeneratedSim2ALevelPhysicsMomentumEnergyTransferLab,
+  },
   "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab": {
     id: "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab",
     title: "Measurement and Uncertainty Lab",
-    Component: GeneratedSim2ALevelPhysicsPhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
+    Component: GeneratedSim3ALevelPhysicsPhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
   },
   "a-level/physics/resolving-vectors/component-resolution": {
     id: "a-level/physics/resolving-vectors/component-resolution",
     title: "Component Resolution Explorer",
-    Component: GeneratedSim3ALevelPhysicsResolvingVectorsComponentResolution,
+    Component: GeneratedSim4ALevelPhysicsResolvingVectorsComponentResolution,
   },
   "a-level/physics/scalars-and-vectors/resultant-magnitude": {
     id: "a-level/physics/scalars-and-vectors/resultant-magnitude",
     title: "Resultant Magnitude Explorer",
-    Component: GeneratedSim4ALevelPhysicsScalarsAndVectorsResultantMagnitude,
+    Component: GeneratedSim5ALevelPhysicsScalarsAndVectorsResultantMagnitude,
   },
   "a-level/physics/work-energy-power/energy-transfer-lab": {
     id: "a-level/physics/work-energy-power/energy-transfer-lab",
     title: "Energy Transfer Lab",
-    Component: GeneratedSim5ALevelPhysicsWorkEnergyPowerEnergyTransferLab,
+    Component: GeneratedSim6ALevelPhysicsWorkEnergyPowerEnergyTransferLab,
   },
   "sutd/asd/load-path-and-daylight-tradeoff/load-path-and-daylight-tradeoff": {
     id: "sutd/asd/load-path-and-daylight-tradeoff/load-path-and-daylight-tradeoff",
     title: "Load Path and Daylight Tradeoff Explorer",
-    Component: GeneratedSim6SutdAsdLoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
+    Component: GeneratedSim7SutdAsdLoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
   },
   "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths": {
     id: "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths",
     title: "Graph Search and Shortest Paths",
-    Component: GeneratedSim7SutdCsdGraphSearchAndShortestPathsGraphSearchAndShortestPaths,
+    Component: GeneratedSim8SutdCsdGraphSearchAndShortestPathsGraphSearchAndShortestPaths,
   },
   "sutd/dai/trust-calibration/trust-calibration": {
     id: "sutd/dai/trust-calibration/trust-calibration",
     title: "Trust Calibration Explorer",
-    Component: GeneratedSim8SutdDaiTrustCalibrationTrustCalibration,
+    Component: GeneratedSim9SutdDaiTrustCalibrationTrustCalibration,
   },
   "sutd/epd/pid-step-response/pid-step-response": {
     id: "sutd/epd/pid-step-response/pid-step-response",
     title: "PID Step Response Explorer",
-    Component: GeneratedSim9SutdEpdPidStepResponsePidStepResponse,
+    Component: GeneratedSim10SutdEpdPidStepResponsePidStepResponse,
   },
   "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region": {
     id: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
     title: "Linear Programming Feasible Region Explorer",
-    Component: GeneratedSim10SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+    Component: GeneratedSim11SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
   },
   "sutd/freshmore/vector-transformations/vector-transformations": {
     id: "sutd/freshmore/vector-transformations/vector-transformations",
     title: "2D Matrix-Vector Transformation Explorer",
-    Component: GeneratedSim11SutdFreshmoreVectorTransformationsVectorTransformations,
+    Component: GeneratedSim12SutdFreshmoreVectorTransformationsVectorTransformations,
   },
   "sutd/smt/ode-phase-portrait/ode-phase-portrait": {
     id: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
     title: "ODE Phase Portrait Explorer",
-    Component: GeneratedSim12SutdSmtOdePhasePortraitOdePhasePortrait,
+    Component: GeneratedSim13SutdSmtOdePhasePortraitOdePhasePortrait,
   }
 } satisfies Record<string, SimHarnessEntry>;
 
