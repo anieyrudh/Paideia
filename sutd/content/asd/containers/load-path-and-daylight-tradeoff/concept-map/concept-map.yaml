@@ -1,0 +1,37 @@
+schema_version: "1.0.0"
+concept_id: load-path-and-daylight-tradeoff
+prerequisites:
+  - id: physical-quantities-and-units
+    title: "Physical Quantities and Units"
+    relationship: "Students should already distinguish quantity, numerical value, and unit."
+    status: available
+downstream:
+  - id: kinematics-in-one-dimension
+    title: "Kinematics in One Dimension"
+    relationship: "Displacement, velocity, and acceleration depend on vector direction."
+    status: planned
+  - id: forces-and-newtons-laws
+    title: "Forces and Newton's Laws"
+    relationship: "Forces combine as vectors before applying equilibrium or acceleration."
+    status: planned
+siblings:
+  - id: resolving-vectors
+    title: "Resolving Vectors"
+    relationship: "Component form is the next representation after geometric vector addition."
+    status: available
+misconception_graph:
+  nodes:
+    - id: magnitude-only-vector-addition
+      label: "Magnitude-only vector addition"
+    - id: negative-scalar-direction
+      label: "Negative scalar does not reverse direction"
+    - id: scalar-vector-classification
+      label: "Scalar/vector classification by sign or unit"
+  edges:
+    - from: scalar-vector-classification
+      to: magnitude-only-vector-addition
+      label: "causes"
+    - from: magnitude-only-vector-addition
+      to: negative-scalar-direction
+      label: "shares direction blindness"
+mermaid_source: graph.mmd

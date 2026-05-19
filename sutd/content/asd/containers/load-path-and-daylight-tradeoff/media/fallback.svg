@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Vector resultant fallback diagram</title>
+  <desc id="desc">Two perpendicular vectors and their resultant.</desc>
+  <rect width="640" height="360" fill="#f8f5e7"/>
+  <line x1="160" y1="260" x2="400" y2="260" stroke="#1f5f8b" stroke-width="14" stroke-linecap="round"/>
+  <line x1="160" y1="260" x2="160" y2="80" stroke="#7a5af8" stroke-width="14" stroke-linecap="round"/>
+  <line x1="160" y1="260" x2="400" y2="80" stroke="#b42318" stroke-width="14" stroke-linecap="round"/>
+  <text x="414" y="265" fill="#12231c" font-family="sans-serif" font-size="28">A</text>
+  <text x="132" y="72" fill="#12231c" font-family="sans-serif" font-size="28">B</text>
+  <text x="414" y="76" fill="#12231c" font-family="sans-serif" font-size="28">R</text>
+</svg>

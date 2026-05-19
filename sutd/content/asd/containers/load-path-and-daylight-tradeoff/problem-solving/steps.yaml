@@ -1,0 +1,13 @@
+steps:
+  - id: classify
+    prompt: "Is direction part of the physical quantity?"
+    expected_action: "Choose scalar or vector treatment before calculating."
+  - id: represent
+    prompt: "How should the vector be represented?"
+    expected_action: "Draw arrows or resolve into perpendicular components."
+  - id: combine
+    prompt: "What operation preserves direction?"
+    expected_action: "Add components or use a vector triangle."
+  - id: interpret
+    prompt: "What physical quantity does the result describe?"
+    expected_action: "Distinguish resultant displacement from total distance."
