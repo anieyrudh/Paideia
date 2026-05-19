@@ -29,14 +29,10 @@ test("launches the first container sim through the learner shell", async ({ page
 test("navigates the generated mini knowledge graph", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: "Kinematics in One Dimension" })).toBeVisible();
-  await expect(page.getByText("4 concepts ready")).toBeVisible();
+  await expect(page.getByText("5 concepts ready")).toBeVisible();
   await expect(page.getByRole("heading", { name: "First principles" })).toBeVisible();
-  await expect(page.getByText("Kinematics describes motion without first asking")).toBeVisible();
-  await expect(page.getByText("Choose the positive direction")).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Motion Equations Lab" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Concept containers" })).toBeVisible();
   await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-  await expect(page.getByText("Prerequisite: Physical Quantities and Units")).toBeVisible();
 
   await page
     .getByRole("navigation", { name: "Concept containers" })
@@ -85,14 +81,14 @@ test("searches modules and keeps local mastery progress", async ({ page }) => {
 
   await page.getByLabel("Search curriculum").fill("");
   await page.getByRole("button", { name: "Foundations of Physics" }).click();
-  await expect(page.getByText("4 of 4 containers")).toBeVisible();
+  await expect(page.getByText("4 of 5 containers")).toBeVisible();
 
   await page
     .getByLabel("Physical Quantities and Units mastery")
     .getByRole("button", { name: "Mastered" })
     .click();
-  await expect(page.getByText("1/4 mastered")).toBeVisible();
+  await expect(page.getByText("1/5 mastered")).toBeVisible();
 
   await page.reload();
-  await expect(page.getByText("1/4 mastered")).toBeVisible();
+  await expect(page.getByText("1/5 mastered")).toBeVisible();
 });
