@@ -1,3 +1,5 @@
+import { approxEqual } from "@paideia/shared";
+import fc from "fast-check";
 import { describe, expect, it } from "vitest";
 import {
   classifyLinear2D,
@@ -11,6 +13,13 @@ import {
 } from "./index.js";
 
 describe("@paideia/dynamical-systems", () => {
+  const finiteSmallNumber = fc.double({
+    min: -10,
+    max: 10,
+    noDefaultInfinity: true,
+    noNaN: true,
+  });
+
   it("steps an exponential flow with RK4 accuracy", () => {
     const result = integrateFlow((state) => [state[0] ?? 0], [1], {
       dt: 0.01,
@@ -132,24 +141,44 @@ describe("@paideia/dynamical-systems", () => {
     }
   });
 
-  it("builds a reusable vector field from a 2D linear-system matrix", () => {
-    const field = linearVectorField2D([
-      [0, 1],
-      [-1.2, -0.6],
-    ]);
+  it("matches matrix-vector multiplication for finite 2D linear systems", () => {
+    fc.assert(
+      fc.property(
+        fc.tuple(finiteSmallNumber, finiteSmallNumber, finiteSmallNumber, finiteSmallNumber),
+        fc.tuple(finiteSmallNumber, finiteSmallNumber),
+        ([a, b, c, d], [x, y]) => {
+          const field = linearVectorField2D([
+            [a, b],
+            [c, d],
+          ]);
 
-    expect(field.ok).toBe(true);
-    if (field.ok) {
-      expect(field.value([1.4, 0], 0)).toEqual([0, -1.68]);
+          expect(field.ok).toBe(true);
+          if (!field.ok) return;
 
-      const trajectory = integrateFlow(field.value, [1.4, 0], {
-        dt: 0.035,
-        steps: 4,
-        method: "rk4",
-      });
-      expect(trajectory.ok).toBe(true);
-      if (trajectory.ok) expect(trajectory.value).toHaveLength(5);
-    }
+          const derivative = field.value([x, y], 0);
+          expect(approxEqual(derivative[0] ?? Number.NaN, a * x + b * y, 1e-10)).toBe(true);
+          expect(approxEqual(derivative[1] ?? Number.NaN, c * x + d * y, 1e-10)).toBe(true);
+
+          const trajectory = integrateFlow(field.value, [x, y], {
+            dt: 0.01,
+            steps: 1,
+            method: "euler",
+            maxNorm: 1e6,
+          });
+          expect(trajectory.ok).toBe(true);
+          if (trajectory.ok) {
+            const next = trajectory.value.at(1)?.state;
+            expect(approxEqual(next?.[0] ?? Number.NaN, x + 0.01 * (a * x + b * y), 1e-10)).toBe(
+              true,
+            );
+            expect(approxEqual(next?.[1] ?? Number.NaN, y + 0.01 * (c * x + d * y), 1e-10)).toBe(
+              true,
+            );
+          }
+        },
+      ),
+      { numRuns: 100, seed: 20260519 },
+    );
   });
 
   it("rejects invalid linear-vector-field matrices", () => {
@@ -160,6 +189,20 @@ describe("@paideia/dynamical-systems", () => {
 
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.error.code).toBe("precondition-violated");
+  });
+
+  it("rejects non-finite linear-vector-field state samples", () => {
+    const field = linearVectorField2D([
+      [0, 1],
+      [-1.2, -0.6],
+    ]);
+
+    expect(field.ok).toBe(true);
+    if (field.ok) {
+      const result = stepFlow(field.value, [Number.NaN, 0], { dt: 0.1 });
+      expect(result.ok).toBe(false);
+      if (!result.ok) expect(result.error.code).toBe("precondition-violated");
+    }
   });
 
   it("rejects finite 2D linear systems whose derived classification values overflow", () => {

@@ -475,7 +475,12 @@ export const linearVectorField2D = (matrix: Matrix2x2): KernelResult<VectorField
 
     const x = state[0];
     const y = state[1];
-    if (x === undefined || y === undefined) {
+    if (
+      typeof x !== "number" ||
+      typeof y !== "number" ||
+      !Number.isFinite(x) ||
+      !Number.isFinite(y)
+    ) {
       throw new Error("linearVectorField2D expected finite x and y coordinates");
     }
 

@@ -1,7 +1,48 @@
+import { clearPrediction, commitPrediction, isRevealed } from "@paideia/prediction-gate";
 import { describe, expect, it } from "vitest";
-import { odePhasePortraitEvidence } from "./ode-phase-portrait.js";
+import {
+  odePhasePortraitEvidence,
+  odePhasePortraitPackageId,
+} from "./ode-phase-portrait.js";
+
+class MemoryStorage {
+  private readonly values = new Map<string, string>();
+
+  getItem(key: string): string | null {
+    return this.values.get(key) ?? null;
+  }
+
+  setItem(key: string, value: string): void {
+    this.values.set(key, value);
+  }
+
+  removeItem(key: string): void {
+    this.values.delete(key);
+  }
+}
+
+const installStorage = (): void => {
+  Object.defineProperty(globalThis, "localStorage", {
+    configurable: true,
+    value: new MemoryStorage(),
+  });
+};
 
 describe("ODE phase portrait evidence", () => {
+  it("keeps phase evidence blocked until the prediction gate records a commit", () => {
+    installStorage();
+    clearPrediction(odePhasePortraitPackageId, "ode-phase-portrait");
+
+    expect(isRevealed(odePhasePortraitPackageId, "ode-phase-portrait")).toBe(false);
+    const committed = commitPrediction(odePhasePortraitPackageId, "ode-phase-portrait", {
+      value: "Spiral inward toward the equilibrium",
+      rationale: "The default trace is negative and the determinant is positive.",
+    });
+
+    expect(committed.ok).toBe(true);
+    expect(isRevealed(odePhasePortraitPackageId, "ode-phase-portrait")).toBe(true);
+  });
+
   it("classifies the default trace-determinant system as a stable spiral", () => {
     const evidence = odePhasePortraitEvidence({
       preset: "stable-spiral",
