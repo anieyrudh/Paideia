@@ -1,0 +1,74 @@
+id: energy-transfer-lab
+title: "Energy Transfer Lab"
+interaction_type: animation-playback
+kernel_deps:
+  - core/sim-runtime
+  - core/content-schema
+  - core/mechanics
+  - core/charting
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A 10 N pull moves a trolley 3.0 m in the same direction as the motion in 2.0 s. Before revealing the lab, which work and average power statement is correct?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "0 J and 0 W"
+      - "30 J and 15 W"
+      - "30 J and 30 W"
+      - "60 J and 15 W"
+    correct_index: 1
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: force
+      label: "Applied force"
+      kind: slider
+      kernel_binding: state.forceNewtons
+      bounds: { min: 0, max: 20, step: 1 }
+    - id: displacement
+      label: "Displacement"
+      kind: slider
+      kernel_binding: state.displacementMetres
+      bounds: { min: 0, max: 6, step: 0.5 }
+    - id: angle
+      label: "Force angle"
+      kind: slider
+      kernel_binding: state.angleDegrees
+      bounds: { min: 0, max: 180, step: 15 }
+    - id: elapsed-time
+      label: "Elapsed time"
+      kind: slider
+      kernel_binding: state.elapsedSeconds
+      bounds: { min: 0.5, max: 8, step: 0.5 }
+    - id: mass
+      label: "Mass"
+      kind: slider
+      kernel_binding: state.massKilograms
+      bounds: { min: 1, max: 10, step: 0.5 }
+    - id: starting-speed
+      label: "Starting speed"
+      kind: slider
+      kernel_binding: state.initialSpeedMetresPerSecond
+      bounds: { min: 0, max: 8, step: 0.5 }
+
+observe:
+  renderers:
+    - id: energy-transfer-lab
+      module: "@paideia/a-level-physics-sims/work-energy-power"
+      symbol: WorkEnergyPowerSim
+      props_binding: |
+        Show work sign, energy-store transfer, average power, formula substitution, and an energy trace from force, displacement, angle, time, mass, and starting speed.
+
+explain:
+  prompt: |
+    Why does only the force component along the displacement transfer energy, and what changes when the same work is done in less time?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Energy is lost rather than transferred"
+    - "Work equals force regardless of displacement direction"
+    - "Power is the same thing as energy"

@@ -5,7 +5,8 @@
 The public API is exactly the export list in `AGENTS.md`: unit-named mechanics
 types, `mechanicsTolerance`, and pure functions for kinematics, projectile
 sampling, net force, Newton's second law, work, kinetic energy, momentum,
-elastic collisions, and simple harmonic motion.
+work-energy transfer, average power, elastic collisions, and simple harmonic
+motion.
 
 ## Invariant enforcement
 
@@ -15,6 +16,8 @@ elastic collisions, and simple harmonic motion.
 | Finite numeric inputs | Runtime guards return `precondition-violated`. |
 | Non-negative elapsed time | `kinematics1D`, `projectileAt`, and `simpleHarmonicMotion` guard `Seconds`. |
 | Positive mass | `accelerationFromForce`, `kineticEnergy`, `momentum1D`, and `elasticCollision1D` guard mass. |
+| Positive elapsed time for power | `averagePower` guards `Seconds` as strictly positive. |
+| Kinetic store cannot be negative | `workEnergyTransfer` clamps the final kinetic store at zero and reports the actual kinetic-store change. |
 | Conservation laws | Property-style Vitest loops assert SUVAT, elastic momentum, and elastic kinetic energy invariants. |
 | No caller mutation | Functions construct fresh results; tests snapshot force arrays before/after use. |
 
@@ -34,3 +37,10 @@ introduced.
   choices inside the kernel.
 - Failure semantics: invalid learner-controlled parameters return explicit
   `KernelResult` errors instead of leaking `NaN` into a visual.
+
+## 2026-05-19 extension
+
+Added `WorkEnergyTransferResult`, `workEnergyTransfer`, and `averagePower` for
+the A-Level work-energy-power product slice. The change keeps reusable
+work-energy physics in `core/mechanics` instead of duplicating formulas in the
+simulation package.

@@ -29,7 +29,7 @@ test("launches the first container sim through the learner shell", async ({ page
 test("navigates the generated mini knowledge graph", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByText("5 concepts ready")).toBeVisible();
+  await expect(page.getByText("6 concepts ready")).toBeVisible();
   await expect(page.getByRole("heading", { name: "First principles" })).toBeVisible();
   await expect(page.getByRole("navigation", { name: "Concept containers" })).toBeVisible();
   await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
@@ -69,6 +69,29 @@ test("reveals the kinematics route from generated catalogue data", async ({ page
   await expect(page.getByLabel("Observation unlocked")).toContainText("9.00 m");
 });
 
+test("reveals the work-energy-power route from generated catalogue data", async ({ page }) => {
+  await page.goto("/#a-level/physics/work-energy-power");
+
+  await expect(page.getByRole("heading", { name: "Work, Energy, Power" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Energy Transfer Lab" })).toBeVisible();
+  await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
+  await expect(page.getByText("W = F s cos(theta)")).toHaveCount(0);
+
+  await page.getByRole("button", { name: "Set up energy transfer" }).click();
+  await page.getByRole("button", { name: "Reveal energy transfer" }).click();
+
+  await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+  await page.getByLabel("30 J and 15 W").check();
+  await page
+    .getByLabel("Rationale")
+    .fill("The force and displacement point in the same direction, so the full force does work.");
+  await page.getByRole("button", { name: "Commit prediction" }).click();
+
+  await expect(page.getByLabel("Observation unlocked")).toBeVisible();
+  await expect(page.getByLabel("Formula used")).toContainText("W = F s cos(theta)");
+  await expect(page.getByLabel("Observation unlocked")).toContainText("+30.00 J");
+});
+
 test("searches modules and keeps local mastery progress", async ({ page }) => {
   await page.goto("/");
 
@@ -81,14 +104,14 @@ test("searches modules and keeps local mastery progress", async ({ page }) => {
 
   await page.getByLabel("Search curriculum").fill("");
   await page.getByRole("button", { name: "Foundations of Physics" }).click();
-  await expect(page.getByText("4 of 5 containers")).toBeVisible();
+  await expect(page.getByText("4 of 6 containers")).toBeVisible();
 
   await page
     .getByLabel("Physical Quantities and Units mastery")
     .getByRole("button", { name: "Mastered" })
     .click();
-  await expect(page.getByText("1/5 mastered")).toBeVisible();
+  await expect(page.getByText("1/6 mastered")).toBeVisible();
 
   await page.reload();
-  await expect(page.getByText("1/5 mastered")).toBeVisible();
+  await expect(page.getByText("1/6 mastered")).toBeVisible();
 });

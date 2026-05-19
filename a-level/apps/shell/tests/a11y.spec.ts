@@ -100,3 +100,25 @@ test("has no critical accessibility violations after the kinematics sim is revea
 
   expect(criticalViolations).toEqual([]);
 });
+
+test("has no critical accessibility violations after the work-energy-power sim is revealed", async ({
+  page,
+}) => {
+  await page.goto("/#a-level/physics/work-energy-power");
+
+  await page.getByRole("button", { name: "Set up energy transfer" }).click();
+  await page.getByRole("button", { name: "Reveal energy transfer" }).click();
+  await page.getByLabel("30 J and 15 W").check();
+  await page
+    .getByLabel("Rationale")
+    .fill("The force and displacement point in the same direction, so the work is positive.");
+  await page.getByRole("button", { name: "Commit prediction" }).click();
+  await page.getByLabel("Observation unlocked").waitFor();
+
+  const results = await new AxeBuilder({ page }).analyze();
+  const criticalViolations = results.violations.filter(
+    (violation) => violation.impact === "critical",
+  );
+
+  expect(criticalViolations).toEqual([]);
+});

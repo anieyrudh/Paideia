@@ -23,6 +23,12 @@ export {
   kinematicsModel,
   kinematicsPredict,
 } from "./kinematics-one-dimension.js";
+export {
+  EnergyTransferDiagram,
+  WorkEnergyPowerSim,
+  workEnergyPowerModel,
+  workEnergyPowerSpec,
+} from "./work-energy-power.js";
 export type {
   ForceBalanceModel,
   ForceBalanceState,
@@ -46,3 +52,8 @@ export type {
   MetresPerSecondSquared,
   MotionTimelineProps,
 } from "./kinematics-one-dimension.js";
+export type {
+  EnergyTracePoint,
+  WorkEnergyPowerModel,
+  WorkEnergyPowerState,
+} from "./work-energy-power.js";

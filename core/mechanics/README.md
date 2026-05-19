@@ -7,7 +7,7 @@ forces, work, energy, momentum, elastic collisions, and simple harmonic motion.
 ## Usage
 
 ```ts
-import { kinematics1D } from "@paideia/mechanics";
+import { averagePower, kinematics1D, workEnergyTransfer } from "@paideia/mechanics";
 import { metres, seconds } from "@paideia/shared";
 
 const state = kinematics1D({
@@ -24,9 +24,13 @@ if (state.ok) {
 
 ## Scope
 
-All public inputs and outputs use SI units. Composite units are named in the
-field, such as `velocityMetresPerSecond`. Expected invalid inputs return
+All public inputs and outputs use SI units. Shared branded units are used where
+the quantity crosses the kernel boundary; composite vector units are named in
+fields such as `velocityMetresPerSecond`. Expected invalid inputs return
 `KernelResult.err(...)`; the kernel does not throw for ordinary domain errors.
+
+Work-energy helpers own the shared calculations for final kinetic store and
+average power so simulations do not reimplement those formulas locally.
 
 The package does not render mechanics visuals, run animation loops, solve
 arbitrary ODEs, or choose branch-specific teaching constants.
