@@ -1,0 +1,4 @@
+state_labels:
+  primaryControl:
+    label: "Primary control"
+    meaning: "Replace with the learner-visible meaning of this state."

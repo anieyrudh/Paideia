@@ -1,0 +1,2 @@
+- Winston, W. (2003). Operations Research: Applications and Algorithms.
+- Taha, H. (2017). Operations Research: An Introduction.
