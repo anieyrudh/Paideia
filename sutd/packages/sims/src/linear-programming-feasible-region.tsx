@@ -69,7 +69,7 @@ const ManipulateStage = () => {
   const y = clamp(state.y ?? 2);
 
   return (
-    <section>
+    <section aria-label="Manipulation controls" role="region">
       <label htmlFor="x-control">x units</label>
       <input
         id="x-control"
@@ -109,7 +109,7 @@ const ObserveStage = () => {
   const feasible = c1 <= 10 && c2 <= 14 && c3 <= 18;
 
   return (
-    <section>
+    <section aria-label="Observation unlocked" role="region">
       <p>
         x + y = {x} + {y} = {c1} {"<= 10"} {c1 <= 10 ? "pass" : "fail"}
       </p>
