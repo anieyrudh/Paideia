@@ -9,5 +9,10 @@
     "tests/**/*",
     "playwright.config.ts",
     "vite.config.ts"
+  ],
+  "references": [
+    {
+      "path": "../../packages/sims"
+    }
   ]
 }

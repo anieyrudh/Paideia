@@ -73,11 +73,22 @@ const renderStringArray = (items, indent = "      ") =>
     ? "[]"
     : `[\n${items.map((item) => `${indent}${jsString(item)},`).join("\n")}\n${indent.slice(0, -2)}]`;
 
+const localRendererModule = (manifestPath) => {
+  const containerDir = resolve(manifestPath, "..");
+  const branch = relative(REPO_ROOT, containerDir).split("/")[0];
+  const slug = basename(containerDir);
+  if (branch === "sutd") return `@paideia/sutd-sims/${slug}`;
+  throw new Error(
+    `${relative(REPO_ROOT, manifestPath)} uses renderer module "local", but only SUTD local renderers are supported. Use an importable package path instead.`,
+  );
+};
+
 const firstRendererModule = (simSpec, manifestPath) => {
   const module = simSpec.observe?.renderers?.[0]?.module;
   if (typeof module !== "string" || module.length === 0) {
     throw new Error(`${relative(REPO_ROOT, manifestPath)} simulation has no renderer module`);
   }
+  if (module === "local") return localRendererModule(manifestPath);
   return module;
 };
 

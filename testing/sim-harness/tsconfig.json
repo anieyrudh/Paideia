@@ -10,6 +10,7 @@
     "vite.config.ts"
   ],
   "references": [
-    { "path": "../../a-level/packages/physics-sims" }
+    { "path": "../../a-level/packages/physics-sims" },
+    { "path": "../../sutd/packages/sims" }
   ]
 }
