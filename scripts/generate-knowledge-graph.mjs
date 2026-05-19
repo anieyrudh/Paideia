@@ -27,6 +27,7 @@ const TARGETS = [
     output: join(REPO_ROOT, "sutd", "apps", "shell", "src", "generated", "knowledge-graph.tsx"),
   },
 ];
+const SIM_REGISTRY_BRANCHES = [...TARGETS, { branch: "shared" }];
 const SIM_HARNESS_TARGET = {
   appDir: join(REPO_ROOT, "testing", "sim-harness"),
   output: join(REPO_ROOT, "testing", "sim-harness", "src", "generated", "sim-registry.tsx"),
@@ -78,8 +79,9 @@ const localRendererModule = (manifestPath) => {
   const branch = relative(REPO_ROOT, containerDir).split("/")[0];
   const slug = basename(containerDir);
   if (branch === "sutd") return `@paideia/sutd-sims/${slug}`;
+  if (branch === "shared") return `@paideia/shared-sims/${slug}`;
   throw new Error(
-    `${relative(REPO_ROOT, manifestPath)} uses renderer module "local", but only SUTD local renderers are supported. Use an importable package path instead.`,
+    `${relative(REPO_ROOT, manifestPath)} uses renderer module "local", but only SUTD and shared local renderers are supported. Use an importable package path instead.`,
   );
 };
 
@@ -465,7 +467,7 @@ for (const target of TARGETS) {
 }
 
 if (isDirectory(SIM_HARNESS_TARGET.appDir)) {
-  const output = renderSimHarnessRegistry(TARGETS);
+  const output = renderSimHarnessRegistry(SIM_REGISTRY_BRANCHES);
   mkdirSync(resolve(SIM_HARNESS_TARGET.output, ".."), { recursive: true });
   writeFileSync(SIM_HARNESS_TARGET.output, output, "utf8");
   process.stdout.write(

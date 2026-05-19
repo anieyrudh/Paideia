@@ -45,6 +45,23 @@ The UI/UX is deliberately flexible. Predict -> Manipulate -> Observe -> Explain
 └── TECHNICAL.md                REQUIRED
 ```
 
+`<branch>` is one of the curriculum or shared delivery roots:
+
+- `a-level` for A-Level curriculum wrappers.
+- `sutd` for SUTD curriculum wrappers.
+- `shared` for reusable cross-curriculum concept products.
+
+Shared-core containers live at:
+
+```text
+shared/content/<discipline>/containers/<concept-id>/
+```
+
+Use the queue entry's `discipline` as `<discipline>` unless an ADR defines a
+more specific shared taxonomy. Curriculum containers may wrap, recommend, or
+link to shared-core containers, but they must not relocate a `shared.*` queue
+item into `a-level/` or `sutd/`.
+
 ## 2. Minimum Complete Container
 
 A complete container must include:

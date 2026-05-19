@@ -188,6 +188,8 @@ entries:
       - core/ui-sim
     repo_package_name: sim-bayes
     estimated_effort: M
+    repo:
+      container_path: shared/content/math/containers/bayes-updating
     assignment:
       workstream: shared-probability-stats
       concept_cluster: Bayesian reasoning
@@ -239,6 +241,8 @@ entries:
       - core/ui-sim
     repo_package_name: sim-clt-sampler
     estimated_effort: M
+    repo:
+      container_path: shared/content/math/containers/central-limit-theorem
     assignment:
       workstream: shared-probability-stats
       concept_cluster: Probability
@@ -341,6 +345,8 @@ entries:
       - core/ui-sim
     repo_package_name: sim-eigenlab
     estimated_effort: M
+    repo:
+      container_path: shared/content/math/containers/eigenvector-transformations
     assignment:
       workstream: shared-math
       concept_cluster: Linear algebra
@@ -390,6 +396,8 @@ entries:
       - core/ui-sim
     repo_package_name: sim-ode-phase
     estimated_effort: M
+    repo:
+      container_path: shared/content/math/containers/ode-phase-portrait
     assignment:
       workstream: shared-math
       concept_cluster: Dynamical systems
@@ -441,6 +449,8 @@ entries:
       - core/ui-sim
     repo_package_name: sim-gradient-descent
     estimated_effort: M
+    repo:
+      container_path: shared/content/cs/containers/gradient-descent-landscape
     assignment:
       workstream: shared-algorithms-ai
       concept_cluster: Optimisation / ML
@@ -545,6 +555,8 @@ entries:
       - core/ui-sim
     repo_package_name: sim-free-body
     estimated_effort: H
+    repo:
+      container_path: shared/content/physics/containers/free-body-diagram-mechanics
     assignment:
       workstream: shared-physics-core
       concept_cluster: Physics / engineering
@@ -596,6 +608,8 @@ entries:
       - core/ui-sim
     repo_package_name: sim-circuit-phasor
     estimated_effort: H
+    repo:
+      container_path: shared/content/physics/containers/circuit-phasor-reasoning
     assignment:
       workstream: shared-physics-core
       concept_cluster: Signals / circuits

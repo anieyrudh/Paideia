@@ -1,5 +1,6 @@
 packages:
   - "core/*"
+  - "shared/packages/*"
   - "a-level/packages/*"
   - "a-level/apps/*"
   - "testing/*"
