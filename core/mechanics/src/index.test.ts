@@ -1,7 +1,17 @@
 import { describe, expect, it } from "vitest";
-import { approxEqual, kilograms, metres, newtons, radians, seconds } from "@paideia/shared";
+import {
+  approxEqual,
+  joules,
+  kilograms,
+  metres,
+  metresPerSecond,
+  newtons,
+  radians,
+  seconds,
+} from "@paideia/shared";
 import {
   accelerationFromForce,
+  averagePower,
   elasticCollision1D,
   kineticEnergy,
   kinematics1D,
@@ -11,6 +21,7 @@ import {
   projectileAt,
   simpleHarmonicMotion,
   workDone,
+  workEnergyTransfer,
   type Vector2,
 } from "./index.js";
 
@@ -100,13 +111,33 @@ describe("@paideia/mechanics", () => {
     expect(work.ok).toBe(true);
     if (work.ok) expect(approxEqual(work.value, 15, mechanicsTolerance.loose)).toBe(true);
 
-    const energy = kineticEnergy(kilograms(4), 6);
+    const energy = kineticEnergy(kilograms(4), metresPerSecond(6));
     expect(energy.ok).toBe(true);
     if (energy.ok) expect(energy.value).toBe(72);
 
     const momentum = momentum1D(kilograms(4), -6);
     expect(momentum.ok).toBe(true);
     if (momentum.ok) expect(momentum.value).toBe(-24);
+  });
+
+  it("computes work-energy transfer and average power helpers", () => {
+    const transfer = workEnergyTransfer(joules(2), joules(30));
+    expect(transfer.ok).toBe(true);
+    if (transfer.ok) {
+      expect(transfer.value.finalKineticEnergyJoules).toBe(32);
+      expect(transfer.value.kineticEnergyChangeJoules).toBe(30);
+    }
+
+    const braking = workEnergyTransfer(joules(4), joules(-24));
+    expect(braking.ok).toBe(true);
+    if (braking.ok) {
+      expect(braking.value.finalKineticEnergyJoules).toBe(0);
+      expect(braking.value.kineticEnergyChangeJoules).toBe(-4);
+    }
+
+    const power = averagePower(joules(30), seconds(2));
+    expect(power.ok).toBe(true);
+    if (power.ok) expect(power.value).toBe(15);
   });
 
   it("conserves momentum and kinetic energy in elastic collisions", () => {
@@ -201,12 +232,20 @@ describe("@paideia/mechanics", () => {
     expect(work.ok).toBe(false);
     if (!work.ok) expect(work.error.code).toBe("numerical-instability");
 
-    const energy = kineticEnergy(kilograms(Number.MAX_VALUE), 2);
+    const energy = kineticEnergy(kilograms(Number.MAX_VALUE), metresPerSecond(2));
     expect(energy.ok).toBe(false);
     if (!energy.ok) expect(energy.error.code).toBe("numerical-instability");
 
     const momentum = momentum1D(kilograms(Number.MAX_VALUE), 2);
     expect(momentum.ok).toBe(false);
     if (!momentum.ok) expect(momentum.error.code).toBe("numerical-instability");
+
+    const transfer = workEnergyTransfer(joules(Number.MAX_VALUE), joules(Number.MAX_VALUE));
+    expect(transfer.ok).toBe(false);
+    if (!transfer.ok) expect(transfer.error.code).toBe("numerical-instability");
+
+    const power = averagePower(joules(Number.MAX_VALUE), seconds(Number.MIN_VALUE));
+    expect(power.ok).toBe(false);
+    if (!power.ok) expect(power.error.code).toBe("numerical-instability");
   });
 });

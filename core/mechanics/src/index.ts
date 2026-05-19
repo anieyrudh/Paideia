@@ -4,13 +4,16 @@ import {
   metres,
   ok,
   radians,
+  watts,
   type Joules,
   type KernelResult,
   type Kilograms,
   type Metres,
+  type MetresPerSecond,
   type Newtons,
   type Radians,
   type Seconds,
+  type Watts,
 } from "@paideia/shared";
 
 export const mechanicsTolerance = {
@@ -81,6 +84,11 @@ export interface ElasticCollision1DResult {
   readonly totalMomentumAfterKilogramMetresPerSecond: number;
   readonly totalKineticEnergyBeforeJoules: Joules;
   readonly totalKineticEnergyAfterJoules: Joules;
+}
+
+export interface WorkEnergyTransferResult {
+  readonly finalKineticEnergyJoules: Joules;
+  readonly kineticEnergyChangeJoules: Joules;
 }
 
 const finite = (value: number, label: string): KernelResult<void> =>
@@ -263,7 +271,7 @@ export const workDone = (
 
 export const kineticEnergy = (
   massKilograms: Kilograms,
-  speedMetresPerSecond: number,
+  speedMetresPerSecond: MetresPerSecond,
 ): KernelResult<Joules> => {
   const mass = positive(massKilograms, "massKilograms");
   if (!mass.ok) return mass;
@@ -274,6 +282,40 @@ export const kineticEnergy = (
   const computedEnergy = finiteDerived(energyJoules, "kineticEnergyJoules");
   if (!computedEnergy.ok) return computedEnergy;
   return ok(joules(energyJoules));
+};
+
+export const workEnergyTransfer = (
+  initialKineticEnergyJoules: Joules,
+  workJoules: Joules,
+): KernelResult<WorkEnergyTransferResult> => {
+  const initialEnergy = nonNegative(initialKineticEnergyJoules, "initialKineticEnergyJoules");
+  if (!initialEnergy.ok) return initialEnergy;
+  const work = finite(workJoules, "workJoules");
+  if (!work.ok) return work;
+
+  const finalEnergy = Math.max(0, initialKineticEnergyJoules + workJoules);
+  const energyChange = finalEnergy - initialKineticEnergyJoules;
+  const computedFinalEnergy = finiteDerived(finalEnergy, "finalKineticEnergyJoules");
+  if (!computedFinalEnergy.ok) return computedFinalEnergy;
+  const computedEnergyChange = finiteDerived(energyChange, "kineticEnergyChangeJoules");
+  if (!computedEnergyChange.ok) return computedEnergyChange;
+
+  return ok({
+    finalKineticEnergyJoules: joules(finalEnergy),
+    kineticEnergyChangeJoules: joules(energyChange),
+  });
+};
+
+export const averagePower = (workJoules: Joules, elapsedSeconds: Seconds): KernelResult<Watts> => {
+  const work = finite(workJoules, "workJoules");
+  if (!work.ok) return work;
+  const elapsed = positive(elapsedSeconds, "elapsedSeconds");
+  if (!elapsed.ok) return elapsed;
+
+  const powerWatts = workJoules / elapsedSeconds;
+  const computedPower = finiteDerived(powerWatts, "averagePowerWatts");
+  if (!computedPower.ok) return computedPower;
+  return ok(watts(powerWatts));
 };
 
 export const momentum1D = (

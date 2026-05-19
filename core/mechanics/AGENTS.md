@@ -20,12 +20,15 @@ Exports from `@paideia/mechanics`:
 - `type SimpleHarmonicMotionSample`
 - `type ElasticCollision1DInput`
 - `type ElasticCollision1DResult`
+- `type WorkEnergyTransferResult`
 - `kinematics1D(input: Kinematics1DInput): KernelResult<Kinematics1DState>`
 - `projectileAt(input: ProjectileInput, elapsedSeconds: Seconds): KernelResult<ProjectileSample>`
 - `netForce(forces: readonly Vector2[]): KernelResult<Vector2>`
 - `accelerationFromForce(forceNewtons: Vector2, massKilograms: Kilograms): KernelResult<Vector2>`
 - `workDone(forceNewtons: Newtons, displacementMetres: Metres, angleRadians?: Radians): KernelResult<Joules>`
-- `kineticEnergy(massKilograms: Kilograms, speedMetresPerSecond: number): KernelResult<Joules>`
+- `kineticEnergy(massKilograms: Kilograms, speedMetresPerSecond: MetresPerSecond): KernelResult<Joules>`
+- `workEnergyTransfer(initialKineticEnergyJoules: Joules, workJoules: Joules): KernelResult<WorkEnergyTransferResult>`
+- `averagePower(workJoules: Joules, elapsedSeconds: Seconds): KernelResult<Watts>`
 - `momentum1D(massKilograms: Kilograms, velocityMetresPerSecond: number): KernelResult<number>`
 - `elasticCollision1D(input: ElasticCollision1DInput): KernelResult<ElasticCollision1DResult>`
 - `simpleHarmonicMotion(input: SimpleHarmonicMotionInput, elapsedSeconds: Seconds): KernelResult<SimpleHarmonicMotionSample>`

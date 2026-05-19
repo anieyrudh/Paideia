@@ -1,9 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
   err,
+  metresPerSecond,
   ok,
   probability,
   seconds,
+  watts,
   type Function2D,
   type KernelResult,
 } from "./index.js";
@@ -43,6 +45,16 @@ describe("@paideia/shared", () => {
     it("seconds() brands a number for compile-time safety", () => {
       const t = seconds(1.5);
       expect(t).toBe(1.5); // brand erased at runtime
+    });
+
+    it("watts() brands a number for compile-time safety", () => {
+      const p = watts(15);
+      expect(p).toBe(15);
+    });
+
+    it("metresPerSecond() brands a number for compile-time safety", () => {
+      const v = metresPerSecond(2.5);
+      expect(v).toBe(2.5);
     });
   });
 

@@ -154,11 +154,13 @@ export type Brand<T, B extends string> = T & { readonly __brand: B };
 export type Seconds = Brand<number, "Seconds">;
 export type Metres = Brand<number, "Metres">;
 export type Kilograms = Brand<number, "Kilograms">;
+export type MetresPerSecond = Brand<number, "MetresPerSecond">;
 export type Radians = Brand<number, "Radians">;
 export type Degrees = Brand<number, "Degrees">;
 export type Kelvins = Brand<number, "Kelvins">;
 export type Newtons = Brand<number, "Newtons">;
 export type Joules = Brand<number, "Joules">;
+export type Watts = Brand<number, "Watts">;
 export type Hertz = Brand<number, "Hertz">;
 export type Probability = Brand<number, "Probability">; // [0, 1]
 
@@ -166,11 +168,13 @@ export type Probability = Brand<number, "Probability">; // [0, 1]
 export const seconds = (n: number) => n as Seconds;
 export const metres = (n: number) => n as Metres;
 export const kilograms = (n: number) => n as Kilograms;
+export const metresPerSecond = (n: number) => n as MetresPerSecond;
 export const radians = (n: number) => n as Radians;
 export const degrees = (n: number) => n as Degrees;
 export const kelvins = (n: number) => n as Kelvins;
 export const newtons = (n: number) => n as Newtons;
 export const joules = (n: number) => n as Joules;
+export const watts = (n: number) => n as Watts;
 export const hertz = (n: number) => n as Hertz;
 export const probability = (n: number): KernelResult<Probability> =>
   n >= 0 && n <= 1

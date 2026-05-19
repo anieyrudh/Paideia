@@ -9,6 +9,9 @@
   ],
   "references": [
     {
+      "path": "../../../core/charting"
+    },
+    {
       "path": "../../../core/content-schema"
     },
     {
@@ -19,6 +22,9 @@
     },
     {
       "path": "../../../core/prediction-gate"
+    },
+    {
+      "path": "../../../core/sim-runtime"
     },
     {
       "path": "../../../core/shared"

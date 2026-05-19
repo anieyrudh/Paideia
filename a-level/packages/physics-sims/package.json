@@ -11,19 +11,22 @@
     "./resultant-magnitude": "./src/resultant-magnitude.tsx",
     "./resolving-vectors": "./src/resolving-vectors.tsx",
     "./measurement-uncertainty": "./src/measurement-uncertainty.tsx",
-    "./kinematics-one-dimension": "./src/kinematics-one-dimension.tsx"
+    "./kinematics-one-dimension": "./src/kinematics-one-dimension.tsx",
+    "./work-energy-power": "./src/work-energy-power.tsx"
   },
   "scripts": {
     "build": "tsc -b",
-    "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts src/measurement-uncertainty.test.ts src/kinematics-one-dimension.test.ts src/forces-and-equilibrium.test.ts",
+    "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts src/measurement-uncertainty.test.ts src/kinematics-one-dimension.test.ts src/forces-and-equilibrium.test.ts src/work-energy-power.test.ts",
     "lint": "tsc -b --pretty false",
     "typecheck": "tsc -b --pretty false"
   },
   "dependencies": {
+    "@paideia/charting": "workspace:*",
     "@paideia/content-schema": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/mechanics": "workspace:*",
     "@paideia/prediction-gate": "workspace:*",
+    "@paideia/sim-runtime": "workspace:*",
     "@paideia/shared": "workspace:*",
     "@paideia/ui-sim": "workspace:*"
   },

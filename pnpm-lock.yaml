@@ -66,6 +66,9 @@ importers:
 
   a-level/packages/physics-sims:
     dependencies:
+      '@paideia/charting':
+        specifier: workspace:*
+        version: link:../../../core/charting
       '@paideia/content-schema':
         specifier: workspace:*
         version: link:../../../core/content-schema
@@ -81,6 +84,9 @@ importers:
       '@paideia/shared':
         specifier: workspace:*
         version: link:../../../core/shared
+      '@paideia/sim-runtime':
+        specifier: workspace:*
+        version: link:../../../core/sim-runtime
       '@paideia/ui-sim':
         specifier: workspace:*
         version: link:../../../core/ui-sim
