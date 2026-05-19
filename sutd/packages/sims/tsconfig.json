@@ -1,0 +1,28 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    { "path": "../../../core/algorithm-trace" },
+    { "path": "../../../core/annotation" },
+    { "path": "../../../core/charting" },
+    { "path": "../../../core/control-systems" },
+    { "path": "../../../core/dynamical-systems" },
+    { "path": "../../../core/graph-algorithms" },
+    { "path": "../../../core/graph-layout" },
+    { "path": "../../../core/linear-algebra" },
+    { "path": "../../../core/mechanics" },
+    { "path": "../../../core/optimization" },
+    { "path": "../../../core/plotting" },
+    { "path": "../../../core/prediction-gate" },
+    { "path": "../../../core/probability-stats" },
+    { "path": "../../../core/shared" },
+    { "path": "../../../core/sim-runtime" },
+    { "path": "../../../core/ui-sim" }
+  ]
+}

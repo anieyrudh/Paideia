@@ -612,6 +612,9 @@ importers:
 
   sutd/apps/shell:
     dependencies:
+      '@paideia/sutd-sims':
+        specifier: workspace:*
+        version: link:../../packages/sims
       react:
         specifier: ^18.3.0
         version: 18.3.1
@@ -638,11 +641,87 @@ importers:
         specifier: ^5.4.0
         version: 5.4.21(@types/node@22.19.19)
 
+  sutd/packages/sims:
+    dependencies:
+      '@paideia/algorithm-trace':
+        specifier: workspace:*
+        version: link:../../../core/algorithm-trace
+      '@paideia/annotation':
+        specifier: workspace:*
+        version: link:../../../core/annotation
+      '@paideia/charting':
+        specifier: workspace:*
+        version: link:../../../core/charting
+      '@paideia/control-systems':
+        specifier: workspace:*
+        version: link:../../../core/control-systems
+      '@paideia/dynamical-systems':
+        specifier: workspace:*
+        version: link:../../../core/dynamical-systems
+      '@paideia/graph-algorithms':
+        specifier: workspace:*
+        version: link:../../../core/graph-algorithms
+      '@paideia/graph-layout':
+        specifier: workspace:*
+        version: link:../../../core/graph-layout
+      '@paideia/linear-algebra':
+        specifier: workspace:*
+        version: link:../../../core/linear-algebra
+      '@paideia/mechanics':
+        specifier: workspace:*
+        version: link:../../../core/mechanics
+      '@paideia/optimization':
+        specifier: workspace:*
+        version: link:../../../core/optimization
+      '@paideia/plotting':
+        specifier: workspace:*
+        version: link:../../../core/plotting
+      '@paideia/prediction-gate':
+        specifier: workspace:*
+        version: link:../../../core/prediction-gate
+      '@paideia/probability-stats':
+        specifier: workspace:*
+        version: link:../../../core/probability-stats
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../../../core/shared
+      '@paideia/sim-runtime':
+        specifier: workspace:*
+        version: link:../../../core/sim-runtime
+      '@paideia/ui-sim':
+        specifier: workspace:*
+        version: link:../../../core/ui-sim
+    devDependencies:
+      '@types/react':
+        specifier: ^18.3.0
+        version: 18.3.28
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.7(@types/react@18.3.28)
+      jsdom:
+        specifier: ^25.0.0
+        version: 25.0.1
+      react:
+        specifier: ^18.3.0
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.0
+        version: 18.3.1(react@18.3.1)
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.0
+        version: 2.1.9(@types/node@22.19.19)(jsdom@25.0.1)
+
   testing/sim-harness:
     dependencies:
       '@paideia/a-level-physics-sims':
         specifier: workspace:*
         version: link:../../a-level/packages/physics-sims
+      '@paideia/sutd-sims':
+        specifier: workspace:*
+        version: link:../../sutd/packages/sims
       react:
         specifier: ^18.3.0
         version: 18.3.1
