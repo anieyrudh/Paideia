@@ -86,11 +86,13 @@ Reviewers should lead with P0/P1 findings:
 
 Merge only when P0 is zero and P1 is resolved or explicitly deferred in `TECHNICAL.md`.
 
-## Current Two-Track Wave
+## Current Four-Track Wave
 
 | Track | Queue id | Starting status | Required kernels |
 | --- | --- | --- | --- |
-| A-Level Physics | `alevel.physics.work-energy-power` | `ready-for-build` | `core/sim-runtime`, `core/mechanics`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
-| SUTD SMT | `sutd.smt.ode-phase-portrait` | `ready-for-build` | `core/sim-runtime`, `core/dynamical-systems`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+| A-Level Physics | `alevel.physics.momentum` | `ready-for-build` | `core/sim-runtime`, `core/mechanics`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| A-Level Physics | `alevel.physics.waves` | `ready-for-build` | `core/sim-runtime`, `core/function-eval`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| Shared physics | `shared.physics.free-body-diagram-mechanics` | `ready-for-build` | `core/sim-runtime`, `core/mechanics`, `core/linear-algebra`, `core/prediction-gate`, `core/ui-sim` |
+| Shared circuits | `shared.circuits.circuit-phasor-reasoning` | `ready-for-build` | `core/circuits`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 
-Build these as separate PRs. If both are active at once, merge one, sync the other with `main`, regenerate graph, rerun full checks, then merge the second.
+Build these as separate PRs. If several are active at once, merge one, sync the others with `main`, regenerate graph, rerun full checks, then merge the next.

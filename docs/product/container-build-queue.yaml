@@ -502,7 +502,7 @@ entries:
   - id: shared.physics.free-body-diagram-mechanics
     title: "Free-Body Diagram / Mechanics Lab"
     priority: P0
-    status: planned
+    status: ready-for-build
     cluster: Physics / engineering
     discipline: physics
     reuse_status: shared-core
@@ -553,7 +553,7 @@ entries:
   - id: shared.circuits.circuit-phasor-reasoning
     title: "Circuit & Phasor Lab"
     priority: P0
-    status: planned
+    status: ready-for-build
     cluster: Signals / circuits
     discipline: physics
     reuse_status: shared-core
@@ -1304,7 +1304,7 @@ entries:
   - id: alevel.physics.momentum
     title: "Momentum"
     priority: P0
-    status: planned
+    status: ready-for-build
     cluster: A-Level mechanics
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -1346,7 +1346,7 @@ entries:
   - id: alevel.physics.waves
     title: "Waves"
     priority: P0
-    status: planned
+    status: ready-for-build
     cluster: A-Level waves
     discipline: physics
     reuse_status: curriculum-wrapper
