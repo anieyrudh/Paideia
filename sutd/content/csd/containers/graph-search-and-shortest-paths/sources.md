@@ -1,0 +1,3 @@
+- Cormen, Leiserson, Rivest, Stein. *Introduction to Algorithms* (3rd ed.), chapters on BFS/DFS and Dijkstra, 2009.
+- Sedgewick, Wayne. *Algorithms* (4th ed.), graph algorithms chapter, 2011.
+- Kleinberg, Tardos. *Algorithm Design*, shortest path chapter, 2006.

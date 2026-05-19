@@ -1,0 +1,64 @@
+import AxeBuilder from "@axe-core/playwright";
+import { expect, test } from "@playwright/test";
+
+test.describe("Graph Search and Shortest Paths", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto("/?sim=sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths");
+  });
+
+  test("prediction-gate blocks observation until commit", async ({ page }) => {
+    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+
+    await page.getByRole("button", { name: "Choose traversal" }).click();
+    await page.getByRole("button", { name: "Reveal graph evidence" }).click();
+
+    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+
+    await page
+      .getByLabel("BFS minimizes edge count; Dijkstra minimizes total non-negative weight.")
+      .check();
+    await page
+      .getByLabel("Rationale")
+      .fill("BFS treats every edge as one step, while Dijkstra sums the weights.");
+    await page.getByRole("button", { name: "Commit prediction" }).click();
+
+    await expect(page.getByRole("region", { name: "Observation unlocked" })).toBeVisible();
+    await expect(page.getByText("Dijkstra weighted shortest path")).toBeVisible();
+  });
+
+  test("manipulate traversal mode changes the observed order", async ({ page }) => {
+    await page.getByRole("button", { name: "Choose traversal" }).click();
+    await page.getByLabel("DFS traversal").check();
+    await page.getByRole("button", { name: "Reveal graph evidence" }).click();
+    await page
+      .getByLabel("BFS minimizes edge count; Dijkstra minimizes total non-negative weight.")
+      .check();
+    await page.getByLabel("Rationale").fill("DFS explores one branch before the next.");
+    await page.getByRole("button", { name: "Commit prediction" }).click();
+
+    const observation = page.getByRole("region", { name: "Observation unlocked" });
+    await expect(observation).toContainText("Traversal mode: DFS");
+    await expect(observation).toContainText("Traversal order from node A: A → B → D → F → E → C");
+  });
+
+  test("has no critical accessibility violations after reveal", async ({ page }) => {
+    await page.getByRole("button", { name: "Choose traversal" }).click();
+    await page.getByRole("button", { name: "Reveal graph evidence" }).click();
+    await page
+      .getByLabel("BFS minimizes edge count; Dijkstra minimizes total non-negative weight.")
+      .check();
+    await page
+      .getByLabel("Rationale")
+      .fill("Weighted shortest path and unweighted traversal answer different questions.");
+    await page.getByRole("button", { name: "Commit prediction" }).click();
+    await page.getByRole("region", { name: "Observation unlocked" }).waitFor();
+
+    const results = await new AxeBuilder({ page }).analyze();
+    const criticalViolations = results.violations.filter(
+      (violation) => violation.impact === "critical",
+    );
+
+    expect(criticalViolations).toEqual([]);
+  });
+});

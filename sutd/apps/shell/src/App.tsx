@@ -45,13 +45,14 @@ const totalPlannedContainers = sutdPillars.reduce(
 const plannedIdToContainerId = (id: string): string => id.replace(/\./g, "/");
 
 const firstContainerForPillar = (pillar: SutdPillar): ShellContainer | null => {
-  const plannedIds = new Set(
-    pillar.clusters.flatMap((cluster) =>
-      cluster.plannedContainerIds.map(plannedIdToContainerId),
-    ),
-  );
+  for (const cluster of pillar.clusters) {
+    for (const plannedId of cluster.plannedContainerIds) {
+      const container = containerById.get(plannedIdToContainerId(plannedId));
+      if (container !== undefined) return container;
+    }
+  }
 
-  return containers.find((container) => plannedIds.has(container.id)) ?? null;
+  return null;
 };
 
 const ClusterCard = ({
