@@ -1,4 +1,5 @@
 export { default as GraphSearchAndShortestPaths } from "./graph-search-and-shortest-paths.js";
 export { default as LinearProgrammingFeasibleRegion } from "./linear-programming-feasible-region.js";
 export { default as PidStepResponse } from "./pid-step-response.js";
+export { default as TrustCalibration } from "./trust-calibration.js";
 export { default as VectorTransformations } from "./vector-transformations.js";

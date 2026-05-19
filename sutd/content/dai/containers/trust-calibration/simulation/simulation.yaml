@@ -1,0 +1,47 @@
+id: trust-calibration
+title: "Trust Calibration Explorer"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/sim-runtime
+  - core/prediction-gate
+  - core/probability-stats
+predict:
+  prompt: |
+    Which automation threshold will most likely reduce total decision cost when wrong automated decisions are expensive?
+  commit_format:
+    kind: multiple-choice
+    options: ["50% threshold", "70% threshold", "85% threshold"]
+  rationale_required: true
+manipulate:
+  controls:
+    - id: threshold-percent
+      label: "Automation confidence threshold"
+      kind: slider
+      kernel_binding: state.thresholdPercent
+      bounds: { min: 50, max: 90, step: 5 }
+    - id: false-negative-cost
+      label: "Cost of an automated wrong decision"
+      kind: slider
+      kernel_binding: state.falseNegativeCost
+      bounds: { min: 5, max: 40, step: 5 }
+    - id: review-cost
+      label: "Cost of human review"
+      kind: slider
+      kernel_binding: state.reviewCost
+      bounds: { min: 1, max: 8, step: 1 }
+
+observe:
+  renderers:
+    - id: trust-calibration-renderer
+      module: local
+      symbol: TrustCalibration
+      props_binding: |
+        Show accepted coverage, mean accepted error risk, review count, and total expected cost.
+
+explain:
+  prompt: |
+    How did your confidence threshold affect both accuracy and total cost, and why can a lower-accuracy policy still be preferable under asymmetric error costs?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Confidence equals correctness"
+    - "Accuracy is the only metric"

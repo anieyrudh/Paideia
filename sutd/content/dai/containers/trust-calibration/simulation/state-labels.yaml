@@ -1,0 +1,10 @@
+state_labels:
+  thresholdPercent:
+    label: "Automation confidence threshold"
+    meaning: "Minimum confidence required before the model acts without review."
+  falseNegativeCost:
+    label: "Cost of an automated wrong decision"
+    meaning: "Penalty applied to expected model error when automation is accepted."
+  reviewCost:
+    label: "Cost of human review"
+    meaning: "Penalty paid for each case sent to a human reviewer."
