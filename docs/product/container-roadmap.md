@@ -106,6 +106,8 @@ Existing Tier 1 support kernels already available for first product work:
 Next missing foundations:
 
 - Container registry: keep the checked seed in [`container-build-queue.yaml`](./container-build-queue.yaml), then generate shell navigation, dependency graph views, and build queues from it.
+- Parallel product-slice prompts: use [`parallel-build-prompts.md`](./parallel-build-prompts.md) for one-PR-per-container assignment.
+- SUTD product-slice template: use [`sutd-product-slice-template.md`](./sutd-product-slice-template.md) before broad SUTD pillar work.
 - Notebook lab runtime: needed for computational topics, data analysis, and Python-first exploration.
 - Media pipeline: thumbnails, diagrams, narrated walkthroughs, and fallback visuals should be generated and validated consistently.
 - Assessment adapter: connect problem-solving algorithms, mastery state, FSRS/BKT, and curriculum-specific exam wrappers.
