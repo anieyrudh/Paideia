@@ -1,0 +1,98 @@
+schema_version: "1.0.0"
+id: linear-programming-feasible-region
+aliases: []
+branch: sutd
+subject: esd
+level: "Freshmore"
+module: "esd"
+title: "Linear Programming Feasible Region"
+one_line_summary: "Explore feasibility and objective trade-offs in two-variable linear programming using constraint substitutions."
+syllabus_ref: "SUTD ESD / Optimization foundations"
+prerequisites:
+  - linear-inequalities
+  - cartesian-plotting
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    Before testing points, predict which candidate corner point gives the highest objective value Z = 3x + 2y.
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "(4, 4)"
+      - "(6, 2)"
+      - "(2, 5)"
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: lp-transfer-corner-check
+    prompt: "Maximize Z = 4x + 3y with x + y <= 12, x + 2y <= 14, x,y >= 0. Evaluate each feasible corner point and justify the optimum."
+    surface_form: "production planning"
+    same_concept_check: "Learners still use feasible-region corner evaluation with two-variable inequalities."
+    rubric_path: problem-solving/algorithm.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: in-review
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-19"
+      author: "Codex"
+      summary: "Scaffolded and authored LP feasible-region product slice."
+authors: ["Codex"]
+advisor_signoffs: []
+review:
+  anieyrudh_filter:
+    required_for_status: published
+    last_run: "2026-05-19"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Single-constraint satisfaction implies feasibility"
+    description: "Learners may think satisfying one inequality is enough, ignoring intersection of all constraints and non-negativity conditions."
+    evidence_source: "Hillis et al., Introductory Operations Research misconceptions"
+    surface_in_predict: true
+sources: []
+language: en
+filter_pass:
+  date: "2026-05-19"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
