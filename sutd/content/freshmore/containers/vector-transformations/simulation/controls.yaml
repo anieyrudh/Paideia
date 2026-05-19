@@ -1,0 +1,43 @@
+controls:
+  - id: input-x
+    label: "Input x component"
+    kind: slider
+    default: 1
+    min: -3
+    max: 3
+    step: 1
+  - id: input-y
+    label: "Input y component"
+    kind: slider
+    default: 1
+    min: -3
+    max: 3
+    step: 1
+  - id: a11
+    label: "Basis e1 x output"
+    kind: slider
+    default: 2
+    min: -3
+    max: 3
+    step: 1
+  - id: a21
+    label: "Basis e1 y output"
+    kind: slider
+    default: 0
+    min: -3
+    max: 3
+    step: 1
+  - id: a12
+    label: "Basis e2 x output"
+    kind: slider
+    default: 1
+    min: -3
+    max: 3
+    step: 1
+  - id: a22
+    label: "Basis e2 y output"
+    kind: slider
+    default: 1
+    min: -3
+    max: 3
+    step: 1

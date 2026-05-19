@@ -1,0 +1,19 @@
+state_labels:
+  x:
+    label: "Input x component"
+    meaning: "How many copies of the moved e1 arrow are used."
+  y:
+    label: "Input y component"
+    meaning: "How many copies of the moved e2 arrow are used."
+  a11:
+    label: "Basis e1 x output"
+    meaning: "The x-coordinate where e1 lands."
+  a21:
+    label: "Basis e1 y output"
+    meaning: "The y-coordinate where e1 lands."
+  a12:
+    label: "Basis e2 x output"
+    meaning: "The x-coordinate where e2 lands."
+  a22:
+    label: "Basis e2 y output"
+    meaning: "The y-coordinate where e2 lands."

@@ -9,7 +9,8 @@
     ".": "./src/index.ts",
     "./graph-search-and-shortest-paths": "./src/graph-search-and-shortest-paths.tsx",
     "./linear-programming-feasible-region": "./src/linear-programming-feasible-region.tsx",
-    "./pid-step-response": "./src/pid-step-response.tsx"
+    "./pid-step-response": "./src/pid-step-response.tsx",
+    "./vector-transformations": "./src/vector-transformations.tsx"
   },
   "scripts": {
     "build": "tsc -b",

@@ -7,6 +7,7 @@ import GeneratedSim3ALevelPhysicsScalarsAndVectorsResultantMagnitude from "@paid
 import GeneratedSim4SutdCsdGraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
 import GeneratedSim5SutdEpdPidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
 import GeneratedSim6SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim7SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -49,6 +50,11 @@ export const simRegistry = {
     id: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
     title: "Linear Programming Feasible Region Explorer",
     Component: GeneratedSim6SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+  },
+  "sutd/freshmore/vector-transformations/vector-transformations": {
+    id: "sutd/freshmore/vector-transformations/vector-transformations",
+    title: "2D Matrix-Vector Transformation Explorer",
+    Component: GeneratedSim7SutdFreshmoreVectorTransformationsVectorTransformations,
   }
 } satisfies Record<string, SimHarnessEntry>;
 
