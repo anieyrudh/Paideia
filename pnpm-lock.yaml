@@ -652,6 +652,9 @@ importers:
       '@paideia/charting':
         specifier: workspace:*
         version: link:../../../core/charting
+      '@paideia/content-schema':
+        specifier: workspace:*
+        version: link:../../../core/content-schema
       '@paideia/control-systems':
         specifier: workspace:*
         version: link:../../../core/control-systems
@@ -729,6 +732,9 @@ importers:
         specifier: ^18.3.0
         version: 18.3.1(react@18.3.1)
     devDependencies:
+      '@axe-core/playwright':
+        specifier: ^4.10.0
+        version: 4.11.3(playwright-core@1.60.0)
       '@playwright/test':
         specifier: ^1.49.0
         version: 1.60.0

@@ -1,2 +1,1 @@
-// SUTD simulations are exported from per-container subpaths as product slices land.
-export {};
+export { default as LinearProgrammingFeasibleRegion } from "./linear-programming-feasible-region.js";

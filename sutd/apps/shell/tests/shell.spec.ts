@@ -1,13 +1,13 @@
 import { expect, test } from "@playwright/test";
 
-test("renders the empty SUTD curriculum wrapper state", async ({ page }) => {
+test("renders the first SUTD curriculum wrapper container", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByRole("heading", { name: "SUTD curriculum wrapper substrate" })).toBeVisible();
   const status = page.getByLabel("SUTD shell status");
-  await expect(status).toContainText("0");
+  await expect(status).toContainText("1");
   await expect(status.getByText("product containers wired", { exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "No SUTD product containers wired yet" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Linear Programming Feasible Region" })).toBeVisible();
 });
 
 test("maps concept clusters across all SUTD pillars", async ({ page }) => {

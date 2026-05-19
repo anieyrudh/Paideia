@@ -1,0 +1,41 @@
+id: linear-programming-feasible-region
+title: "Linear Programming Feasible Region Explorer"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/sim-runtime
+  - core/prediction-gate
+manipulate:
+  controls:
+    - id: x-control
+      label: "x units"
+      kind: slider
+      kernel_binding: state.x
+      bounds: { min: 0, max: 10, step: 1 }
+    - id: y-control
+      label: "y units"
+      kind: slider
+      kernel_binding: state.y
+      bounds: { min: 0, max: 10, step: 1 }
+predict:
+  prompt: |
+    Which point is most likely to maximize Z = 3x + 2y while satisfying all constraints?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "(4, 4)"
+      - "(6, 2)"
+      - "(2, 5)"
+  rationale_required: true
+observe:
+  renderers:
+    - id: constraint-check
+      module: local
+      symbol: text-evaluation
+      props_binding: "Display substituted constraints and objective value for current state."
+explain:
+  prompt: |
+    Which constraints are binding at your chosen point, and how does that guide a corner-point search?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Highest x or y value always gives the best objective value"
+    - "Any point satisfying one constraint is feasible"

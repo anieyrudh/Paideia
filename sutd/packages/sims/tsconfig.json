@@ -11,6 +11,7 @@
     { "path": "../../../core/algorithm-trace" },
     { "path": "../../../core/annotation" },
     { "path": "../../../core/charting" },
+    { "path": "../../../core/content-schema" },
     { "path": "../../../core/control-systems" },
     { "path": "../../../core/dynamical-systems" },
     { "path": "../../../core/graph-algorithms" },
