@@ -32,7 +32,7 @@ const stalePatterns = [
     message: "Use <branch>/content/<subject>/containers/<concept-id>/.",
   },
   {
-    pattern: /\/sims\//g,
+    pattern: /(^|[^\w-])sims\//g,
     message: "Use the v2 container simulation/ directory.",
   },
   {
@@ -83,6 +83,7 @@ const scannedPromptFiles = [
   ...walkFiles(CLAUDE_SKILLS),
   ...walkFiles(join(REPO_ROOT, ".claude", "agents")),
   ...walkFiles(join(REPO_ROOT, ".codex", "agents")),
+  ...walkFiles(join(REPO_ROOT, ".cursor", "rules")),
   join(REPO_ROOT, "docs", "agent-workflows.md"),
   join(REPO_ROOT, "README.md"),
   join(REPO_ROOT, "CONTRIBUTING.md"),
