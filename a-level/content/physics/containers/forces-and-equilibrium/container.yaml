@@ -1,0 +1,91 @@
+# Container manifest · template
+# Validates against ContainerSpec in core/content-schema.
+# The scaffolder fills <PLACEHOLDERS>; author replaces with real values.
+
+schema_version: "1.0.0"
+id: forces-and-equilibrium
+aliases: []
+branch: a-level
+subject: physics
+level: "TBD"
+module: "physics"
+title: "Forces and Equilibrium"
+one_line_summary: "<One sentence (<=300 chars) - appears on catalogue cards>"
+syllabus_ref: "<SYLLABUS / SECTION>"
+prerequisites: []
+aid_types:
+  - simulation
+predict_at: package-level
+package_predict:
+  prompt: |
+    <Prediction prompt shown before the main reveal.>
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "<option 1>"
+      - "<option 2>"
+      - "<option 3>"
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: false
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods:
+    - load
+    - saveState
+    - score
+    - resume
+    - syncTheme
+    - destroy
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems: []
+assessments: []
+status: skeleton
+authoring:
+  owner: "TBD"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-19"
+      author: "TBD"
+      summary: "Scaffolded v2 container."
+authors:
+  - "TBD"
+advisor_signoffs: []
+review:
+  anieyrudh_filter:
+    required_for_status: published
+    last_run: null
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: false
+misconceptions: []
+sources: []
+language: en
