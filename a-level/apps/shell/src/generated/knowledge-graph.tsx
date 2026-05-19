@@ -100,7 +100,7 @@ export const knowledgeGraph = {
   { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/kinematics-in-one-dimension", kind: "prerequisite" },
   { from: "a-level/physics/scalars-and-vectors", to: "a-level/physics/kinematics-in-one-dimension", kind: "prerequisite" },
   { from: "a-level/physics/resolving-vectors", to: "a-level/physics/kinematics-in-one-dimension", kind: "prerequisite" },
-  { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/forces-and-equilibrium", kind: "downstream" },
+  { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/forces-and-newtons-laws", kind: "downstream" },
   { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/momentum", kind: "downstream" },
   { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/motion-graphs", kind: "sibling" },
   { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/scalars-and-vectors", kind: "downstream" },
@@ -170,7 +170,7 @@ export const containers = [
       "Resolving Vectors",
     ],
     downstream: [
-      "Forces and Equilibrium",
+      "Forces and Newton's Laws",
       "Momentum",
     ],
     siblings: [

@@ -105,7 +105,7 @@ export const runKinematicsGateContract = () => {
         "16.00 m",
       );
       expect(document.querySelector("[aria-label='Formula used']")?.textContent).toContain(
-        "4.0)^2",
+        "4.0 s)^2",
       );
     });
   });

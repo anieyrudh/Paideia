@@ -16,7 +16,7 @@
     "build": "tsc -b",
     "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts src/measurement-uncertainty.test.ts src/kinematics-one-dimension.test.ts",
     "lint": "tsc -b --pretty false",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc -b --pretty false"
   },
   "dependencies": {
     "@paideia/content-schema": "workspace:*",

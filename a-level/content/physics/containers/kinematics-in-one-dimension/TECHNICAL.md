@@ -126,6 +126,9 @@ pnpm graph:generate
 | First public sim types | sim-architect | Velocity and acceleration fields were exported as bare numbers | Added local branded composite-unit types at the sim package boundary |
 | First misconception record | pedagogy-reviewer | Misconceptions were present in YAML but not as a learner-flow audit artifact | Added `concept-map/misconceptions.md` using the established physics-container convention |
 | First formula note | pedagogy-reviewer | The observation panel answered the sign-confusion explain prompt directly | Reworded it as a Socratic question tied to the slowing-down preset |
+| Deep PR review | sim-architect | `pnpm --filter @paideia/a-level-physics-sims typecheck` failed in a cold checkout because package typecheck did not build referenced projects | Changed the package typecheck script to `tsc -b --pretty false` |
+| Deep PR review | pedagogy-reviewer | Student-facing formula substitutions omitted units inside the substituted terms | Added units to the simulation substitution lines and transfer worked route |
+| Deep PR review | container-auditor | Downstream concept id drifted from the existing `forces-and-newtons-laws` taxonomy | Updated the concept map and regenerated the generated knowledge graph |
 
 ## Deferred fixes
 
@@ -148,6 +151,18 @@ Local validation on 2026-05-18:
 - `pnpm license:check` - passed
 - `pnpm container:validate` - passed
 - `pnpm container:docs --check a-level/content/physics/containers/kinematics-in-one-dimension` - passed after regeneration
+
+Follow-up deep-review validation on 2026-05-19:
+
+- `pnpm --filter @paideia/a-level-physics-sims typecheck` - passed
+- `pnpm -F @paideia/a-level-physics-sims test` - passed, 17 tests
+- `pnpm -F @paideia/a-level-shell test` - passed, 10 Playwright/axe tests
+- `pnpm typecheck` - passed
+- `pnpm lint` - passed
+- `pnpm test` - passed with localhost escalation for Playwright web servers
+- `pnpm boundary` - passed
+- `pnpm license:check` - passed
+- `pnpm container:validate` - passed
 
 ## Anieyrudh Filter pass
 

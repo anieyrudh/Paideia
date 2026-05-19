@@ -40,6 +40,21 @@ describe("kinematics-one-dimension sim", () => {
     expect(approxEqual(model.value.velocityMetresPerSecond, 0.5)).toBe(true);
   });
 
+  it("preserves signed displacement after a direction change", () => {
+    const model = kinematicsModel({
+      initialPositionMetres: metres(0),
+      initialVelocityMetresPerSecond: metresPerSecond(2),
+      accelerationMetresPerSecondSquared: metresPerSecondSquared(-3),
+      elapsedSeconds: seconds(2),
+    });
+
+    expect(model.ok).toBe(true);
+    if (!model.ok) throw new Error(model.error.message);
+    expect(approxEqual(model.value.displacementMetres, -2)).toBe(true);
+    expect(approxEqual(model.value.velocityMetresPerSecond, -4)).toBe(true);
+    expect(model.value.samplePoints.some((point) => point.displacementMetres < 0)).toBe(true);
+  });
+
   it("rejects invalid time through the core mechanics error contract", () => {
     const model = kinematicsModel({
       initialPositionMetres: metres(0),

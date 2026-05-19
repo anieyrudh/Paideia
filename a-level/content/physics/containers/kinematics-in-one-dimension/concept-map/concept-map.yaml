@@ -14,8 +14,8 @@ prerequisites:
     relationship: "Two-dimensional motion is later separated into one-dimensional component equations."
     status: available
 downstream:
-  - id: forces-and-equilibrium
-    title: "Forces and Equilibrium"
+  - id: forces-and-newtons-laws
+    title: "Forces and Newton's Laws"
     relationship: "Newton's laws connect net force to the acceleration described by kinematics."
     status: planned
   - id: momentum

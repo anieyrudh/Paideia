@@ -69,6 +69,9 @@ const roundTo = (value: number, places: number): number => {
 const formatNumber = (value: number, places = 2): string => roundTo(value, places).toFixed(places);
 const formatSigned = (value: number, places = 2): string =>
   value >= 0 ? `+${formatNumber(value, places)}` : formatNumber(value, places);
+const velocityTerm = (value: number): string => `${formatNumber(value, 1)} m s^-1`;
+const accelerationTerm = (value: number): string => `${formatNumber(value, 1)} m s^-2`;
+const timeTerm = (value: number): string => `${formatNumber(value, 1)} s`;
 
 export const kinematicsModel = (state: KinematicsState): KernelResult<KinematicsModel> => {
   const finalState = kinematics1D(state);
@@ -286,16 +289,16 @@ export const KinematicsOneDimensionSim = () => {
           {model.ok ? (
             <>
               <p>
-                s = ({formatNumber(state.initialVelocityMetresPerSecond, 1)})(
-                {formatNumber(state.elapsedSeconds, 1)}) + 1/2(
-                {formatNumber(state.accelerationMetresPerSecondSquared, 1)})(
-                {formatNumber(state.elapsedSeconds, 1)})^2 ={" "}
+                s = ({velocityTerm(state.initialVelocityMetresPerSecond)})(
+                {timeTerm(state.elapsedSeconds)}) + 1/2(
+                {accelerationTerm(state.accelerationMetresPerSecondSquared)})(
+                {timeTerm(state.elapsedSeconds)})^2 ={" "}
                 {formatNumber(model.value.displacementMetres)} m
               </p>
               <p>
-                v = {formatNumber(state.initialVelocityMetresPerSecond, 1)} + (
-                {formatNumber(state.accelerationMetresPerSecondSquared, 1)})(
-                {formatNumber(state.elapsedSeconds, 1)}) ={" "}
+                v = {velocityTerm(state.initialVelocityMetresPerSecond)} + (
+                {accelerationTerm(state.accelerationMetresPerSecondSquared)})(
+                {timeTerm(state.elapsedSeconds)}) ={" "}
                 {formatSigned(model.value.velocityMetresPerSecond)} m s^-1
               </p>
               <p className="formula-note">
