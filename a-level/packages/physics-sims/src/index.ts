@@ -1,4 +1,10 @@
 export {
+  ForcesAndEquilibriumSim,
+  ForceBalanceDiagram,
+  forceBalanceModel,
+  forceBalancePredict,
+} from "./forces-and-equilibrium.js";
+export {
   ResultantMagnitudeSim,
   ResultantVectorDiagram,
   perpendicularPredict,
@@ -17,6 +23,10 @@ export {
   kinematicsModel,
   kinematicsPredict,
 } from "./kinematics-one-dimension.js";
+export type {
+  ForceBalanceModel,
+  ForceBalanceState,
+} from "./forces-and-equilibrium.js";
 export type {
   MetreVector2,
   ResultantVectorModel,
