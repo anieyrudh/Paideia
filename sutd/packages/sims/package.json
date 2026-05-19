@@ -6,7 +6,8 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./linear-programming-feasible-region": "./src/linear-programming-feasible-region.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -18,6 +19,7 @@
     "@paideia/algorithm-trace": "workspace:*",
     "@paideia/annotation": "workspace:*",
     "@paideia/charting": "workspace:*",
+    "@paideia/content-schema": "workspace:*",
     "@paideia/control-systems": "workspace:*",
     "@paideia/dynamical-systems": "workspace:*",
     "@paideia/graph-algorithms": "workspace:*",

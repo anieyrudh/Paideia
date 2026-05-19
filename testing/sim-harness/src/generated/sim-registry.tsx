@@ -4,7 +4,7 @@ import GeneratedSim0ALevelPhysicsKinematicsInOneDimensionMotionEquationsLab from
 import GeneratedSim1ALevelPhysicsPhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
 import GeneratedSim2ALevelPhysicsResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
 import GeneratedSim3ALevelPhysicsScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
-import GeneratedSim4SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "local";
+import GeneratedSim4SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
 
 export interface SimHarnessEntry {
   readonly id: string;
