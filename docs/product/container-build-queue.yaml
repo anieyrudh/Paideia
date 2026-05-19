@@ -913,7 +913,7 @@ entries:
   - id: sutd.asd.load-path-and-daylight-tradeoff
     title: "Load Path and Daylight Tradeoff"
     priority: P0
-    status: planned
+    status: reviewed
     cluster: ASD spatial systems
     discipline: architecture
     reuse_status: curriculum-wrapper
@@ -949,6 +949,8 @@ entries:
       - core/ui-sim
     repo_package_name: sutd-sim-load-path-daylight
     estimated_effort: H
+    repo:
+      container_path: sutd/content/asd/containers/load-path-and-daylight-tradeoff
     assignment:
       workstream: sutd-asd
       concept_cluster: ASD spatial systems

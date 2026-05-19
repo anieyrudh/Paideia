@@ -1,0 +1,113 @@
+schema_version: "1.0.0"
+id: load-path-and-daylight-tradeoff
+aliases:
+  - load path
+  - daylight tradeoff
+  - bracing and aperture
+branch: sutd
+subject: asd
+level: "Undergraduate"
+module: "Architecture and Sustainable Design"
+title: "Load Path and Daylight Tradeoff"
+one_line_summary: "Tune one structural bay to see how bracing, window opening, and lateral load compete between a clear force path and useful daylight."
+syllabus_ref: "SUTD ASD / structures and environmental systems"
+prerequisites:
+  - 2d-vectors
+  - force-equilibrium
+  - ratio-reasoning
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    For a single bay with a useful window opening, which option is most likely to keep a clear load path while preserving usable daylight?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Large opening with no brace"
+      - "Medium opening with diagonal brace"
+      - "Small opening with X-brace"
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: studio-facade-retrofit
+    prompt: |
+      A studio facade must increase the opening ratio from 0.45 to 0.70 after a daylight review. Decide whether the structural system must change, then explain the tradeoff to a non-engineer client.
+    surface_form: "facade retrofit decision"
+    same_concept_check: "Same concept: compare daylight gain against the load path needed to resist lateral demand."
+    rubric_path: problem-solving/studio-facade-retrofit.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-19"
+      author: "Codex"
+      summary: "Built clean ASD product slice for a single-bay load path and daylight tradeoff."
+authors: ["Codex"]
+advisor_signoffs: []
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-19"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Loads travel only vertically"
+    description: "Learners ignore lateral demand and assume gravity columns are the whole structural story."
+    evidence_source: "Introductory structural design texts distinguish gravity and lateral load paths."
+    surface_in_predict: true
+  - name: "More glass always improves performance"
+    description: "Learners treat daylight as independent of stiffness, bracing, glare, and envelope constraints."
+    evidence_source: "Architectural daylighting guidance frames window area as a tradeoff, not a monotonic good."
+    surface_in_predict: true
+sources:
+  - citation: "OpenStax University Physics Volume 1, Static Equilibrium and Elasticity."
+    url: "https://openstax.org/details/books/university-physics-volume-1"
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "Whole Building Design Guide, Daylighting."
+    url: "https://www.wbdg.org/resources/daylighting"
+    publication_year: 2022
+    license: "Public website"
+    seab_alignment: n/a
+language: en

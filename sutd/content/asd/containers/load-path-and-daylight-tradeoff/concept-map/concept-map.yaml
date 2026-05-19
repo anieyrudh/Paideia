@@ -1,0 +1,37 @@
+schema_version: "1.0.0"
+concept_id: load-path-and-daylight-tradeoff
+prerequisites:
+  - id: force-equilibrium
+    title: "Force equilibrium"
+    relation: prerequisite
+  - id: vectors
+    title: "Vectors"
+    relation: prerequisite
+  - id: ratio-reasoning
+    title: "Ratio reasoning"
+    relation: prerequisite
+downstream:
+  - id: structural-systems
+    title: "Structural systems"
+    relation: downstream
+  - id: building-performance
+    title: "Building performance"
+    relation: downstream
+siblings:
+  - id: passive-design
+    title: "Passive design"
+    relation: sibling
+misconception_graph:
+  nodes:
+    - id: vertical-only-loads
+      label: "Loads travel only vertically"
+    - id: more-glass-always-better
+      label: "More glass always improves performance"
+  edges:
+    - from: vertical-only-loads
+      to: force-equilibrium
+      relation: corrected-by
+    - from: more-glass-always-better
+      to: building-performance
+      relation: corrected-by
+mermaid_source: graph.mmd

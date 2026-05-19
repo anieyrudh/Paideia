@@ -1,0 +1,32 @@
+controls:
+  - id: structural-system
+    label: "Structural system"
+    kind: selector
+    options:
+      - "Moment frame"
+      - "Diagonal brace"
+      - "X-brace"
+    default: "Diagonal brace"
+  - id: aperture-ratio
+    label: "Opening ratio"
+    kind: slider
+    min: 0.25
+    max: 0.8
+    step: 0.05
+    default: 0.55
+  - id: lateral-load
+    label: "Lateral load"
+    kind: slider
+    unit: kN
+    min: 12
+    max: 42
+    step: 2
+    default: 24
+  - id: bay-height
+    label: "Bay height"
+    kind: slider
+    unit: m
+    min: 3
+    max: 6
+    step: 0.5
+    default: 4

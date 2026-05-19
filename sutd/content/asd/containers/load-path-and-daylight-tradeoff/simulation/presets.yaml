@@ -1,0 +1,22 @@
+presets:
+  - id: balanced-studio-bay
+    label: "Balanced studio bay"
+    state:
+      braceMode: diagonal-brace
+      apertureRatio: 0.55
+      lateralLoadKn: 24
+      bayHeightM: 4
+  - id: bright-but-flexible
+    label: "Bright but flexible"
+    state:
+      braceMode: moment-frame
+      apertureRatio: 0.75
+      lateralLoadKn: 32
+      bayHeightM: 4
+  - id: stiff-but-dark
+    label: "Stiff but dark"
+    state:
+      braceMode: x-brace
+      apertureRatio: 0.3
+      lateralLoadKn: 24
+      bayHeightM: 4
