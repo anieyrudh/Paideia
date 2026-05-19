@@ -7,8 +7,8 @@ pure TypeScript module with no runtime dependencies beyond `@paideia/shared`.
 
 The public API is exactly the surface listed in `AGENTS.md`: state vector and
 vector-field types, trajectory/orbit snapshots, `stepFlow`, `integrateFlow`,
-`iterateMap`, `jacobian2D`, `classifyLinear2D`, stability result types, and
-`dynamicalSystemTolerance`.
+`iterateMap`, `jacobian2D`, `linearVectorField2D`, `classifyLinear2D`,
+stability result types, and `dynamicalSystemTolerance`.
 
 ## Invariant enforcement
 
@@ -21,6 +21,7 @@ vector-field types, trajectory/orbit snapshots, `stepFlow`, `integrateFlow`,
 | Functions do not leak thrown singularities | Evaluation wrappers convert throws to `undefined-at-point`. |
 | Exploding trajectories are not silently emitted | `maxNorm` guard returns `numerical-instability`. |
 | Caller-owned arrays are not mutated | Inputs are copied and outputs are frozen snapshots. |
+| Planar linear-system vector fields come from finite matrices | `linearVectorField2D` validates the matrix and returns a frozen vector output. |
 | 2D stability labels follow the linear trace/determinant test | Unit tests cover each classification branch. |
 
 ## Numerical notes

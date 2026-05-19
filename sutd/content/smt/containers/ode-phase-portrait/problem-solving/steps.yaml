@@ -1,0 +1,25 @@
+steps:
+  - id: write-system
+    label: "Write the linear system"
+    prompt: "What are the two state variables and the 2 by 2 matrix?"
+    expected_action: "State z' = A z with all four matrix entries visible."
+  - id: find-equilibrium
+    label: "Find the equilibrium"
+    prompt: "Where are both rates zero?"
+    expected_action: "Solve x' = 0 and y' = 0 before classifying."
+  - id: compute-invariants
+    label: "Compute trace, determinant, and discriminant"
+    prompt: "What are T, D, and Delta with substituted values?"
+    expected_action: "Show T = a + d, D = ad - bc, and Delta = T^2 - 4D."
+  - id: classify
+    label: "Classify the local portrait"
+    prompt: "Which trace-determinant region contains this system?"
+    expected_action: "Name the portrait type and the stability direction."
+  - id: interpret
+    label: "Interpret the trajectory"
+    prompt: "What happens to a small perturbation?"
+    expected_action: "Connect the classification to return, escape, spiral, or saddle behaviour."
+  - id: transfer
+    label: "Transfer to the model context"
+    prompt: "What do x, y, and stability mean in the original scenario?"
+    expected_action: "Translate the mathematical classification into a domain decision."

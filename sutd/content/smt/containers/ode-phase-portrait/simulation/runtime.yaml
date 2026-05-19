@@ -1,0 +1,11 @@
+runtime:
+  pmoe_t:
+    - predict
+    - manipulate
+    - observe
+    - explain
+  integration:
+    method: rk4
+    dt: 0.035
+    steps: 120
+  reveal_requires_prediction: true

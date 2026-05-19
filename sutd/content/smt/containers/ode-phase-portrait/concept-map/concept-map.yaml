@@ -1,0 +1,47 @@
+schema_version: "1.0.0"
+concept_id: ode-phase-portrait
+prerequisites:
+  - id: derivatives
+    title: "Derivatives"
+    relationship: "Rates define x' and y'."
+    status: planned
+  - id: vector-fields
+    title: "Vector fields"
+    relationship: "A phase portrait samples a vector field over state space."
+    status: planned
+  - id: linear-algebra
+    title: "Linear algebra"
+    relationship: "Trace, determinant, and eigenvalues classify the local linear system."
+    status: planned
+downstream:
+  - id: stability-analysis
+    title: "Stability analysis"
+    relationship: "Phase portraits introduce local stability language."
+    status: planned
+  - id: feedback-systems
+    title: "Feedback systems"
+    relationship: "Closed-loop systems use the same local stability tests."
+    status: planned
+siblings:
+  - id: damped-oscillators
+    title: "Damped oscillators"
+    relationship: "A stable spiral is a damped oscillator in phase space."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: equilibrium-region
+      label: "Equilibrium as a whole quiet region"
+    - id: local-rate-field
+      label: "Only exact equilibrium has zero rate"
+    - id: literal-velocity
+      label: "Arrows as literal physical velocity"
+    - id: state-rate
+      label: "Arrows as rates of state variables"
+  edges:
+    - from: equilibrium-region
+      to: local-rate-field
+      label: "contrast zero point with surrounding arrows"
+    - from: literal-velocity
+      to: state-rate
+      label: "name axes as model states"
+mermaid_source: graph.mmd

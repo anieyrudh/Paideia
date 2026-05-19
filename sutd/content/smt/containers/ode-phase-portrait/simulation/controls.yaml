@@ -1,0 +1,33 @@
+controls:
+  - id: preset
+    label: "Portrait preset"
+    kind: selector
+    options:
+      - stable-spiral
+      - saddle
+      - center
+      - unstable-node
+  - id: trace
+    label: "Trace"
+    kind: slider
+    min: -2
+    max: 2
+    step: 0.1
+  - id: determinant
+    label: "Determinant"
+    kind: slider
+    min: -1.5
+    max: 2.5
+    step: 0.1
+  - id: initial-x
+    label: "Initial x"
+    kind: slider
+    min: -2
+    max: 2
+    step: 0.1
+  - id: initial-y
+    label: "Initial y"
+    kind: slider
+    min: -2
+    max: 2
+    step: 0.1

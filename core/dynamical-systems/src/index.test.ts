@@ -1,3 +1,5 @@
+import { approxEqual } from "@paideia/shared";
+import fc from "fast-check";
 import { describe, expect, it } from "vitest";
 import {
   classifyLinear2D,
@@ -5,11 +7,19 @@ import {
   integrateFlow,
   iterateMap,
   jacobian2D,
+  linearVectorField2D,
   stepFlow,
   type StateVector,
 } from "./index.js";
 
 describe("@paideia/dynamical-systems", () => {
+  const finiteSmallNumber = fc.double({
+    min: -10,
+    max: 10,
+    noDefaultInfinity: true,
+    noNaN: true,
+  });
+
   it("steps an exponential flow with RK4 accuracy", () => {
     const result = integrateFlow((state) => [state[0] ?? 0], [1], {
       dt: 0.01,
@@ -128,6 +138,70 @@ describe("@paideia/dynamical-systems", () => {
       const result = classifyLinear2D(testCase.matrix);
       expect(result.ok).toBe(true);
       if (result.ok) expect(result.value.kind).toBe(testCase.kind);
+    }
+  });
+
+  it("matches matrix-vector multiplication for finite 2D linear systems", () => {
+    fc.assert(
+      fc.property(
+        fc.tuple(finiteSmallNumber, finiteSmallNumber, finiteSmallNumber, finiteSmallNumber),
+        fc.tuple(finiteSmallNumber, finiteSmallNumber),
+        ([a, b, c, d], [x, y]) => {
+          const field = linearVectorField2D([
+            [a, b],
+            [c, d],
+          ]);
+
+          expect(field.ok).toBe(true);
+          if (!field.ok) return;
+
+          const derivative = field.value([x, y], 0);
+          expect(approxEqual(derivative[0] ?? Number.NaN, a * x + b * y, 1e-10)).toBe(true);
+          expect(approxEqual(derivative[1] ?? Number.NaN, c * x + d * y, 1e-10)).toBe(true);
+
+          const trajectory = integrateFlow(field.value, [x, y], {
+            dt: 0.01,
+            steps: 1,
+            method: "euler",
+            maxNorm: 1e6,
+          });
+          expect(trajectory.ok).toBe(true);
+          if (trajectory.ok) {
+            const next = trajectory.value.at(1)?.state;
+            expect(approxEqual(next?.[0] ?? Number.NaN, x + 0.01 * (a * x + b * y), 1e-10)).toBe(
+              true,
+            );
+            expect(approxEqual(next?.[1] ?? Number.NaN, y + 0.01 * (c * x + d * y), 1e-10)).toBe(
+              true,
+            );
+          }
+        },
+      ),
+      { numRuns: 100, seed: 20260519 },
+    );
+  });
+
+  it("rejects invalid linear-vector-field matrices", () => {
+    const result = linearVectorField2D([
+      [0, Number.NaN],
+      [1, 0],
+    ]);
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("precondition-violated");
+  });
+
+  it("rejects non-finite linear-vector-field state samples", () => {
+    const field = linearVectorField2D([
+      [0, 1],
+      [-1.2, -0.6],
+    ]);
+
+    expect(field.ok).toBe(true);
+    if (field.ok) {
+      const result = stepFlow(field.value, [Number.NaN, 0], { dt: 0.1 });
+      expect(result.ok).toBe(false);
+      if (!result.ok) expect(result.error.code).toBe("precondition-violated");
     }
   });
 
