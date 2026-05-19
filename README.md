@@ -33,18 +33,44 @@ flowchart LR
   D --> E["A reusable lesson"]
 ```
 
-## How You Can Help
+## How To Start
 
-| If this sounds like you | Start here |
-| --- | --- |
-| "I found a topic students struggle with." | Use the [sim idea issue template](.github/ISSUE_TEMPLATE/sim-idea.md). |
-| "I can explain this better." | Read [Contributing](CONTRIBUTING.md), then suggest a concept-card improvement. |
-| "I want an AI coding agent to help me." | Use the copy-paste prompts in [Agent workflows](docs/agent-workflows.md). |
-| "I want to build a full lesson." | Follow [Build one lesson](docs/agent-workflows.md#prompt-build-one-lesson). |
-| "I want to check quality." | Start with [review-container](.agents/skills/review-container/SKILL.md): sources, wording, accessibility, and whether the lesson actually teaches. |
+You can help even if you do not write code. Pick the path closest to what you
+want to do.
 
-If you are not sure where to begin, start with the public onboarding brief:
+### I Have No Code Experience
+
+Start with the public onboarding brief:
 [Contributing without a coding background](docs/public/cfe-onboarding.html).
+Good first contributions are spotting confusing explanations, checking whether
+a diagram makes sense, trying a lesson as a learner, or listing the mistake a
+student is likely to make.
+
+### I Found A Learning Problem
+
+Open a small issue using the [sim idea template](.github/ISSUE_TEMPLATE/sim-idea.md).
+Describe the learner, the confusing idea, and what a good lesson should help
+them notice. You do not need to propose code.
+
+### I Want An Agent To Help Me
+
+Use the copy-paste prompts in [Agent workflows](docs/agent-workflows.md).
+They tell Codex, Claude Code, or another coding agent exactly what to read and
+what to avoid. The point is to keep the task narrow enough that the agent can
+make a useful pull request without wandering through the whole repository.
+
+### I Want To Build A Container
+
+Follow the [product-quality container prompt](docs/agent-workflows.md#prompt-build-one-product-quality-container).
+A container is one complete learning unit: explanation, interactive model,
+worked method, concept map, sources, tests, and review notes.
+
+| If this sounds like you | Best next step |
+| --- | --- |
+| "I can explain this better." | Suggest a concept-card improvement. |
+| "I can test lessons with students." | Try a reviewed container and report where the flow breaks. |
+| "I can design diagrams or interactions." | Propose a clearer media or simulation direction. |
+| "I can review quality." | Use the [review prompt](docs/agent-workflows.md#prompt-evaluate-one-container-pr). |
 
 ## What Is Ready Now
 
@@ -57,9 +83,22 @@ lessons for:
 | Scalars and vectors | Reviewed |
 | Resolving vectors | Reviewed |
 | Kinematics in one dimension | Reviewed |
+| Forces and equilibrium | Reviewed |
 
-The next recommended lesson is **forces and equilibrium**, because it builds
-directly on the motion and vector lessons.
+The next recommended A-Level lesson is **work, energy, power**, because it
+builds directly on force balance and motion.
+
+SUTD also has first reviewed slices across several pillars:
+
+| Pillar | First reviewed slice |
+| --- | --- |
+| Freshmore | Vector transformations |
+| EPD | PID step response |
+| ESD | Linear programming feasible region |
+| CSD | Graph search and shortest paths |
+| DAI | Trust calibration |
+
+The next SUTD priority is a clean ASD **load path and daylight tradeoff** slice.
 
 ## How The Work Scales
 

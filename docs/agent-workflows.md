@@ -40,41 +40,71 @@ Canonical sources:
 
 Run `pnpm agent:validate` after changing any agent-facing instructions.
 
-## Prompt: Build One Lesson
+## Prompt: Build One Product-Quality Container
 
 ```text
-You are building one Paideia lesson.
+You are building one product-quality Paideia container.
 
 Target:
 - Branch: <a-level | sutd>
 - Subject or pillar: <subject-or-pillar>
-- Concept id: <kebab-case-id>
+- Concept id: <namespaced-id from docs/product/container-build-queue.yaml>
 - Title: <human title>
+- Container path: <branch>/content/<subject-or-pillar>/containers/<slug>
 
 Read first:
 - AGENTS.md
 - docs/agent-workflows.md
 - docs/container-spec.md
 - docs/product/container-build-queue.yaml
+- docs/product/container-roadmap.md
+- README.md
 - .agents/skills/new-container/SKILL.md
 - .agents/skills/new-sim-in-container/SKILL.md
 - .agents/skills/review-container/SKILL.md
+- core/prediction-gate/README.md
+- core/sim-runtime/README.md
+- core/ui-sim/README.md
 
-Build only this lesson. Keep language student-facing. Show formulas with
-substitution and units when calculations appear. Use existing core packages for
-math, physics, controls, graphs, and the prediction gate.
+Build only this container. Keep language student-facing; do not expose package
+names, file paths, kernel names, or implementation details in the learner UI.
+Show formulas with substitution and units when calculations appear. Use the
+`kernel_dependencies` listed in the build queue; do not inline reusable math,
+physics, graph, control, probability, or state logic in the container.
+
+Required outcome:
+- Valid v2 container layout.
+- `container.yaml`, `concept-card.md`, `sources.md`, `TECHNICAL.md`.
+- `concept-map/`, `simulation/`, `problem-solving/`, `media/`, and `embed/`.
+- A prediction-gated simulation when the concept is sim-worthy.
+- Formula-backed readouts for any calculation.
+- Playwright tests proving the prediction gate blocks reveal, at least one
+  manipulation changes visible state, and the revealed sim has no critical axe
+  accessibility violations.
+- `TECHNICAL.md` records what failed, what was fixed, and what remains deferred.
 
 Run:
 
 pnpm container:validate
 pnpm container:docs <container-path>
 pnpm graph:generate
+pnpm graph:check
 pnpm test
+pnpm typecheck
+pnpm lint
+pnpm boundary
 pnpm agent:validate
 
-Open one PR with the lesson path, validation results, and any remaining
-questions.
+Open one PR. The PR body must include the container path, the build-queue entry
+id, the kernels used, validation results, screenshots or a short visual smoke
+test note, and any remaining deferred issues.
 ```
+
+## Prompt: Build One Lesson
+
+Use the product-quality container prompt above. "Lesson" and "container" mean
+the same unit of work in Paideia; the stricter prompt prevents partial demos
+from being mistaken for finished product slices.
 
 ## Prompt: Add A Container
 
@@ -195,6 +225,100 @@ Run:
 pnpm license:check
 pnpm test
 pnpm typecheck
+```
+
+## Prompt: Evaluate One Container PR
+
+Use this when reviewing a product-slice pull request before merge.
+
+```text
+You are evaluating one Paideia container PR. Review deeply; do not merge unless
+P0 and P1 issues are resolved.
+
+Target:
+- PR: <number or URL>
+- Container path: <branch>/content/<subject-or-pillar>/containers/<slug>
+- Build-queue id: <id from docs/product/container-build-queue.yaml>
+
+Read first:
+- AGENTS.md
+- docs/container-spec.md
+- docs/product/container-build-queue.yaml
+- .agents/skills/review-container/SKILL.md
+- testing/sim-harness/README.md
+- target container's container.yaml, concept-card.md, sources.md, TECHNICAL.md,
+  simulation/simulation.yaml, simulation/*.test.ts, and package sim source.
+
+Review checklist:
+- Container shape matches docs/container-spec.md.
+- Public learner UI is student-facing and does not expose code/package details.
+- Every calculation shows formula, substitution, units, and interpretation.
+- Simulation uses the build queue's required core kernels instead of local math.
+- Prediction gate blocks reveal before commit.
+- At least one manipulation changes visible state.
+- Revealed sim has no critical axe accessibility violations.
+- Sources support the claims and there are no copied textbook dumps.
+- TECHNICAL.md records failures, fixes, and deferred issues.
+
+Run:
+
+pnpm container:validate <container-path>
+pnpm graph:generate
+pnpm graph:check
+pnpm test
+pnpm typecheck
+pnpm lint
+pnpm boundary
+pnpm license:check
+pnpm agent:validate
+
+Report findings first, ordered P0, P1, P2, with file/line references where
+possible. If there are no P0/P1 findings and all gates pass, say it is safe to
+merge.
+```
+
+## Prompt: Docs Owner
+
+Use this when public onboarding docs, README wording, or agent-facing workflow
+docs need to stay clear and synchronized.
+
+```text
+You are the Paideia docs owner for this PR. Your job is to keep public docs
+human-friendly and agent docs precise.
+
+Read first:
+- README.md
+- docs/public/README.md
+- docs/public/cfe-onboarding.html
+- docs/agent-workflows.md
+- docs/product/container-roadmap.md
+- docs/product/container-build-queue.yaml
+- scripts/validate-agent-docs.mjs
+
+Public docs standard:
+- The first screen is for a non-technical reader.
+- Use plain language, short sections, tables, and diagrams where helpful.
+- Avoid unexplained jargon. When a technical term is necessary, define it once.
+- Give clear paths for: "I have no code experience", "I found a learning
+  problem", "I want an agent to help me", and "I want to build a container".
+- Include the safety box: cite sources, no copied textbook dumps, no
+  GPL/proprietary sim code, MIT code / CC-BY content, clean-room process when
+  needed.
+
+Agent docs standard:
+- Point agents to AGENTS.md, docs/container-spec.md, the build queue, and one
+  skill or prompt for the task.
+- Keep prompts narrow: one container, one kernel, or one review.
+- Do not duplicate long specs that already live elsewhere.
+
+Run:
+
+pnpm roadmap:validate
+pnpm agent:validate
+pnpm lint
+
+Report changed docs, any broken links or stale references found, and the exact
+validation results.
 ```
 
 ## If You Are Lost

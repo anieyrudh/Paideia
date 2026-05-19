@@ -734,7 +734,7 @@ entries:
   - id: sutd.freshmore.vector-transformations
     title: "Vector Transformations"
     priority: P0
-    status: planned
+    status: reviewed
     cluster: Freshmore mathematics
     discipline: math
     reuse_status: curriculum-wrapper
@@ -769,6 +769,8 @@ entries:
       - core/ui-sim
     repo_package_name: sutd-sim-vector-transformations
     estimated_effort: M
+    repo:
+      container_path: sutd/content/freshmore/containers/vector-transformations
     assignment:
       workstream: sutd-freshmore
       concept_cluster: Freshmore mathematics
@@ -777,7 +779,7 @@ entries:
   - id: sutd.epd.pid-step-response
     title: "PID Step Response"
     priority: P0
-    status: planned
+    status: reviewed
     cluster: EPD control systems
     discipline: systems
     reuse_status: curriculum-wrapper
@@ -811,6 +813,8 @@ entries:
       - core/ui-sim
     repo_package_name: sutd-sim-pid-step-response
     estimated_effort: M
+    repo:
+      container_path: sutd/content/epd/containers/pid-step-response
     assignment:
       workstream: sutd-epd
       concept_cluster: EPD control systems
@@ -819,7 +823,7 @@ entries:
   - id: sutd.esd.linear-programming-feasible-region
     title: "Linear Programming Feasible Region"
     priority: P0
-    status: planned
+    status: reviewed
     cluster: ESD optimisation
     discipline: systems
     reuse_status: curriculum-wrapper
@@ -853,6 +857,8 @@ entries:
       - core/ui-sim
     repo_package_name: sutd-sim-lp-feasible-region
     estimated_effort: M
+    repo:
+      container_path: sutd/content/esd/containers/linear-programming-feasible-region
     assignment:
       workstream: sutd-esd
       concept_cluster: ESD optimisation
@@ -861,7 +867,7 @@ entries:
   - id: sutd.csd.graph-search-and-shortest-paths
     title: "Graph Search and Shortest Paths"
     priority: P0
-    status: planned
+    status: reviewed
     cluster: CSD algorithms
     discipline: cs
     reuse_status: curriculum-wrapper
@@ -897,6 +903,8 @@ entries:
       - core/ui-sim
     repo_package_name: sutd-sim-graph-search-shortest-paths
     estimated_effort: M
+    repo:
+      container_path: sutd/content/csd/containers/graph-search-and-shortest-paths
     assignment:
       workstream: sutd-istd
       concept_cluster: CSD algorithms
@@ -949,7 +957,7 @@ entries:
   - id: sutd.dai.trust-calibration
     title: "Trust Calibration"
     priority: P0
-    status: planned
+    status: reviewed
     cluster: DAI human-centred AI
     discipline: design-ai
     reuse_status: curriculum-wrapper
@@ -984,6 +992,8 @@ entries:
       - core/ui-sim
     repo_package_name: sutd-sim-trust-calibration
     estimated_effort: M
+    repo:
+      container_path: sutd/content/dai/containers/trust-calibration
     assignment:
       workstream: sutd-dai
       concept_cluster: DAI human-centred AI
@@ -1209,7 +1219,7 @@ entries:
   - id: alevel.physics.forces-and-equilibrium
     title: "Forces and equilibrium"
     priority: P0
-    status: planned
+    status: reviewed
     cluster: A-Level mechanics
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -1241,6 +1251,8 @@ entries:
       - core/ui-sim
     repo_package_name: alevel-sim-forces-equilibrium
     estimated_effort: M
+    repo:
+      container_path: a-level/content/physics/containers/forces-and-equilibrium
     assignment:
       workstream: alevel-physics
       concept_cluster: A-Level mechanics
