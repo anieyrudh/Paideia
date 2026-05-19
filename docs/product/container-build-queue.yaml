@@ -1004,7 +1004,7 @@ entries:
   - id: sutd.smt.ode-phase-portrait
     title: "ODE Phase Portrait"
     priority: P0
-    status: planned
+    status: ready-for-build
     cluster: SMT mathematical modelling
     discipline: science
     reuse_status: curriculum-wrapper
@@ -1263,7 +1263,7 @@ entries:
   - id: alevel.physics.work-energy-power
     title: "Work, energy, power"
     priority: P0
-    status: planned
+    status: ready-for-build
     cluster: A-Level mechanics
     discipline: physics
     reuse_status: curriculum-wrapper

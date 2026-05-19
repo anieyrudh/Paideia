@@ -187,6 +187,7 @@ Common tasks:
 | Regenerate lesson docs | `pnpm container:docs <container-path>` |
 | Check generated lesson graph | `pnpm graph:check` |
 | Follow the build roadmap | [Container roadmap](docs/product/container-roadmap.md) |
+| Run a container wave | [Container wave runbook](docs/product/container-wave-runbook.md) |
 
 ## Project Docs
 
@@ -194,6 +195,7 @@ Common tasks:
 - [Agent workflows](docs/agent-workflows.md)
 - [Container specification](docs/container-spec.md)
 - [Product roadmap](docs/product/container-roadmap.md)
+- [Container wave runbook](docs/product/container-wave-runbook.md)
 - [Core module inventory](docs/core-modules.md)
 - [GitHub setup](docs/github-setup.md)
 - [Clean-room dependency guide](docs/dependency-clean-room.md)
