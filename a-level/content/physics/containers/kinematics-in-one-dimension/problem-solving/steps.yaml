@@ -1,0 +1,16 @@
+schema_version: "1.0.0"
+steps:
+  - id: choose-positive-direction
+    label: "Choose the positive direction"
+  - id: list-knowns
+    label: "List u, v, a, s, and t with units"
+  - id: check-constant-acceleration
+    label: "Check acceleration is constant"
+  - id: select-equation
+    label: "Select the equation with one unknown"
+  - id: substitute-with-signs
+    label: "Substitute values with signs"
+  - id: interpret-answer
+    label: "Interpret the sign and magnitude"
+  - id: graph-check
+    label: "Check with a velocity-time graph idea"

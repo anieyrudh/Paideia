@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: kinematics-in-one-dimension
+prerequisites:
+  - id: physical-quantities-and-units
+    title: "Physical Quantities and Units"
+    relationship: "Kinematics calculations need coherent SI units for displacement, velocity, acceleration, and time."
+    status: available
+  - id: scalars-and-vectors
+    title: "Scalars and Vectors"
+    relationship: "Displacement, velocity, and acceleration are vector quantities; distance and speed are scalar quantities."
+    status: available
+  - id: resolving-vectors
+    title: "Resolving Vectors"
+    relationship: "Two-dimensional motion is later separated into one-dimensional component equations."
+    status: available
+downstream:
+  - id: forces-and-newtons-laws
+    title: "Forces and Newton's Laws"
+    relationship: "Newton's laws connect net force to the acceleration described by kinematics."
+    status: planned
+  - id: momentum
+    title: "Momentum"
+    relationship: "Velocity signs and changes become essential when tracking momentum before and after interactions."
+    status: planned
+siblings:
+  - id: motion-graphs
+    title: "Motion Graphs"
+    relationship: "Velocity-time and displacement-time graphs show the same quantities visually."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: final-velocity-as-average
+      label: "Final velocity used as average"
+    - id: sign-confusion
+      label: "Sign of acceleration confused with direction of motion"
+    - id: distance-displacement-swap
+      label: "Distance and displacement treated as the same"
+  edges:
+    - from: final-velocity-as-average
+      to: sign-confusion
+      label: "both come from not tracking how velocity changes"
+    - from: distance-displacement-swap
+      to: sign-confusion
+      label: "both hide the chosen positive direction"
+mermaid_source: graph.mmd

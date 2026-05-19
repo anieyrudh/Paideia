@@ -11,6 +11,12 @@ export {
   componentPredict,
   resolveVectorComponents,
 } from "./resolving-vectors.js";
+export {
+  KinematicsOneDimensionSim,
+  MotionTimeline,
+  kinematicsModel,
+  kinematicsPredict,
+} from "./kinematics-one-dimension.js";
 export type {
   MetreVector2,
   ResultantVectorModel,
@@ -23,3 +29,10 @@ export type {
   ResolutionModel,
   ResolutionState,
 } from "./resolving-vectors.js";
+export type {
+  KinematicsModel,
+  KinematicsState,
+  MetresPerSecond,
+  MetresPerSecondSquared,
+  MotionTimelineProps,
+} from "./kinematics-one-dimension.js";

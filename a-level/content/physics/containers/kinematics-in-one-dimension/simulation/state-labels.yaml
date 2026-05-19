@@ -1,0 +1,19 @@
+state_labels:
+  initialPositionMetres:
+    label: "Initial position"
+    meaning: "Position at the start of the timed interval."
+  initialVelocityMetresPerSecond:
+    label: "Initial velocity"
+    meaning: "Signed velocity at the start of the timed interval."
+  accelerationMetresPerSecondSquared:
+    label: "Acceleration"
+    meaning: "Constant signed rate of change of velocity."
+  elapsedSeconds:
+    label: "Elapsed time"
+    meaning: "Duration over which the constant-acceleration model is applied."
+  displacementMetres:
+    label: "Displacement"
+    meaning: "Signed change in position over the elapsed time."
+  velocityMetresPerSecond:
+    label: "Final velocity"
+    meaning: "Signed velocity at the end of the elapsed time."

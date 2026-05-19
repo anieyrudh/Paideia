@@ -1,0 +1,57 @@
+id: motion-equations-lab
+title: "Motion Equations Lab"
+interaction_type: animation-playback
+kernel_deps:
+  - core/content-schema
+  - core/mechanics
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A trolley starts from rest and accelerates at 2.0 m s^-2 for 3.0 s. Before revealing the trace, which displacement is closest?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "3.0 m"
+      - "6.0 m"
+      - "9.0 m"
+      - "18.0 m"
+    correct_index: 2
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: initial-velocity
+      label: "Initial velocity"
+      kind: slider
+      kernel_binding: state.initialVelocityMetresPerSecond
+      bounds: { min: -5, max: 12, step: 0.5 }
+    - id: acceleration
+      label: "Acceleration"
+      kind: slider
+      kernel_binding: state.accelerationMetresPerSecondSquared
+      bounds: { min: -4, max: 6, step: 0.5 }
+    - id: elapsed-time
+      label: "Elapsed time"
+      kind: slider
+      kernel_binding: state.elapsedSeconds
+      bounds: { min: 0, max: 8, step: 0.5 }
+
+observe:
+  renderers:
+    - id: motion-equations-lab
+      module: "@paideia/a-level-physics-sims/kinematics-one-dimension"
+      symbol: KinematicsOneDimensionSim
+      props_binding: |
+        Show a displacement-time trace, current trolley position, final velocity, formula substitution, units, and velocity-time area reasoning from the current one-dimensional state.
+
+explain:
+  prompt: |
+    How do the signs of velocity and acceleration tell you whether the object is speeding up, slowing down, or changing direction?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Velocity and acceleration must have the same sign"
+    - "Average velocity equals final velocity"
+    - "Distance and displacement are interchangeable"

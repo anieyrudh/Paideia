@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Static kinematics fallback</title>
+  <desc id="desc">A static constant-acceleration diagram showing displacement as area under a velocity-time graph.</desc>
+  <rect width="640" height="360" fill="#f7f4ea"/>
+  <rect x="56" y="52" width="528" height="240" rx="16" fill="#fffdf7" stroke="#d8d0bf" stroke-width="3"/>
+  <line x1="104" y1="252" x2="520" y2="252" stroke="#10201a" stroke-width="3"/>
+  <line x1="104" y1="252" x2="104" y2="88" stroke="#10201a" stroke-width="3"/>
+  <path d="M104 252 L496 116 L496 252 Z" fill="#dbeafe" stroke="#1f5f8b" stroke-width="5" stroke-linejoin="round"/>
+  <text x="122" y="108" fill="#10201a" font-family="Arial, sans-serif" font-size="22" font-weight="700">velocity-time area = displacement</text>
+  <text x="122" y="328" fill="#10201a" font-family="Arial, sans-serif" font-size="20">Constant acceleration: v = u + at, s = ut + 1/2at^2</text>
+</svg>

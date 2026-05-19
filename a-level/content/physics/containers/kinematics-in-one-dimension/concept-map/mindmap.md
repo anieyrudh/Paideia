@@ -1,0 +1,25 @@
+# Kinematics in One Dimension Mindmap
+
+- Quantities
+  - Position
+  - Displacement
+  - Velocity
+  - Acceleration
+  - Time
+- Sign convention
+  - Choose positive direction
+  - Keep signs through substitution
+  - Interpret negative answers physically
+- Constant acceleration
+  - Velocity changes linearly with time
+  - Displacement is velocity-time area
+  - SUVAT equations are equivalent forms
+- Graph links
+  - Gradient of displacement-time graph gives velocity
+  - Gradient of velocity-time graph gives acceleration
+  - Area under velocity-time graph gives displacement
+- Transfer
+  - Trolleys
+  - Lifts
+  - Vehicles slowing down
+  - Vertical motion before projectile motion

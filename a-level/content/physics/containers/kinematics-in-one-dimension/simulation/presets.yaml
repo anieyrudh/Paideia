@@ -1,0 +1,22 @@
+presets:
+  - id: trolley-from-rest
+    label: "Trolley from rest"
+    state:
+      initialPositionMetres: 0
+      initialVelocityMetresPerSecond: 0
+      accelerationMetresPerSecondSquared: 2
+      elapsedSeconds: 3
+  - id: already-moving
+    label: "Already moving"
+    state:
+      initialPositionMetres: 0
+      initialVelocityMetresPerSecond: 4
+      accelerationMetresPerSecondSquared: 1
+      elapsedSeconds: 4
+  - id: slowing-down
+    label: "Slowing down"
+    state:
+      initialPositionMetres: 0
+      initialVelocityMetresPerSecond: 8
+      accelerationMetresPerSecondSquared: -1.5
+      elapsedSeconds: 5

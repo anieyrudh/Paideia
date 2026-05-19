@@ -29,14 +29,14 @@ test("launches the first container sim through the learner shell", async ({ page
 test("navigates the generated mini knowledge graph", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: "Physical Quantities and Units" })).toBeVisible();
-  await expect(page.getByText("3 concepts ready")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Kinematics in One Dimension" })).toBeVisible();
+  await expect(page.getByText("4 concepts ready")).toBeVisible();
   await expect(page.getByRole("heading", { name: "First principles" })).toBeVisible();
-  await expect(page.getByText("A physical quantity is something about the world")).toBeVisible();
-  await expect(page.getByText("Name the quantity")).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Measurement and Uncertainty Lab" })).toBeVisible();
+  await expect(page.getByText("Kinematics describes motion without first asking")).toBeVisible();
+  await expect(page.getByText("Choose the positive direction")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Motion Equations Lab" })).toBeVisible();
   await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-  await expect(page.getByText("Next: Scalars and Vectors")).toBeVisible();
+  await expect(page.getByText("Prerequisite: Physical Quantities and Units")).toBeVisible();
 
   await page
     .getByRole("navigation", { name: "Concept containers" })
@@ -54,6 +54,25 @@ test("navigates the generated mini knowledge graph", async ({ page }) => {
   await expect(page.getByLabel("Formula used")).toContainText("Fx = F cos θ");
 });
 
+test("reveals the kinematics route from generated catalogue data", async ({ page }) => {
+  await page.goto("/#a-level/physics/kinematics-in-one-dimension");
+
+  await expect(page.getByRole("heading", { name: "Kinematics in One Dimension" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Motion Equations Lab" })).toBeVisible();
+  await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+  await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
+
+  await page.getByLabel("9.0 m").check();
+  await page
+    .getByLabel("Rationale")
+    .fill("Starting from rest leaves only the acceleration term in the displacement equation.");
+  await page.getByRole("button", { name: "Commit prediction" }).click();
+
+  await expect(page.getByLabel("Observation unlocked")).toBeVisible();
+  await expect(page.getByLabel("Formula used")).toContainText("s = ut + 1/2 at^2");
+  await expect(page.getByLabel("Observation unlocked")).toContainText("9.00 m");
+});
+
 test("searches modules and keeps local mastery progress", async ({ page }) => {
   await page.goto("/");
 
@@ -66,14 +85,14 @@ test("searches modules and keeps local mastery progress", async ({ page }) => {
 
   await page.getByLabel("Search curriculum").fill("");
   await page.getByRole("button", { name: "Foundations of Physics" }).click();
-  await expect(page.getByText("3 of 3 containers")).toBeVisible();
+  await expect(page.getByText("4 of 4 containers")).toBeVisible();
 
   await page
     .getByLabel("Physical Quantities and Units mastery")
     .getByRole("button", { name: "Mastered" })
     .click();
-  await expect(page.getByText("1/3 mastered")).toBeVisible();
+  await expect(page.getByText("1/4 mastered")).toBeVisible();
 
   await page.reload();
-  await expect(page.getByText("1/3 mastered")).toBeVisible();
+  await expect(page.getByText("1/4 mastered")).toBeVisible();
 });
