@@ -1,0 +1,6 @@
+runtime:
+  package: "@paideia/sutd-sims/load-path-and-daylight-tradeoff"
+  component: LoadPathAndDaylightTradeoff
+  persistence: local
+  prediction_gate: required
+  responsive: true

@@ -5,7 +5,7 @@ test("renders the first SUTD curriculum wrapper container", async ({ page }) => 
 
   await expect(page.getByRole("heading", { name: "SUTD curriculum wrapper substrate" })).toBeVisible();
   const status = page.getByLabel("SUTD shell status");
-  await expect(status).toContainText("5");
+  await expect(status).toContainText("6");
   await expect(status.getByText("product containers wired", { exact: true })).toBeVisible();
 
   await page.getByRole("button", { name: /EPD/ }).click();
@@ -22,6 +22,9 @@ test("renders the first SUTD curriculum wrapper container", async ({ page }) => 
 
   await page.getByRole("button", { name: /DAI/ }).click();
   await expect(page.getByRole("heading", { name: "Trust Calibration" })).toBeVisible();
+
+  await page.getByRole("button", { name: /ASD/ }).click();
+  await expect(page.getByRole("heading", { name: "Load Path and Daylight Tradeoff" })).toBeVisible();
 });
 
 test("maps concept clusters across all SUTD pillars", async ({ page }) => {
@@ -51,4 +54,8 @@ test("maps concept clusters across all SUTD pillars", async ({ page }) => {
   await page.getByRole("button", { name: /DAI/ }).click();
   await expect(page.getByRole("heading", { name: "DAI" })).toBeVisible();
   await expect(page.getByText("sutd.dai.trust-calibration")).toBeVisible();
+
+  await page.getByRole("button", { name: /ASD/ }).click();
+  await expect(page.getByRole("heading", { name: "ASD" })).toBeVisible();
+  await expect(page.getByText("sutd.asd.load-path-and-daylight-tradeoff")).toBeVisible();
 });

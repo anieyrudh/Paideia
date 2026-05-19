@@ -1,0 +1,9 @@
+flowchart LR
+  vectors["Vectors"] --> tradeoff["Load path and daylight tradeoff"]
+  equilibrium["Force equilibrium"] --> tradeoff
+  ratios["Ratio reasoning"] --> tradeoff
+  tradeoff --> systems["Structural systems"]
+  tradeoff --> performance["Building performance"]
+  passive["Passive design"] --- tradeoff
+  misconception1["Loads travel only vertically"] -. corrected by .-> equilibrium
+  misconception2["More glass always improves performance"] -. corrected by .-> performance

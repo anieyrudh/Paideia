@@ -1,0 +1,19 @@
+steps:
+  - id: separate-demands
+    prompt: "Which loads are gravity loads, and which are lateral loads?"
+    expected_action: "List the forces separately before drawing paths."
+  - id: trace-load-path
+    prompt: "What connected members carry the lateral load to ground?"
+    expected_action: "Trace the route through frame, brace, column, or wall elements."
+  - id: estimate-daylight
+    prompt: "How much useful opening remains after structural obstruction?"
+    expected_action: "Calculate the daylight proxy with opening ratio and obstruction."
+  - id: estimate-capacity
+    prompt: "How much lateral resistance does the selected system provide?"
+    expected_action: "Calculate the capacity proxy and compare it with demand."
+  - id: interpret-residual
+    prompt: "Is the remaining residual force acceptable?"
+    expected_action: "Explain whether the bay is balanced, too flexible, or too obstructed."
+  - id: transfer
+    prompt: "What design move would improve the weaker side of the tradeoff?"
+    expected_action: "Change opening, bracing, or demand assumptions and explain the consequence."

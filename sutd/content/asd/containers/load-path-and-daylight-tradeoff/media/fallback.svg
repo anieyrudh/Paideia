@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fallback diagram for load path and daylight tradeoff" viewBox="0 0 640 360">
+  <rect width="640" height="360" fill="#f8faf6"/>
+  <rect x="120" y="70" width="400" height="230" fill="#ffffff" stroke="#58665a" stroke-width="14"/>
+  <rect x="235" y="145" width="170" height="95" fill="#f7c948" opacity="0.6"/>
+  <path d="M127 294L513 76" stroke="#1d5f8a" stroke-width="16" stroke-linecap="round"/>
+  <path d="M40 118h96" stroke="#b42318" stroke-width="12" stroke-linecap="round"/>
+  <path d="M136 118l-24-15v30z" fill="#b42318"/>
+  <text x="60" y="42" fill="#26332b" font-family="Arial, sans-serif" font-size="24">Side load needs a continuous path to ground.</text>
+  <text x="204" y="334" fill="#26332b" font-family="Arial, sans-serif" font-size="20">Larger openings improve daylight but can weaken the lateral path.</text>
+</svg>

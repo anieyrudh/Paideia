@@ -1,0 +1,16 @@
+state_labels:
+  apertureRatio:
+    label: "Opening ratio"
+    unit: "share of bay face"
+    student_hint: "Higher values admit more light but reduce the remaining structural surface."
+  braceMode:
+    label: "Structural system"
+    student_hint: "A direct brace usually increases lateral resistance but blocks some opening."
+  lateralLoadKn:
+    label: "Lateral load"
+    unit: "kN"
+    student_hint: "Sideways demand that must be balanced by the resisting path."
+  bayHeightM:
+    label: "Bay height"
+    unit: "m"
+    student_hint: "Changes the brace angle and therefore the axial force in the diagonal path."

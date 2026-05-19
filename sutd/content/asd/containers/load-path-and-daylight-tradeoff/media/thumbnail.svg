@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Structural bay with daylight opening" viewBox="0 0 320 180">
+  <rect width="320" height="180" fill="#f8faf6"/>
+  <rect x="48" y="28" width="224" height="124" fill="#ffffff" stroke="#58665a" stroke-width="8"/>
+  <rect x="105" y="66" width="110" height="58" fill="#f7c948" opacity="0.65"/>
+  <path d="M52 150L268 32" stroke="#1d5f8a" stroke-width="10" stroke-linecap="round"/>
+  <path d="M22 62h48" stroke="#b42318" stroke-width="7" stroke-linecap="round"/>
+  <path d="M70 62l-14-9v18z" fill="#b42318"/>
+  <text x="36" y="170" fill="#26332b" font-family="Arial, sans-serif" font-size="16">load path + daylight</text>
+</svg>
