@@ -17,22 +17,22 @@
 
 | Sim | Module | Symbols / role |
 |---|---|---|
-| energy-transfer-lab | `core/sim-runtime` | Declared in `simulation/simulation.yaml` |
-| energy-transfer-lab | `core/content-schema` | Declared in `simulation/simulation.yaml` |
-| energy-transfer-lab | `core/mechanics` | Declared in `simulation/simulation.yaml` |
-| energy-transfer-lab | `core/charting` | Declared in `simulation/simulation.yaml` |
-| energy-transfer-lab | `core/prediction-gate` | Declared in `simulation/simulation.yaml` |
-| energy-transfer-lab | `core/shared` | Declared in `simulation/simulation.yaml` |
-| energy-transfer-lab | `core/ui-sim` | Declared in `simulation/simulation.yaml` |
+| momentum-collision-lab | `core/sim-runtime` | Declared in `simulation/simulation.yaml` |
+| momentum-collision-lab | `core/content-schema` | Declared in `simulation/simulation.yaml` |
+| momentum-collision-lab | `core/mechanics` | Declared in `simulation/simulation.yaml` |
+| momentum-collision-lab | `core/charting` | Declared in `simulation/simulation.yaml` |
+| momentum-collision-lab | `core/prediction-gate` | Declared in `simulation/simulation.yaml` |
+| momentum-collision-lab | `core/shared` | Declared in `simulation/simulation.yaml` |
+| momentum-collision-lab | `core/ui-sim` | Declared in `simulation/simulation.yaml` |
 
 ## SimulationSpec (frozen)
 
 Full validated YAML for the declared sim in this container at the time of last docs regeneration.
 
 ```yaml
-id: energy-transfer-lab
-title: Energy Transfer Lab
-interaction_type: animation-playback
+id: momentum-collision-lab
+title: Collision and Impulse Lab
+interaction_type: diagram-builder
 kernel_deps:
   - core/sim-runtime
   - core/content-schema
@@ -43,81 +43,65 @@ kernel_deps:
   - core/ui-sim
 predict:
   prompt: |
-    A 10 N pull moves a trolley 3.0 m in the same direction as the motion in 2.0 s. Before revealing the lab, which work and average power statement is correct?
+    Cart A has mass 0.50 kg and moves at +2.0 m s^-1. Cart B has mass 1.0 kg and moves at -0.5 m s^-1. Before revealing the elastic collision, what happens to total momentum of the two-cart system?
   commit_format:
     kind: multiple-choice
     options:
-      - 0 J and 0 W
-      - 30 J and 15 W
-      - 30 J and 30 W
-      - 60 J and 15 W
+      - Total momentum changes because both speeds change.
+      - Total momentum stays constant if external horizontal force is negligible.
+      - Momentum is conserved only when the cart masses are equal.
+      - Momentum is not conserved because the carts exert forces on each other.
     correct_index: 1
   rationale_required: true
 manipulate:
   controls:
-    - id: force
-      label: Applied force
+    - id: mass-a
+      label: Mass of cart A
       kind: slider
-      kernel_binding: state.forceNewtons
+      kernel_binding: state.massAKilograms
       bounds:
-        min: 0
-        max: 20
-        step: 1
-    - id: displacement
-      label: Displacement
+        min: 0.2
+        max: 3
+        step: 0.1
+    - id: mass-b
+      label: Mass of cart B
       kind: slider
-      kernel_binding: state.displacementMetres
+      kernel_binding: state.massBKilograms
       bounds:
-        min: 0
-        max: 6
-        step: 0.5
-    - id: angle
-      label: Force angle
+        min: 0.2
+        max: 3
+        step: 0.1
+    - id: velocity-a
+      label: Initial velocity of cart A
       kind: slider
-      kernel_binding: state.angleDegrees
+      kernel_binding: state.velocityAMetresPerSecond
       bounds:
-        min: 0
-        max: 180
-        step: 15
-    - id: elapsed-time
-      label: Elapsed time
+        min: -5
+        max: 5
+        step: 0.1
+    - id: velocity-b
+      label: Initial velocity of cart B
       kind: slider
-      kernel_binding: state.elapsedSeconds
+      kernel_binding: state.velocityBMetresPerSecond
       bounds:
-        min: 0.5
-        max: 8
-        step: 0.5
-    - id: mass
-      label: Mass
-      kind: slider
-      kernel_binding: state.massKilograms
-      bounds:
-        min: 1
-        max: 10
-        step: 0.5
-    - id: starting-speed
-      label: Starting speed
-      kind: slider
-      kernel_binding: state.initialSpeedMetresPerSecond
-      bounds:
-        min: 0
-        max: 8
-        step: 0.5
+        min: -5
+        max: 5
+        step: 0.1
 observe:
   renderers:
-    - id: energy-transfer-lab
+    - id: momentum-collision-lab
       module: "@paideia/a-level-physics-sims/momentum"
-      symbol: WorkEnergyPowerSim
+      symbol: MomentumSim
       props_binding: |
-        Show work sign, energy-store transfer, average power, formula substitution, and an energy trace from force, displacement, angle, time, mass, and starting speed.
+        Show before-and-after momentum, final velocities, impulse on each cart, formula substitution, units, and interpretation.
 explain:
   prompt: |
-    Why does only the force component along the displacement transfer energy, and what changes when the same work is done in less time?
+    Why can each cart's momentum change while the total momentum of the isolated two-cart system stays constant?
   socratic: true
   expected_misconceptions_surfaced:
-    - Energy is lost rather than transferred
-    - Work equals force regardless of displacement direction
-    - Power is the same thing as energy
+    - Momentum and force are the same quantity
+    - Momentum conservation needs equal masses
+    - Conservation means each object keeps its own momentum
 ```
 
 ## Kernel extensions

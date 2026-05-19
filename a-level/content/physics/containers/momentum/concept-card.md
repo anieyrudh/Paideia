@@ -3,7 +3,7 @@ subject: physics
 concept: momentum
 branch: a-level
 level: H2
-syllabus_ref: "9478 / Section II / Work, energy and power"
+syllabus_ref: "9478 / Section II / Momentum"
 prerequisites:
   - forces-and-equilibrium
   - kinematics-in-one-dimension
@@ -19,53 +19,67 @@ status: reviewed
 
 ## First-Principles Explanation
 
-Work is energy transferred by a force acting through a displacement. The
-direction matters. Only the component of the force along the displacement does
-work, so a sideways force can be large and still transfer no energy along the
-path.
+Momentum measures how much motion an object carries in a chosen direction. It
+depends on both mass and velocity.
 
 ```text
-W = F s cos(theta)
+p = mv
 ```
 
-Energy is not used up. It moves between stores. Positive work on an object
-increases its mechanical energy store; negative work transfers energy out of
-that store. Power tells how quickly the transfer happens.
+Momentum is a vector. A cart moving right can have positive momentum; a cart
+moving left can have negative momentum. For a system of objects, total momentum
+is the sum of each object's momentum.
 
 ```text
-P = W / t
+total p = m_Au_A + m_Bu_B
+```
+
+During a collision, each cart exerts a force on the other. Those internal
+forces can change each cart's momentum, but if external horizontal impulse is
+negligible, the total momentum of the two-cart system stays constant.
+
+```text
+total p before = total p after
+```
+
+Impulse is the change in momentum caused by a force acting over time.
+
+```text
+J = change in p
 ```
 
 ## Key Definitions
 
-- **Work done:** energy transferred when a force has a component along a displacement.
-- **Joule:** unit of work and energy; 1 J = 1 N m.
-- **Kinetic energy:** energy associated with motion, `E_k = 1/2 mv^2`.
-- **Power:** rate of energy transfer, measured in watts; 1 W = 1 J s^-1.
-- **Negative work:** work done by a force with a component opposite the displacement.
+- **Momentum:** mass times velocity, measured in kg m s^-1.
+- **System:** the object or group of objects whose total momentum is being tracked.
+- **Isolated system:** a system with negligible external resultant force or external impulse in the direction considered.
+- **Impulse:** change in momentum, measured in N s or kg m s^-1.
+- **Conservation of momentum:** total momentum remains constant when external impulse is negligible.
 
 ## Why This Matters
 
-Work-energy reasoning lets learners solve motion problems without tracking
-every force over every instant. It is the bridge from force diagrams to
-conservation ideas, motors, braking, collisions, and oscillations.
+Momentum reasoning explains collisions, recoil, explosions, vehicle safety, and
+rocket motion. It is often easier than tracking every changing force during the
+short impact time.
 
 ## Canonical Examples
 
-- A pull in the same direction as motion does positive work and can increase kinetic energy.
-- A braking force opposite the motion does negative work and reduces kinetic energy.
-- Two motors can do the same work while having different power if one takes less time.
+- Two carts collide on a low-friction track and the total momentum before equals the total momentum after.
+- A bat gives a ball an impulse, changing the ball's momentum.
+- A heavier cart can move more slowly than a lighter cart while carrying the same momentum.
 
 ## Common Misconceptions
 
-- Multiplying `F` and `s` without checking the angle between them.
-- Saying energy is lost instead of naming the store it moved to.
-- Treating power as "how much energy" rather than "how fast energy is transferred."
+- Thinking momentum and force are the same quantity.
+- Thinking conservation requires equal masses or equal speeds.
+- Thinking each object keeps its own momentum during a collision.
+- Forgetting that opposite directions need opposite signs.
 
 ## Problem-Solving Pattern
 
-1. Identify the force and the displacement.
-2. Decide the angle between the force and displacement.
-3. Calculate work with `W = F s cos(theta)`.
-4. Link work to an energy-store change.
-5. If time is involved, calculate average power with `P = W / t`.
+1. Choose the system boundary.
+2. Assign a sign convention for direction.
+3. Calculate each object's momentum with `p = mv`.
+4. Add momenta to get the system total.
+5. If external impulse is negligible, set total momentum before equal to total momentum after.
+6. Use impulse as change in momentum when a single object's momentum changes.

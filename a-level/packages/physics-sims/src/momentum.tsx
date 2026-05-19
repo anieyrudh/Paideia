@@ -1,28 +1,17 @@
 import { useMemo } from "react";
 import { LineChart } from "@paideia/charting";
 import type { TSimulationSpec } from "@paideia/content-schema";
-import { averagePower, kineticEnergy, workDone, workEnergyTransfer } from "@paideia/mechanics";
+import { elasticCollision1D, momentum1D } from "@paideia/mechanics";
 import type { PredictionEvent } from "@paideia/prediction-gate";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
 import {
-  degrees,
   kilograms,
-  metres,
   metresPerSecond,
-  newtons,
   ok,
-  radians,
-  seconds,
   type ConceptPackageId,
-  type Degrees,
-  type Joules,
   type KernelResult,
   type Kilograms,
-  type Metres,
   type MetresPerSecond,
-  type Newtons,
-  type Seconds,
-  type Watts,
 } from "@paideia/shared";
 import { ControlGroup, Slider } from "@paideia/ui-sim";
 
@@ -31,35 +20,38 @@ export const momentumSimId = "momentum-collision-lab";
 export type MomentumPredictionEvent = PredictionEvent;
 
 export interface MomentumState {
-  readonly forceNewtons: Newtons;
-  readonly displacementMetres: Metres;
-  readonly angleDegrees: Degrees;
-  readonly elapsedSeconds: Seconds;
-  readonly massKilograms: Kilograms;
-  readonly initialSpeedMetresPerSecond: MetresPerSecond;
+  readonly massAKilograms: Kilograms;
+  readonly massBKilograms: Kilograms;
+  readonly velocityAMetresPerSecond: MetresPerSecond;
+  readonly velocityBMetresPerSecond: MetresPerSecond;
 }
 
-export interface EnergyTracePoint {
-  readonly displacementMetres: Metres;
-  readonly kineticEnergyJoules: Joules;
-  readonly workDoneJoules: Joules;
+export interface MomentumTracePoint {
+  readonly moment: "before" | "after";
+  readonly cart: "Cart A" | "Cart B" | "total";
+  readonly momentumKilogramMetresPerSecond: number;
 }
 
 export interface MomentumModel {
-  readonly workJoules: Joules;
-  readonly initialKineticEnergyJoules: Joules;
-  readonly finalKineticEnergyJoules: Joules;
-  readonly averagePowerWatts: Watts;
-  readonly energyChangeJoules: Joules;
-  readonly trace: readonly EnergyTracePoint[];
-  readonly signDecision: "positive" | "zero" | "negative";
-  readonly transferLabel: string;
+  readonly initialMomentumA: number;
+  readonly initialMomentumB: number;
+  readonly finalMomentumA: number;
+  readonly finalMomentumB: number;
+  readonly totalInitialMomentum: number;
+  readonly totalFinalMomentum: number;
+  readonly finalVelocityA: number;
+  readonly finalVelocityB: number;
+  readonly impulseOnA: number;
+  readonly impulseOnB: number;
+  readonly kineticEnergyBeforeJoules: number;
+  readonly kineticEnergyAfterJoules: number;
+  readonly trace: readonly MomentumTracePoint[];
 }
 
 export const momentumSpec: TSimulationSpec = {
   id: momentumSimId,
-  title: "Energy Transfer Lab",
-  interaction_type: "animation-playback",
+  title: "Collision and Impulse Lab",
+  interaction_type: "diagram-builder",
   kernel_deps: [
     "core/sim-runtime",
     "core/content-schema",
@@ -71,10 +63,15 @@ export const momentumSpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "A 10 N pull moves a trolley 3.0 m in the same direction as the motion in 2.0 s. Before revealing the lab, which work and average power statement is correct?",
+      "Cart A has mass 0.50 kg and moves at +2.0 m s^-1. Cart B has mass 1.0 kg and moves at -0.5 m s^-1. Before revealing the elastic collision, what happens to total momentum of the two-cart system?",
     commit_format: {
       kind: "multiple-choice",
-      options: ["0 J and 0 W", "30 J and 15 W", "30 J and 30 W", "60 J and 15 W"],
+      options: [
+        "Total momentum changes because both speeds change.",
+        "Total momentum stays constant if external horizontal force is negligible.",
+        "Momentum is conserved only when the cart masses are equal.",
+        "Momentum is not conserved because the carts exert forces on each other.",
+      ],
       correct_index: 1,
     },
     rationale_required: true,
@@ -82,95 +79,96 @@ export const momentumSpec: TSimulationSpec = {
   manipulate: {
     controls: [
       {
-        id: "force",
-        label: "Applied force",
+        id: "mass-a",
+        label: "Mass of cart A",
         kind: "slider",
-        kernel_binding: "state.forceNewtons",
-        bounds: { min: 0, max: 20, step: 1 },
+        kernel_binding: "state.massAKilograms",
+        bounds: { min: 0.2, max: 3, step: 0.1 },
       },
       {
-        id: "displacement",
-        label: "Displacement",
+        id: "mass-b",
+        label: "Mass of cart B",
         kind: "slider",
-        kernel_binding: "state.displacementMetres",
-        bounds: { min: 0, max: 6, step: 0.5 },
+        kernel_binding: "state.massBKilograms",
+        bounds: { min: 0.2, max: 3, step: 0.1 },
       },
       {
-        id: "angle",
-        label: "Force angle",
+        id: "velocity-a",
+        label: "Initial velocity of cart A",
         kind: "slider",
-        kernel_binding: "state.angleDegrees",
-        bounds: { min: 0, max: 180, step: 15 },
+        kernel_binding: "state.velocityAMetresPerSecond",
+        bounds: { min: -5, max: 5, step: 0.1 },
       },
       {
-        id: "elapsed-time",
-        label: "Elapsed time",
+        id: "velocity-b",
+        label: "Initial velocity of cart B",
         kind: "slider",
-        kernel_binding: "state.elapsedSeconds",
-        bounds: { min: 0.5, max: 8, step: 0.5 },
+        kernel_binding: "state.velocityBMetresPerSecond",
+        bounds: { min: -5, max: 5, step: 0.1 },
       },
     ],
   },
   observe: {
     renderers: [
       {
-        id: "momentum-collision-lab",
+        id: momentumSimId,
         module: "@paideia/a-level-physics-sims/momentum",
         symbol: "MomentumSim",
         props_binding:
-          "Show work sign, energy-store transfer, average power, formula substitution, and an energy trace from force, displacement, angle, time, mass, and starting speed.",
+          "Show before-and-after momentum, final velocities, impulse on each cart, formula substitution, units, and interpretation.",
       },
     ],
   },
   explain: {
     prompt:
-      "Why does only the force component along the displacement transfer energy, and what changes when the same work is done in less time?",
+      "Why can each cart's momentum change while the total momentum of the isolated two-cart system stays constant?",
     socratic: true,
     expected_misconceptions_surfaced: [
-      "Energy is lost rather than transferred.",
-      "Work equals force regardless of displacement direction.",
-      "Power is the same thing as energy.",
+      "Momentum and force are the same quantity.",
+      "Momentum conservation needs equal masses.",
+      "Conservation means each object keeps its own momentum.",
     ],
   },
 };
 
 const defaultState: MomentumState = {
-  forceNewtons: newtons(10),
-  displacementMetres: metres(3),
-  angleDegrees: degrees(0),
-  elapsedSeconds: seconds(2),
-  massKilograms: kilograms(4),
-  initialSpeedMetresPerSecond: metresPerSecond(1),
+  massAKilograms: kilograms(0.5),
+  massBKilograms: kilograms(1),
+  velocityAMetresPerSecond: metresPerSecond(2),
+  velocityBMetresPerSecond: metresPerSecond(-0.5),
 };
 
 const presets: readonly {
   readonly label: string;
   readonly state: MomentumState;
 }[] = [
-  { label: "pull with motion", state: defaultState },
+  { label: "unequal carts", state: defaultState },
   {
-    label: "sideways pull",
+    label: "equal carts",
     state: {
-      ...defaultState,
-      forceNewtons: newtons(12),
-      angleDegrees: degrees(90),
-      elapsedSeconds: seconds(3),
+      massAKilograms: kilograms(1),
+      massBKilograms: kilograms(1),
+      velocityAMetresPerSecond: metresPerSecond(2),
+      velocityBMetresPerSecond: metresPerSecond(-1),
     },
   },
   {
-    label: "braking force",
+    label: "moving target",
     state: {
-      forceNewtons: newtons(5),
-      displacementMetres: metres(2),
-      angleDegrees: degrees(180),
-      elapsedSeconds: seconds(2.5),
-      massKilograms: kilograms(3),
-      initialSpeedMetresPerSecond: metresPerSecond(3),
+      massAKilograms: kilograms(0.8),
+      massBKilograms: kilograms(1.4),
+      velocityAMetresPerSecond: metresPerSecond(3),
+      velocityBMetresPerSecond: metresPerSecond(0.4),
     },
   },
   {
-    label: "same work, slower",
-    state: { ...defaultState, elapsedSeconds: seconds(6) },
+    label: "massive cart B",
+    state: {
+      massAKilograms: kilograms(0.4),
+      massBKilograms: kilograms(2.5),
+      velocityAMetresPerSecond: metresPerSecond(3.5),
+      velocityBMetresPerSecond: metresPerSecond(-0.2),
+    },
   },
 ];
 
@@ -178,16 +176,14 @@ const clamp = (value: number, min: number, max: number): number =>
   Math.min(max, Math.max(min, value));
 
 const currentState = (state: Partial<MomentumState>): MomentumState => ({
-  forceNewtons: newtons(clamp(state.forceNewtons ?? defaultState.forceNewtons, 0, 20)),
-  displacementMetres: metres(clamp(state.displacementMetres ?? defaultState.displacementMetres, 0, 6)),
-  angleDegrees: degrees(clamp(state.angleDegrees ?? defaultState.angleDegrees, 0, 180)),
-  elapsedSeconds: seconds(clamp(state.elapsedSeconds ?? defaultState.elapsedSeconds, 0.5, 8)),
-  massKilograms: kilograms(clamp(state.massKilograms ?? defaultState.massKilograms, 1, 10)),
-  initialSpeedMetresPerSecond: metresPerSecond(clamp(
-    state.initialSpeedMetresPerSecond ?? defaultState.initialSpeedMetresPerSecond,
-    0,
-    8,
-  )),
+  massAKilograms: kilograms(clamp(state.massAKilograms ?? defaultState.massAKilograms, 0.2, 3)),
+  massBKilograms: kilograms(clamp(state.massBKilograms ?? defaultState.massBKilograms, 0.2, 3)),
+  velocityAMetresPerSecond: metresPerSecond(
+    clamp(state.velocityAMetresPerSecond ?? defaultState.velocityAMetresPerSecond, -5, 5),
+  ),
+  velocityBMetresPerSecond: metresPerSecond(
+    clamp(state.velocityBMetresPerSecond ?? defaultState.velocityBMetresPerSecond, -5, 5),
+  ),
 });
 
 const roundTo = (value: number, places: number): number => {
@@ -198,137 +194,153 @@ const roundTo = (value: number, places: number): number => {
 const formatNumber = (value: number, places = 2): string => roundTo(value, places).toFixed(places);
 const formatSigned = (value: number, places = 2): string =>
   value >= 0 ? `+${formatNumber(value, places)}` : formatNumber(value, places);
-const degToRad = (value: Degrees): number => (value * Math.PI) / 180;
 
-const signOfWork = (workJoules: number): MomentumModel["signDecision"] => {
-  if (Math.abs(workJoules) < 1e-9) return "zero";
-  return workJoules > 0 ? "positive" : "negative";
-};
+export const momentumModel = (state: MomentumState): KernelResult<MomentumModel> => {
+  const initialA = momentum1D(state.massAKilograms, state.velocityAMetresPerSecond);
+  if (!initialA.ok) return initialA;
+  const initialB = momentum1D(state.massBKilograms, state.velocityBMetresPerSecond);
+  if (!initialB.ok) return initialB;
 
-const transferLabel = (sign: MomentumModel["signDecision"]): string => {
-  if (sign === "positive") return "Energy is transferred into the kinetic store.";
-  if (sign === "negative") return "Energy is transferred out of the kinetic store.";
-  return "No work is done because the force has no component along the displacement.";
-};
+  const collision = elasticCollision1D({
+    mass1Kilograms: state.massAKilograms,
+    mass2Kilograms: state.massBKilograms,
+    velocity1MetresPerSecond: state.velocityAMetresPerSecond,
+    velocity2MetresPerSecond: state.velocityBMetresPerSecond,
+  });
+  if (!collision.ok) return collision;
 
-export const momentumModel = (
-  state: MomentumState,
-): KernelResult<MomentumModel> => {
-  const angle = radians(degToRad(state.angleDegrees));
-  const work = workDone(state.forceNewtons, state.displacementMetres, angle);
-  if (!work.ok) return work;
+  const finalA = momentum1D(state.massAKilograms, collision.value.finalVelocity1MetresPerSecond);
+  if (!finalA.ok) return finalA;
+  const finalB = momentum1D(state.massBKilograms, collision.value.finalVelocity2MetresPerSecond);
+  if (!finalB.ok) return finalB;
 
-  const initialKineticEnergy = kineticEnergy(
-    state.massKilograms,
-    state.initialSpeedMetresPerSecond,
-  );
-  if (!initialKineticEnergy.ok) return initialKineticEnergy;
+  const totalInitial = initialA.value + initialB.value;
+  const totalFinal = finalA.value + finalB.value;
 
-  const transfer = workEnergyTransfer(initialKineticEnergy.value, work.value);
-  if (!transfer.ok) return transfer;
-  const power = averagePower(work.value, state.elapsedSeconds);
-  if (!power.ok) return power;
-
-  const trace: EnergyTracePoint[] = [];
-  const sampleCount = 24;
-  for (let index = 0; index <= sampleCount; index += 1) {
-    const fraction = index / sampleCount;
-    const displacement = state.displacementMetres * fraction;
-    const partialWork = workDone(state.forceNewtons, metres(displacement), angle);
-    if (!partialWork.ok) return partialWork;
-    const partialTransfer = workEnergyTransfer(initialKineticEnergy.value, partialWork.value);
-    if (!partialTransfer.ok) return partialTransfer;
-    trace.push({
-      displacementMetres: metres(displacement),
-      kineticEnergyJoules: partialTransfer.value.finalKineticEnergyJoules,
-      workDoneJoules: partialWork.value,
-    });
-  }
-
-  const signDecision = signOfWork(work.value);
   return ok({
-    workJoules: work.value,
-    initialKineticEnergyJoules: initialKineticEnergy.value,
-    finalKineticEnergyJoules: transfer.value.finalKineticEnergyJoules,
-    averagePowerWatts: power.value,
-    energyChangeJoules: transfer.value.kineticEnergyChangeJoules,
-    trace,
-    signDecision,
-    transferLabel: transferLabel(signDecision),
+    initialMomentumA: initialA.value,
+    initialMomentumB: initialB.value,
+    finalMomentumA: finalA.value,
+    finalMomentumB: finalB.value,
+    totalInitialMomentum: totalInitial,
+    totalFinalMomentum: totalFinal,
+    finalVelocityA: collision.value.finalVelocity1MetresPerSecond,
+    finalVelocityB: collision.value.finalVelocity2MetresPerSecond,
+    impulseOnA: finalA.value - initialA.value,
+    impulseOnB: finalB.value - initialB.value,
+    kineticEnergyBeforeJoules: collision.value.totalKineticEnergyBeforeJoules,
+    kineticEnergyAfterJoules: collision.value.totalKineticEnergyAfterJoules,
+    trace: [
+      { moment: "before", cart: "Cart A", momentumKilogramMetresPerSecond: initialA.value },
+      { moment: "before", cart: "Cart B", momentumKilogramMetresPerSecond: initialB.value },
+      { moment: "before", cart: "total", momentumKilogramMetresPerSecond: totalInitial },
+      { moment: "after", cart: "Cart A", momentumKilogramMetresPerSecond: finalA.value },
+      { moment: "after", cart: "Cart B", momentumKilogramMetresPerSecond: finalB.value },
+      { moment: "after", cart: "total", momentumKilogramMetresPerSecond: totalFinal },
+    ],
   });
 };
 
-export const EnergyTransferDiagram = ({
+export const MomentumCollisionDiagram = ({
   state,
   model,
 }: {
   readonly state: MomentumState;
   readonly model: MomentumModel;
 }) => {
-  const arrowLength = 90;
-  const angleRadians = degToRad(state.angleDegrees);
-  const arrowEndX = 160 + Math.cos(angleRadians) * arrowLength;
-  const arrowEndY = 86 - Math.sin(angleRadians) * arrowLength;
-  const kineticPercent = Math.min(100, Math.max(4, model.finalKineticEnergyJoules * 5));
-  const chartData = model.trace.flatMap((point) => [
-    { x: point.displacementMetres, y: point.kineticEnergyJoules, series: "kinetic energy" },
-    { x: point.displacementMetres, y: point.workDoneJoules, series: "work done" },
-  ]);
+  const chartData = model.trace.map((point) => ({
+    x: point.moment === "before" ? 0 : 1,
+    y: point.momentumKilogramMetresPerSecond,
+    series: point.cart,
+  }));
+  const maxMagnitude = Math.max(
+    1,
+    ...model.trace.map((point) => Math.abs(point.momentumKilogramMetresPerSecond)),
+  );
+  const speedScale = 20;
+  const beforeAX = 92;
+  const beforeBX = 254;
+  const afterAX = 92 + model.finalVelocityA * speedScale;
+  const afterBX = 254 + model.finalVelocityB * speedScale;
 
   return (
-    <div className="energy-stage" aria-label="Energy transfer visual">
-      <svg aria-label="Force and displacement diagram" role="img" viewBox="0 0 360 180">
+    <div className="energy-stage" aria-label="Collision visual">
+      <svg aria-label="Elastic collision diagram" role="img" viewBox="0 0 360 190">
         <defs>
-          <marker id="work-energy-arrow" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="4">
+          <marker id="momentum-arrow" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="4">
             <path d="M0,0 L8,4 L0,8 Z" fill="#1f5f8b" />
           </marker>
         </defs>
-        <rect fill="#f8fbff" height="180" rx="18" width="360" />
-        <line stroke="#cbd5e1" strokeWidth="3" x1="48" x2="312" y1="132" y2="132" />
+        <rect fill="#f8fbff" height="190" rx="18" width="360" />
+        <line stroke="#cbd5e1" strokeWidth="3" x1="36" x2="324" y1="92" y2="92" />
+        <text fill="#10201a" fontSize="12" fontWeight="800" x="40" y="32">
+          before
+        </text>
+        <text fill="#10201a" fontSize="12" fontWeight="800" x="40" y="124">
+          after
+        </text>
+        <rect fill="#f0b429" height="32" rx="7" width="52" x={beforeAX - 26} y="58" />
+        <rect fill="#5aa9e6" height="32" rx="7" width="62" x={beforeBX - 31} y="58" />
         <line
-          markerEnd="url(#work-energy-arrow)"
-          stroke="#027a48"
-          strokeLinecap="round"
-          strokeWidth="6"
-          x1="72"
-          x2="280"
-          y1="132"
-          y2="132"
-        />
-        <rect fill="#f0b429" height="36" rx="7" width="64" x="128" y="96" />
-        <circle cx="142" cy="135" fill="#10201a" r="6" />
-        <circle cx="178" cy="135" fill="#10201a" r="6" />
-        <line
-          markerEnd="url(#work-energy-arrow)"
+          markerEnd="url(#momentum-arrow)"
           stroke="#1f5f8b"
           strokeLinecap="round"
           strokeWidth="5"
-          x1="160"
-          x2={arrowEndX}
-          y1="96"
-          y2={arrowEndY}
+          x1={beforeAX}
+          x2={beforeAX + state.velocityAMetresPerSecond * speedScale}
+          y1="50"
+          y2="50"
         />
-        <text fill="#10201a" fontSize="12" fontWeight="800" x="56" y="156">
-          displacement = {formatNumber(state.displacementMetres, 1)} m
-        </text>
-        <text fill="#10201a" fontSize="12" fontWeight="800" x="198" y="82">
-          force angle = {formatNumber(state.angleDegrees, 0)} deg
-        </text>
+        <line
+          markerEnd="url(#momentum-arrow)"
+          stroke="#1f5f8b"
+          strokeLinecap="round"
+          strokeWidth="5"
+          x1={beforeBX}
+          x2={beforeBX + state.velocityBMetresPerSecond * speedScale}
+          y1="50"
+          y2="50"
+        />
+        <rect fill="#f0b429" height="32" rx="7" width="52" x={afterAX - 26} y="134" />
+        <rect fill="#5aa9e6" height="32" rx="7" width="62" x={afterBX - 31} y="134" />
+        <line
+          markerEnd="url(#momentum-arrow)"
+          stroke="#027a48"
+          strokeLinecap="round"
+          strokeWidth="5"
+          x1={afterAX}
+          x2={afterAX + model.finalVelocityA * speedScale}
+          y1="174"
+          y2="174"
+        />
+        <line
+          markerEnd="url(#momentum-arrow)"
+          stroke="#027a48"
+          strokeLinecap="round"
+          strokeWidth="5"
+          x1={afterBX}
+          x2={afterBX + model.finalVelocityB * speedScale}
+          y1="174"
+          y2="174"
+        />
       </svg>
-      <div className="energy-bars" aria-label="Energy-store bars">
-        <span>Kinetic store now</span>
-        <div className="energy-bar">
-          <span style={{ width: `${kineticPercent}%` }} />
-        </div>
-        <strong>{formatNumber(model.finalKineticEnergyJoules)} J</strong>
-      </div>
       <LineChart
         data={chartData}
-        x={{ domain: { min: 0, max: Math.max(1, state.displacementMetres) } }}
-        y={{ domain: { min: Math.min(0, model.workJoules), max: Math.max(1, model.finalKineticEnergyJoules) } }}
+        x={{ domain: { min: 0, max: 1 } }}
+        y={{ domain: { min: -maxMagnitude, max: maxMagnitude } }}
       />
     </div>
   );
+};
+
+const setScenario = (
+  set: (key: keyof MomentumState, value: MomentumState[keyof MomentumState]) => void,
+  state: MomentumState,
+) => {
+  set("massAKilograms", state.massAKilograms);
+  set("massBKilograms", state.massBKilograms);
+  set("velocityAMetresPerSecond", state.velocityAMetresPerSecond);
+  set("velocityBMetresPerSecond", state.velocityBMetresPerSecond);
 };
 
 const ManipulateStage = () => {
@@ -338,98 +350,69 @@ const ManipulateStage = () => {
   const model = useMemo(() => momentumModel(current), [current]);
 
   return (
-    <section aria-label="Energy controls" className="vector-lab vector-lab--product">
-      <div className="vector-controls vector-controls--product" aria-label="Work-energy controls">
-        <p className="lab-kicker">Tune the transfer</p>
-        <ControlGroup legend="Work, energy, and power controls">
+    <section aria-label="Collision controls" className="vector-lab vector-lab--product">
+      <div className="vector-controls vector-controls--product" aria-label="Momentum controls">
+        <p className="lab-kicker">Tune the collision</p>
+        <ControlGroup legend="Cart mass and velocity controls">
           <Slider
-            label="Applied force"
-            max={20}
-            min={0}
-            onChange={(value) => set("forceNewtons", newtons(value))}
-            step={1}
-            unit="N"
-            value={current.forceNewtons}
-          />
-          <Slider
-            label="Displacement"
-            max={6}
-            min={0}
-            onChange={(value) => set("displacementMetres", metres(value))}
-            step={0.5}
-            unit="m"
-            value={current.displacementMetres}
-          />
-          <Slider
-            label="Force angle"
-            max={180}
-            min={0}
-            onChange={(value) => set("angleDegrees", degrees(value))}
-            step={15}
-            unit="deg"
-            value={current.angleDegrees}
-          />
-          <Slider
-            label="Elapsed time"
-            max={8}
-            min={0.5}
-            onChange={(value) => set("elapsedSeconds", seconds(value))}
-            step={0.5}
-            unit="s"
-            value={current.elapsedSeconds}
-          />
-          <Slider
-            label="Mass"
-            max={10}
-            min={1}
-            onChange={(value) => set("massKilograms", kilograms(value))}
-            step={0.5}
+            label="Mass of cart A"
+            max={3}
+            min={0.2}
+            onChange={(value) => set("massAKilograms", kilograms(value))}
+            step={0.1}
             unit="kg"
-            value={current.massKilograms}
+            value={current.massAKilograms}
           />
           <Slider
-            label="Starting speed"
-            max={8}
-            min={0}
-            onChange={(value) => set("initialSpeedMetresPerSecond", metresPerSecond(value))}
-            step={0.5}
+            label="Mass of cart B"
+            max={3}
+            min={0.2}
+            onChange={(value) => set("massBKilograms", kilograms(value))}
+            step={0.1}
+            unit="kg"
+            value={current.massBKilograms}
+          />
+          <Slider
+            label="Initial velocity of cart A"
+            max={5}
+            min={-5}
+            onChange={(value) => set("velocityAMetresPerSecond", metresPerSecond(value))}
+            step={0.1}
             unit="m s^-1"
-            value={current.initialSpeedMetresPerSecond}
+            value={current.velocityAMetresPerSecond}
+          />
+          <Slider
+            label="Initial velocity of cart B"
+            max={5}
+            min={-5}
+            onChange={(value) => set("velocityBMetresPerSecond", metresPerSecond(value))}
+            step={0.1}
+            unit="m s^-1"
+            value={current.velocityBMetresPerSecond}
           />
         </ControlGroup>
         <div className="preset-strip" aria-label="Scenario presets">
           {presets.map((preset) => (
-            <button
-              key={preset.label}
-              onClick={() => {
-                set("forceNewtons", preset.state.forceNewtons);
-                set("displacementMetres", preset.state.displacementMetres);
-                set("angleDegrees", preset.state.angleDegrees);
-                set("elapsedSeconds", preset.state.elapsedSeconds);
-                set("massKilograms", preset.state.massKilograms);
-                set("initialSpeedMetresPerSecond", preset.state.initialSpeedMetresPerSecond);
-              }}
-              type="button"
-            >
+            <button key={preset.label} onClick={() => setScenario(set, preset.state)} type="button">
               {preset.label}
             </button>
           ))}
         </div>
         <button type="button" onClick={() => stage.advance()}>
-          Reveal energy transfer
+          Reveal collision result
         </button>
       </div>
       <section className="formula-panel formula-panel--product" aria-label="Before reveal cue">
         <p className="lab-kicker">Before reveal</p>
-        <h3>Watch the direction</h3>
+        <h3>Watch the system, not one cart</h3>
         <p>
-          Work depends on the component of force along displacement. If the force is sideways,
-          the displacement can be large while the work is zero.
+          During impact each cart receives an impulse. The question is whether the two-cart
+          system receives an external horizontal impulse.
         </p>
         {model.ok ? (
           <p>
-            Your current settings predict {model.value.signDecision} work. Commit your prediction
-            before the readout and trace are shown.
+            Current total momentum before impact is {formatSigned(model.value.totalInitialMomentum)} kg m s^-1.
+            Commit your prediction before the final velocities are shown.
           </p>
         ) : (
           <p role="alert">The current settings need finite values.</p>
@@ -445,49 +428,52 @@ const ObserveStage = () => {
   const model = momentumModel(state);
 
   if (!model.ok) {
-    return <p role="alert">The current energy settings are outside the supported range.</p>;
+    return <p role="alert">The current collision settings are outside the supported range.</p>;
   }
 
   return (
     <section aria-label="Observation unlocked" className="vector-lab vector-lab--product">
       <div className="vector-stage vector-stage--product">
-        <EnergyTransferDiagram model={model.value} state={state} />
-        <dl aria-label="Energy readout" className="result-readout result-readout--cards">
+        <MomentumCollisionDiagram model={model.value} state={state} />
+        <dl aria-label="Momentum readout" className="result-readout result-readout--cards">
           <div>
-            <dt>Work done</dt>
-            <dd>{formatSigned(model.value.workJoules)} J</dd>
+            <dt>Total momentum before</dt>
+            <dd>{formatSigned(model.value.totalInitialMomentum)} kg m s^-1</dd>
           </div>
           <div>
-            <dt>Average power</dt>
-            <dd>{formatSigned(model.value.averagePowerWatts)} W</dd>
+            <dt>Total momentum after</dt>
+            <dd>{formatSigned(model.value.totalFinalMomentum)} kg m s^-1</dd>
           </div>
           <div>
-            <dt>Kinetic store change</dt>
-            <dd>{formatSigned(model.value.energyChangeJoules)} J</dd>
+            <dt>Impulse on cart A</dt>
+            <dd>{formatSigned(model.value.impulseOnA)} N s</dd>
           </div>
         </dl>
       </div>
       <section className="formula-panel formula-panel--product" aria-label="Formula used">
         <p className="lab-kicker">Formula used</p>
-        <h3>Work is force along the path</h3>
-        <p className="formula">W = F s cos(theta), P = W / t, E_k = 1/2 mv^2</p>
+        <h3>Total momentum is a system total</h3>
+        <p className="formula">p = mv, total p = m_Au_A + m_Bu_B, impulse J = change in p</p>
         <p>
-          W = ({formatNumber(state.forceNewtons, 1)} N)({formatNumber(state.displacementMetres, 1)} m)
-          cos({formatNumber(state.angleDegrees, 0)} deg) = {formatSigned(model.value.workJoules)} J.
+          Before: p = ({formatNumber(state.massAKilograms, 2)} kg)({formatSigned(state.velocityAMetresPerSecond)} m s^-1)
+          + ({formatNumber(state.massBKilograms, 2)} kg)({formatSigned(state.velocityBMetresPerSecond)} m s^-1)
+          = {formatSigned(model.value.totalInitialMomentum)} kg m s^-1.
         </p>
         <p>
-          P = {formatSigned(model.value.workJoules)} J / {formatNumber(state.elapsedSeconds, 1)} s ={" "}
-          {formatSigned(model.value.averagePowerWatts)} W.
+          After the elastic collision: v_A = {formatSigned(model.value.finalVelocityA)} m s^-1 and v_B ={" "}
+          {formatSigned(model.value.finalVelocityB)} m s^-1, so total p ={" "}
+          {formatSigned(model.value.totalFinalMomentum)} kg m s^-1.
         </p>
         <p>
-          Starting E_k = 1/2({formatNumber(state.massKilograms, 1)} kg)(
-          {formatNumber(state.initialSpeedMetresPerSecond, 1)} m s^-1)^2 ={" "}
-          {formatNumber(model.value.initialKineticEnergyJoules)} J. The final kinetic store is{" "}
-          {formatNumber(model.value.finalKineticEnergyJoules)} J.
+          Cart A impulse = change in p = {formatSigned(model.value.impulseOnA)} N s. Cart B receives{" "}
+          {formatSigned(model.value.impulseOnB)} N s, equal in size and opposite in direction.
         </p>
-        <p className="formula-note">{model.value.transferLabel}</p>
+        <p className="formula-note">
+          Interpretation: each cart changes momentum, but the isolated pair keeps the same total
+          momentum because their internal impulses cancel.
+        </p>
         <button type="button" onClick={() => stage.advance()}>
-          Explain the transfer
+          Explain the collision
         </button>
       </section>
     </section>
@@ -500,14 +486,16 @@ const ExplainStage = () => {
   return (
     <section aria-label="Transfer prompt" className="formula-panel formula-panel--product">
       <p className="lab-kicker">Transfer</p>
-      <h3>Motor transfer challenge</h3>
+      <h3>Choose the system boundary</h3>
       <p>
-        Two motors lift the same load through the same height. Before changing the preset, decide:
-        what should stay the same, and what should change when the time becomes shorter?
+        Try a preset with unequal masses. Which quantities belong to one cart, and which belong to
+        the two-cart system?
       </p>
-      <p className="formula-note">Use P = W / t to justify the comparison after you try it.</p>
+      <p className="formula-note">
+        Use total p before = total p after when external horizontal impulse is negligible.
+      </p>
       <button type="button" onClick={() => stage.reset()}>
-        Try another energy transfer
+        Try another collision
       </button>
     </section>
   );
@@ -522,13 +510,13 @@ const StageSurface = () => {
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
       <p className="lab-kicker">Predict first</p>
-      <h3>Which part of the force counts?</h3>
+      <h3>Will total momentum change?</h3>
       <p>
-        Commit a prediction before the energy trace appears. The reveal will connect force angle,
-        displacement, work done, kinetic energy change, and power.
+        Commit a prediction before the final velocities appear. The reveal will separate each
+        cart's momentum change from the total momentum of the isolated pair.
       </p>
       <button type="button" onClick={() => stage.advance()}>
-        Set up energy transfer
+        Set up collision
       </button>
     </section>
   );

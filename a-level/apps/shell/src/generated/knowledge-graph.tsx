@@ -2,7 +2,7 @@
 import type { ComponentType } from "react";
 import GeneratedSim0ForcesAndEquilibriumForceBalance from "@paideia/a-level-physics-sims/forces-and-equilibrium";
 import GeneratedSim1KinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
-import GeneratedSim2MomentumEnergyTransferLab from "@paideia/a-level-physics-sims/momentum";
+import GeneratedSim2MomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
 import GeneratedSim3PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
 import GeneratedSim4ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
 import GeneratedSim5ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
@@ -290,7 +290,7 @@ export const containers = [
     syllabusRef: "9478 / Section II / Momentum",
     status: "reviewed",
     packageId: "momentum",
-    simId: "energy-transfer-lab",
+    simId: "momentum-collision-lab",
     predictPrompt: "Two carts collide head-on on a low-friction track. Before revealing the lab, predict which statement about total momentum is correct for the isolated two-cart system.",
     aidTypes: [
       "simulation",
@@ -302,19 +302,19 @@ export const containers = [
       "Momentum conservation needs equal masses",
       "Conservation means each object keeps its own momentum",
     ],
-    transferProblem: "Two motors lift the same load through the same height. Cart A (0.50 kg) moves at +2.0 m/s and cart B (1.0 kg) moves at -0.5 m/s before collision. They stick together. Find final velocity and interpret the sign.",
-    firstPrinciples: "Work is energy transferred by a force acting through a displacement. The direction matters. Only the component of the force along the displacement does work, so a sideways force can be large and still transfer no energy along the path.",
+    transferProblem: "Cart A (0.50 kg) moves at +2.0 m/s and cart B (1.0 kg) moves at -0.5 m/s before collision. They stick together. Find the final velocity of the combined carts and interpret the sign.",
+    firstPrinciples: "Momentum measures how much motion an object carries in a chosen direction. It depends on both mass and velocity.",
     keyDefinitions: [
-      "Work done: energy transferred when a force has a component along a displacement.",
-      "Joule: unit of work and energy; 1 J = 1 N m.",
-      "Kinetic energy: energy associated with motion, E_k = 1/2 mv^2.",
-      "Power: rate of energy transfer, measured in watts; 1 W = 1 J s^-1.",
-      "Negative work: work done by a force with a component opposite the displacement.",
+      "Momentum: mass times velocity, measured in kg m s^-1.",
+      "System: the object or group of objects whose total momentum is being tracked.",
+      "Isolated system: a system with negligible external resultant force or external impulse in the direction considered.",
+      "Impulse: change in momentum, measured in N s or kg m s^-1.",
+      "Conservation of momentum: total momentum remains constant when external impulse is negligible.",
     ],
     canonicalExamples: [
-      "A pull in the same direction as motion does positive work and can increase kinetic energy.",
-      "A braking force opposite the motion does negative work and reduces kinetic energy.",
-      "Two motors can do the same work while having different power if one takes less time.",
+      "Two carts collide on a low-friction track and the total momentum before equals the total momentum after.",
+      "A bat gives a ball an impulse, changing the ball's momentum.",
+      "A heavier cart can move more slowly than a lighter cart while carrying the same momentum.",
     ],
     problemSolvingSteps: [
       "Identify the displacement",
@@ -336,11 +336,11 @@ export const containers = [
     ],
     sims: [
       {
-        id: "energy-transfer-lab",
-        harnessId: "a-level/physics/momentum/energy-transfer-lab",
-        title: "Energy Transfer Lab",
-        interactionType: "animation-playback",
-        component: GeneratedSim2MomentumEnergyTransferLab,
+        id: "momentum-collision-lab",
+        harnessId: "a-level/physics/momentum/momentum-collision-lab",
+        title: "Collision and Impulse Lab",
+        interactionType: "diagram-builder",
+        component: GeneratedSim2MomentumMomentumCollisionLab,
       },
     ],
   },

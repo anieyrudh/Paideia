@@ -14,7 +14,6 @@ syllabus_ref: "9478 / Section II / Momentum"
 prerequisites:
   - forces-and-equilibrium
   - kinematics-in-one-dimension
-  - momentum
 aid_types:
   - simulation
   - misconception-audit
@@ -67,7 +66,7 @@ concept_map:
 transfer_problems:
   - id: cart-collision-momentum
     prompt: |
-      Two motors lift the same load through the same height. Cart A (0.50 kg) moves at +2.0 m/s and cart B (1.0 kg) moves at -0.5 m/s before collision. They stick together. Find final velocity and interpret the sign.
+      Cart A (0.50 kg) moves at +2.0 m/s and cart B (1.0 kg) moves at -0.5 m/s before collision. They stick together. Find the final velocity of the combined carts and interpret the sign.
     surface_form: "cart-collision"
     same_concept_check: "Same concept: total momentum of an isolated system is conserved; impulse equals momentum change."
     rubric_path: problem-solving/cart-collision-momentum.md
@@ -99,15 +98,15 @@ review:
     output_in_technical_md: true
 misconceptions:
   - name: "Momentum and force are the same quantity"
-    description: "Learners may describe energy as disappearing when negative work reduces kinetic energy instead of tracking transfer out of the kinetic store."
+    description: "Learners may treat force during impact as the same thing as momentum, rather than as the interaction that changes momentum over time."
     evidence_source: "OpenStax University Physics Volume 1, Section 8.1 Linear Momentum and Force."
     surface_in_predict: false
   - name: "Momentum conservation needs equal masses"
-    description: "Learners may multiply force by displacement without using the force component along the displacement, or may choose the 30 W distractor by treating power as the same quantity as work."
+    description: "Learners may think unequal masses prevent conservation, instead of tracking the total momentum of the isolated system."
     evidence_source: "OpenStax University Physics Volume 1, Section 8.1 Linear Momentum and Force."
     surface_in_predict: false
   - name: "Conservation means each object keeps its own momentum"
-    description: "Learners may choose a work answer without dividing by time, or may compare power outputs without considering the time taken for the same energy transfer."
+    description: "Learners may think conservation means each cart's momentum stays unchanged, rather than the system total staying unchanged."
     evidence_source: "OpenStax University Physics Volume 1, Section 8.3 Elastic Collisions in One Dimension."
     surface_in_predict: true
 sources:

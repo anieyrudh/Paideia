@@ -7,20 +7,20 @@
 
 Connect momentum change to impulse and apply conservation of momentum in collisions.
 
-Work is energy transferred by a force acting through a displacement. The direction matters. Only the component of the force along the displacement does work, so a sideways force can be large and still transfer no energy along the path.
+Momentum measures how much motion an object carries in a chosen direction. It depends on both mass and velocity.
 
 ## What the student does
 
 1. Commit a prediction before the reveal.
-2. Manipulate 6 declared controls.
-3. Observe energy-transfer-lab.
+2. Manipulate 4 declared controls.
+3. Observe momentum-collision-lab.
 4. Explain the result using the generated prompt and misconception map.
 
 ## Simulation in this container
 
 | Sim id | Title | Interaction type |
 |---|---|---|
-| energy-transfer-lab | Energy Transfer Lab | animation-playback |
+| momentum-collision-lab | Collision and Impulse Lab | diagram-builder |
 
 ## Concept map and problem-solving
 
@@ -49,5 +49,4 @@ Work is energy transferred by a force acting through a displacement. The directi
 - Prerequisites:
   - `forces-and-equilibrium`
   - `kinematics-in-one-dimension`
-  - `momentum`
 - Dependency graph: `concept-map/concept-map.yaml`

@@ -2,7 +2,7 @@
 import type { ComponentType } from "react";
 import GeneratedSim0ALevelPhysicsForcesAndEquilibriumForceBalance from "@paideia/a-level-physics-sims/forces-and-equilibrium";
 import GeneratedSim1ALevelPhysicsKinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
-import GeneratedSim2ALevelPhysicsMomentumEnergyTransferLab from "@paideia/a-level-physics-sims/momentum";
+import GeneratedSim2ALevelPhysicsMomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
 import GeneratedSim3ALevelPhysicsPhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
 import GeneratedSim4ALevelPhysicsResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
 import GeneratedSim5ALevelPhysicsScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
@@ -32,10 +32,10 @@ export const simRegistry = {
     title: "Motion Equations Lab",
     Component: GeneratedSim1ALevelPhysicsKinematicsInOneDimensionMotionEquationsLab,
   },
-  "a-level/physics/momentum/energy-transfer-lab": {
-    id: "a-level/physics/momentum/energy-transfer-lab",
-    title: "Energy Transfer Lab",
-    Component: GeneratedSim2ALevelPhysicsMomentumEnergyTransferLab,
+  "a-level/physics/momentum/momentum-collision-lab": {
+    id: "a-level/physics/momentum/momentum-collision-lab",
+    title: "Collision and Impulse Lab",
+    Component: GeneratedSim2ALevelPhysicsMomentumMomentumCollisionLab,
   },
   "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab": {
     id: "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab",

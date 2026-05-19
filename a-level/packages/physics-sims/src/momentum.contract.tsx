@@ -77,40 +77,43 @@ afterEach(() => {
 
 export const runMomentumGateContract = () => {
   describe("momentum prediction-gate contract", () => {
-    it("blocks the work and power readouts until the prediction gate is committed", async () => {
+    it("blocks momentum readouts until the prediction gate is committed", async () => {
       await renderSim();
 
-      await click(buttonByText("Set up energy transfer"));
-      await click(buttonByText("Reveal energy transfer"));
+      await click(buttonByText("Set up collision"));
+      await click(buttonByText("Reveal collision result"));
 
       expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("W = F s cos(theta)");
+      expect(document.body.textContent).not.toContain("p = mv");
 
-      await click(controlByLabel("30 J and 15 W"));
-      await change(controlByLabel("Rationale"), "The pull is in the same direction as the motion.");
+      await click(controlByLabel("Total momentum stays constant"));
+      await change(
+        controlByLabel("Rationale"),
+        "The carts exert internal forces on each other, so the system total stays constant.",
+      );
       await click(buttonByText("Commit prediction"));
 
       expect(document.querySelector("[aria-label='Observation unlocked']")).toBeTruthy();
-      expect(document.body.textContent).toContain("Work done");
-      expect(document.body.textContent).toContain("+30.00 J");
-      expect(document.body.textContent).toContain("W = F s cos(theta)");
+      expect(document.body.textContent).toContain("Total momentum before");
+      expect(document.body.textContent).toContain("+0.50 kg m s^-1");
+      expect(document.body.textContent).toContain("p = mv");
     });
 
-    it("updates the power readout when elapsed time changes before reveal", async () => {
+    it("updates the total momentum when an initial velocity changes before reveal", async () => {
       await renderSim();
 
-      await click(buttonByText("Set up energy transfer"));
-      await change(controlByLabel("Elapsed time"), "6");
-      await click(buttonByText("Reveal energy transfer"));
-      await click(controlByLabel("30 J and 15 W"));
-      await change(controlByLabel("Rationale"), "The same work spread over more time lowers power.");
+      await click(buttonByText("Set up collision"));
+      await change(controlByLabel("Initial velocity of cart B"), "0");
+      await click(buttonByText("Reveal collision result"));
+      await click(controlByLabel("Total momentum stays constant"));
+      await change(controlByLabel("Rationale"), "With no external impulse, total momentum is conserved.");
       await click(buttonByText("Commit prediction"));
 
-      expect(document.querySelector("[aria-label='Energy readout']")?.textContent).toContain(
-        "+5.00 W",
+      expect(document.querySelector("[aria-label='Momentum readout']")?.textContent).toContain(
+        "+1.00 kg m s^-1",
       );
       expect(document.querySelector("[aria-label='Formula used']")?.textContent).toContain(
-        "+30.00 J / 6.0 s",
+        "total p = m_Au_A + m_Bu_B",
       );
     });
   });

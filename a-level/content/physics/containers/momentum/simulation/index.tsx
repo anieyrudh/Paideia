@@ -1,12 +1,12 @@
-export { WorkEnergyPowerSim as default } from "@paideia/a-level-physics-sims/momentum";
+export { MomentumSim as default } from "@paideia/a-level-physics-sims/momentum";
 export {
-  EnergyTransferDiagram,
-  WorkEnergyPowerSim,
-  workEnergyPowerModel,
-  workEnergyPowerSpec,
+  MomentumCollisionDiagram,
+  MomentumSim,
+  momentumModel,
+  momentumSpec,
 } from "@paideia/a-level-physics-sims/momentum";
 export type {
-  EnergyTracePoint,
-  WorkEnergyPowerModel,
-  WorkEnergyPowerState,
+  MomentumModel,
+  MomentumState,
+  MomentumTracePoint,
 } from "@paideia/a-level-physics-sims/momentum";

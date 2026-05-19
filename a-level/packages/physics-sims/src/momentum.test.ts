@@ -3,80 +3,48 @@
 import { describe, expect, it } from "vitest";
 import {
   approxEqual,
-  degrees,
   kilograms,
-  metres,
   metresPerSecond,
-  newtons,
-  seconds,
 } from "@paideia/shared";
 import { momentumModel } from "./momentum.js";
 import { runMomentumGateContract } from "./momentum.contract.js";
 
 describe("momentum sim", () => {
-  it("computes positive work, kinetic energy change, and average power through core mechanics", () => {
+  it("conserves total momentum across an elastic collision", () => {
     const model = momentumModel({
-      forceNewtons: newtons(10),
-      displacementMetres: metres(3),
-      angleDegrees: degrees(0),
-      elapsedSeconds: seconds(2),
-      massKilograms: kilograms(4),
-      initialSpeedMetresPerSecond: metresPerSecond(1),
+      massAKilograms: kilograms(0.5),
+      massBKilograms: kilograms(1),
+      velocityAMetresPerSecond: metresPerSecond(2),
+      velocityBMetresPerSecond: metresPerSecond(-0.5),
     });
 
     expect(model.ok).toBe(true);
     if (!model.ok) throw new Error(model.error.message);
-    expect(approxEqual(model.value.workJoules, 30)).toBe(true);
-    expect(approxEqual(model.value.initialKineticEnergyJoules, 2)).toBe(true);
-    expect(approxEqual(model.value.finalKineticEnergyJoules, 32)).toBe(true);
-    expect(approxEqual(model.value.averagePowerWatts, 15)).toBe(true);
-    expect(model.value.signDecision).toBe("positive");
-    expect(model.value.trace).toHaveLength(25);
+    expect(approxEqual(model.value.totalInitialMomentum, 0.5)).toBe(true);
+    expect(approxEqual(model.value.totalFinalMomentum, 0.5)).toBe(true);
+    expect(approxEqual(model.value.finalVelocityA, -4 / 3)).toBe(true);
+    expect(approxEqual(model.value.finalVelocityB, 7 / 6)).toBe(true);
   });
 
-  it("returns zero work for a force perpendicular to displacement", () => {
+  it("shows equal and opposite impulses on the two carts", () => {
     const model = momentumModel({
-      forceNewtons: newtons(12),
-      displacementMetres: metres(5),
-      angleDegrees: degrees(90),
-      elapsedSeconds: seconds(4),
-      massKilograms: kilograms(5),
-      initialSpeedMetresPerSecond: metresPerSecond(2),
+      massAKilograms: kilograms(1),
+      massBKilograms: kilograms(1.5),
+      velocityAMetresPerSecond: metresPerSecond(3),
+      velocityBMetresPerSecond: metresPerSecond(-1),
     });
 
     expect(model.ok).toBe(true);
     if (!model.ok) throw new Error(model.error.message);
-    expect(approxEqual(model.value.workJoules, 0, 1e-9)).toBe(true);
-    expect(approxEqual(model.value.averagePowerWatts, 0, 1e-9)).toBe(true);
-    expect(model.value.signDecision).toBe("zero");
+    expect(approxEqual(model.value.impulseOnA + model.value.impulseOnB, 0)).toBe(true);
   });
 
-  it("shows braking as negative work and clamps the kinetic store at zero", () => {
+  it("rejects invalid mass through the KernelResult error contract", () => {
     const model = momentumModel({
-      forceNewtons: newtons(8),
-      displacementMetres: metres(3),
-      angleDegrees: degrees(180),
-      elapsedSeconds: seconds(3),
-      massKilograms: kilograms(2),
-      initialSpeedMetresPerSecond: metresPerSecond(2),
-    });
-
-    expect(model.ok).toBe(true);
-    if (!model.ok) throw new Error(model.error.message);
-    expect(approxEqual(model.value.workJoules, -24)).toBe(true);
-    expect(approxEqual(model.value.finalKineticEnergyJoules, 0)).toBe(true);
-    expect(approxEqual(model.value.energyChangeJoules, -4)).toBe(true);
-    expect(model.value.signDecision).toBe("negative");
-  });
-
-  it("rejects invalid elapsed time through the KernelResult error contract", () => {
-    const model = momentumModel({
-      forceNewtons: newtons(10),
-      displacementMetres: metres(3),
-      angleDegrees: degrees(0),
-      elapsedSeconds: seconds(0),
-      massKilograms: kilograms(4),
-      initialSpeedMetresPerSecond: metresPerSecond(1),
+      massAKilograms: kilograms(0),
+      massBKilograms: kilograms(1),
+      velocityAMetresPerSecond: metresPerSecond(2),
+      velocityBMetresPerSecond: metresPerSecond(-0.5),
     });
 
     expect(model.ok).toBe(false);
