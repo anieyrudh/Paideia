@@ -57,6 +57,7 @@ Read first:
 - docs/agent-workflows.md
 - docs/container-spec.md
 - docs/product/container-build-queue.yaml
+- docs/product/container-wave-runbook.md
 - docs/product/container-roadmap.md
 - README.md
 - .agents/skills/new-container/SKILL.md
