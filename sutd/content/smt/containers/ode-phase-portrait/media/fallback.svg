@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Static ODE phase portrait fallback</title>
+  <desc id="desc">Static vector field with trajectory and trace-determinant formula labels.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <g transform="translate(70 32)">
+    <rect width="300" height="260" fill="#ffffff" stroke="#ccd5e1"/>
+    <path d="M150 18V242M18 130H282" stroke="#9aa7b7" stroke-width="1.5"/>
+    <g stroke="#57708a" stroke-linecap="round" stroke-width="2">
+      <path d="M48 52l20 8M96 48l16 14M204 48l-16 14M252 52l-20 8"/>
+      <path d="M50 208l20-10M96 220l12-18M204 220l-12-18M250 208l-20-10"/>
+      <path d="M64 130h28M208 130h28M150 64v28M150 168v28"/>
+    </g>
+    <path d="M236 96C218 47 144 43 108 82C70 123 96 197 152 201C201 205 233 154 205 119C181 89 136 98 128 130C122 154 145 173 168 162" fill="none" stroke="#b23b4a" stroke-linecap="round" stroke-width="5"/>
+    <circle cx="150" cy="130" fill="#202a33" r="4"/>
+  </g>
+  <g fill="#202a33" font-family="Arial, sans-serif">
+    <text font-size="26" font-weight="700" x="410" y="72">Classify before reveal</text>
+    <text font-size="18" x="410" y="116">T = a + d</text>
+    <text font-size="18" x="410" y="148">D = ad - bc</text>
+    <text font-size="18" x="410" y="180">Delta = T^2 - 4D</text>
+    <text font-size="18" x="410" y="224">D &gt; 0, Delta &lt; 0, T &lt; 0</text>
+    <text font-size="18" font-weight="700" x="410" y="256">stable spiral</text>
+  </g>
+</svg>

@@ -12,6 +12,7 @@ import GeneratedSim8SutdDaiTrustCalibrationTrustCalibration from "@paideia/sutd-
 import GeneratedSim9SutdEpdPidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
 import GeneratedSim10SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
 import GeneratedSim11SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim12SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -79,6 +80,11 @@ export const simRegistry = {
     id: "sutd/freshmore/vector-transformations/vector-transformations",
     title: "2D Matrix-Vector Transformation Explorer",
     Component: GeneratedSim11SutdFreshmoreVectorTransformationsVectorTransformations,
+  },
+  "sutd/smt/ode-phase-portrait/ode-phase-portrait": {
+    id: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
+    title: "ODE Phase Portrait Explorer",
+    Component: GeneratedSim12SutdSmtOdePhasePortraitOdePhasePortrait,
   }
 } satisfies Record<string, SimHarnessEntry>;
 

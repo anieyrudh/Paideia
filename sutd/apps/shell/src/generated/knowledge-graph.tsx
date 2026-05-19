@@ -6,6 +6,7 @@ import GeneratedSim2TrustCalibrationTrustCalibration from "@paideia/sutd-sims/tr
 import GeneratedSim3PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
 import GeneratedSim4LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
 import GeneratedSim5VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim6OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -114,6 +115,15 @@ export const knowledgeGraph = {
     level: "Freshmore",
     module: "Linear Algebra and Differential Equations",
     status: "reviewed",
+  },
+  {
+    id: "sutd/smt/ode-phase-portrait",
+    conceptId: "ode-phase-portrait",
+    title: "ODE Phase Portrait",
+    subject: "smt",
+    level: "Undergraduate",
+    module: "Science, Mathematics and Technology",
+    status: "reviewed",
   }
   ],
   edges: [
@@ -127,7 +137,13 @@ export const knowledgeGraph = {
   { from: "sutd/epd/transfer-functions", to: "sutd/epd/pid-step-response", kind: "prerequisite" },
   { from: "sutd/epd/feedback-control", to: "sutd/epd/pid-step-response", kind: "prerequisite" },
   { from: "sutd/epd/pid-step-response", to: "sutd/epd/bode-plots", kind: "downstream" },
-  { from: "sutd/epd/pid-step-response", to: "sutd/epd/state-space-control", kind: "downstream" }
+  { from: "sutd/epd/pid-step-response", to: "sutd/epd/state-space-control", kind: "downstream" },
+  { from: "sutd/smt/derivatives", to: "sutd/smt/ode-phase-portrait", kind: "prerequisite" },
+  { from: "sutd/smt/vector-fields", to: "sutd/smt/ode-phase-portrait", kind: "prerequisite" },
+  { from: "sutd/smt/linear-algebra", to: "sutd/smt/ode-phase-portrait", kind: "prerequisite" },
+  { from: "sutd/smt/ode-phase-portrait", to: "sutd/smt/stability-analysis", kind: "downstream" },
+  { from: "sutd/smt/ode-phase-portrait", to: "sutd/smt/feedback-systems", kind: "downstream" },
+  { from: "sutd/smt/ode-phase-portrait", to: "sutd/smt/damped-oscillators", kind: "sibling" }
   ],
 } satisfies { readonly nodes: readonly KnowledgeGraphNode[]; readonly edges: readonly KnowledgeGraphEdge[] };
 
@@ -448,6 +464,72 @@ export const containers = [
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
         component: GeneratedSim5VectorTransformationsVectorTransformations,
+      },
+    ],
+  },
+  {
+    id: "sutd/smt/ode-phase-portrait",
+    branch: "sutd",
+    subject: "Smt",
+    level: "Undergraduate",
+    module: "Science, Mathematics and Technology",
+    title: "ODE Phase Portrait",
+    summary: "Classify a two-variable linear ODE by trace, determinant, and discriminant, then test how nearby trajectories move in the phase plane.",
+    syllabusRef: "SUTD SMT / mathematical modelling / systems of differential equations",
+    status: "reviewed",
+    packageId: "ode-phase-portrait",
+    simId: "ode-phase-portrait",
+    predictPrompt: "For x' = y and y' = -1.2x - 0.6y, what should a nearby trajectory do after it is released?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Equilibrium means nothing changes anywhere",
+      "Arrows show only physical velocity",
+    ],
+    transferProblem: "A simplified reactor model linearises near an operating point to x' = y and y' = -0.8x + 0.4y. Classify the operating point, predict whether a small perturbation settles or grows, and name one parameter change that would reverse the stability.",
+    firstPrinciples: "A phase portrait shows how a system changes when its current state is a point in the plane. For a two-variable ODE, each point (x, y) has an arrow (x', y'). An equilibrium is only a point where that arrow is zero. The surrounding arrows still matter: they tell whether a nearby disturbance returns, escapes, spirals, or splits along different directions.",
+    keyDefinitions: [
+      "State: the pair (x, y) that records the two quantities being modelled.",
+      "Vector field: the rule that assigns the rate pair (x', y') to each state.",
+      "Equilibrium: a state where both rates are zero, so the state stays fixed if it starts exactly there.",
+      "Trace: the sum of diagonal entries in a 2 by 2 linear system matrix.",
+      "Determinant: the area-scale quantity ad - bc for a 2 by 2 matrix.",
+    ],
+    canonicalExamples: [
+      "A damped oscillator has arrows that spiral inward because disturbances lose energy and return toward equilibrium.",
+      "A saddle has one direction that approaches and another that escapes, so a tiny change can switch long-term behaviour.",
+      "A centre circles around the equilibrium because the restoring effect is present but damping is absent.",
+    ],
+    problemSolvingSteps: [
+      "Write the linear system",
+      "Find the equilibrium",
+      "Compute trace, determinant, and discriminant",
+      "Classify the local portrait",
+      "Interpret the trajectory",
+      "Transfer to the model context",
+    ],
+    prerequisites: [
+      "Derivatives",
+      "Vector fields",
+      "Linear algebra",
+    ],
+    downstream: [
+      "Stability analysis",
+      "Feedback systems",
+    ],
+    siblings: [
+      "Damped oscillators",
+    ],
+    sims: [
+      {
+        id: "ode-phase-portrait",
+        harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
+        title: "ODE Phase Portrait Explorer",
+        interactionType: "function-plot-with-draggable",
+        component: GeneratedSim6OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

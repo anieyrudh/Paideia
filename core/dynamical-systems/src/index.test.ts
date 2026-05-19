@@ -5,6 +5,7 @@ import {
   integrateFlow,
   iterateMap,
   jacobian2D,
+  linearVectorField2D,
   stepFlow,
   type StateVector,
 } from "./index.js";
@@ -129,6 +130,36 @@ describe("@paideia/dynamical-systems", () => {
       expect(result.ok).toBe(true);
       if (result.ok) expect(result.value.kind).toBe(testCase.kind);
     }
+  });
+
+  it("builds a reusable vector field from a 2D linear-system matrix", () => {
+    const field = linearVectorField2D([
+      [0, 1],
+      [-1.2, -0.6],
+    ]);
+
+    expect(field.ok).toBe(true);
+    if (field.ok) {
+      expect(field.value([1.4, 0], 0)).toEqual([0, -1.68]);
+
+      const trajectory = integrateFlow(field.value, [1.4, 0], {
+        dt: 0.035,
+        steps: 4,
+        method: "rk4",
+      });
+      expect(trajectory.ok).toBe(true);
+      if (trajectory.ok) expect(trajectory.value).toHaveLength(5);
+    }
+  });
+
+  it("rejects invalid linear-vector-field matrices", () => {
+    const result = linearVectorField2D([
+      [0, Number.NaN],
+      [1, 0],
+    ]);
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("precondition-violated");
   });
 
   it("rejects finite 2D linear systems whose derived classification values overflow", () => {

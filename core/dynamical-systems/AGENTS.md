@@ -25,6 +25,7 @@ Exports from `@paideia/dynamical-systems`:
 - `integrateFlow(field: VectorField, initialState: StateVector, opts: { readonly dt: number; readonly steps: number; readonly t0?: number; readonly method?: IntegrationMethod; readonly maxNorm?: number }): KernelResult<readonly TrajectoryPoint[]>`
 - `iterateMap(map: StateMap, initialState: StateVector, opts: { readonly steps: number; readonly maxNorm?: number }): KernelResult<readonly OrbitPoint[]>`
 - `jacobian2D(field: VectorField, at: readonly [number, number], opts?: { readonly t?: number; readonly h?: number }): KernelResult<Matrix2x2>`
+- `linearVectorField2D(matrix: Matrix2x2): KernelResult<VectorField>`
 - `classifyLinear2D(matrix: Matrix2x2): KernelResult<LinearStability2D>`
 
 ## Invariants the caller must preserve
@@ -51,9 +52,10 @@ Exports from `@paideia/dynamical-systems`:
 ## When to consider this module
 Use `core/dynamical-systems` when a simulation needs to step an ODE, compare
 Euler/midpoint/RK4 behaviour, iterate a logistic-style map, compute a local
-Jacobian for a two-dimensional system, or classify a planar linear equilibrium.
-If a sim is about stock-flow diagrams rather than state-space dynamics, use or
-extend the future `core/systems-dynamics` package instead.
+Jacobian for a two-dimensional system, construct a vector field from a planar
+linear system matrix, or classify a planar linear equilibrium. If a sim is about
+stock-flow diagrams rather than state-space dynamics, use or extend the future
+`core/systems-dynamics` package instead.
 
 ## Extension protocol
 1. Open a `core-change-proposal` issue naming every current consumer.

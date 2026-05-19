@@ -464,6 +464,28 @@ const validateMatrix2x2 = (matrix: Matrix2x2): KernelResult<void> => {
   return ok(undefined);
 };
 
+export const linearVectorField2D = (matrix: Matrix2x2): KernelResult<VectorField> => {
+  const validMatrix = validateMatrix2x2(matrix);
+  if (!validMatrix.ok) return validMatrix;
+
+  return ok((state: StateVector): StateVector => {
+    if (state.length !== 2) {
+      throw new Error(`linearVectorField2D expected a 2D state; got ${state.length} coordinates`);
+    }
+
+    const x = state[0];
+    const y = state[1];
+    if (x === undefined || y === undefined) {
+      throw new Error("linearVectorField2D expected finite x and y coordinates");
+    }
+
+    return freezeVector([
+      matrix[0][0] * x + matrix[0][1] * y,
+      matrix[1][0] * x + matrix[1][1] * y,
+    ]);
+  });
+};
+
 const finishLinearStability2D = (stability: LinearStability2D): KernelResult<LinearStability2D> => {
   const trace = validateFiniteDerivedNumber(stability.trace, "trace");
   if (!trace.ok) return trace;

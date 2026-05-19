@@ -1,0 +1,8 @@
+state_labels:
+  trace: "Trace"
+  determinant: "Determinant"
+  discriminant: "Discriminant"
+  initialX: "Initial x"
+  initialY: "Initial y"
+  equilibrium: "Equilibrium at the origin"
+  classification: "Local stability type"
