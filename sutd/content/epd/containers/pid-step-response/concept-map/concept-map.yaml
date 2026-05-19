@@ -1,0 +1,36 @@
+schema_version: "1.0.0"
+concept_id: pid-step-response
+prerequisites:
+  - id: differential-equations
+    title: "Differential Equations"
+    relationship: "Closed-loop dynamics are governed by differential equations in time."
+    status: available
+  - id: transfer-functions
+    title: "Transfer Functions"
+    relationship: "Step response metrics are derived from transfer-function behaviour."
+    status: available
+  - id: feedback-control
+    title: "Feedback Control"
+    relationship: "PID tuning modifies feedback correction terms to shape response."
+    status: available
+downstream:
+  - id: bode-plots
+    title: "Bode Plots"
+    relationship: "Time-response tradeoffs connect to frequency-response stability margins."
+    status: planned
+  - id: state-space-control
+    title: "State-space Control"
+    relationship: "PID intuition supports later model-based multivariable control design."
+    status: planned
+siblings: []
+misconception_graph:
+  nodes:
+    - id: gain-always-better
+      label: "Higher gain always improves control"
+    - id: derivative-fixes-error
+      label: "Derivative action removes steady-state error"
+  edges:
+    - from: gain-always-better
+      to: derivative-fixes-error
+      label: "both ignore metric-specific roles of P, I, and D"
+mermaid_source: graph.mmd

@@ -1,0 +1,41 @@
+id: simulation
+title: "PID Step Response Explorer"
+interaction_type: comparative-matrix
+kernel_deps:
+  - core/sim-runtime
+  - core/control-systems
+  - core/prediction-gate
+  - core/charting
+  - core/ui-sim
+manipulate:
+  controls:
+    - id: kp
+      label: "Proportional gain Kp"
+      kind: slider
+      kernel_binding: state.kp
+      bounds: { min: 0, max: 8, step: 0.1 }
+    - id: ki
+      label: "Integral gain Ki"
+      kind: slider
+      kernel_binding: state.ki
+      bounds: { min: 0, max: 4, step: 0.05 }
+    - id: kd
+      label: "Derivative gain Kd"
+      kind: slider
+      kernel_binding: state.kd
+      bounds: { min: 0, max: 2, step: 0.05 }
+observe:
+  renderers:
+    - id: step-response-chart
+      module: core/charting
+      symbol: LineChart
+      props_binding: |
+        Plot unit-step response y(t) for the fixed plant G(s)=1/(s^2+2s+1).
+        Show measured overshoot (%), 2% settling time (s), and steady-state error.
+explain:
+  prompt: |
+    Compare two runs: which gain changed the error term fastest, and which increased oscillation risk? Justify with overshoot, settling-time, and final-value evidence.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Higher gain is always better."
+    - "Derivative control fixes steady-state error."
