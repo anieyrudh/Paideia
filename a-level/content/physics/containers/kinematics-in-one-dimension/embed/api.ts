@@ -1,7 +1,13 @@
+import type {
+  MetresPerSecond,
+  MetresPerSecondSquared,
+} from "@paideia/a-level-physics-sims/kinematics-one-dimension";
+import type { Seconds } from "@paideia/shared";
+
 export interface KinematicsEmbedState {
-  readonly initialVelocityMetresPerSecond: number;
-  readonly accelerationMetresPerSecondSquared: number;
-  readonly elapsedSeconds: number;
+  readonly initialVelocityMetresPerSecond: MetresPerSecond;
+  readonly accelerationMetresPerSecondSquared: MetresPerSecondSquared;
+  readonly elapsedSeconds: Seconds;
   readonly predictionCommitted: boolean;
 }
 

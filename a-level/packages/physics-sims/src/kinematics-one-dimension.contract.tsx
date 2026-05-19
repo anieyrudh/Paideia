@@ -98,6 +98,10 @@ export const runKinematicsGateContract = () => {
 
       await click(controlByLabel("9.0 m"));
       await change(controlByLabel("Rationale"), "The displacement depends on t squared when u is zero.");
+
+      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
+      expect(document.querySelector("[aria-label='Formula used']")).toBeNull();
+
       await click(commitButton());
       await change(controlByLabel("Elapsed time"), "4");
 
