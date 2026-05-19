@@ -11,6 +11,9 @@ workstreams:
   - sutd-istd
   - sutd-epd
   - sutd-esd
+  - sutd-asd
+  - sutd-dai
+  - sutd-smt
   - alevel-math
   - alevel-physics
   - alevel-chemistry
@@ -47,6 +50,14 @@ roadmap_coverage:
     - alevel.physics.waves
     - alevel.physics.circuits
     - alevel.math.probability-statistics
+  sutd_initial_pillar_slices:
+    - sutd.freshmore.vector-transformations
+    - sutd.epd.pid-step-response
+    - sutd.esd.linear-programming-feasible-region
+    - sutd.csd.graph-search-and-shortest-paths
+    - sutd.asd.load-path-and-daylight-tradeoff
+    - sutd.dai.trust-calibration
+    - sutd.smt.ode-phase-portrait
 
 sutd_cluster_mappings:
   - id: sutd.freshmore.probability-statistics
@@ -64,6 +75,7 @@ sutd_cluster_mappings:
       - sutd-freshmore
       - shared-math
     entry_ids:
+      - sutd.freshmore.vector-transformations
       - shared.linear-algebra.eigenvector-transformations
       - shared.dynamical-systems.ode-phase-portrait
   - id: sutd.freshmore.mechanics-circuits
@@ -80,6 +92,7 @@ sutd_cluster_mappings:
       - sutd-istd
       - shared-algorithms-ai
     entry_ids:
+      - sutd.csd.graph-search-and-shortest-paths
       - shared.algorithms.graph-algorithm-explorer
       - shared.optimization.gradient-descent-landscape
   - id: sutd.epd.control-systems
@@ -88,6 +101,7 @@ sutd_cluster_mappings:
       - sutd-epd
       - shared-physics-core
     entry_ids:
+      - sutd.epd.pid-step-response
       - shared.control.pid-bode-builder
       - shared.dynamical-systems.ode-phase-portrait
       - shared.circuits.circuit-phasor-reasoning
@@ -98,9 +112,33 @@ sutd_cluster_mappings:
       - shared-math
       - shared-probability-stats
     entry_ids:
+      - sutd.esd.linear-programming-feasible-region
       - shared.optimization.linear-programming-feasible-region
       - shared.optimization.gradient-descent-landscape
       - shared.inference.hypothesis-test-decision
+  - id: sutd.asd.spatial-environmental-systems
+    title: "ASD spatial, structural, and environmental systems"
+    workstreams:
+      - sutd-asd
+      - shared-physics-core
+    entry_ids:
+      - sutd.asd.load-path-and-daylight-tradeoff
+  - id: sutd.dai.human-ai-evaluation
+    title: "DAI human-centred AI and evaluation"
+    workstreams:
+      - sutd-dai
+      - shared-probability-stats
+    entry_ids:
+      - sutd.dai.trust-calibration
+      - shared.optimization.gradient-descent-landscape
+  - id: sutd.smt.advanced-science-math
+    title: "SMT advanced science and mathematical modelling"
+    workstreams:
+      - sutd-smt
+      - shared-math
+    entry_ids:
+      - sutd.smt.ode-phase-portrait
+      - shared.dynamical-systems.ode-phase-portrait
 
 entries:
   - id: shared.probability.bayes-updating
@@ -296,6 +334,7 @@ entries:
         - every vector is an eigenvector
         - eigenvalue is a rotation angle
     kernel_dependencies:
+      - core/sim-runtime
       - core/linear-algebra
       - core/plotting
       - core/prediction-gate
@@ -344,6 +383,7 @@ entries:
         - slope field arrows as particle velocity only
         - equilibrium means no forces exist
     kernel_dependencies:
+      - core/sim-runtime
       - core/dynamical-systems
       - core/plotting
       - core/prediction-gate
@@ -498,6 +538,7 @@ entries:
         - motion requires net force
         - action-reaction pairs act on the same body
     kernel_dependencies:
+      - core/sim-runtime
       - core/mechanics
       - core/linear-algebra
       - core/prediction-gate
@@ -591,6 +632,7 @@ entries:
         - high gain always improves control
         - Bode magnitude alone determines stability
     kernel_dependencies:
+      - core/sim-runtime
       - core/control-systems
       - core/charting
       - core/prediction-gate
@@ -637,6 +679,7 @@ entries:
         - optimum must sit at the visual centre
         - infeasible means no equation exists
     kernel_dependencies:
+      - core/sim-runtime
       - core/optimization
       - core/plotting
       - core/prediction-gate
@@ -687,6 +730,306 @@ entries:
       workstream: ib-core-tok-ee-cas
       concept_cluster: IB core
       target_container_kind: subject-specific
+
+  - id: sutd.freshmore.vector-transformations
+    title: "Vector Transformations"
+    priority: P0
+    status: planned
+    cluster: Freshmore mathematics
+    discipline: math
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - Freshmore linear algebra
+          - Modelling the Systems World
+    simulation_type: draggable-basis-transformation
+    problem_solving_elements:
+      - matrix-vector multiplication trace
+      - basis-vector movement explanation
+      - invariant-direction check
+    concept_map_needs:
+      prerequisites:
+        - vectors
+        - matrices
+      downstream:
+        - eigenvectors
+        - state-space models
+        - PCA
+      misconceptions:
+        - matrix multiplication is only arithmetic
+        - all vectors rotate by the same angle
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/linear-algebra
+      - core/plotting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sim-vector-transformations
+    estimated_effort: M
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: Freshmore mathematics
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.epd.pid-step-response
+    title: "PID Step Response"
+    priority: P0
+    status: planned
+    cluster: EPD control systems
+    discipline: systems
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - EPD control
+          - Engineering systems
+    simulation_type: closed-loop-step-response-tuner
+    problem_solving_elements:
+      - proportional-integral-derivative role comparison
+      - overshoot and settling-time readout
+      - stability versus response-speed tradeoff
+    concept_map_needs:
+      prerequisites:
+        - differential equations
+        - transfer functions
+      downstream:
+        - Bode plots
+        - state-space control
+      misconceptions:
+        - higher gain is always better
+        - derivative control removes noise sensitivity
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/control-systems
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sim-pid-step-response
+    estimated_effort: M
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: EPD control systems
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.esd.linear-programming-feasible-region
+    title: "Linear Programming Feasible Region"
+    priority: P0
+    status: planned
+    cluster: ESD optimisation
+    discipline: systems
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - ESD optimisation
+          - Design under constraints
+    simulation_type: constraint-region-dragger
+    problem_solving_elements:
+      - decision-variable definition
+      - inequality translation
+      - objective-line sweep and corner check
+    concept_map_needs:
+      prerequisites:
+        - linear equations
+        - inequalities
+      downstream:
+        - simplex method
+        - sensitivity analysis
+      misconceptions:
+        - optimum must be visually central
+        - every constraint must bind at optimum
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/optimization
+      - core/plotting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sim-lp-feasible-region
+    estimated_effort: M
+    assignment:
+      workstream: sutd-esd
+      concept_cluster: ESD optimisation
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.csd.graph-search-and-shortest-paths
+    title: "Graph Search and Shortest Paths"
+    priority: P0
+    status: planned
+    cluster: CSD algorithms
+    discipline: cs
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - CSD algorithms
+          - ISTD algorithms
+    simulation_type: algorithm-state-visualisation
+    problem_solving_elements:
+      - frontier and visited-set trace
+      - invariant tracker
+      - weighted versus unweighted path decision
+    concept_map_needs:
+      prerequisites:
+        - graph representation
+        - iteration
+      downstream:
+        - Dijkstra algorithm
+        - network flow
+        - routing systems
+      misconceptions:
+        - visual distance equals edge weight
+        - first path found is always shortest
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/graph-algorithms
+      - core/graph-layout
+      - core/algorithm-trace
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sim-graph-search-shortest-paths
+    estimated_effort: M
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: CSD algorithms
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.asd.load-path-and-daylight-tradeoff
+    title: "Load Path and Daylight Tradeoff"
+    priority: P0
+    status: planned
+    cluster: ASD spatial systems
+    discipline: architecture
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - ASD structures
+          - ASD environmental systems
+    simulation_type: bounded-single-bay-tradeoff-explorer
+    problem_solving_elements:
+      - 2D single-bay load-path sketch
+      - aperture-ratio daylight proxy comparison
+      - tradeoff explanation between bracing, opening size, and proxy performance
+    concept_map_needs:
+      prerequisites:
+        - 2D vectors
+        - force equilibrium
+        - ratio reasoning
+      downstream:
+        - structural systems
+        - building performance
+      misconceptions:
+        - more glass always improves performance
+        - loads travel only vertically
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/linear-algebra
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sim-load-path-daylight
+    estimated_effort: H
+    assignment:
+      workstream: sutd-asd
+      concept_cluster: ASD spatial systems
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.dai.trust-calibration
+    title: "Trust Calibration"
+    priority: P0
+    status: planned
+    cluster: DAI human-centred AI
+    discipline: design-ai
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - Design and Artificial Intelligence
+          - Human-centred AI
+    simulation_type: decision-audit-and-confidence-lab
+    problem_solving_elements:
+      - confidence versus accuracy comparison
+      - false-positive and false-negative cost table
+      - human override decision rule
+    concept_map_needs:
+      prerequisites:
+        - probability
+        - confusion matrices
+      downstream:
+        - model evaluation
+        - human-AI interaction
+      misconceptions:
+        - high confidence means correct
+        - automation should always be trusted when accurate on average
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/probability-stats
+      - core/charting
+      - core/annotation
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sim-trust-calibration
+    estimated_effort: M
+    assignment:
+      workstream: sutd-dai
+      concept_cluster: DAI human-centred AI
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.smt.ode-phase-portrait
+    title: "ODE Phase Portrait"
+    priority: P0
+    status: planned
+    cluster: SMT mathematical modelling
+    discipline: science
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - Science, Mathematics and Technology
+          - Mathematical modelling
+    simulation_type: vector-field-phase-plane
+    problem_solving_elements:
+      - equilibrium classification
+      - trajectory interpretation
+      - parameter-change stability comparison
+    concept_map_needs:
+      prerequisites:
+        - derivatives
+        - vector fields
+      downstream:
+        - stability analysis
+        - feedback systems
+      misconceptions:
+        - equilibrium means nothing changes anywhere
+        - arrows show only physical velocity
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/dynamical-systems
+      - core/plotting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sim-ode-phase-portrait
+    estimated_effort: M
+    assignment:
+      workstream: sutd-smt
+      concept_cluster: SMT mathematical modelling
+      target_container_kind: curriculum-wrapper
 
   - id: alevel.physics.physical-quantities-and-units
     title: "Physical quantities and units"
@@ -932,6 +1275,7 @@ entries:
         - energy is lost rather than transferred
         - work equals force regardless of displacement direction
     kernel_dependencies:
+      - core/sim-runtime
       - core/mechanics
       - core/charting
       - core/prediction-gate
@@ -973,6 +1317,7 @@ entries:
         - momentum is conserved for one object alone
         - impulse is always the same as force
     kernel_dependencies:
+      - core/sim-runtime
       - core/mechanics
       - core/charting
       - core/prediction-gate
@@ -1013,6 +1358,7 @@ entries:
         - particles travel with the wave profile
         - higher frequency means larger amplitude
     kernel_dependencies:
+      - core/sim-runtime
       - core/function-eval
       - core/charting
       - core/prediction-gate
@@ -1052,6 +1398,7 @@ entries:
         - current is consumed by components
         - battery voltage is a current source
     kernel_dependencies:
+      - core/sim-runtime
       - core/circuits
       - core/charting
       - core/prediction-gate
@@ -1092,6 +1439,7 @@ entries:
         - independent and mutually exclusive mean the same thing
         - expected value is the most likely outcome
     kernel_dependencies:
+      - core/sim-runtime
       - core/probability-stats
       - core/charting
       - core/prediction-gate

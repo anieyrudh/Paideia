@@ -24,9 +24,9 @@ test("maps concept clusters across all SUTD pillars", async ({ page }) => {
 
   await page.getByRole("button", { name: /ISTD\/CSD/ }).click();
   await expect(page.getByRole("heading", { name: "ISTD/CSD" })).toBeVisible();
-  await expect(page.getByText("shared.algorithms.graph-traversal")).toBeVisible();
+  await expect(page.getByText("sutd.csd.graph-search-and-shortest-paths")).toBeVisible();
 
   await page.getByRole("button", { name: /EPD/ }).click();
   await expect(page.getByRole("heading", { name: "EPD" })).toBeVisible();
-  await expect(page.getByText("shared.control.pid-step-response")).toBeVisible();
+  await expect(page.getByText("sutd.epd.pid-step-response")).toBeVisible();
 });

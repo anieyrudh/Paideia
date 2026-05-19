@@ -243,7 +243,11 @@ function validateCoverage(queue, entryIds, failures) {
     return;
   }
 
-  for (const key of ["p0_universal_theory_infrastructure", "alevel_initial_sequence"]) {
+  for (const key of [
+    "p0_universal_theory_infrastructure",
+    "alevel_initial_sequence",
+    "sutd_initial_pillar_slices",
+  ]) {
     const ids = validateStringArray(queue.roadmap_coverage[key], `roadmap_coverage.${key}`, failures);
     for (const id of ids) {
       if (!entryIds.has(id)) failures.push(`roadmap_coverage.${key} references missing entry \`${id}\``);
