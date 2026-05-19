@@ -1,0 +1,22 @@
+controls:
+  - id: threshold-percent
+    label: "Automation confidence threshold"
+    kind: slider
+    default: 70
+    min: 50
+    max: 90
+    step: 5
+  - id: false-negative-cost
+    label: "Cost of an automated wrong decision"
+    kind: slider
+    default: 20
+    min: 5
+    max: 40
+    step: 5
+  - id: review-cost
+    label: "Cost of human review"
+    kind: slider
+    default: 3
+    min: 1
+    max: 8
+    step: 1
