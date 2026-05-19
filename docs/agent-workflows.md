@@ -14,6 +14,68 @@ whole repo into context.
 Use small prompts. A good prompt names one target, one outcome, and the exact
 contracts to read. Avoid pasting large files that already exist in the repo.
 
+## Agent Entrypoint Map
+
+Use this as the single router. Do not ask an agent to scan every hidden tool
+folder before it knows the task.
+
+| Agent or editor | First file | Then read | Why |
+| --- | --- | --- | --- |
+| Codex | `AGENTS.md` | `.agents/skills/<task>/SKILL.md` | Canonical Paideia skills live here. |
+| Claude Code | `AGENTS.md` | `.claude/skills/<task>/SKILL.md` | This mirrors `.agents/skills` for Claude. |
+| Cursor | `AGENTS.md` | `.cursor/rules/*.mdc` only when editing matching files | Cursor rules are short reminders, not the full spec. |
+| Any agent building a lesson | `docs/container-spec.md` | target `container.yaml` and this guide | The container spec is the source of truth. |
+| Any agent changing reusable code | target `core/<module>/AGENTS.md` | `.agents/skills/new-kernel/SKILL.md` | Each core module owns its public contract. |
+
+Canonical sources:
+
+| Source | Role |
+| --- | --- |
+| `docs/container-spec.md` | The lesson/container shape. |
+| `docs/agent-workflows.md` | Task router and copy-paste prompts. |
+| `.agents/skills/` | Main skill bodies. |
+| `.claude/skills/` | Mirror of `.agents/skills/`. |
+| `.codex/agents/` and `.claude/agents/` | Reviewer role wrappers. |
+| `.cursor/rules/` | Lightweight editor hints that point back to the shared specs. |
+
+Run `pnpm agent:validate` after changing any agent-facing instructions.
+
+## Prompt: Build One Lesson
+
+```text
+You are building one Paideia lesson.
+
+Target:
+- Branch: <a-level | sutd>
+- Subject or pillar: <subject-or-pillar>
+- Concept id: <kebab-case-id>
+- Title: <human title>
+
+Read first:
+- AGENTS.md
+- docs/agent-workflows.md
+- docs/container-spec.md
+- docs/product/container-build-queue.yaml
+- .agents/skills/new-container/SKILL.md
+- .agents/skills/new-sim-in-container/SKILL.md
+- .agents/skills/review-container/SKILL.md
+
+Build only this lesson. Keep language student-facing. Show formulas with
+substitution and units when calculations appear. Use existing core packages for
+math, physics, controls, graphs, and the prediction gate.
+
+Run:
+
+pnpm container:validate
+pnpm container:docs <container-path>
+pnpm graph:generate
+pnpm test
+pnpm agent:validate
+
+Open one PR with the lesson path, validation results, and any remaining
+questions.
+```
+
 ## Prompt: Add A Container
 
 ```text
@@ -135,16 +197,11 @@ pnpm test
 pnpm typecheck
 ```
 
-## Where Agents Should Look
+## If You Are Lost
 
-- Root orientation: `AGENTS.md`, `README.md`, `CONTRIBUTING.md`.
-- Container shape: `docs/container-spec.md`.
-- Clean-room dependency replacements: `docs/dependency-clean-room.md`.
-- Product roadmap: `docs/product/container-roadmap.md`.
-- Core contracts: `core/<module>/AGENTS.md`.
-- Reusable skills: `.agents/skills/*/SKILL.md`.
-- Claude mirror: `.claude/skills/*/SKILL.md`.
-- Cursor rules: `.cursor/rules/*.mdc`.
+Return to the task router at the top of this file. Pick one prompt, then read
+only the files named by that prompt. If the work is not covered by a prompt,
+start with `AGENTS.md` and ask for a narrower target before scanning the repo.
 
 ## Keeping Docs Consistent
 

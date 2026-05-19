@@ -1,14 +1,18 @@
 ---
-globs: ["**/sims/**/*.tsx", "**/sims/**/*.ts"]
+globs: ["**/simulation/**/*.tsx", "**/simulation/**/*.ts"]
 alwaysApply: false
 description: "Simulation authoring rules — runtime, prediction gate, kernel binding"
 ---
 
 # Simulation rules
 
-- Sims MUST consume `@paideia/sim-runtime` and `@paideia/prediction-gate`. Do not roll your own PMOE-T loop or your own gate.
+- Sim-worthy containers must use the shared prediction gate when prediction is
+  declared. Use existing core packages for reusable math, state, plotting, and
+  controls.
 - **Renderers receive frozen state.** The runtime hands renderers a `Readonly<State>`. Renderers MUST NOT mutate it. No `state.x = ...` in any renderer.
-- **Manipulate controls write via `kernel_binding`**, never directly to React state. The control says "increase amplitude"; the kernel binding turns that into a kernel call; the kernel returns a new state; the runtime publishes it. React state is downstream of the kernel, not the source of truth.
+- Controls declared in YAML use `kernel_binding` names that match the sim state
+  model.
 - **No inline math/physics in a sim.** If a kernel lacks something you need, open a `core-change-proposal` issue and extend the relevant `core/<kernel>` package. Do not branch.
-- The sim's `<sim-id>.test.ts` MUST contain the literal token `prediction-gate` and a Playwright assertion that the gate blocks reveal until the student commits a prediction. CI checks for the token; reviewers check the assertion is real.
-- Telemetry is wired in `@paideia/sim-runtime`. Sims do not emit telemetry directly.
+- `simulation/simulation.test.ts` must contain the literal token
+  `prediction-gate` and a real assertion that observation is blocked until the
+  student commits a prediction.

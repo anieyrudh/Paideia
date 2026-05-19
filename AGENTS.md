@@ -1,5 +1,8 @@
 # Paideia — Agent Map
 
+This is the short agent map. Keep it small. For task-specific prompts and
+tool-specific entrypoints, use `docs/agent-workflows.md`.
+
 Open educational monorepo: MIT code + CC-BY-4.0 content, A-Level and SUTD branches, container-shaped delivery, local-first AI.
 
 ## Build commands
@@ -8,12 +11,15 @@ Open educational monorepo: MIT code + CC-BY-4.0 content, A-Level and SUTD branch
 - `pnpm dev` — run dev servers
 - `pnpm test` — vitest (all packages)
 - `pnpm typecheck` — tsc -b
-- `pnpm container:new` — scaffold a new ConceptPackage
+- `pnpm container:new` — scaffold a new lesson container
 - `pnpm container:validate` — enforce container shape (BLOCKS MERGE on failure)
+- `pnpm graph:check` — confirm generated shell data is fresh
+- `pnpm agent:validate` — confirm agent-facing docs and skill mirrors are current
 
 ## Where to read next
 
 - Container shape: `@docs/container-spec.md` (canonical layout; locked)
+- Agent task router: `@docs/agent-workflows.md` (copy-paste prompts and entrypoint map)
 - Schemas: `@core/content-schema/src/index.ts` (Zod, locked; ADR to change)
 - Universal types and branded units: `@core/shared/src/index.ts`
 - The Filter (critic, not author): `@core/aniegpt/aniegpt-system-prompt.md`

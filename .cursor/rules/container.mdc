@@ -6,28 +6,31 @@ description: "Container layout enforcement — see docs/container-spec.md §1"
 
 # Container rules
 
-Every container (ConceptPackage) is laid out **exactly** as in `docs/container-spec.md` §1. The validator (`pnpm container:validate`) BLOCKS MERGE on any divergence — there is no opt-out.
+Every container is laid out **exactly** as in `docs/container-spec.md` §1. The
+validator (`pnpm container:validate`) blocks merge on divergence. This file is a
+short Cursor reminder; the spec is the source of truth.
 
 ## Required files (top-level, exact names)
 
-- `concept-package.yaml` — manifest, validates against `ConceptPackageSpec`
+- `container.yaml` — manifest, validates against `ContainerSpec`
 - `concept-card.md` — frontmatter + body
 - `sources.md` — citations
-- `sims/` — directory (may be empty for content-only packages)
+- `concept-map/` — concept graph, mindmap, and Mermaid source
+- `simulation/` — declared sim surface for sim-worthy concepts
+- `problem-solving/` — worked method and step structure
+- `media/` — thumbnail and fallback visuals
+- `embed/` — host API contract
 - `README.md` — **auto-generated; do not edit by hand**
 - `TECHNICAL.md` — **auto-generated; do not edit by hand**
 
-## Optional
-
-- `decision-matrix.md`, `misconceptions.md`
-- `transfer/<problem-id>.md`
-- `assessments/fsrs-cards.yaml`
-- `extras/` — opaque to the validator; use sparingly
-
 ## Rules an agent must follow
 
-- **Never edit `README.md` or `TECHNICAL.md` by hand.** They are produced by `pnpm container:new` and updated by `/review-container`. Edit the source (`concept-package.yaml`, `concept-card.md`) and re-run.
-- The **Anieyrudh Filter section** in `TECHNICAL.md` (`## Anieyrudh Filter pass`) MUST be non-empty before opening a PR. Empty Filter sections fail `daily-compliance-audit.yml` and create blocking issues.
-- Every sim directory MUST contain `SimulationSpec.yaml`, `index.tsx`, and `<sim-id>.test.ts` with the literal token `prediction-gate`.
-- Single source of truth: `concept-package.yaml`. The validator hard-fails any divergence between `concept-card.md` frontmatter and the manifest.
+- **Never edit `README.md` or `TECHNICAL.md` by hand.** Edit the source files
+  and run `pnpm container:docs <container-path>`.
+- The **Anieyrudh Filter section** in `TECHNICAL.md`
+  (`## Anieyrudh Filter pass`) must be non-empty before a reviewed/published PR.
+- Every declared sim must include `simulation/simulation.yaml`, `index.tsx`,
+  and `simulation.test.ts` with a real prediction-gate assertion when prediction
+  metadata exists.
+- Single source of truth: `container.yaml`. The validator hard-fails divergence.
 - Cross-references between files MUST use the exact filenames from `docs/container-spec.md` §1.
