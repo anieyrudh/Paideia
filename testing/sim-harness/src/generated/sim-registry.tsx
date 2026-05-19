@@ -11,8 +11,9 @@ import GeneratedSim7SutdCsdGraphSearchAndShortestPathsGraphSearchAndShortestPath
 import GeneratedSim8SutdDaiTrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
 import GeneratedSim9SutdEpdPidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
 import GeneratedSim10SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim11SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim12SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim11SutdFreshmoreFreeBodyDiagramMechanicsForceBalance from "@paideia/sutd-sims/free-body-diagram-mechanics";
+import GeneratedSim12SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim13SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -76,15 +77,20 @@ export const simRegistry = {
     title: "Linear Programming Feasible Region Explorer",
     Component: GeneratedSim10SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
   },
+  "sutd/freshmore/free-body-diagram-mechanics/force-balance": {
+    id: "sutd/freshmore/free-body-diagram-mechanics/force-balance",
+    title: "Force Balance Explorer",
+    Component: GeneratedSim11SutdFreshmoreFreeBodyDiagramMechanicsForceBalance,
+  },
   "sutd/freshmore/vector-transformations/vector-transformations": {
     id: "sutd/freshmore/vector-transformations/vector-transformations",
     title: "2D Matrix-Vector Transformation Explorer",
-    Component: GeneratedSim11SutdFreshmoreVectorTransformationsVectorTransformations,
+    Component: GeneratedSim12SutdFreshmoreVectorTransformationsVectorTransformations,
   },
   "sutd/smt/ode-phase-portrait/ode-phase-portrait": {
     id: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
     title: "ODE Phase Portrait Explorer",
-    Component: GeneratedSim12SutdSmtOdePhasePortraitOdePhasePortrait,
+    Component: GeneratedSim13SutdSmtOdePhasePortraitOdePhasePortrait,
   }
 } satisfies Record<string, SimHarnessEntry>;
 

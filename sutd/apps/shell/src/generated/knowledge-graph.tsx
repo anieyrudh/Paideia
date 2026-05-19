@@ -5,8 +5,9 @@ import GeneratedSim1GraphSearchAndShortestPathsGraphSearchAndShortestPaths from 
 import GeneratedSim2TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
 import GeneratedSim3PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
 import GeneratedSim4LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim5VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim6OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim5FreeBodyDiagramMechanicsForceBalance from "@paideia/sutd-sims/free-body-diagram-mechanics";
+import GeneratedSim6VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim7OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -106,6 +107,15 @@ export const knowledgeGraph = {
     level: "Freshmore",
     module: "esd",
     status: "draft",
+  },
+  {
+    id: "sutd/freshmore/free-body-diagram-mechanics",
+    conceptId: "free-body-diagram-mechanics",
+    title: "Free-Body Diagram / Mechanics Lab",
+    subject: "freshmore",
+    level: "Freshmore",
+    module: "Freshmore Physics",
+    status: "reviewed",
   },
   {
     id: "sutd/freshmore/vector-transformations",
@@ -416,6 +426,59 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/freshmore/free-body-diagram-mechanics",
+    branch: "sutd",
+    subject: "Freshmore",
+    level: "Freshmore",
+    module: "Freshmore Physics",
+    title: "Free-Body Diagram / Mechanics Lab",
+    summary: "Balance perpendicular forces by making the resultant force zero in both horizontal and vertical directions.",
+    syllabusRef: "SUTD / Section II / Free-Body Diagram / Mechanics Lab",
+    status: "reviewed",
+    packageId: "free-body-diagram-mechanics",
+    simId: "force-balance",
+    predictPrompt: "A 6 N force pulls left and a 5 N weight pulls down. What pair of support forces is needed for equilibrium?",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "Balanced means equal-looking arrows",
+      "Zero net force means no forces act",
+    ],
+    transferProblem: "A hanging sign is pulled left by 4 N and down by 7 N. Choose the support forces that keep it still, then explain the two independent equilibrium conditions.",
+    firstPrinciples: "An object is in equilibrium when all the forces on it cancel. That does not mean there are no forces; it means the horizontal forces sum to zero and the vertical forces sum to zero. If either resultant is non-zero, the object accelerates in that direction.",
+    keyDefinitions: [
+      "Force: a push or pull measured in newtons.",
+      "Resultant force: the vector sum of all forces acting on an object.",
+      "Equilibrium: the condition where the resultant force is zero.",
+      "Component balance: checking horizontal and vertical resultant forces separately.",
+    ],
+    canonicalExamples: [
+      "A box pulled left while a support force pushes right.",
+      "A hanging object where tension and weight balance vertically.",
+    ],
+    problemSolvingSteps: [
+      "What concept is being tested?",
+      "Which representation or method applies?",
+      "Carry out the method.",
+      "Does the result make sense?",
+    ],
+    prerequisites: [],
+    downstream: [],
+    siblings: [],
+    sims: [
+      {
+        id: "force-balance",
+        harnessId: "sutd/freshmore/free-body-diagram-mechanics/force-balance",
+        title: "Force Balance Explorer",
+        interactionType: "diagram-builder",
+        component: GeneratedSim5FreeBodyDiagramMechanicsForceBalance,
+      },
+    ],
+  },
+  {
     id: "sutd/freshmore/vector-transformations",
     branch: "sutd",
     subject: "Freshmore",
@@ -463,7 +526,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim5VectorTransformationsVectorTransformations,
+        component: GeneratedSim6VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -529,7 +592,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim6OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim7OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

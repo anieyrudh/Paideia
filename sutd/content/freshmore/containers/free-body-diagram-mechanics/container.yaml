@@ -1,0 +1,112 @@
+schema_version: "1.0.0"
+id: free-body-diagram-mechanics
+aliases:
+  - force balance
+  - net force equilibrium
+branch: sutd
+subject: freshmore
+level: "Freshmore"
+module: "Freshmore Physics"
+title: "Free-Body Diagram / Mechanics Lab"
+one_line_summary: "Balance perpendicular forces by making the resultant force zero in both horizontal and vertical directions."
+syllabus_ref: "SUTD / Section II / Free-Body Diagram / Mechanics Lab"
+prerequisites:
+  - scalars-and-vectors
+  - resolving-vectors
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A 6 N force pulls left and a 5 N weight pulls down. What pair of support forces is needed for equilibrium?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "6 N right and 5 N up"
+      - "5 N right and 6 N up"
+      - "11 N right only"
+      - "1 N up only"
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: sign-hanger-equilibrium
+    prompt: |
+      A hanging sign is pulled left by 4 N and down by 7 N. Choose the support forces that keep it still, then explain the two independent equilibrium conditions.
+    surface_form: "hanging sign"
+    same_concept_check: "Same concept: horizontal and vertical resultant forces must both be zero."
+    rubric_path: problem-solving/algorithm.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-19"
+      author: "Codex"
+      summary: "Built SUTD/Shared forces and equilibrium product slice using core/mechanics."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-19"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Balanced means equal-looking arrows"
+    description: "Learners may compare arrow lengths without separating horizontal and vertical components."
+    evidence_source: "OpenStax University Freshmore Physics Volume 1, Section 5.1 Forces."
+    surface_in_predict: true
+  - name: "Zero net force means no forces act"
+    description: "Learners may think equilibrium requires no forces rather than forces summing to zero."
+    evidence_source: "OpenStax University Freshmore Physics Volume 1, Section 5.4 Newton's Second Law."
+    surface_in_predict: true
+sources:
+  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level SUTD Freshmore Physics syllabus for examination in 2027. 2025."
+    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/SUTD_y27_sy.pdf"
+    publication_year: 2025
+    license: "Copyright MOE & Cambridge University Press & Assessment"
+    seab_alignment: matches
+  - citation: "Moebs, W., Ling, S. J., and Sanny, J. University Freshmore Physics Volume 1, Section 5.1 Forces. OpenStax, 2016."
+    url: "https://openstax.org/books/university-physics-volume-1/pages/5-1-forces"
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: matches
+language: en

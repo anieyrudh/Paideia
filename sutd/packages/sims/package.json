@@ -13,7 +13,8 @@
     "./ode-phase-portrait": "./src/ode-phase-portrait.tsx",
     "./pid-step-response": "./src/pid-step-response.tsx",
     "./trust-calibration": "./src/trust-calibration.tsx",
-    "./vector-transformations": "./src/vector-transformations.tsx"
+    "./vector-transformations": "./src/vector-transformations.tsx",
+    "./free-body-diagram-mechanics": "./src/free-body-diagram-mechanics.tsx"
   },
   "scripts": {
     "build": "tsc -b",

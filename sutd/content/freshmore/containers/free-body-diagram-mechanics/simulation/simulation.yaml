@@ -1,0 +1,43 @@
+id: force-balance
+title: "Force Balance Explorer"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/mechanics
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+predict:
+  prompt: |
+    A 6 N force pulls left and a 5 N weight pulls down. What pair of support forces is needed for equilibrium?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "6 N right and 5 N up"
+      - "5 N right and 6 N up"
+      - "11 N right only"
+      - "1 N up only"
+  rationale_required: true
+manipulate:
+  controls:
+    - id: right-support
+      label: "Right support force"
+      kind: slider
+      kernel_binding: state.supportRightNewtons
+      bounds: { min: 0, max: 10, step: 0.5 }
+    - id: up-support
+      label: "Up support force"
+      kind: slider
+      kernel_binding: state.supportUpNewtons
+      bounds: { min: 0, max: 10, step: 0.5 }
+observe:
+  renderers:
+    - id: force-balance
+      module: "@paideia/sutd-sims/free-body-diagram-mechanics"
+      symbol: "ForcesAndEquilibriumSim"
+      props_binding: "state -> force diagram, net-force readout, and equilibrium formula"
+explain:
+  prompt: "Which component is still unbalanced, and what acceleration direction would that imply?"
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Balanced means equal-looking arrows"
+    - "Zero net force means no forces act"

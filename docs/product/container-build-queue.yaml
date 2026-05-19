@@ -502,7 +502,7 @@ entries:
   - id: shared.physics.free-body-diagram-mechanics
     title: "Free-Body Diagram / Mechanics Lab"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: Physics / engineering
     discipline: physics
     reuse_status: shared-core
@@ -543,7 +543,7 @@ entries:
       - core/linear-algebra
       - core/prediction-gate
       - core/ui-sim
-    repo_package_name: sim-free-body
+    repo_package_name: sutd-sim-free-body-diagram-mechanics
     estimated_effort: H
     assignment:
       workstream: shared-physics-core
