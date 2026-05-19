@@ -22,7 +22,7 @@ const parseHashRoute = (): HashRoute => {
 const readContainerFromHash = (): ShellContainer | null => {
   const route = parseHashRoute();
   const containerId = route.kind === "container" ? route.id : "";
-  return containerById.get(containerId) ?? containers[0] ?? null;
+  return containerById.get(containerId) ?? null;
 };
 
 const readPillarFromHash = (): SutdPillar => {
@@ -41,6 +41,18 @@ const totalPlannedContainers = sutdPillars.reduce(
     ),
   0,
 );
+
+const plannedIdToContainerId = (id: string): string => id.replace(/\./g, "/");
+
+const firstContainerForPillar = (pillar: SutdPillar): ShellContainer | null => {
+  const plannedIds = new Set(
+    pillar.clusters.flatMap((cluster) =>
+      cluster.plannedContainerIds.map(plannedIdToContainerId),
+    ),
+  );
+
+  return containers.find((container) => plannedIds.has(container.id)) ?? null;
+};
 
 const ClusterCard = ({
   cluster,
@@ -86,7 +98,10 @@ const ContainerPreview = ({
 
 export const App = () => {
   const [activePillar, setActivePillar] = useState<SutdPillar>(() => readPillarFromHash());
-  const activeContainer = useMemo(() => readContainerFromHash(), []);
+  const activeContainer = useMemo(
+    () => readContainerFromHash() ?? firstContainerForPillar(activePillar),
+    [activePillar],
+  );
 
   const selectPillar = (pillar: SutdPillar) => {
     setActivePillar(pillar);

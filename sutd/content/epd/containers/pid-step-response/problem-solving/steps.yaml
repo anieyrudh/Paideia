@@ -1,0 +1,13 @@
+steps:
+  - id: define-target
+    prompt: "State the target behaviour in metric form (overshoot, settling time, steady-state error)."
+  - id: baseline
+    prompt: "Run the baseline preset and record all three metrics."
+  - id: vary-kp
+    prompt: "Increase Kp while Ki and Kd stay fixed. Note what improves and what worsens."
+  - id: vary-ki
+    prompt: "Increase Ki moderately. Check steady-state error and oscillation change."
+  - id: vary-kd
+    prompt: "Increase Kd. Check whether overshoot or ringing decreases."
+  - id: choose-tradeoff
+    prompt: "Select the gains that best match the stated design target and justify with metrics."

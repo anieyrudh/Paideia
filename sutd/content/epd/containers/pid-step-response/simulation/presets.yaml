@@ -1,0 +1,10 @@
+presets:
+  - id: baseline-p
+    label: "P-only baseline"
+    values: { kp: 2.0, ki: 0.0, kd: 0.0 }
+  - id: pi-balanced
+    label: "PI balanced"
+    values: { kp: 1.8, ki: 0.9, kd: 0.0 }
+  - id: pid-damped
+    label: "PID damped"
+    values: { kp: 2.4, ki: 0.8, kd: 0.4 }

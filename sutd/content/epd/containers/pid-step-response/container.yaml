@@ -1,0 +1,85 @@
+schema_version: "1.0.0"
+id: pid-step-response
+aliases: [closed-loop-step-response]
+branch: sutd
+subject: epd
+level: "Undergraduate"
+module: "EPD control systems"
+title: "PID Step Response"
+one_line_summary: "Tune P, I, and D gains for a fixed second-order plant and compare overshoot, settling time, and steady-state error."
+syllabus_ref: "SUTD EPD / Control and Engineering Systems / closed-loop time response"
+prerequisites: [differential-equations, transfer-functions, feedback-control]
+aid_types: [simulation, transfer-problem, misconception-audit]
+predict_at: package-level
+package_predict:
+  prompt: |
+    For the fixed plant and unit step input, which gain change is most likely to reduce steady-state error without increasing overshoot too much?
+  commit_format:
+    kind: multiple-choice
+    options: ["Increase Kp only", "Increase Ki moderately", "Increase Kd only"]
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities: { sim_worthy: true, interactive_simulation: true, notebook_lab: false, visual_derivation: false }
+simulation: { spec: simulation/simulation.yaml, controls: simulation/controls.yaml, presets: simulation/presets.yaml, state_labels: simulation/state-labels.yaml, runtime: simulation/runtime.yaml }
+problem_solving: { algorithm: problem-solving/algorithm.md, steps: problem-solving/steps.yaml }
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map: { spec: concept-map/concept-map.yaml, mindmap: concept-map/mindmap.md, mermaid: concept-map/graph.mmd }
+transfer_problems:
+  - id: transfer-pid-thermal-chamber
+    prompt: "Choose a gain set for a thermal chamber where overshoot must stay low. Justify your choice with overshoot, settling time, and steady-state error."
+    surface_form: "thermal chamber setpoint control"
+    same_concept_check: "The context changes from generic plant output to thermal regulation, but PID step-response tradeoffs and metrics are unchanged."
+    rubric_path: problem-solving/transfer-pid-thermal-chamber.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: in-review
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-19"
+      author: "Codex"
+      summary: "Built first SUTD EPD PID step-response product slice with fixed-plant preset simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: null
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: false
+misconceptions:
+  - name: "Higher gain is always better"
+    description: "Learners may increase gain indiscriminately without checking overshoot and settling-time penalties."
+    evidence_source: "Åström and Murray, Feedback Systems, chapters on PID and closed-loop performance."
+    surface_in_predict: true
+  - name: "Derivative action removes steady-state error"
+    description: "Learners may assume D action alone shifts final value to the setpoint; integral action is still needed for zero steady-state error in many plants."
+    evidence_source: "Ogata, Modern Control Engineering, PID controller effects discussion."
+    surface_in_predict: false
+sources:
+  - citation: "Åström, K. J., and Murray, R. M. Feedback Systems: An Introduction for Scientists and Engineers. Princeton University Press, 2008."
+    url: "https://fbswiki.org/wiki/index.php/Main_Page"
+    publication_year: 2008
+    license: "Publisher copyright"
+    seab_alignment: n/a
+  - citation: "Ogata, K. Modern Control Engineering. 5th ed. Prentice Hall, 2010."
+    url: "https://www.pearson.com/en-us/subject-catalog/p/modern-control-engineering/P200000003479/9780136156734"
+    publication_year: 2010
+    license: "Publisher copyright"
+    seab_alignment: n/a
+language: en
