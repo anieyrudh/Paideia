@@ -1,0 +1,27 @@
+id: vector-transformations-sim
+title: "2D Matrix-Vector Transformation Explorer"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/prediction-gate
+  - core/linear-algebra
+  - core/ui-sim
+manipulate:
+  controls:
+    - id: a11
+      label: "a11"
+      kind: slider
+      kernel_binding: state.a11
+      bounds: { min: -3, max: 3, step: 1 }
+observe:
+  renderers:
+    - id: transform-readout
+      module: ../sims/vector-transformations
+      symbol: VectorTransformations
+      props_binding: "matrix entries + vector"
+explain:
+  prompt: |
+    Use basis movement: where does e1 go? where does e2 go? Then combine those moves to explain T(x,y).
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Columns are outputs for basis vectors"
