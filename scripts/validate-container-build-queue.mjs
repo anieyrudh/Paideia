@@ -229,8 +229,8 @@ function validateEntry(entry, index, failures, workstreams) {
   if (containerPath !== undefined) {
     if (!isSafeRelativePath(containerPath)) {
       failures.push(`${path}.repo.container_path must be a safe relative path`);
-    } else if (!isDirectory(join(REPO_ROOT, containerPath))) {
-      failures.push(`${path}.repo.container_path does not resolve to an existing directory`);
+    } else if (entry.status === "reviewed" && !isDirectory(join(REPO_ROOT, containerPath))) {
+      failures.push(`${path}.repo.container_path must resolve to an existing directory once status is reviewed`);
     }
   }
 

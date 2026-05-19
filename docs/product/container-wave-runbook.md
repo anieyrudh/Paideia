@@ -50,8 +50,10 @@ If a PR fails because the concept needs missing shared logic, stop the container
 Each builder must:
 
 - Read only the queue entry, `docs/container-spec.md`, `docs/agent-workflows.md`, relevant kernel READMEs/contracts, and the closest existing container pattern.
+- Build at `repo.container_path` when that field is present. If it is missing, derive curriculum wrappers as `<branch>/content/<subject-or-pillar>/containers/<slug>/` and shared-core containers as `shared/content/<discipline>/containers/<slug>/`.
 - Touch only the target container, the relevant package sim file/export, generated graph files, tests that must learn the new count/route, and the queue status for that entry.
 - Use the `kernel_dependencies` list from the queue. If the list is wrong, update it in the same PR and explain why.
+- Do not move a `shared.*` queue item into `a-level/` or `sutd/`. Build it under `shared/`, then let curriculum containers link to it later.
 - Keep the learner UI student-facing. No package names, file paths, kernel names, or implementation commentary in the visible sim.
 - Show every calculation with formula, substituted values, units, and interpretation.
 - Add Playwright coverage for prediction-gate blocking, at least one manipulation changing visible state, and revealed-state critical axe scan.
