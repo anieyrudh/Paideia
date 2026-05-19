@@ -115,11 +115,11 @@ Next missing foundations:
 
 ## Product Slice Proofs
 
-### A-Level Physics: Scalars And Vectors Through Kinematics
+### A-Level Physics: Foundations Through Equilibrium
 
 Status: landed on `main` as the first mechanics learning chain:
 physical quantities and units → scalars and vectors → resolving vectors →
-kinematics in one dimension.
+kinematics in one dimension → forces and equilibrium.
 
 What it proved:
 
@@ -142,10 +142,56 @@ What it proved:
 Latest slice notes:
 
 - `kinematics-in-one-dimension` is reviewed and merged.
-- Deep review found and fixed missing substitution units, package-local
-  project-reference typecheck drift, and one downstream taxonomy mismatch.
-- The next A-Level physics container should be `forces-and-equilibrium`, since
-  it consumes kinematics and closes the first mechanics bridge into dynamics.
+- `forces-and-equilibrium` is reviewed and merged; it is the first force-balance
+  slice consuming both vector resolution and kinematics.
+- Deep review on recent slices found and fixed missing substitution units,
+  package-local project-reference typecheck drift, downstream taxonomy mismatch,
+  and student-facing copy that exposed implementation details.
+- The next A-Level physics container should be `work-energy-power`, followed by
+  `momentum`, because both consume force balance and close the first mechanics
+  sequence before waves and circuits.
+
+### SUTD First Pillar Slices
+
+Status: five SUTD product slices have landed on `main` and are tracked in the
+build queue with required kernels:
+
+| Pillar | Container | Status | Required kernels |
+| --- | --- | --- | --- |
+| Freshmore | `sutd.freshmore.vector-transformations` | reviewed | `core/sim-runtime`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+| EPD | `sutd.epd.pid-step-response` | reviewed | `core/sim-runtime`, `core/control-systems`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| ESD | `sutd.esd.linear-programming-feasible-region` | reviewed | `core/sim-runtime`, `core/optimization`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+| CSD | `sutd.csd.graph-search-and-shortest-paths` | reviewed | `core/sim-runtime`, `core/graph-algorithms`, `core/graph-layout`, `core/algorithm-trace`, `core/prediction-gate`, `core/ui-sim` |
+| DAI | `sutd.dai.trust-calibration` | reviewed | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/annotation`, `core/prediction-gate`, `core/ui-sim` |
+
+Next SUTD candidates in order:
+
+1. `sutd.asd.load-path-and-daylight-tradeoff` — rebuild cleanly as an ASD slice;
+   the previous draft was closed because it mixed in unrelated A-Level vector
+   material.
+2. `sutd.smt.ode-phase-portrait` — uses the completed dynamical-systems
+   foundation and provides the first SMT mathematical modelling proof.
+3. `shared.linear-algebra.eigenvector-transformations` — generalise the
+   Freshmore vector transformation slice into a shared-core lab.
+4. `shared.control.pid-bode-builder` — extend the EPD PID slice toward reusable
+   time-response and frequency-response reasoning.
+
+### Build Queue Discipline
+
+The machine-readable source is
+[`container-build-queue.yaml`](./container-build-queue.yaml). Every candidate
+must keep its `kernel_dependencies` list current before an agent starts work.
+That list is the guardrail against local, one-off math inside a container.
+
+Use this status vocabulary:
+
+| Status | Meaning |
+| --- | --- |
+| `planned` | Candidate exists but no PR is active. |
+| `ready-for-build` | Sources, kernels, and target path are clear enough for assignment. |
+| `in-build` | A branch or PR is actively building the slice. |
+| `reviewed` | Product slice has landed with container validation and route/sim tests. |
+| `blocked` | Needs a kernel, source decision, clean-room replacement, or design decision. |
 
 ### Repeatable Container Build Loop
 
@@ -259,8 +305,8 @@ First useful A-Level sequence:
 2. Scalars and vectors. Status: first product-quality slice landed.
 3. Resolving vectors. Status: reviewed product slice.
 4. Kinematics in one dimension. Status: reviewed product slice.
-5. Forces and equilibrium. Status: next recommended A-Level physics slice.
-6. Work, energy, power.
+5. Forces and equilibrium. Status: reviewed product slice.
+6. Work, energy, power. Status: next recommended A-Level physics slice.
 7. Momentum.
 8. Waves.
 9. Circuits.
