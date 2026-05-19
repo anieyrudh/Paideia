@@ -816,9 +816,9 @@ entries:
       target_container_kind: curriculum-wrapper
 
   - id: alevel.physics.kinematics
-    title: "Kinematics"
+    title: "Kinematics in One Dimension"
     priority: P0
-    status: planned
+    status: reviewed
     cluster: A-Level mechanics
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -828,28 +828,36 @@ entries:
       - curriculum: alevel
         subjects:
           - Physics
-    simulation_type: motion-graph-linker
+        syllabus_refs:
+          - "9478 / Section II / 2(a)-(d)"
+    simulation_type: animation-playback
     problem_solving_elements:
       - quantity identification
       - graph-gradient-area reasoning
       - equation-of-motion selection
+      - signed substitution with units
     concept_map_needs:
       prerequisites:
         - physical quantities and units
+        - scalars and vectors
         - resolving vectors
       downstream:
         - forces and equilibrium
         - momentum
       misconceptions:
-        - position-time graph shape equals path shape
+        - average velocity equals final velocity
         - velocity and acceleration must share direction
+        - distance and displacement are interchangeable
     kernel_dependencies:
+      - core/content-schema
       - core/mechanics
-      - core/charting
       - core/prediction-gate
+      - core/shared
       - core/ui-sim
-    repo_package_name: alevel-sim-kinematics
-    estimated_effort: M
+    repo_package_name: alevel-sim-motion-equations-lab
+    estimated_effort: S
+    repo:
+      container_path: a-level/content/physics/containers/kinematics-in-one-dimension
     assignment:
       workstream: alevel-physics
       concept_cluster: A-Level mechanics

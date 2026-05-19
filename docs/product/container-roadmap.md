@@ -113,9 +113,11 @@ Next missing foundations:
 
 ## Product Slice Proofs
 
-### A-Level Physics: Scalars And Vectors
+### A-Level Physics: Scalars And Vectors Through Kinematics
 
-Status: landed on `main` as the first product-quality container slice.
+Status: landed on `main` as the first mechanics learning chain:
+physical quantities and units → scalars and vectors → resolving vectors →
+kinematics in one dimension.
 
 What it proved:
 
@@ -132,6 +134,16 @@ What it proved:
 - Formula substitution is part of the simulation contract, not optional copy.
 - Route-level Playwright and axe checks are required after reveal, because
   pre-reveal tests do not prove the actual sim is usable.
+- Follow-on slices can reuse the same package, shell route, sim-harness, and
+  generated graph path without reworking the platform.
+
+Latest slice notes:
+
+- `kinematics-in-one-dimension` is reviewed and merged.
+- Deep review found and fixed missing substitution units, package-local
+  project-reference typecheck drift, and one downstream taxonomy mismatch.
+- The next A-Level physics container should be `forces-and-equilibrium`, since
+  it consumes kinematics and closes the first mechanics bridge into dynamics.
 
 ### Repeatable Container Build Loop
 
@@ -241,11 +253,11 @@ Initial focus:
 
 First useful A-Level sequence:
 
-1. Physical quantities and units. Status: content-only foundation.
+1. Physical quantities and units. Status: reviewed product slice.
 2. Scalars and vectors. Status: first product-quality slice landed.
-3. Resolving vectors. Status: second product slice in progress.
-4. Kinematics.
-5. Forces and equilibrium.
+3. Resolving vectors. Status: reviewed product slice.
+4. Kinematics in one dimension. Status: reviewed product slice.
+5. Forces and equilibrium. Status: next recommended A-Level physics slice.
 6. Work, energy, power.
 7. Momentum.
 8. Waves.
