@@ -4,7 +4,8 @@ import GeneratedSim0ALevelPhysicsKinematicsInOneDimensionMotionEquationsLab from
 import GeneratedSim1ALevelPhysicsPhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
 import GeneratedSim2ALevelPhysicsResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
 import GeneratedSim3ALevelPhysicsScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
-import GeneratedSim4SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim4SutdEpdPidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim5SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -33,10 +34,15 @@ export const simRegistry = {
     title: "Resultant Magnitude Explorer",
     Component: GeneratedSim3ALevelPhysicsScalarsAndVectorsResultantMagnitude,
   },
+  "sutd/epd/pid-step-response/pid-step-response": {
+    id: "sutd/epd/pid-step-response/pid-step-response",
+    title: "PID Step Response Explorer",
+    Component: GeneratedSim4SutdEpdPidStepResponsePidStepResponse,
+  },
   "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region": {
     id: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
     title: "Linear Programming Feasible Region Explorer",
-    Component: GeneratedSim4SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+    Component: GeneratedSim5SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
   }
 } satisfies Record<string, SimHarnessEntry>;
 

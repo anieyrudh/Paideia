@@ -1,4 +1,4 @@
-id: simulation
+id: pid-step-response
 title: "PID Step Response Explorer"
 interaction_type: comparative-matrix
 kernel_deps:
@@ -24,11 +24,18 @@ manipulate:
       kind: slider
       kernel_binding: state.kd
       bounds: { min: 0, max: 2, step: 0.05 }
+predict:
+  prompt: |
+    For the fixed plant and unit step input, which gain change is most likely to reduce steady-state error without increasing overshoot too much?
+  commit_format:
+    kind: multiple-choice
+    options: ["Increase Kp only", "Increase Ki moderately", "Increase Kd only"]
+  rationale_required: true
 observe:
   renderers:
     - id: step-response-chart
-      module: core/charting
-      symbol: LineChart
+      module: local
+      symbol: pid-step-response
       props_binding: |
         Plot unit-step response y(t) for the fixed plant G(s)=1/(s^2+2s+1).
         Show measured overshoot (%), 2% settling time (s), and steady-state error.

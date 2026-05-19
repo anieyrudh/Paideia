@@ -5,8 +5,13 @@ test("renders the first SUTD curriculum wrapper container", async ({ page }) => 
 
   await expect(page.getByRole("heading", { name: "SUTD curriculum wrapper substrate" })).toBeVisible();
   const status = page.getByLabel("SUTD shell status");
-  await expect(status).toContainText("1");
+  await expect(status).toContainText("2");
   await expect(status.getByText("product containers wired", { exact: true })).toBeVisible();
+
+  await page.getByRole("button", { name: /EPD/ }).click();
+  await expect(page.getByRole("heading", { name: "PID Step Response" })).toBeVisible();
+
+  await page.getByRole("button", { name: /ESD/ }).click();
   await expect(page.getByRole("heading", { name: "Linear Programming Feasible Region" })).toBeVisible();
 });
 
