@@ -96,3 +96,17 @@ Merge only when P0 is zero and P1 is resolved or explicitly deferred in `TECHNIC
 | Shared circuits | `shared.circuits.circuit-phasor-reasoning` | `ready-for-build` | `core/circuits`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 
 Build these as separate PRs. If several are active at once, merge one, sync the others with `main`, regenerate graph, rerun full checks, then merge the next.
+
+## Next Reserve Wave
+
+These entries are approved for assignment after the current four-track wave has active workers. They are still one-container-per-PR builds and must be claimed by exactly one branch before implementation starts.
+
+| Track | Queue id | Starting status | Required kernels |
+| --- | --- | --- | --- |
+| Shared probability | `shared.probability.bayes-updating` | `ready-for-build` | `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| Shared probability | `shared.probability.central-limit-theorem` | `ready-for-build` | `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| Shared math | `shared.linear-algebra.eigenvector-transformations` | `ready-for-build` | `core/sim-runtime`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+| Shared math | `shared.dynamical-systems.ode-phase-portrait` | `ready-for-build` | `core/sim-runtime`, `core/dynamical-systems`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+| Shared optimisation | `shared.optimization.gradient-descent-landscape` | `ready-for-build` | `core/optimization`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+| A-Level Physics | `alevel.physics.circuits` | `ready-for-build` | `core/sim-runtime`, `core/circuits`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| A-Level Math | `alevel.math.probability-statistics` | `ready-for-build` | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
