@@ -1,0 +1,7 @@
+state_labels:
+  kp: "Proportional gain"
+  ki: "Integral gain"
+  kd: "Derivative gain"
+  overshoot: "Overshoot (%)"
+  settlingTime: "Settling time (s)"
+  steadyStateError: "Steady-state error"

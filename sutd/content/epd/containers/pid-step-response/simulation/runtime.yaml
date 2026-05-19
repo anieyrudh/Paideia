@@ -1,0 +1,4 @@
+runtime:
+  prediction_gate: required
+  initial_stage: predict
+  reveal_stage: observe
