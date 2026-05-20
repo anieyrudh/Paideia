@@ -1,0 +1,26 @@
+# Circuits Mindmap
+
+- Circuits
+  - Quantities
+    - Current, A
+    - Potential difference, V
+    - Resistance, ohm
+    - Power, W
+  - Series paths
+    - Same current
+    - Resistances add
+    - Voltage divides
+  - Parallel paths
+    - Same potential difference
+    - Conductances add
+    - Currents split and recombine
+  - Problem strategy
+    - Mark junctions
+    - Reduce parallel groups
+    - Add series parts
+    - Use Ohm's law
+    - Check power and units
+  - Misconceptions
+    - Current is used up
+    - Voltage fixes current
+    - More resistors always means more total resistance

@@ -15,6 +15,9 @@
       "path": "../../../core/content-schema"
     },
     {
+      "path": "../../../core/circuits"
+    },
+    {
       "path": "../../../core/function-eval"
     },
     {

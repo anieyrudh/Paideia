@@ -1,0 +1,37 @@
+schema_version: "1.0.0"
+concept_id: circuits
+prerequisites:
+  - id: physical-quantities-and-units
+    title: "Physical Quantities and Units"
+    relationship: "Units for current, voltage, resistance, power, and energy transfer."
+    status: available
+downstream:
+  - id: alternating-current
+    title: "Alternating Current"
+    relationship: "Extends resistance ideas to time-varying current, rms values, and reactance."
+    status: planned
+  - id: electromagnetism
+    title: "Electromagnetism"
+    relationship: "Uses current as the source of magnetic effects."
+    status: planned
+siblings:
+  - id: work-energy-power
+    title: "Work, Energy, and Power"
+    relationship: "Power in circuits is another rate of energy transfer."
+    status: available
+misconception_graph:
+  nodes:
+    - id: current-used-up
+      label: "Current is used up by components"
+    - id: voltage-fixes-current
+      label: "A fixed-voltage battery fixes current"
+    - id: any-resistor-increases-resistance
+      label: "Adding any resistor always increases total resistance"
+  edges:
+    - from: voltage-fixes-current
+      to: any-resistor-increases-resistance
+      label: "hides equivalent-resistance reasoning"
+    - from: current-used-up
+      to: voltage-fixes-current
+      label: "confuses energy transfer with charge flow"
+mermaid_source: graph.mmd

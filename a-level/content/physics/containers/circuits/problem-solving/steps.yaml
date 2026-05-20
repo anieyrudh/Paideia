@@ -1,0 +1,19 @@
+steps:
+  - id: mark-nodes
+    label: "Mark the two nodes across each branch."
+    prompt: "Which components share the same potential difference?"
+  - id: reduce-parallel
+    label: "Reduce each parallel branch by adding conductances."
+    prompt: "Compute the equivalent resistance of the parallel group."
+  - id: add-series
+    label: "Add the series resistance to the parallel equivalent."
+    prompt: "Find the total resistance seen by the supply."
+  - id: find-total-current
+    label: "Use Ohm's law for the supply current."
+    prompt: "Use I = V / R_total with units."
+  - id: split-current
+    label: "Use branch voltage to find each branch current."
+    prompt: "Apply I = V_branch / R_branch."
+  - id: check
+    label: "Check current conservation and power units."
+    prompt: "Do the branch currents add to the supply current?"

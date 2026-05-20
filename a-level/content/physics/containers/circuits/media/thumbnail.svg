@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" role="img" aria-labelledby="title desc">
+  <title id="title">Series-parallel circuit thumbnail</title>
+  <desc id="desc">A voltage source feeding one series resistor and two parallel branch resistors.</desc>
+  <rect width="480" height="270" rx="24" fill="#f8fbff"/>
+  <path d="M92 72v126h296V72h-86" fill="none" stroke="#344054" stroke-width="8" stroke-linecap="round"/>
+  <path d="M92 72h98" fill="none" stroke="#344054" stroke-width="8" stroke-linecap="round"/>
+  <rect x="190" y="55" width="92" height="34" rx="6" fill="#7c3aed"/>
+  <path d="M282 72v52h55" fill="none" stroke="#344054" stroke-width="8" stroke-linecap="round"/>
+  <path d="M282 72v101h55" fill="none" stroke="#344054" stroke-width="8" stroke-linecap="round"/>
+  <rect x="337" y="107" width="86" height="34" rx="6" fill="#059669"/>
+  <rect x="337" y="156" width="86" height="34" rx="6" fill="#d97706"/>
+  <circle cx="92" cy="135" r="28" fill="#2563eb"/>
+  <text x="92" y="143" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#fff">V</text>
+  <text x="212" y="48" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#10201a">R1</text>
+  <text x="365" y="101" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#10201a">R2</text>
+  <text x="365" y="218" font-family="Arial, sans-serif" font-size="18" font-weight="700" fill="#10201a">R3</text>
+</svg>

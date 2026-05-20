@@ -1,0 +1,14 @@
+graph TD
+  units["Physical quantities and units"] --> circuits["Circuits"]
+  circuits --> ac["Alternating current"]
+  circuits --> em["Electromagnetism"]
+  wep["Work, energy, and power"] --- circuits
+  current["Current"] --> series["Series: same current"]
+  pd["Potential difference"] --> parallel["Parallel: same voltage"]
+  series --> equivalent["Equivalent resistance"]
+  parallel --> equivalent
+  equivalent --> ohm["Ohm's law"]
+  ohm --> power["Power transfer"]
+  misconception1["Current is used up"] -.-> current
+  misconception2["Voltage fixes current"] -.-> ohm
+  misconception3["Any added resistor increases total resistance"] -.-> parallel

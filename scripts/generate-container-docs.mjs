@@ -162,7 +162,8 @@ function renderReadme(containerDir, manifest, conceptMarkdown, simulation) {
   const prerequisites = bulletList(asList(manifest.prerequisites).map((item) => `\`${item}\``));
   const transfers = bulletList(
     asList(manifest.transfer_problems).map(
-      (problem) => `\`${problem.id}\` - ${problem.surface_form ?? "transfer problem"}`,
+      (problem) =>
+        `\`${problem.rubric_path ?? problem.id}\` - ${problem.surface_form ?? "transfer problem"}`,
     ),
   );
   const whatStudentDoes = simulation
