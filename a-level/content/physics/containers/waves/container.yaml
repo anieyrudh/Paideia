@@ -1,0 +1,122 @@
+schema_version: "1.0.0"
+id: waves
+aliases:
+  - wave behaviour
+  - interference
+  - superposition
+branch: a-level
+subject: physics
+level: "H2"
+module: "Waves"
+title: "Waves"
+one_line_summary: "Explore how two waves combine when their displacements meet at the same place and time."
+syllabus_ref: "9478 / Section IV / Waves"
+prerequisites:
+  - physical-quantities-and-units
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    Two identical waves meet in phase. Before revealing the lab, what happens to the displacement where their crests overlap?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "They cancel to zero"
+      - "They add to double the displacement"
+      - "The wavelength doubles"
+      - "The frequency halves"
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: noise-cancellation
+    prompt: |
+      Noise-cancelling headphones send a sound wave that is nearly opposite in phase to the incoming noise. Explain which displacement changes and which wave properties remain the same.
+    surface_form: "noise cancellation"
+    same_concept_check: "Same concept: resultant displacement is the sum of the individual wave displacements at the same point and time."
+    rubric_path: problem-solving/noise-cancellation.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-19"
+      author: "Codex"
+      summary: "Built A-Level waves product slice using core/function-eval, charting, sim-runtime, prediction-gate, and ui-sim."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-20"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-20"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Amplitude and wavelength are interchangeable"
+    description: "Learners may think a larger resultant displacement means the wavelength has increased."
+    evidence_source: "OpenStax College Physics 2e, Chapter 16 Wave Superposition and Interference."
+    surface_in_predict: false
+  - name: "Constructive interference changes the frequency"
+    description: "Learners may treat a larger resultant displacement as a change in the timing of the wave rather than a displacement sum."
+    evidence_source: "OpenStax College Physics 2e, Chapter 16 Wave Superposition and Interference."
+    surface_in_predict: false
+  - name: "Destructive interference destroys energy"
+    description: "Learners may say a zero resultant means waves or energy disappear instead of recognising local cancellation of displacement."
+    evidence_source: "OpenStax College Physics 2e, Chapter 16 Wave Superposition and Interference."
+    surface_in_predict: true
+sources:
+  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
+    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf"
+    publication_year: 2025
+    license: "Copyright MOE & Cambridge University Press & Assessment"
+    seab_alignment: matches
+  - citation: "OpenStax. College Physics 2e, Chapter 16 Wave Superposition and Interference. OpenStax, 2022."
+    url: "https://openstax.org/books/college-physics-2e/pages/16-introduction-to-waves"
+    publication_year: 2022
+    license: "CC BY 4.0"
+    seab_alignment: matches
+language: en

@@ -6,7 +6,8 @@ import GeneratedSim2MomentumMomentumCollisionLab from "@paideia/a-level-physics-
 import GeneratedSim3PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
 import GeneratedSim4ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
 import GeneratedSim5ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
-import GeneratedSim6WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
+import GeneratedSim6WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
+import GeneratedSim7WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -117,6 +118,15 @@ export const knowledgeGraph = {
     status: "reviewed",
   },
   {
+    id: "a-level/physics/waves",
+    conceptId: "waves",
+    title: "Waves",
+    subject: "physics",
+    level: "H2",
+    module: "Waves",
+    status: "reviewed",
+  },
+  {
     id: "a-level/physics/work-energy-power",
     conceptId: "work-energy-power",
     title: "Work, Energy, Power",
@@ -149,6 +159,10 @@ export const knowledgeGraph = {
   { from: "a-level/physics/scalars-and-vectors", to: "a-level/physics/kinematics-in-one-dimension", kind: "downstream" },
   { from: "a-level/physics/scalars-and-vectors", to: "a-level/physics/forces-and-newtons-laws", kind: "downstream" },
   { from: "a-level/physics/scalars-and-vectors", to: "a-level/physics/resolving-vectors", kind: "sibling" },
+  { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/waves", kind: "prerequisite" },
+  { from: "a-level/physics/waves", to: "a-level/physics/oscillations", kind: "downstream" },
+  { from: "a-level/physics/waves", to: "a-level/physics/stationary-waves", kind: "downstream" },
+  { from: "a-level/physics/waves", to: "a-level/physics/diffraction", kind: "sibling" },
   { from: "a-level/physics/forces-and-equilibrium", to: "a-level/physics/work-energy-power", kind: "prerequisite" },
   { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/work-energy-power", kind: "prerequisite" },
   { from: "a-level/physics/work-energy-power", to: "a-level/physics/momentum", kind: "downstream" },
@@ -535,6 +549,70 @@ export const containers = [
     ],
   },
   {
+    id: "a-level/physics/waves",
+    branch: "a-level",
+    subject: "Physics",
+    level: "H2",
+    module: "Waves",
+    title: "Waves",
+    summary: "Explore how two waves combine when their displacements meet at the same place and time.",
+    syllabusRef: "9478 / Section IV / Waves",
+    status: "reviewed",
+    packageId: "waves",
+    simId: "wave-superposition-lab",
+    predictPrompt: "Two identical waves meet in phase. Before revealing the lab, what happens to the displacement where their crests overlap?",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "Amplitude and wavelength are interchangeable",
+      "Constructive interference changes the frequency",
+      "Destructive interference destroys energy",
+    ],
+    transferProblem: "Noise-cancelling headphones send a sound wave that is nearly opposite in phase to the incoming noise. Explain which displacement changes and which wave properties remain the same.",
+    firstPrinciples: "A wave transfers energy and information by a repeating disturbance. At one instant, a point on the medium has a displacement from its rest position. When two waves overlap at the same place and time, the observed displacement is the sum of the individual displacements.",
+    keyDefinitions: [
+      "Amplitude: maximum displacement from the rest position.",
+      "Wavelength: distance between matching points on neighbouring cycles.",
+      "Period: time taken for one complete cycle.",
+      "Frequency: cycles per second, measured in hertz.",
+      "Phase difference: how far one wave is shifted through the cycle relative to another.",
+    ],
+    canonicalExamples: [
+      "Crest meeting crest gives constructive interference and a larger displacement.",
+      "Crest meeting trough gives destructive interference and can produce zero local displacement.",
+      "Noise-cancelling headphones use an approximately opposite-phase sound wave to reduce resultant displacement at the ear.",
+    ],
+    problemSolvingSteps: [
+      "Choose one position and time",
+      "Use phase to decide the sign",
+      "Add displacements",
+      "Keep wave properties separate",
+      "Name the interference",
+    ],
+    prerequisites: [
+      "Physical Quantities and Units",
+    ],
+    downstream: [
+      "Oscillations",
+      "Stationary Waves",
+    ],
+    siblings: [
+      "Diffraction",
+    ],
+    sims: [
+      {
+        id: "wave-superposition-lab",
+        harnessId: "a-level/physics/waves/wave-superposition-lab",
+        title: "Wave Superposition Lab",
+        interactionType: "animation-playback",
+        component: GeneratedSim6WavesWaveSuperpositionLab,
+      },
+    ],
+  },
+  {
     id: "a-level/physics/work-energy-power",
     branch: "a-level",
     subject: "Physics",
@@ -595,7 +673,7 @@ export const containers = [
         harnessId: "a-level/physics/work-energy-power/energy-transfer-lab",
         title: "Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim6WorkEnergyPowerEnergyTransferLab,
+        component: GeneratedSim7WorkEnergyPowerEnergyTransferLab,
       },
     ],
   }

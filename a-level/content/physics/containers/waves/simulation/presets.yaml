@@ -1,0 +1,37 @@
+presets:
+  - id: crest-meets-crest
+    label: "Crest meets crest"
+    state:
+      amplitudeMetres: 1.5
+      wavelengthMetres: 4
+      periodSeconds: 2
+      phaseDegrees: 0
+      samplePositionMetres: 1
+      timeSeconds: 0
+  - id: crest-meets-trough
+    label: "Crest meets trough"
+    state:
+      amplitudeMetres: 1.5
+      wavelengthMetres: 4
+      periodSeconds: 2
+      phaseDegrees: 180
+      samplePositionMetres: 1
+      timeSeconds: 0
+  - id: part-way-out-of-step
+    label: "Part-way out of step"
+    state:
+      amplitudeMetres: 1.5
+      wavelengthMetres: 4
+      periodSeconds: 2
+      phaseDegrees: 90
+      samplePositionMetres: 1
+      timeSeconds: 0
+  - id: shorter-wavelength
+    label: "Shorter wavelength"
+    state:
+      amplitudeMetres: 1.5
+      wavelengthMetres: 2.5
+      periodSeconds: 1.25
+      phaseDegrees: 0
+      samplePositionMetres: 1
+      timeSeconds: 0

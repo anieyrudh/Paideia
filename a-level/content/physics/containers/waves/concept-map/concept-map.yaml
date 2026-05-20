@@ -1,0 +1,37 @@
+schema_version: "1.0.0"
+concept_id: waves
+prerequisites:
+  - id: physical-quantities-and-units
+    title: "Physical Quantities and Units"
+    relationship: "Wave quantities need clear units for displacement, wavelength, period, and frequency."
+    status: available
+downstream:
+  - id: oscillations
+    title: "Oscillations"
+    relationship: "Oscillations provide the repeating motion that can generate waves."
+    status: planned
+  - id: stationary-waves
+    title: "Stationary Waves"
+    relationship: "Stationary waves are built from superposition of waves travelling in opposite directions."
+    status: planned
+siblings:
+  - id: diffraction
+    title: "Diffraction"
+    relationship: "Diffraction also depends on wavelength and phase relationships."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: amplitude-wavelength-swap
+      label: "Amplitude and wavelength confused"
+    - id: frequency-changes
+      label: "Interference changes frequency"
+    - id: energy-destroyed
+      label: "Destructive interference destroys energy"
+  edges:
+    - from: amplitude-wavelength-swap
+      to: frequency-changes
+      label: "both confuse displacement size with wave cycle properties"
+    - from: energy-destroyed
+      to: frequency-changes
+      label: "both overinterpret a local resultant as a change to the waves"
+mermaid_source: graph.mmd

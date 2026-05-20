@@ -1,0 +1,64 @@
+id: wave-superposition-lab
+title: "Wave Superposition Lab"
+interaction_type: animation-playback
+kernel_deps:
+  - core/sim-runtime
+  - core/content-schema
+  - core/function-eval
+  - core/charting
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+
+predict:
+  prompt: |
+    Two identical waves meet in phase. Before revealing the lab, what happens to the displacement where their crests overlap?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "They cancel to zero"
+      - "They add to double the displacement"
+      - "The wavelength doubles"
+      - "The frequency halves"
+    correct_index: 1
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: amplitude
+      label: "Amplitude"
+      kind: slider
+      kernel_binding: state.amplitudeMetres
+      bounds: { min: 0.2, max: 3, step: 0.1 }
+    - id: wavelength
+      label: "Wavelength"
+      kind: slider
+      kernel_binding: state.wavelengthMetres
+      bounds: { min: 1, max: 8, step: 0.25 }
+    - id: period
+      label: "Period"
+      kind: slider
+      kernel_binding: state.periodSeconds
+      bounds: { min: 0.5, max: 6, step: 0.25 }
+    - id: phase
+      label: "Phase difference"
+      kind: slider
+      kernel_binding: state.phaseDegrees
+      bounds: { min: 0, max: 180, step: 15 }
+
+observe:
+  renderers:
+    - id: wave-superposition-lab
+      module: "@paideia/a-level-physics-sims/waves"
+      symbol: WavesSim
+      props_binding: |
+        Show two same-frequency waves, their resultant displacement, phase comparison, formula substitution, and interference condition.
+
+explain:
+  prompt: |
+    Why do identical waves reinforce when their displacements point the same way, and cancel when they point opposite ways?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Amplitude and wavelength are interchangeable"
+    - "Constructive interference changes the frequency"
+    - "Destructive interference destroys energy"

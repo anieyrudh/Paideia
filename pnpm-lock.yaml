@@ -72,6 +72,9 @@ importers:
       '@paideia/content-schema':
         specifier: workspace:*
         version: link:../../../core/content-schema
+      '@paideia/function-eval':
+        specifier: workspace:*
+        version: link:../../../core/function-eval
       '@paideia/linear-algebra':
         specifier: workspace:*
         version: link:../../../core/linear-algebra
@@ -97,6 +100,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.7(@types/react@18.3.28)
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
       jsdom:
         specifier: ^25.0.0
         version: 25.0.1

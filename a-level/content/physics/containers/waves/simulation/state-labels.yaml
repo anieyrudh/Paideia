@@ -1,0 +1,22 @@
+state_labels:
+  amplitudeMetres:
+    label: "Amplitude"
+    meaning: "Maximum displacement of each individual wave from the rest position."
+  wavelengthMetres:
+    label: "Wavelength"
+    meaning: "Distance between matching points on one wave, such as crest to crest."
+  periodSeconds:
+    label: "Period"
+    meaning: "Time for one complete wave cycle."
+  phaseDegrees:
+    label: "Phase difference"
+    meaning: "How far the second wave is shifted through the cycle relative to the first wave."
+  frequencyHertz:
+    label: "Frequency"
+    meaning: "Number of wave cycles per second, calculated as one divided by period."
+  resultantAtSampleMetres:
+    label: "Resultant displacement"
+    meaning: "Sum of the two wave displacements at the same position and time."
+  envelopeAmplitudeMetres:
+    label: "Resultant amplitude"
+    meaning: "Largest possible resultant displacement for two equal-amplitude waves with this phase difference."

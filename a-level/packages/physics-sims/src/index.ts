@@ -69,3 +69,18 @@ export type {
   MomentumState,
   MomentumTracePoint,
 } from "./momentum.js";
+
+export {
+  WaveSuperpositionDiagram,
+  WavesSim,
+  wavesModel,
+  wavesPackageId,
+  wavesSimId,
+  wavesSpec,
+} from "./waves.js";
+export type {
+  WaveTracePoint,
+  WavesModel,
+  WavesPredictionEvent,
+  WavesState,
+} from "./waves.js";

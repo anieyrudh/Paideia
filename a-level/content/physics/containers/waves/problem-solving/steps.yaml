@@ -1,0 +1,17 @@
+steps:
+  - id: same-place-time
+    label: "Choose one position and time"
+    check: "Both wave displacements are evaluated at the same x and t."
+  - id: phase-sign
+    label: "Use phase to decide the sign"
+    check: "In phase means same sign; opposite phase means opposite sign."
+  - id: add-displacements
+    label: "Add displacements"
+    check: "The resultant displacement equals the sum of the two individual displacements at the same position and time."
+    formula: "y_resultant = y1 + y2"
+  - id: keep-properties-separate
+    label: "Keep wave properties separate"
+    check: "A resultant displacement change does not automatically change wavelength, period, or frequency."
+  - id: name-interference
+    label: "Name the interference"
+    check: "The final explanation states constructive, destructive, or partial interference."

@@ -13,17 +13,19 @@
     "./measurement-uncertainty": "./src/measurement-uncertainty.tsx",
     "./kinematics-one-dimension": "./src/kinematics-one-dimension.tsx",
     "./work-energy-power": "./src/work-energy-power.tsx",
-    "./momentum": "./src/momentum.tsx"
+    "./momentum": "./src/momentum.tsx",
+    "./waves": "./src/waves.tsx"
   },
   "scripts": {
     "build": "tsc -b",
-    "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts src/measurement-uncertainty.test.ts src/kinematics-one-dimension.test.ts src/forces-and-equilibrium.test.ts src/work-energy-power.test.ts src/momentum.test.ts",
+    "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts src/measurement-uncertainty.test.ts src/kinematics-one-dimension.test.ts src/forces-and-equilibrium.test.ts src/work-energy-power.test.ts src/momentum.test.ts src/waves.test.ts",
     "lint": "tsc -b --pretty false",
     "typecheck": "tsc -b --pretty false"
   },
   "dependencies": {
     "@paideia/charting": "workspace:*",
     "@paideia/content-schema": "workspace:*",
+    "@paideia/function-eval": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/mechanics": "workspace:*",
     "@paideia/prediction-gate": "workspace:*",
@@ -37,6 +39,7 @@
   "devDependencies": {
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
+    "fast-check": "^3.23.2",
     "jsdom": "^25.0.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",

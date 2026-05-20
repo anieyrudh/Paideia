@@ -1731,7 +1731,7 @@ entries:
   - id: alevel.physics.waves
     title: "Waves"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level waves
     discipline: physics
     reuse_status: curriculum-wrapper

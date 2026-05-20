@@ -1,0 +1,33 @@
+controls:
+  - id: amplitude
+    label: "Amplitude"
+    kind: slider
+    unit: m
+    default: 1.5
+    min: 0.2
+    max: 3
+    step: 0.1
+  - id: wavelength
+    label: "Wavelength"
+    kind: slider
+    unit: m
+    default: 4
+    min: 1
+    max: 8
+    step: 0.25
+  - id: period
+    label: "Period"
+    kind: slider
+    unit: s
+    default: 2
+    min: 0.5
+    max: 6
+    step: 0.25
+  - id: phase
+    label: "Phase difference"
+    kind: slider
+    unit: deg
+    default: 0
+    min: 0
+    max: 180
+    step: 15

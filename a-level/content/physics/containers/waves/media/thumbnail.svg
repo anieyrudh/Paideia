@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Work energy power thumbnail" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="28" fill="#f8fbff"/>
+  <path d="M74 244h492" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+  <rect x="182" y="176" width="112" height="66" rx="12" fill="#f0b429"/>
+  <circle cx="208" cy="248" r="13" fill="#10201a"/>
+  <circle cx="268" cy="248" r="13" fill="#10201a"/>
+  <path d="M238 176l160-88" stroke="#1f5f8b" stroke-width="14" stroke-linecap="round"/>
+  <path d="M382 84l34-3-17 30z" fill="#1f5f8b"/>
+  <path d="M106 244h394" stroke="#027a48" stroke-width="10" stroke-linecap="round"/>
+  <path d="M494 244l-26-16v32z" fill="#027a48"/>
+  <text x="76" y="78" fill="#10201a" font-family="Arial, sans-serif" font-size="42" font-weight="700">W = F s cos(theta)</text>
+  <text x="78" y="126" fill="#315348" font-family="Arial, sans-serif" font-size="28">wave behaviour and power</text>
+</svg>
