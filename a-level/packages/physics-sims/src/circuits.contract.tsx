@@ -93,7 +93,7 @@ export const runCircuitsGateContract = () => {
       );
       await click(buttonByText("Commit prediction"));
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeTruthy();
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
       expect(document.body.textContent).toContain("Total current");
       expect(document.body.textContent).toContain("0.205 A");
       expect(document.body.textContent).toContain("R_p}");

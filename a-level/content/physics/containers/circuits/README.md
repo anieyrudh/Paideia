@@ -28,7 +28,7 @@ An electric circuit is a closed conducting path in which a potential difference 
 - Mindmap: `concept-map/mindmap.md`
 - Problem-solving algorithm: `problem-solving/algorithm.md`
 - Transfer problems:
-  - `phone-charger-current` - phone charger branch circuit
+  - `problem-solving/phone-charger-current.md` - phone charger branch circuit
 
 ## Citations and provenance
 
