@@ -6,7 +6,8 @@ import GeneratedSim2MomentumMomentumCollisionLab from "@paideia/a-level-physics-
 import GeneratedSim3PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
 import GeneratedSim4ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
 import GeneratedSim5ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
-import GeneratedSim6WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
+import GeneratedSim6WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
+import GeneratedSim7WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -117,6 +118,15 @@ export const knowledgeGraph = {
     status: "reviewed",
   },
   {
+    id: "a-level/physics/waves",
+    conceptId: "waves",
+    title: "Waves",
+    subject: "physics",
+    level: "H2",
+    module: "Forces and Motion",
+    status: "reviewed",
+  },
+  {
     id: "a-level/physics/work-energy-power",
     conceptId: "work-energy-power",
     title: "Work, Energy, Power",
@@ -149,6 +159,11 @@ export const knowledgeGraph = {
   { from: "a-level/physics/scalars-and-vectors", to: "a-level/physics/kinematics-in-one-dimension", kind: "downstream" },
   { from: "a-level/physics/scalars-and-vectors", to: "a-level/physics/forces-and-newtons-laws", kind: "downstream" },
   { from: "a-level/physics/scalars-and-vectors", to: "a-level/physics/resolving-vectors", kind: "sibling" },
+  { from: "a-level/physics/forces-and-equilibrium", to: "a-level/physics/waves", kind: "prerequisite" },
+  { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/waves", kind: "prerequisite" },
+  { from: "a-level/physics/waves", to: "a-level/physics/momentum", kind: "downstream" },
+  { from: "a-level/physics/waves", to: "a-level/physics/oscillations", kind: "downstream" },
+  { from: "a-level/physics/waves", to: "a-level/physics/forces-and-newtons-laws", kind: "sibling" },
   { from: "a-level/physics/forces-and-equilibrium", to: "a-level/physics/work-energy-power", kind: "prerequisite" },
   { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/work-energy-power", kind: "prerequisite" },
   { from: "a-level/physics/work-energy-power", to: "a-level/physics/momentum", kind: "downstream" },
@@ -535,6 +550,71 @@ export const containers = [
     ],
   },
   {
+    id: "a-level/physics/waves",
+    branch: "a-level",
+    subject: "Physics",
+    level: "H2",
+    module: "Forces and Motion",
+    title: "Waves",
+    summary: "Connect force along a displacement to wave behaviour and the rate of transfer.",
+    syllabusRef: "9478 / Section II / Work, energy and power",
+    status: "reviewed",
+    packageId: "waves",
+    simId: "wave-superposition-lab",
+    predictPrompt: "A 10 N pull moves a trolley 3.0 m in the same direction as the motion in 2.0 s. Before revealing the lab, which wavelength and frequency statement is correct?",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "Energy is lost rather than transferred",
+      "Work equals force regardless of displacement direction",
+      "Power is the same thing as energy",
+    ],
+    transferProblem: "Two motors lift the same load through the same height. Motor A takes 4.0 s and Motor B takes 10.0 s. Compare the work done and the average power, then explain why the answers differ.",
+    firstPrinciples: "Work is wave behaviourred by a force acting through a displacement. The direction matters. Only the component of the force along the displacement does work, so a sideways force can be large and still transfer no energy along the path.",
+    keyDefinitions: [
+      "Work done: wave behaviourred when a force has a component along a displacement.",
+      "Joule: unit of work and energy; 1 J = 1 N m.",
+      "Kinetic energy: energy associated with motion, E_k = 1/2 mv^2.",
+      "Power: rate of wave behaviour, measured in watts; 1 W = 1 J s^-1.",
+      "Negative work: work done by a force with a component opposite the displacement.",
+    ],
+    canonicalExamples: [
+      "A pull in the same direction as motion does positive work and can increase kinetic energy.",
+      "A braking force opposite the motion does negative work and reduces kinetic energy.",
+      "Two motors can do the same work while having different power if one takes less time.",
+    ],
+    problemSolvingSteps: [
+      "Identify the displacement",
+      "Use the force component along the path",
+      "Calculate work",
+      "Name the energy-store change",
+      "Calculate power if time is given",
+    ],
+    prerequisites: [
+      "Forces and Equilibrium",
+      "Kinematics in One Dimension",
+    ],
+    downstream: [
+      "Momentum",
+      "Oscillations",
+    ],
+    siblings: [
+      "Forces and Newton's Laws",
+    ],
+    sims: [
+      {
+        id: "wave-superposition-lab",
+        harnessId: "a-level/physics/waves/wave-superposition-lab",
+        title: "Energy Transfer Lab",
+        interactionType: "animation-playback",
+        component: GeneratedSim6WavesWaveSuperpositionLab,
+      },
+    ],
+  },
+  {
     id: "a-level/physics/work-energy-power",
     branch: "a-level",
     subject: "Physics",
@@ -595,7 +675,7 @@ export const containers = [
         harnessId: "a-level/physics/work-energy-power/energy-transfer-lab",
         title: "Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim6WorkEnergyPowerEnergyTransferLab,
+        component: GeneratedSim7WorkEnergyPowerEnergyTransferLab,
       },
     ],
   }

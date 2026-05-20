@@ -1,0 +1,123 @@
+schema_version: "1.0.0"
+id: waves
+aliases:
+  - work done
+  - wave behaviour
+  - average power
+branch: a-level
+subject: physics
+level: "H2"
+module: "Forces and Motion"
+title: "Waves"
+one_line_summary: "Connect force along a displacement to wave behaviour and the rate of transfer."
+syllabus_ref: "9478 / Section II / Work, energy and power"
+prerequisites:
+  - forces-and-equilibrium
+  - kinematics-in-one-dimension
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A 10 N pull moves a trolley 3.0 m in the same direction as the motion in 2.0 s. Before revealing the lab, which work and average power statement is correct?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "0 J and 0 W"
+      - "30 J and 15 W"
+      - "30 J and 30 W"
+      - "60 J and 15 W"
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: lift-motor-power
+    prompt: |
+      Two motors lift the same load through the same height. Motor A takes 4.0 s and Motor B takes 10.0 s. Compare the work done and the average power, then explain why the answers differ.
+    surface_form: "lift motor comparison"
+    same_concept_check: "Same concept: work is transferred by force over displacement; power is the rate of that transfer."
+    rubric_path: problem-solving/lift-motor-power.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-19"
+      author: "Codex"
+      summary: "Built A-Level waves product slice using core/mechanics, charting, sim-runtime, prediction-gate, and ui-sim."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-19"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-19"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Energy is lost rather than transferred"
+    description: "Learners may describe energy as disappearing when negative work reduces kinetic energy instead of tracking transfer out of the kinetic store."
+    evidence_source: "OpenStax University Physics Volume 1, Section 7.1 Work."
+    surface_in_predict: false
+  - name: "Work equals force regardless of displacement direction"
+    description: "Learners may multiply force by displacement without using the force component along the displacement, or may choose the 30 W distractor by treating power as the same quantity as work."
+    evidence_source: "OpenStax University Physics Volume 1, Section 7.1 Work."
+    surface_in_predict: false
+  - name: "Power is the same thing as energy"
+    description: "Learners may choose a work answer without dividing by time, or may compare power outputs without considering the time taken for the same wave behaviour."
+    evidence_source: "OpenStax University Physics Volume 1, Section 7.4 Power."
+    surface_in_predict: true
+sources:
+  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
+    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf"
+    publication_year: 2025
+    license: "Copyright MOE & Cambridge University Press & Assessment"
+    seab_alignment: matches
+  - citation: "Moebs, W., Ling, S. J., and Sanny, J. University Physics Volume 1, Chapter 7 Work and Kinetic Energy. OpenStax, 2016."
+    url: "https://openstax.org/books/university-physics-volume-1/pages/7-introduction"
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: matches
+language: en

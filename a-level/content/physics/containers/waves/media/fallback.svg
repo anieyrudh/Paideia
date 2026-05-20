@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Work formula fallback" viewBox="0 0 640 360">
+  <rect width="640" height="360" fill="#fffdf7"/>
+  <rect x="60" y="76" width="520" height="210" rx="22" fill="#10201a"/>
+  <text x="104" y="150" fill="#ffffff" font-family="Arial, sans-serif" font-size="42" font-weight="700">Work depends on direction</text>
+  <text x="104" y="208" fill="#f0b429" font-family="Arial, sans-serif" font-size="36">W = F s cos(theta)</text>
+  <text x="104" y="252" fill="#d7f0e6" font-family="Arial, sans-serif" font-size="28">P = W / t</text>
+</svg>

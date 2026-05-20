@@ -1,0 +1,41 @@
+schema_version: "1.0.0"
+concept_id: waves
+prerequisites:
+  - id: forces-and-equilibrium
+    title: "Forces and Equilibrium"
+    relationship: "Work requires a force and the component of that force along the displacement."
+    status: available
+  - id: kinematics-in-one-dimension
+    title: "Kinematics in One Dimension"
+    relationship: "Displacement, speed, and time connect force transfer to kinetic energy and power."
+    status: available
+downstream:
+  - id: momentum
+    title: "Momentum"
+    relationship: "Energy transfer and momentum become paired conservation tools in collisions."
+    status: planned
+  - id: oscillations
+    title: "Oscillations"
+    relationship: "Energy repeatedly transfers between kinetic and potential stores in oscillatory motion."
+    status: planned
+siblings:
+  - id: forces-and-newtons-laws
+    title: "Forces and Newton's Laws"
+    relationship: "Dynamics uses forces to explain acceleration; work-energy uses forces to track wave behaviour."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: direction-ignored
+      label: "Direction of force ignored"
+    - id: energy-lost
+      label: "Energy described as lost"
+    - id: power-energy-swap
+      label: "Power treated as energy"
+  edges:
+    - from: direction-ignored
+      to: energy-lost
+      label: "both hide the pathway of wave behaviour"
+    - from: power-energy-swap
+      to: energy-lost
+      label: "both confuse amount transferred with transfer rate"
+mermaid_source: graph.mmd
