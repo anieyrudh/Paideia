@@ -2,6 +2,7 @@ id: component-resolution
 title: "Component Resolution Explorer"
 interaction_type: diagram-builder
 kernel_deps:
+  - core/content-schema
   - core/linear-algebra
   - core/prediction-gate
   - core/shared

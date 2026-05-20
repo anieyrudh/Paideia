@@ -117,9 +117,44 @@ export const MeasurementNotebook = ({ state }: { readonly state: MeasurementStat
 
       <section aria-label="Formula and unit reasoning" className="formula-panel">
         <h3>Formula and unit reasoning</h3>
-        <p className="formula">
-          speed = distance ÷ time = {formatNumber(state.distanceMetres)} m ÷{" "}
-          {formatNumber(state.timeSeconds)} s = {formatNumber(model.speedMetresPerSecond)} m s^-1
+        <pre className="formula-code" aria-label="Speed and uncertainty formula">
+          <code>
+            <span className="formula-var formula-var--blue">v</span>
+            {" = "}
+            <span className="formula-var formula-var--orange">s</span>
+            {" ÷ "}
+            <span className="formula-var formula-var--green">t</span>
+            {"\n"}
+            <span className="formula-var formula-var--blue">percentage uncertainty in v</span>
+            {" = percentage uncertainty in "}
+            <span className="formula-var formula-var--orange">s</span>
+            {" + percentage uncertainty in "}
+            <span className="formula-var formula-var--green">t</span>
+          </code>
+        </pre>
+        <dl className="formula-legend" aria-label="Formula legend">
+          <div>
+            <dt>
+              <span aria-hidden="true" className="legend-swatch legend-swatch--blue" /> v
+            </dt>
+            <dd>speed and speed uncertainty, in m s^-1</dd>
+          </div>
+          <div>
+            <dt>
+              <span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> s
+            </dt>
+            <dd>distance, {formatNumber(state.distanceMetres)} m</dd>
+          </div>
+          <div>
+            <dt>
+              <span aria-hidden="true" className="legend-swatch legend-swatch--green" /> t
+            </dt>
+            <dd>time, {formatNumber(state.timeSeconds)} s</dd>
+          </div>
+        </dl>
+        <p>
+          Substitution: v = {formatNumber(state.distanceMetres)} m ÷{" "}
+          {formatNumber(state.timeSeconds)} s = {formatNumber(model.speedMetresPerSecond)} m s^-1.
         </p>
         <p>
           Unit check: m ÷ s becomes <strong>{model.validEquationUnit}</strong>, so the
@@ -138,7 +173,8 @@ export const MeasurementNotebook = ({ state }: { readonly state: MeasurementStat
       <section aria-label="Uncertainty reasoning" className="uncertainty-panel">
         <h3>Uncertainty reasoning</h3>
         <p>
-          For a division, percentage uncertainties add: {formatPercent(model.distanceRelativeUncertainty)} +{" "}
+          Substitution: percentage uncertainties add for division:{" "}
+          {formatPercent(model.distanceRelativeUncertainty)} +{" "}
           {formatPercent(model.timeRelativeUncertainty)} = {formatPercent(model.combinedRelativeUncertainty)}.
         </p>
         <p>

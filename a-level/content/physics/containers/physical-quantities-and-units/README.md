@@ -28,7 +28,7 @@ A physical quantity is something about the world that can be measured. A measure
 - Mindmap: `concept-map/mindmap.md`
 - Problem-solving algorithm: `problem-solving/algorithm.md`
 - Transfer problems:
-  - `unit-consistency-check` - lab measurement note
+  - `problem-solving/unit-consistency-check.md` - lab measurement note
 
 ## Citations and provenance
 

@@ -7,14 +7,14 @@ test.describe("a-level/physics/waves/wave-superposition-lab prediction-gate", ()
     await mountSim(page, "a-level/physics/waves/wave-superposition-lab");
 
     await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByText("y_{\\text{resultant}}")).toHaveCount(0);
+    await expect(page.getByText("resultant displacement")).toHaveCount(0);
 
     await page.getByRole("button", { name: "Set up wave behaviour" }).click();
     await page.getByRole("button", { name: "Reveal wave behaviour" }).click();
 
     await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
     await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByText("y_{\\text{resultant}}")).toHaveCount(0);
+    await expect(page.getByText("resultant displacement")).toHaveCount(0);
 
     await page.getByLabel("They add to double the displacement").check();
     await page
@@ -25,7 +25,7 @@ test.describe("a-level/physics/waves/wave-superposition-lab prediction-gate", ()
     await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByText("Resultant at marker")).toBeVisible();
     await expect(page.getByText("+3.00 m").first()).toBeVisible();
-    await expect(page.getByText("y_{\\text{resultant}}").first()).toBeVisible();
+    await expect(page.getByText("resultant displacement").first()).toBeVisible();
     await expect(page.getByLabel("Formula legend")).toContainText("amplitude");
   });
 

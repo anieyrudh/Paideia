@@ -7,14 +7,14 @@ test.describe("a-level/physics/circuits/series-parallel-circuit-lab prediction-g
     await mountSim(page, "a-level/physics/circuits/series-parallel-circuit-lab");
 
     await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByText("R_p}").first()).toHaveCount(0);
+    await expect(page.getByText("R_p =").first()).toHaveCount(0);
 
     await page.getByRole("button", { name: "Build circuit" }).click();
     await page.getByRole("button", { name: "Reveal circuit result" }).click();
 
     await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
     await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByText("R_p}").first()).toHaveCount(0);
+    await expect(page.getByText("R_p =").first()).toHaveCount(0);
 
     await page.getByLabel("The total current increases").check();
     await page
@@ -25,7 +25,7 @@ test.describe("a-level/physics/circuits/series-parallel-circuit-lab prediction-g
     await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByText("Total current", { exact: true })).toBeVisible();
     await expect(page.getByText("0.205 A").first()).toBeVisible();
-    await expect(page.getByText("R_p}").first()).toBeVisible();
+    await expect(page.getByText("R_p =").first()).toBeVisible();
   });
 
   test("main controls change visible circuit state before reveal", async ({ page }) => {

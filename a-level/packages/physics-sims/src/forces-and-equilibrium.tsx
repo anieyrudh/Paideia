@@ -183,16 +183,51 @@ export const ForcesAndEquilibriumSim = () => {
         <section className="formula-panel formula-panel--product" aria-label="Formula used">
           <p className="lab-kicker">Why balance works</p>
           <h3>Formula used</h3>
-          <p className="formula">For equilibrium: sum Fx = 0 and sum Fy = 0.</p>
+          <pre className="formula-code" aria-label="Force balance formula">
+            <code>
+              <span className="formula-var formula-var--blue">ΣF horizontal</span>
+              {" = "}
+              <span className="formula-var formula-var--blue">support right</span>
+              {" - "}
+              <span className="formula-var formula-var--orange">left pull</span>
+              {"\n"}
+              <span className="formula-var formula-var--green">ΣF vertical</span>
+              {" = "}
+              <span className="formula-var formula-var--green">support up</span>
+              {" - "}
+              <span className="formula-var formula-var--orange">weight</span>
+              {"\n\nEquilibrium when both resultants are 0 N"}
+            </code>
+          </pre>
           {model.ok ? (
             <>
+              <dl className="formula-legend" aria-label="Formula legend">
+                <div>
+                  <dt>
+                    <span aria-hidden="true" className="legend-swatch legend-swatch--blue" /> sum Fx
+                  </dt>
+                  <dd>horizontal resultant; support right minus the fixed left pull</dd>
+                </div>
+                <div>
+                  <dt>
+                    <span aria-hidden="true" className="legend-swatch legend-swatch--green" /> sum Fy
+                  </dt>
+                  <dd>vertical resultant; support up minus the fixed weight</dd>
+                </div>
+                <div>
+                  <dt>
+                    <span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> fixed forces
+                  </dt>
+                  <dd>left pull {fixedLeftNewtons} N and weight {fixedWeightNewtons} N</dd>
+                </div>
+              </dl>
               <p>
-                sum Fx = right support - left pull = {formatTenths(state.supportRightNewtons)} -{" "}
-                {fixedLeftNewtons} = {formatTenths(model.value.net.x)} N
+                Substitution: sum Fx = {formatTenths(state.supportRightNewtons)} N -{" "}
+                {fixedLeftNewtons} N = {formatTenths(model.value.net.x)} N.
               </p>
               <p>
-                sum Fy = up support - weight = {formatTenths(state.supportUpNewtons)} -{" "}
-                {fixedWeightNewtons} = {formatTenths(model.value.net.y)} N
+                Substitution: sum Fy = {formatTenths(state.supportUpNewtons)} N -{" "}
+                {fixedWeightNewtons} N = {formatTenths(model.value.net.y)} N.
               </p>
               <p className="formula-note">
                 A zero resultant means no acceleration. A non-zero resultant points in the

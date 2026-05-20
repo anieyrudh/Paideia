@@ -28,7 +28,7 @@ A physical quantity is not classified by its unit or by whether its number can b
 - Mindmap: `concept-map/mindmap.md`
 - Problem-solving algorithm: `problem-solving/algorithm.md`
 - Transfer problems:
-  - `field-trip-displacement` - field-trip route
+  - `problem-solving/field-trip-displacement.md` - field-trip route
 
 ## Citations and provenance
 

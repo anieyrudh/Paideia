@@ -354,7 +354,7 @@ export const containers = [
       "Balanced means equal-looking arrows",
       "Zero net force means no forces act",
     ],
-    transferProblem: "A hanging sign is pulled left by 4 N and down by 7 N. Choose the support forces that keep it still, then explain the two independent equilibrium conditions.",
+    transferProblem: "A 12 N hanging sign is held by two identical cables, each angled 35 degrees above the horizontal. Decide whether the sign can be in equilibrium, then state what the horizontal components must do to each other and what the two vertical components must add up to.",
     firstPrinciples: "An object is in equilibrium when all the forces on it cancel. That does not mean there are no forces; it means the horizontal forces sum to zero and the vertical forces sum to zero. If either resultant is non-zero, the object accelerates in that direction.",
     keyDefinitions: [
       "Force: a push or pull measured in newtons.",

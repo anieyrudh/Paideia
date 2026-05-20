@@ -17,6 +17,7 @@
 
 | Sim | Module | Symbols / role |
 |---|---|---|
+| component-resolution | `core/content-schema` | Declared in `simulation/simulation.yaml` |
 | component-resolution | `core/linear-algebra` | Declared in `simulation/simulation.yaml` |
 | component-resolution | `core/prediction-gate` | Declared in `simulation/simulation.yaml` |
 | component-resolution | `core/shared` | Declared in `simulation/simulation.yaml` |
@@ -31,6 +32,7 @@ id: component-resolution
 title: Component Resolution Explorer
 interaction_type: diagram-builder
 kernel_deps:
+  - core/content-schema
   - core/linear-algebra
   - core/prediction-gate
   - core/shared

@@ -81,7 +81,7 @@ export const runKinematicsGateContract = () => {
       await renderSim();
 
       expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("s = ut + 1/2 at^2");
+      expect(document.body.textContent).not.toContain("Substitution: s");
 
       await click(controlByLabel("9.0 m"));
       await change(controlByLabel("Rationale"), "Starting from rest leaves only the acceleration term.");
@@ -90,7 +90,9 @@ export const runKinematicsGateContract = () => {
       expect(document.querySelector("[aria-label='Observation unlocked']")).toBeTruthy();
       expect(document.body.textContent).toContain("Displacement");
       expect(document.body.textContent).toContain("9.00 m");
-      expect(document.body.textContent).toContain("s = ut + 1/2 at^2");
+      expect(document.querySelector("pre[aria-label='Constant acceleration formula']")).toBeTruthy();
+      expect(document.querySelector("[aria-label='Formula legend']")).toBeTruthy();
+      expect(document.body.textContent).toContain("Substitution: s");
     });
 
     it("updates displacement when elapsed time changes", async () => {

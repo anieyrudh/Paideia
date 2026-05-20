@@ -17,6 +17,7 @@
 
 | Sim | Module | Symbols / role |
 |---|---|---|
+| resultant-magnitude | `core/content-schema` | Declared in `simulation/simulation.yaml` |
 | resultant-magnitude | `core/linear-algebra` | Declared in `simulation/simulation.yaml` |
 | resultant-magnitude | `core/prediction-gate` | Declared in `simulation/simulation.yaml` |
 | resultant-magnitude | `core/shared` | Declared in `simulation/simulation.yaml` |
@@ -31,6 +32,7 @@ id: resultant-magnitude
 title: Resultant Magnitude Explorer
 interaction_type: diagram-builder
 kernel_deps:
+  - core/content-schema
   - core/linear-algebra
   - core/prediction-gate
   - core/shared

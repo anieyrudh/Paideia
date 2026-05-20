@@ -28,7 +28,7 @@ Work is energy transferred by a force acting through a displacement. The directi
 - Mindmap: `concept-map/mindmap.md`
 - Problem-solving algorithm: `problem-solving/algorithm.md`
 - Transfer problems:
-  - `lift-motor-power` - lift motor comparison
+  - `problem-solving/lift-motor-power.md` - lift motor comparison
 
 ## Citations and provenance
 

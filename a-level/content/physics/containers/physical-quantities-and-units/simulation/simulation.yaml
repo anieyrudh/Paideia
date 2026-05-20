@@ -2,7 +2,9 @@ id: measurement-uncertainty-lab
 title: "Measurement and Uncertainty Lab"
 interaction_type: decision-matrix
 kernel_deps:
+  - core/content-schema
   - core/prediction-gate
+  - core/shared
   - core/ui-sim
 
 predict:
@@ -51,7 +53,7 @@ observe:
 
 explain:
   prompt: |
-    Why is "2.5" or "2.5 m" not a complete answer for the cart's speed, and how does the unit m s^-1 prove that distance was divided by time?
+    Why is "2.5" or "2.5 m" not a complete answer for the cart's speed, and how does the unit m s^-1 help check that distance divided by time is dimensionally consistent?
   socratic: true
   expected_misconceptions_surfaced:
     - "Quantity equals number"

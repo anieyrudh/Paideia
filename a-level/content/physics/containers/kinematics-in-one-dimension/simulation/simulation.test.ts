@@ -15,7 +15,7 @@ definePredictionGateContract({
   simId,
   predictionLabel: "9.0 m",
   rationale: "Starting from rest means the displacement comes from the acceleration term.",
-  expectedText: ["Displacement", "9.00 m", "s = ut + 1/2 at^2"],
+  expectedText: ["Displacement", "9.00 m", "Substitution: s"],
 });
 
 test.describe(`${simId} accessibility`, () => {
