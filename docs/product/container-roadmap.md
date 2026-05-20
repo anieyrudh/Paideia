@@ -151,13 +151,13 @@ Latest slice notes:
 - Deep review on recent slices found and fixed missing substitution units,
   package-local project-reference typecheck drift, downstream taxonomy mismatch,
   and student-facing copy that exposed implementation details.
-- The next A-Level physics container should be `work-energy-power`, followed by
-  `momentum`, because both consume force balance and close the first mechanics
-  sequence before waves and circuits.
+- `work-energy-power`, `momentum`, `waves`, `circuits`, and A-Level
+  `probability-statistics` are now reviewed. The next A-Level work should pick
+  from the queue rather than rebuilding these landed slices.
 
 ### SUTD First Pillar Slices
 
-Status: seven SUTD first-pillar product slices have landed on `main` and are
+Status: ten SUTD product slices have landed on `main` and are
 tracked in the build queue with required kernels:
 
 | Pillar | Container | Status | Required kernels |
@@ -169,23 +169,20 @@ tracked in the build queue with required kernels:
 | ASD | `sutd.asd.load-path-and-daylight-tradeoff` | reviewed | `core/sim-runtime`, `core/linear-algebra`, `core/mechanics`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 | DAI | `sutd.dai.trust-calibration` | reviewed | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/annotation`, `core/prediction-gate`, `core/ui-sim` |
 | SMT | `sutd.smt.ode-phase-portrait` | reviewed | `core/sim-runtime`, `core/dynamical-systems`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+| Freshmore | `sutd.freshmore.bayes-updating` | reviewed | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| Freshmore | `sutd.freshmore.eigenvector-transformations` | reviewed | `core/sim-runtime`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+| EPD | `sutd.epd.bode-stability-margin` | reviewed | `core/sim-runtime`, `core/control-systems`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 
 Next SUTD candidates in order:
 
-1. `sutd.freshmore.bayes-updating` — first SUTD probability wrapper around
-   prior/evidence/posterior reasoning.
-2. `sutd.freshmore.eigenvector-transformations` — extends the reviewed vector
-   transformation slice toward eigen-directions.
-3. `sutd.epd.bode-stability-margin` — connects step-response intuition to
-   frequency-domain stability margins.
-4. `sutd.esd.newsvendor-critical-fractile` — first stochastic optimisation
+1. `sutd.esd.newsvendor-critical-fractile` — first stochastic optimisation
    operations slice.
-5. `sutd.csd.dynamic-programming-state-recursion` — next algorithms slice after
+2. `sutd.csd.dynamic-programming-state-recursion` — next algorithms slice after
    graph search.
-6. `sutd.asd.shading-daylight-heat-gain` — second ASD environmental tradeoff
+3. `sutd.asd.shading-daylight-heat-gain` — second ASD environmental tradeoff
    slice.
-7. `sutd.dai.confusion-matrix-thresholds` — next human-AI evaluation slice.
-8. `sutd.smt.linear-system-stability` — next SMT modelling slice after phase
+4. `sutd.dai.confusion-matrix-thresholds` — next human-AI evaluation slice.
+5. `sutd.smt.linear-system-stability` — next SMT modelling slice after phase
    portraits.
 
 ### Build Queue Discipline
@@ -318,11 +315,11 @@ First useful A-Level sequence:
 3. Resolving vectors. Status: reviewed product slice.
 4. Kinematics in one dimension. Status: reviewed product slice.
 5. Forces and equilibrium. Status: reviewed product slice.
-6. Work, energy, power. Status: next recommended A-Level physics slice.
-7. Momentum.
-8. Waves.
-9. Circuits.
-10. Probability and statistics.
+6. Work, energy, power. Status: reviewed product slice.
+7. Momentum. Status: reviewed product slice.
+8. Waves. Status: reviewed product slice.
+9. Circuits. Status: reviewed product slice.
+10. Probability and statistics. Status: reviewed product slice.
 
 ### IB
 
