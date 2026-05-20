@@ -285,21 +285,58 @@ export const KinematicsOneDimensionSim = () => {
             <p className="lab-kicker">Why the trace bends</p>
             <h3>Formula used</h3>
           </div>
-          <p className="formula">s = ut + 1/2 at^2, v = u + at</p>
+          <pre className="formula-code" aria-label="Constant acceleration formula">
+            <code>
+              <span className="formula-var formula-var--blue">s</span>
+              {" = "}
+              <span className="formula-var formula-var--orange">u</span>
+              <span className="formula-var formula-var--green">t</span>
+              {" + 1/2 "}
+              <span className="formula-var formula-var--blue">a</span>
+              <span className="formula-var formula-var--green">t^2</span>
+              {"\n"}
+              <span className="formula-var formula-var--blue">v</span>
+              {" = "}
+              <span className="formula-var formula-var--orange">u</span>
+              {" + "}
+              <span className="formula-var formula-var--blue">a</span>
+              <span className="formula-var formula-var--green">t</span>
+            </code>
+          </pre>
           {model.ok ? (
             <>
+              <dl className="formula-legend" aria-label="Formula legend">
+                <div>
+                  <dt>
+                    <span aria-hidden="true" className="legend-swatch legend-swatch--blue" /> s, v, a
+                  </dt>
+                  <dd>displacement in m, final velocity in m s^-1, acceleration in m s^-2</dd>
+                </div>
+                <div>
+                  <dt>
+                    <span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> u
+                  </dt>
+                  <dd>initial velocity, {velocityTerm(state.initialVelocityMetresPerSecond)}</dd>
+                </div>
+                <div>
+                  <dt>
+                    <span aria-hidden="true" className="legend-swatch legend-swatch--green" /> t
+                  </dt>
+                  <dd>elapsed time, {timeTerm(state.elapsedSeconds)}</dd>
+                </div>
+              </dl>
               <p>
-                s = ({velocityTerm(state.initialVelocityMetresPerSecond)})(
+                Substitution: s = ({velocityTerm(state.initialVelocityMetresPerSecond)})(
                 {timeTerm(state.elapsedSeconds)}) + 1/2(
                 {accelerationTerm(state.accelerationMetresPerSecondSquared)})(
                 {timeTerm(state.elapsedSeconds)})^2 ={" "}
-                {formatNumber(model.value.displacementMetres)} m
+                {formatNumber(model.value.displacementMetres)} m.
               </p>
               <p>
-                v = {velocityTerm(state.initialVelocityMetresPerSecond)} + (
+                Substitution: v = {velocityTerm(state.initialVelocityMetresPerSecond)} + (
                 {accelerationTerm(state.accelerationMetresPerSecondSquared)})(
                 {timeTerm(state.elapsedSeconds)}) ={" "}
-                {formatSigned(model.value.velocityMetresPerSecond)} m s^-1
+                {formatSigned(model.value.velocityMetresPerSecond)} m s^-1.
               </p>
               <p className="formula-note">
                 The displacement also equals the area under the velocity-time graph: initial

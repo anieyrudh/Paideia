@@ -448,13 +448,22 @@ const ObserveStage = () => {
       <section className="formula-panel formula-panel--product" aria-label="Formula used">
         <p className="lab-kicker">Formula used</p>
         <h3>Displacements add at the same point</h3>
-        <pre className="formula-code" aria-label="LaTeX formula source">
-          <code>{String.raw`\begin{aligned}
-y_1 &= A\sin\!\left(2\pi\left(\frac{x}{\lambda}-\frac{t}{T}\right)\right)\\
-y_2 &= A\sin\!\left(2\pi\left(\frac{x}{\lambda}-\frac{t}{T}\right)+\phi\right)\\
-y_{\text{resultant}} &= y_1 + y_2\\
-f &= \frac{1}{T}
-\end{aligned}`}</code>
+        <pre className="formula-code" aria-label="Wave superposition formula">
+          <code>
+            displacement 1 = <span className="formula-var formula-var--blue">A</span>{" "}
+            sin(2π(<span className="formula-var formula-var--purple">x</span> /{" "}
+            <span className="formula-var formula-var--orange">λ</span> -{" "}
+            <span className="formula-var formula-var--purple">t</span> /{" "}
+            <span className="formula-var formula-var--purple">T</span>)){"\n"}
+            displacement 2 = <span className="formula-var formula-var--blue">A</span>{" "}
+            sin(2π(<span className="formula-var formula-var--purple">x</span> /{" "}
+            <span className="formula-var formula-var--orange">λ</span> -{" "}
+            <span className="formula-var formula-var--purple">t</span> /{" "}
+            <span className="formula-var formula-var--purple">T</span>) +{" "}
+            <span className="formula-var formula-var--green">φ</span>){"\n"}
+            resultant displacement = displacement 1 + displacement 2{"\n"}
+            frequency = 1 / <span className="formula-var formula-var--purple">T</span>
+          </code>
         </pre>
         <dl className="formula-legend" aria-label="Formula legend">
           <div>
@@ -462,12 +471,23 @@ f &= \frac{1}{T}
             <dd>amplitude, {formatNumber(state.amplitudeMetres)} m</dd>
           </div>
           <div>
-            <dt><span className="legend-swatch legend-swatch--orange" /> lambda</dt>
+            <dt><span className="legend-swatch legend-swatch--orange" /> λ</dt>
             <dd>wavelength, {formatNumber(state.wavelengthMetres)} m</dd>
           </div>
           <div>
-            <dt><span className="legend-swatch legend-swatch--green" /> phi</dt>
+            <dt><span className="legend-swatch legend-swatch--green" /> φ</dt>
             <dd>phase difference, {formatNumber(model.value.phaseRadians)} rad</dd>
+          </div>
+          <div>
+            <dt><span className="legend-swatch legend-swatch--purple" /> x, t, T</dt>
+            <dd>
+              sample position {formatNumber(state.samplePositionMetres)} m, time{" "}
+              {formatNumber(state.timeSeconds)} s, period {formatNumber(state.periodSeconds)} s
+            </dd>
+          </div>
+          <div>
+            <dt>displacement 1, displacement 2, resultant displacement</dt>
+            <dd>the two wave displacements and their sum at the marker</dd>
           </div>
         </dl>
         <p>
@@ -477,7 +497,7 @@ f &= \frac{1}{T}
           {formatSigned(model.value.waveBAtSampleMetres)} m.
         </p>
         <p>
-          Result: y_resultant = {formatSigned(model.value.waveAAtSampleMetres)} m +{" "}
+          Result: resultant displacement = {formatSigned(model.value.waveAAtSampleMetres)} m +{" "}
           {formatSigned(model.value.waveBAtSampleMetres)} m ={" "}
           {formatSigned(model.value.resultantAtSampleMetres)} m.
         </p>
@@ -509,7 +529,9 @@ const ExplainStage = () => {
         to the incoming noise. Decide which slider setting models that cancellation and why the
         sound frequency does not disappear.
       </p>
-      <p className="formula-note">Use y_resultant = y1 + y2 to justify the comparison.</p>
+      <p className="formula-note">
+        Use resultant displacement = displacement 1 + displacement 2 to justify the comparison.
+      </p>
       <button type="button" onClick={() => stage.reset()}>
         Try another wave meeting
       </button>

@@ -28,7 +28,7 @@ A wave transfers energy and information by a repeating disturbance. At one insta
 - Mindmap: `concept-map/mindmap.md`
 - Problem-solving algorithm: `problem-solving/algorithm.md`
 - Transfer problems:
-  - `noise-cancellation` - noise cancellation
+  - `problem-solving/noise-cancellation.md` - noise cancellation
 
 ## Citations and provenance
 

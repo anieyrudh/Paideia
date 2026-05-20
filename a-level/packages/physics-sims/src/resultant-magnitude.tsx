@@ -345,13 +345,48 @@ export const ResultantMagnitudeSim = () => {
             <p className="lab-kicker">Why the number changes</p>
             <h3>Formula used</h3>
           </div>
-          <p className="formula">|R| = √(A² + B² + 2AB cos θ)</p>
+          <pre className="formula-code" aria-label="Resultant magnitude formula">
+            <code>
+              <span className="formula-var formula-var--blue">|R|</span>
+              {" = √("}
+              <span className="formula-var formula-var--blue">A^2</span>
+              {" + "}
+              <span className="formula-var formula-var--orange">B^2</span>
+              {" + 2"}
+              <span className="formula-var formula-var--blue">A</span>
+              <span className="formula-var formula-var--orange">B</span>
+              {" cos("}
+              <span className="formula-var formula-var--green">θ</span>
+              {"))"}
+            </code>
+          </pre>
           {model.ok ? (
             <>
+              <dl className="formula-legend" aria-label="Formula legend">
+                <div>
+                  <dt>
+                    <span aria-hidden="true" className="legend-swatch legend-swatch--blue" /> A
+                  </dt>
+                  <dd>first displacement, {formatTenths(state.vectorAMetres)} m</dd>
+                </div>
+                <div>
+                  <dt>
+                    <span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> B
+                  </dt>
+                  <dd>second displacement, {formatTenths(state.vectorBMetres)} m</dd>
+                </div>
+                <div>
+                  <dt>
+                    <span aria-hidden="true" className="legend-swatch legend-swatch--green" /> theta
+                  </dt>
+                  <dd>angle between the arrows, {state.angleDegrees.toFixed(0)} degrees</dd>
+                </div>
+              </dl>
               <p>
-                √({formatTenths(state.vectorAMetres)}² + {formatTenths(state.vectorBMetres)}² + 2(
-                {formatTenths(state.vectorAMetres)})({formatTenths(state.vectorBMetres)})cos(
-                {state.angleDegrees.toFixed(0)}°)) = {formatTenths(model.value.magnitudeMetres)} m
+                Substitution: |R| = √(({formatTenths(state.vectorAMetres)} m)^2 + (
+                {formatTenths(state.vectorBMetres)} m)^2 + 2({formatTenths(state.vectorAMetres)} m)(
+                {formatTenths(state.vectorBMetres)} m)cos({state.angleDegrees.toFixed(0)} degrees)) ={" "}
+                {formatTenths(model.value.magnitudeMetres)} m.
               </p>
               <p className="formula-note">
                 cos θ = {formatHundredths(model.value.cosine)}. When direction opens up, the

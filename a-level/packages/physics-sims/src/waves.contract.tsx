@@ -84,7 +84,7 @@ export const runWavesGateContract = () => {
       await click(buttonByText("Reveal wave behaviour"));
 
       expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("y_{\\text{resultant}}");
+      expect(document.body.textContent).not.toContain("resultant displacement");
 
       await click(controlByLabel("They add to double the displacement"));
       await change(controlByLabel("Rationale"), "In phase crests have displacements in the same direction.");
@@ -93,7 +93,7 @@ export const runWavesGateContract = () => {
       expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
       expect(document.body.textContent).toContain("Resultant at marker");
       expect(document.body.textContent).toContain("+3.00 m");
-      expect(document.body.textContent).toContain("y_{\\text{resultant}}");
+      expect(document.body.textContent).toContain("resultant displacement");
     });
 
     it("updates the interference readout when phase changes before reveal", async () => {
@@ -110,7 +110,7 @@ export const runWavesGateContract = () => {
         "+0.00 m",
       );
       expect(document.querySelector("[aria-label='Formula used']")?.textContent).toContain(
-        "y_resultant =",
+        "resultant displacement =",
       );
     });
   });

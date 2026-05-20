@@ -28,7 +28,7 @@ Momentum measures how much motion an object carries in a chosen direction. It de
 - Mindmap: `concept-map/mindmap.md`
 - Problem-solving algorithm: `problem-solving/algorithm.md`
 - Transfer problems:
-  - `cart-collision-momentum` - cart-collision
+  - `problem-solving/cart-collision-momentum.md` - cart-collision
 
 ## Citations and provenance
 

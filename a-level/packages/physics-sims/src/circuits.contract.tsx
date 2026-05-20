@@ -84,7 +84,7 @@ export const runCircuitsGateContract = () => {
       await click(buttonByText("Reveal circuit result"));
 
       expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("R_p}");
+      expect(document.body.textContent).not.toContain("R_p =");
 
       await click(controlByLabel("The total current increases"));
       await change(
@@ -96,7 +96,7 @@ export const runCircuitsGateContract = () => {
       expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
       expect(document.body.textContent).toContain("Total current");
       expect(document.body.textContent).toContain("0.205 A");
-      expect(document.body.textContent).toContain("R_p}");
+      expect(document.body.textContent).toContain("R_p =");
     });
 
     it("updates the total current when resistance changes before reveal", async () => {
@@ -116,7 +116,7 @@ export const runCircuitsGateContract = () => {
         "0.265 A",
       );
       expect(document.querySelector("[aria-label='Formula used']")?.textContent).toContain(
-        "I}=\\frac",
+        "I = V /",
       );
     });
   });

@@ -767,6 +767,26 @@ textarea:focus-visible {
   white-space: pre;
 }
 
+.formula-var {
+  font-weight: 800;
+}
+
+.formula-var--blue {
+  color: #60a5fa;
+}
+
+.formula-var--orange {
+  color: #fb923c;
+}
+
+.formula-var--green {
+  color: #34d399;
+}
+
+.formula-var--purple {
+  color: #c084fc;
+}
+
 .formula-legend {
   display: grid;
   gap: 0.55rem;

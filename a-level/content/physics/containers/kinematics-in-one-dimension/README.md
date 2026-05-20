@@ -28,7 +28,7 @@ Kinematics describes motion without first asking what force caused it. In one di
 - Mindmap: `concept-map/mindmap.md`
 - Problem-solving algorithm: `problem-solving/algorithm.md`
 - Transfer problems:
-  - `lift-motion-signs` - lift motion with signed acceleration
+  - `problem-solving/lift-motion-signs.md` - lift motion with signed acceleration
 
 ## Citations and provenance
 

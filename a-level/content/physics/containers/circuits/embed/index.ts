@@ -11,6 +11,15 @@ import type {
   CircuitsEmbedState,
   CircuitsEmbedTheme,
 } from "./api.js";
+import { z } from "zod";
+
+const brand =
+  <T extends number>() =>
+  (value: number): T =>
+    value as T;
+
+const ohms = brand<CircuitsEmbedState["branchAResistanceOhms"]>();
+const volts = brand<CircuitsEmbedState["supplyVoltageVolts"]>();
 
 const defaultState: CircuitsEmbedState = {
   branchAResistanceOhms: 40,
@@ -19,6 +28,38 @@ const defaultState: CircuitsEmbedState = {
   seriesResistanceOhms: 20,
   supplyVoltageVolts: 9,
 };
+
+const CircuitsEmbedStateSchema: z.ZodType<CircuitsEmbedState> = z
+  .object({
+    branchAResistanceOhms: z.number().finite().positive(),
+    branchBResistanceOhms: z.number().finite().positive(),
+    predictionCommitted: z.boolean(),
+    seriesResistanceOhms: z.number().finite().positive(),
+    supplyVoltageVolts: z.number().finite().positive(),
+  })
+  .strict()
+  .transform((state): CircuitsEmbedState => ({
+    branchAResistanceOhms: ohms(state.branchAResistanceOhms),
+    branchBResistanceOhms: ohms(state.branchBResistanceOhms),
+    predictionCommitted: state.predictionCommitted,
+    seriesResistanceOhms: ohms(state.seriesResistanceOhms),
+    supplyVoltageVolts: volts(state.supplyVoltageVolts),
+  }));
+
+const CircuitsEmbedThemeSchema: z.ZodType<CircuitsEmbedTheme> = z
+  .object({
+    colorScheme: z.enum(["light", "dark"]),
+    accentColor: z.string().optional(),
+  })
+  .strict();
+
+const CircuitsEmbedScoreSchema: z.ZodType<CircuitsEmbedScore> = z
+  .object({
+    completed: z.boolean(),
+    predictionCommitted: z.boolean(),
+    score: z.number().min(0).max(1),
+  })
+  .strict();
 
 const cloneState = (state: CircuitsEmbedState): CircuitsEmbedState => ({
   branchAResistanceOhms: state.branchAResistanceOhms,
@@ -38,19 +79,20 @@ export const createContainerEmbed = (): CircuitsEmbedApi => {
       targetElement = target;
     },
     saveState(): CircuitsEmbedState {
-      return cloneState(state);
+      return CircuitsEmbedStateSchema.parse(cloneState(state));
     },
     score(): CircuitsEmbedScore {
-      return {
+      return CircuitsEmbedScoreSchema.parse({
         completed: state.predictionCommitted,
         predictionCommitted: state.predictionCommitted,
         score: state.predictionCommitted ? 1 : 0,
-      };
+      });
     },
     resume(nextState: CircuitsEmbedState): void {
-      state = cloneState(nextState);
+      state = cloneState(CircuitsEmbedStateSchema.parse(nextState));
     },
-    syncTheme(theme: CircuitsEmbedTheme): void {
+    syncTheme(nextTheme: CircuitsEmbedTheme): void {
+      const theme = CircuitsEmbedThemeSchema.parse(nextTheme);
       targetElement?.setAttribute("data-paideia-theme", theme.colorScheme);
     },
     destroy(): void {

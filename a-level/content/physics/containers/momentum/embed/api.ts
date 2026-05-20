@@ -1,6 +1,6 @@
-import type { WorkEnergyPowerState } from "@paideia/a-level-physics-sims/momentum";
+import type { MomentumState } from "@paideia/a-level-physics-sims/momentum";
 
-export interface WorkEnergyPowerEmbedState extends WorkEnergyPowerState {
+export interface WorkEnergyPowerEmbedState extends MomentumState {
   readonly predictionCommitted: boolean;
 }
 

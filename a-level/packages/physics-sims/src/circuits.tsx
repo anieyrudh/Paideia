@@ -474,6 +474,12 @@ const Legend = () => (
         <td>ohm</td>
       </tr>
       <tr>
+        <td><span aria-hidden="true" className="legend-swatch legend-swatch--green" /> Green</td>
+        <td>R_2, R_3</td>
+        <td>the two resistors in the parallel branch</td>
+        <td>ohm</td>
+      </tr>
+      <tr>
         <td><span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> Amber</td>
         <td>I</td>
         <td>total current from the supply</td>
@@ -506,8 +512,16 @@ const ObserveStage = () => {
       <section className="formula-panel formula-panel--product" aria-label="Formula used">
         <p className="lab-kicker">Formula used</p>
         <h3>Reduce the parallel branch first</h3>
-        <pre className="formula-code" aria-label="LaTeX formula source">
-          <code>{String.raw`\color{#059669}{R_p}=\left(\frac{1}{R_2}+\frac{1}{R_3}\right)^{-1},\quad \color{#d97706}{I}=\frac{\color{#2563eb}{V}}{\color{#7c3aed}{R_s}+\color{#059669}{R_p}}`}</code>
+        <pre className="formula-code" aria-label="Circuit relationship formula">
+          <code>
+            <span className="formula-var formula-var--green">R_p</span> = (1 /{" "}
+            <span className="formula-var formula-var--green">R_2</span> + 1 /{" "}
+            <span className="formula-var formula-var--green">R_3</span>)^-1{"\n"}
+            <span className="formula-var formula-var--orange">I</span> ={" "}
+            <span className="formula-var formula-var--blue">V</span> / (
+            <span className="formula-var formula-var--purple">R_s</span> +{" "}
+            <span className="formula-var formula-var--green">R_p</span>)
+          </code>
         </pre>
         <Legend />
         <p>

@@ -45,6 +45,7 @@ describe("circuits embed contract", () => {
 
     embed.syncTheme({ colorScheme: "light" });
     expect(secondTarget.getAttribute("data-paideia-theme")).toBe("light");
+    expect(() => embed.syncTheme({ colorScheme: "sepia" } as never)).toThrow();
 
     embed.destroy();
     expect(secondTarget.hasAttribute("data-paideia-theme")).toBe(false);

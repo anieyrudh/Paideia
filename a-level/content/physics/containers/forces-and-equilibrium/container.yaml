@@ -64,9 +64,9 @@ concept_map:
 transfer_problems:
   - id: sign-hanger-equilibrium
     prompt: |
-      A hanging sign is pulled left by 4 N and down by 7 N. Choose the support forces that keep it still, then explain the two independent equilibrium conditions.
-    surface_form: "hanging sign"
-    same_concept_check: "Same concept: horizontal and vertical resultant forces must both be zero."
+      A 12 N hanging sign is held by two identical cables, each angled 35 degrees above the horizontal. Decide whether the sign can be in equilibrium, then state what the horizontal components must do to each other and what the two vertical components must add up to.
+    surface_form: "two angled support cables holding a sign"
+    same_concept_check: "Same concept: the horizontal resultant and vertical resultant must both be zero, but the transfer now uses angled tension components instead of independent horizontal and vertical support sliders."
     rubric_path: problem-solving/algorithm.md
 assessments: []
 status: reviewed

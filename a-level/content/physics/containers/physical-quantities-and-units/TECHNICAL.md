@@ -17,7 +17,9 @@
 
 | Sim | Module | Symbols / role |
 |---|---|---|
+| measurement-uncertainty-lab | `core/content-schema` | Declared in `simulation/simulation.yaml` |
 | measurement-uncertainty-lab | `core/prediction-gate` | Declared in `simulation/simulation.yaml` |
+| measurement-uncertainty-lab | `core/shared` | Declared in `simulation/simulation.yaml` |
 | measurement-uncertainty-lab | `core/ui-sim` | Declared in `simulation/simulation.yaml` |
 
 ## SimulationSpec (frozen)
@@ -29,7 +31,9 @@ id: measurement-uncertainty-lab
 title: Measurement and Uncertainty Lab
 interaction_type: decision-matrix
 kernel_deps:
+  - core/content-schema
   - core/prediction-gate
+  - core/shared
   - core/ui-sim
 predict:
   prompt: |
@@ -86,7 +90,7 @@ observe:
         Show the completed measurement record, quantity classifications, dimensional unit check, and uncertainty propagation from the current raw measurements.
 explain:
   prompt: |
-    Why is "2.5" or "2.5 m" not a complete answer for the cart's speed, and how does the unit m s^-1 prove that distance was divided by time?
+    Why is "2.5" or "2.5 m" not a complete answer for the cart's speed, and how does the unit m s^-1 help check that distance divided by time is dimensionally consistent?
   socratic: true
   expected_misconceptions_surfaced:
     - Quantity equals number

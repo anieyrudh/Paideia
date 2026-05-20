@@ -92,7 +92,9 @@ export const runResolvingVectorsGateContract = () => {
       expect(document.querySelector("[aria-label='Observation unlocked']")).toBeTruthy();
       expect(document.body.textContent).toContain("Horizontal component");
       expect(document.body.textContent).toContain("8.7 N");
-      expect(document.body.textContent).toContain("Fx = F cos");
+      expect(document.querySelector("pre[aria-label='Vector component formula']")).toBeTruthy();
+      expect(document.querySelector("[aria-label='Formula legend']")).toBeTruthy();
+      expect(document.body.textContent).toContain("Substitution: Fx");
     });
 
     it("updates components when the angle changes", async () => {
@@ -107,7 +109,7 @@ export const runResolvingVectorsGateContract = () => {
         "10.0 N",
       );
       expect(document.querySelector("[aria-label='Formula used']")?.textContent).toContain(
-        "sin(0°)",
+        "sin(0 degrees)",
       );
     });
   });

@@ -28,7 +28,7 @@ A vector can be replaced by perpendicular components along chosen axes. The comp
 - Mindmap: `concept-map/mindmap.md`
 - Problem-solving algorithm: `problem-solving/algorithm.md`
 - Transfer problems:
-  - `drone-velocity-components` - drone velocity heading
+  - `problem-solving/drone-velocity-components.md` - drone velocity heading
 
 ## Citations and provenance
 

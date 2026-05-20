@@ -20,7 +20,7 @@ test("launches the first container sim through the learner shell", async ({ page
 
   await expect(page.getByLabel("Observation unlocked")).toBeVisible();
   await expect(page.getByText("Geometric resultant")).toBeVisible();
-  await expect(page.getByLabel("Formula used")).toContainText("|R| = √(A² + B² + 2AB cos θ)");
+  await expect(page.getByLabel("Formula used")).toContainText("Substitution: |R|");
 
   await page.getByRole("button", { name: "Reset prediction" }).click();
   await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
@@ -47,7 +47,7 @@ test("navigates the generated mini knowledge graph", async ({ page }) => {
     .fill("The horizontal component is adjacent to the angle, so cosine applies.");
   await page.getByRole("button", { name: "Commit prediction" }).click();
   await expect(page.getByLabel("Observation unlocked")).toBeVisible();
-  await expect(page.getByLabel("Formula used")).toContainText("Fx = F cos θ");
+  await expect(page.getByLabel("Formula used")).toContainText("Substitution: Fx");
 });
 
 test("reveals the kinematics route from generated catalogue data", async ({ page }) => {
@@ -65,7 +65,7 @@ test("reveals the kinematics route from generated catalogue data", async ({ page
   await page.getByRole("button", { name: "Commit prediction" }).click();
 
   await expect(page.getByLabel("Observation unlocked")).toBeVisible();
-  await expect(page.getByLabel("Formula used")).toContainText("s = ut + 1/2 at^2");
+  await expect(page.getByLabel("Formula used")).toContainText("Substitution: s");
   await expect(page.getByLabel("Observation unlocked")).toContainText("9.00 m");
 });
 

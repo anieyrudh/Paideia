@@ -4,15 +4,41 @@ import type {
   ResolvingVectorsEmbedState,
   ResolvingVectorsEmbedTheme,
 } from "./api.js";
+import { z } from "zod";
 
 const defaultState: ResolvingVectorsEmbedState = {
-  magnitude: 10,
+  magnitudeNewtons: 10,
   angleDegrees: 30,
   predictionCommitted: false,
 };
 
+const ResolvingVectorsEmbedStateSchema: z.ZodType<ResolvingVectorsEmbedState> = z
+  .object({
+    magnitudeNewtons: z.number().finite(),
+    angleDegrees: z.number().finite(),
+    predictionCommitted: z.boolean(),
+  })
+  .strict();
+
+const ResolvingVectorsEmbedThemeSchema: z.ZodType<ResolvingVectorsEmbedTheme> = z
+  .object({
+    colorScheme: z.enum(["light", "dark"]),
+    accentColor: z.string().optional(),
+  })
+  .strict();
+
+const ResolvingVectorsEmbedScoreSchema: z.ZodType<ResolvingVectorsEmbedScore> = z
+  .object({
+    completed: z.boolean(),
+    predictionCommitted: z.boolean(),
+    score: z.number().min(0).max(1),
+  })
+  .strict();
+
+const copyState = (state: ResolvingVectorsEmbedState): ResolvingVectorsEmbedState => ({ ...state });
+
 export const createResolvingVectorsEmbed = (): ResolvingVectorsEmbedApi => {
-  let state = defaultState;
+  let state = copyState(defaultState);
   let targetElement: Element | null = null;
   let theme: ResolvingVectorsEmbedTheme = { colorScheme: "light" };
 
@@ -22,27 +48,27 @@ export const createResolvingVectorsEmbed = (): ResolvingVectorsEmbedApi => {
       targetElement.setAttribute("data-paideia-container", "resolving-vectors");
     },
     saveState(): ResolvingVectorsEmbedState {
-      return state;
+      return ResolvingVectorsEmbedStateSchema.parse(copyState(state));
     },
     score(): ResolvingVectorsEmbedScore {
-      return {
+      return ResolvingVectorsEmbedScoreSchema.parse({
         completed: state.predictionCommitted,
         predictionCommitted: state.predictionCommitted,
         score: state.predictionCommitted ? 1 : 0,
-      };
+      });
     },
     resume(nextState: ResolvingVectorsEmbedState): void {
-      state = nextState;
+      state = copyState(ResolvingVectorsEmbedStateSchema.parse(nextState));
     },
     syncTheme(nextTheme: ResolvingVectorsEmbedTheme): void {
-      theme = nextTheme;
+      theme = ResolvingVectorsEmbedThemeSchema.parse(nextTheme);
       targetElement?.setAttribute("data-paideia-theme", theme.colorScheme);
     },
     destroy(): void {
       targetElement?.removeAttribute("data-paideia-container");
       targetElement?.removeAttribute("data-paideia-theme");
       targetElement = null;
-      state = defaultState;
+      state = copyState(defaultState);
     },
   };
 };

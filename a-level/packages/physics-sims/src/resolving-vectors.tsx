@@ -303,17 +303,52 @@ export const ResolvingVectorsSim = () => {
             <p className="lab-kicker">Why the split works</p>
             <h3>Formula used</h3>
           </div>
-          <p className="formula">Fx = F cos θ, Fy = F sin θ</p>
+          <pre className="formula-code" aria-label="Vector component formula">
+            <code>
+              <span className="formula-var formula-var--blue">Fx</span>
+              {" = "}
+              <span className="formula-var formula-var--orange">F</span>
+              {" cos("}
+              <span className="formula-var formula-var--green">θ</span>
+              {")\n"}
+              <span className="formula-var formula-var--blue">Fy</span>
+              {" = "}
+              <span className="formula-var formula-var--orange">F</span>
+              {" sin("}
+              <span className="formula-var formula-var--green">θ</span>
+              {")"}
+            </code>
+          </pre>
           {model.ok ? (
             <>
+              <dl className="formula-legend" aria-label="Formula legend">
+                <div>
+                  <dt>
+                    <span aria-hidden="true" className="legend-swatch legend-swatch--blue" /> Fx, Fy
+                  </dt>
+                  <dd>horizontal and vertical force components, in N</dd>
+                </div>
+                <div>
+                  <dt>
+                    <span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> F
+                  </dt>
+                  <dd>original force magnitude, {formatTenths(state.magnitudeNewtons)} N</dd>
+                </div>
+                <div>
+                  <dt>
+                    <span aria-hidden="true" className="legend-swatch legend-swatch--green" /> theta
+                  </dt>
+                  <dd>angle above the horizontal, {state.angleDegrees.toFixed(0)} degrees</dd>
+                </div>
+              </dl>
               <p>
-                Fx = {formatTenths(state.magnitudeNewtons)}cos(
-                {state.angleDegrees.toFixed(0)}°) ={" "}
+                Substitution: Fx = ({formatTenths(state.magnitudeNewtons)} N)cos(
+                {state.angleDegrees.toFixed(0)} degrees) ={" "}
                 {formatTenths(model.value.componentsNewtons[0])} N
               </p>
               <p>
-                Fy = {formatTenths(state.magnitudeNewtons)}sin(
-                {state.angleDegrees.toFixed(0)}°) ={" "}
+                Substitution: Fy = ({formatTenths(state.magnitudeNewtons)} N)sin(
+                {state.angleDegrees.toFixed(0)} degrees) ={" "}
                 {formatTenths(model.value.componentsNewtons[1])} N
               </p>
               <p className="formula-note">

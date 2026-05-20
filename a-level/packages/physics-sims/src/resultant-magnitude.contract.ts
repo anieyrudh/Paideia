@@ -93,7 +93,9 @@ export const runResultantMagnitudeGateContract = () => {
 
       expect(document.querySelector("[aria-label='Observation unlocked']")).toBeTruthy();
       expect(text()).toContain("Geometric resultant");
-      expect(text()).toContain("|R| = √(A² + B² + 2AB cos θ)");
+      expect(document.querySelector("pre[aria-label='Resultant magnitude formula']")).toBeTruthy();
+      expect(document.querySelector("[aria-label='Formula legend']")).toBeTruthy();
+      expect(text()).toContain("Substitution: |R|");
       expect(text()).toContain("7.1 m");
       expect(text()).toContain("10.0 m");
     });
@@ -110,7 +112,7 @@ export const runResultantMagnitudeGateContract = () => {
         "10.0 m",
       );
       expect(document.querySelector("[aria-label='Formula used']")?.textContent).toContain(
-        "cos(0°)",
+        "cos(0 degrees)",
       );
     });
   });
