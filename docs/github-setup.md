@@ -61,8 +61,12 @@ Backlog -> Ready -> In Progress -> In Review -> Done.
 
 ## Hosting
 
-Use Vercel with two projects: one rooted at `a-level/apps/...` and one rooted at
-`sutd/apps/...`. Each branch can promote independently.
+Use GitHub Pages for the first public product. Paideia should publish static
+curriculum shells, generated graph data, media, and client-side simulations from
+GitHub Actions. Add a backend only when a feature requires accounts, synced
+progress, notebook execution, AI/API calls, or other server-owned state.
+
+See [Hosting and licensing plan](product/hosting-and-licensing.md).
 
 ## Discussions
 
@@ -72,8 +76,9 @@ conversation.
 
 ## Secrets
 
-Set secrets with `gh secret set`. Keep OpenAI, deployment, and analytics tokens
-out of source control and local docs.
+Set secrets with `gh secret set`. Keep OpenAI, deployment, analytics, and
+backend tokens out of source control and local docs. GitHub Pages frontend code
+must not contain secret keys.
 
 ## What Not To Enable
 
