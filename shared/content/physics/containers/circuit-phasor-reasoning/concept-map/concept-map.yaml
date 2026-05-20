@@ -1,0 +1,49 @@
+schema_version: "1.0.0"
+concept_id: circuit-phasor-reasoning
+prerequisites:
+  - id: circuits
+    title: Electric Circuits
+    relationship: Voltage, current, resistance, and series current conservation are required before impedance.
+    status: available
+  - id: sinusoidal-functions
+    title: Sinusoidal Functions
+    relationship: Phasors encode sinusoidal magnitude and phase.
+    status: planned
+downstream:
+  - id: filters
+    title: Filters
+    relationship: Frequency-dependent impedance shapes amplitude and phase.
+    status: planned
+  - id: resonance
+    title: Resonance
+    relationship: Resonance occurs when inductive and capacitive reactance cancel.
+    status: planned
+  - id: signal-processing
+    title: Signal Processing
+    relationship: Phase and frequency response are core signal reasoning tools.
+    status: planned
+siblings:
+  - id: bode-stability-margin
+    title: Bode Stability Margin
+    relationship: Both read phase shifts in frequency-domain systems.
+    status: available
+  - id: pid-bode-builder
+    title: PID Bode Builder
+    relationship: Both connect component choices to gain and phase.
+    status: planned
+misconception_graph:
+  nodes:
+    - id: phasors-are-physical
+      label: "Phasors are physical rotating wires"
+    - id: resistance-forces-in-phase
+      label: "Resistance makes every AC circuit in phase"
+    - id: current-used-up
+      label: "Current is used up around a circuit"
+  edges:
+    - from: phasors-are-physical
+      to: resistance-forces-in-phase
+      label: "Both confuse representation with circuit behaviour."
+    - from: current-used-up
+      to: resistance-forces-in-phase
+      label: "Both miss that one series current is shared by all elements."
+mermaid_source: graph.mmd

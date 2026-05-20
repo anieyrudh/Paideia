@@ -1,0 +1,16 @@
+state_labels:
+  sourceVoltageRmsVolts:
+    label: "Supply voltage"
+    meaning: "RMS voltage magnitude of the sinusoidal source."
+  frequencyHertz:
+    label: "Frequency"
+    meaning: "Number of sinusoidal cycles per second."
+  resistanceOhms:
+    label: "Resistance"
+    meaning: "Real part of the series impedance."
+  inductanceMilliHenrys:
+    label: "Inductance"
+    meaning: "Inductor value that contributes positive reactance."
+  capacitanceMicroFarads:
+    label: "Capacitance"
+    meaning: "Capacitor value that contributes negative reactance."

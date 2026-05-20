@@ -8,6 +8,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./bayes-updating": "./src/bayes-updating.tsx",
+    "./circuit-phasor-reasoning": "./src/circuit-phasor-reasoning.tsx",
     "./eigenvector-transformations": "./src/eigenvector-transformations.tsx",
     "./free-body-diagram-mechanics": "./src/free-body-diagram-mechanics.tsx"
   },
@@ -19,6 +20,7 @@
   },
   "dependencies": {
     "@paideia/charting": "workspace:*",
+    "@paideia/circuits": "workspace:*",
     "@paideia/content-schema": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/mechanics": "workspace:*",

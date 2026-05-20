@@ -1,0 +1,61 @@
+id: circuit-phasor-lab
+title: "Circuit Phasor Lab"
+interaction_type: other
+kernel_deps:
+  - core/circuits
+  - core/charting
+  - core/content-schema
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+predict:
+  prompt: |
+    A resistor and inductor are connected in series to a sinusoidal supply. Before revealing the lab, what happens to the current phase compared with the voltage?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Current leads the voltage because every AC circuit is capacitive."
+      - "Current lags the voltage because the inductor adds positive reactance."
+      - "Current is exactly in phase because resistance is present."
+      - "Current becomes zero because the inductor blocks all AC."
+  rationale_required: true
+manipulate:
+  controls:
+    - id: supply-voltage
+      label: "Supply voltage"
+      kind: slider
+      kernel_binding: state.sourceVoltageRmsVolts
+      bounds: { min: 2, max: 24, step: 1 }
+    - id: frequency
+      label: "Frequency"
+      kind: slider
+      kernel_binding: state.frequencyHertz
+      bounds: { min: 10, max: 200, step: 5 }
+    - id: resistance
+      label: "Resistance"
+      kind: slider
+      kernel_binding: state.resistanceOhms
+      bounds: { min: 5, max: 120, step: 5 }
+    - id: inductance
+      label: "Inductance"
+      kind: slider
+      kernel_binding: state.inductanceMilliHenrys
+      bounds: { min: 10, max: 500, step: 10 }
+    - id: capacitance
+      label: "Capacitance"
+      kind: slider
+      kernel_binding: state.capacitanceMicroFarads
+      bounds: { min: 10, max: 500, step: 10 }
+observe:
+  renderers:
+    - id: circuit-phasor-lab
+      module: "@paideia/shared-sims/circuit-phasor-reasoning"
+      symbol: "CircuitPhasorReasoningSim"
+      props_binding: "state -> impedance phasor, waveform chart, formula panel, and phase interpretation"
+explain:
+  prompt: "Which term sets the sign of the net reactance, and how does that sign decide current lead or lag?"
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Phasors are physical rotating wires"
+    - "Resistance makes every AC circuit in phase"
+    - "An inductor blocks all AC current"

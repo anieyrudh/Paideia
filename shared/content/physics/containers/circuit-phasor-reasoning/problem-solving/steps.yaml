@@ -1,0 +1,19 @@
+steps:
+  - id: parse-values
+    label: "Parse values"
+    action: "Identify V_rms, frequency, resistance, inductance, and capacitance with SI units."
+  - id: compute-reactance
+    label: "Compute reactance"
+    action: "Calculate X_L and X_C before combining them."
+  - id: build-impedance
+    label: "Build impedance"
+    action: "Place R on the real axis and X_L - X_C on the imaginary axis."
+  - id: solve-current
+    label: "Solve current"
+    action: "Divide V_rms by the impedance magnitude."
+  - id: interpret-phase
+    label: "Interpret phase"
+    action: "Use the sign of net reactance to decide current lead or lag."
+  - id: transfer-check
+    label: "Transfer check"
+    action: "Explain why the same method applies to another series AC circuit."

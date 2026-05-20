@@ -1,0 +1,25 @@
+presets:
+  - id: inductive
+    label: "Inductive"
+    state:
+      sourceVoltageRmsVolts: 12
+      frequencyHertz: 50
+      resistanceOhms: 40
+      inductanceMilliHenrys: 220
+      capacitanceMicroFarads: 220
+  - id: near-resonance
+    label: "Near resonance"
+    state:
+      sourceVoltageRmsVolts: 12
+      frequencyHertz: 50
+      resistanceOhms: 40
+      inductanceMilliHenrys: 180
+      capacitanceMicroFarads: 56
+  - id: capacitive
+    label: "Capacitive"
+    state:
+      sourceVoltageRmsVolts: 12
+      frequencyHertz: 50
+      resistanceOhms: 40
+      inductanceMilliHenrys: 60
+      capacitanceMicroFarads: 120

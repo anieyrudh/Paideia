@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Circuit phasor fallback visual</title>
+  <desc id="desc">Static impedance triangle for a series AC circuit.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <line x1="100" x2="540" y1="252" y2="252" stroke="#98a2b3" stroke-width="4"/>
+  <line x1="144" x2="144" y1="70" y2="300" stroke="#98a2b3" stroke-width="4"/>
+  <line x1="144" x2="390" y1="252" y2="252" stroke="#1f5f8b" stroke-width="12" stroke-linecap="round"/>
+  <line x1="390" x2="390" y1="252" y2="118" stroke="#b54708" stroke-width="12" stroke-linecap="round"/>
+  <line x1="144" x2="390" y1="252" y2="118" stroke="#6941c6" stroke-width="12" stroke-linecap="round"/>
+  <text x="88" y="52" fill="#10201a" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">Z = R + jX</text>
+  <text x="250" y="238" fill="#1f5f8b" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">R</text>
+  <text x="404" y="190" fill="#b54708" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">X_L - X_C</text>
+  <text x="242" y="162" fill="#6941c6" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">Z</text>
+</svg>

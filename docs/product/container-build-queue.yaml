@@ -573,7 +573,7 @@ entries:
   - id: shared.circuits.circuit-phasor-reasoning
     title: "Circuit & Phasor Lab"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: Signals / circuits
     discipline: physics
     reuse_status: shared-core
