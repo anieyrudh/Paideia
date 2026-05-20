@@ -1,0 +1,24 @@
+# ODE Phase Portrait Mindmap
+
+- ODE phase portrait
+  - Inputs
+    - State variables `(x, y)`
+    - Rate rule `(x', y')`
+    - Linearisation matrix near equilibrium
+  - Classification
+    - Trace
+    - Determinant
+    - Discriminant
+    - Eigenvalue type
+  - Visual evidence
+    - Vector field arrows
+    - Trajectory from an initial state
+    - Nullclines where one rate is zero
+  - Common mistakes
+    - Treating the equilibrium as a quiet region
+    - Treating arrows as literal position-space velocity
+    - Ignoring the sign of trace after determinant is positive
+  - Transfer
+    - Reactor operating point
+    - Feedback system stability
+    - Damped oscillator phase plane

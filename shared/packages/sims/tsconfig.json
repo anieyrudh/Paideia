@@ -11,6 +11,7 @@
     { "path": "../../../core/charting" },
     { "path": "../../../core/circuits" },
     { "path": "../../../core/content-schema" },
+    { "path": "../../../core/dynamical-systems" },
     { "path": "../../../core/linear-algebra" },
     { "path": "../../../core/mechanics" },
     { "path": "../../../core/optimization" },

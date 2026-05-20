@@ -12,7 +12,8 @@
     "./circuit-phasor-reasoning": "./src/circuit-phasor-reasoning.tsx",
     "./eigenvector-transformations": "./src/eigenvector-transformations.tsx",
     "./free-body-diagram-mechanics": "./src/free-body-diagram-mechanics.tsx",
-    "./gradient-descent-landscape": "./src/gradient-descent-landscape.tsx"
+    "./gradient-descent-landscape": "./src/gradient-descent-landscape.tsx",
+    "./ode-phase-portrait": "./src/ode-phase-portrait.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -24,6 +25,7 @@
     "@paideia/charting": "workspace:*",
     "@paideia/circuits": "workspace:*",
     "@paideia/content-schema": "workspace:*",
+    "@paideia/dynamical-systems": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/mechanics": "workspace:*",
     "@paideia/optimization": "workspace:*",
