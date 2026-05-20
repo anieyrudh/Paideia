@@ -287,6 +287,11 @@ const plotStyle: CSSProperties = {
   "--plot-accent-stroke": "#b23b4a",
 } as CSSProperties;
 
+const formulaToken = (color: string): CSSProperties => ({
+  color,
+  fontWeight: 800,
+});
+
 const Metric = ({ label, value }: { readonly label: string; readonly value: string }) => (
   <p style={panelStyle}>
     <strong>{value}</strong>
@@ -333,11 +338,31 @@ const FormulaTrail = ({ evidence }: { readonly evidence: PhaseEvidence }) => {
   return (
     <div aria-label="Formula used" style={panelStyle}>
       <h3>Formula used</h3>
-      <pre aria-label="LaTeX formula" style={{ overflowX: "auto" }}>
-        <code>{`\\color{#245c7a}{T}=\\color{#245c7a}{a}+\\color{#245c7a}{d}
-\\color{#b23b4a}{D}=\\color{#b23b4a}{ad-bc}
-\\color{#7657d8}{\\Delta}=\\color{#245c7a}{T}^2-4\\color{#b23b4a}{D}
-\\color{#1f7a4d}{\\lambda}=\\frac{\\color{#245c7a}{T}\\pm\\sqrt{\\color{#7657d8}{\\Delta}}}{2}`}</code>
+      <pre aria-label="Trace determinant formula" style={{ overflowX: "auto" }}>
+        <code>
+          <span style={formulaToken("#245c7a")}>T</span>
+          {" = "}
+          <span style={formulaToken("#245c7a")}>a</span>
+          {" + "}
+          <span style={formulaToken("#245c7a")}>d</span>
+          {"\n"}
+          <span style={formulaToken("#b23b4a")}>D</span>
+          {" = "}
+          <span style={formulaToken("#b23b4a")}>ad - bc</span>
+          {"\n"}
+          <span style={formulaToken("#7657d8")}>Delta</span>
+          {" = "}
+          <span style={formulaToken("#245c7a")}>T</span>
+          {"^2 - 4"}
+          <span style={formulaToken("#b23b4a")}>D</span>
+          {"\n"}
+          <span style={formulaToken("#1f7a4d")}>lambda</span>
+          {" = ("}
+          <span style={formulaToken("#245c7a")}>T</span>
+          {" +/- sqrt("}
+          <span style={formulaToken("#7657d8")}>Delta</span>
+          {")) / 2"}
+        </code>
       </pre>
       <h4>Formula legend</h4>
       <dl aria-label="Formula legend" style={metricGridStyle}>

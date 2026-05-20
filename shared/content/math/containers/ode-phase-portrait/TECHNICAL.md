@@ -107,7 +107,7 @@ explain:
 
 ## Kernel extensions
 
-No core-change proposal is declared in this container. Kernel use is limited to declared dependencies above.
+Declared runtime kernel dependencies are listed above. Any additive or breaking core API change must be linked in the preserved review section below.
 
 ## Accessibility
 
@@ -141,13 +141,16 @@ Filter version: aniegpt v1.0
 - Prediction reveal is blocked until commitment — resolution: Playwright test asserts the observation region is absent before commit and visible after commit.
 - ODE vector-field construction, integration, and stability classification use `@paideia/dynamical-systems` — resolution: sim code calls `linearVectorField2D`, `integrateFlow`, and `classifyLinear2D`; no local reusable solver, derivative, or classifier is introduced.
 - Student-facing UI avoids code-facing package names — resolution: visible copy uses mathematical terms only.
+- Embed host boundary is validated — resolution: host-provided state and theme values are parsed through `core/content-schema` generic embed schemas plus container-specific finite-number and preset checks.
 
 ### P1 addressed or deferred
 
-- Formula substitution required for shown calculations — addressed in the observation formula panel for trace, determinant, discriminant, eigenvalues, and RK4 trajectory setup, with nearby legend, units, and interpretation.
+- Formula substitution required for shown calculations — addressed in the observation formula panel for trace, determinant, discriminant, eigenvalues, and RK4 trajectory setup, with nearby legend, units, and interpretation. The rendered formula uses readable color-coded tokens rather than raw LaTeX color commands.
 - Manipulation must visibly change the state — addressed by a test that switches to the saddle preset and checks the revealed classification and interpretation.
 - Accessibility after reveal — addressed by an axe scan with no critical or serious violations.
 - Concrete axe evidence: `CI=1 pnpm -F @paideia/sim-harness test` on 2026-05-20 ran `shared/content/math/containers/ode-phase-portrait/simulation/simulation.test.ts`; the revealed-state axe scan reported 0 critical or serious violations for `shared/math/ode-phase-portrait/ode-phase-portrait` and the sim harness passed 61 tests.
+- Embed lifecycle state — addressed by preserving prediction state plus learner controls (`preset`, `trace`, `determinant`, `initialX`, `initialY`) and adding executable round-trip tests.
+- Test hardening — addressed with property tests for saddle classification and stable-spiral classification invariants.
 
 ### P2 noted
 

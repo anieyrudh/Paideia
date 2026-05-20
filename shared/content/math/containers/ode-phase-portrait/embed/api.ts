@@ -1,5 +1,10 @@
 export interface ContainerEmbedState {
   readonly predictionCommitted: boolean;
+  readonly preset: "stable-spiral" | "saddle" | "center" | "unstable-node";
+  readonly trace: number;
+  readonly determinant: number;
+  readonly initialX: number;
+  readonly initialY: number;
 }
 
 export interface ContainerEmbedTheme {

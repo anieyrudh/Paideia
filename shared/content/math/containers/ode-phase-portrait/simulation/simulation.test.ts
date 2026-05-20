@@ -27,6 +27,7 @@ test.describe("ODE Phase Portrait", () => {
     await expect(observation).toContainText("Formula used");
     await expect(observation).toContainText("Substitute trace: T = a + d");
     await expect(observation).toContainText("Formula legend");
+    await expect(observation).not.toContainText("\\color");
   });
 
   test("manipulation changes the revealed stability classification", async ({ page }) => {
