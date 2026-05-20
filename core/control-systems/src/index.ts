@@ -1,8 +1,14 @@
 import {
+  decibels,
+  degrees,
   err,
   ok,
+  radiansPerSecond,
   seconds,
+  type Decibels,
+  type Degrees,
   type KernelResult,
+  type RadiansPerSecond,
   type Seconds,
 } from "@paideia/shared";
 
@@ -41,6 +47,24 @@ export interface FrequencyResponsePoint {
   readonly magnitudeDb: number;
   readonly phaseRad: number;
   readonly phaseDeg: number;
+}
+
+export interface StabilityMarginPoint {
+  readonly frequencyRadPerSec: RadiansPerSecond;
+  readonly magnitudeDb: Decibels;
+  readonly phaseDeg: Degrees;
+}
+
+export interface StabilityMargins {
+  readonly points: readonly StabilityMarginPoint[];
+  readonly gainCrossover: StabilityMarginPoint | null;
+  readonly phaseCrossover: StabilityMarginPoint | null;
+  readonly phaseMarginDeg: Degrees | null;
+  readonly gainMarginDb: Decibels | null;
+}
+
+export interface StabilityMarginOptions {
+  readonly frequenciesRadPerSec?: readonly RadiansPerSecond[];
 }
 
 export const controlTolerance = {
@@ -502,4 +526,110 @@ export const bode = (
   }
 
   return ok(Object.freeze(points));
+};
+
+const defaultMarginFrequencyGrid = (): readonly RadiansPerSecond[] =>
+  Object.freeze(
+    Array.from({ length: 160 }, (_, index) =>
+      radiansPerSecond(10 ** (-1 + (3 * index) / 159)),
+    ),
+  );
+
+const unwrapBodePhase = (
+  points: readonly FrequencyResponsePoint[],
+): readonly StabilityMarginPoint[] => {
+  const result: StabilityMarginPoint[] = [];
+  let previousPhase: number | null = null;
+
+  for (const point of points) {
+    let phaseDeg = point.phaseDeg;
+    if (previousPhase !== null) {
+      while (phaseDeg > previousPhase + 180) phaseDeg -= 360;
+      while (phaseDeg < previousPhase - 180) phaseDeg += 360;
+    }
+    previousPhase = phaseDeg;
+    result.push(
+      Object.freeze({
+        frequencyRadPerSec: radiansPerSecond(point.frequencyRadPerSec),
+        magnitudeDb: decibels(point.magnitudeDb),
+        phaseDeg: degrees(phaseDeg),
+      }),
+    );
+  }
+
+  return Object.freeze(result);
+};
+
+const interpolateMarginCrossing = (
+  points: readonly StabilityMarginPoint[],
+  valueOf: (point: StabilityMarginPoint) => number,
+  target: number,
+): StabilityMarginPoint | null => {
+  for (let index = 0; index < points.length - 1; index += 1) {
+    const a = points[index];
+    const b = points[index + 1];
+    if (a === undefined || b === undefined) continue;
+
+    const aValue = valueOf(a);
+    const bValue = valueOf(b);
+    if (aValue === target) return a;
+    if ((aValue - target) * (bValue - target) > 0) continue;
+
+    const denominator = bValue - aValue;
+    if (denominator === 0) continue;
+
+    const ratio = (target - aValue) / denominator;
+    const logFrequency =
+      Math.log10(a.frequencyRadPerSec) +
+      ratio * (Math.log10(b.frequencyRadPerSec) - Math.log10(a.frequencyRadPerSec));
+
+    return Object.freeze({
+      frequencyRadPerSec: radiansPerSecond(10 ** logFrequency),
+      magnitudeDb: decibels(a.magnitudeDb + ratio * (b.magnitudeDb - a.magnitudeDb)),
+      phaseDeg: degrees(a.phaseDeg + ratio * (b.phaseDeg - a.phaseDeg)),
+    });
+  }
+
+  return null;
+};
+
+export const stabilityMargins = (
+  system: TransferFunction,
+  opts: StabilityMarginOptions = {},
+): KernelResult<StabilityMargins> => {
+  const response = bode(system, opts.frequenciesRadPerSec ?? defaultMarginFrequencyGrid());
+  if (!response.ok) return response;
+
+  const points = unwrapBodePhase(response.value);
+  const gainCrossover = interpolateMarginCrossing(
+    points,
+    (point) => point.magnitudeDb,
+    0,
+  );
+  const phaseCrossover = interpolateMarginCrossing(
+    points,
+    (point) => point.phaseDeg,
+    -180,
+  );
+  const phaseMarginDeg =
+    gainCrossover === null ? null : degrees(180 + gainCrossover.phaseDeg);
+  const gainMarginDb =
+    phaseCrossover === null ? null : decibels(-phaseCrossover.magnitudeDb);
+
+  if (
+    phaseMarginDeg !== null &&
+    (!Number.isFinite(phaseMarginDeg) || phaseMarginDeg < -180 || phaseMarginDeg > 180)
+  ) {
+    return err("numerical-instability", "Computed phase margin is outside the expected range");
+  }
+
+  return ok(
+    Object.freeze({
+      points,
+      gainCrossover,
+      phaseCrossover,
+      phaseMarginDeg,
+      gainMarginDb,
+    }),
+  );
 };

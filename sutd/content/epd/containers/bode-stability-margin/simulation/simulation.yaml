@@ -1,0 +1,54 @@
+id: bode-stability-margin
+title: "Bode Margin Reader"
+interaction_type: comparative-matrix
+kernel_deps:
+  - core/shared
+  - core/content-schema
+  - core/sim-runtime
+  - core/control-systems
+  - core/charting
+  - core/prediction-gate
+  - core/ui-sim
+manipulate:
+  controls:
+    - id: loop-gain
+      label: "Loop gain"
+      kind: slider
+      kernel_binding: state.loopGain
+      bounds: { min: 1, max: 8, step: 0.5 }
+    - id: actuator-lag
+      label: "Actuator lag"
+      kind: slider
+      kernel_binding: state.actuatorLagSeconds
+      bounds: { min: 0.2, max: 1.2, step: 0.05 }
+    - id: sensor-lag
+      label: "Sensor lag"
+      kind: slider
+      kernel_binding: state.sensorLagSeconds
+      bounds: { min: 0.1, max: 0.6, step: 0.05 }
+predict:
+  prompt: |
+    The open-loop gain starts at 2.0. If the loop gain is doubled while the plant lags stay the same, what is most likely to happen to the phase margin?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The phase margin increases because the loop is stronger"
+      - "The phase margin decreases because crossover moves to a higher-lag frequency"
+      - "The phase margin is unchanged because phase does not depend on gain"
+      - "The phase margin becomes exactly 180 degrees"
+    correct_index: 1
+  rationale_required: true
+observe:
+  renderers:
+    - id: bode-margin-readout
+      module: "@paideia/sutd-sims/bode-stability-margin"
+      symbol: BodeStabilityMargin
+      props_binding: |
+        Show magnitude and phase traces for L(s), then read gain crossover, phase margin, phase crossover, and gain margin.
+explain:
+  prompt: |
+    Why can increasing loop gain make a feedback loop respond faster while also reducing its buffer against extra lag?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Higher gain always improves stability"
+    - "Magnitude alone decides closed-loop stability"

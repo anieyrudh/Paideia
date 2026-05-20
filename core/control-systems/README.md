@@ -14,6 +14,7 @@ It does not render plots or controls. Compose it with `@paideia/plotting`, `@pai
 - `pidController`
 - `stepResponse`
 - `bode`
+- `stabilityMargins`
 - `controlTolerance`
 
 ## Usage
@@ -24,6 +25,7 @@ import {
   closeUnityFeedbackLoop,
   multiplyTransferFunctions,
   pidController,
+  stabilityMargins,
   stepResponse,
   transferFunction,
 } from "@paideia/control-systems";
@@ -43,7 +45,8 @@ if (plant.ok && controller.ok) {
       });
 
       const frequency = bode(closedLoop.value, [0.1, 1, 10]);
-      console.log(response, frequency);
+      const margins = stabilityMargins(openLoop.value);
+      console.log(response, frequency, margins);
     }
   }
 }

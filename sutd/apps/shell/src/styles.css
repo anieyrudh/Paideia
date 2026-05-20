@@ -339,6 +339,14 @@ button {
   background: #059669;
 }
 
+.legend-swatch--purple {
+  background: #7c3aed;
+}
+
+.legend-swatch--red {
+  background: #dc2626;
+}
+
 @media (max-width: 760px) {
   .app-shell {
     padding: 0.8rem;

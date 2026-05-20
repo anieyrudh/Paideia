@@ -1,0 +1,123 @@
+schema_version: "1.0.0"
+id: bode-stability-margin
+aliases:
+  - Bode margins
+  - gain margin
+  - phase margin
+branch: sutd
+subject: epd
+level: "Undergraduate"
+module: "EPD Control Systems"
+title: "Bode Stability Margin"
+one_line_summary: "Read gain and phase margin from an open-loop Bode plot and connect margin size to closed-loop robustness."
+syllabus_ref: "SUTD EPD / Control and Engineering Systems / frequency response and stability margins"
+prerequisites:
+  - pid-step-response
+  - transfer-functions
+  - feedback-control
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    The open-loop gain starts at 2.0. If the loop gain is doubled while the plant lags stay the same, what is most likely to happen to the phase margin?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The phase margin increases because the loop is stronger"
+      - "The phase margin decreases because crossover moves to a higher-lag frequency"
+      - "The phase margin is unchanged because phase does not depend on gain"
+      - "The phase margin becomes exactly 180 degrees"
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: loop-shaping-robot-arm
+    prompt: |
+      A drone altitude loop has an actuator lag of 0.55 s and a sensor-filter lag of 0.35 s. Choose a loop gain that preserves at least 30 degrees of phase margin while still improving response speed over a gain-1 baseline.
+    surface_form: "drone altitude loop with sensor filtering"
+    same_concept_check: "The surface changes from a generic loop to a drone altitude controller with different lags and a stricter margin target, but the decision still comes from reading gain crossover, phase margin, and gain margin on the open-loop Bode plot."
+    rubric_path: problem-solving/loop-shaping-robot-arm.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-20"
+      author: "Codex"
+      summary: "Built SUTD EPD Bode stability margin container and simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-20"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-20"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Higher gain always improves stability"
+    description: "Learners may expect a larger loop gain to make the feedback loop safer, missing that higher gain often moves gain crossover into a frequency range with more phase lag."
+    evidence_source: "Astrom and Murray, Feedback Systems, frequency response and robustness chapters."
+    surface_in_predict: true
+  - name: "Magnitude alone decides closed-loop stability"
+    description: "Learners may read only the 0 dB crossing and ignore the phase value that determines how close the loop is to -180 degrees at crossover."
+    evidence_source: "Nise, Control Systems Engineering, Bode stability margin treatment."
+    surface_in_predict: true
+sources:
+  - citation: "Astrom, K. J., and Murray, R. M. Feedback Systems: An Introduction for Scientists and Engineers. Princeton University Press, 2008."
+    url: "https://fbswiki.org/wiki/index.php/Main_Page"
+    publication_year: 2008
+    license: "Publisher copyright"
+    seab_alignment: n/a
+  - citation: "Nise, N. S. Control Systems Engineering. 8th ed. Wiley, 2019."
+    publication_year: 2019
+    license: "Publisher copyright"
+    seab_alignment: n/a
+  - citation: "Franklin, G. F., Powell, J. D., and Emami-Naeini, A. Feedback Control of Dynamic Systems. Pearson, 2019."
+    publication_year: 2019
+    license: "Publisher copyright"
+    seab_alignment: n/a
+language: en

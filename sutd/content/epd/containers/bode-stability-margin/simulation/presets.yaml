@@ -1,0 +1,13 @@
+presets:
+  - id: safer-loop
+    label: Safer loop
+    state:
+      loopGain: 2
+      actuatorLagSeconds: 0.7
+      sensorLagSeconds: 0.25
+  - id: aggressive-loop
+    label: Aggressive loop
+    state:
+      loopGain: 4
+      actuatorLagSeconds: 0.7
+      sensorLagSeconds: 0.25

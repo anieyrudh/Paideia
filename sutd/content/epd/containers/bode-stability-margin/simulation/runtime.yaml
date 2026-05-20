@@ -1,0 +1,9 @@
+runtime:
+  package: "@paideia/sutd-sims/bode-stability-margin"
+  entry: simulation/index.tsx
+  prediction_gate: true
+  stages:
+    - predict
+    - manipulate
+    - observe
+    - explain

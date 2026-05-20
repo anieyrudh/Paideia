@@ -1,0 +1,8 @@
+flowchart TD
+  transfer["Transfer functions"] --> bode["Bode stability margin"]
+  feedback["Feedback control"] --> bode
+  pid["PID step response"] --> bode
+  bode --> robust["Robust control"]
+  bode --> shaping["Loop shaping"]
+  gain["Misconception: higher gain is always safer"] -.-> bode
+  magnitude["Misconception: magnitude alone decides stability"] -.-> bode
