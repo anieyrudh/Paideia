@@ -1,0 +1,19 @@
+state_labels:
+  lowWeight:
+    label: "Low-score weight"
+    meaning: "Relative frequency weight for the zero-mark outcome."
+  typicalWeight:
+    label: "Typical-score weight"
+    meaning: "Relative frequency weight for the four-mark outcome."
+  highWeight:
+    label: "High-score weight"
+    meaning: "Relative frequency weight for the high-score outcome."
+  highScore:
+    label: "High outcome score"
+    meaning: "Marks attached to the high-score outcome."
+  observedMean:
+    label: "Observed sample mean"
+    meaning: "Mean score from the sample being tested against the null distribution."
+  sampleSize:
+    label: "Sample size"
+    meaning: "Number of independent observations used in the sample mean."

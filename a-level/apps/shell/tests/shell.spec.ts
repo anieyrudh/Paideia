@@ -32,7 +32,7 @@ test("navigates the generated mini knowledge graph", async ({ page }) => {
   await expect(page.getByText(/\d+ concepts ready/)).toBeVisible();
   await expect(page.getByRole("heading", { name: "First principles" })).toBeVisible();
   await expect(page.getByRole("navigation", { name: "Concept containers" })).toBeVisible();
-  await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Set up distribution" })).toBeVisible();
 
   await page
     .getByRole("navigation", { name: "Concept containers" })
@@ -90,6 +90,31 @@ test("reveals the work-energy-power route from generated catalogue data", async 
   await expect(page.getByLabel("Observation unlocked")).toBeVisible();
   await expect(page.getByLabel("Formula used")).toContainText("W = F s cos(theta)");
   await expect(page.getByLabel("Observation unlocked")).toContainText("+30.00 J");
+});
+
+test("reveals the probability-statistics route from generated catalogue data", async ({ page }) => {
+  await page.goto("/#a-level/mathematics/probability-statistics");
+
+  await expect(page.getByRole("heading", { name: "Probability and Statistics" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Distribution and Decision Lab" })).toBeVisible();
+  await expect(page.getByRole("form", { name: "Prediction gate" })).toHaveCount(0);
+  await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
+
+  await page.getByRole("button", { name: "Set up distribution" }).click();
+  await page.getByRole("button", { name: "Reveal decision" }).click();
+
+  await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+  await expect(page.getByLabel("Distribution readout")).toHaveCount(0);
+  await expect(page.getByLabel("Formula used")).toHaveCount(0);
+  await page.getByLabel("The expected score can stay close while the spread increases.").check();
+  await page
+    .getByLabel("Rationale")
+    .fill("Changing the rare high outcome changes spread as well as the centre.");
+  await page.getByRole("button", { name: "Commit prediction" }).click();
+
+  await expect(page.getByLabel("Observation unlocked")).toBeVisible();
+  await expect(page.getByLabel("Formula used")).toContainText("E(X)");
+  await expect(page.getByLabel("Distribution readout")).toContainText("Reject H0");
 });
 
 test("searches modules and keeps local mastery progress", async ({ page }) => {

@@ -1,0 +1,40 @@
+{
+  "name": "@paideia/a-level-math-sims",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./probability-statistics": "./src/probability-statistics.tsx"
+  },
+  "scripts": {
+    "build": "tsc -b",
+    "test": "vitest run src/probability-statistics.test.ts",
+    "lint": "tsc -b --pretty false",
+    "typecheck": "tsc -b --pretty false"
+  },
+  "dependencies": {
+    "@paideia/charting": "workspace:*",
+    "@paideia/content-schema": "workspace:*",
+    "@paideia/prediction-gate": "workspace:*",
+    "@paideia/probability-stats": "workspace:*",
+    "@paideia/shared": "workspace:*",
+    "@paideia/sim-runtime": "workspace:*",
+    "@paideia/ui-sim": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "jsdom": "^25.0.0",
+    "fast-check": "^3.23.2",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.1.0"
+  }
+}

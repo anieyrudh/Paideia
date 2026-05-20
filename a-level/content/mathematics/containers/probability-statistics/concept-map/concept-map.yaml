@@ -1,0 +1,41 @@
+schema_version: "1.0.0"
+concept_id: probability-statistics
+prerequisites:
+  - id: algebra
+    title: "Algebra"
+    relationship: "Manipulate formulae and substitute values accurately."
+    status: planned
+  - id: functions
+    title: "Functions"
+    relationship: "Read a variable as a mapping from inputs or outcomes to values."
+    status: planned
+downstream:
+  - id: inference
+    title: "Statistical Inference"
+    relationship: "Uses sample evidence to test claims about population parameters."
+    status: planned
+  - id: modelling
+    title: "Mathematical Modelling"
+    relationship: "Uses assumptions, parameters, and data to evaluate real situations."
+    status: planned
+siblings:
+  - id: binomial-distribution
+    title: "Binomial Distribution"
+    relationship: "A specialised discrete distribution used for repeated Bernoulli trials."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: expected-most-likely
+      label: "Expected value is the most likely outcome"
+    - id: sample-mean-only
+      label: "Only the observed mean matters"
+    - id: spread-evidence
+      label: "Spread and sample size set evidence strength"
+  edges:
+    - from: expected-most-likely
+      to: spread-evidence
+      label: "ignores weighted average"
+    - from: sample-mean-only
+      to: spread-evidence
+      label: "ignores standard error"
+mermaid_source: graph.mmd

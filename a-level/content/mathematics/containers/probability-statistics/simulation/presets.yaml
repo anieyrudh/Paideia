@@ -1,0 +1,28 @@
+presets:
+  - id: balanced-class
+    label: "Balanced class"
+    state:
+      lowWeight: 3
+      typicalWeight: 5
+      highWeight: 2
+      highScore: 10
+      observedMean: 5.4
+      sampleSize: 36
+  - id: rare-high-score
+    label: "Rare high score"
+    state:
+      lowWeight: 3
+      typicalWeight: 8
+      highWeight: 1
+      highScore: 14
+      observedMean: 5.2
+      sampleSize: 36
+  - id: tight-distribution
+    label: "Tight distribution"
+    state:
+      lowWeight: 1
+      typicalWeight: 10
+      highWeight: 1
+      highScore: 6
+      observedMean: 4.8
+      sampleSize: 64

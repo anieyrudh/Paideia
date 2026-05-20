@@ -122,3 +122,25 @@ test("has no critical accessibility violations after the work-energy-power sim i
 
   expect(criticalViolations).toEqual([]);
 });
+
+test("has no serious or critical accessibility violations after the probability-statistics sim is revealed", async ({
+  page,
+}) => {
+  await page.goto("/#a-level/mathematics/probability-statistics");
+
+  await page.getByRole("button", { name: "Set up distribution" }).click();
+  await page.getByRole("button", { name: "Reveal decision" }).click();
+  await page.getByLabel("The expected score can stay close while the spread increases.").check();
+  await page
+    .getByLabel("Rationale")
+    .fill("A rare high outcome can preserve the centre while increasing spread.");
+  await page.getByRole("button", { name: "Commit prediction" }).click();
+  await page.getByLabel("Observation unlocked").waitFor();
+
+  const results = await new AxeBuilder({ page }).analyze();
+  const seriousOrCriticalViolations = results.violations.filter(
+    (violation) => violation.impact === "serious" || violation.impact === "critical",
+  );
+
+  expect(seriousOrCriticalViolations).toEqual([]);
+});

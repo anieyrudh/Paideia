@@ -1,0 +1,69 @@
+id: probability-statistics-lab
+title: "Distribution and Decision Lab"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/sim-runtime
+  - core/content-schema
+  - core/probability-stats
+  - core/charting
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+predict:
+  prompt: |
+    A score distribution has many ordinary outcomes and a few high-score outcomes. If the high-score outcome becomes rarer but worth more marks, what can happen before the data sample is revealed?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The expected score must fall whenever the high score becomes rarer."
+      - "The expected score can stay close while the spread increases."
+      - "The most likely score must become the same as the expected score."
+      - "The hypothesis decision no longer needs a sample size."
+    correct_index: 1
+  rationale_required: true
+manipulate:
+  controls:
+    - id: low-weight
+      label: "Low-score weight"
+      kind: slider
+      kernel_binding: state.lowWeight
+      bounds: { min: 1, max: 12, step: 1 }
+    - id: typical-weight
+      label: "Typical-score weight"
+      kind: slider
+      kernel_binding: state.typicalWeight
+      bounds: { min: 1, max: 12, step: 1 }
+    - id: high-weight
+      label: "High-score weight"
+      kind: slider
+      kernel_binding: state.highWeight
+      bounds: { min: 1, max: 12, step: 1 }
+    - id: high-score
+      label: "High outcome score"
+      kind: slider
+      kernel_binding: state.highScore
+      bounds: { min: 6, max: 14, step: 1 }
+    - id: observed-mean
+      label: "Observed sample mean"
+      kind: slider
+      kernel_binding: state.observedMean
+      bounds: { min: 0, max: 14, step: 0.1 }
+    - id: sample-size
+      label: "Sample size"
+      kind: slider
+      kernel_binding: state.sampleSize
+      bounds: { min: 16, max: 100, step: 1 }
+observe:
+  renderers:
+    - id: probability-statistics-lab
+      module: "@paideia/a-level-math-sims/probability-statistics"
+      symbol: ProbabilityStatisticsSim
+      props_binding: |
+        Show distribution probabilities, expected value, variance, z-score decision, formula substitution, units, and interpretation.
+explain:
+  prompt: |
+    Why can the expected score be different from the most likely score, and why does a larger sample size make the same observed mean more suspicious?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Expected value is the most likely outcome"
+    - "A hypothesis-test decision depends only on the observed mean"

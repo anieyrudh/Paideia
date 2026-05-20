@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Probability distribution thumbnail</title>
+  <desc id="desc">A probability distribution with expected value and test decision markers.</desc>
+  <rect width="640" height="360" fill="#fffdf7"/>
+  <rect x="48" y="44" width="544" height="272" rx="28" fill="#f7f4ea" stroke="#d8d0bf" stroke-width="3"/>
+  <line x1="112" y1="264" x2="528" y2="264" stroke="#66736b" stroke-width="4"/>
+  <line x1="112" y1="264" x2="112" y2="92" stroke="#66736b" stroke-width="4"/>
+  <rect x="148" y="194" width="72" height="70" rx="12" fill="#60a5fa"/>
+  <rect x="284" y="118" width="72" height="146" rx="12" fill="#34d399"/>
+  <rect x="420" y="166" width="72" height="98" rx="12" fill="#fb923c"/>
+  <path d="M184 194 L320 118 L456 166" fill="none" stroke="#10201a" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="388" cy="86" r="30" fill="#10201a"/>
+  <text x="388" y="96" text-anchor="middle" fill="#fffdf7" font-family="Arial, sans-serif" font-size="28" font-weight="700">z</text>
+  <text x="112" y="306" fill="#10201a" font-family="Arial, sans-serif" font-size="28" font-weight="700">E(X), Var(X), decision</text>
+</svg>

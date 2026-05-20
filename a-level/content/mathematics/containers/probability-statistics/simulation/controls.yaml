@@ -1,0 +1,45 @@
+controls:
+  - id: low-weight
+    label: "Low-score weight"
+    kind: slider
+    default: 3
+    min: 1
+    max: 12
+    step: 1
+  - id: typical-weight
+    label: "Typical-score weight"
+    kind: slider
+    default: 5
+    min: 1
+    max: 12
+    step: 1
+  - id: high-weight
+    label: "High-score weight"
+    kind: slider
+    default: 2
+    min: 1
+    max: 12
+    step: 1
+  - id: high-score
+    label: "High outcome score"
+    kind: slider
+    default: 10
+    min: 6
+    max: 14
+    step: 1
+    unit: marks
+  - id: observed-mean
+    label: "Observed sample mean"
+    kind: slider
+    default: 5.4
+    min: 0
+    max: 14
+    step: 0.1
+    unit: marks
+  - id: sample-size
+    label: "Sample size"
+    kind: slider
+    default: 36
+    min: 16
+    max: 100
+    step: 1

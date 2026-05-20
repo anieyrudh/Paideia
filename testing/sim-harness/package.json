@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@paideia/a-level-math-sims": "workspace:*",
     "@paideia/a-level-physics-sims": "workspace:*",
     "@paideia/shared-sims": "workspace:*",
     "@paideia/sutd-sims": "workspace:*",

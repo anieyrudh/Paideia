@@ -1,0 +1,23 @@
+# Probability and Statistics Mindmap
+
+- Random variable
+  - outcome values
+  - probability weights
+  - distribution table
+- Expected value
+  - multiply each value by its probability
+  - add all weighted values
+  - interpret as long-run average
+- Variance
+  - compare each value with the mean
+  - square the deviations
+  - weight by probability
+- Hypothesis decision
+  - null mean
+  - observed sample mean
+  - standard error from spread and sample size
+  - compare z with critical region
+- Misconceptions
+  - most likely is not always expected
+  - difference from null is not enough without spread
+  - larger samples make the same difference stronger evidence
