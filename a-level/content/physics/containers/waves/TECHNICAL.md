@@ -19,7 +19,7 @@
 |---|---|---|
 | wave-superposition-lab | `core/sim-runtime` | Declared in `simulation/simulation.yaml` |
 | wave-superposition-lab | `core/content-schema` | Declared in `simulation/simulation.yaml` |
-| wave-superposition-lab | `core/mechanics` | Declared in `simulation/simulation.yaml` |
+| wave-superposition-lab | `core/function-eval` | Declared in `simulation/simulation.yaml` |
 | wave-superposition-lab | `core/charting` | Declared in `simulation/simulation.yaml` |
 | wave-superposition-lab | `core/prediction-gate` | Declared in `simulation/simulation.yaml` |
 | wave-superposition-lab | `core/shared` | Declared in `simulation/simulation.yaml` |
@@ -31,93 +31,77 @@ Full validated YAML for the declared sim in this container at the time of last d
 
 ```yaml
 id: wave-superposition-lab
-title: Energy Transfer Lab
+title: Wave Superposition Lab
 interaction_type: animation-playback
 kernel_deps:
   - core/sim-runtime
   - core/content-schema
-  - core/mechanics
+  - core/function-eval
   - core/charting
   - core/prediction-gate
   - core/shared
   - core/ui-sim
 predict:
   prompt: |
-    A 10 N pull moves a trolley 3.0 m in the same direction as the motion in 2.0 s. Before revealing the lab, which work and average power statement is correct?
+    Two identical waves meet in phase. Before revealing the lab, what happens to the displacement where their crests overlap?
   commit_format:
     kind: multiple-choice
     options:
-      - 0 J and 0 W
-      - 30 J and 15 W
-      - 30 J and 30 W
-      - 60 J and 15 W
+      - They cancel to zero
+      - They add to double the displacement
+      - The wavelength doubles
+      - The frequency halves
     correct_index: 1
   rationale_required: true
 manipulate:
   controls:
-    - id: force
-      label: Applied force
+    - id: amplitude
+      label: Amplitude
       kind: slider
-      kernel_binding: state.forceNewtons
+      kernel_binding: state.amplitudeMetres
       bounds:
-        min: 0
-        max: 20
-        step: 1
-    - id: displacement
-      label: Displacement
+        min: 0.2
+        max: 3
+        step: 0.1
+    - id: wavelength
+      label: Wavelength
       kind: slider
-      kernel_binding: state.displacementMetres
+      kernel_binding: state.wavelengthMetres
       bounds:
-        min: 0
+        min: 1
+        max: 8
+        step: 0.25
+    - id: period
+      label: Period
+      kind: slider
+      kernel_binding: state.periodSeconds
+      bounds:
+        min: 0.5
         max: 6
-        step: 0.5
-    - id: angle
-      label: Force angle
+        step: 0.25
+    - id: phase
+      label: Phase difference
       kind: slider
-      kernel_binding: state.angleDegrees
+      kernel_binding: state.phaseDegrees
       bounds:
         min: 0
         max: 180
         step: 15
-    - id: elapsed-time
-      label: Elapsed time
-      kind: slider
-      kernel_binding: state.elapsedSeconds
-      bounds:
-        min: 0.5
-        max: 8
-        step: 0.5
-    - id: mass
-      label: Mass
-      kind: slider
-      kernel_binding: state.massKilograms
-      bounds:
-        min: 1
-        max: 10
-        step: 0.5
-    - id: starting-speed
-      label: Starting speed
-      kind: slider
-      kernel_binding: state.initialSpeedMetresPerSecond
-      bounds:
-        min: 0
-        max: 8
-        step: 0.5
 observe:
   renderers:
     - id: wave-superposition-lab
       module: "@paideia/a-level-physics-sims/waves"
       symbol: WavesSim
       props_binding: |
-        Show work sign, energy-store transfer, average power, formula substitution, and an energy trace from force, displacement, angle, time, mass, and starting speed.
+        Show two same-frequency waves, their resultant displacement, phase comparison, formula substitution, and interference condition.
 explain:
   prompt: |
-    Why does only the force component along the displacement transfer energy, and what changes when the same work is done in less time?
+    Why do identical waves reinforce when their displacements point the same way, and cancel when they point opposite ways?
   socratic: true
   expected_misconceptions_surfaced:
-    - Energy is lost rather than transferred
-    - Work equals force regardless of displacement direction
-    - Power is the same thing as energy
+    - Amplitude and wavelength are interchangeable
+    - Constructive interference changes the frequency
+    - Destructive interference destroys energy
 ```
 
 ## Kernel extensions

@@ -1,28 +1,22 @@
 state_labels:
-  forceNewtons:
-    label: "Applied force"
-    meaning: "Magnitude of the force acting on the object."
-  displacementMetres:
-    label: "Displacement"
-    meaning: "Distance moved along the chosen path."
-  angleDegrees:
-    label: "Force angle"
-    meaning: "Angle between the applied force and the displacement direction."
-  elapsedSeconds:
-    label: "Elapsed time"
-    meaning: "Time taken for the wave behaviour."
-  massKilograms:
-    label: "Mass"
-    meaning: "Mass used for the kinetic energy store."
-  initialSpeedMetresPerSecond:
-    label: "Starting speed"
-    meaning: "Speed before the work is done."
-  workJoules:
-    label: "Work done"
-    meaning: "Energy transferred by the force component along the displacement."
-  averagePowerWatts:
-    label: "Average power"
-    meaning: "Work done divided by elapsed time."
-  finalKineticEnergyJoules:
-    label: "Final kinetic store"
-    meaning: "Kinetic energy after the transfer, clamped at zero if braking would stop the object."
+  amplitudeMetres:
+    label: "Amplitude"
+    meaning: "Maximum displacement of each individual wave from the rest position."
+  wavelengthMetres:
+    label: "Wavelength"
+    meaning: "Distance between matching points on one wave, such as crest to crest."
+  periodSeconds:
+    label: "Period"
+    meaning: "Time for one complete wave cycle."
+  phaseDegrees:
+    label: "Phase difference"
+    meaning: "How far the second wave is shifted through the cycle relative to the first wave."
+  frequencyHertz:
+    label: "Frequency"
+    meaning: "Number of wave cycles per second, calculated as one divided by period."
+  resultantAtSampleMetres:
+    label: "Resultant displacement"
+    meaning: "Sum of the two wave displacements at the same position and time."
+  envelopeAmplitudeMetres:
+    label: "Resultant amplitude"
+    meaning: "Largest possible resultant displacement for two equal-amplitude waves with this phase difference."

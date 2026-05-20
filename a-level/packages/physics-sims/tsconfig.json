@@ -15,6 +15,9 @@
       "path": "../../../core/content-schema"
     },
     {
+      "path": "../../../core/function-eval"
+    },
+    {
       "path": "../../../core/linear-algebra"
     },
     {

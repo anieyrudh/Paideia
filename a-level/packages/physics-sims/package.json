@@ -25,6 +25,7 @@
   "dependencies": {
     "@paideia/charting": "workspace:*",
     "@paideia/content-schema": "workspace:*",
+    "@paideia/function-eval": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/mechanics": "workspace:*",
     "@paideia/prediction-gate": "workspace:*",

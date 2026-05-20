@@ -56,7 +56,7 @@ export const simRegistry = {
   },
   "a-level/physics/waves/wave-superposition-lab": {
     id: "a-level/physics/waves/wave-superposition-lab",
-    title: "Energy Transfer Lab",
+    title: "Wave Superposition Lab",
     Component: GeneratedSim6ALevelPhysicsWavesWaveSuperpositionLab,
   },
   "a-level/physics/work-energy-power/energy-transfer-lab": {

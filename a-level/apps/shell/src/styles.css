@@ -754,6 +754,70 @@ textarea:focus-visible {
   gap: 0.7rem;
 }
 
+.formula-code {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  color: #fffdf7;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  margin: 0;
+  overflow-x: auto;
+  padding: 0.75rem;
+  white-space: pre;
+}
+
+.formula-legend {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  margin: 0;
+}
+
+.formula-legend div {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  padding: 0.6rem;
+}
+
+.formula-legend dt,
+.formula-legend dd {
+  margin: 0;
+}
+
+.formula-legend dt {
+  align-items: center;
+  color: #fffdf7;
+  display: flex;
+  font-weight: 800;
+  gap: 0.45rem;
+}
+
+.formula-legend dd {
+  color: rgba(255, 253, 247, 0.84);
+  font-size: 0.88rem;
+}
+
+.legend-swatch {
+  border-radius: 999px;
+  display: inline-block;
+  height: 0.85rem;
+  width: 0.85rem;
+}
+
+.legend-swatch--blue {
+  background: #60a5fa;
+}
+
+.legend-swatch--orange {
+  background: #fb923c;
+}
+
+.legend-swatch--green {
+  background: #34d399;
+}
+
 .measurement-lab {
   display: grid;
   gap: 1rem;

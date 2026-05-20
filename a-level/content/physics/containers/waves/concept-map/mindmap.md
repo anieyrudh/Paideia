@@ -2,21 +2,23 @@
 
 ```mermaid
 mindmap
-  root((Work, energy, power))
-    Work
-      "force component along displacement"
-      "W = F s cos(theta)"
-      "positive, zero, negative"
-    Energy stores
-      "kinetic store"
-      "transfer into store"
-      "transfer out of store"
-    Power
-      "rate of transfer"
-      "P = W / t"
-      "same work, different time"
+  root((Waves))
+    Wave quantities
+      "amplitude A"
+      "wavelength lambda"
+      "period T"
+      "frequency f = 1 / T"
+    Superposition
+      "same position and time"
+      "y_resultant = y1 + y2"
+      "constructive"
+      "destructive"
+    Interference
+      "phase difference"
+      "crest meets crest"
+      "crest meets trough"
     Misconceptions
-      "ignore direction"
-      "energy disappears"
-      "power equals energy"
+      "larger displacement means longer wavelength"
+      "frequency changes during interference"
+      "energy is destroyed"
 ```

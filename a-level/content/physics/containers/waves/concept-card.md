@@ -3,10 +3,9 @@ subject: physics
 concept: waves
 branch: a-level
 level: H2
-syllabus_ref: "9478 / Section II / Work, energy and power"
+syllabus_ref: "9478 / Section IV / Waves"
 prerequisites:
-  - forces-and-equilibrium
-  - kinematics-in-one-dimension
+  - physical-quantities-and-units
 aid_types:
   - concept-card
   - simulation
@@ -19,53 +18,55 @@ status: reviewed
 
 ## First-Principles Explanation
 
-Work is transferred by a force acting through a displacement. The
-direction matters. Only the component of the force along the displacement does
-work, so a sideways force can be large and still transfer no energy along the
-path.
+A wave transfers energy and information by a repeating disturbance. At one
+instant, a point on the medium has a displacement from its rest position. When
+two waves overlap at the same place and time, the observed displacement is the
+sum of the individual displacements.
 
-```text
-W = F s cos(theta)
+```latex
+y_{\text{resultant}} = y_1 + y_2
 ```
 
-Energy is not used up. It moves between stores. Positive work on an object
-increases its mechanical energy store; negative work transfers energy out of
-that store. Power tells how quickly the transfer happens.
+For a sinusoidal wave, amplitude tells the largest displacement, wavelength
+tells the length of one spatial cycle, period tells the time for one cycle, and
+frequency is the number of cycles per second.
 
-```text
-P = W / t
+```latex
+f = \frac{1}{T}
 ```
 
 ## Key Definitions
 
-- **Work done:** transferred when a force has a component along a displacement.
-- **Joule:** unit of work and energy; 1 J = 1 N m.
-- **Kinetic energy:** energy associated with motion, `E_k = 1/2 mv^2`.
-- **Power:** rate of energy transfer, measured in watts; 1 W = 1 J s^-1.
-- **Negative work:** work done by a force with a component opposite the displacement.
+- **Amplitude:** maximum displacement from the rest position.
+- **Wavelength:** distance between matching points on neighbouring cycles.
+- **Period:** time taken for one complete cycle.
+- **Frequency:** cycles per second, measured in hertz.
+- **Phase difference:** how far one wave is shifted through the cycle relative to another.
+- **Superposition:** addition of wave displacements at the same place and time.
 
 ## Why This Matters
 
-Work-energy reasoning lets learners solve motion problems without tracking
-every force over every instant. It is the bridge from force diagrams to
-conservation ideas, motors, braking, collisions, and oscillations.
+Wave superposition explains interference, stationary waves, sound cancellation,
+diffraction patterns, signal overlap, and many measurement devices. It also
+separates the ideas of displacement, amplitude, wavelength, and frequency so
+learners do not treat every larger-looking wave as a different wavelength.
 
 ## Canonical Examples
 
-- A pull in the same direction as motion does positive work and can increase kinetic energy.
-- A braking force opposite the motion does negative work and reduces kinetic energy.
-- Two motors can do the same work while having different power if one takes less time.
+- Crest meeting crest gives constructive interference and a larger displacement.
+- Crest meeting trough gives destructive interference and can produce zero local displacement.
+- Noise-cancelling headphones use an approximately opposite-phase sound wave to reduce resultant displacement at the ear.
 
 ## Common Misconceptions
 
-- Multiplying `F` and `s` without checking the angle between them.
-- Saying energy is lost instead of naming the store it moved to.
-- Treating power as "how much energy" rather than "how fast energy is transferred."
+- Saying a larger resultant displacement means the wavelength has doubled.
+- Saying destructive interference destroys energy.
+- Treating phase difference as a change in frequency.
 
 ## Problem-Solving Pattern
 
-1. Identify the force and the displacement.
-2. Decide the angle between the force and displacement.
-3. Calculate work with `W = F s cos(theta)`.
-4. Link work to an energy-store change.
-5. If time is involved, calculate average power with `P = W / t`.
+1. Identify the displacement of each wave at the same position and time.
+2. Use phase difference to decide whether the displacements have the same or opposite sign.
+3. Add the displacements: `y_resultant = y1 + y2`.
+4. Keep wavelength, period, and frequency separate from the instantaneous displacement.
+5. Explain constructive, destructive, or partial interference from the sign and size of the displacement sum.

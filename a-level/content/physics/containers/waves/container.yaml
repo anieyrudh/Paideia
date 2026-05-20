@@ -1,19 +1,18 @@
 schema_version: "1.0.0"
 id: waves
 aliases:
-  - work done
   - wave behaviour
-  - average power
+  - interference
+  - superposition
 branch: a-level
 subject: physics
 level: "H2"
-module: "Forces and Motion"
+module: "Waves"
 title: "Waves"
-one_line_summary: "Connect force along a displacement to wave behaviour and the rate of transfer."
-syllabus_ref: "9478 / Section II / Work, energy and power"
+one_line_summary: "Explore how two waves combine when their displacements meet at the same place and time."
+syllabus_ref: "9478 / Section IV / Waves"
 prerequisites:
-  - forces-and-equilibrium
-  - kinematics-in-one-dimension
+  - physical-quantities-and-units
 aid_types:
   - simulation
   - misconception-audit
@@ -21,14 +20,14 @@ aid_types:
 predict_at: both
 package_predict:
   prompt: |
-    A 10 N pull moves a trolley 3.0 m in the same direction as the motion in 2.0 s. Before revealing the lab, which work and average power statement is correct?
+    Two identical waves meet in phase. Before revealing the lab, what happens to the displacement where their crests overlap?
   commit_format:
     kind: multiple-choice
     options:
-      - "0 J and 0 W"
-      - "30 J and 15 W"
-      - "30 J and 30 W"
-      - "60 J and 15 W"
+      - "They cancel to zero"
+      - "They add to double the displacement"
+      - "The wavelength doubles"
+      - "The frequency halves"
     correct_index: 1
   rationale_required: true
 components:
@@ -64,12 +63,12 @@ concept_map:
   mindmap: concept-map/mindmap.md
   mermaid: concept-map/graph.mmd
 transfer_problems:
-  - id: lift-motor-power
+  - id: noise-cancellation
     prompt: |
-      Two motors lift the same load through the same height. Motor A takes 4.0 s and Motor B takes 10.0 s. Compare the work done and the average power, then explain why the answers differ.
-    surface_form: "lift motor comparison"
-    same_concept_check: "Same concept: work is transferred by force over displacement; power is the rate of that transfer."
-    rubric_path: problem-solving/lift-motor-power.md
+      Noise-cancelling headphones send a sound wave that is nearly opposite in phase to the incoming noise. Explain which displacement changes and which wave properties remain the same.
+    surface_form: "noise cancellation"
+    same_concept_check: "Same concept: resultant displacement is the sum of the individual wave displacements at the same point and time."
+    rubric_path: problem-solving/noise-cancellation.md
 assessments: []
 status: reviewed
 authoring:
@@ -80,34 +79,34 @@ authoring:
   changelog:
     - date: "2026-05-19"
       author: "Codex"
-      summary: "Built A-Level waves product slice using core/mechanics, charting, sim-runtime, prediction-gate, and ui-sim."
+      summary: "Built A-Level waves product slice using core/function-eval, charting, sim-runtime, prediction-gate, and ui-sim."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []
 filter_pass:
-  date: "2026-05-19"
+  date: "2026-05-20"
   p0_issues_resolved: true
   p1_issues_addressed_or_deferred: true
   output_in_technical_md: true
 review:
   anieyrudh_filter:
     required_for_status: reviewed
-    last_run: "2026-05-19"
+    last_run: "2026-05-20"
     p0_open: 0
     p1_open: 0
     output_in_technical_md: true
 misconceptions:
-  - name: "Energy is lost rather than transferred"
-    description: "Learners may describe energy as disappearing when negative work reduces kinetic energy instead of tracking transfer out of the kinetic store."
-    evidence_source: "OpenStax University Physics Volume 1, Section 7.1 Work."
+  - name: "Amplitude and wavelength are interchangeable"
+    description: "Learners may think a larger resultant displacement means the wavelength has increased."
+    evidence_source: "OpenStax College Physics 2e, Chapter 16 Wave Superposition and Interference."
     surface_in_predict: false
-  - name: "Work equals force regardless of displacement direction"
-    description: "Learners may multiply force by displacement without using the force component along the displacement, or may choose the 30 W distractor by treating power as the same quantity as work."
-    evidence_source: "OpenStax University Physics Volume 1, Section 7.1 Work."
+  - name: "Constructive interference changes the frequency"
+    description: "Learners may treat a larger resultant displacement as a change in the timing of the wave rather than a displacement sum."
+    evidence_source: "OpenStax College Physics 2e, Chapter 16 Wave Superposition and Interference."
     surface_in_predict: false
-  - name: "Power is the same thing as energy"
-    description: "Learners may choose a work answer without dividing by time, or may compare power outputs without considering the time taken for the same wave behaviour."
-    evidence_source: "OpenStax University Physics Volume 1, Section 7.4 Power."
+  - name: "Destructive interference destroys energy"
+    description: "Learners may say a zero resultant means waves or energy disappear instead of recognising local cancellation of displacement."
+    evidence_source: "OpenStax College Physics 2e, Chapter 16 Wave Superposition and Interference."
     surface_in_predict: true
 sources:
   - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
@@ -115,9 +114,9 @@ sources:
     publication_year: 2025
     license: "Copyright MOE & Cambridge University Press & Assessment"
     seab_alignment: matches
-  - citation: "Moebs, W., Ling, S. J., and Sanny, J. University Physics Volume 1, Chapter 7 Work and Kinetic Energy. OpenStax, 2016."
-    url: "https://openstax.org/books/university-physics-volume-1/pages/7-introduction"
-    publication_year: 2016
+  - citation: "OpenStax. College Physics 2e, Chapter 16 Wave Superposition and Interference. OpenStax, 2022."
+    url: "https://openstax.org/books/college-physics-2e/pages/16-introduction-to-waves"
+    publication_year: 2022
     license: "CC BY 4.0"
     seab_alignment: matches
 language: en

@@ -72,6 +72,9 @@ importers:
       '@paideia/content-schema':
         specifier: workspace:*
         version: link:../../../core/content-schema
+      '@paideia/function-eval':
+        specifier: workspace:*
+        version: link:../../../core/function-eval
       '@paideia/linear-algebra':
         specifier: workspace:*
         version: link:../../../core/linear-algebra

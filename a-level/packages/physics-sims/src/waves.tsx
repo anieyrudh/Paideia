@@ -1,28 +1,24 @@
 import { useMemo } from "react";
 import { LineChart } from "@paideia/charting";
 import type { TSimulationSpec } from "@paideia/content-schema";
-import { averagePower, kineticEnergy, workDone, workEnergyTransfer } from "@paideia/mechanics";
+import { evaluate } from "@paideia/function-eval";
 import type { PredictionEvent } from "@paideia/prediction-gate";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
 import {
   degrees,
-  kilograms,
+  err,
+  hertz,
   metres,
-  metresPerSecond,
-  newtons,
   ok,
   radians,
   seconds,
   type ConceptPackageId,
   type Degrees,
-  type Joules,
+  type Hertz,
   type KernelResult,
-  type Kilograms,
   type Metres,
-  type MetresPerSecond,
-  type Newtons,
+  type Radians,
   type Seconds,
-  type Watts,
 } from "@paideia/shared";
 import { ControlGroup, Slider } from "@paideia/ui-sim";
 
@@ -31,39 +27,40 @@ export const wavesSimId = "wave-superposition-lab";
 export type WavesPredictionEvent = PredictionEvent;
 
 export interface WavesState {
-  readonly forceNewtons: Newtons;
-  readonly displacementMetres: Metres;
-  readonly angleDegrees: Degrees;
-  readonly elapsedSeconds: Seconds;
-  readonly massKilograms: Kilograms;
-  readonly initialSpeedMetresPerSecond: MetresPerSecond;
+  readonly amplitudeMetres: Metres;
+  readonly wavelengthMetres: Metres;
+  readonly periodSeconds: Seconds;
+  readonly phaseDegrees: Degrees;
+  readonly samplePositionMetres: Metres;
+  readonly timeSeconds: Seconds;
 }
 
-export interface EnergyTracePoint {
-  readonly displacementMetres: Metres;
-  readonly kineticEnergyJoules: Joules;
-  readonly workDoneJoules: Joules;
+export interface WaveTracePoint {
+  readonly positionMetres: Metres;
+  readonly waveA: Metres;
+  readonly waveB: Metres;
+  readonly resultant: Metres;
 }
 
 export interface WavesModel {
-  readonly workJoules: Joules;
-  readonly initialKineticEnergyJoules: Joules;
-  readonly finalKineticEnergyJoules: Joules;
-  readonly averagePowerWatts: Watts;
-  readonly energyChangeJoules: Joules;
-  readonly trace: readonly EnergyTracePoint[];
-  readonly signDecision: "positive" | "zero" | "negative";
-  readonly transferLabel: string;
+  readonly frequencyHertz: Hertz;
+  readonly phaseRadians: Radians;
+  readonly waveAAtSampleMetres: Metres;
+  readonly waveBAtSampleMetres: Metres;
+  readonly resultantAtSampleMetres: Metres;
+  readonly envelopeAmplitudeMetres: Metres;
+  readonly interference: "constructive" | "destructive" | "partial";
+  readonly trace: readonly WaveTracePoint[];
 }
 
 export const wavesSpec: TSimulationSpec = {
   id: wavesSimId,
-  title: "Energy Transfer Lab",
+  title: "Wave Superposition Lab",
   interaction_type: "animation-playback",
   kernel_deps: [
     "core/sim-runtime",
     "core/content-schema",
-    "core/mechanics",
+    "core/function-eval",
     "core/charting",
     "core/prediction-gate",
     "core/shared",
@@ -71,10 +68,15 @@ export const wavesSpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "A 10 N pull moves a trolley 3.0 m in the same direction as the motion in 2.0 s. Before revealing the lab, which work and average power statement is correct?",
+      "Two identical waves meet in phase. Before revealing the lab, what happens to the displacement where their crests overlap?",
     commit_format: {
       kind: "multiple-choice",
-      options: ["0 J and 0 W", "30 J and 15 W", "30 J and 30 W", "60 J and 15 W"],
+      options: [
+        "They cancel to zero",
+        "They add to double the displacement",
+        "The wavelength doubles",
+        "The frequency halves",
+      ],
       correct_index: 1,
     },
     rationale_required: true,
@@ -82,32 +84,32 @@ export const wavesSpec: TSimulationSpec = {
   manipulate: {
     controls: [
       {
-        id: "force",
-        label: "Applied force",
+        id: "amplitude",
+        label: "Amplitude",
         kind: "slider",
-        kernel_binding: "state.forceNewtons",
-        bounds: { min: 0, max: 20, step: 1 },
+        kernel_binding: "state.amplitudeMetres",
+        bounds: { min: 0.2, max: 3, step: 0.1 },
       },
       {
-        id: "displacement",
-        label: "Displacement",
+        id: "wavelength",
+        label: "Wavelength",
         kind: "slider",
-        kernel_binding: "state.displacementMetres",
-        bounds: { min: 0, max: 6, step: 0.5 },
+        kernel_binding: "state.wavelengthMetres",
+        bounds: { min: 1, max: 8, step: 0.25 },
       },
       {
-        id: "angle",
-        label: "Force angle",
+        id: "period",
+        label: "Period",
         kind: "slider",
-        kernel_binding: "state.angleDegrees",
+        kernel_binding: "state.periodSeconds",
+        bounds: { min: 0.5, max: 6, step: 0.25 },
+      },
+      {
+        id: "phase",
+        label: "Phase difference",
+        kind: "slider",
+        kernel_binding: "state.phaseDegrees",
         bounds: { min: 0, max: 180, step: 15 },
-      },
-      {
-        id: "elapsed-time",
-        label: "Elapsed time",
-        kind: "slider",
-        kernel_binding: "state.elapsedSeconds",
-        bounds: { min: 0.5, max: 8, step: 0.5 },
       },
     ],
   },
@@ -118,76 +120,67 @@ export const wavesSpec: TSimulationSpec = {
         module: "@paideia/a-level-physics-sims/waves",
         symbol: "WavesSim",
         props_binding:
-          "Show work sign, energy-store transfer, average power, formula substitution, and an energy trace from force, displacement, angle, time, mass, and starting speed.",
+          "Show two same-frequency waves, their resultant displacement, phase comparison, formula substitution, and interference condition.",
       },
     ],
   },
   explain: {
     prompt:
-      "Why does only the force component along the displacement transfer energy, and what changes when the same work is done in less time?",
+      "Why do identical waves reinforce when their displacements point the same way, and cancel when they point opposite ways?",
     socratic: true,
     expected_misconceptions_surfaced: [
-      "Energy is lost rather than transferred.",
-      "Work equals force regardless of displacement direction.",
-      "Power is the same thing as energy.",
+      "Amplitude and wavelength are interchangeable.",
+      "Constructive interference changes the frequency.",
+      "Destructive interference destroys energy.",
     ],
   },
 };
 
 const defaultState: WavesState = {
-  forceNewtons: newtons(10),
-  displacementMetres: metres(3),
-  angleDegrees: degrees(0),
-  elapsedSeconds: seconds(2),
-  massKilograms: kilograms(4),
-  initialSpeedMetresPerSecond: metresPerSecond(1),
+  amplitudeMetres: metres(1.5),
+  wavelengthMetres: metres(4),
+  periodSeconds: seconds(2),
+  phaseDegrees: degrees(0),
+  samplePositionMetres: metres(1),
+  timeSeconds: seconds(0),
 };
 
 const presets: readonly {
   readonly label: string;
   readonly state: WavesState;
 }[] = [
-  { label: "pull with motion", state: defaultState },
+  { label: "crest meets crest", state: defaultState },
   {
-    label: "sideways pull",
-    state: {
-      ...defaultState,
-      forceNewtons: newtons(12),
-      angleDegrees: degrees(90),
-      elapsedSeconds: seconds(3),
-    },
+    label: "crest meets trough",
+    state: { ...defaultState, phaseDegrees: degrees(180) },
   },
   {
-    label: "braking force",
-    state: {
-      forceNewtons: newtons(5),
-      displacementMetres: metres(2),
-      angleDegrees: degrees(180),
-      elapsedSeconds: seconds(2.5),
-      massKilograms: kilograms(3),
-      initialSpeedMetresPerSecond: metresPerSecond(3),
-    },
+    label: "part-way out of step",
+    state: { ...defaultState, phaseDegrees: degrees(90) },
   },
   {
-    label: "same work, slower",
-    state: { ...defaultState, elapsedSeconds: seconds(6) },
+    label: "shorter wavelength",
+    state: { ...defaultState, wavelengthMetres: metres(2.5), periodSeconds: seconds(1.25) },
   },
 ];
+
+const waveExpression = "A * sin(tau * (x / lambda - t / T) + phi)";
+const tau = Math.PI * 2;
 
 const clamp = (value: number, min: number, max: number): number =>
   Math.min(max, Math.max(min, value));
 
 const currentState = (state: Partial<WavesState>): WavesState => ({
-  forceNewtons: newtons(clamp(state.forceNewtons ?? defaultState.forceNewtons, 0, 20)),
-  displacementMetres: metres(clamp(state.displacementMetres ?? defaultState.displacementMetres, 0, 6)),
-  angleDegrees: degrees(clamp(state.angleDegrees ?? defaultState.angleDegrees, 0, 180)),
-  elapsedSeconds: seconds(clamp(state.elapsedSeconds ?? defaultState.elapsedSeconds, 0.5, 8)),
-  massKilograms: kilograms(clamp(state.massKilograms ?? defaultState.massKilograms, 1, 10)),
-  initialSpeedMetresPerSecond: metresPerSecond(clamp(
-    state.initialSpeedMetresPerSecond ?? defaultState.initialSpeedMetresPerSecond,
+  amplitudeMetres: metres(clamp(state.amplitudeMetres ?? defaultState.amplitudeMetres, 0.2, 3)),
+  wavelengthMetres: metres(clamp(state.wavelengthMetres ?? defaultState.wavelengthMetres, 1, 8)),
+  periodSeconds: seconds(clamp(state.periodSeconds ?? defaultState.periodSeconds, 0.5, 6)),
+  phaseDegrees: degrees(clamp(state.phaseDegrees ?? defaultState.phaseDegrees, 0, 180)),
+  samplePositionMetres: metres(clamp(
+    state.samplePositionMetres ?? defaultState.samplePositionMetres,
     0,
     8,
   )),
+  timeSeconds: seconds(clamp(state.timeSeconds ?? defaultState.timeSeconds, 0, 6)),
 });
 
 const roundTo = (value: number, places: number): number => {
@@ -198,134 +191,137 @@ const roundTo = (value: number, places: number): number => {
 const formatNumber = (value: number, places = 2): string => roundTo(value, places).toFixed(places);
 const formatSigned = (value: number, places = 2): string =>
   value >= 0 ? `+${formatNumber(value, places)}` : formatNumber(value, places);
-const degToRad = (value: Degrees): number => (value * Math.PI) / 180;
+const degreesToRadians = (value: Degrees): Radians => radians((value * Math.PI) / 180);
 
-const signOfWork = (workJoules: number): WavesModel["signDecision"] => {
-  if (Math.abs(workJoules) < 1e-9) return "zero";
-  return workJoules > 0 ? "positive" : "negative";
-};
-
-const transferLabel = (sign: WavesModel["signDecision"]): string => {
-  if (sign === "positive") return "Energy is transferred into the kinetic store.";
-  if (sign === "negative") return "Energy is transferred out of the kinetic store.";
-  return "No work is done because the force has no component along the displacement.";
-};
-
-export const wavesModel = (
+const evaluateWave = (
   state: WavesState,
-): KernelResult<WavesModel> => {
-  const angle = radians(degToRad(state.angleDegrees));
-  const work = workDone(state.forceNewtons, state.displacementMetres, angle);
-  if (!work.ok) return work;
+  positionMetres: number,
+  phaseRadians: number,
+): KernelResult<Metres> => {
+  const result = evaluate(waveExpression, {
+    A: state.amplitudeMetres,
+    tau,
+    x: positionMetres,
+    lambda: state.wavelengthMetres,
+    t: state.timeSeconds,
+    T: state.periodSeconds,
+    phi: phaseRadians,
+  });
+  if (!result.ok) return result;
+  return ok(metres(result.value));
+};
 
-  const initialKineticEnergy = kineticEnergy(
-    state.massKilograms,
-    state.initialSpeedMetresPerSecond,
-  );
-  if (!initialKineticEnergy.ok) return initialKineticEnergy;
+const classifyInterference = (phaseDegrees: Degrees): WavesModel["interference"] => {
+  if (phaseDegrees <= 30) return "constructive";
+  if (phaseDegrees >= 150) return "destructive";
+  return "partial";
+};
 
-  const transfer = workEnergyTransfer(initialKineticEnergy.value, work.value);
-  if (!transfer.ok) return transfer;
-  const power = averagePower(work.value, state.elapsedSeconds);
-  if (!power.ok) return power;
+export const wavesModel = (state: WavesState): KernelResult<WavesModel> => {
+  if (state.wavelengthMetres <= 0) {
+    return err("precondition-violated", "Wavelength must be positive.");
+  }
+  if (state.periodSeconds <= 0) {
+    return err("precondition-violated", "Period must be positive.");
+  }
 
-  const trace: EnergyTracePoint[] = [];
-  const sampleCount = 24;
+  const phaseRadians = degreesToRadians(state.phaseDegrees);
+  const waveAAtSample = evaluateWave(state, state.samplePositionMetres, 0);
+  if (!waveAAtSample.ok) return waveAAtSample;
+  const waveBAtSample = evaluateWave(state, state.samplePositionMetres, phaseRadians);
+  if (!waveBAtSample.ok) return waveBAtSample;
+
+  const trace: WaveTracePoint[] = [];
+  const sampleCount = 48;
+  const maxPosition = Math.max(1, state.wavelengthMetres * 2);
   for (let index = 0; index <= sampleCount; index += 1) {
-    const fraction = index / sampleCount;
-    const displacement = state.displacementMetres * fraction;
-    const partialWork = workDone(state.forceNewtons, metres(displacement), angle);
-    if (!partialWork.ok) return partialWork;
-    const partialTransfer = workEnergyTransfer(initialKineticEnergy.value, partialWork.value);
-    if (!partialTransfer.ok) return partialTransfer;
+    const position = (index / sampleCount) * maxPosition;
+    const waveA = evaluateWave(state, position, 0);
+    if (!waveA.ok) return waveA;
+    const waveB = evaluateWave(state, position, phaseRadians);
+    if (!waveB.ok) return waveB;
     trace.push({
-      displacementMetres: metres(displacement),
-      kineticEnergyJoules: partialTransfer.value.finalKineticEnergyJoules,
-      workDoneJoules: partialWork.value,
+      positionMetres: metres(position),
+      waveA: waveA.value,
+      waveB: waveB.value,
+      resultant: metres(waveA.value + waveB.value),
     });
   }
 
-  const signDecision = signOfWork(work.value);
   return ok({
-    workJoules: work.value,
-    initialKineticEnergyJoules: initialKineticEnergy.value,
-    finalKineticEnergyJoules: transfer.value.finalKineticEnergyJoules,
-    averagePowerWatts: power.value,
-    energyChangeJoules: transfer.value.kineticEnergyChangeJoules,
+    frequencyHertz: hertz(1 / state.periodSeconds),
+    phaseRadians,
+    waveAAtSampleMetres: waveAAtSample.value,
+    waveBAtSampleMetres: waveBAtSample.value,
+    resultantAtSampleMetres: metres(waveAAtSample.value + waveBAtSample.value),
+    envelopeAmplitudeMetres: metres(Math.abs(2 * state.amplitudeMetres * Math.cos(phaseRadians / 2))),
+    interference: classifyInterference(state.phaseDegrees),
     trace,
-    signDecision,
-    transferLabel: transferLabel(signDecision),
   });
 };
 
-export const EnergyTransferDiagram = ({
+export const WaveSuperpositionDiagram = ({
   state,
   model,
 }: {
   readonly state: WavesState;
   readonly model: WavesModel;
 }) => {
-  const arrowLength = 90;
-  const angleRadians = degToRad(state.angleDegrees);
-  const arrowEndX = 160 + Math.cos(angleRadians) * arrowLength;
-  const arrowEndY = 86 - Math.sin(angleRadians) * arrowLength;
-  const kineticPercent = Math.min(100, Math.max(4, model.finalKineticEnergyJoules * 5));
   const chartData = model.trace.flatMap((point) => [
-    { x: point.displacementMetres, y: point.kineticEnergyJoules, series: "kinetic energy" },
-    { x: point.displacementMetres, y: point.workDoneJoules, series: "work done" },
+    { x: point.positionMetres, y: point.waveA, series: "wave A" },
+    { x: point.positionMetres, y: point.waveB, series: "wave B" },
+    { x: point.positionMetres, y: point.resultant, series: "resultant" },
   ]);
+  const yLimit = Math.max(1, state.amplitudeMetres * 2.2);
 
   return (
-    <div className="energy-stage" aria-label="Energy transfer visual">
-      <svg aria-label="Force and displacement diagram" role="img" viewBox="0 0 360 180">
-        <defs>
-          <marker id="work-energy-arrow" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="4">
-            <path d="M0,0 L8,4 L0,8 Z" fill="#1f5f8b" />
-          </marker>
-        </defs>
+    <div className="energy-stage" aria-label="Wave superposition visual">
+      <svg aria-label="Two waves meeting" role="img" viewBox="0 0 360 180">
         <rect fill="#f8fbff" height="180" rx="18" width="360" />
-        <line stroke="#cbd5e1" strokeWidth="3" x1="48" x2="312" y1="132" y2="132" />
-        <line
-          markerEnd="url(#work-energy-arrow)"
-          stroke="#027a48"
-          strokeLinecap="round"
-          strokeWidth="6"
-          x1="72"
-          x2="280"
-          y1="132"
-          y2="132"
-        />
-        <rect fill="#f0b429" height="36" rx="7" width="64" x="128" y="96" />
-        <circle cx="142" cy="135" fill="#10201a" r="6" />
-        <circle cx="178" cy="135" fill="#10201a" r="6" />
-        <line
-          markerEnd="url(#work-energy-arrow)"
-          stroke="#1f5f8b"
+        <line stroke="#cbd5e1" strokeWidth="2" x1="24" x2="336" y1="90" y2="90" />
+        <circle cx="86" cy="90" fill="#2563eb" r={16 + state.amplitudeMetres * 5} opacity="0.28" />
+        <circle cx="224" cy="90" fill="#f97316" r={16 + state.amplitudeMetres * 5} opacity="0.28" />
+        <path
+          d="M72 90 C104 38, 136 38, 168 90 S232 142, 264 90"
+          fill="none"
+          stroke="#2563eb"
           strokeLinecap="round"
           strokeWidth="5"
-          x1="160"
-          x2={arrowEndX}
-          y1="96"
-          y2={arrowEndY}
         />
-        <text fill="#10201a" fontSize="12" fontWeight="800" x="56" y="156">
-          displacement = {formatNumber(state.displacementMetres, 1)} m
+        <path
+          d={
+            state.phaseDegrees > 120
+              ? "M72 90 C104 142, 136 142, 168 90 S232 38, 264 90"
+              : "M72 90 C104 48, 136 48, 168 90 S232 132, 264 90"
+          }
+          fill="none"
+          stroke="#f97316"
+          strokeLinecap="round"
+          strokeWidth="5"
+        />
+        <path
+          d={
+            model.interference === "destructive"
+              ? "M72 90 C104 90, 136 90, 168 90 S232 90, 264 90"
+              : "M72 90 C104 26, 136 26, 168 90 S232 154, 264 90"
+          }
+          fill="none"
+          stroke="#059669"
+          strokeDasharray="8 7"
+          strokeLinecap="round"
+          strokeWidth="5"
+        />
+        <text fill="#10201a" fontSize="12" fontWeight="800" x="34" y="32">
+          phase = {formatNumber(state.phaseDegrees, 0)} deg
         </text>
-        <text fill="#10201a" fontSize="12" fontWeight="800" x="198" y="82">
-          force angle = {formatNumber(state.angleDegrees, 0)} deg
+        <text fill="#10201a" fontSize="12" fontWeight="800" x="34" y="156">
+          resultant amplitude = {formatNumber(model.envelopeAmplitudeMetres)} m
         </text>
       </svg>
-      <div className="energy-bars" aria-label="Energy-store bars">
-        <span>Kinetic store now</span>
-        <div className="energy-bar">
-          <span style={{ width: `${kineticPercent}%` }} />
-        </div>
-        <strong>{formatNumber(model.finalKineticEnergyJoules)} J</strong>
-      </div>
       <LineChart
         data={chartData}
-        x={{ domain: { min: 0, max: Math.max(1, state.displacementMetres) } }}
-        y={{ domain: { min: Math.min(0, model.workJoules), max: Math.max(1, model.finalKineticEnergyJoules) } }}
+        x={{ domain: { min: 0, max: Math.max(1, state.wavelengthMetres * 2) } }}
+        y={{ domain: { min: -yLimit, max: yLimit } }}
       />
     </div>
   );
@@ -338,63 +334,45 @@ const ManipulateStage = () => {
   const model = useMemo(() => wavesModel(current), [current]);
 
   return (
-    <section aria-label="Energy controls" className="vector-lab vector-lab--product">
-      <div className="vector-controls vector-controls--product" aria-label="Work-energy controls">
-        <p className="lab-kicker">Tune the transfer</p>
-        <ControlGroup legend="Work, energy, and power controls">
+    <section aria-label="Wave controls" className="vector-lab vector-lab--product">
+      <div className="vector-controls vector-controls--product" aria-label="Wave superposition controls">
+        <p className="lab-kicker">Tune the meeting waves</p>
+        <ControlGroup legend="Wave controls">
           <Slider
-            label="Applied force"
-            max={20}
-            min={0}
-            onChange={(value) => set("forceNewtons", newtons(value))}
-            step={1}
-            unit="N"
-            value={current.forceNewtons}
-          />
-          <Slider
-            label="Displacement"
-            max={6}
-            min={0}
-            onChange={(value) => set("displacementMetres", metres(value))}
-            step={0.5}
+            label="Amplitude"
+            max={3}
+            min={0.2}
+            onChange={(value) => set("amplitudeMetres", metres(value))}
+            step={0.1}
             unit="m"
-            value={current.displacementMetres}
+            value={current.amplitudeMetres}
           />
           <Slider
-            label="Force angle"
+            label="Wavelength"
+            max={8}
+            min={1}
+            onChange={(value) => set("wavelengthMetres", metres(value))}
+            step={0.25}
+            unit="m"
+            value={current.wavelengthMetres}
+          />
+          <Slider
+            label="Period"
+            max={6}
+            min={0.5}
+            onChange={(value) => set("periodSeconds", seconds(value))}
+            step={0.25}
+            unit="s"
+            value={current.periodSeconds}
+          />
+          <Slider
+            label="Phase difference"
             max={180}
             min={0}
-            onChange={(value) => set("angleDegrees", degrees(value))}
+            onChange={(value) => set("phaseDegrees", degrees(value))}
             step={15}
             unit="deg"
-            value={current.angleDegrees}
-          />
-          <Slider
-            label="Elapsed time"
-            max={8}
-            min={0.5}
-            onChange={(value) => set("elapsedSeconds", seconds(value))}
-            step={0.5}
-            unit="s"
-            value={current.elapsedSeconds}
-          />
-          <Slider
-            label="Mass"
-            max={10}
-            min={1}
-            onChange={(value) => set("massKilograms", kilograms(value))}
-            step={0.5}
-            unit="kg"
-            value={current.massKilograms}
-          />
-          <Slider
-            label="Starting speed"
-            max={8}
-            min={0}
-            onChange={(value) => set("initialSpeedMetresPerSecond", metresPerSecond(value))}
-            step={0.5}
-            unit="m s^-1"
-            value={current.initialSpeedMetresPerSecond}
+            value={current.phaseDegrees}
           />
         </ControlGroup>
         <div className="preset-strip" aria-label="Scenario presets">
@@ -402,12 +380,12 @@ const ManipulateStage = () => {
             <button
               key={preset.label}
               onClick={() => {
-                set("forceNewtons", preset.state.forceNewtons);
-                set("displacementMetres", preset.state.displacementMetres);
-                set("angleDegrees", preset.state.angleDegrees);
-                set("elapsedSeconds", preset.state.elapsedSeconds);
-                set("massKilograms", preset.state.massKilograms);
-                set("initialSpeedMetresPerSecond", preset.state.initialSpeedMetresPerSecond);
+                set("amplitudeMetres", preset.state.amplitudeMetres);
+                set("wavelengthMetres", preset.state.wavelengthMetres);
+                set("periodSeconds", preset.state.periodSeconds);
+                set("phaseDegrees", preset.state.phaseDegrees);
+                set("samplePositionMetres", preset.state.samplePositionMetres);
+                set("timeSeconds", preset.state.timeSeconds);
               }}
               type="button"
             >
@@ -421,18 +399,18 @@ const ManipulateStage = () => {
       </div>
       <section className="formula-panel formula-panel--product" aria-label="Before reveal cue">
         <p className="lab-kicker">Before reveal</p>
-        <h3>Watch the direction</h3>
+        <h3>Phase decides the pattern</h3>
         <p>
-          Work depends on the component of force along displacement. If the force is sideways,
-          the displacement can be large while the work is zero.
+          Superposition adds displacement, not wavelength or frequency. Move the phase slider
+          and predict whether the waves reinforce, cancel, or partially combine.
         </p>
         {model.ok ? (
           <p>
-            Your current settings predict {model.value.signDecision} work. Commit your prediction
-            before the readout and trace are shown.
+            Your current settings predict {model.value.interference} interference. Commit your
+            prediction before the resultant trace is shown.
           </p>
         ) : (
-          <p role="alert">The current settings need finite values.</p>
+          <p role="alert">The current wave settings need finite positive values.</p>
         )}
       </section>
     </section>
@@ -445,49 +423,74 @@ const ObserveStage = () => {
   const model = wavesModel(state);
 
   if (!model.ok) {
-    return <p role="alert">The current energy settings are outside the supported range.</p>;
+    return <p role="alert">The current wave settings are outside the supported range.</p>;
   }
 
   return (
     <section aria-label="Observation unlocked" className="vector-lab vector-lab--product">
       <div className="vector-stage vector-stage--product">
-        <EnergyTransferDiagram model={model.value} state={state} />
-        <dl aria-label="Energy readout" className="result-readout result-readout--cards">
+        <WaveSuperpositionDiagram model={model.value} state={state} />
+        <dl aria-label="Wave readout" className="result-readout result-readout--cards">
           <div>
-            <dt>Work done</dt>
-            <dd>{formatSigned(model.value.workJoules)} J</dd>
+            <dt>Frequency</dt>
+            <dd>{formatNumber(model.value.frequencyHertz)} Hz</dd>
           </div>
           <div>
-            <dt>Average power</dt>
-            <dd>{formatSigned(model.value.averagePowerWatts)} W</dd>
+            <dt>Phase difference</dt>
+            <dd>{formatNumber(model.value.phaseRadians)} rad</dd>
           </div>
           <div>
-            <dt>Kinetic store change</dt>
-            <dd>{formatSigned(model.value.energyChangeJoules)} J</dd>
+            <dt>Resultant at marker</dt>
+            <dd>{formatSigned(model.value.resultantAtSampleMetres)} m</dd>
           </div>
         </dl>
       </div>
       <section className="formula-panel formula-panel--product" aria-label="Formula used">
         <p className="lab-kicker">Formula used</p>
-        <h3>Work is force along the path</h3>
-        <p className="formula">W = F s cos(theta), P = W / t, E_k = 1/2 mv^2</p>
+        <h3>Displacements add at the same point</h3>
+        <pre className="formula-code" aria-label="LaTeX formula source">
+          <code>{String.raw`\begin{aligned}
+y_1 &= A\sin\!\left(2\pi\left(\frac{x}{\lambda}-\frac{t}{T}\right)\right)\\
+y_2 &= A\sin\!\left(2\pi\left(\frac{x}{\lambda}-\frac{t}{T}\right)+\phi\right)\\
+y_{\text{resultant}} &= y_1 + y_2\\
+f &= \frac{1}{T}
+\end{aligned}`}</code>
+        </pre>
+        <dl className="formula-legend" aria-label="Formula legend">
+          <div>
+            <dt><span className="legend-swatch legend-swatch--blue" /> A</dt>
+            <dd>amplitude, {formatNumber(state.amplitudeMetres)} m</dd>
+          </div>
+          <div>
+            <dt><span className="legend-swatch legend-swatch--orange" /> lambda</dt>
+            <dd>wavelength, {formatNumber(state.wavelengthMetres)} m</dd>
+          </div>
+          <div>
+            <dt><span className="legend-swatch legend-swatch--green" /> phi</dt>
+            <dd>phase difference, {formatNumber(model.value.phaseRadians)} rad</dd>
+          </div>
+        </dl>
         <p>
-          W = ({formatNumber(state.forceNewtons, 1)} N)({formatNumber(state.displacementMetres, 1)} m)
-          cos({formatNumber(state.angleDegrees, 0)} deg) = {formatSigned(model.value.workJoules)} J.
+          Substitution at x = {formatNumber(state.samplePositionMetres)} m and t ={" "}
+          {formatNumber(state.timeSeconds)} s gives y1 ={" "}
+          {formatSigned(model.value.waveAAtSampleMetres)} m and y2 ={" "}
+          {formatSigned(model.value.waveBAtSampleMetres)} m.
         </p>
         <p>
-          P = {formatSigned(model.value.workJoules)} J / {formatNumber(state.elapsedSeconds, 1)} s ={" "}
-          {formatSigned(model.value.averagePowerWatts)} W.
+          Result: y_resultant = {formatSigned(model.value.waveAAtSampleMetres)} m +{" "}
+          {formatSigned(model.value.waveBAtSampleMetres)} m ={" "}
+          {formatSigned(model.value.resultantAtSampleMetres)} m.
         </p>
         <p>
-          Starting E_k = 1/2({formatNumber(state.massKilograms, 1)} kg)(
-          {formatNumber(state.initialSpeedMetresPerSecond, 1)} m s^-1)^2 ={" "}
-          {formatNumber(model.value.initialKineticEnergyJoules)} J. The final kinetic store is{" "}
-          {formatNumber(model.value.finalKineticEnergyJoules)} J.
+          Frequency uses f = 1 / {formatNumber(state.periodSeconds)} s ={" "}
+          {formatNumber(model.value.frequencyHertz)} Hz.
         </p>
-        <p className="formula-note">{model.value.transferLabel}</p>
+        <p className="formula-note">
+          This applies because linear waves superpose by adding displacement at the same place
+          and time; the waves keep their wavelength and frequency while the resultant changes.
+        </p>
         <button type="button" onClick={() => stage.advance()}>
-          Explain the transfer
+          Explain the interference
         </button>
       </section>
     </section>
@@ -500,14 +503,15 @@ const ExplainStage = () => {
   return (
     <section aria-label="Transfer prompt" className="formula-panel formula-panel--product">
       <p className="lab-kicker">Transfer</p>
-      <h3>Motor transfer challenge</h3>
+      <h3>Noise-cancelling headphones</h3>
       <p>
-        Two motors lift the same load through the same height. Before changing the preset, decide:
-        what should stay the same, and what should change when the time becomes shorter?
+        A headphone speaker sends a sound wave with nearly the same amplitude but opposite phase
+        to the incoming noise. Decide which slider setting models that cancellation and why the
+        sound frequency does not disappear.
       </p>
-      <p className="formula-note">Use P = W / t to justify the comparison after you try it.</p>
+      <p className="formula-note">Use y_resultant = y1 + y2 to justify the comparison.</p>
       <button type="button" onClick={() => stage.reset()}>
-        Try another wave behaviour
+        Try another wave meeting
       </button>
     </section>
   );
@@ -522,10 +526,10 @@ const StageSurface = () => {
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
       <p className="lab-kicker">Predict first</p>
-      <h3>Which part of the force counts?</h3>
+      <h3>What happens when two waves meet?</h3>
       <p>
-        Commit a prediction before the energy trace appears. The reveal will connect force angle,
-        displacement, work done, kinetic energy change, and power.
+        Commit a prediction before the resultant trace appears. The reveal will connect amplitude,
+        wavelength, period, phase, frequency, and displacement addition.
       </p>
       <button type="button" onClick={() => stage.advance()}>
         Set up wave behaviour

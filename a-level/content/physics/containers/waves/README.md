@@ -5,14 +5,14 @@
 
 ## What this teaches
 
-Connect force along a displacement to wave behaviour and the rate of transfer.
+Explore how two waves combine when their displacements meet at the same place and time.
 
-Work is transferred by a force acting through a displacement. The direction matters. Only the component of the force along the displacement does work, so a sideways force can be large and still transfer no energy along the path.
+A wave transfers energy and information by a repeating disturbance. At one instant, a point on the medium has a displacement from its rest position. When two waves overlap at the same place and time, the observed displacement is the sum of the individual displacements.
 
 ## What the student does
 
 1. Commit a prediction before the reveal.
-2. Manipulate 6 declared controls.
+2. Manipulate 4 declared controls.
 3. Observe wave-superposition-lab.
 4. Explain the result using the generated prompt and misconception map.
 
@@ -20,7 +20,7 @@ Work is transferred by a force acting through a displacement. The direction matt
 
 | Sim id | Title | Interaction type |
 |---|---|---|
-| wave-superposition-lab | Energy Transfer Lab | animation-playback |
+| wave-superposition-lab | Wave Superposition Lab | animation-playback |
 
 ## Concept map and problem-solving
 
@@ -28,7 +28,7 @@ Work is transferred by a force acting through a displacement. The direction matt
 - Mindmap: `concept-map/mindmap.md`
 - Problem-solving algorithm: `problem-solving/algorithm.md`
 - Transfer problems:
-  - `lift-motor-power` - lift motor comparison
+  - `noise-cancellation` - noise cancellation
 
 ## Citations and provenance
 
@@ -47,6 +47,5 @@ Work is transferred by a force acting through a displacement. The direction matt
 ## Where to next
 
 - Prerequisites:
-  - `forces-and-equilibrium`
-  - `kinematics-in-one-dimension`
+  - `physical-quantities-and-units`
 - Dependency graph: `concept-map/concept-map.yaml`

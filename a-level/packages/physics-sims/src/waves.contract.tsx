@@ -77,40 +77,40 @@ afterEach(() => {
 
 export const runWavesGateContract = () => {
   describe("waves prediction-gate contract", () => {
-    it("blocks the wavelength and frequency readouts until the prediction gate is committed", async () => {
+    it("blocks the resultant wave readouts until the prediction gate is committed", async () => {
       await renderSim();
 
       await click(buttonByText("Set up wave behaviour"));
       await click(buttonByText("Reveal wave behaviour"));
 
       expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("W = F s cos(theta)");
+      expect(document.body.textContent).not.toContain("y_{\\text{resultant}}");
 
-      await click(controlByLabel("30 J and 15 W"));
-      await change(controlByLabel("Rationale"), "The pull is in the same direction as the motion.");
+      await click(controlByLabel("They add to double the displacement"));
+      await change(controlByLabel("Rationale"), "In phase crests have displacements in the same direction.");
       await click(buttonByText("Commit prediction"));
 
       expect(document.querySelector("[aria-label='Observation unlocked']")).toBeTruthy();
-      expect(document.body.textContent).toContain("Work done");
-      expect(document.body.textContent).toContain("+30.00 J");
-      expect(document.body.textContent).toContain("W = F s cos(theta)");
+      expect(document.body.textContent).toContain("Resultant at marker");
+      expect(document.body.textContent).toContain("+3.00 m");
+      expect(document.body.textContent).toContain("y_{\\text{resultant}}");
     });
 
-    it("updates the power readout when elapsed time changes before reveal", async () => {
+    it("updates the interference readout when phase changes before reveal", async () => {
       await renderSim();
 
       await click(buttonByText("Set up wave behaviour"));
-      await change(controlByLabel("Elapsed time"), "6");
+      await change(controlByLabel("Phase difference"), "180");
       await click(buttonByText("Reveal wave behaviour"));
-      await click(controlByLabel("30 J and 15 W"));
-      await change(controlByLabel("Rationale"), "The same work spread over more time lowers power.");
+      await click(controlByLabel("They cancel to zero"));
+      await change(controlByLabel("Rationale"), "Opposite phase gives equal and opposite displacement.");
       await click(buttonByText("Commit prediction"));
 
-      expect(document.querySelector("[aria-label='Energy readout']")?.textContent).toContain(
-        "+5.00 W",
+      expect(document.querySelector("[aria-label='Wave readout']")?.textContent).toContain(
+        "+0.00 m",
       );
       expect(document.querySelector("[aria-label='Formula used']")?.textContent).toContain(
-        "+30.00 J / 6.0 s",
+        "y_resultant =",
       );
     });
   });

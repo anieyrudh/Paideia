@@ -70,4 +70,4 @@ export type {
   MomentumTracePoint,
 } from "./momentum.js";
 
-export * from './waves';
+export * from "./waves.js";

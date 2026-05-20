@@ -1,37 +1,37 @@
 presets:
-  - id: pull-with-motion
-    label: "Pull with motion"
+  - id: crest-meets-crest
+    label: "Crest meets crest"
     state:
-      forceNewtons: 10
-      displacementMetres: 3
-      angleDegrees: 0
-      elapsedSeconds: 2
-      massKilograms: 4
-      initialSpeedMetresPerSecond: 1
-  - id: sideways-pull
-    label: "Sideways pull"
+      amplitudeMetres: 1.5
+      wavelengthMetres: 4
+      periodSeconds: 2
+      phaseDegrees: 0
+      samplePositionMetres: 1
+      timeSeconds: 0
+  - id: crest-meets-trough
+    label: "Crest meets trough"
     state:
-      forceNewtons: 12
-      displacementMetres: 3
-      angleDegrees: 90
-      elapsedSeconds: 3
-      massKilograms: 4
-      initialSpeedMetresPerSecond: 1
-  - id: braking-force
-    label: "Braking force"
+      amplitudeMetres: 1.5
+      wavelengthMetres: 4
+      periodSeconds: 2
+      phaseDegrees: 180
+      samplePositionMetres: 1
+      timeSeconds: 0
+  - id: part-way-out-of-step
+    label: "Part-way out of step"
     state:
-      forceNewtons: 5
-      displacementMetres: 2
-      angleDegrees: 180
-      elapsedSeconds: 2.5
-      massKilograms: 3
-      initialSpeedMetresPerSecond: 3
-  - id: same-work-slower
-    label: "Same work, slower"
+      amplitudeMetres: 1.5
+      wavelengthMetres: 4
+      periodSeconds: 2
+      phaseDegrees: 90
+      samplePositionMetres: 1
+      timeSeconds: 0
+  - id: shorter-wavelength
+    label: "Shorter wavelength"
     state:
-      forceNewtons: 10
-      displacementMetres: 3
-      angleDegrees: 0
-      elapsedSeconds: 6
-      massKilograms: 4
-      initialSpeedMetresPerSecond: 1
+      amplitudeMetres: 1.5
+      wavelengthMetres: 2.5
+      periodSeconds: 1.25
+      phaseDegrees: 0
+      samplePositionMetres: 1
+      timeSeconds: 0

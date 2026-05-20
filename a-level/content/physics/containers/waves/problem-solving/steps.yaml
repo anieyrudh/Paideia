@@ -1,16 +1,16 @@
 steps:
-  - id: identify-path
-    label: "Identify the displacement"
-    check: "The path and direction of displacement are clear."
-  - id: force-component
-    label: "Use the force component along the path"
-    check: "The angle theta is between the force and displacement."
-  - id: work
-    label: "Calculate work"
-    formula: "W = F s cos(theta)"
-  - id: energy-store
-    label: "Name the energy-store change"
-    check: "Positive work adds to the kinetic store; negative work removes from it."
-  - id: power
-    label: "Calculate power if time is given"
-    formula: "P = W / t"
+  - id: same-place-time
+    label: "Choose one position and time"
+    check: "Both wave displacements are evaluated at the same x and t."
+  - id: phase-sign
+    label: "Use phase to decide the sign"
+    check: "In phase means same sign; opposite phase means opposite sign."
+  - id: add-displacements
+    label: "Add displacements"
+    formula: "y_resultant = y1 + y2"
+  - id: keep-properties-separate
+    label: "Keep wave properties separate"
+    check: "A resultant displacement change does not automatically change wavelength, period, or frequency."
+  - id: name-interference
+    label: "Name the interference"
+    check: "The final explanation states constructive, destructive, or partial interference."
