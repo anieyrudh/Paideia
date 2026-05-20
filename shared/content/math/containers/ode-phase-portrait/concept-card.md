@@ -36,7 +36,7 @@ or splits along different directions.
 
 ## Why This Matters
 
-Many SMT models first appear as coupled rates: concentrations, temperatures,
+Many STEM models first appear as coupled rates: concentrations, temperatures,
 populations, charge states, or mechanical coordinates. The phase portrait lets
 students reason about stability before solving every equation exactly. It turns
 "what happens next?" into a local geometry question.

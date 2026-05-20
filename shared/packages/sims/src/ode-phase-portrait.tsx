@@ -8,9 +8,8 @@ import {
   type TrajectoryPoint,
 } from "@paideia/dynamical-systems";
 import { ParametricPlot, VectorFieldPlot } from "@paideia/plotting";
-import { PredictionGate } from "@paideia/prediction-gate";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
-import { ok, type ConceptPackageId, type KernelResult, type Rect } from "@paideia/shared";
+import { approxEqual, ok, type ConceptPackageId, type KernelResult, type Rect } from "@paideia/shared";
 import { ControlGroup, Selector, Slider } from "@paideia/ui-sim";
 import type { CSSProperties } from "react";
 
@@ -419,7 +418,7 @@ const FormulaTrail = ({ evidence }: { readonly evidence: PhaseEvidence }) => {
       </p>
       <p>
         Nullclines: x' = 0 gives y = 0. y' = 0 gives -D x + T y = 0, so{" "}
-        {Math.abs(state.trace) < 1e-9
+        {approxEqual(state.trace, 0, 1e-9)
           ? "x = 0 for this trace value."
           : `y = (D / T)x = (${format(state.determinant)} / ${format(state.trace)})x.`}
       </p>
@@ -584,8 +583,6 @@ const StageSurface = () => {
 };
 
 export default function OdePhasePortrait() {
-  void PredictionGate;
-
   return (
     <SimRuntime spec={odePhasePortraitSpec} packageId={odePhasePortraitPackageId}>
       <StageSurface />

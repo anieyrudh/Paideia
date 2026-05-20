@@ -57,8 +57,8 @@ describe("ODE phase portrait evidence", () => {
     expect(evidence.ok).toBe(true);
     if (evidence.ok) {
       expect(evidence.value.stability.kind).toBe("stable-spiral");
-      expect(evidence.value.stability.trace).toBeCloseTo(-0.6);
-      expect(evidence.value.stability.determinant).toBeCloseTo(1.2);
+      expect(approxEqual(evidence.value.stability.trace, -0.6, 1e-6)).toBe(true);
+      expect(approxEqual(evidence.value.stability.determinant, 1.2, 1e-6)).toBe(true);
       expect(evidence.value.trajectory.length).toBeGreaterThan(50);
     }
   });

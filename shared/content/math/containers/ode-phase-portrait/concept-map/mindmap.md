@@ -13,7 +13,7 @@
   - Visual evidence
     - Vector field arrows
     - Trajectory from an initial state
-    - Nullclines where one rate is zero
+    - Rate relationships from x' = y and y' = -D x + T y
   - Common mistakes
     - Treating the equilibrium as a quiet region
     - Treating arrows as literal position-space velocity
