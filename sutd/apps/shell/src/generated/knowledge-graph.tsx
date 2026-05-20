@@ -6,8 +6,9 @@ import GeneratedSim2TrustCalibrationTrustCalibration from "@paideia/sutd-sims/tr
 import GeneratedSim3PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
 import GeneratedSim4LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
 import GeneratedSim5BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim6VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim7OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim6EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim7VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim8OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -118,6 +119,15 @@ export const knowledgeGraph = {
     status: "draft",
   },
   {
+    id: "sutd/freshmore/eigenvector-transformations",
+    conceptId: "eigenvector-transformations",
+    title: "Eigenvector Transformations",
+    subject: "freshmore",
+    level: "Freshmore",
+    module: "Linear Algebra and Differential Equations",
+    status: "reviewed",
+  },
+  {
     id: "sutd/freshmore/vector-transformations",
     conceptId: "vector-transformations",
     title: "Vector Transformations",
@@ -152,6 +162,12 @@ export const knowledgeGraph = {
   { from: "sutd/freshmore/conditional-probability", to: "sutd/freshmore/bayes-updating", kind: "prerequisite" },
   { from: "sutd/freshmore/bayes-updating", to: "sutd/freshmore/bayesian-inference", kind: "downstream" },
   { from: "sutd/freshmore/bayes-updating", to: "sutd/freshmore/confusion-matrix-thresholds", kind: "sibling" },
+  { from: "sutd/freshmore/vector-transformations", to: "sutd/freshmore/eigenvector-transformations", kind: "prerequisite" },
+  { from: "sutd/freshmore/matrices", to: "sutd/freshmore/eigenvector-transformations", kind: "prerequisite" },
+  { from: "sutd/freshmore/eigenvector-transformations", to: "sutd/freshmore/diagonalisation", kind: "downstream" },
+  { from: "sutd/freshmore/eigenvector-transformations", to: "sutd/freshmore/pca", kind: "downstream" },
+  { from: "sutd/freshmore/eigenvector-transformations", to: "sutd/freshmore/modal-analysis", kind: "downstream" },
+  { from: "sutd/freshmore/eigenvector-transformations", to: "sutd/freshmore/ode-phase-portrait", kind: "sibling" },
   { from: "sutd/smt/derivatives", to: "sutd/smt/ode-phase-portrait", kind: "prerequisite" },
   { from: "sutd/smt/vector-fields", to: "sutd/smt/ode-phase-portrait", kind: "prerequisite" },
   { from: "sutd/smt/linear-algebra", to: "sutd/smt/ode-phase-portrait", kind: "prerequisite" },
@@ -493,6 +509,60 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/freshmore/eigenvector-transformations",
+    branch: "sutd",
+    subject: "Freshmore",
+    level: "Freshmore",
+    module: "Linear Algebra and Differential Equations",
+    title: "Eigenvector Transformations",
+    summary: "Test which vectors keep their direction under a 2x2 transformation and read the eigenvalue as the scale factor.",
+    syllabusRef: "SUTD Freshmore Mathematics / Linear Algebra",
+    status: "reviewed",
+    packageId: "eigenvector-transformations",
+    simId: "eigenvector-transformations",
+    predictPrompt: "Matrix A = [[3, 1], [0, 2]] acts on vector v = (1, 0). Before reveal, which statement best describes Av?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Every vector is an eigenvector",
+      "Eigenvalues are rotation angles",
+    ],
+    transferProblem: "A two-mode design model uses A = [[4, 0], [0, 1.5]]. Check whether v = (0, 2) is an eigenvector, find the eigenvalue if it is, and explain what the unchanged direction means for a modal coordinate.",
+    firstPrinciples: "A 2x2 matrix moves every input vector by combining the moved basis vectors. Most directions tilt to a new line. An eigenvector is special because the combination lands back on the original line. That is why eigenvectors are useful in Freshmore modelling: they identify axes where a coupled transformation becomes a simple one-dimensional scale.",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "What candidate direction is being tested?",
+      "What is Av?",
+      "Does one scale factor explain every non-zero component?",
+      "What does the result mean in the model?",
+    ],
+    prerequisites: [
+      "Vector Transformations",
+      "Matrices",
+    ],
+    downstream: [
+      "Diagonalisation",
+      "Principal Component Analysis",
+      "Modal Analysis",
+    ],
+    siblings: [
+      "ODE Phase Portrait",
+    ],
+    sims: [
+      {
+        id: "eigenvector-transformations",
+        harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
+        title: "Eigenvector Direction Lab",
+        interactionType: "diagram-builder",
+        component: GeneratedSim6EigenvectorTransformationsEigenvectorTransformations,
+      },
+    ],
+  },
+  {
     id: "sutd/freshmore/vector-transformations",
     branch: "sutd",
     subject: "Freshmore",
@@ -540,7 +610,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim6VectorTransformationsVectorTransformations,
+        component: GeneratedSim7VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -606,7 +676,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim7OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim8OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

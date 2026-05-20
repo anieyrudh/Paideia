@@ -1,0 +1,23 @@
+# Mindmap
+
+- Eigenvector transformations
+  - Start from matrix-vector multiplication
+    - Build `Av`
+    - Compare direction with `v`
+  - Eigenvector condition
+    - `v` is non-zero
+    - `Av = lambda v`
+    - Same line, possible stretch, shrink, or flip
+  - Eigenvalue meaning
+    - Scale factor
+    - Dimensionless multiplier
+    - Not a rotation angle
+  - Misconceptions
+    - Every vector is special
+    - Component-wise scaling is enough
+    - Zero vector gives a useful direction
+  - Transfers
+    - Diagonalisation
+    - PCA
+    - Modal analysis
+    - Linear ODE phase portraits

@@ -14,9 +14,10 @@ import GeneratedSim10SutdDaiTrustCalibrationTrustCalibration from "@paideia/sutd
 import GeneratedSim11SutdEpdPidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
 import GeneratedSim12SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
 import GeneratedSim13SutdFreshmoreBayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim14SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim15SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
-import GeneratedSim16SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
+import GeneratedSim14SutdFreshmoreEigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim15SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim16SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim17SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -95,20 +96,25 @@ export const simRegistry = {
     title: "Bayes Updating Explorer",
     Component: GeneratedSim13SutdFreshmoreBayesUpdatingBayesUpdating,
   },
+  "sutd/freshmore/eigenvector-transformations/eigenvector-transformations": {
+    id: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
+    title: "Eigenvector Direction Lab",
+    Component: GeneratedSim14SutdFreshmoreEigenvectorTransformationsEigenvectorTransformations,
+  },
   "sutd/freshmore/vector-transformations/vector-transformations": {
     id: "sutd/freshmore/vector-transformations/vector-transformations",
     title: "2D Matrix-Vector Transformation Explorer",
-    Component: GeneratedSim14SutdFreshmoreVectorTransformationsVectorTransformations,
+    Component: GeneratedSim15SutdFreshmoreVectorTransformationsVectorTransformations,
   },
   "sutd/smt/ode-phase-portrait/ode-phase-portrait": {
     id: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
     title: "ODE Phase Portrait Explorer",
-    Component: GeneratedSim15SutdSmtOdePhasePortraitOdePhasePortrait,
+    Component: GeneratedSim16SutdSmtOdePhasePortraitOdePhasePortrait,
   },
   "shared/physics/free-body-diagram-mechanics/force-balance": {
     id: "shared/physics/free-body-diagram-mechanics/force-balance",
     title: "Force Balance Explorer",
-    Component: GeneratedSim16SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
+    Component: GeneratedSim17SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
   }
 } satisfies Record<string, SimHarnessEntry>;
 

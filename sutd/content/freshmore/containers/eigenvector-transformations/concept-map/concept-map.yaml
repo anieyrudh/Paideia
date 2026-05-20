@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: eigenvector-transformations
+prerequisites:
+  - id: vector-transformations
+    title: "Vector Transformations"
+    relationship: "Matrix-vector multiplication provides Av."
+    status: available
+  - id: matrices
+    title: "Matrices"
+    relationship: "A 2x2 matrix encodes the linear transformation."
+    status: planned
+downstream:
+  - id: diagonalisation
+    title: "Diagonalisation"
+    relationship: "Eigenvectors form a coordinate basis when enough independent directions exist."
+    status: planned
+  - id: pca
+    title: "Principal Component Analysis"
+    relationship: "Principal directions are eigenvectors of covariance-like transformations."
+    status: planned
+  - id: modal-analysis
+    title: "Modal Analysis"
+    relationship: "Modes are invariant directions for system response."
+    status: planned
+siblings:
+  - id: ode-phase-portrait
+    title: "ODE Phase Portrait"
+    relationship: "Eigenvectors shape trajectories of linear dynamical systems."
+    status: available
+misconception_graph:
+  nodes:
+    - id: every-vector-is-eigenvector
+      label: "Every vector is an eigenvector"
+    - id: eigenvalue-as-angle
+      label: "Eigenvalues are rotation angles"
+    - id: missing-nonzero-condition
+      label: "Zero vector counts as a direction"
+  edges:
+    - from: every-vector-is-eigenvector
+      to: eigenvalue-as-angle
+      label: "both ignore invariant-line check"
+    - from: missing-nonzero-condition
+      to: every-vector-is-eigenvector
+      label: "weakens direction meaning"
+mermaid_source: graph.mmd

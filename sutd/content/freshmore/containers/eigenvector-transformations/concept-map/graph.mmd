@@ -1,0 +1,10 @@
+graph TD
+  VT["Vector transformations"] --> EV["Eigenvector transformations"]
+  MAT["Matrices"] --> EV
+  EV --> DIAG["Diagonalisation"]
+  EV --> PCA["PCA"]
+  EV --> MODAL["Modal analysis"]
+  EV --> ODE["ODE phase portraits"]
+  M1["Every vector is an eigenvector"] -.-> EV
+  M2["Eigenvalue as rotation angle"] -.-> EV
+  M3["Zero vector as direction"] -.-> EV
