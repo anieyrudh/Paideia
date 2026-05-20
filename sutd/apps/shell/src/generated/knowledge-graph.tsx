@@ -5,8 +5,9 @@ import GeneratedSim1GraphSearchAndShortestPathsGraphSearchAndShortestPaths from 
 import GeneratedSim2TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
 import GeneratedSim3PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
 import GeneratedSim4LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim5VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim6OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim5BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim6VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim7OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -105,6 +106,15 @@ export const knowledgeGraph = {
     subject: "esd",
     level: "Freshmore",
     module: "esd",
+    status: "draft",
+  },
+  {
+    id: "sutd/freshmore/bayes-updating",
+    conceptId: "bayes-updating",
+    title: "Bayes Updating",
+    subject: "freshmore",
+    level: "Freshmore",
+    module: "Probability and Statistics",
     status: "draft",
   },
   {
@@ -416,6 +426,59 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/freshmore/bayes-updating",
+    branch: "sutd",
+    subject: "Freshmore",
+    level: "Freshmore",
+    module: "Probability and Statistics",
+    title: "Bayes Updating",
+    summary: "Calibrate trust in a fixed classifier by comparing confidence, accuracy, costs, and a human-override rule.",
+    syllabusRef: "SUTD Freshmore / Probability and Statistics",
+    status: "draft",
+    packageId: "bayes-updating",
+    simId: "bayes-updating",
+    predictPrompt: "Before revealing outcomes, choose whether a high-confidence automation-only policy or a human-override policy will produce lower total decision cost on this fixed dataset.",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Confidence equals correctness",
+      "Accuracy is the only metric",
+    ],
+    transferProblem: "In a clinic triage setting, choose a confidence threshold and an override band that minimize total cost when false negatives are much more expensive than false positives.",
+    firstPrinciples: "Trusting a model is a decision, not a feeling. A confidence score says how sure the model claims to be; calibration asks whether that confidence matches how often it is actually right. A useful policy compares confidence with the cost of being wrong and the cost of asking a human to review the case.",
+    keyDefinitions: [
+      "Confidence: the model's stated probability-like score for its own recommendation.",
+      "Calibration: the match between confidence and observed correctness.",
+      "Threshold: the minimum confidence needed before automation acts without review.",
+      "Expected cost: the average penalty of a policy after weighting mistakes and reviews.",
+    ],
+    canonicalExamples: [
+      "A triage model that auto-clears low-risk cases only above a confidence threshold.",
+      "A moderation system that sends uncertain cases to human review because false negatives are costly.",
+    ],
+    problemSolvingSteps: [
+      "What concept is being tested?",
+      "Which representation or method applies?",
+      "Carry out the method.",
+      "Does the result make sense?",
+    ],
+    prerequisites: [],
+    downstream: [],
+    siblings: [],
+    sims: [
+      {
+        id: "bayes-updating",
+        harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
+        title: "Bayes Updating Explorer",
+        interactionType: "decision-matrix",
+        component: GeneratedSim5BayesUpdatingBayesUpdating,
+      },
+    ],
+  },
+  {
     id: "sutd/freshmore/vector-transformations",
     branch: "sutd",
     subject: "Freshmore",
@@ -463,7 +526,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim5VectorTransformationsVectorTransformations,
+        component: GeneratedSim6VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -529,7 +592,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim6OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim7OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

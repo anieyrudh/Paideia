@@ -1,0 +1,6 @@
+runtime:
+  entry: simulation/index.tsx
+  mount_mode: react-component
+  state_model: local
+  persistence: local
+  deterministic: true
