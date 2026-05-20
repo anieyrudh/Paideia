@@ -21,9 +21,10 @@ import GeneratedSim17SutdFreshmoreEigenvectorTransformationsEigenvectorTransform
 import GeneratedSim18SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
 import GeneratedSim19SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 import GeneratedSim20SharedMathBayesUpdatingBayesUpdating from "@paideia/shared-sims/bayes-updating";
-import GeneratedSim21SharedMathEigenvectorTransformationsEigenvectorTransformations from "@paideia/shared-sims/eigenvector-transformations";
-import GeneratedSim22SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab from "@paideia/shared-sims/circuit-phasor-reasoning";
-import GeneratedSim23SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
+import GeneratedSim21SharedMathCentralLimitTheoremCltSampler from "@paideia/shared-sims/central-limit-theorem";
+import GeneratedSim22SharedMathEigenvectorTransformationsEigenvectorTransformations from "@paideia/shared-sims/eigenvector-transformations";
+import GeneratedSim23SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab from "@paideia/shared-sims/circuit-phasor-reasoning";
+import GeneratedSim24SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -137,20 +138,25 @@ export const simRegistry = {
     title: "Bayes Updating Explorer",
     Component: GeneratedSim20SharedMathBayesUpdatingBayesUpdating,
   },
+  "shared/math/central-limit-theorem/clt-sampler": {
+    id: "shared/math/central-limit-theorem/clt-sampler",
+    title: "Central Limit Theorem Sampler",
+    Component: GeneratedSim21SharedMathCentralLimitTheoremCltSampler,
+  },
   "shared/math/eigenvector-transformations/eigenvector-transformations": {
     id: "shared/math/eigenvector-transformations/eigenvector-transformations",
     title: "Eigenvector Direction Lab",
-    Component: GeneratedSim21SharedMathEigenvectorTransformationsEigenvectorTransformations,
+    Component: GeneratedSim22SharedMathEigenvectorTransformationsEigenvectorTransformations,
   },
   "shared/physics/circuit-phasor-reasoning/circuit-phasor-lab": {
     id: "shared/physics/circuit-phasor-reasoning/circuit-phasor-lab",
     title: "Circuit Phasor Lab",
-    Component: GeneratedSim22SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab,
+    Component: GeneratedSim23SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab,
   },
   "shared/physics/free-body-diagram-mechanics/force-balance": {
     id: "shared/physics/free-body-diagram-mechanics/force-balance",
     title: "Force Balance Explorer",
-    Component: GeneratedSim23SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
+    Component: GeneratedSim24SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
   }
 } satisfies Record<string, SimHarnessEntry>;
 

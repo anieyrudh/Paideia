@@ -39,6 +39,22 @@ export interface HistogramBin {
   readonly density: number;
 }
 
+export interface SamplingDistributionOfMeanInput {
+  readonly distribution: DiscreteDistribution;
+  readonly thresholdSamples: readonly (readonly number[])[];
+  readonly histogramBinCount?: number;
+}
+
+export interface SamplingDistributionOfMean {
+  readonly populationMean: number;
+  readonly populationVariance: number;
+  readonly populationStandardDeviation: number;
+  readonly standardError: number;
+  readonly sampleMeans: readonly number[];
+  readonly sampleMeanSummary: SummaryStats;
+  readonly histogram: readonly HistogramBin[];
+}
+
 export interface BayesPositiveEvidenceInput {
   readonly prior: Probability;
   readonly sensitivity: Probability;
@@ -238,6 +254,92 @@ export const variance = (
   }
 
   return finiteOutput(Math.max(0, total), "Variance");
+};
+
+const valueAtThreshold = (
+  distribution: DiscreteDistribution,
+  threshold: number,
+): KernelResult<number> => {
+  const validThreshold = finite(threshold, "Sampling threshold");
+  if (!validThreshold.ok) return validThreshold;
+  if (threshold < 0 || threshold > 1) {
+    return err("out-of-domain", `Sampling threshold must be in [0, 1]; got ${threshold}`);
+  }
+
+  let cumulative = 0;
+  for (const outcome of distribution) {
+    cumulative += Number(outcome.probability);
+    if (threshold <= cumulative) return ok(outcome.value);
+  }
+
+  const fallback = distribution.at(-1);
+  return fallback === undefined
+    ? err("precondition-violated", "Cannot sample from an empty distribution")
+    : ok(fallback.value);
+};
+
+export const samplingDistributionOfMean = (
+  input: SamplingDistributionOfMeanInput,
+): KernelResult<SamplingDistributionOfMean> => {
+  const validDistribution = validateDistribution(input.distribution);
+  if (!validDistribution.ok) return validDistribution;
+
+  if (input.thresholdSamples.length === 0) {
+    return err("precondition-violated", "Sampling distribution requires at least one sample");
+  }
+
+  const firstSampleSize = input.thresholdSamples[0]?.length;
+  if (firstSampleSize === undefined || firstSampleSize <= 0) {
+    return err("precondition-violated", "Each sample requires at least one draw");
+  }
+
+  const sampleMeans: number[] = [];
+  for (const sample of input.thresholdSamples) {
+    if (sample.length !== firstSampleSize) {
+      return err("precondition-violated", "All samples must use the same sample size");
+    }
+
+    let total = 0;
+    for (const threshold of sample) {
+      const draw = valueAtThreshold(validDistribution.value, threshold);
+      if (!draw.ok) return draw;
+      total += draw.value;
+      const validTotal = finiteOutput(total, "Sample total");
+      if (!validTotal.ok) return validTotal;
+    }
+
+    const mean = total / sample.length;
+    const validMean = finiteOutput(mean, "Sample mean");
+    if (!validMean.ok) return validMean;
+    sampleMeans.push(mean);
+  }
+
+  const populationMean = expectedValue(validDistribution.value);
+  if (!populationMean.ok) return populationMean;
+  const populationVariance = variance(validDistribution.value);
+  if (!populationVariance.ok) return populationVariance;
+  const sampleMeanSummary = summarize(sampleMeans, { variance: "population" });
+  if (!sampleMeanSummary.ok) return sampleMeanSummary;
+  const histogramResult = histogram(sampleMeans, {
+    binCount: input.histogramBinCount ?? 8,
+  });
+  if (!histogramResult.ok) return histogramResult;
+
+  const populationStandardDeviation = Math.sqrt(populationVariance.value);
+  const standardError = populationStandardDeviation / Math.sqrt(firstSampleSize);
+  if (!Number.isFinite(populationStandardDeviation) || !Number.isFinite(standardError)) {
+    return err("numerical-instability", "Sampling distribution spread must be finite");
+  }
+
+  return ok({
+    populationMean: populationMean.value,
+    populationVariance: populationVariance.value,
+    populationStandardDeviation,
+    standardError,
+    sampleMeans,
+    sampleMeanSummary: sampleMeanSummary.value,
+    histogram: histogramResult.value,
+  });
 };
 
 export const summarize = (

@@ -206,7 +206,7 @@ entries:
   - id: shared.probability.central-limit-theorem
     title: "Central Limit Theorem Sampler"
     priority: P0
-    status: ready-for-build
+    status: reviewed
     cluster: Probability
     discipline: math
     reuse_status: shared-core

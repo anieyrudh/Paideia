@@ -12,6 +12,7 @@ import {
   expectedValue,
   histogram,
   normalizeDistribution,
+  samplingDistributionOfMean,
   variance,
 } from "@paideia/probability-stats";
 import { probability } from "@paideia/shared";
@@ -25,6 +26,10 @@ if (distribution.ok) {
   const mean = expectedValue(distribution.value);
   const spread = variance(distribution.value);
   const bins = histogram([0, 2, 2, 3, 5], { binCount: 5 });
+  const sampleMeans = samplingDistributionOfMean({
+    distribution: distribution.value,
+    thresholdSamples: [[0.1, 0.7, 0.8], [0.2, 0.3, 0.9]],
+  });
   // mean, spread, and bins are KernelResult values.
 }
 
@@ -44,4 +49,4 @@ if (prior.ok && sensitivity.ok && specificity.ok) {
 
 ## Boundaries
 
-This package does not render charts, draw histograms, run random simulations, or fit continuous distributions. Pair the outputs with `@paideia/charting` for visuals and keep caller-owned randomness outside this kernel.
+This package does not render charts, run random-number generators, or fit continuous distributions. Pair the outputs with `@paideia/charting` for visuals. For sampling distributions, callers provide explicit random thresholds; this kernel maps them to outcomes and statistics deterministically.

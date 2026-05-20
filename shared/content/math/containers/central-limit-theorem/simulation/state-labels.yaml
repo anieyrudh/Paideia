@@ -1,0 +1,7 @@
+state_labels:
+  population: "Population shape"
+  sampleSize: "Sample size"
+  sampleCount: "Number of repeated samples"
+  seed: "Deterministic sampler seed"
+  populationMean: "Population mean"
+  standardError: "Standard error"

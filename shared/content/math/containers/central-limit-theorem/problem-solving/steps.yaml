@@ -1,0 +1,19 @@
+steps:
+  - id: identify-variable
+    label: "Identify the population variable and its unit."
+    prompt: "What individual quantity is being sampled?"
+  - id: locate-parameters
+    label: "Locate mu, sigma, and n."
+    prompt: "What centre, spread, and sample size are given?"
+  - id: centre
+    label: "Set the sample-mean centre."
+    prompt: "Use mu_xbar = mu."
+  - id: standard-error
+    label: "Compute standard error."
+    prompt: "Use sigma_xbar = sigma / sqrt(n), keeping units."
+  - id: approximation
+    label: "Judge normal approximation."
+    prompt: "Decide whether the sample mean, not the population, can be treated as approximately normal."
+  - id: interpretation
+    label: "Interpret in context."
+    prompt: "State what becomes steadier and what stays unchanged."
