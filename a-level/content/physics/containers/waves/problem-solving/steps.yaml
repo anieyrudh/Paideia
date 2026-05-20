@@ -7,6 +7,7 @@ steps:
     check: "In phase means same sign; opposite phase means opposite sign."
   - id: add-displacements
     label: "Add displacements"
+    check: "The resultant displacement equals the sum of the two individual displacements at the same position and time."
     formula: "y_resultant = y1 + y2"
   - id: keep-properties-separate
     label: "Keep wave properties separate"

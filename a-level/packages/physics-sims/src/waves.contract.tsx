@@ -90,7 +90,7 @@ export const runWavesGateContract = () => {
       await change(controlByLabel("Rationale"), "In phase crests have displacements in the same direction.");
       await click(buttonByText("Commit prediction"));
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeTruthy();
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
       expect(document.body.textContent).toContain("Resultant at marker");
       expect(document.body.textContent).toContain("+3.00 m");
       expect(document.body.textContent).toContain("y_{\\text{resultant}}");

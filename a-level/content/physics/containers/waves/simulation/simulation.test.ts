@@ -59,10 +59,10 @@ test.describe("a-level/physics/waves/wave-superposition-lab prediction-gate", ()
     await page.getByLabel("Observation unlocked").waitFor();
 
     const results = await new AxeBuilder({ page }).analyze();
-    const criticalViolations = results.violations.filter(
-      (violation) => violation.impact === "critical",
+    const seriousOrCritical = results.violations.filter(
+      (violation) => violation.impact === "critical" || violation.impact === "serious",
     );
 
-    expect(criticalViolations).toEqual([]);
+    expect(seriousOrCritical).toEqual([]);
   });
 });

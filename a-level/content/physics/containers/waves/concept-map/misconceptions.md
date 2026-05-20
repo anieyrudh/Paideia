@@ -1,36 +1,30 @@
 # Misconception Map
 
-## Energy is lost rather than transferred
+## Amplitude and wavelength are interchangeable
 
-Evidence: OpenStax University Physics Volume 1, Section 7.1 Work.
-
-Surface in predict? No.
-
-When negative work reduces the kinetic store, the energy is not disappearing.
-It is transferred out of the kinetic store into another store, such as thermal
-energy in brakes or surroundings.
-
-## Work equals force regardless of displacement direction
-
-Evidence: OpenStax University Physics Volume 1, Section 7.1 Work.
+Evidence: OpenStax College Physics 2e, Chapter 16 Wave Superposition and Interference.
 
 Surface in predict? No.
 
-Only the force component along the displacement does work. A sideways force has
-`theta = 90 deg`, so `cos(theta) = 0` and `W = F s cos(theta) = 0`.
+A larger resultant displacement during constructive interference means the
+displacements added. It does not mean the distance between crests has changed.
 
-## Power is the same thing as energy
+## Constructive interference changes the frequency
 
-Evidence: OpenStax University Physics Volume 1, Section 7.4 Power.
+Evidence: OpenStax College Physics 2e, Chapter 16 Wave Superposition and Interference.
+
+Surface in predict? No.
+
+Two waves can reinforce while keeping the same period and frequency. The
+observable displacement changes because superposition adds the two
+displacements at the same place and time.
+
+## Destructive interference destroys energy
+
+Evidence: OpenStax College Physics 2e, Chapter 16 Wave Superposition and Interference.
 
 Surface in predict? Yes.
 
-Work and energy measure an amount transferred. Power measures how quickly that
-amount is transferred:
-
-```text
-P = W / t
-```
-
-The prediction prompt surfaces this by pairing `30 J` with different power
-values for the same two-second transfer.
+Destructive interference can make the local resultant displacement zero. That
+does not mean the waves or their energy have disappeared; it means the two
+displacements have opposite signs at that location.
