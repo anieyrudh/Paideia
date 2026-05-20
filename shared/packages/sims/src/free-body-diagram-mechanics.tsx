@@ -183,20 +183,57 @@ export const ForcesAndEquilibriumSim = () => {
         <section className="formula-panel formula-panel--product" aria-label="Formula used">
           <p className="lab-kicker">Why balance works</p>
           <h3>Formula used</h3>
-          <p className="formula">For equilibrium: sum Fx = 0 and sum Fy = 0.</p>
+          <pre aria-label="LaTeX formula" className="formula-code">
+            <code>{`\\sum F_x = F_{support,right} - F_{left}
+\\sum F_y = F_{support,up} - W
+|\\vec{F}_{net}| = \\sqrt{(\\sum F_x)^2 + (\\sum F_y)^2}`}</code>
+          </pre>
+          <dl aria-label="Formula legend" className="formula-legend">
+            <div>
+              <dt>
+                <span aria-hidden="true" className="legend-swatch legend-swatch--blue" />{" "}
+                F<sub>support,right</sub>
+              </dt>
+              <dd>right support force, in newtons</dd>
+            </div>
+            <div>
+              <dt>
+                <span aria-hidden="true" className="legend-swatch legend-swatch--purple" />{" "}
+                F<sub>support,up</sub>
+              </dt>
+              <dd>upward support force, in newtons</dd>
+            </div>
+            <div>
+              <dt>
+                <span aria-hidden="true" className="legend-swatch legend-swatch--red" /> F
+                <sub>left</sub>
+              </dt>
+              <dd>fixed left pull, 6 N</dd>
+            </div>
+            <div>
+              <dt>
+                <span aria-hidden="true" className="legend-swatch legend-swatch--amber" /> W
+              </dt>
+              <dd>weight, 5 N downward</dd>
+            </div>
+          </dl>
           {model.ok ? (
             <>
               <p>
-                sum Fx = right support - left pull = {formatTenths(state.supportRightNewtons)} -{" "}
-                {fixedLeftNewtons} = {formatTenths(model.value.net.x)} N
+                Substitute horizontal forces: {formatTenths(state.supportRightNewtons)} N -{" "}
+                {fixedLeftNewtons.toFixed(1)} N = {formatTenths(model.value.net.x)} N.
               </p>
               <p>
-                sum Fy = up support - weight = {formatTenths(state.supportUpNewtons)} -{" "}
-                {fixedWeightNewtons} = {formatTenths(model.value.net.y)} N
+                Substitute vertical forces: {formatTenths(state.supportUpNewtons)} N -{" "}
+                {fixedWeightNewtons.toFixed(1)} N = {formatTenths(model.value.net.y)} N.
+              </p>
+              <p>
+                Result: |F_net| = {formatTenths(model.value.magnitudeNewtons)} N, so the object is{" "}
+                {model.value.isEquilibrium ? "in equilibrium" : "not in equilibrium"}.
               </p>
               <p className="formula-note">
-                A zero resultant means no acceleration. A non-zero resultant points in the
-                direction the object would start to accelerate.
+                This formula applies because independent horizontal and vertical force components
+                must each cancel before a body can stay at rest.
               </p>
             </>
           ) : null}
