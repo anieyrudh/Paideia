@@ -47,6 +47,50 @@ export interface OhmsLawResult {
   readonly powerWatts: number;
 }
 
+export interface ComplexImpedance {
+  readonly realOhms: number;
+  readonly imaginaryOhms: number;
+}
+
+export interface AcResistorElement {
+  readonly kind: "resistor";
+  readonly resistanceOhms: number;
+}
+
+export interface AcInductorElement {
+  readonly kind: "inductor";
+  readonly inductanceHenrys: number;
+}
+
+export interface AcCapacitorElement {
+  readonly kind: "capacitor";
+  readonly capacitanceFarads: number;
+}
+
+export type SeriesAcElement =
+  | AcResistorElement
+  | AcInductorElement
+  | AcCapacitorElement;
+
+export interface SeriesAcCircuitInput {
+  readonly sourceVoltageRmsVolts: number;
+  readonly frequencyHertz: number;
+  readonly elements: readonly SeriesAcElement[];
+}
+
+export interface SeriesAcCircuitSolution {
+  readonly impedance: ComplexImpedance;
+  readonly elementImpedances: readonly ComplexImpedance[];
+  readonly impedanceMagnitudeOhms: number;
+  readonly impedancePhaseRadians: number;
+  readonly currentRmsAmps: number;
+  readonly currentPhaseRadians: number;
+  readonly powerFactor: number;
+  readonly apparentPowerVoltAmps: number;
+  readonly realPowerWatts: number;
+  readonly reactivePowerVars: number;
+}
+
 export interface ResistorElement {
   readonly kind: "resistor";
   readonly id: CircuitElementId;
@@ -122,6 +166,14 @@ const positiveResistance = (
     : err("precondition-violated", `${label} must be > 0; got ${resistanceOhms}`);
 };
 
+const positiveFinite = (value: number, label: string): KernelResult<number> => {
+  const validFinite = finite(value, label);
+  if (!validFinite.ok) return validFinite;
+  return value > 0
+    ? ok(value)
+    : err("precondition-violated", `${label} must be > 0; got ${value}`);
+};
+
 const withinTolerance = (actual: number, expected: number): boolean =>
   Math.abs(actual - expected) <= circuitTolerance.loose * Math.max(1, Math.abs(expected));
 
@@ -161,6 +213,12 @@ export const ohmsLaw = (input: OhmsLawInput): KernelResult<OhmsLawResult> => {
 
   if (present(input.voltageVolts) && present(input.currentAmps) && present(input.resistanceOhms)) {
     const expectedVoltage = input.currentAmps * input.resistanceOhms;
+    if (!Number.isFinite(expectedVoltage)) {
+      return err(
+        "numerical-instability",
+        `Ohm's law expected voltage must be finite; got ${expectedVoltage}`,
+      );
+    }
     if (!withinTolerance(input.voltageVolts, expectedVoltage)) {
       return err(
         "precondition-violated",
@@ -264,6 +322,95 @@ export const voltageDivider = (
   if (!total.ok) return total;
 
   return ok(resistancesOhms.map((resistance) => supplyVoltageVolts * (resistance / total.value)));
+};
+
+const elementImpedance = (
+  element: SeriesAcElement,
+  angularFrequencyRadPerSec: number,
+): KernelResult<ComplexImpedance> => {
+  switch (element.kind) {
+    case "resistor": {
+      const resistance = positiveResistance(element.resistanceOhms);
+      return resistance.ok
+        ? ok({ realOhms: resistance.value, imaginaryOhms: 0 })
+        : resistance;
+    }
+    case "inductor": {
+      const inductance = positiveFinite(element.inductanceHenrys, "inductanceHenrys");
+      return inductance.ok
+        ? ok({ realOhms: 0, imaginaryOhms: angularFrequencyRadPerSec * inductance.value })
+        : inductance;
+    }
+    case "capacitor": {
+      const capacitance = positiveFinite(element.capacitanceFarads, "capacitanceFarads");
+      return capacitance.ok
+        ? ok({ realOhms: 0, imaginaryOhms: -1 / (angularFrequencyRadPerSec * capacitance.value) })
+        : capacitance;
+    }
+  }
+};
+
+export const solveSeriesAcCircuit = (
+  input: SeriesAcCircuitInput,
+): KernelResult<SeriesAcCircuitSolution> => {
+  const sourceVoltage = positiveFinite(input.sourceVoltageRmsVolts, "sourceVoltageRmsVolts");
+  if (!sourceVoltage.ok) return sourceVoltage;
+  const frequency = positiveFinite(input.frequencyHertz, "frequencyHertz");
+  if (!frequency.ok) return frequency;
+  if (input.elements.length === 0) {
+    return err("precondition-violated", "Series AC circuit requires at least one element");
+  }
+
+  const angularFrequencyRadPerSec = 2 * Math.PI * frequency.value;
+  let realOhms = 0;
+  let imaginaryOhms = 0;
+  const elementImpedances: ComplexImpedance[] = [];
+  for (let index = 0; index < input.elements.length; index += 1) {
+    const element = input.elements[index];
+    if (element === undefined) {
+      return err("numerical-instability", "Series AC element array changed during iteration");
+    }
+    const impedance = elementImpedance(element, angularFrequencyRadPerSec);
+    if (!impedance.ok) return impedance;
+    elementImpedances.push(impedance.value);
+    realOhms += impedance.value.realOhms;
+    imaginaryOhms += impedance.value.imaginaryOhms;
+  }
+
+  const impedanceMagnitudeOhms = Math.hypot(realOhms, imaginaryOhms);
+  if (impedanceMagnitudeOhms <= circuitTolerance.tight) {
+    return err("precondition-violated", "Series AC impedance magnitude must be non-zero");
+  }
+  const impedancePhaseRadians = Math.atan2(imaginaryOhms, realOhms);
+  const currentRmsAmps = sourceVoltage.value / impedanceMagnitudeOhms;
+  const apparentPowerVoltAmps = sourceVoltage.value * currentRmsAmps;
+  const realPowerWatts = currentRmsAmps * currentRmsAmps * realOhms;
+  const reactivePowerVars = currentRmsAmps * currentRmsAmps * imaginaryOhms;
+  const solution = {
+    impedance: { realOhms, imaginaryOhms },
+    elementImpedances,
+    impedanceMagnitudeOhms,
+    impedancePhaseRadians,
+    currentRmsAmps,
+    currentPhaseRadians: -impedancePhaseRadians,
+    powerFactor: Math.cos(impedancePhaseRadians),
+    apparentPowerVoltAmps,
+    realPowerWatts,
+    reactivePowerVars,
+  };
+
+  return Number.isFinite(solution.impedance.realOhms) &&
+    Number.isFinite(solution.impedance.imaginaryOhms) &&
+    Number.isFinite(solution.impedanceMagnitudeOhms) &&
+    Number.isFinite(solution.impedancePhaseRadians) &&
+    Number.isFinite(solution.currentRmsAmps) &&
+    Number.isFinite(solution.currentPhaseRadians) &&
+    Number.isFinite(solution.powerFactor) &&
+    Number.isFinite(solution.apparentPowerVoltAmps) &&
+    Number.isFinite(solution.realPowerWatts) &&
+    Number.isFinite(solution.reactivePowerVars)
+    ? ok(solution)
+    : err("numerical-instability", "Series AC circuit solution must be finite");
 };
 
 const elementEndpoints = (

@@ -9,6 +9,7 @@
   ],
   "references": [
     { "path": "../../../core/charting" },
+    { "path": "../../../core/circuits" },
     { "path": "../../../core/content-schema" },
     { "path": "../../../core/linear-algebra" },
     { "path": "../../../core/mechanics" },

@@ -6,6 +6,7 @@ import {
   elementId,
   nodeId,
   ohmsLaw,
+  solveSeriesAcCircuit,
   solveDcCircuit,
   voltageDivider,
   type CircuitElementId,
@@ -81,6 +82,16 @@ describe("@paideia/circuits", () => {
     expect(inconsistent.ok).toBe(false);
     if (!inconsistent.ok) expect(inconsistent.error.code).toBe("precondition-violated");
 
+    const overflowedExpectedVoltage = ohmsLaw({
+      voltageVolts: 1,
+      currentAmps: 1e308,
+      resistanceOhms: 1e308,
+    });
+    expect(overflowedExpectedVoltage.ok).toBe(false);
+    if (!overflowedExpectedVoltage.ok) {
+      expect(overflowedExpectedVoltage.error.code).toBe("numerical-instability");
+    }
+
     const overflowingPower = ohmsLaw({
       voltageVolts: Number.MAX_VALUE,
       currentAmps: 2,
@@ -130,6 +141,54 @@ describe("@paideia/circuits", () => {
       expect(drops.value).toEqual([2, 4, 6]);
       expectApprox(drops.value.reduce((sum, value) => sum + value, 0), 12);
     }
+  });
+
+  it("solves series AC impedance and current phase", () => {
+    const result = solveSeriesAcCircuit({
+      sourceVoltageRmsVolts: 10,
+      frequencyHertz: 50,
+      elements: [
+        { kind: "resistor", resistanceOhms: 40 },
+        { kind: "inductor", inductanceHenrys: 0.2 },
+        { kind: "capacitor", capacitanceFarads: 100e-6 },
+      ],
+    });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+
+    const expectedReactance = 2 * Math.PI * 50 * 0.2 - 1 / (2 * Math.PI * 50 * 100e-6);
+    const expectedMagnitude = Math.hypot(40, expectedReactance);
+    expectApprox(result.value.impedance.realOhms, 40, circuitTolerance.loose);
+    expectApprox(result.value.impedance.imaginaryOhms, expectedReactance, circuitTolerance.loose);
+    expect(result.value.elementImpedances).toHaveLength(3);
+    expectApprox(result.value.elementImpedances[1]?.imaginaryOhms ?? Number.NaN, 2 * Math.PI * 50 * 0.2, circuitTolerance.loose);
+    expectApprox(result.value.impedanceMagnitudeOhms, expectedMagnitude, circuitTolerance.loose);
+    expectApprox(result.value.currentRmsAmps, 10 / expectedMagnitude, circuitTolerance.loose);
+    expectApprox(result.value.currentPhaseRadians, -Math.atan2(expectedReactance, 40), circuitTolerance.loose);
+    expectApprox(
+      result.value.realPowerWatts,
+      result.value.currentRmsAmps * result.value.currentRmsAmps * 40,
+      circuitTolerance.loose,
+    );
+  });
+
+  it("rejects invalid series AC inputs with kernel errors", () => {
+    const invalidFrequency = solveSeriesAcCircuit({
+      sourceVoltageRmsVolts: 10,
+      frequencyHertz: 0,
+      elements: [{ kind: "resistor", resistanceOhms: 40 }],
+    });
+    expect(invalidFrequency.ok).toBe(false);
+    if (!invalidFrequency.ok) expect(invalidFrequency.error.code).toBe("precondition-violated");
+
+    const emptyCircuit = solveSeriesAcCircuit({
+      sourceVoltageRmsVolts: 10,
+      frequencyHertz: 60,
+      elements: [],
+    });
+    expect(emptyCircuit.ok).toBe(false);
+    if (!emptyCircuit.ok) expect(emptyCircuit.error.code).toBe("precondition-violated");
   });
 
   it("returns complete zero results for all-reference zero-current circuits", () => {

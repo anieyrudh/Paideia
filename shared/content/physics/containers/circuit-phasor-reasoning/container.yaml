@@ -1,0 +1,123 @@
+schema_version: "1.0.0"
+id: circuit-phasor-reasoning
+aliases:
+  - ac circuit phasors
+  - impedance vectors
+  - series rlc phase
+branch: shared
+subject: physics
+level: "Shared core"
+module: "Signals and circuits"
+title: "Circuit & Phasor Lab"
+one_line_summary: "Build a series RLC impedance vector, predict current phase, and connect reactance to waveform lead or lag."
+syllabus_ref: "Shared physics / Signals and circuits / AC phasor reasoning"
+prerequisites:
+  - circuits
+  - sinusoidal-functions
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A resistor and inductor are connected in series to a sinusoidal supply. Before revealing the lab, what happens to the current phase compared with the voltage?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Current leads the voltage because every AC circuit is capacitive."
+      - "Current lags the voltage because the inductor adds positive reactance."
+      - "Current is exactly in phase because resistance is present."
+      - "Current becomes zero because the inductor blocks all AC."
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: motor-start-capacitor
+    prompt: |
+      A small AC motor winding is modelled as a 30 ohm resistor in series with a 0.18 H inductance on a 50 Hz supply. A 100 microfarad capacitor is added in series for correction. Decide whether the current leads or lags the voltage, calculate the rms current for a 12 V rms supply, and explain the phase relationship.
+    surface_form: "motor start capacitor"
+    same_concept_check: "Same concept: build the series impedance vector, use its magnitude for current, and use the sign of net reactance for phase."
+    rubric_path: problem-solving/motor-start-capacitor.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-20"
+      author: "Codex"
+      summary: "Built shared-core circuit phasor reasoning product slice using core/circuits, charting, prediction-gate, and ui-sim."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-20"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-20"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Phasors are physical rotating wires"
+    description: "Learners may treat phasors as literal objects instead of vector bookkeeping for sinusoidal magnitude and phase."
+    evidence_source: "OpenStax College Physics 2e, Chapter 23 Electromagnetic Induction, AC Circuits, and Electrical Technologies."
+    surface_in_predict: true
+  - name: "Resistance makes every AC circuit in phase"
+    description: "Learners may notice resistance in the circuit but ignore that net reactance sets the phase angle."
+    evidence_source: "OpenStax College Physics 2e, Chapter 23 Electromagnetic Induction, AC Circuits, and Electrical Technologies."
+    surface_in_predict: true
+  - name: "Current is used up around a circuit"
+    description: "Learners may forget that the same series current passes through each component while component voltages differ in phase."
+    evidence_source: "OpenStax College Physics 2e, Chapter 21 Circuits and DC Instruments."
+    surface_in_predict: true
+sources:
+  - citation: "OpenStax. College Physics 2e, Chapter 23 Electromagnetic Induction, AC Circuits, and Electrical Technologies. OpenStax, 2022."
+    url: "https://openstax.org/books/college-physics-2e/pages/23-introduction-to-electromagnetic-induction-ac-circuits-and-electrical-technologies"
+    publication_year: 2022
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "OpenStax. College Physics 2e, Chapter 21 Circuits and DC Instruments. OpenStax, 2022."
+    url: "https://openstax.org/books/college-physics-2e/pages/21-introduction-to-circuits-and-dc-instruments"
+    publication_year: 2022
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+language: en

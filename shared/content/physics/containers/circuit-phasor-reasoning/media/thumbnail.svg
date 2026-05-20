@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Circuit phasor reasoning thumbnail</title>
+  <desc id="desc">A series circuit and an impedance phasor showing resistance and reactance components.</desc>
+  <rect width="640" height="360" rx="24" fill="#f8fbff"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M72 188h72m0 0v-52h78v104h78v-104h78v104h78v-52h112" stroke="#344054" stroke-width="10"/>
+    <path d="M92 238h456" stroke="#98a2b3" stroke-width="5"/>
+    <path d="M388 250h150" stroke="#1f5f8b" stroke-width="12"/>
+    <path d="M538 250v-88" stroke="#b54708" stroke-width="12" stroke-dasharray="16 12"/>
+    <path d="M388 250 538 162" stroke="#6941c6" stroke-width="12"/>
+    <path d="M120 94c28-44 56-44 84 0s56 44 84 0 56-44 84 0 56 44 84 0" stroke="#027a48" stroke-width="7"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif" font-weight="800">
+    <text x="74" y="72" fill="#10201a" font-size="28">Circuit &amp; Phasor Lab</text>
+    <text x="404" y="282" fill="#1f5f8b" font-size="18">R</text>
+    <text x="550" y="210" fill="#b54708" font-size="18">X</text>
+    <text x="500" y="144" fill="#6941c6" font-size="18">Z</text>
+  </g>
+</svg>

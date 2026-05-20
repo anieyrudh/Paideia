@@ -1,0 +1,13 @@
+flowchart LR
+  voltage["Voltage and current"] --> sinusoid["Sinusoidal functions"]
+  sinusoid --> current["One shared series current"]
+  current --> impedance["Impedance vector Z"]
+  impedance --> resistance["R on real axis"]
+  impedance --> reactance["X_L - X_C on imaginary axis"]
+  reactance --> phase["Current phase lead or lag"]
+  phase --> filters["Filters"]
+  phase --> resonance["Resonance"]
+  phase --> signals["Signal processing"]
+  misconception1["Phasors are physical wires"] -.-> impedance
+  misconception2["Resistance forces in-phase current"] -.-> phase
+  misconception3["Current is used up around a circuit"] -.-> current
