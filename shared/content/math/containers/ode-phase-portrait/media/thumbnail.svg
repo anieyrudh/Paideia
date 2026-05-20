@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 320 180">
+  <title id="title">ODE phase portrait thumbnail</title>
+  <desc id="desc">A phase plane with arrows and an inward spiral trajectory.</desc>
+  <rect width="320" height="180" fill="#f6f8fb"/>
+  <g stroke="#c9d2df" stroke-width="1">
+    <path d="M40 90H280"/>
+    <path d="M160 24V156"/>
+    <path d="M70 24V156"/>
+    <path d="M250 24V156"/>
+    <path d="M40 42H280"/>
+    <path d="M40 138H280"/>
+  </g>
+  <g stroke="#386c8f" stroke-linecap="round" stroke-width="2">
+    <path d="M72 42l18 7"/>
+    <path d="M120 46l13 14"/>
+    <path d="M202 50l-13 14"/>
+    <path d="M244 46l-18 7"/>
+    <path d="M78 120l15-10"/>
+    <path d="M118 136l11-17"/>
+    <path d="M204 132l-11-17"/>
+    <path d="M250 118l-15-10"/>
+  </g>
+  <path d="M232 74C217 36 162 31 132 57C99 85 112 130 150 136C184 141 207 111 191 86C178 66 147 68 139 88C132 105 146 119 163 115C176 112 183 100 178 91" fill="none" stroke="#b23b4a" stroke-linecap="round" stroke-width="5"/>
+  <circle cx="160" cy="90" fill="#202a33" r="4"/>
+  <text fill="#202a33" font-family="Arial, sans-serif" font-size="18" font-weight="700" x="28" y="168">trace-det phase portrait</text>
+</svg>

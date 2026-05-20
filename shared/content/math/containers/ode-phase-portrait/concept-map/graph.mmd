@@ -1,0 +1,9 @@
+graph TD
+  derivatives["Derivatives"] --> phase["ODE Phase Portrait"]
+  vectorFields["Vector fields"] --> phase
+  linearAlgebra["Linear algebra"] --> phase
+  phase --> stability["Stability analysis"]
+  phase --> feedback["Feedback systems"]
+  phase --- oscillator["Damped oscillators"]
+  misconceptionA["Equilibrium means a quiet region"] --> correctionA["Only exact equilibrium has zero rate"]
+  misconceptionB["Arrows are literal velocity"] --> correctionB["Arrows are state-variable rates"]

@@ -1,0 +1,120 @@
+schema_version: "1.0.0"
+id: ode-phase-portrait
+aliases:
+  - phase plane
+  - planar ode stability
+  - linear stability portrait
+branch: shared
+subject: math
+level: "Shared core"
+module: "Dynamical systems"
+title: "ODE Phase Portrait Lab"
+one_line_summary: "Classify a two-variable linear ODE by trace, determinant, and discriminant, then test how nearby trajectories move in the phase plane."
+syllabus_ref: "Shared mathematics / Dynamical systems / Phase portraits"
+prerequisites:
+  - derivatives
+  - vector-fields
+  - linear-algebra
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    For x' = y and y' = -1.2x - 0.6y, what should a nearby trajectory do after it is released?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Spiral inward toward the equilibrium"
+      - "Move directly away from the equilibrium"
+      - "Cross the equilibrium and stop there"
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: reactor-stability-check
+    prompt: |
+      A simplified reactor model linearises near an operating point to x' = y and y' = -0.8x + 0.4y. Classify the operating point, predict whether a small perturbation settles or grows, and name one parameter change that would reverse the stability.
+    surface_form: "reactor operating-point stability"
+    same_concept_check: "The context changes to a reactor, but the task is still trace-determinant classification of a planar linear ODE near an equilibrium."
+    rubric_path: problem-solving/reactor-stability-check.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-20"
+      author: "Codex"
+      summary: "Adapted the reviewed ODE phase portrait into a shared-core product slice with prediction-gated trace-determinant simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-20"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-20"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Equilibrium means nothing changes anywhere"
+    description: "Learners may think an equilibrium freezes the whole field, rather than only the state exactly at the equilibrium point."
+    evidence_source: "Strogatz, Nonlinear Dynamics and Chaos, phase-plane chapters."
+    surface_in_predict: true
+  - name: "Arrows show only physical velocity"
+    description: "Learners may read the phase-plane arrows as literal motion in space instead of rates of change for abstract state variables."
+    evidence_source: "Hirsch, Smale, and Devaney, Differential Equations, Dynamical Systems, and an Introduction to Chaos."
+    surface_in_predict: true
+sources:
+  - citation: "Strogatz, S. H. Nonlinear Dynamics and Chaos. 2nd ed. Westview Press, 2015."
+    publication_year: 2015
+    license: "Publisher copyright"
+    seab_alignment: n/a
+  - citation: "Hirsch, M. W., Smale, S., and Devaney, R. L. Differential Equations, Dynamical Systems, and an Introduction to Chaos. 3rd ed. Academic Press, 2013."
+    publication_year: 2013
+    license: "Publisher copyright"
+    seab_alignment: n/a
+  - citation: "Boyce, W. E., DiPrima, R. C., and Meade, D. B. Elementary Differential Equations and Boundary Value Problems. 11th ed. Wiley, 2017."
+    publication_year: 2017
+    license: "Publisher copyright"
+    seab_alignment: n/a
+language: en
