@@ -29,6 +29,9 @@ importers:
 
   a-level/apps/shell:
     dependencies:
+      '@paideia/a-level-math-sims':
+        specifier: workspace:*
+        version: link:../../packages/math-sims
       '@paideia/a-level-physics-sims':
         specifier: workspace:*
         version: link:../../packages/physics-sims
@@ -63,6 +66,55 @@ importers:
       vite:
         specifier: ^5.4.0
         version: 5.4.21(@types/node@22.19.19)
+
+  a-level/packages/math-sims:
+    dependencies:
+      '@paideia/charting':
+        specifier: workspace:*
+        version: link:../../../core/charting
+      '@paideia/content-schema':
+        specifier: workspace:*
+        version: link:../../../core/content-schema
+      '@paideia/prediction-gate':
+        specifier: workspace:*
+        version: link:../../../core/prediction-gate
+      '@paideia/probability-stats':
+        specifier: workspace:*
+        version: link:../../../core/probability-stats
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../../../core/shared
+      '@paideia/sim-runtime':
+        specifier: workspace:*
+        version: link:../../../core/sim-runtime
+      '@paideia/ui-sim':
+        specifier: workspace:*
+        version: link:../../../core/ui-sim
+    devDependencies:
+      '@types/react':
+        specifier: ^18.3.0
+        version: 18.3.28
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.7(@types/react@18.3.28)
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      jsdom:
+        specifier: ^25.0.0
+        version: 25.0.1
+      react:
+        specifier: ^18.3.0
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.0
+        version: 18.3.1(react@18.3.1)
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^2.1.0
+        version: 2.1.9(@types/node@22.19.19)(jsdom@25.0.1)
 
   a-level/packages/physics-sims:
     dependencies:
@@ -777,6 +829,9 @@ importers:
 
   testing/sim-harness:
     dependencies:
+      '@paideia/a-level-math-sims':
+        specifier: workspace:*
+        version: link:../../a-level/packages/math-sims
       '@paideia/a-level-physics-sims':
         specifier: workspace:*
         version: link:../../a-level/packages/physics-sims

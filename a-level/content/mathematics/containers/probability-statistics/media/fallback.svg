@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Probability statistics fallback</title>
+  <desc id="desc">Static fallback explaining expected value and z-score decision flow.</desc>
+  <rect width="640" height="360" fill="#f7f4ea"/>
+  <rect x="44" y="52" width="552" height="256" rx="24" fill="#fffdf7" stroke="#d8d0bf" stroke-width="3"/>
+  <text x="82" y="112" fill="#10201a" font-family="Arial, sans-serif" font-size="30" font-weight="700">Distribution</text>
+  <text x="82" y="158" fill="#1f5f8b" font-family="Arial, sans-serif" font-size="28">E(X)=sum xP(X=x)</text>
+  <text x="82" y="206" fill="#027a48" font-family="Arial, sans-serif" font-size="28">spread -> standard error</text>
+  <text x="82" y="254" fill="#b54708" font-family="Arial, sans-serif" font-size="28">z -> decision in context</text>
+</svg>

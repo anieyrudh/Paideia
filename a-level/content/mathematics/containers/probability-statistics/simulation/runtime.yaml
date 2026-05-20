@@ -1,0 +1,8 @@
+runtime:
+  entry: simulation/index.tsx
+  package: "@paideia/a-level-math-sims"
+  package_entry: "@paideia/a-level-math-sims/probability-statistics"
+  mount_mode: react-component
+  state_model: local
+  persistence: local
+  deterministic: true

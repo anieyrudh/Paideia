@@ -1,0 +1,124 @@
+schema_version: "1.0.0"
+id: probability-statistics
+aliases:
+  - probability distributions
+  - expected value
+  - variance
+  - hypothesis testing
+branch: a-level
+subject: mathematics
+level: "H2"
+module: "Probability and Statistics"
+title: "Probability and Statistics"
+one_line_summary: "Use probability distributions to compute expected value, variance, and a sample-mean hypothesis-test decision."
+syllabus_ref: "9758 / Probability and Statistics"
+prerequisites:
+  - algebra
+  - functions
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A score distribution has many ordinary outcomes and a few high-score outcomes. Before revealing the lab, predict what can happen if the high-score outcome becomes rarer but worth more marks.
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The expected score must fall whenever the high score becomes rarer."
+      - "The expected score can stay close while the spread increases."
+      - "The most likely score must become the same as the expected score."
+      - "The hypothesis decision no longer needs a sample size."
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: prize-game-fairness
+    prompt: |
+      A school fundraiser game pays 0 points, 4 points, or a high-score prize. The organisers change the high-score prize from common and modest to rare and large. Decide whether the expected score, variance, and sample-mean test decision support the claim that the game became more generous.
+    surface_form: "fundraiser prize game"
+    same_concept_check: "Same concept: model the random variable, compute E(X) and Var(X), then compare an observed sample mean with the null mean using its standard error."
+    rubric_path: problem-solving/prize-game-fairness.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-20"
+      author: "Codex"
+      summary: "Built A-Level probability and statistics product slice using core/probability-stats, charting, sim-runtime, prediction-gate, and ui-sim."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-20"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-20"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Independent and mutually exclusive mean the same thing"
+    description: "Learners may treat independent events and mutually exclusive events as interchangeable, instead of recognising that independence concerns whether one event changes the probability of another."
+    evidence_source: "OpenStax Introductory Statistics, Chapter 3 Probability Topics."
+    surface_in_predict: false
+  - name: "Expected value is the most likely outcome"
+    description: "Learners may read E(X) as the outcome that should occur most often, rather than the long-run weighted average of all possible values."
+    evidence_source: "OpenStax Introductory Statistics, Chapter 4 Discrete Random Variables."
+    surface_in_predict: true
+  - name: "A hypothesis-test decision depends only on the observed mean"
+    description: "Learners may ignore variability and sample size, treating any difference between observed and null means as equally strong evidence."
+    evidence_source: "OpenStax Introductory Statistics, Chapter 9 Hypothesis Testing with One Sample."
+    surface_in_predict: true
+sources:
+  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 Mathematics 9758 syllabus for examination in 2027. 2025."
+    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9758_y27_sy.pdf"
+    publication_year: 2025
+    license: "Copyright MOE & Cambridge University Press & Assessment"
+    seab_alignment: matches
+  - citation: "Illowsky, B., Dean, S., et al. Introductory Statistics, Chapters 3, 4, and 9. OpenStax, 2013."
+    url: "https://openstax.org/details/books/introductory-statistics"
+    publication_year: 2013
+    license: "CC BY 4.0"
+    seab_alignment: matches
+language: en

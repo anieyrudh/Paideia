@@ -1,0 +1,19 @@
+steps:
+  - id: define-random-variable
+    prompt: "What does the random variable measure?"
+    expected_action: "Name X, list its values, and include the score unit when the context has one."
+  - id: build-distribution
+    prompt: "Do the probabilities form a valid distribution?"
+    expected_action: "Convert weights to probabilities and check that they sum to 1."
+  - id: calculate-centre-spread
+    prompt: "What are E(X) and Var(X)?"
+    expected_action: "Use the distribution to compute the weighted mean and weighted squared deviations."
+  - id: state-null-model
+    prompt: "What does H0 claim?"
+    expected_action: "State the null mean before using the sample evidence."
+  - id: standardise-evidence
+    prompt: "How far is the observed mean from the null mean?"
+    expected_action: "Compute the standard error and z-score with units interpreted on the score scale."
+  - id: decide-in-context
+    prompt: "Does the statistic enter the rejection region?"
+    expected_action: "Compare with the critical value and write the decision in the context of the problem."
