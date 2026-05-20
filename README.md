@@ -187,6 +187,7 @@ Common tasks:
 | Regenerate lesson docs | `pnpm container:docs <container-path>` |
 | Check generated lesson graph | `pnpm graph:check` |
 | Build the static Pages artifact | `pnpm build:pages` |
+| Design simulation formula/readout UI | [Simulation presentation standard](docs/product/simulation-presentation-standard.md) |
 | Follow the build roadmap | [Container roadmap](docs/product/container-roadmap.md) |
 | Run a container wave | [Container wave runbook](docs/product/container-wave-runbook.md) |
 | Understand hosting and licensing direction | [Hosting and licensing plan](docs/product/hosting-and-licensing.md) |
@@ -199,6 +200,7 @@ Common tasks:
 - [Product roadmap](docs/product/container-roadmap.md)
 - [Container wave runbook](docs/product/container-wave-runbook.md)
 - [Hosting and licensing plan](docs/product/hosting-and-licensing.md)
+- [Simulation presentation standard](docs/product/simulation-presentation-standard.md)
 - [Core module inventory](docs/core-modules.md)
 - [GitHub setup](docs/github-setup.md)
 - [Clean-room dependency guide](docs/dependency-clean-room.md)

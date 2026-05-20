@@ -19,6 +19,7 @@ reference slice.
 - `core/prediction-gate/README.md`
 - `core/sim-runtime/README.md`
 - `core/ui-sim/README.md`
+- `docs/product/simulation-presentation-standard.md`
 - Target container `container.yaml`, `concept-card.md`, `simulation/`, `embed/`,
   `problem-solving/`, `sources.md`, and `TECHNICAL.md`
 
@@ -47,8 +48,10 @@ reference slice.
    The container composes kernels; it does not invent reusable algorithms.
 6. If prediction metadata exists, wrap the revealed observation in
    `PredictionGate` and add tests that prove reveal is blocked before commit.
-7. Make every calculation student-facing: show the formula, substituted values,
-   units, and a short reason the formula applies.
+7. Make every calculation student-facing: show a LaTeX formula block, a nearby
+   color-coded symbol legend, substituted values, units, and a short reason the
+   formula applies. Keep formula colors aligned with controls, traces, vectors,
+   and readouts.
 8. Keep the UI learner-facing. Do not show file paths, package names, kernel
    names, YAML tokens, or implementation details to students.
 9. Update `simulation.yaml`, `controls.yaml`, `presets.yaml`, `state-labels.yaml`,
@@ -79,6 +82,7 @@ reference slice.
 - The shell route works from generated catalogue data.
 - The sim is useful after reveal, not just structurally present.
 - Formula and units are visible for all numerical readouts.
+- Formula panels follow `docs/product/simulation-presentation-standard.md`.
 - The first interaction is prediction, not explanation.
 - Tests cover pure calculations, prediction-gate behavior, shell navigation, and
   revealed-state accessibility where possible.
@@ -107,9 +111,24 @@ Read first:
 
 Upgrade the existing container if it exists. Preserve the v2 container shape.
 Use core kernels for reusable logic. Gate revealed observations with
-PredictionGate. Show every calculation with formula, substituted values, units,
-and conceptual reason. Keep UI copy student-facing and hide implementation
-details.
+PredictionGate. Show every calculation with a LaTeX formula block, color-coded
+symbol legend, substituted values, units, and conceptual reason. Keep UI copy
+student-facing and hide implementation details.
+
+Renderer/skill routing:
+- Use ordinary React + core kernels for formula labs, sliders, charts, and tables.
+- Use `game-studio:web-game-foundations` first when a game-like sim needs engine,
+  input, state, asset, save, debug, or performance boundaries.
+- Use `game-studio:phaser-2d-game` only for game-like 2D canvas scenes with sprites,
+  grids, collisions, cameras, or room/tile motion.
+- Use `game-studio:sprite-pipeline` when generating or normalizing 2D sprite strips.
+- Use `game-studio:game-ui-frontend` for HUDs, overlays, menus, responsive layout,
+  and playfield protection in canvas/WebGL sims.
+- Use `game-studio:react-three-fiber-game` for React-hosted 3D scenes.
+- Use `game-studio:web-3d-asset-pipeline` for GLB/glTF assets.
+- Use `game-studio:game-playtest` for visual simulation QA.
+- Use `build-web-apps:shadcn` only when the app has `components.json` or a
+  dedicated design-system task initializes shadcn.
 
 Deliver:
 - product-quality simulation and matching metadata
@@ -117,6 +136,8 @@ Deliver:
 - non-empty TECHNICAL.md Filter pass
 - tests for pure calculations, prediction-gate blocking, shell navigation, and
   revealed-state accessibility where possible
+- visual/browser playtest evidence for any canvas, chart, animation, or 3D-heavy
+  sim
 
 Run:
 pnpm graph:generate

@@ -42,6 +42,9 @@ Every SUTD product slice must include:
 - The learner predicts before the observation/formula is revealed when prediction is declared.
 - Controls use student-facing labels, presets, and visible causal feedback.
 - Any calculation shows formula, substituted values, signs, units, final value, and interpretation.
+- Any calculation shows a LaTeX formula block plus a nearby color-coded legend
+  for symbols, with the same colors used in controls, traces, vectors, and
+  readouts.
 - The UI hides code/package/file names from students.
 - Sources are cited; no copied textbook dumps or incompatible source code.
 
@@ -99,6 +102,7 @@ Student UI requirements:
 - prediction gate blocks reveal until commit when prediction is declared
 - controls are labelled and accessible
 - formulas include substituted values, signs, units, final result, and interpretation
+- formulas are LaTeX code blocks with color-coded symbol legends
 - no internal code names, package names, or file paths appear in the learner UI
 - include a transfer problem with rubric
 

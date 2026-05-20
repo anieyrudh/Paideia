@@ -33,6 +33,7 @@ placeholder simulation files that were created by `pnpm container:new`.
    - `docs/container-spec.md`
    - `core/content-schema/src/index.ts`
    - target `container.yaml`
+   - `docs/product/simulation-presentation-standard.md`
    - any kernel `AGENTS.md` files listed in `kernel_deps`
 
 3. Verify every `kernel_deps` entry resolves to an existing `core/<module>/`
@@ -64,7 +65,22 @@ placeholder simulation files that were created by `pnpm container:new`.
 6. The simulation test must include a prediction-gate assertion when prediction
    is declared. It should prove observation is blocked before commit.
 
-7. Run:
+7. Formula and calculation UI must follow
+   `docs/product/simulation-presentation-standard.md`: LaTeX formula block,
+   nearby color-coded symbol legend, substituted values, units, final result,
+   and conceptual reason.
+
+8. Choose the renderer deliberately:
+   - React + core kernels for normal formula, chart, slider, and table labs.
+   - Web game foundations first when engine, input, state, asset, save, debug,
+     or performance boundaries are unclear.
+   - Phaser only for game-like 2D scenes.
+   - Sprite pipeline only when shipping 2D sprite animation assets.
+   - Game UI frontend for HUD, overlay, menu, and playfield-protection work.
+   - React Three Fiber only for genuinely 3D React-hosted scenes.
+   - GLB/glTF asset pipeline only for shipping 3D assets.
+
+9. Run:
 
    ```bash
    pnpm container:validate
@@ -79,3 +95,4 @@ placeholder simulation files that were created by `pnpm container:new`.
 - Do not inline reusable physics, maths, plotting, or control logic that belongs
   in `core/`.
 - Do not weaken the container validator to make a sim pass.
+- Do not expose package names, file paths, YAML keys, or queue IDs in learner UI.

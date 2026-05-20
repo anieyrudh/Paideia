@@ -60,6 +60,9 @@ Each builder must:
 - Do not move a `shared.*` queue item into `a-level/` or `sutd/`. Build it under `shared/`, then let curriculum containers link to it later.
 - Keep the learner UI student-facing. No package names, file paths, kernel names, or implementation commentary in the visible sim.
 - Show every calculation with formula, substituted values, units, and interpretation.
+- Show formulas as LaTeX code blocks with a nearby color-coded legend for every
+  symbol. Keep formula colors aligned with controls, traces, vectors, and
+  readouts. See [`simulation-presentation-standard.md`](./simulation-presentation-standard.md).
 - Add Playwright coverage for prediction-gate blocking, at least one manipulation changing visible state, and revealed-state critical axe scan.
 
 ## Required Checks
