@@ -112,3 +112,18 @@ These entries are approved for assignment after the current four-track wave has 
 | Shared optimisation | `shared.optimization.gradient-descent-landscape` | `ready-for-build` | `core/optimization`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
 | A-Level Physics | `alevel.physics.circuits` | `ready-for-build` | `core/sim-runtime`, `core/circuits`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 | A-Level Math | `alevel.math.probability-statistics` | `ready-for-build` | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+
+## SUTD Next Wave
+
+These SUTD curriculum-wrapper entries are ready for the SUTD production loop. They are intentionally `sutd.*` entries, not shared-core builds; shared-core work remains in the reserve wave above.
+
+| Track | Queue id | Starting status | Required kernels |
+| --- | --- | --- | --- |
+| Freshmore probability | `sutd.freshmore.bayes-updating` | `ready-for-build` | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| Freshmore linear algebra | `sutd.freshmore.eigenvector-transformations` | `ready-for-build` | `core/sim-runtime`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+| EPD control | `sutd.epd.bode-stability-margin` | `ready-for-build` | `core/sim-runtime`, `core/control-systems`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| ESD stochastic optimisation | `sutd.esd.newsvendor-critical-fractile` | `ready-for-build` | `core/sim-runtime`, `core/probability-stats`, `core/optimization`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| CSD algorithms | `sutd.csd.dynamic-programming-state-recursion` | `ready-for-build` | `core/sim-runtime`, `core/algorithm-trace`, `core/graph-layout`, `core/prediction-gate`, `core/ui-sim` |
+| ASD environmental systems | `sutd.asd.shading-daylight-heat-gain` | `ready-for-build` | `core/sim-runtime`, `core/linear-algebra`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| DAI human-centred AI | `sutd.dai.confusion-matrix-thresholds` | `ready-for-build` | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/annotation`, `core/prediction-gate`, `core/ui-sim` |
+| SMT modelling | `sutd.smt.linear-system-stability` | `ready-for-build` | `core/sim-runtime`, `core/dynamical-systems`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |

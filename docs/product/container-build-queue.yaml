@@ -66,6 +66,7 @@ sutd_cluster_mappings:
       - sutd-freshmore
       - shared-probability-stats
     entry_ids:
+      - sutd.freshmore.bayes-updating
       - shared.probability.bayes-updating
       - shared.probability.central-limit-theorem
       - shared.inference.hypothesis-test-decision
@@ -76,6 +77,7 @@ sutd_cluster_mappings:
       - shared-math
     entry_ids:
       - sutd.freshmore.vector-transformations
+      - sutd.freshmore.eigenvector-transformations
       - shared.linear-algebra.eigenvector-transformations
       - shared.dynamical-systems.ode-phase-portrait
   - id: sutd.freshmore.mechanics-circuits
@@ -93,6 +95,7 @@ sutd_cluster_mappings:
       - shared-algorithms-ai
     entry_ids:
       - sutd.csd.graph-search-and-shortest-paths
+      - sutd.csd.dynamic-programming-state-recursion
       - shared.algorithms.graph-algorithm-explorer
       - shared.optimization.gradient-descent-landscape
   - id: sutd.epd.control-systems
@@ -102,6 +105,7 @@ sutd_cluster_mappings:
       - shared-physics-core
     entry_ids:
       - sutd.epd.pid-step-response
+      - sutd.epd.bode-stability-margin
       - shared.control.pid-bode-builder
       - shared.dynamical-systems.ode-phase-portrait
       - shared.circuits.circuit-phasor-reasoning
@@ -113,6 +117,7 @@ sutd_cluster_mappings:
       - shared-probability-stats
     entry_ids:
       - sutd.esd.linear-programming-feasible-region
+      - sutd.esd.newsvendor-critical-fractile
       - shared.optimization.linear-programming-feasible-region
       - shared.optimization.gradient-descent-landscape
       - shared.inference.hypothesis-test-decision
@@ -123,6 +128,7 @@ sutd_cluster_mappings:
       - shared-physics-core
     entry_ids:
       - sutd.asd.load-path-and-daylight-tradeoff
+      - sutd.asd.shading-daylight-heat-gain
   - id: sutd.dai.human-ai-evaluation
     title: "DAI human-centred AI and evaluation"
     workstreams:
@@ -130,6 +136,7 @@ sutd_cluster_mappings:
       - shared-probability-stats
     entry_ids:
       - sutd.dai.trust-calibration
+      - sutd.dai.confusion-matrix-thresholds
       - shared.optimization.gradient-descent-landscape
   - id: sutd.smt.advanced-science-math
     title: "SMT advanced science and mathematical modelling"
@@ -138,6 +145,7 @@ sutd_cluster_mappings:
       - shared-math
     entry_ids:
       - sutd.smt.ode-phase-portrait
+      - sutd.smt.linear-system-stability
       - shared.dynamical-systems.ode-phase-portrait
 
 entries:
@@ -1052,6 +1060,367 @@ entries:
       - core/ui-sim
     repo_package_name: sutd-sim-ode-phase-portrait
     estimated_effort: M
+    assignment:
+      workstream: sutd-smt
+      concept_cluster: SMT mathematical modelling
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.freshmore.bayes-updating
+    title: "Bayes Updating"
+    priority: P0
+    status: ready-for-build
+    cluster: Freshmore probability and statistics
+    discipline: math
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - Freshmore probability and statistics
+          - ESD data analysis
+    simulation_type: bayes-table-and-tree-updater
+    problem_solving_elements:
+      - prior likelihood posterior table
+      - evidence update calculation
+      - base-rate interpretation
+    concept_map_needs:
+      prerequisites:
+        - probability
+        - conditional probability
+      downstream:
+        - model evaluation
+        - Bayesian inference
+      misconceptions:
+        - diagnostic accuracy equals posterior probability
+        - evidence only changes one branch of the tree
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/probability-stats
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sim-bayes-updating
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/freshmore/containers/bayes-updating
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: Freshmore probability and statistics
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.freshmore.eigenvector-transformations
+    title: "Eigenvector Transformations"
+    priority: P0
+    status: ready-for-build
+    cluster: Freshmore linear algebra
+    discipline: math
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - Freshmore linear algebra
+          - Modelling the Systems World
+    simulation_type: eigenvector-transformation-lab
+    problem_solving_elements:
+      - matrix-vector multiplication trace
+      - invariant-direction check
+      - eigenvalue scale-factor explanation
+    concept_map_needs:
+      prerequisites:
+        - vector transformations
+        - matrices
+      downstream:
+        - diagonalisation
+        - PCA
+        - modal analysis
+      misconceptions:
+        - every vector is an eigenvector
+        - eigenvalues are rotation angles
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/linear-algebra
+      - core/plotting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sim-eigenvector-transformations
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/freshmore/containers/eigenvector-transformations
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: Freshmore linear algebra
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.epd.bode-stability-margin
+    title: "Bode Stability Margin"
+    priority: P0
+    status: ready-for-build
+    cluster: EPD control systems
+    discipline: systems
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - EPD control
+          - Engineering systems
+    simulation_type: bode-margin-reader
+    problem_solving_elements:
+      - gain and phase margin readout
+      - crossover frequency identification
+      - stability-speed tradeoff explanation
+    concept_map_needs:
+      prerequisites:
+        - PID step response
+        - transfer functions
+      downstream:
+        - robust control
+        - loop shaping
+      misconceptions:
+        - higher gain always improves performance
+        - magnitude plot alone decides stability
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/control-systems
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sim-bode-stability-margin
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/epd/containers/bode-stability-margin
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: EPD control systems
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.esd.newsvendor-critical-fractile
+    title: "Newsvendor Critical Fractile"
+    priority: P0
+    status: ready-for-build
+    cluster: ESD stochastic optimisation
+    discipline: systems
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - ESD optimisation
+          - Stochastic systems
+    simulation_type: demand-cost-threshold-lab
+    problem_solving_elements:
+      - overage and underage cost comparison
+      - critical fractile calculation
+      - service-level interpretation
+    concept_map_needs:
+      prerequisites:
+        - probability distributions
+        - expected value
+        - linear programming feasible region
+      downstream:
+        - inventory policy
+        - supply-chain risk
+      misconceptions:
+        - optimal stock is always mean demand
+        - higher service level is always cheaper
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/probability-stats
+      - core/optimization
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sim-newsvendor-critical-fractile
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/esd/containers/newsvendor-critical-fractile
+    assignment:
+      workstream: sutd-esd
+      concept_cluster: ESD stochastic optimisation
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.csd.dynamic-programming-state-recursion
+    title: "Dynamic Programming State Recursion"
+    priority: P0
+    status: ready-for-build
+    cluster: CSD algorithms
+    discipline: cs
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - CSD algorithms
+          - ISTD algorithms
+    simulation_type: algorithm-state-visualisation
+    problem_solving_elements:
+      - state definition
+      - recurrence relation trace
+      - memoisation table interpretation
+    concept_map_needs:
+      prerequisites:
+        - graph search and shortest paths
+        - recursion
+        - arrays
+      downstream:
+        - shortest-path dynamic programming
+        - reinforcement learning
+      misconceptions:
+        - dynamic programming means any loop
+        - memoisation changes the recurrence result
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/algorithm-trace
+      - core/graph-layout
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sim-dynamic-programming-state-recursion
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/csd/containers/dynamic-programming-state-recursion
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: CSD algorithms
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.asd.shading-daylight-heat-gain
+    title: "Shading, Daylight, and Heat Gain"
+    priority: P0
+    status: ready-for-build
+    cluster: ASD environmental systems
+    discipline: architecture
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - ASD environmental systems
+          - ASD building performance
+    simulation_type: facade-tradeoff-explorer
+    problem_solving_elements:
+      - shading-depth geometry
+      - daylight proxy comparison
+      - heat-gain tradeoff interpretation
+    concept_map_needs:
+      prerequisites:
+        - load path and daylight tradeoff
+        - ratio reasoning
+        - trigonometry
+      downstream:
+        - passive design
+        - building-performance optimisation
+      misconceptions:
+        - more glass always improves daylight quality
+        - shading only reduces light and never heat
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/linear-algebra
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sim-shading-daylight-heat-gain
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/asd/containers/shading-daylight-heat-gain
+    assignment:
+      workstream: sutd-asd
+      concept_cluster: ASD environmental systems
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.dai.confusion-matrix-thresholds
+    title: "Confusion Matrix Thresholds"
+    priority: P0
+    status: ready-for-build
+    cluster: DAI human-centred AI
+    discipline: design-ai
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - Design and Artificial Intelligence
+          - Human-centred AI
+    simulation_type: threshold-and-error-cost-lab
+    problem_solving_elements:
+      - confusion-matrix count update
+      - precision recall tradeoff
+      - stakeholder-cost interpretation
+    concept_map_needs:
+      prerequisites:
+        - trust calibration
+        - probability
+        - classification
+      downstream:
+        - fairness auditing
+        - model governance
+      misconceptions:
+        - accuracy is enough for every deployment
+        - a single threshold is neutral for all groups
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/probability-stats
+      - core/charting
+      - core/annotation
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sim-confusion-matrix-thresholds
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/dai/containers/confusion-matrix-thresholds
+    assignment:
+      workstream: sutd-dai
+      concept_cluster: DAI human-centred AI
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.smt.linear-system-stability
+    title: "Linear System Stability"
+    priority: P0
+    status: ready-for-build
+    cluster: SMT mathematical modelling
+    discipline: science
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - Science, Mathematics and Technology
+          - Mathematical modelling
+    simulation_type: eigenvalue-stability-plane
+    problem_solving_elements:
+      - matrix linearisation
+      - eigenvalue sign interpretation
+      - phase portrait comparison
+    concept_map_needs:
+      prerequisites:
+        - ODE phase portrait
+        - vector transformations
+        - eigenvectors
+      downstream:
+        - control stability
+        - nonlinear local analysis
+      misconceptions:
+        - stable means every state stops moving instantly
+        - only one eigenvalue matters
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/dynamical-systems
+      - core/linear-algebra
+      - core/plotting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sim-linear-system-stability
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/smt/containers/linear-system-stability
     assignment:
       workstream: sutd-smt
       concept_cluster: SMT mathematical modelling

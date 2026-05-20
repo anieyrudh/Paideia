@@ -154,8 +154,8 @@ Latest slice notes:
 
 ### SUTD First Pillar Slices
 
-Status: five SUTD product slices have landed on `main` and are tracked in the
-build queue with required kernels:
+Status: seven SUTD first-pillar product slices have landed on `main` and are
+tracked in the build queue with required kernels:
 
 | Pillar | Container | Status | Required kernels |
 | --- | --- | --- | --- |
@@ -163,19 +163,27 @@ build queue with required kernels:
 | EPD | `sutd.epd.pid-step-response` | reviewed | `core/sim-runtime`, `core/control-systems`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 | ESD | `sutd.esd.linear-programming-feasible-region` | reviewed | `core/sim-runtime`, `core/optimization`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
 | CSD | `sutd.csd.graph-search-and-shortest-paths` | reviewed | `core/sim-runtime`, `core/graph-algorithms`, `core/graph-layout`, `core/algorithm-trace`, `core/prediction-gate`, `core/ui-sim` |
+| ASD | `sutd.asd.load-path-and-daylight-tradeoff` | reviewed | `core/sim-runtime`, `core/linear-algebra`, `core/mechanics`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 | DAI | `sutd.dai.trust-calibration` | reviewed | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/annotation`, `core/prediction-gate`, `core/ui-sim` |
+| SMT | `sutd.smt.ode-phase-portrait` | reviewed | `core/sim-runtime`, `core/dynamical-systems`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
 
 Next SUTD candidates in order:
 
-1. `sutd.asd.load-path-and-daylight-tradeoff` — rebuild cleanly as an ASD slice;
-   the previous draft was closed because it mixed in unrelated A-Level vector
-   material.
-2. `sutd.smt.ode-phase-portrait` — uses the completed dynamical-systems
-   foundation and provides the first SMT mathematical modelling proof.
-3. `shared.linear-algebra.eigenvector-transformations` — generalise the
-   Freshmore vector transformation slice into a shared-core lab.
-4. `shared.control.pid-bode-builder` — extend the EPD PID slice toward reusable
-   time-response and frequency-response reasoning.
+1. `sutd.freshmore.bayes-updating` — first SUTD probability wrapper around
+   prior/evidence/posterior reasoning.
+2. `sutd.freshmore.eigenvector-transformations` — extends the reviewed vector
+   transformation slice toward eigen-directions.
+3. `sutd.epd.bode-stability-margin` — connects step-response intuition to
+   frequency-domain stability margins.
+4. `sutd.esd.newsvendor-critical-fractile` — first stochastic optimisation
+   operations slice.
+5. `sutd.csd.dynamic-programming-state-recursion` — next algorithms slice after
+   graph search.
+6. `sutd.asd.shading-daylight-heat-gain` — second ASD environmental tradeoff
+   slice.
+7. `sutd.dai.confusion-matrix-thresholds` — next human-AI evaluation slice.
+8. `sutd.smt.linear-system-stability` — next SMT modelling slice after phase
+   portraits.
 
 ### Build Queue Discipline
 
