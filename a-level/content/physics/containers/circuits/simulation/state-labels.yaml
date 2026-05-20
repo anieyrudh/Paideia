@@ -1,0 +1,25 @@
+state_labels:
+  supplyVoltageVolts:
+    label: "Supply voltage"
+    meaning: "Potential difference supplied by the cell or battery."
+  seriesResistanceOhms:
+    label: "Series resistor"
+    meaning: "Resistance placed before the current splits into the two branch paths."
+  branchAResistanceOhms:
+    label: "Upper branch resistor"
+    meaning: "Resistance in the upper parallel branch."
+  branchBResistanceOhms:
+    label: "Lower branch resistor"
+    meaning: "Resistance in the lower parallel branch."
+  parallelEquivalentOhms:
+    label: "Parallel equivalent resistance"
+    meaning: "Single resistance that draws the same current as the two branch resistors at the same voltage."
+  totalCurrentAmps:
+    label: "Total current"
+    meaning: "Current supplied before it reaches the junction."
+  branchACurrentAmps:
+    label: "Upper branch current"
+    meaning: "Current through the upper branch resistor."
+  branchBCurrentAmps:
+    label: "Lower branch current"
+    meaning: "Current through the lower branch resistor."

@@ -1,0 +1,127 @@
+schema_version: "1.0.0"
+id: circuits
+aliases:
+  - electric circuits
+  - direct current circuits
+  - series and parallel circuits
+branch: a-level
+subject: physics
+level: "H2"
+module: "Electricity and Magnetism"
+title: "Circuits"
+one_line_summary: "Reduce series-parallel DC circuits, predict current changes, and connect voltage, current, resistance, and power."
+syllabus_ref: "9478 / Section V / Electricity and Magnetism"
+prerequisites:
+  - physical-quantities-and-units
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A resistor is added in parallel with an existing branch while the supply voltage stays fixed. Before revealing the lab, what happens to the total current drawn from the supply?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The total current decreases because there are more components."
+      - "The total current increases because the equivalent resistance of the parallel branch decreases."
+      - "The total current stays the same because the battery voltage is fixed."
+      - "The total current becomes zero because current is split between branches."
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: phone-charger-current
+    prompt: |
+      A phone charger supplies 5.0 V to two parallel paths: a 20 ohm charging path and a 100 ohm indicator path. A 2.0 ohm protective resistor is in series with the parallel pair. Find the total current and explain which path carries more current.
+    surface_form: "phone charger branch circuit"
+    same_concept_check: "Same concept: reduce the parallel paths, add the series resistance, then use Ohm's law and branch current relations."
+    rubric_path: problem-solving/phone-charger-current.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-20"
+      author: "Codex"
+      summary: "Built A-Level circuits product slice using core/circuits, charting, sim-runtime, prediction-gate, and ui-sim."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-20"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-20"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Current is used up by components"
+    description: "Learners may think current is consumed as it passes through resistors, rather than recognising charge flow is conserved at junctions."
+    evidence_source: "OpenStax College Physics 2e, Chapter 20 Electric Current, Resistance, and Ohm's Law."
+    surface_in_predict: true
+  - name: "A fixed-voltage battery fixes current"
+    description: "Learners may treat a voltage source as forcing the same current in every connected circuit, instead of calculating current from the external resistance."
+    evidence_source: "OpenStax College Physics 2e, Chapter 21 Circuits and DC Instruments."
+    surface_in_predict: true
+  - name: "Adding any resistor always increases total resistance"
+    description: "Learners may overgeneralise series behaviour and miss that adding a parallel branch creates an additional path, lowering equivalent resistance."
+    evidence_source: "OpenStax College Physics 2e, Chapter 21 Circuits and DC Instruments."
+    surface_in_predict: true
+sources:
+  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
+    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf"
+    publication_year: 2025
+    license: "Copyright MOE & Cambridge University Press & Assessment"
+    seab_alignment: matches
+  - citation: "OpenStax. College Physics 2e, Chapter 20 Electric Current, Resistance, and Ohm's Law. OpenStax, 2022."
+    url: "https://openstax.org/books/college-physics-2e/pages/20-introduction-to-electric-current-resistance-and-ohms-law"
+    publication_year: 2022
+    license: "CC BY 4.0"
+    seab_alignment: matches
+  - citation: "OpenStax. College Physics 2e, Chapter 21 Circuits and DC Instruments. OpenStax, 2022."
+    url: "https://openstax.org/books/college-physics-2e/pages/21-introduction-to-circuits-and-dc-instruments"
+    publication_year: 2022
+    license: "CC BY 4.0"
+    seab_alignment: matches
+language: en

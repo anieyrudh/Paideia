@@ -7,6 +7,7 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
+    "./circuits": "./src/circuits.tsx",
     "./forces-and-equilibrium": "./src/forces-and-equilibrium.tsx",
     "./resultant-magnitude": "./src/resultant-magnitude.tsx",
     "./resolving-vectors": "./src/resolving-vectors.tsx",
@@ -18,13 +19,14 @@
   },
   "scripts": {
     "build": "tsc -b",
-    "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts src/measurement-uncertainty.test.ts src/kinematics-one-dimension.test.ts src/forces-and-equilibrium.test.ts src/work-energy-power.test.ts src/momentum.test.ts src/waves.test.ts",
+    "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts src/measurement-uncertainty.test.ts src/kinematics-one-dimension.test.ts src/forces-and-equilibrium.test.ts src/work-energy-power.test.ts src/momentum.test.ts src/waves.test.ts src/circuits.test.ts",
     "lint": "tsc -b --pretty false",
     "typecheck": "tsc -b --pretty false"
   },
   "dependencies": {
     "@paideia/charting": "workspace:*",
     "@paideia/content-schema": "workspace:*",
+    "@paideia/circuits": "workspace:*",
     "@paideia/function-eval": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/mechanics": "workspace:*",

@@ -1,4 +1,18 @@
 export {
+  CircuitsDiagram,
+  CircuitsSim,
+  circuitsModel,
+  circuitsPackageId,
+  circuitsSimId,
+  circuitsSpec,
+} from "./circuits.js";
+export type {
+  CircuitModel,
+  CircuitState,
+  CircuitVoltageTracePoint,
+} from "./circuits.js";
+
+export {
   ForcesAndEquilibriumSim,
   ForceBalanceDiagram,
   forceBalanceModel,

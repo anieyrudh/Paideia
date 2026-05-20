@@ -1,0 +1,64 @@
+id: series-parallel-circuit-lab
+title: "Series-Parallel Circuit Lab"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/content-schema
+  - core/circuits
+  - core/charting
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A resistor is added in parallel with an existing branch while the supply voltage stays fixed. Before revealing the lab, what happens to the total current drawn from the supply?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The total current decreases because there are more components."
+      - "The total current increases because the equivalent resistance of the parallel branch decreases."
+      - "The total current stays the same because the battery voltage is fixed."
+      - "The total current becomes zero because current is split between branches."
+    correct_index: 1
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: supply-voltage
+      label: "Supply voltage"
+      kind: slider
+      kernel_binding: state.supplyVoltageVolts
+      bounds: { min: 3, max: 12, step: 0.5 }
+    - id: series-resistance
+      label: "Series resistor"
+      kind: slider
+      kernel_binding: state.seriesResistanceOhms
+      bounds: { min: 5, max: 60, step: 1 }
+    - id: branch-a-resistance
+      label: "Upper branch resistor"
+      kind: slider
+      kernel_binding: state.branchAResistanceOhms
+      bounds: { min: 10, max: 100, step: 1 }
+    - id: branch-b-resistance
+      label: "Lower branch resistor"
+      kind: slider
+      kernel_binding: state.branchBResistanceOhms
+      bounds: { min: 10, max: 100, step: 1 }
+
+observe:
+  renderers:
+    - id: series-parallel-circuit-lab
+      module: "@paideia/a-level-physics-sims/circuits"
+      symbol: CircuitsSim
+      props_binding: |
+        Show the series-parallel circuit, equivalent resistance, current split, voltage division, formula substitution, units, and interpretation.
+
+explain:
+  prompt: |
+    Why does adding a parallel path reduce equivalent resistance even though it adds another resistor?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Current is used up by components"
+    - "A fixed-voltage battery fixes current"
+    - "Adding any resistor always increases total resistance"

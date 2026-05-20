@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Circuit reduction fallback</title>
+  <desc id="desc">Formula and diagram for reducing a series resistor with two parallel branch resistors.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <rect x="40" y="40" width="560" height="280" rx="18" fill="#f8fbff" stroke="#cbd5e1"/>
+  <path d="M110 100v160h390V100h-110" fill="none" stroke="#344054" stroke-width="7" stroke-linecap="round"/>
+  <path d="M110 100h130" fill="none" stroke="#344054" stroke-width="7" stroke-linecap="round"/>
+  <rect x="240" y="84" width="92" height="32" rx="5" fill="#7c3aed"/>
+  <path d="M332 100v62h70" fill="none" stroke="#344054" stroke-width="7" stroke-linecap="round"/>
+  <path d="M332 100v116h70" fill="none" stroke="#344054" stroke-width="7" stroke-linecap="round"/>
+  <rect x="402" y="146" width="88" height="32" rx="5" fill="#059669"/>
+  <rect x="402" y="200" width="88" height="32" rx="5" fill="#d97706"/>
+  <circle cx="110" cy="180" r="26" fill="#2563eb"/>
+  <text x="110" y="187" text-anchor="middle" font-family="Arial, sans-serif" font-size="22" font-weight="700" fill="#fff">V</text>
+  <text x="78" y="296" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#10201a">I = V / (R_s + R_p)</text>
+  <text x="330" y="296" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#10201a">1/R_p = 1/R2 + 1/R3</text>
+</svg>

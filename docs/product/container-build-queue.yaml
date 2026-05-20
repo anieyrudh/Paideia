@@ -1772,7 +1772,7 @@ entries:
   - id: alevel.physics.circuits
     title: "Circuits"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level electricity
     discipline: physics
     reuse_status: curriculum-wrapper

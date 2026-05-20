@@ -1,0 +1,29 @@
+presets:
+  - id: balanced-split
+    label: "Balanced split"
+    state:
+      supplyVoltageVolts: 9
+      seriesResistanceOhms: 20
+      branchAResistanceOhms: 40
+      branchBResistanceOhms: 60
+  - id: near-equal-branches
+    label: "Near-equal branches"
+    state:
+      supplyVoltageVolts: 9
+      seriesResistanceOhms: 15
+      branchAResistanceOhms: 30
+      branchBResistanceOhms: 30
+  - id: dominant-upper-branch
+    label: "Dominant upper branch"
+    state:
+      supplyVoltageVolts: 12
+      seriesResistanceOhms: 25
+      branchAResistanceOhms: 18
+      branchBResistanceOhms: 90
+  - id: large-series-resistor
+    label: "Large series resistor"
+    state:
+      supplyVoltageVolts: 6
+      seriesResistanceOhms: 55
+      branchAResistanceOhms: 40
+      branchBResistanceOhms: 80
