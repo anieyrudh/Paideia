@@ -9,16 +9,21 @@ const defaultState: ContainerEmbedState = {
   predictionCommitted: false,
 };
 
+const cloneState = (state: ContainerEmbedState): ContainerEmbedState => ({
+  predictionCommitted: state.predictionCommitted,
+});
+
 export const createContainerEmbed = (): ContainerEmbedApi => {
-  let state = defaultState;
+  let state = cloneState(defaultState);
   let targetElement: Element | null = null;
 
   return {
     async load(target: Element): Promise<void> {
+      targetElement?.removeAttribute("data-paideia-theme");
       targetElement = target;
     },
     saveState(): ContainerEmbedState {
-      return state;
+      return cloneState(state);
     },
     score(): ContainerEmbedScore {
       return {
@@ -28,7 +33,7 @@ export const createContainerEmbed = (): ContainerEmbedApi => {
       };
     },
     resume(nextState: ContainerEmbedState): void {
-      state = nextState;
+      state = cloneState(nextState);
     },
     syncTheme(theme: ContainerEmbedTheme): void {
       targetElement?.setAttribute("data-paideia-theme", theme.colorScheme);
@@ -36,7 +41,7 @@ export const createContainerEmbed = (): ContainerEmbedApi => {
     destroy(): void {
       targetElement?.removeAttribute("data-paideia-theme");
       targetElement = null;
-      state = defaultState;
+      state = cloneState(defaultState);
     },
   };
 };

@@ -49,7 +49,7 @@ test.describe("Eigenvector Transformations", () => {
     await expect(observation).toContainText("v is not an eigenvector");
   });
 
-  test("has no critical accessibility violations after reveal", async ({ page }) => {
+  test("has no serious accessibility violations after reveal", async ({ page }) => {
     await page.getByRole("button", { name: "Set up eigenvector check" }).click();
     await page.getByRole("button", { name: "Reveal invariant-direction result" }).click();
     await page

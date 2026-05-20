@@ -398,20 +398,38 @@ const ObserveStage = () => {
         <h3>Check for one shared scale factor</h3>
         <pre className="formula-code" aria-label="LaTeX formula source">
           <code>{String.raw`\color{#2563eb}{A}\color{#059669}{\mathbf{v}}
-= \color{#d97706}{\lambda}\color{#059669}{\mathbf{v}}`}</code>
+= \color{#d97706}{\lambda}\color{#059669}{\mathbf{v}}
+
+\color{#d97706}{\lambda}
+= \frac{(A\mathbf{v})\cdot\mathbf{v}}{\mathbf{v}\cdot\mathbf{v}}
+
+\color{#dc2626}{r}
+= \|A\mathbf{v}-\lambda\mathbf{v}\|`}</code>
         </pre>
         <dl className="formula-legend" aria-label="Formula legend">
           <div>
-            <dt><span className="legend-swatch legend-swatch--blue" /> A</dt>
+            <dt>
+              <span aria-hidden="true" className="legend-swatch legend-swatch--blue" /> A
+            </dt>
             <dd>transformation matrix, dimensionless entries</dd>
           </div>
           <div>
-            <dt><span className="legend-swatch legend-swatch--green" /> v</dt>
+            <dt>
+              <span aria-hidden="true" className="legend-swatch legend-swatch--green" /> v
+            </dt>
             <dd>candidate direction, coordinate unit cu</dd>
           </div>
           <div>
-            <dt><span className="legend-swatch legend-swatch--orange" /> lambda</dt>
+            <dt>
+              <span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> lambda
+            </dt>
             <dd>scale factor along the direction, times</dd>
+          </div>
+          <div>
+            <dt>
+              <span aria-hidden="true" className="legend-swatch legend-swatch--red" /> r
+            </dt>
+            <dd>residual distance after subtracting lambda v, in coordinate units</dd>
           </div>
         </dl>
         <p>
@@ -419,8 +437,10 @@ const ObserveStage = () => {
           {coordinate(y)}) = ({coordinate(xPrime)}, {coordinate(yPrime)}).
         </p>
         <p>
-          Result: lambda = {fmt(check.lambda)} times and residual = {coordinate(check.residual)}, so
-          v {verdict}.
+          Projection scale: lambda = ((Av) dot v) / (v dot v) = {fmt(check.lambda)} times.
+        </p>
+        <p>
+          Result: residual r = |Av - lambda v| = {coordinate(check.residual)}, so v {verdict}.
         </p>
         <p className="formula-note">
           This formula applies because an eigenvector is exactly a non-zero direction whose
