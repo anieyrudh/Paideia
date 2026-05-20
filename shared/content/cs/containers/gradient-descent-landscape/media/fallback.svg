@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 260" role="img" aria-labelledby="title desc">
+  <title id="title">Gradient descent fallback</title>
+  <desc id="desc">Formula theta next equals theta minus learning rate times gradient with a plotted trace.</desc>
+  <rect width="480" height="260" fill="#fffdf7"/>
+  <rect x="32" y="28" width="416" height="142" rx="12" fill="#eef8fb" stroke="#b8d8e5"/>
+  <path d="M64 132 C102 92, 148 130, 190 92 C232 54, 284 80, 342 54" fill="none" stroke="#7c3aed" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="64" cy="132" r="8" fill="#d97706"/>
+  <circle cx="190" cy="92" r="7" fill="#7c3aed"/>
+  <circle cx="342" cy="54" r="8" fill="#059669"/>
+  <text x="48" y="212" fill="#10201a" font-family="Arial, sans-serif" font-size="22" font-weight="700">theta_{k+1} = theta_k - eta grad L(theta_k)</text>
+</svg>

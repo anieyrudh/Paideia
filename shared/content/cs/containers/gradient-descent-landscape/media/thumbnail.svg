@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-labelledby="title desc">
+  <title id="title">Gradient descent landscape thumbnail</title>
+  <desc id="desc">A loss landscape with a purple descent trace moving toward a minimum.</desc>
+  <rect width="320" height="180" fill="#f7fbff"/>
+  <g opacity="0.9">
+    <rect x="34" y="24" width="44" height="30" rx="5" fill="#dff4fb"/>
+    <rect x="78" y="24" width="44" height="30" rx="5" fill="#c6e7f4"/>
+    <rect x="122" y="24" width="44" height="30" rx="5" fill="#add9ea"/>
+    <rect x="166" y="24" width="44" height="30" rx="5" fill="#8fc5dd"/>
+    <rect x="210" y="24" width="44" height="30" rx="5" fill="#75b3d0"/>
+    <rect x="34" y="54" width="44" height="30" rx="5" fill="#c6e7f4"/>
+    <rect x="78" y="54" width="44" height="30" rx="5" fill="#add9ea"/>
+    <rect x="122" y="54" width="44" height="30" rx="5" fill="#8fc5dd"/>
+    <rect x="166" y="54" width="44" height="30" rx="5" fill="#75b3d0"/>
+    <rect x="210" y="54" width="44" height="30" rx="5" fill="#5f9fc2"/>
+    <rect x="34" y="84" width="44" height="30" rx="5" fill="#add9ea"/>
+    <rect x="78" y="84" width="44" height="30" rx="5" fill="#8fc5dd"/>
+    <rect x="122" y="84" width="44" height="30" rx="5" fill="#75b3d0"/>
+    <rect x="166" y="84" width="44" height="30" rx="5" fill="#5f9fc2"/>
+    <rect x="210" y="84" width="44" height="30" rx="5" fill="#4b89b3"/>
+  </g>
+  <path d="M48 132 C78 108, 96 116, 126 94 S176 64, 220 72" fill="none" stroke="#7c3aed" stroke-linecap="round" stroke-width="8"/>
+  <circle cx="48" cy="132" r="10" fill="#d97706" stroke="#fff" stroke-width="4"/>
+  <circle cx="126" cy="94" r="8" fill="#7c3aed" stroke="#fff" stroke-width="3"/>
+  <circle cx="220" cy="72" r="9" fill="#059669" stroke="#fff" stroke-width="4"/>
+  <text x="32" y="160" fill="#10201a" font-family="Arial, sans-serif" font-size="18" font-weight="700">Gradient descent</text>
+</svg>

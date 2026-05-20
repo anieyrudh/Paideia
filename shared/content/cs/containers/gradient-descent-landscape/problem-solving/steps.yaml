@@ -1,0 +1,16 @@
+steps:
+  - id: identify-current-point
+    label: "Identify theta_k"
+    prompt: "Write the current parameter point in parameter units."
+  - id: compute-gradient
+    label: "Compute the gradient"
+    prompt: "Find nabla L(theta_k) in loss units per parameter unit."
+  - id: substitute-update
+    label: "Substitute the update rule"
+    prompt: "Use theta_{k+1} = theta_k - eta nabla L(theta_k)."
+  - id: interpret-stability
+    label: "Interpret stability"
+    prompt: "Decide whether the trace converges, oscillates, or leaves the domain."
+  - id: transfer-learning-rate
+    label: "Transfer the idea"
+    prompt: "Compare two learning rates on the same landscape and justify the safer choice."

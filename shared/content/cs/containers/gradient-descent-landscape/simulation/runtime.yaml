@@ -1,0 +1,9 @@
+runtime:
+  package: "@paideia/shared-sims"
+  entry: "gradient-descent-landscape"
+  component: "GradientDescentLandscapeSim"
+  sim_id: loss-surface-stepper
+  prediction_gate: required
+  reveal_requires_prediction: true
+  persistence: local
+  primary_renderer: "core/plotting PlotFrame with optimization trace overlays"

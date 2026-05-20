@@ -697,6 +697,9 @@ importers:
       '@paideia/mechanics':
         specifier: workspace:*
         version: link:../../../core/mechanics
+      '@paideia/optimization':
+        specifier: workspace:*
+        version: link:../../../core/optimization
       '@paideia/plotting':
         specifier: workspace:*
         version: link:../../../core/plotting

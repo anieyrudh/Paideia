@@ -1,0 +1,71 @@
+id: loss-surface-stepper
+title: "Loss Surface Stepper"
+interaction_type: function-plot-with-draggable
+kernel_deps:
+  - core/optimization
+  - core/plotting
+  - core/content-schema
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+predict:
+  prompt: |
+    On a narrow loss ravine, what is most likely to happen when the learning rate is made much larger?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The path can overshoot and zig-zag across the valley"
+      - "The path must converge in fewer steps"
+      - "The gradient becomes exactly zero everywhere"
+      - "The starting point stops affecting the trace"
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: loss-landscape
+      label: "Loss landscape"
+      kind: selector
+      kernel_binding: "core/optimization.gradientDescent.objective"
+    - id: start-x
+      label: "Start x"
+      kind: slider
+      kernel_binding: "core/optimization.gradientDescent.start[0]"
+      bounds:
+        min: -4
+        max: 4
+        step: 0.2
+    - id: start-y
+      label: "Start y"
+      kind: slider
+      kernel_binding: "core/optimization.gradientDescent.start[1]"
+      bounds:
+        min: -4
+        max: 4
+        step: 0.2
+    - id: learning-rate
+      label: "Learning rate"
+      kind: slider
+      kernel_binding: "core/optimization.gradientDescent.learningRate"
+      bounds:
+        min: 0.05
+        max: 0.75
+        step: 0.01
+    - id: maximum-steps
+      label: "Maximum steps"
+      kind: slider
+      kernel_binding: "core/optimization.gradientDescent.maxSteps"
+      bounds:
+        min: 4
+        max: 40
+        step: 1
+observe:
+  renderers:
+    - id: loss-surface-trace
+      module: "@paideia/shared-sims/gradient-descent-landscape"
+      symbol: "GradientDescentLandscapeSim"
+      props_binding: "core/optimization.gradientDescent trace rendered in a core/plotting PlotFrame"
+explain:
+  prompt: "Which part of the update formula explains whether this trace converged, oscillated, or left the domain?"
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Bigger learning rate is always faster"

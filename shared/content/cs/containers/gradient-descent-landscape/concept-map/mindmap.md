@@ -1,0 +1,23 @@
+# Gradient Descent Landscape Mindmap
+
+- Gradient descent
+  - Inputs
+    - loss function L(x, y)
+    - starting point theta_0
+    - learning rate eta
+    - maximum step count
+  - Kernel trace
+    - finite-difference gradient
+    - step opposite gradient
+    - convergence, max-steps, or out-of-domain reason
+  - Visual interpretation
+    - amber start point
+    - purple descent trace
+    - green reference point
+    - heat map for loss height
+  - Misconceptions
+    - bigger learning rate is always faster
+    - local slope reveals global minimum
+  - Transfer
+    - tune eta on a steep ravine
+    - explain stability with substituted update
