@@ -1,0 +1,119 @@
+schema_version: "1.0.0"
+id: gradient-descent-landscape
+aliases:
+  - loss surface stepper
+  - learning-rate descent
+  - optimization landscape
+branch: shared
+subject: cs
+level: "Shared core"
+module: "Optimisation / ML"
+title: "Gradient Descent Landscape"
+one_line_summary: "Trace how a learning rate turns a local gradient into a sequence of loss-reducing parameter updates."
+syllabus_ref: "Shared computing and mathematics / Optimisation / Gradient descent"
+prerequisites:
+  - derivatives
+  - functions
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    On a narrow loss ravine, what is most likely to happen when the learning rate is made much larger?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The path can overshoot and zig-zag across the valley"
+      - "The path must converge in fewer steps"
+      - "The gradient becomes exactly zero everywhere"
+      - "The starting point stops affecting the trace"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: tune-learning-rate-ravine
+    prompt: |
+      A student is tuning gradient descent for a one-parameter calibration model. The first update at theta = 4 has gradient 12 loss units per parameter unit. Compare eta = 0.04 and eta = 0.22, then justify which update is safer before running a longer training pass.
+    surface_form: "one-parameter calibration learning-rate choice"
+    same_concept_check: "Learners still use the gradient update rule, compare step stability, and interpret whether the learning rate turns local slope into a sensible update."
+    rubric_path: problem-solving/tune-learning-rate-ravine.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-20"
+      author: "Codex"
+      summary: "Built the shared-core gradient descent landscape container with kernel-backed descent traces."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-20"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-20"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Bigger learning rate is always faster"
+    description: "Learners may treat a larger step size as guaranteed speed-up, missing overshoot and divergence on steep ravines."
+    evidence_source: "Goodfellow, Bengio, and Courville, Deep Learning, Chapter 8 optimization for training deep models."
+    surface_in_predict: true
+  - name: "Local slope reveals the global minimum"
+    description: "Learners may assume a local gradient points directly to the best global solution, ignoring saddles, non-convexity, and domain limits."
+    evidence_source: "Boyd and Vandenberghe, Convex Optimization, Section 9.3 descent methods."
+    surface_in_predict: false
+sources:
+  - citation: "Boyd, S., and Vandenberghe, L. Convex Optimization, Section 9.3 Descent Methods. Cambridge University Press, 2004."
+    url: "https://web.stanford.edu/~boyd/cvxbook/"
+    publication_year: 2004
+    license: "author-hosted textbook"
+    seab_alignment: n/a
+  - citation: "Goodfellow, I., Bengio, Y., and Courville, A. Deep Learning, Chapter 8: Optimization for Training Deep Models. MIT Press, 2016."
+    url: "https://www.deeplearningbook.org/contents/optimization.html"
+    publication_year: 2016
+    license: "online textbook"
+    seab_alignment: n/a
+language: en

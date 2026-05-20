@@ -414,7 +414,7 @@ entries:
   - id: shared.optimization.gradient-descent-landscape
     title: "Gradient Descent Landscape"
     priority: P0
-    status: ready-for-build
+    status: reviewed
     cluster: Optimisation / ML
     discipline: cs
     reuse_status: shared-core

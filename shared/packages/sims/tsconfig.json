@@ -13,6 +13,7 @@
     { "path": "../../../core/content-schema" },
     { "path": "../../../core/linear-algebra" },
     { "path": "../../../core/mechanics" },
+    { "path": "../../../core/optimization" },
     { "path": "../../../core/plotting" },
     { "path": "../../../core/prediction-gate" },
     { "path": "../../../core/probability-stats" },

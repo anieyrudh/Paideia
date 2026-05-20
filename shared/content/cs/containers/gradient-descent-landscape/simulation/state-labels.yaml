@@ -1,0 +1,22 @@
+state_labels:
+  landscape:
+    label: "loss landscape"
+    unit: "surface family"
+  startX:
+    label: "start x"
+    unit: "parameter units"
+  startY:
+    label: "start y"
+    unit: "parameter units"
+  learningRate:
+    label: "learning rate"
+    unit: "parameter units per loss-gradient unit"
+  maxSteps:
+    label: "maximum steps"
+    unit: "steps"
+  finalLoss:
+    label: "final loss"
+    unit: "loss units"
+  gradientMagnitude:
+    label: "gradient magnitude"
+    unit: "loss units per parameter unit"

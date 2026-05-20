@@ -11,7 +11,8 @@
     "./central-limit-theorem": "./src/central-limit-theorem.tsx",
     "./circuit-phasor-reasoning": "./src/circuit-phasor-reasoning.tsx",
     "./eigenvector-transformations": "./src/eigenvector-transformations.tsx",
-    "./free-body-diagram-mechanics": "./src/free-body-diagram-mechanics.tsx"
+    "./free-body-diagram-mechanics": "./src/free-body-diagram-mechanics.tsx",
+    "./gradient-descent-landscape": "./src/gradient-descent-landscape.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -25,6 +26,7 @@
     "@paideia/content-schema": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/mechanics": "workspace:*",
+    "@paideia/optimization": "workspace:*",
     "@paideia/plotting": "workspace:*",
     "@paideia/prediction-gate": "workspace:*",
     "@paideia/probability-stats": "workspace:*",

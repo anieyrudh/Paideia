@@ -1,0 +1,43 @@
+schema_version: "1.0.0"
+concept_id: gradient-descent-landscape
+prerequisites:
+  - id: derivatives
+    title: "Derivatives"
+    relationship: "A gradient is a multivariable derivative."
+    status: planned
+  - id: functions
+    title: "Functions"
+    relationship: "A loss surface is a scalar-valued function."
+    status: planned
+downstream:
+  - id: neural-network-training
+    title: "Neural-network training"
+    relationship: "Backpropagation supplies gradients for descent updates."
+    status: planned
+  - id: convex-optimisation
+    title: "Convex optimisation"
+    relationship: "Convexity makes local descent behaviour easier to certify."
+    status: planned
+siblings:
+  - id: linear-programming-feasible-region
+    title: "Linear Programming Feasible Region"
+    relationship: "Another optimisation container where solution structure comes from the landscape or feasible set."
+    status: available
+misconception_graph:
+  nodes:
+    - id: bigger-learning-rate
+      label: "Bigger learning rate is always faster"
+    - id: overshoot
+      label: "Overshoot across steep ravines"
+    - id: local-slope-global-minimum
+      label: "Local slope reveals the global minimum"
+    - id: saddle-plateau
+      label: "Small gradient can be saddle or plateau"
+  edges:
+    - from: bigger-learning-rate
+      to: overshoot
+      label: "challenged by"
+    - from: local-slope-global-minimum
+      to: saddle-plateau
+      label: "challenged by"
+mermaid_source: graph.mmd

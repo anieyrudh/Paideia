@@ -1,0 +1,25 @@
+presets:
+  - id: ravine-baseline
+    label: "ravine baseline"
+    state:
+      landscape: ravine
+      startX: -3
+      startY: -2.4
+      learningRate: 0.22
+      maxSteps: 24
+  - id: overshoot
+    label: "overshoot"
+    state:
+      landscape: ravine
+      startX: -3
+      startY: -2.4
+      learningRate: 0.55
+      maxSteps: 16
+  - id: steady-bowl
+    label: "steady bowl"
+    state:
+      landscape: bowl
+      startX: 3.2
+      startY: 2.4
+      learningRate: 0.18
+      maxSteps: 28

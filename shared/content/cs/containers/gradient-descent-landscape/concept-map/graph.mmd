@@ -1,0 +1,11 @@
+graph TD
+  derivatives["Derivatives"] --> gradient["Gradient vector"]
+  functions["Functions"] --> loss["Loss surface L(x,y)"]
+  gradient --> update["theta_{k+1} = theta_k - eta nabla L(theta_k)"]
+  loss --> update
+  update --> trace["Descent trace"]
+  trace --> convergence["Convergence interpretation"]
+  trace --> overshoot["Overshoot diagnosis"]
+  overshoot --> misconception_lr["Misconception: bigger eta is always faster"]
+  convergence --> neural_training["Neural-network training"]
+  convergence --> convex_opt["Convex optimisation"]

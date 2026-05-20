@@ -1,0 +1,39 @@
+controls:
+  - id: loss-landscape
+    label: "Loss landscape"
+    type: selector
+    options:
+      - id: ravine
+        label: "Narrow ravine"
+      - id: bowl
+        label: "Smooth bowl"
+      - id: saddle
+        label: "Saddle ridge"
+  - id: start-x
+    label: "Start x"
+    type: slider
+    min: -4
+    max: 4
+    step: 0.2
+    unit: "parameter units"
+  - id: start-y
+    label: "Start y"
+    type: slider
+    min: -4
+    max: 4
+    step: 0.2
+    unit: "parameter units"
+  - id: learning-rate
+    label: "Learning rate"
+    type: slider
+    min: 0.05
+    max: 0.75
+    step: 0.01
+    unit: "parameter units per loss-gradient unit"
+  - id: maximum-steps
+    label: "Maximum steps"
+    type: slider
+    min: 4
+    max: 40
+    step: 1
+    unit: "steps"
