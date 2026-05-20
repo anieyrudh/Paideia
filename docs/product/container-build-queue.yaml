@@ -1157,7 +1157,7 @@ entries:
   - id: sutd.epd.bode-stability-margin
     title: "Bode Stability Margin"
     priority: P0
-    status: ready-for-build
+    status: reviewed
     cluster: EPD control systems
     discipline: systems
     reuse_status: curriculum-wrapper

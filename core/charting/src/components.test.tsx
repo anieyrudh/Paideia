@@ -13,6 +13,18 @@ const collectElements = (node: ReactNode, type: string): ReactNode[] => {
 };
 
 describe("chart renderers", () => {
+  it("uses caller-supplied accessible names for line charts", () => {
+    const chart = LineChart({
+      ariaLabel: "Magnitude response chart, decibels against radians per second",
+      data: [{ x: 1, y: 2 }],
+    });
+    const chartElement = isValidElement<{ readonly ariaLabel?: string }>(chart) ? chart : null;
+
+    expect(chartElement?.props.ariaLabel).toBe(
+      "Magnitude response chart, decibels against radians per second",
+    );
+  });
+
   it("starts a new line segment after log-scale rejected points", () => {
     const chart = LineChart({
       data: [

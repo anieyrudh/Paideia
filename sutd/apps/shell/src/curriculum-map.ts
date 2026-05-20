@@ -54,6 +54,7 @@ export const sutdPillars = [
         discipline: "engineering",
         plannedContainerIds: [
           "sutd.epd.pid-step-response",
+          "sutd.epd.bode-stability-margin",
           "shared.control.pid-bode-builder",
         ],
         wrapperStatus: "mapped",

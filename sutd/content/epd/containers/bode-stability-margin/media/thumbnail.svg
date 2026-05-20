@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Bode stability margin thumbnail</title>
+  <desc id="desc">Magnitude and phase traces with margin markers.</desc>
+  <rect width="640" height="360" fill="#f7fbff"/>
+  <rect x="48" y="44" width="544" height="272" rx="10" fill="#ffffff" stroke="#bdd7ee"/>
+  <line x1="86" y1="150" x2="560" y2="150" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="86" y1="256" x2="560" y2="256" stroke="#94a3b8" stroke-width="2"/>
+  <path d="M88 72 C184 92 245 145 318 151 S466 188 558 224" fill="none" stroke="#2563eb" stroke-width="6"/>
+  <path d="M88 194 C180 204 240 222 318 248 S462 290 558 304" fill="none" stroke="#f97316" stroke-width="6"/>
+  <line x1="318" y1="150" x2="318" y2="248" stroke="#059669" stroke-width="4" stroke-dasharray="10 8"/>
+  <circle cx="318" cy="150" r="9" fill="#2563eb"/>
+  <circle cx="318" cy="248" r="9" fill="#f97316"/>
+  <text x="84" y="112" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#0f172a">0 dB crossover</text>
+  <text x="342" y="220" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#0f172a">phase margin</text>
+</svg>

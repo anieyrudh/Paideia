@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Bode stability margin fallback</title>
+  <desc id="desc">Static Bode margin diagram showing magnitude and phase crossings.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <line x1="72" y1="148" x2="568" y2="148" stroke="#cbd5e1" stroke-width="2"/>
+  <line x1="72" y1="250" x2="568" y2="250" stroke="#cbd5e1" stroke-width="2"/>
+  <path d="M78 80 C168 102 244 140 314 148 C390 156 474 190 562 234" fill="none" stroke="#2563eb" stroke-width="5"/>
+  <path d="M78 184 C178 198 244 220 314 246 C390 274 474 296 562 312" fill="none" stroke="#f97316" stroke-width="5"/>
+  <line x1="314" y1="148" x2="314" y2="246" stroke="#059669" stroke-width="4" stroke-dasharray="8 7"/>
+  <text x="82" y="58" font-family="system-ui, sans-serif" font-size="26" font-weight="700" fill="#0f172a">Bode margin readout</text>
+  <text x="332" y="206" font-family="system-ui, sans-serif" font-size="20" fill="#334155">remaining phase buffer</text>
+</svg>

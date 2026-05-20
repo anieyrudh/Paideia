@@ -3,5 +3,6 @@ export { default as LinearProgrammingFeasibleRegion } from "./linear-programming
 export { default as LoadPathAndDaylightTradeoff } from "./load-path-and-daylight-tradeoff.js";
 export { default as OdePhasePortrait } from "./ode-phase-portrait.js";
 export { default as PidStepResponse } from "./pid-step-response.js";
+export { default as BodeStabilityMargin } from "./bode-stability-margin.js";
 export { default as TrustCalibration } from "./trust-calibration.js";
 export { default as VectorTransformations } from "./vector-transformations.js";

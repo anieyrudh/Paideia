@@ -6,12 +6,12 @@ The statistical and data-shape chart layer: line charts over time or index, hist
 ## Public interface
 Exports from `@paideia/charting`:
 
-- `<LineChart data={readonly { x: number | Date; y: number; series?: string }[]} x?={AxisSpec} y?={AxisSpec} />`
+- `<LineChart data={readonly { x: number | Date; y: number; series?: string }[]} x?={AxisSpec} y?={AxisSpec} ariaLabel?={string} />`
 - `<Histogram samples={readonly number[]} bins?={number | readonly number[]} density?={boolean} />`
 - `<DensityPlot samples={readonly number[]} bandwidth?={number | 'silverman'} />`
 - `<Sankey nodes={readonly SankeyNode[]} links={readonly SankeyLink[]} />`
 - `<AxisSpec>` type: `{ label?: string; domain?: Interval; scale?: 'linear' | 'log' | 'time'; tickFormat?: (v: number) => string }`
-- `<ChartFrame width?={number} height?={number} margin?={Margin}>{children}</ChartFrame>`
+- `<ChartFrame width?={number} height?={number} margin?={Margin} ariaLabel?={string}>{children}</ChartFrame>`
 
 ## Invariants the caller must preserve
 - `data`, `samples`, `nodes`, `links` are read-only. The component must not sort, bin, or mutate in place.

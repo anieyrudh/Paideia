@@ -1,0 +1,4 @@
+labels:
+  loopGain: Loop gain
+  actuatorLagSeconds: Actuator lag
+  sensorLagSeconds: Sensor lag

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { seconds } from "@paideia/shared";
+import { radiansPerSecond, seconds } from "@paideia/shared";
 import {
   addTransferFunctions,
   bode,
@@ -8,6 +8,7 @@ import {
   evaluateTransferFunction,
   multiplyTransferFunctions,
   pidController,
+  stabilityMargins,
   stepResponse,
   transferFunction,
   type Complex,
@@ -195,5 +196,27 @@ describe("@paideia/control-systems PID and responses", () => {
     expect(point?.magnitudeDb).toBeCloseTo(-3.010299956639812, 10);
     expect(point?.phaseDeg).toBeCloseTo(-45, 10);
     expectErrCode(bode(lag, [0]), "precondition-violated");
+  });
+
+  it("extracts gain and phase margins from an open-loop frequency response", () => {
+    const integrator = expectOk(transferFunction([2], [1, 0]));
+    const actuatorLag = expectOk(transferFunction([1], [0.7, 1]));
+    const sensorLag = expectOk(transferFunction([1], [0.25, 1]));
+    const openLoop = expectOk(
+      multiplyTransferFunctions(
+        expectOk(multiplyTransferFunctions(integrator, actuatorLag)),
+        sensorLag,
+      ),
+    );
+
+    const margins = expectOk(
+      stabilityMargins(openLoop, {
+        frequenciesRadPerSec: [0.1, 0.5, 1, 2, 4, 8, 16, 100].map(radiansPerSecond),
+      }),
+    );
+
+    expect(margins.gainCrossover?.frequencyRadPerSec).toBeGreaterThan(1);
+    expect(margins.phaseMarginDeg).toBeGreaterThan(25);
+    expect(margins.gainMarginDb).toBeGreaterThan(8);
   });
 });

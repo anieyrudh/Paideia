@@ -1,0 +1,19 @@
+steps:
+  - id: model
+    label: Build the open-loop model
+    prompt: Write L(s) with gain, integrator, actuator lag, and sensor lag.
+  - id: gain-crossover
+    label: Read gain crossover
+    prompt: Find omega_gc where magnitude is 0 dB.
+  - id: phase-margin
+    label: Calculate phase margin
+    prompt: Add 180 degrees to the phase at omega_gc.
+  - id: phase-crossover
+    label: Read phase crossover
+    prompt: Find omega_pc where phase is -180 degrees.
+  - id: gain-margin
+    label: Calculate gain margin
+    prompt: Negate the magnitude in dB at omega_pc.
+  - id: design-decision
+    label: Make the design decision
+    prompt: Choose the gain and lag settings that preserve enough margin for uncertainty.

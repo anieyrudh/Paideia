@@ -3,12 +3,13 @@ import type { ComponentType } from "react";
 import GeneratedSim0LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
 import GeneratedSim1GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
 import GeneratedSim2TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim3PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim4LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim5BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim6EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim7VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim8OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim3BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim4PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim5LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim6BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim7EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim8VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim9OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -92,6 +93,15 @@ export const knowledgeGraph = {
     status: "reviewed",
   },
   {
+    id: "sutd/epd/bode-stability-margin",
+    conceptId: "bode-stability-margin",
+    title: "Bode Stability Margin",
+    subject: "epd",
+    level: "Undergraduate",
+    module: "EPD Control Systems",
+    status: "reviewed",
+  },
+  {
     id: "sutd/epd/pid-step-response",
     conceptId: "pid-step-response",
     title: "PID Step Response",
@@ -153,6 +163,12 @@ export const knowledgeGraph = {
   { from: "sutd/asd/load-path-and-daylight-tradeoff", to: "sutd/asd/structural-systems", kind: "downstream" },
   { from: "sutd/asd/load-path-and-daylight-tradeoff", to: "sutd/asd/building-performance", kind: "downstream" },
   { from: "sutd/asd/load-path-and-daylight-tradeoff", to: "sutd/asd/passive-design", kind: "sibling" },
+  { from: "sutd/epd/pid-step-response", to: "sutd/epd/bode-stability-margin", kind: "prerequisite" },
+  { from: "sutd/epd/transfer-functions", to: "sutd/epd/bode-stability-margin", kind: "prerequisite" },
+  { from: "sutd/epd/feedback-control", to: "sutd/epd/bode-stability-margin", kind: "prerequisite" },
+  { from: "sutd/epd/bode-stability-margin", to: "sutd/epd/robust-control", kind: "downstream" },
+  { from: "sutd/epd/bode-stability-margin", to: "sutd/epd/loop-shaping", kind: "downstream" },
+  { from: "sutd/epd/bode-stability-margin", to: "sutd/epd/pid-step-response", kind: "sibling" },
   { from: "sutd/epd/differential-equations", to: "sutd/epd/pid-step-response", kind: "prerequisite" },
   { from: "sutd/epd/transfer-functions", to: "sutd/epd/pid-step-response", kind: "prerequisite" },
   { from: "sutd/epd/feedback-control", to: "sutd/epd/pid-step-response", kind: "prerequisite" },
@@ -348,6 +364,72 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/epd/bode-stability-margin",
+    branch: "sutd",
+    subject: "Epd",
+    level: "Undergraduate",
+    module: "EPD Control Systems",
+    title: "Bode Stability Margin",
+    summary: "Read gain and phase margin from an open-loop Bode plot and connect margin size to closed-loop robustness.",
+    syllabusRef: "SUTD EPD / Control and Engineering Systems / frequency response and stability margins",
+    status: "reviewed",
+    packageId: "bode-stability-margin",
+    simId: "bode-stability-margin",
+    predictPrompt: "The open-loop gain starts at 2.0. If the loop gain is doubled while the plant lags stay the same, what is most likely to happen to the phase margin?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Higher gain always improves stability",
+      "Magnitude alone decides closed-loop stability",
+    ],
+    transferProblem: "A drone altitude loop has an actuator lag of 0.55 s and a sensor-filter lag of 0.35 s. Choose a loop gain that preserves at least 30 degrees of phase margin while still improving response speed over a gain-1 baseline.",
+    firstPrinciples: "A feedback loop becomes risky when its open-loop response is close to having magnitude 1 and phase -180 degrees at the same frequency. Magnitude 1 means the returned signal is large enough to reinforce the input, and -180 degrees means the returned signal arrives with the sign needed to turn negative feedback into positive feedback. A Bode plot separates those two facts: the magnitude plot shows where the loop crosses 0 dB, and the phase plot shows how close that same frequency is to -180 degrees.",
+    keyDefinitions: [
+      "Open-loop transfer L(s): the controller, actuator, plant, and sensor multiplied around the loop before closing feedback.",
+      "Gain crossover frequency omega_gc: the frequency where |L(j omega)| = 1, shown as 0 dB on the magnitude plot.",
+      "Phase margin: the extra phase lag that can be added at omega_gc before the loop reaches -180 degrees.",
+      "Phase crossover frequency omega_pc: the frequency where the phase of L(j omega) is -180 degrees.",
+      "Gain margin: how many dB of gain can be added at omega_pc before the magnitude reaches 0 dB.",
+    ],
+    canonicalExamples: [
+      "A loop with 45 degrees of phase margin usually has a more robust buffer than a loop with 8 degrees of phase margin, even if both currently appear stable.",
+      "Increasing loop gain can make response faster, but it moves gain crossover to a higher frequency where plant and sensor lags may have already consumed phase.",
+      "A sensor lag that looks harmless in a step-response sketch can remove several degrees of margin near crossover.",
+    ],
+    problemSolvingSteps: [
+      "Build the open-loop model",
+      "Read gain crossover",
+      "Calculate phase margin",
+      "Read phase crossover",
+      "Calculate gain margin",
+      "Make the design decision",
+    ],
+    prerequisites: [
+      "PID Step Response",
+      "Transfer Functions",
+      "Feedback Control",
+    ],
+    downstream: [
+      "Robust Control",
+      "Loop Shaping",
+    ],
+    siblings: [
+      "PID Step Response",
+    ],
+    sims: [
+      {
+        id: "bode-stability-margin",
+        harnessId: "sutd/epd/bode-stability-margin/bode-stability-margin",
+        title: "Bode Margin Reader",
+        interactionType: "comparative-matrix",
+        component: GeneratedSim3BodeStabilityMarginBodeStabilityMargin,
+      },
+    ],
+  },
+  {
     id: "sutd/epd/pid-step-response",
     branch: "sutd",
     subject: "Epd",
@@ -397,7 +479,7 @@ export const containers = [
         harnessId: "sutd/epd/pid-step-response/pid-step-response",
         title: "PID Step Response Explorer",
         interactionType: "comparative-matrix",
-        component: GeneratedSim3PidStepResponsePidStepResponse,
+        component: GeneratedSim4PidStepResponsePidStepResponse,
       },
     ],
   },
@@ -441,7 +523,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim4LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim5LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -504,7 +586,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim5BayesUpdatingBayesUpdating,
+        component: GeneratedSim6BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -558,7 +640,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim6EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim7EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -610,7 +692,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim7VectorTransformationsVectorTransformations,
+        component: GeneratedSim8VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -676,7 +758,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim8OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim9OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

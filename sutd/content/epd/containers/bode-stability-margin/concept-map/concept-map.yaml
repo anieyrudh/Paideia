@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: bode-stability-margin
+prerequisites:
+  - id: pid-step-response
+    title: PID Step Response
+    relationship: Time-domain feedback response motivates frequency-domain robustness
+    status: available
+  - id: transfer-functions
+    title: Transfer Functions
+    relationship: Open-loop transfer functions define L(s)
+    status: planned
+  - id: feedback-control
+    title: Feedback Control
+    relationship: Stability margin is read before closing the loop
+    status: planned
+downstream:
+  - id: robust-control
+    title: Robust Control
+    relationship: Margins are the first robustness buffer
+    status: planned
+  - id: loop-shaping
+    title: Loop Shaping
+    relationship: Designers adjust gain and lag to reshape crossover
+    status: planned
+siblings:
+  - id: pid-step-response
+    title: PID Step Response
+    relationship: Same feedback loop viewed in time domain
+    status: available
+misconception_graph:
+  nodes:
+    - id: gain-always-safer
+      label: Higher gain always improves stability
+    - id: magnitude-only
+      label: Magnitude alone decides stability
+    - id: margin-buffer
+      label: Margin is a robustness buffer
+  edges:
+    - from: gain-always-safer
+      to: margin-buffer
+      label: challenge with phase margin at crossover
+    - from: magnitude-only
+      to: margin-buffer
+      label: pair 0 dB with phase
+mermaid_source: graph.mmd

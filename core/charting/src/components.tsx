@@ -23,6 +23,7 @@ interface ChartFrameProps {
   readonly width?: number;
   readonly height?: number;
   readonly margin?: Margin;
+  readonly ariaLabel?: string;
   readonly children: ReactNode;
 }
 
@@ -30,6 +31,7 @@ interface LineChartProps {
   readonly data: readonly LineDatum[];
   readonly x?: AxisSpec;
   readonly y?: AxisSpec;
+  readonly ariaLabel?: string;
 }
 
 interface HistogramProps {
@@ -140,12 +142,13 @@ export const ChartFrame = ({
   width = WIDTH,
   height = HEIGHT,
   margin,
+  ariaLabel = "Chart",
   children,
 }: ChartFrameProps) => {
   const resolved = marginOf(margin);
   return (
     <svg
-      aria-label="Chart"
+      aria-label={ariaLabel}
       role="img"
       style={{ height, maxWidth: "100%", width }}
       viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
@@ -156,7 +159,7 @@ export const ChartFrame = ({
   );
 };
 
-export const LineChart = ({ data, x, y }: LineChartProps) => {
+export const LineChart = ({ data, x, y, ariaLabel = "Line chart" }: LineChartProps) => {
   const margin = marginOf(undefined);
   const xs = lineNumericX(data);
   const ys = data.map((datum) => datum.y);
@@ -165,7 +168,7 @@ export const LineChart = ({ data, x, y }: LineChartProps) => {
   const groups = groupLineData(data);
 
   return (
-    <ChartFrame>
+    <ChartFrame ariaLabel={ariaLabel}>
       {[...groups].map(([series, values], seriesIndex) => {
         const segments = lineSegments(values, xDomain, yDomain, x, y, margin);
         return segments.map((commands, segmentIndex) => (

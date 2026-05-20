@@ -12,6 +12,8 @@ Exports from `@paideia/control-systems`:
 - `StepResponseOptions = { durationSeconds: Seconds; dtSeconds: Seconds; inputAmplitude?: number }`
 - `StepResponseSample = { t: Seconds; y: number }`
 - `FrequencyResponsePoint = { frequencyRadPerSec: number; value: Complex; magnitude: number; magnitudeDb: number; phaseRad: number; phaseDeg: number }`
+- `StabilityMarginPoint = { frequencyRadPerSec: RadiansPerSecond; magnitudeDb: Decibels; phaseDeg: Degrees }`
+- `StabilityMargins = { points: readonly StabilityMarginPoint[]; gainCrossover: StabilityMarginPoint | null; phaseCrossover: StabilityMarginPoint | null; phaseMarginDeg: Degrees | null; gainMarginDb: Decibels | null }`
 - `controlTolerance: { default: number; tight: number; loose: number }`
 - `transferFunction(numerator: readonly number[], denominator: readonly number[]): KernelResult<TransferFunction>`
 - `evaluateTransferFunction(system: TransferFunction, s: Complex): KernelResult<Complex>`
@@ -21,6 +23,7 @@ Exports from `@paideia/control-systems`:
 - `pidController(gains: PidGains): KernelResult<TransferFunction>`
 - `stepResponse(system: TransferFunction, opts: StepResponseOptions): KernelResult<readonly StepResponseSample[]>`
 - `bode(system: TransferFunction, frequenciesRadPerSec: readonly number[]): KernelResult<readonly FrequencyResponsePoint[]>`
+- `stabilityMargins(system: TransferFunction, opts?: StabilityMarginOptions): KernelResult<StabilityMargins>`
 
 ## Invariants the caller must preserve
 - Polynomial coefficients are finite real numbers in descending powers of `s`.
