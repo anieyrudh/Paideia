@@ -1,22 +1,22 @@
 controls:
-  - id: threshold-percent
-    label: "Automation confidence threshold"
+  - id: prevalence-percent
+    label: "Prior prevalence P(H)"
     kind: slider
-    default: 70
-    min: 50
-    max: 90
-    step: 5
-  - id: false-negative-cost
-    label: "Cost of an automated wrong decision"
-    kind: slider
-    default: 20
-    min: 5
-    max: 40
-    step: 5
-  - id: review-cost
-    label: "Cost of human review"
-    kind: slider
-    default: 3
+    default: 10
     min: 1
-    max: 8
+    max: 60
+    step: 1
+  - id: sensitivity-percent
+    label: "Sensitivity P(+|H)"
+    kind: slider
+    default: 95
+    min: 50
+    max: 99
+    step: 1
+  - id: specificity-percent
+    label: "Specificity P(-|not H)"
+    kind: slider
+    default: 90
+    min: 50
+    max: 99
     step: 1

@@ -1,13 +1,16 @@
 steps:
-  - id: identify
-    prompt: "What concept is being tested?"
-    expected_action: "Name the concept before calculating."
-  - id: choose-strategy
-    prompt: "Which representation or method applies?"
-    expected_action: "Select a strategy and justify it."
-  - id: solve
-    prompt: "Carry out the method."
-    expected_action: "Show each step and intermediate state."
-  - id: check
-    prompt: "Does the result make sense?"
-    expected_action: "Check units, constraints, and interpretation."
+  - id: prior
+    label: "Start with the prior"
+    formula: "P(H)"
+  - id: true-positive-route
+    label: "Count true positives"
+    formula: "P(+|H)P(H)"
+  - id: false-positive-route
+    label: "Count false positives"
+    formula: "P(+|not H)P(not H)"
+  - id: normalize
+    label: "Normalize all positive evidence"
+    formula: "P(H|+) = true-positive route / all positive routes"
+  - id: interpret
+    label: "Interpret the posterior"
+    check: "The answer is a probability after evidence, not the test sensitivity."

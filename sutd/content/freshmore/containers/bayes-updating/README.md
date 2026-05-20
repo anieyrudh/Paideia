@@ -5,9 +5,9 @@
 
 ## What this teaches
 
-Calibrate trust in a fixed classifier by comparing confidence, accuracy, costs, and a human-override rule.
+Use prior probability, sensitivity, and specificity to update belief after positive evidence.
 
-Trusting a model is a decision, not a feeling. A confidence score says how sure the model claims to be; calibration asks whether that confidence matches how often it is actually right. A useful policy compares confidence with the cost of being wrong and the cost of asking a human to review the case.
+Bayes updating asks: after seeing evidence, how much of the evidence came from real cases rather than false alarms? A positive result can happen in two ways: the hypothesis is true and the test catches it, or the hypothesis is false and the test produces a false positive. The posterior probability is the true-case route divided by all positive-result routes.
 
 ## What the student does
 
@@ -28,11 +28,11 @@ Trusting a model is a decision, not a feeling. A confidence score says how sure 
 - Mindmap: `concept-map/mindmap.md`
 - Problem-solving algorithm: `problem-solving/algorithm.md`
 - Transfer problems:
-  - `transfer-triage-policy` - clinical triage
+  - `rare-fault-sensor` - rare-fault sensor
 
 ## Citations and provenance
 
-- Source records in `container.yaml`: 3
+- Source records in `container.yaml`: 2
 - Human-readable source file: `sources.md`
 - Original container path: `sutd/content/freshmore/containers/bayes-updating`
 
@@ -48,5 +48,5 @@ Trusting a model is a decision, not a feeling. A confidence score says how sure 
 
 - Prerequisites:
   - `basic-probability`
-  - `confusion-matrix-basics`
+  - `conditional-probability`
 - Dependency graph: `concept-map/concept-map.yaml`

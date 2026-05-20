@@ -3,17 +3,20 @@
 ```mermaid
 mindmap
   root((Bayes Updating))
-    Identity
-      Definition
-      Aliases
-    First principles
-      Core idea
-      Canonical examples
-    Practice
-      Simulation
-      Problem-solving algorithm
-    Connections
-      Prerequisites
-      Downstream concepts
-      Sibling concepts
+    Inputs
+      "prior P(H)"
+      "sensitivity P(+|H)"
+      "specificity P(-|not H)"
+    Evidence routes
+      "true positives"
+      "false positives"
+      "all positive results"
+    Posterior
+      "P(H|+)"
+      "dimensionless probability"
+      "base rate matters"
+    Misconceptions
+      "positive means true"
+      "sensitivity equals posterior"
+      "false positives ignored"
 ```

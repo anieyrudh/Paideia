@@ -1,7 +1,11 @@
-# Problem-Solving Algorithm
+# Bayes Updating Problem-Solving Algorithm
 
-1. Name the concept in the problem.
-2. Identify the known quantities, representations, or evidence.
-3. Choose the strategy that matches the concept.
-4. Execute the strategy step by step.
-5. Check the answer against units, constraints, and meaning.
+1. Identify the prior probability `P(H)`.
+2. Identify the true-positive route `P(+|H)P(H)`.
+3. Identify the false-positive route `P(+|not H)P(not H)`.
+4. Add both positive-result routes to form the denominator.
+5. Divide the true-positive route by the denominator.
+6. Interpret the posterior as a probability, not as a guarantee.
+
+The key check is whether every positive-result path has been counted. Omitting
+false positives turns sensitivity into a misleading posterior.

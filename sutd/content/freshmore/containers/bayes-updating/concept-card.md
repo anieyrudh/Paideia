@@ -6,7 +6,7 @@ level: "Freshmore"
 syllabus_ref: "SUTD Freshmore / Probability and Statistics"
 prerequisites:
   - basic-probability
-  - confusion-matrix-basics
+  - conditional-probability
 aid_types:
   - simulation
 status: draft
@@ -16,58 +16,46 @@ status: draft
 
 ## First-principles explanation
 
-Trusting a model is a decision, not a feeling. A confidence score says how sure
-the model claims to be; calibration asks whether that confidence matches how
-often it is actually right. A useful policy compares confidence with the cost
-of being wrong and the cost of asking a human to review the case.
+Bayes updating asks: after seeing evidence, how much of the evidence came from
+real cases rather than false alarms? A positive result can happen in two ways:
+the hypothesis is true and the test catches it, or the hypothesis is false and
+the test produces a false positive. The posterior probability is the true-case
+route divided by all positive-result routes.
+
+```latex
+P(H \mid +) =
+\frac{P(+ \mid H)P(H)}
+{P(+ \mid H)P(H) + P(+ \mid \neg H)P(\neg H)}
+```
 
 ## Key definitions
 
-- **Confidence**: the model's stated probability-like score for its own recommendation.
-- **Calibration**: the match between confidence and observed correctness.
-- **Threshold**: the minimum confidence needed before automation acts without review.
-- **Expected cost**: the average penalty of a policy after weighting mistakes and reviews.
+- **Prior probability P(H):** belief before the new evidence.
+- **Sensitivity P(+|H):** probability of a positive result when the hypothesis is true.
+- **Specificity P(-|not H):** probability of a negative result when the hypothesis is false.
+- **False-positive rate P(+|not H):** `1 - specificity`.
+- **Posterior probability P(H|+):** belief after a positive result.
 
 ## Why this matters
 
-A model with high overall accuracy can still be unsafe if its mistakes are
-concentrated in expensive cases. Trust calibration makes students quantify the
-tradeoff instead of accepting or rejecting automation as a slogan.
+Bayes updating protects learners from reading evidence backwards. A test can be
+very sensitive and still produce a moderate posterior when the underlying event
+is rare, because false positives can outnumber true positives.
 
 ## Canonical examples
 
-- A triage model that auto-clears low-risk cases only above a confidence threshold.
-- A moderation system that sends uncertain cases to human review because false negatives are costly.
+- Medical screening for a rare condition.
+- Fault detection in a machine that rarely fails.
+- Spam detection when genuine messages are much more common than spam.
 
 ## Common misconceptions
 
-- Confidence equals correctness.
-- Accuracy is the only metric.
+- Treating P(+|H) as if it were P(H|+).
+- Ignoring the base rate because the test sounds accurate.
+- Forgetting that false positives contribute to the pool of positive results.
 
 ## What the student does
 
-The student predicts which threshold will work best, adjusts threshold and cost
-settings, then reveals coverage, accepted-case risk, review count, and total
-expected cost with the formula shown.
-
-## Pedagogical choices and why
-
-- **Predict format**: multiple choice over thresholds, because the answer can be
-  falsified by a concrete cost calculation.
-- **Manipulate variables**: threshold, wrong-decision cost, and review cost are
-  exposed because they are the core policy levers.
-- **Transfer problem**: clinic triage changes the surface context while keeping
-  the same threshold-plus-cost reasoning.
-
-## Misconceptions this surfaces
-
-- **Confidence equals correctness** — the accepted cases still carry an expected
-  error risk even at high confidence.
-- **Accuracy is the only metric** — the total-cost formula can prefer more human
-  review when wrong automated decisions are expensive.
-
-## Notes for the teacher
-
-Ask students to compare two policies with the same expected accuracy but
-different costs. The goal is not to pick the highest threshold by default; it is
-to justify the trust boundary with evidence.
+The student predicts the posterior for a default case, adjusts prior prevalence,
+sensitivity, and specificity, then reveals the formula, substitution, and
+interpretation.

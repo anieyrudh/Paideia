@@ -43,6 +43,7 @@ predict:
       - 34.5%
       - 51.3%
       - 90.0%
+    correct_index: 2
   rationale_required: true
 manipulate:
   controls:
@@ -63,7 +64,7 @@ manipulate:
         max: 99
         step: 1
     - id: specificity-percent
-      label: Specificity P(-|¬H)
+      label: Specificity P(-|not H)
       kind: slider
       kernel_binding: state.specificityPercent
       bounds:
@@ -73,8 +74,8 @@ manipulate:
 observe:
   renderers:
     - id: posterior-readout
-      module: local
-      symbol: bayes-posterior
+      module: "@paideia/sutd-sims/bayes-updating"
+      symbol: BayesUpdating
       props_binding: |
         Show Bayes formula, substituted values, and posterior interpretation.
 explain:

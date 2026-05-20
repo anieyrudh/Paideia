@@ -1,5 +1,8 @@
 flowchart LR
-  current["Bayes Updating"]
-  prereq["Add prerequisite concept"] --> current
-  current --> downstream["Add downstream concept"]
-  current --- sibling["Add sibling concept"]
+  BP["Basic probability"] --> BAYES["Bayes updating"]
+  CP["Conditional probability"] --> BAYES
+  BAYES --> BI["Bayesian inference"]
+  BAYES --- CM["Confusion matrix thresholds"]
+  BAYES --> M1["Positive evidence means high probability"]
+  BAYES --> M2["Sensitivity is treated as posterior"]
+  BAYES --> M3["Base rate is ignored"]

@@ -1,13 +1,19 @@
 presets:
-  - id: balanced
-    label: "Balanced review"
+  - id: screening-default
+    label: "Screening default"
     state:
-      thresholdPercent: 70
-      falseNegativeCost: 20
-      reviewCost: 3
-  - id: conservative
-    label: "Conservative automation"
+      prevalencePercent: 10
+      sensitivityPercent: 95
+      specificityPercent: 90
+  - id: higher-prevalence
+    label: "Higher prior"
     state:
-      thresholdPercent: 85
-      falseNegativeCost: 30
-      reviewCost: 3
+      prevalencePercent: 30
+      sensitivityPercent: 95
+      specificityPercent: 90
+  - id: better-specificity
+    label: "Fewer false positives"
+    state:
+      prevalencePercent: 10
+      sensitivityPercent: 95
+      specificityPercent: 98
