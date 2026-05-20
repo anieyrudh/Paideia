@@ -41,7 +41,7 @@ test.describe("a-level/physics/circuits/series-parallel-circuit-lab prediction-g
     await expect(page.getByLabel("Circuit readout")).toContainText("0.265 A");
   });
 
-  test("has no critical accessibility violations after reveal", async ({ page }) => {
+  test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, "a-level/physics/circuits/series-parallel-circuit-lab");
 
     await page.getByRole("button", { name: "Build circuit" }).click();
@@ -54,10 +54,10 @@ test.describe("a-level/physics/circuits/series-parallel-circuit-lab prediction-g
     await page.getByLabel("Observation unlocked").waitFor();
 
     const results = await new AxeBuilder({ page }).analyze();
-    const criticalViolations = results.violations.filter(
-      (violation) => violation.impact === "critical",
+    const seriousOrCritical = results.violations.filter(
+      (violation) => violation.impact === "critical" || violation.impact === "serious",
     );
 
-    expect(criticalViolations).toEqual([]);
+    expect(seriousOrCritical).toEqual([]);
   });
 });

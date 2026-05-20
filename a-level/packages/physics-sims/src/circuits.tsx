@@ -445,7 +445,7 @@ const ManipulateStage = () => {
 };
 
 const Legend = () => (
-  <table aria-label="Formula symbol legend">
+  <table aria-label="Formula legend" className="formula-legend">
     <thead>
       <tr>
         <th>Color</th>
@@ -455,10 +455,30 @@ const Legend = () => (
       </tr>
     </thead>
     <tbody>
-      <tr><td>Blue</td><td>V</td><td>supply potential difference</td><td>volt, V</td></tr>
-      <tr><td>Purple</td><td>R_s</td><td>series resistance</td><td>ohm</td></tr>
-      <tr><td>Green</td><td>R_p</td><td>parallel equivalent resistance</td><td>ohm</td></tr>
-      <tr><td>Amber</td><td>I</td><td>total current from the supply</td><td>ampere, A</td></tr>
+      <tr>
+        <td><span aria-hidden="true" className="legend-swatch legend-swatch--blue" /> Blue</td>
+        <td>V</td>
+        <td>supply potential difference</td>
+        <td>volt, V</td>
+      </tr>
+      <tr>
+        <td><span aria-hidden="true" className="legend-swatch legend-swatch--purple" /> Purple</td>
+        <td>R_s</td>
+        <td>series resistance</td>
+        <td>ohm</td>
+      </tr>
+      <tr>
+        <td><span aria-hidden="true" className="legend-swatch legend-swatch--green" /> Green</td>
+        <td>R_p</td>
+        <td>parallel equivalent resistance</td>
+        <td>ohm</td>
+      </tr>
+      <tr>
+        <td><span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> Amber</td>
+        <td>I</td>
+        <td>total current from the supply</td>
+        <td>ampere, A</td>
+      </tr>
     </tbody>
   </table>
 );
@@ -486,7 +506,7 @@ const ObserveStage = () => {
       <section className="formula-panel formula-panel--product" aria-label="Formula used">
         <p className="lab-kicker">Formula used</p>
         <h3>Reduce the parallel branch first</h3>
-        <pre className="formula">
+        <pre className="formula-code" aria-label="LaTeX formula source">
           <code>{String.raw`\color{#059669}{R_p}=\left(\frac{1}{R_2}+\frac{1}{R_3}\right)^{-1},\quad \color{#d97706}{I}=\frac{\color{#2563eb}{V}}{\color{#7c3aed}{R_s}+\color{#059669}{R_p}}`}</code>
         </pre>
         <Legend />
