@@ -1,0 +1,49 @@
+controls:
+  - id: force
+    label: "Applied force"
+    kind: slider
+    unit: N
+    default: 10
+    min: 0
+    max: 20
+    step: 1
+  - id: displacement
+    label: "Displacement"
+    kind: slider
+    unit: m
+    default: 3
+    min: 0
+    max: 6
+    step: 0.5
+  - id: angle
+    label: "Force angle"
+    kind: slider
+    unit: deg
+    default: 0
+    min: 0
+    max: 180
+    step: 15
+  - id: elapsed-time
+    label: "Elapsed time"
+    kind: slider
+    unit: s
+    default: 2
+    min: 0.5
+    max: 8
+    step: 0.5
+  - id: mass
+    label: "Mass"
+    kind: slider
+    unit: kg
+    default: 4
+    min: 1
+    max: 10
+    step: 0.5
+  - id: starting-speed
+    label: "Starting speed"
+    kind: slider
+    unit: "m s^-1"
+    default: 1
+    min: 0
+    max: 8
+    step: 0.5

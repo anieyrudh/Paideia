@@ -1,0 +1,37 @@
+presets:
+  - id: pull-with-motion
+    label: "Pull with motion"
+    state:
+      forceNewtons: 10
+      displacementMetres: 3
+      angleDegrees: 0
+      elapsedSeconds: 2
+      massKilograms: 4
+      initialSpeedMetresPerSecond: 1
+  - id: sideways-pull
+    label: "Sideways pull"
+    state:
+      forceNewtons: 12
+      displacementMetres: 3
+      angleDegrees: 90
+      elapsedSeconds: 3
+      massKilograms: 4
+      initialSpeedMetresPerSecond: 1
+  - id: braking-force
+    label: "Braking force"
+    state:
+      forceNewtons: 5
+      displacementMetres: 2
+      angleDegrees: 180
+      elapsedSeconds: 2.5
+      massKilograms: 3
+      initialSpeedMetresPerSecond: 3
+  - id: same-work-slower
+    label: "Same work, slower"
+    state:
+      forceNewtons: 10
+      displacementMetres: 3
+      angleDegrees: 0
+      elapsedSeconds: 6
+      massKilograms: 4
+      initialSpeedMetresPerSecond: 1

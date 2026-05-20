@@ -29,7 +29,7 @@ test("launches the first container sim through the learner shell", async ({ page
 test("navigates the generated mini knowledge graph", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByText("6 concepts ready")).toBeVisible();
+  await expect(page.getByText("7 concepts ready")).toBeVisible();
   await expect(page.getByRole("heading", { name: "First principles" })).toBeVisible();
   await expect(page.getByRole("navigation", { name: "Concept containers" })).toBeVisible();
   await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
@@ -104,14 +104,14 @@ test("searches modules and keeps local mastery progress", async ({ page }) => {
 
   await page.getByLabel("Search curriculum").fill("");
   await page.getByRole("button", { name: "Foundations of Physics" }).click();
-  await expect(page.getByText("4 of 6 containers")).toBeVisible();
+  await expect(page.getByText("4 of 7 containers")).toBeVisible();
 
   await page
     .getByLabel("Physical Quantities and Units mastery")
     .getByRole("button", { name: "Mastered" })
     .click();
-  await expect(page.getByText("1/6 mastered")).toBeVisible();
+  await expect(page.getByText("1/7 mastered")).toBeVisible();
 
   await page.reload();
-  await expect(page.getByText("1/6 mastered")).toBeVisible();
+  await expect(page.getByText("1/7 mastered")).toBeVisible();
 });

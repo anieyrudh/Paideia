@@ -1,0 +1,28 @@
+state_labels:
+  forceNewtons:
+    label: "Applied force"
+    meaning: "Magnitude of the force acting on the object."
+  displacementMetres:
+    label: "Displacement"
+    meaning: "Distance moved along the chosen path."
+  angleDegrees:
+    label: "Force angle"
+    meaning: "Angle between the applied force and the displacement direction."
+  elapsedSeconds:
+    label: "Elapsed time"
+    meaning: "Time taken for the energy transfer."
+  massKilograms:
+    label: "Mass"
+    meaning: "Mass used for the kinetic energy store."
+  initialSpeedMetresPerSecond:
+    label: "Starting speed"
+    meaning: "Speed before the work is done."
+  workJoules:
+    label: "Work done"
+    meaning: "Energy transferred by the force component along the displacement."
+  averagePowerWatts:
+    label: "Average power"
+    meaning: "Work done divided by elapsed time."
+  finalKineticEnergyJoules:
+    label: "Final kinetic store"
+    meaning: "Kinetic energy after the transfer, clamped at zero if braking would stop the object."

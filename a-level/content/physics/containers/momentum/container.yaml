@@ -1,0 +1,123 @@
+schema_version: "1.0.0"
+id: momentum
+aliases:
+  - linear momentum
+  - impulse
+  - collisions
+branch: a-level
+subject: physics
+level: "H2"
+module: "Forces and Motion"
+title: "Momentum and Impulse"
+one_line_summary: "Connect momentum change to impulse and apply conservation of momentum in collisions."
+syllabus_ref: "9478 / Section II / Momentum"
+prerequisites:
+  - forces-and-equilibrium
+  - kinematics-in-one-dimension
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    Two carts collide head-on on a low-friction track. Before revealing the lab, predict which statement about total momentum is correct for the isolated two-cart system.
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Total momentum can change because speeds change during impact."
+      - "Total momentum stays constant if external horizontal force is negligible."
+      - "Momentum is conserved only when masses are equal."
+      - "Momentum is not conserved in any real collision."
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: cart-collision-momentum
+    prompt: |
+      Cart A (0.50 kg) moves at +2.0 m/s and cart B (1.0 kg) moves at -0.5 m/s before collision. They stick together. Find the final velocity of the combined carts and interpret the sign.
+    surface_form: "cart-collision"
+    same_concept_check: "Same concept: total momentum of an isolated system is conserved; impulse equals momentum change."
+    rubric_path: problem-solving/cart-collision-momentum.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-19"
+      author: "Codex"
+      summary: "Built A-Level momentum and impulse product slice using core/mechanics, charting, sim-runtime, prediction-gate, and ui-sim."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-19"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-19"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Momentum and force are the same quantity"
+    description: "Learners may treat force during impact as the same thing as momentum, rather than as the interaction that changes momentum over time."
+    evidence_source: "OpenStax University Physics Volume 1, Section 8.1 Linear Momentum and Force."
+    surface_in_predict: false
+  - name: "Momentum conservation needs equal masses"
+    description: "Learners may think unequal masses prevent conservation, instead of tracking the total momentum of the isolated system."
+    evidence_source: "OpenStax University Physics Volume 1, Section 8.1 Linear Momentum and Force."
+    surface_in_predict: false
+  - name: "Conservation means each object keeps its own momentum"
+    description: "Learners may think conservation means each cart's momentum stays unchanged, rather than the system total staying unchanged."
+    evidence_source: "OpenStax University Physics Volume 1, Section 8.3 Elastic Collisions in One Dimension."
+    surface_in_predict: true
+sources:
+  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
+    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf"
+    publication_year: 2025
+    license: "Copyright MOE & Cambridge University Press & Assessment"
+    seab_alignment: matches
+  - citation: "Moebs, W., Ling, S. J., and Sanny, J. University Physics Volume 1, Chapter 8 Linear Momentum and Collisions. OpenStax, 2016."
+    url: "https://openstax.org/books/university-physics-volume-1/pages/8-introduction"
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: matches
+language: en
