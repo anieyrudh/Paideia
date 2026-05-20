@@ -55,7 +55,7 @@ export const bayesUpdatingSpec: TSimulationSpec = {
     prompt: "With prior 10%, sensitivity 95%, and specificity 90%, what is P(H|+) approximately?",
     commit_format: {
       kind: "multiple-choice",
-      options: ["9.5%", "34.5%", "51.3%", "90.0%"],
+      options: ["9.5%", "34.5%", "51.4%", "90.0%"],
       correct_index: 2,
     },
     rationale_required: true,

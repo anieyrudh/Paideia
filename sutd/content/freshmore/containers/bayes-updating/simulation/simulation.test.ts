@@ -12,7 +12,7 @@ test.describe("Bayes Updating", () => {
     await page.getByRole("button", { name: "Reveal posterior" }).click();
     await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
 
-    await page.getByRole("radio", { name: "51.3%" }).check();
+    await page.getByRole("radio", { name: "51.4%" }).check();
     await page.getByLabel("Rationale").fill("Bayes combines prior and test quality.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
 
@@ -36,12 +36,15 @@ test.describe("Bayes Updating", () => {
   test("has no critical accessibility violations after reveal", async ({ page }) => {
     await page.getByRole("button", { name: "Set up Bayes scenario" }).click();
     await page.getByRole("button", { name: "Reveal posterior" }).click();
-    await page.getByRole("radio", { name: "51.3%" }).check();
+    await page.getByRole("radio", { name: "51.4%" }).check();
     await page.getByLabel("Rationale").fill("Posterior must include base rate.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
     await page.getByRole("region", { name: "Observation unlocked" }).waitFor();
 
     const results = await new AxeBuilder({ page }).analyze();
-    expect(results.violations.filter((v) => v.impact === "critical")).toEqual([]);
+    const seriousOrCritical = results.violations.filter(
+      (violation) => violation.impact === "critical" || violation.impact === "serious",
+    );
+    expect(seriousOrCritical).toEqual([]);
   });
 });

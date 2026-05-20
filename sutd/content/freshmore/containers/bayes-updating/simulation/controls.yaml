@@ -2,6 +2,7 @@ controls:
   - id: prevalence-percent
     label: "Prior prevalence P(H)"
     kind: slider
+    kernel_binding: state.prevalencePercent
     default: 10
     min: 1
     max: 60
@@ -9,6 +10,7 @@ controls:
   - id: sensitivity-percent
     label: "Sensitivity P(+|H)"
     kind: slider
+    kernel_binding: state.sensitivityPercent
     default: 95
     min: 50
     max: 99
@@ -16,6 +18,7 @@ controls:
   - id: specificity-percent
     label: "Specificity P(-|not H)"
     kind: slider
+    kernel_binding: state.specificityPercent
     default: 90
     min: 50
     max: 99

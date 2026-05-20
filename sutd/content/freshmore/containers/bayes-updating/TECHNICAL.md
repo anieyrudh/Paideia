@@ -41,7 +41,7 @@ predict:
     options:
       - 9.5%
       - 34.5%
-      - 51.3%
+      - 51.4%
       - 90.0%
     correct_index: 2
   rationale_required: true
@@ -119,7 +119,7 @@ Filter version: aniegpt v1.0
 
 ### P0 issues
 
-- Package-boundary violation: draft implementation lived inside the content folder and imported a wrong renderer package. Resolved by moving the sim to `@paideia/sutd-sims/bayes-updating` and using `module: local`.
+- Package-boundary violation: draft implementation lived inside the content folder and imported a wrong renderer package. Resolved by moving the sim to `@paideia/sutd-sims/bayes-updating` and declaring that package subpath in the simulation spec.
 - Prediction-gate test was placeholder-only. Resolved with Playwright assertions for blocked reveal, committed reveal, manipulation, and axe critical violations.
 
 ### P1 issues
@@ -133,4 +133,4 @@ Filter version: aniegpt v1.0
 ## Iteration log
 
 - Rejected the scaffold `FunctionPlot` path because this concept is a decision-policy surface, not a plotting demo.
-- Kept the container focused on threshold, wrong-decision cost, review cost, and the explicit total-cost formula.
+- Kept the container focused on prior prevalence, sensitivity, specificity, and the explicit posterior formula.
