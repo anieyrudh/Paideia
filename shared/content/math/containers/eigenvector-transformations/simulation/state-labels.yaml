@@ -1,0 +1,21 @@
+state_labels:
+  x:
+    label: "Vector x component"
+    meaning: "The horizontal coordinate of the candidate direction."
+    unit: "coordinate unit, cu"
+  y:
+    label: "Vector y component"
+    meaning: "The vertical coordinate of the candidate direction."
+    unit: "coordinate unit, cu"
+  a11:
+    label: "Horizontal stretch"
+    meaning: "How much the x-axis basis direction contributes to output x."
+  a12:
+    label: "Upper-right shear"
+    meaning: "How much the y-axis basis direction contributes to output x."
+  a21:
+    label: "Lower-left shear"
+    meaning: "How much the x-axis basis direction contributes to output y."
+  a22:
+    label: "Vertical stretch"
+    meaning: "How much the y-axis basis direction contributes to output y."

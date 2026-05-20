@@ -308,7 +308,7 @@ ${simulationSpec}
 ## Kernel extensions
 
 ${kernelDeps.length > 0
-  ? "No core-change proposal is declared in this container. Kernel use is limited to declared dependencies above."
+  ? "Declared runtime kernel dependencies are listed above. Any additive or breaking core API change must be linked in the preserved review section below."
   : "None. No simulation kernel dependencies are declared."}
 
 ## Accessibility

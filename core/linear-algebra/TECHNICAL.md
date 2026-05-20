@@ -3,9 +3,9 @@
 ## Public Interface Summary
 
 The package exports immutable tuple types for `Vector2` and `Matrix2`, an
-`Eigenpair2` interface, tolerance constants, vector arithmetic, 2x2 matrix
-operations, real eigenvalue calculation, and real two-vector eigenbasis
-calculation.
+`Eigenpair2` and `EigenvectorCheck2` interfaces, tolerance constants, vector
+arithmetic, 2x2 matrix operations, candidate eigendirection checks, real
+eigenvalue calculation, and real two-vector eigenbasis calculation.
 
 All operations that can fail return `KernelResult<T>` from `@paideia/shared`.
 No public API uses `any`, mutates caller-owned inputs, renders UI, or stores
@@ -20,6 +20,7 @@ hidden global state.
 | Zero vectors cannot be normalized | `normalize2` checks `linearAlgebraTolerance.zero` and returns `precondition-violated`. |
 | Eigenvalues are real | `eigenvalues2` rejects negative discriminants below tolerance with `out-of-domain`. |
 | `eigenvectors2` returns an independent real eigenbasis | Distinct eigenvalues get residual-checked normalized vectors; scalar matrices return the canonical basis; defective repeated roots return `precondition-violated`. |
+| Candidate eigenvector checks use the same convention and tolerances | `checkEigenvector2` computes `A*v`, projection scale, residual norm, and invariant-direction verdict through existing vector/matrix operations. |
 | Results stay finite | Arithmetic outputs are revalidated before returning `ok(...)`. |
 | Mathematical identities are stable | Tests cover distributive dot products, matrix composition over vectors, and determinant multiplicativity over sampled matrices. |
 
@@ -42,6 +43,11 @@ normalizes them, and keeps the candidate with the smallest residual
 `||A*v - lambda*v||`. Residuals above `linearAlgebraTolerance.loose` return
 `numerical-instability`.
 
+`checkEigenvector2` uses the projection scale
+`lambda = ((A*v) dot v) / (v dot v)` for a non-zero candidate vector, computes
+`||A*v - lambda*v||`, and flags eigendirections only when the residual is below
+`linearAlgebraTolerance.loose`.
+
 ## Dependency And License Notes
 
 Runtime dependencies:
@@ -59,8 +65,8 @@ review.
   repeated-root matrices.
 - Transformation visuals can cite the row-major convention and validate
   displayed arrows with `multiplyMatrixVector2`.
-- Eigenvector visuals can be checked by comparing `A*v` with `lambda*v` within
-  `linearAlgebraTolerance.default`; the implementation also residual-checks the
-  vectors it returns.
+- Eigenvector visuals can be checked with `checkEigenvector2`, which compares
+  `A*v` with `lambda*v` within `linearAlgebraTolerance.loose`; the implementation
+  also residual-checks the eigenvectors it returns.
 - The property-style tests pin algebraic laws that a misleading simulation
   would otherwise be able to violate silently.

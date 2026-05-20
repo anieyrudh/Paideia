@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import type { KernelResult } from "@paideia/shared";
 import {
   add2,
+  checkEigenvector2,
   determinant2,
   dot2,
   eigenvalues2,
@@ -105,6 +106,31 @@ describe("@paideia/linear-algebra", () => {
       expectCloseVector(transformed, expected, 10);
       expect(expectOk(norm2(pair.vector))).toBeCloseTo(1, 12);
     }
+  });
+
+  it("checks whether a candidate vector is an eigendirection", () => {
+    const matrix: Matrix2 = [
+      [3, 1],
+      [0, 2],
+    ];
+
+    const eigenvector = expectOk(checkEigenvector2(matrix, [1, 0]));
+    expectCloseVector(eigenvector.transformed, [3, 0]);
+    expect(eigenvector.lambda).toBeCloseTo(3, 12);
+    expect(eigenvector.residual).toBeLessThan(linearAlgebraTolerance.loose);
+    expect(eigenvector.isEigenvector).toBe(true);
+
+    const tilted = expectOk(checkEigenvector2(matrix, [1, 1]));
+    expectCloseVector(tilted.transformed, [4, 2]);
+    expect(tilted.isEigenvector).toBe(false);
+    expect(tilted.residual).toBeGreaterThan(linearAlgebraTolerance.loose);
+  });
+
+  it("rejects zero-vector eigendirection checks", () => {
+    const result = checkEigenvector2([[1, 0], [0, 1]], [0, 0]);
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("precondition-violated");
   });
 
   it("returns canonical eigenvectors for scalar matrices", () => {

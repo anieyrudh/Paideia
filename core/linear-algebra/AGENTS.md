@@ -15,6 +15,7 @@ Exports from `@paideia/linear-algebra`:
 - `type Vector2 = readonly [x: number, y: number]`
 - `type Matrix2 = readonly [readonly [a: number, b: number], readonly [c: number, d: number]]`
 - `interface Eigenpair2 { readonly value: number; readonly vector: Vector2 }`
+- `interface EigenvectorCheck2 { readonly transformed: Vector2; readonly lambda: number; readonly residual: number; readonly isEigenvector: boolean }`
 - `linearAlgebraTolerance: { default: number; zero: number; loose: number }`
 - `vector2(x: number, y: number): KernelResult<Vector2>`
 - `matrix2(a: number, b: number, c: number, d: number): KernelResult<Matrix2>`
@@ -31,6 +32,7 @@ Exports from `@paideia/linear-algebra`:
 - `multiplyMatrix2(left: Matrix2, right: Matrix2): KernelResult<Matrix2>`
 - `eigenvalues2(matrix: Matrix2): KernelResult<readonly [number, number]>`
 - `eigenvectors2(matrix: Matrix2): KernelResult<readonly [Eigenpair2, Eigenpair2]>`
+- `checkEigenvector2(matrix: Matrix2, vector: Vector2): KernelResult<EigenvectorCheck2>` — computes `A*v`, the best projection scale `lambda`, residual norm, and invariant-direction verdict.
 
 ## Invariants the caller must preserve
 

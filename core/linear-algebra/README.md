@@ -1,14 +1,15 @@
 # @paideia/linear-algebra
 
 Deterministic 2D linear algebra for Paideia simulations. This package owns
-finite vectors, row-major 2x2 matrices, transforms, and real eigenpairs so
-containers do not hand-roll matrix conventions.
+finite vectors, row-major 2x2 matrices, transforms, candidate eigendirection
+checks, and real eigenpairs so containers do not hand-roll matrix conventions.
 
 ## Exports
 
 - `Vector2`
 - `Matrix2`
 - `Eigenpair2`
+- `EigenvectorCheck2`
 - `linearAlgebraTolerance`
 - `vector2`
 - `matrix2`
@@ -25,11 +26,13 @@ containers do not hand-roll matrix conventions.
 - `multiplyMatrix2`
 - `eigenvalues2`
 - `eigenvectors2`
+- `checkEigenvector2`
 
 ## Usage
 
 ```ts
 import {
+  checkEigenvector2,
   eigenvectors2,
   matrix2,
   multiplyMatrixVector2,
@@ -43,6 +46,7 @@ if (!pairs.ok) throw new Error(pairs.error.message);
 
 const first = pairs.value[0];
 const transformed = multiplyMatrixVector2(transform.value, first.vector);
+const candidate = checkEigenvector2(transform.value, [1, 0]);
 ```
 
 Matrices are row-major: `[[a, b], [c, d]]` maps `[x, y]` to

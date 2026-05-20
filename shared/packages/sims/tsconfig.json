@@ -10,10 +10,13 @@
   "references": [
     { "path": "../../../core/charting" },
     { "path": "../../../core/content-schema" },
+    { "path": "../../../core/linear-algebra" },
     { "path": "../../../core/mechanics" },
+    { "path": "../../../core/plotting" },
     { "path": "../../../core/prediction-gate" },
     { "path": "../../../core/probability-stats" },
     { "path": "../../../core/shared" },
+    { "path": "../../../core/sim-runtime" },
     { "path": "../../../core/ui-sim" }
   ]
 }
