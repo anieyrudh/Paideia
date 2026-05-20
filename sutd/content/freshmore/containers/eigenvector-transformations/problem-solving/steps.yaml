@@ -1,0 +1,13 @@
+steps:
+  - id: nonzero-vector
+    prompt: "What candidate direction is being tested?"
+    expected_action: "State v and confirm it is not the zero vector."
+  - id: multiply
+    prompt: "What is Av?"
+    expected_action: "Carry out matrix-vector multiplication using the row-major matrix convention."
+  - id: compare-scale
+    prompt: "Does one scale factor explain every non-zero component?"
+    expected_action: "Check whether Av is parallel to v and identify lambda if it is."
+  - id: interpret
+    prompt: "What does the result mean in the model?"
+    expected_action: "Explain preserved direction and scale factor in student-facing units."

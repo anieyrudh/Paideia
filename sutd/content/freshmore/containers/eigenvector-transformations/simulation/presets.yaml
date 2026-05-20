@@ -1,0 +1,28 @@
+presets:
+  - id: upper-triangular
+    label: "Upper-triangular stretch"
+    state:
+      x: 1
+      y: 0
+      a11: 3
+      a12: 1
+      a21: 0
+      a22: 2
+  - id: diagonal-modes
+    label: "Separated modal axes"
+    state:
+      x: 0
+      y: 2
+      a11: 4
+      a12: 0
+      a21: 0
+      a22: 1.5
+  - id: reflection-flip
+    label: "Flip along one axis"
+    state:
+      x: 1
+      y: 0
+      a11: -2
+      a12: 0
+      a21: 0
+      a22: 1
