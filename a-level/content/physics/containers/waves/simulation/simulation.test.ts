@@ -46,7 +46,7 @@ test.describe("a-level/physics/waves/wave-superposition-lab prediction-gate", ()
     await expect(page.getByLabel("Formula used")).toContainText("Result:");
   });
 
-  test("has no critical accessibility violations after reveal", async ({ page }) => {
+  test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, "a-level/physics/waves/wave-superposition-lab");
 
     await page.getByRole("button", { name: "Set up wave behaviour" }).click();
