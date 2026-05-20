@@ -32,17 +32,17 @@ test.describe("Forces and Equilibrium", () => {
     await expect(observation).toContainText("equilibrium");
   });
 
-  test("has no critical accessibility violations after reveal", async ({ page }) => {
+  test("has no serious accessibility violations after reveal", async ({ page }) => {
     await page.getByRole("radio", { name: "6 N right and 5 N up" }).check();
     await page.getByLabel("Rationale").fill("The net force must be zero in x and y.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
     await page.getByLabel("Observation unlocked").waitFor();
 
     const results = await new AxeBuilder({ page }).analyze();
-    const criticalViolations = results.violations.filter(
-      (violation) => violation.impact === "critical",
+    const seriousOrCritical = results.violations.filter(
+      (violation) => violation.impact === "critical" || violation.impact === "serious",
     );
 
-    expect(criticalViolations).toEqual([]);
+    expect(seriousOrCritical).toEqual([]);
   });
 });

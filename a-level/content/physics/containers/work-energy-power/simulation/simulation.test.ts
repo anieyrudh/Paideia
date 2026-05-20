@@ -28,7 +28,7 @@ test.describe("a-level/physics/work-energy-power/energy-transfer-lab prediction-
     await expect(page.getByText("W = F s cos(theta)").first()).toBeVisible();
   });
 
-  test("has no critical accessibility violations after reveal", async ({ page }) => {
+  test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, "a-level/physics/work-energy-power/energy-transfer-lab");
 
     await page.getByRole("button", { name: "Set up energy transfer" }).click();
@@ -41,10 +41,10 @@ test.describe("a-level/physics/work-energy-power/energy-transfer-lab prediction-
     await page.getByLabel("Observation unlocked").waitFor();
 
     const results = await new AxeBuilder({ page }).analyze();
-    const criticalViolations = results.violations.filter(
-      (violation) => violation.impact === "critical",
+    const seriousOrCritical = results.violations.filter(
+      (violation) => violation.impact === "critical" || violation.impact === "serious",
     );
 
-    expect(criticalViolations).toEqual([]);
+    expect(seriousOrCritical).toEqual([]);
   });
 });

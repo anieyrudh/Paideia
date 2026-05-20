@@ -145,7 +145,15 @@ export const MeasurementNotebook = ({ state }: { readonly state: MeasurementStat
           If repeated readings and instrument resolution are both available, use the
           larger uncertainty source before converting it into a percentage.
         </p>
-        <div className="uncertainty-meter" aria-label="Combined percentage uncertainty">
+        <div
+          aria-label="Combined percentage uncertainty"
+          aria-valuemax={100}
+          aria-valuemin={0}
+          aria-valuenow={Number(formatPercent(model.combinedRelativeUncertainty).replace("%", ""))}
+          aria-valuetext={formatPercent(model.combinedRelativeUncertainty)}
+          className="uncertainty-meter"
+          role="progressbar"
+        >
           <span style={{ width: `${barWidth}%` }} />
         </div>
         <p>

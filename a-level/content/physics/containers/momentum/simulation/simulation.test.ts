@@ -28,7 +28,7 @@ test.describe("a-level/physics/momentum/momentum-collision-lab prediction-gate",
     await expect(page.getByText("p = mv").first()).toBeVisible();
   });
 
-  test("has no critical accessibility violations after reveal", async ({ page }) => {
+  test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, "a-level/physics/momentum/momentum-collision-lab");
 
     await page.getByRole("button", { name: "Set up collision" }).click();
@@ -41,10 +41,10 @@ test.describe("a-level/physics/momentum/momentum-collision-lab prediction-gate",
     await page.getByLabel("Observation unlocked").waitFor();
 
     const results = await new AxeBuilder({ page }).analyze();
-    const criticalViolations = results.violations.filter(
-      (violation) => violation.impact === "critical",
+    const seriousOrCritical = results.violations.filter(
+      (violation) => violation.impact === "critical" || violation.impact === "serious",
     );
 
-    expect(criticalViolations).toEqual([]);
+    expect(seriousOrCritical).toEqual([]);
   });
 });
