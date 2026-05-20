@@ -5,8 +5,9 @@ import GeneratedSim1GraphSearchAndShortestPathsGraphSearchAndShortestPaths from 
 import GeneratedSim2TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
 import GeneratedSim3PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
 import GeneratedSim4LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim5VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim6OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim5BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim6VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim7OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -108,6 +109,15 @@ export const knowledgeGraph = {
     status: "draft",
   },
   {
+    id: "sutd/freshmore/bayes-updating",
+    conceptId: "bayes-updating",
+    title: "Bayes Updating",
+    subject: "freshmore",
+    level: "Freshmore",
+    module: "Probability and Statistics",
+    status: "draft",
+  },
+  {
     id: "sutd/freshmore/vector-transformations",
     conceptId: "vector-transformations",
     title: "Vector Transformations",
@@ -138,6 +148,10 @@ export const knowledgeGraph = {
   { from: "sutd/epd/feedback-control", to: "sutd/epd/pid-step-response", kind: "prerequisite" },
   { from: "sutd/epd/pid-step-response", to: "sutd/epd/bode-plots", kind: "downstream" },
   { from: "sutd/epd/pid-step-response", to: "sutd/epd/state-space-control", kind: "downstream" },
+  { from: "sutd/freshmore/basic-probability", to: "sutd/freshmore/bayes-updating", kind: "prerequisite" },
+  { from: "sutd/freshmore/conditional-probability", to: "sutd/freshmore/bayes-updating", kind: "prerequisite" },
+  { from: "sutd/freshmore/bayes-updating", to: "sutd/freshmore/bayesian-inference", kind: "downstream" },
+  { from: "sutd/freshmore/bayes-updating", to: "sutd/freshmore/confusion-matrix-thresholds", kind: "sibling" },
   { from: "sutd/smt/derivatives", to: "sutd/smt/ode-phase-portrait", kind: "prerequisite" },
   { from: "sutd/smt/vector-fields", to: "sutd/smt/ode-phase-portrait", kind: "prerequisite" },
   { from: "sutd/smt/linear-algebra", to: "sutd/smt/ode-phase-portrait", kind: "prerequisite" },
@@ -416,6 +430,69 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/freshmore/bayes-updating",
+    branch: "sutd",
+    subject: "Freshmore",
+    level: "Freshmore",
+    module: "Probability and Statistics",
+    title: "Bayes Updating",
+    summary: "Use prior probability, sensitivity, and specificity to update belief after positive evidence.",
+    syllabusRef: "SUTD Freshmore / Probability and Statistics",
+    status: "draft",
+    packageId: "bayes-updating",
+    simId: "bayes-updating",
+    predictPrompt: "With prior 10%, sensitivity 95%, and specificity 90%, what is P(H|+) approximately?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "A positive test always means high probability",
+      "Sensitivity alone determines posterior",
+    ],
+    transferProblem: "A sensor for a rare machine fault reports positive. Use the prior fault rate, sensitivity, and specificity to estimate how likely the fault really is.",
+    firstPrinciples: "Bayes updating asks: after seeing evidence, how much of the evidence came from real cases rather than false alarms? A positive result can happen in two ways: the hypothesis is true and the test catches it, or the hypothesis is false and the test produces a false positive. The posterior probability is the true-case route divided by all positive-result routes.",
+    keyDefinitions: [
+      "Prior probability P(H): belief before the new evidence.",
+      "Sensitivity P(+|H): probability of a positive result when the hypothesis is true.",
+      "Specificity P(-|not H): probability of a negative result when the hypothesis is false.",
+      "False-positive rate P(+|not H): 1 - specificity.",
+      "Posterior probability P(H|+): belief after a positive result.",
+    ],
+    canonicalExamples: [
+      "Medical screening for a rare condition.",
+      "Fault detection in a machine that rarely fails.",
+      "Spam detection when genuine messages are much more common than spam.",
+    ],
+    problemSolvingSteps: [
+      "Start with the prior",
+      "Count true positives",
+      "Count false positives",
+      "Normalize all positive evidence",
+      "Interpret the posterior",
+    ],
+    prerequisites: [
+      "Basic Probability",
+      "Conditional Probability",
+    ],
+    downstream: [
+      "Bayesian Inference",
+    ],
+    siblings: [
+      "Confusion Matrix Thresholds",
+    ],
+    sims: [
+      {
+        id: "bayes-updating",
+        harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
+        title: "Bayes Updating Explorer",
+        interactionType: "decision-matrix",
+        component: GeneratedSim5BayesUpdatingBayesUpdating,
+      },
+    ],
+  },
+  {
     id: "sutd/freshmore/vector-transformations",
     branch: "sutd",
     subject: "Freshmore",
@@ -463,7 +540,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim5VectorTransformationsVectorTransformations,
+        component: GeneratedSim6VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -529,7 +606,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim6OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim7OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

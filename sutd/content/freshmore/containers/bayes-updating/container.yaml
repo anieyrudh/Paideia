@@ -1,0 +1,115 @@
+schema_version: "1.0.0"
+id: bayes-updating
+aliases:
+  - Bayes theorem
+  - posterior probability
+  - base-rate reasoning
+branch: sutd
+subject: freshmore
+level: "Freshmore"
+module: "Probability and Statistics"
+title: "Bayes Updating"
+one_line_summary: "Use prior probability, sensitivity, and specificity to update belief after positive evidence."
+syllabus_ref: "SUTD Freshmore / Probability and Statistics"
+prerequisites:
+  - basic-probability
+  - conditional-probability
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    With prior 10%, sensitivity 95%, and specificity 90%, what is P(H|+) approximately?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "9.5%"
+      - "34.5%"
+      - "51.4%"
+      - "90.0%"
+    correct_index: 2
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: rare-fault-sensor
+    prompt: |
+      A sensor for a rare machine fault reports positive. Use the prior fault rate, sensitivity, and specificity to estimate how likely the fault really is.
+    surface_form: "rare-fault sensor"
+    same_concept_check: "Still updates a prior probability after positive evidence using true-positive and false-positive routes."
+    rubric_path: problem-solving/rare-fault-sensor.md
+assessments: []
+status: draft
+authoring:
+  owner: "Paideia"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-20"
+      author: "Codex"
+      summary: "Built initial SUTD Freshmore Bayes updating product slice with prediction gate and posterior formula evidence."
+authors: ["Codex"]
+advisor_signoffs: []
+review:
+  anieyrudh_filter:
+    required_for_status: published
+    last_run: "2026-05-20"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "A positive test always means high probability"
+    description: |
+      Learners may ignore the base rate and assume a positive result is enough to make the hypothesis very likely.
+    evidence_source: "Khan Academy Bayes theorem examples; OpenIntro Statistics conditional probability."
+    surface_in_predict: true
+  - name: "Sensitivity alone determines posterior"
+    description: |
+      Learners may use P(+|H) as if it were P(H|+), ignoring false positives and the prior.
+    evidence_source: "OpenIntro Statistics conditional probability."
+    surface_in_predict: true
+sources:
+  - citation: "OpenIntro. Introductory Statistics, conditional probability and Bayes' theorem sections. 4th edition."
+    url: "https://www.openintro.org/book/os/"
+    publication_year: 2019
+    license: "CC BY-SA 3.0"
+    seab_alignment: n/a
+  - citation: "Khan Academy. Bayes' theorem and conditional probability examples."
+    url: "https://www.khanacademy.org/math/statistics-probability/probability-library"
+    publication_year: 2024
+    license: "Khan Academy Terms of Service"
+    seab_alignment: n/a
+language: en

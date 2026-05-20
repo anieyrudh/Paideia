@@ -216,6 +216,129 @@ button {
   border-left: 4px solid var(--accent);
 }
 
+.sutd-sim-panel {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+}
+
+.sutd-sim-controls,
+.sutd-formula-card,
+.sutd-result-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.sutd-sim-controls button,
+.sutd-formula-card button {
+  background: var(--accent);
+  border: 0;
+  color: white;
+  cursor: pointer;
+  font-weight: 900;
+  min-height: 44px;
+  padding: 0.7rem 0.9rem;
+}
+
+.sutd-control {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.sutd-control span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.sutd-result-grid {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  margin: 0;
+}
+
+.sutd-result-grid div {
+  border-top: 2px solid var(--accent);
+  padding-top: 0.6rem;
+}
+
+.sutd-result-grid dt {
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.sutd-result-grid dd {
+  color: var(--accent);
+  font-size: 1.5rem;
+  font-weight: 900;
+  margin: 0;
+}
+
+.formula-code {
+  background: #10201a;
+  border-radius: 8px;
+  color: #fffdf7;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  margin: 0;
+  overflow-x: auto;
+  padding: 0.75rem;
+  white-space: pre;
+}
+
+.formula-legend {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  margin: 0;
+}
+
+.formula-legend div {
+  background: var(--accent-soft);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.6rem;
+}
+
+.formula-legend dt,
+.formula-legend dd {
+  margin: 0;
+}
+
+.formula-legend dt {
+  align-items: center;
+  display: flex;
+  font-weight: 900;
+  gap: 0.45rem;
+}
+
+.formula-legend dd {
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.legend-swatch {
+  border-radius: 999px;
+  display: inline-block;
+  height: 0.85rem;
+  width: 0.85rem;
+}
+
+.legend-swatch--blue {
+  background: #2563eb;
+}
+
+.legend-swatch--orange {
+  background: #f97316;
+}
+
+.legend-swatch--green {
+  background: #059669;
+}
+
 @media (max-width: 760px) {
   .app-shell {
     padding: 0.8rem;
@@ -235,5 +358,9 @@ button {
   .panel-header {
     align-items: start;
     display: grid;
+  }
+
+  .sutd-sim-panel {
+    grid-template-columns: 1fr;
   }
 }
