@@ -8,11 +8,13 @@ Use this package when a shared sim needs finite discrete distributions, expected
 
 ```ts
 import {
+  bayesPositiveEvidence,
   expectedValue,
   histogram,
   normalizeDistribution,
   variance,
 } from "@paideia/probability-stats";
+import { probability } from "@paideia/shared";
 
 const distribution = normalizeDistribution([
   { id: "low", weight: 1, value: 0 },
@@ -23,8 +25,20 @@ if (distribution.ok) {
   const mean = expectedValue(distribution.value);
   const spread = variance(distribution.value);
   const bins = histogram([0, 2, 2, 3, 5], { binCount: 5 });
-
   // mean, spread, and bins are KernelResult values.
+}
+
+const prior = probability(0.1);
+const sensitivity = probability(0.95);
+const specificity = probability(0.9);
+if (prior.ok && sensitivity.ok && specificity.ok) {
+  const posterior = bayesPositiveEvidence({
+    prior: prior.value,
+    sensitivity: sensitivity.value,
+    specificity: specificity.value,
+  });
+
+  // posterior is a KernelResult value.
 }
 ```
 

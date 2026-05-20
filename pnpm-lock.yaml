@@ -682,6 +682,9 @@ importers:
 
   shared/packages/sims:
     dependencies:
+      '@paideia/charting':
+        specifier: workspace:*
+        version: link:../../../core/charting
       '@paideia/content-schema':
         specifier: workspace:*
         version: link:../../../core/content-schema
@@ -691,6 +694,9 @@ importers:
       '@paideia/prediction-gate':
         specifier: workspace:*
         version: link:../../../core/prediction-gate
+      '@paideia/probability-stats':
+        specifier: workspace:*
+        version: link:../../../core/probability-stats
       '@paideia/shared':
         specifier: workspace:*
         version: link:../../../core/shared

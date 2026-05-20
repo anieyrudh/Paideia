@@ -7,6 +7,7 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
+    "./bayes-updating": "./src/bayes-updating.tsx",
     "./free-body-diagram-mechanics": "./src/free-body-diagram-mechanics.tsx"
   },
   "scripts": {
@@ -16,9 +17,11 @@
     "typecheck": "tsc -b --pretty false"
   },
   "dependencies": {
+    "@paideia/charting": "workspace:*",
     "@paideia/content-schema": "workspace:*",
     "@paideia/mechanics": "workspace:*",
     "@paideia/prediction-gate": "workspace:*",
+    "@paideia/probability-stats": "workspace:*",
     "@paideia/shared": "workspace:*",
     "@paideia/ui-sim": "workspace:*"
   },

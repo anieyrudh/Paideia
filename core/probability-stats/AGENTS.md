@@ -12,8 +12,11 @@ Exports from `@paideia/probability-stats`:
 - `VarianceMode = "population" | "sample"`
 - `SummaryStats = { count: number; mean: number; variance: number; standardDeviation: number; min: number; max: number }`
 - `HistogramBin = { min: number; max: number; count: number; density: number }`
+- `BayesPositiveEvidenceInput = { prior: Probability; sensitivity: Probability; specificity: Probability }`
+- `BayesPositiveEvidence = { prior: Probability; complementPrior: Probability; sensitivity: Probability; specificity: Probability; falsePositiveRate: Probability; truePositiveWeight: number; falsePositiveWeight: number; posterior: Probability; routes: DiscreteDistribution<"true-positive" | "false-positive"> }`
 - `probabilityStatsTolerance: { default: number; tight: number; loose: number }`
 - `normalizeDistribution<TId extends string>(outcomes: readonly WeightedOutcome<TId>[]): KernelResult<DiscreteDistribution<TId>>` — converts finite non-negative weights into branded probabilities that sum to 1.
+- `bayesPositiveEvidence(input: BayesPositiveEvidenceInput): KernelResult<BayesPositiveEvidence>` — computes the positive-evidence Bayes update by normalising true-positive and false-positive routes.
 - `expectedValue(distribution: DiscreteDistribution): KernelResult<number>` — computes E(X) for a validated finite distribution.
 - `variance(distribution: DiscreteDistribution): KernelResult<number>` — computes Var(X) for a validated finite distribution.
 - `summarize(values: readonly number[], opts?: { variance?: VarianceMode }): KernelResult<SummaryStats>` — computes one-pass descriptive statistics; defaults to sample variance.
@@ -37,7 +40,7 @@ Exports from `@paideia/probability-stats`:
 - Does **not** infer units or curriculum branch behavior.
 
 ## When to consider this module
-Use `core/probability-stats` when a sim needs canonical expected value, variance, quantiles, descriptive summaries, z-scores, or histogram bins from finite learner-controlled data. If a sim is about probability trees, random variables, normalisation, summary measures, or data distributions, consume this kernel instead of inlining the formulas.
+Use `core/probability-stats` when a sim needs canonical expected value, variance, quantiles, descriptive summaries, z-scores, Bayes-route normalisation, or histogram bins from finite learner-controlled data. If a sim is about probability trees, random variables, normalisation, summary measures, or data distributions, consume this kernel instead of inlining the formulas.
 
 ## Extension protocol
 1. Open a `core-change-proposal` issue naming every current consumer.

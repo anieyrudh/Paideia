@@ -1,0 +1,16 @@
+steps:
+  - id: prior
+    label: "Start with the prior"
+    formula: "P(H)"
+  - id: true-positive-route
+    label: "Count true positives"
+    formula: "P(+|H)P(H)"
+  - id: false-positive-route
+    label: "Count false positives"
+    formula: "P(+|not H)P(not H)"
+  - id: normalize
+    label: "Normalize all positive evidence"
+    formula: "P(H|+) = true-positive route / all positive routes"
+  - id: interpret
+    label: "Interpret the posterior"
+    check: "The answer is a probability after evidence, not the test sensitivity."

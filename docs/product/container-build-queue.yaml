@@ -152,7 +152,7 @@ entries:
   - id: shared.probability.bayes-updating
     title: "Bayes Theorem Visualiser"
     priority: P0
-    status: ready-for-build
+    status: reviewed
     cluster: Bayesian reasoning
     discipline: math
     reuse_status: shared-core

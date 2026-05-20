@@ -8,9 +8,11 @@
     "src/**/*"
   ],
   "references": [
+    { "path": "../../../core/charting" },
     { "path": "../../../core/content-schema" },
     { "path": "../../../core/mechanics" },
     { "path": "../../../core/prediction-gate" },
+    { "path": "../../../core/probability-stats" },
     { "path": "../../../core/shared" },
     { "path": "../../../core/ui-sim" }
   ]
