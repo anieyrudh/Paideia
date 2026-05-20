@@ -71,6 +71,7 @@ see [Hosting and licensing plan](product/hosting-and-licensing.md).
 - [Container specification](container-spec.md)
 - [Public CFE onboarding brief](public/cfe-onboarding.html)
 - [Hosting and licensing plan](product/hosting-and-licensing.md)
+- [Simulation presentation standard](product/simulation-presentation-standard.md)
 - [Core module inventory](core-modules.md)
 - [Reuse boundaries and clean-room rewrites](reuse-boundaries.md)
 - [GitHub setup](github-setup.md)

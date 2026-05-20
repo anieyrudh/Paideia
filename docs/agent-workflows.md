@@ -70,6 +70,8 @@ Read first:
 Build only this container. Keep language student-facing; do not expose package
 names, file paths, kernel names, or implementation details in the learner UI.
 Show formulas with substitution and units when calculations appear. Use the
+simulation presentation standard for LaTeX formula blocks, color-coded symbol
+legends, and browser playtest expectations. Use the
 `kernel_dependencies` listed in the build queue; do not inline reusable math,
 physics, graph, control, probability, or state logic in the container.
 

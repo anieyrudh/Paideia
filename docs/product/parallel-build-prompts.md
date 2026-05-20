@@ -154,6 +154,7 @@ Read first, in this order:
 - .agents/skills/new-container/SKILL.md
 - .agents/skills/new-sim-in-container/SKILL.md
 - .agents/skills/review-container/SKILL.md
+- docs/product/simulation-presentation-standard.md
 - Existing reviewed A-Level product slices:
   - a-level/content/physics/containers/physical-quantities-and-units
   - a-level/content/physics/containers/scalars-and-vectors
@@ -164,6 +165,14 @@ Use the local skills where applicable:
 - `new-container` for the container skeleton
 - `new-sim-in-container` for the simulation surface
 - `review-container` before PR
+- `game-studio:web-game-foundations` before implementation when engine/input/state/asset boundaries are not obvious
+- `game-studio:game-playtest` for browser/screenshot QA of the simulation
+- `game-studio:phaser-2d-game` only when the sim is a game-like 2D canvas scene
+- `game-studio:sprite-pipeline` only for 2D sprite generation or normalization
+- `game-studio:game-ui-frontend` for canvas/WebGL HUDs, overlays, menus, and playfield protection
+- `game-studio:react-three-fiber-game` only when the sim is genuinely 3D and React-hosted
+- `game-studio:web-3d-asset-pipeline` only for GLB/glTF asset preparation
+- `build-web-apps:shadcn` only when the app has `components.json` or the task explicitly initializes shadcn
 
 Use report-only subagents before PR. If subagents are unavailable, record that
 explicitly in the PR body:
@@ -190,8 +199,11 @@ Student UI requirements:
 - every product slice declares a prediction path, and a test proves the
   prediction gate blocks reveal until commit
 - controls are labelled and accessible
+- formulas are LaTeX code blocks with nearby color-coded symbol legends
 - formulas include substituted values, signs where relevant, units inside terms,
   final result, and interpretation
+- formula colors match controls, traces, vectors, and readouts, with labels so
+  meaning does not rely on color alone
 - no internal code names, package names, or file paths appear in learner UI
 - include a transfer problem with rubric
 - include a route-level Playwright or equivalent browser check for the revealed

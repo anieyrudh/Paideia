@@ -109,6 +109,7 @@ Next missing foundations:
 - Container wave runbook: use [`container-wave-runbook.md`](./container-wave-runbook.md) to claim `ready-for-build` items safely and keep one container per PR.
 - Parallel product-slice prompts: use [`parallel-build-prompts.md`](./parallel-build-prompts.md) for one-PR-per-container assignment.
 - SUTD product-slice template: use [`sutd-product-slice-template.md`](./sutd-product-slice-template.md) before broad SUTD pillar work.
+- Simulation presentation: use [`simulation-presentation-standard.md`](./simulation-presentation-standard.md) for LaTeX formula blocks, color-coded legends, renderer choice, and playtest expectations.
 - Notebook lab runtime: needed for computational topics, data analysis, and Python-first exploration.
 - Media pipeline: thumbnails, diagrams, narrated walkthroughs, and fallback visuals should be generated and validated consistently.
 - Assessment adapter: connect problem-solving algorithms, mastery state, FSRS/BKT, and curriculum-specific exam wrappers.
@@ -135,6 +136,8 @@ What it proved:
   kernel names, package names, and file paths do not belong in the student
   surface.
 - Formula substitution is part of the simulation contract, not optional copy.
+  Follow the simulation presentation standard: LaTeX formula block, nearby
+  color-coded legend, substituted values, units, and interpretation.
 - Route-level Playwright and axe checks are required after reveal, because
   pre-reveal tests do not prove the actual sim is usable.
 - Follow-on slices can reuse the same package, shell route, sim-harness, and

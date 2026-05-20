@@ -28,7 +28,7 @@ contract in `docs/container-spec.md`.
 | Required folders | `concept-map/`, `simulation/`, `problem-solving/`, `media/`, `embed/` where required by the spec | Yes, for empty scaffold files; no, for educational content |
 | Concept card | First-principles explanation, definitions, examples, misconceptions | No, human review required |
 | Sources | Citations for syllabus and factual claims | No, human review required |
-| Simulation contract | Declared runtime, controls, presets, state labels, formulas, prediction gate if declared | Sometimes, for wiring errors; no, for conceptual design |
+| Simulation contract | Declared runtime, controls, presets, state labels, LaTeX formula blocks, color-coded legends, prediction gate if declared | Sometimes, for wiring errors; no, for conceptual design |
 | Problem solving | Strategy tree, worked method, proof outline, or decision procedure | No, human review required |
 | Concept map | Prerequisites, dependents, sibling concepts, misconception graph, mindmap source | Sometimes, for generated graph links |
 | Technical review | Non-empty Anieyrudh Filter pass and known limitations | No, human review required for P0/P1 acceptance |
@@ -56,7 +56,8 @@ keyboard or screen reader is not complete.
 | --- | --- | --- |
 | Axe scan | No critical axe violations in revealed sim state | Yes, for straightforward semantic fixes |
 | Keyboard path | Prediction, controls, reveal, and reset are reachable without a mouse | Sometimes |
-| Labels | Inputs, charts, buttons, and formula readouts have student-facing names | Yes |
+| Labels | Inputs, charts, buttons, formula legends, and formula readouts have student-facing names | Yes |
+| Formula accessibility | Formula colors are paired with symbols, text labels, units, and a nearby legend | Sometimes |
 | Motion and contrast | Visual feedback is readable and does not rely on color alone | Sometimes |
 | Content clarity | No code-facing labels in student UI | Yes, when a clear human label exists |
 
