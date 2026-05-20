@@ -8,6 +8,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./bayes-updating": "./src/bayes-updating.tsx",
+    "./eigenvector-transformations": "./src/eigenvector-transformations.tsx",
     "./free-body-diagram-mechanics": "./src/free-body-diagram-mechanics.tsx"
   },
   "scripts": {
@@ -19,10 +20,13 @@
   "dependencies": {
     "@paideia/charting": "workspace:*",
     "@paideia/content-schema": "workspace:*",
+    "@paideia/linear-algebra": "workspace:*",
     "@paideia/mechanics": "workspace:*",
+    "@paideia/plotting": "workspace:*",
     "@paideia/prediction-gate": "workspace:*",
     "@paideia/probability-stats": "workspace:*",
     "@paideia/shared": "workspace:*",
+    "@paideia/sim-runtime": "workspace:*",
     "@paideia/ui-sim": "workspace:*"
   },
   "peerDependencies": {

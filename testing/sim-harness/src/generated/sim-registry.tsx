@@ -21,7 +21,8 @@ import GeneratedSim17SutdFreshmoreEigenvectorTransformationsEigenvectorTransform
 import GeneratedSim18SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
 import GeneratedSim19SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 import GeneratedSim20SharedMathBayesUpdatingBayesUpdating from "@paideia/shared-sims/bayes-updating";
-import GeneratedSim21SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
+import GeneratedSim21SharedMathEigenvectorTransformationsEigenvectorTransformations from "@paideia/shared-sims/eigenvector-transformations";
+import GeneratedSim22SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -135,10 +136,15 @@ export const simRegistry = {
     title: "Bayes Updating Explorer",
     Component: GeneratedSim20SharedMathBayesUpdatingBayesUpdating,
   },
+  "shared/math/eigenvector-transformations/eigenvector-transformations": {
+    id: "shared/math/eigenvector-transformations/eigenvector-transformations",
+    title: "Eigenvector Direction Lab",
+    Component: GeneratedSim21SharedMathEigenvectorTransformationsEigenvectorTransformations,
+  },
   "shared/physics/free-body-diagram-mechanics/force-balance": {
     id: "shared/physics/free-body-diagram-mechanics/force-balance",
     title: "Force Balance Explorer",
-    Component: GeneratedSim21SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
+    Component: GeneratedSim22SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
   }
 } satisfies Record<string, SimHarnessEntry>;
 

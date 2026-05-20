@@ -1,0 +1,118 @@
+schema_version: "1.0.0"
+id: eigenvector-transformations
+aliases:
+  - eigendirections
+  - invariant directions
+  - matrix scale directions
+branch: shared
+subject: math
+level: "Shared core"
+module: "Linear Algebra"
+title: "Eigenvector Transformations"
+one_line_summary: "Test which vectors keep their direction under a 2x2 transformation and read the eigenvalue as the scale factor."
+syllabus_ref: "Shared mathematics / Linear algebra / Eigenvectors"
+prerequisites:
+  - vector-transformations
+  - matrices
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    Matrix A = [[3, 1], [0, 2]] acts on vector v = (1, 0). Before reveal, which statement best describes Av?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Av = (1, 0), so the vector is unchanged"
+      - "Av = (3, 0), so the vector stays on its line and triples"
+      - "Av = (0, 3), so the vector rotates onto the y-axis"
+      - "Av = (3, 2), so every component is scaled differently"
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: modal-axis-decoupling
+    prompt: |
+      A two-room heat model has two independent modes: one pattern warms both rooms together and another warms one room while cooling the other. A disturbance pattern keeps the same shape over time while only its size changes. Explain why that pattern is an eigenvector, identify what the eigenvalue would describe in this context, and state what evidence would rule out the claim.
+    surface_form: "thermal mode interpretation"
+    same_concept_check: "Same concept: use preserved direction and one shared scale factor to decide whether a changing state pattern is an eigenvector."
+    rubric_path: problem-solving/modal-axis-decoupling.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-20"
+      author: "Codex"
+      summary: "Built shared-core eigenvector transformations container and simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-20"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-20"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Every vector is an eigenvector"
+    description: "Learners may think any transformed vector counts as an eigenvector instead of checking whether Av remains parallel to v."
+    evidence_source: "Linear algebra textbook treatments of eigenvectors as invariant directions."
+    surface_in_predict: true
+  - name: "Eigenvalues are rotation angles"
+    description: "Learners may read an eigenvalue as a turn amount instead of a scalar stretch or flip along an invariant direction."
+    evidence_source: "Linear algebra treatments of eigenvalues as scalar factors along invariant directions."
+    surface_in_predict: true
+sources:
+  - citation: "Strang, Introduction to Linear Algebra, eigenvalues and eigenvectors chapters."
+    publication_year: 2016
+    license: "Textbook reference"
+    seab_alignment: n/a
+  - citation: "OpenStax, Linear Algebra, Eigenvalues and Eigenvectors."
+    url: "https://openstax.org/details/books/linear-algebra"
+    publication_year: 2024
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+language: en

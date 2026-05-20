@@ -11,6 +11,13 @@ export interface Eigenpair2 {
   readonly vector: Vector2;
 }
 
+export interface EigenvectorCheck2 {
+  readonly transformed: Vector2;
+  readonly lambda: number;
+  readonly residual: number;
+  readonly isEigenvector: boolean;
+}
+
 export const linearAlgebraTolerance = {
   default: 1e-10,
   zero: 1e-12,
@@ -310,4 +317,41 @@ export const eigenvectors2 = (
     { value: lambda1, vector: vector1.value },
     { value: lambda2, vector: vector2Result.value },
   ]);
+};
+
+export const checkEigenvector2 = (
+  matrix: Matrix2,
+  vector: Vector2,
+): KernelResult<EigenvectorCheck2> => {
+  const transformed = multiplyMatrixVector2(matrix, vector);
+  if (!transformed.ok) return transformed;
+
+  const vectorNorm = norm2(vector);
+  if (!vectorNorm.ok) return vectorNorm;
+  if (vectorNorm.value <= linearAlgebraTolerance.zero) {
+    return err("precondition-violated", "Cannot test the zero vector as an eigendirection");
+  }
+
+  const denominator = dot2(vector, vector);
+  if (!denominator.ok) return denominator;
+  const numerator = dot2(transformed.value, vector);
+  if (!numerator.ok) return numerator;
+  const lambda = numerator.value / denominator.value;
+  const finiteLambda = finiteResult(lambda, "Eigenvector check scale factor");
+  if (!finiteLambda.ok) return finiteLambda;
+
+  const expected = scale2(vector, lambda);
+  if (!expected.ok) return expected;
+  const residualVector = subtract2(transformed.value, expected.value);
+  if (!residualVector.ok) return residualVector;
+  const residual = norm2(residualVector.value);
+  if (!residual.ok) return residual;
+  const normalizedResidual = residual.value / vectorNorm.value;
+
+  return ok({
+    transformed: transformed.value,
+    lambda,
+    residual: residual.value,
+    isEigenvector: normalizedResidual <= linearAlgebraTolerance.loose,
+  });
 };

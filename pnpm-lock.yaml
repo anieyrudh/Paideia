@@ -688,9 +688,15 @@ importers:
       '@paideia/content-schema':
         specifier: workspace:*
         version: link:../../../core/content-schema
+      '@paideia/linear-algebra':
+        specifier: workspace:*
+        version: link:../../../core/linear-algebra
       '@paideia/mechanics':
         specifier: workspace:*
         version: link:../../../core/mechanics
+      '@paideia/plotting':
+        specifier: workspace:*
+        version: link:../../../core/plotting
       '@paideia/prediction-gate':
         specifier: workspace:*
         version: link:../../../core/prediction-gate
@@ -700,6 +706,9 @@ importers:
       '@paideia/shared':
         specifier: workspace:*
         version: link:../../../core/shared
+      '@paideia/sim-runtime':
+        specifier: workspace:*
+        version: link:../../../core/sim-runtime
       '@paideia/ui-sim':
         specifier: workspace:*
         version: link:../../../core/ui-sim
