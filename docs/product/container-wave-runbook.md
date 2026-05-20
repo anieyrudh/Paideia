@@ -100,7 +100,7 @@ Merge only when P0 is zero and P1 is resolved or explicitly deferred in `TECHNIC
 | Track | Queue id | Starting status | Required kernels |
 | --- | --- | --- | --- |
 | A-Level Physics | `alevel.physics.momentum` | `reviewed` | `core/sim-runtime`, `core/mechanics`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
-| A-Level Physics | `alevel.physics.waves` | `ready-for-build` | `core/sim-runtime`, `core/function-eval`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| A-Level Physics | `alevel.physics.waves` | `reviewed` | `core/sim-runtime`, `core/function-eval`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 | Shared physics | `shared.physics.free-body-diagram-mechanics` | `reviewed` | `core/sim-runtime`, `core/mechanics`, `core/linear-algebra`, `core/prediction-gate`, `core/ui-sim` |
 | Shared circuits | `shared.circuits.circuit-phasor-reasoning` | `ready-for-build` | `core/circuits`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 
@@ -117,8 +117,8 @@ These entries are approved for assignment after the current four-track wave has 
 | Shared math | `shared.linear-algebra.eigenvector-transformations` | `ready-for-build` | `core/sim-runtime`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
 | Shared math | `shared.dynamical-systems.ode-phase-portrait` | `ready-for-build` | `core/sim-runtime`, `core/dynamical-systems`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
 | Shared optimisation | `shared.optimization.gradient-descent-landscape` | `ready-for-build` | `core/optimization`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
-| A-Level Physics | `alevel.physics.circuits` | `ready-for-build` | `core/sim-runtime`, `core/circuits`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
-| A-Level Math | `alevel.math.probability-statistics` | `ready-for-build` | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| A-Level Physics | `alevel.physics.circuits` | `reviewed` | `core/sim-runtime`, `core/circuits`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| A-Level Math | `alevel.math.probability-statistics` | `reviewed` | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 
 ## SUTD Next Wave
 
@@ -126,9 +126,9 @@ These SUTD curriculum-wrapper entries are ready for the SUTD production loop. Th
 
 | Track | Queue id | Starting status | Required kernels |
 | --- | --- | --- | --- |
-| Freshmore probability | `sutd.freshmore.bayes-updating` | `ready-for-build` | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
-| Freshmore linear algebra | `sutd.freshmore.eigenvector-transformations` | `ready-for-build` | `core/sim-runtime`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
-| EPD control | `sutd.epd.bode-stability-margin` | `ready-for-build` | `core/sim-runtime`, `core/control-systems`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| Freshmore probability | `sutd.freshmore.bayes-updating` | `reviewed` | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| Freshmore linear algebra | `sutd.freshmore.eigenvector-transformations` | `reviewed` | `core/sim-runtime`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+| EPD control | `sutd.epd.bode-stability-margin` | `reviewed` | `core/sim-runtime`, `core/control-systems`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 | ESD stochastic optimisation | `sutd.esd.newsvendor-critical-fractile` | `ready-for-build` | `core/sim-runtime`, `core/probability-stats`, `core/optimization`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 | CSD algorithms | `sutd.csd.dynamic-programming-state-recursion` | `ready-for-build` | `core/sim-runtime`, `core/algorithm-trace`, `core/graph-layout`, `core/prediction-gate`, `core/ui-sim` |
 | ASD environmental systems | `sutd.asd.shading-daylight-heat-gain` | `ready-for-build` | `core/sim-runtime`, `core/linear-algebra`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
