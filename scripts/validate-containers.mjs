@@ -14,7 +14,7 @@ import { basename, isAbsolute, join, relative, resolve } from "node:path";
 import YAML from "yaml";
 
 const REPO_ROOT = resolve(process.cwd());
-const BRANCHES = ["a-level", "sutd"];
+const BRANCHES = ["a-level", "sutd", "shared"];
 let schemas = null;
 
 const REQUIRED_FILES = new Set(["container.yaml", "concept-card.md", "README.md", "TECHNICAL.md"]);

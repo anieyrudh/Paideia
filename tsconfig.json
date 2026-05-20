@@ -28,6 +28,7 @@
     { "path": "./core/sim-runtime" },
     { "path": "./core/ui-sim" },
     { "path": "./core/three-scene" },
+    { "path": "./shared/packages/sims" },
     { "path": "./a-level/packages/physics-sims" },
     { "path": "./sutd/packages/sims" },
     { "path": "./a-level/apps/shell" },

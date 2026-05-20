@@ -14,6 +14,7 @@ import GeneratedSim10SutdEpdPidStepResponsePidStepResponse from "@paideia/sutd-s
 import GeneratedSim11SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
 import GeneratedSim12SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
 import GeneratedSim13SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim14SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -91,6 +92,11 @@ export const simRegistry = {
     id: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
     title: "ODE Phase Portrait Explorer",
     Component: GeneratedSim13SutdSmtOdePhasePortraitOdePhasePortrait,
+  },
+  "shared/physics/free-body-diagram-mechanics/force-balance": {
+    id: "shared/physics/free-body-diagram-mechanics/force-balance",
+    title: "Force Balance Explorer",
+    Component: GeneratedSim14SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
   }
 } satisfies Record<string, SimHarnessEntry>;
 

@@ -512,7 +512,7 @@ entries:
   - id: shared.physics.free-body-diagram-mechanics
     title: "Free-Body Diagram / Mechanics Lab"
     priority: P0
-    status: ready-for-build
+    status: reviewed
     cluster: Physics / engineering
     discipline: physics
     reuse_status: shared-core

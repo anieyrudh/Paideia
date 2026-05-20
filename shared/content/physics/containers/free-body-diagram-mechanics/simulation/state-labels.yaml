@@ -1,0 +1,7 @@
+state_labels:
+  supportRightNewtons:
+    label: "Right support force"
+    meaning: "Horizontal support force opposing the fixed 6 N left pull."
+  supportUpNewtons:
+    label: "Up support force"
+    meaning: "Vertical support force opposing the fixed 5 N weight."

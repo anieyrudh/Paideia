@@ -22,7 +22,7 @@
     "agent:validate": "node scripts/validate-agent-docs.mjs",
     "test:a11y": "node scripts/run-a11y.mjs",
     "axe": "pnpm -r axe",
-    "boundary": "dependency-cruiser --config .dependency-cruiser.cjs core a-level sutd",
+    "boundary": "dependency-cruiser --config .dependency-cruiser.cjs core shared a-level sutd",
     "license:check": "node scripts/check-licenses.mjs"
   },
   "devDependencies": {

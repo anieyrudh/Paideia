@@ -2,13 +2,14 @@
  * dependency-cruiser configuration for the Paideia monorepo.
  *
  * Rules enforce the branch boundary contract from docs/architecture.md:
- *   - core/* MUST NOT import from a-level/ or sutd/
+ *   - core/* MUST NOT import from shared/, a-level/, or sutd/
+ *   - shared/* MUST NOT import from a-level/ or sutd/
  *   - a-level/ MUST NOT import from sutd/
  *   - sutd/ MUST NOT import from a-level/
  *   - a-level/packages MUST NOT import sutd/packages and vice versa
  *
  * Invoked by .github/workflows/boundary-check.yml:
- *   pnpm dlx dependency-cruiser --config .dependency-cruiser.cjs core a-level sutd
+ *   pnpm dlx dependency-cruiser --config .dependency-cruiser.cjs core shared a-level sutd
  */
 module.exports = {
   forbidden: [
@@ -18,6 +19,14 @@ module.exports = {
       comment:
         "Anything under core/** is shared infrastructure and must not depend on a specific branch.",
       from: { path: "^core/" },
+      to: { path: "^(shared|a-level|sutd)/" }
+    },
+    {
+      name: "shared-no-branch-imports",
+      severity: "error",
+      comment:
+        "Anything under shared/** is reusable curriculum infrastructure and must not depend on a specific branch.",
+      from: { path: "^shared/" },
       to: { path: "^(a-level|sutd)/" }
     },
     {
@@ -59,7 +68,7 @@ module.exports = {
       fileName: "tsconfig.base.json"
     },
     tsPreCompilationDeps: true,
-    includeOnly: "^(core|a-level|sutd)/",
+    includeOnly: "^(core|shared|a-level|sutd)/",
     enhancedResolveOptions: {
       exportsFields: ["exports"],
       conditionNames: ["import", "require", "node", "default"]

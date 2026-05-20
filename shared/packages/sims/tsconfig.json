@@ -1,0 +1,17 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "references": [
+    { "path": "../../../core/content-schema" },
+    { "path": "../../../core/mechanics" },
+    { "path": "../../../core/prediction-gate" },
+    { "path": "../../../core/shared" },
+    { "path": "../../../core/ui-sim" }
+  ]
+}

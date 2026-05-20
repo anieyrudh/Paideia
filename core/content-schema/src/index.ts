@@ -17,6 +17,8 @@
 
 import { z } from "zod";
 
+const branchId = z.enum(["a-level", "sutd", "shared"]);
+
 // ──────────────────────────────────────────────────────────────────────────
 // Branding helpers (mirror @paideia/shared without runtime import)
 // ──────────────────────────────────────────────────────────────────────────
@@ -327,7 +329,7 @@ export const AuthoringMetadata = z.object({
 export const ConceptCardFrontmatter = z.object({
   subject: z.string().min(2).max(80), // "physics", "general-paper", "calculus"
   concept: slug,
-  branch: z.enum(["a-level", "sutd"]),
+  branch: branchId,
   level: z.string().min(1).max(40).optional(), // "H2", "H1", "Freshmore"
   syllabus_ref: z.string().min(2).max(120).optional(), // "9749 / 17"
   prerequisites: z.array(slug).default([]),
@@ -374,7 +376,7 @@ export const ContainerSpec = z.object({
   // Identity
   id: slug, // "simple-harmonic-motion"
   aliases: z.array(z.string().min(2).max(120)).default([]),
-  branch: z.enum(["a-level", "sutd"]), // LOCKED
+  branch: branchId, // LOCKED
   subject: z.string().min(2).max(80), // "physics"
   level: z.string().min(1).max(40).optional(),
   module: z.string().min(2).max(120).optional(),
@@ -562,7 +564,7 @@ export const ConceptPackageSpec = ContainerSpec;
 
 export const CourseMap = z.object({
   schema_version: z.literal("1.0.0"),
-  branch: z.enum(["a-level", "sutd"]),
+  branch: branchId,
   subject: z.string().min(2).max(80),
   syllabus_ref: z.string().optional(),
   concepts: z

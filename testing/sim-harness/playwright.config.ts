@@ -4,6 +4,7 @@ export default defineConfig({
   testDir: "../..",
   testMatch: [
     "a-level/content/**/containers/**/simulation/**/*.test.ts",
+    "shared/content/**/containers/**/simulation/**/*.test.ts",
     "sutd/content/**/containers/**/simulation/**/*.test.ts",
   ],
   fullyParallel: true,

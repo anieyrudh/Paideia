@@ -1,0 +1,11 @@
+presets:
+  - id: balanced
+    label: "Balanced"
+    state:
+      supportRightNewtons: 6
+      supportUpNewtons: 5
+  - id: sideways-drift
+    label: "Sideways drift"
+    state:
+      supportRightNewtons: 8
+      supportUpNewtons: 5
