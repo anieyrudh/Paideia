@@ -66,6 +66,11 @@ curriculum shells, generated graph data, media, and client-side simulations from
 GitHub Actions. Add a backend only when a feature requires accounts, synced
 progress, notebook execution, AI/API calls, or other server-owned state.
 
+Configure Pages to deploy from GitHub Actions. The Pages workflow discovers
+`<branch>/apps/shell` apps and publishes them under matching paths such as
+`/a-level/` and `/sutd/`; new product slices appear after their generated graph
+data lands on `main`.
+
 See [Hosting and licensing plan](product/hosting-and-licensing.md).
 
 ## Discussions

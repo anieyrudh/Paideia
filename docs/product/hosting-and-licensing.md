@@ -53,6 +53,33 @@ The browser owns the normal learner loop:
 | Embeds | static host-ready bundle per container |
 | Secrets | none in the frontend |
 
+## Automatic Pages Publishing
+
+The GitHub Pages workflow builds one static artifact from every discovered
+curriculum shell at `<branch>/apps/shell`.
+
+Current outputs:
+
+| Source app | Published path |
+| --- | --- |
+| `a-level/apps/shell` | `/a-level/` |
+| `sutd/apps/shell` | `/sutd/` |
+
+New product slices do not require deployment edits. A container PR updates the
+container files and generated graph data; after merge to `main`, the Pages
+workflow rebuilds the shell and the new slice appears in the catalogue.
+
+New curriculum shells are also picked up automatically if they follow the same
+path convention:
+
+```text
+<branch>/apps/shell/package.json
+```
+
+The builder is `pnpm build:pages`, implemented by `scripts/build-pages.mjs`.
+It builds each shell with a relative Vite base and writes the deployable
+artifact to `dist/pages/`.
+
 ## When To Add A Backend
 
 Do not add Railway, Fly, Supabase, or a custom server for the first public

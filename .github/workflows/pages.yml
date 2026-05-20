@@ -1,0 +1,99 @@
+name: Pages
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/pages.yml"
+      - "a-level/**"
+      - "shared/**"
+      - "sutd/**"
+      - "core/**"
+      - "scripts/build-pages.mjs"
+      - "scripts/generate-knowledge-graph.mjs"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "tsconfig.base.json"
+      - "tsconfig.json"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/pages.yml"
+      - "a-level/**"
+      - "shared/**"
+      - "sutd/**"
+      - "core/**"
+      - "scripts/build-pages.mjs"
+      - "scripts/generate-knowledge-graph.mjs"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "tsconfig.base.json"
+      - "tsconfig.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+env:
+  NODE_VERSION: "20"
+
+jobs:
+  build:
+    name: Build Pages artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Regenerate shell catalogue data
+        run: pnpm graph:generate
+
+      - name: Verify generated shell catalogue freshness
+        run: pnpm graph:check
+
+      - name: Build Pages artifact
+        run: pnpm build:pages
+
+      - name: Configure Pages
+        if: github.event_name == 'push'
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        if: github.event_name == 'push'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/pages
+
+  deploy:
+    name: Deploy to GitHub Pages
+    if: github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
