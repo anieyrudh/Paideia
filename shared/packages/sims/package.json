@@ -8,6 +8,7 @@
   "exports": {
     ".": "./src/index.ts",
     "./bayes-updating": "./src/bayes-updating.tsx",
+    "./central-limit-theorem": "./src/central-limit-theorem.tsx",
     "./circuit-phasor-reasoning": "./src/circuit-phasor-reasoning.tsx",
     "./eigenvector-transformations": "./src/eigenvector-transformations.tsx",
     "./free-body-diagram-mechanics": "./src/free-body-diagram-mechanics.tsx"
@@ -38,6 +39,7 @@
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
     "jsdom": "^25.0.0",
+    "fast-check": "^3.23.2",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "typescript": "^5.6.0",

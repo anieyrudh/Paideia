@@ -169,6 +169,15 @@ export const TransferProblem = z.object({
   rubric_path: z.string().optional(), // path to a rubric .md
 });
 
+export const PredictionCommittedEmbedStateSpec = z.object({
+  predictionCommitted: z.boolean(),
+});
+
+export const EmbedThemeSpec = z.object({
+  colorScheme: z.enum(["light", "dark"]),
+  accentColor: z.string().optional(),
+});
+
 export const ConceptLink = z.object({
   id: slug,
   title: z.string().min(3).max(200),
@@ -594,6 +603,10 @@ export type TManipulateSpec = z.infer<typeof ManipulateSpec>;
 export type TObserveSpec = z.infer<typeof ObserveSpec>;
 export type TExplainSpec = z.infer<typeof ExplainSpec>;
 export type TTransferProblem = z.infer<typeof TransferProblem>;
+export type TPredictionCommittedEmbedStateSpec = z.infer<
+  typeof PredictionCommittedEmbedStateSpec
+>;
+export type TEmbedThemeSpec = z.infer<typeof EmbedThemeSpec>;
 export type TSimulationSpec = z.infer<typeof SimulationSpec>;
 export type TAssessmentVariant = z.infer<typeof AssessmentVariant>;
 export type TRubricTrace = z.infer<typeof RubricTrace>;

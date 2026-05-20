@@ -11,6 +11,7 @@ The package exports readonly distribution/data types plus pure functions for:
 - z-scores
 - fixed-width histogram bins and densities
 - positive-evidence Bayes updates by normalising true-positive and false-positive routes
+- sampling distributions of means from caller-owned random thresholds
 
 Every public operation that can fail returns `KernelResult`.
 
@@ -25,6 +26,7 @@ Every public operation that can fail returns `KernelResult`.
 | Sample variance needs at least two observations | `summarize` rejects singleton samples unless `variance: "population"` is requested |
 | Histogram bins cover a valid domain | `histogram` checks `min < max`, positive integer `binCount`, and every value within the selected domain |
 | Bayes positive evidence conserves probability mass | `bayesPositiveEvidence` brands all input probabilities, computes the two evidence routes, and reuses `normalizeDistribution` for posterior mass |
+| Sampling thresholds are valid and caller-owned | `samplingDistributionOfMean` accepts explicit thresholds, rejects values outside `[0, 1]`, rejects ragged samples, and derives sample means without hidden random state |
 | Inputs are not mutated | Sorting uses copies; binning and normalisation allocate new arrays |
 
 ## Dependency And License Notes
@@ -37,7 +39,7 @@ No external runtime dependencies are introduced. No GPL, AGPL, LGPL, SSPL, BUSL,
 
 ## Numerical Notes
 
-`summarize` uses Welford's online update to reduce cancellation for variance while still returning deterministic results for a fixed input order. `quantile` uses the common linear interpolation position `p * (n - 1)`. Histogram density is `count / (values.length * binWidth)`, so summing `density * binWidth` over all bins equals 1 for values inside the domain.
+`summarize` uses Welford's online update to reduce cancellation for variance while still returning deterministic results for a fixed input order. `quantile` uses the common linear interpolation position `p * (n - 1)`. Histogram density is `count / (values.length * binWidth)`, so summing `density * binWidth` over all bins equals 1 for values inside the domain. `samplingDistributionOfMean` deliberately consumes caller-supplied thresholds instead of owning a PRNG, preserving deterministic replay and keeping random state out of the kernel.
 
 ## Anieyrudh Filter pass
 
@@ -47,3 +49,6 @@ The Filter should reject any sim that displays probability mass, expected value,
 - non-negative spread: generated distribution tests assert variance is never negative
 - order independence: summary tests assert reordering observations preserves mean and variance
 - visual honesty: histogram tests assert integrated density is 1 over the declared domain
+- CLT boundary: sampling-distribution tests assert thresholds map to deterministic sample means, reject invalid thresholds, and reject ragged samples
+
+Core-change traceability: additive sampling-distribution and embed-schema APIs are tracked in [#112](https://github.com/anieyrudh/Paideia/issues/112).

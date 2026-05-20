@@ -7,6 +7,7 @@ import {
   normalizeDistribution,
   probabilityStatsTolerance,
   quantile,
+  samplingDistributionOfMean,
   summarize,
   variance,
   zScore,
@@ -109,6 +110,52 @@ describe("@paideia/probability-stats", () => {
     if (mean.ok) expect(approxEqual(mean.value, 2.5, probabilityStatsTolerance.tight)).toBe(true);
     expect(spread.ok).toBe(true);
     if (spread.ok) expect(approxEqual(spread.value, 0.75, probabilityStatsTolerance.tight)).toBe(true);
+  });
+
+  it("computes a sampling distribution of means from caller-owned thresholds", () => {
+    const distribution: DiscreteDistribution = [
+      { id: "low", probability: p(0.5), value: 0 },
+      { id: "high", probability: p(0.5), value: 10 },
+    ];
+
+    const result = samplingDistributionOfMean({
+      distribution,
+      thresholdSamples: [
+        [0.1, 0.2],
+        [0.8, 0.9],
+        [0.1, 0.9],
+      ],
+      histogramBinCount: 3,
+    });
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.value.sampleMeans).toEqual([0, 10, 5]);
+      expect(approxEqual(result.value.populationMean, 5, probabilityStatsTolerance.tight)).toBe(true);
+      expect(approxEqual(result.value.standardError, 2.5 * Math.SQRT2, probabilityStatsTolerance.tight)).toBe(true);
+      expect(result.value.histogram.length).toBe(3);
+    }
+  });
+
+  it("rejects invalid sampling distribution thresholds and ragged samples", () => {
+    const distribution: DiscreteDistribution = [
+      { id: "low", probability: p(0.5), value: 0 },
+      { id: "high", probability: p(0.5), value: 10 },
+    ];
+
+    const invalidThreshold = samplingDistributionOfMean({
+      distribution,
+      thresholdSamples: [[1.2]],
+    });
+    expect(invalidThreshold.ok).toBe(false);
+    if (!invalidThreshold.ok) expect(invalidThreshold.error.code).toBe("out-of-domain");
+
+    const ragged = samplingDistributionOfMean({
+      distribution,
+      thresholdSamples: [[0.2, 0.4], [0.6]],
+    });
+    expect(ragged.ok).toBe(false);
+    if (!ragged.ok) expect(ragged.error.code).toBe("precondition-violated");
   });
 
   it("returns errors instead of non-finite derived moments", () => {
