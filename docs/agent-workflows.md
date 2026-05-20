@@ -46,11 +46,11 @@ Run `pnpm agent:validate` after changing any agent-facing instructions.
 You are building one product-quality Paideia container.
 
 Target:
-- Branch: <a-level | sutd>
-- Subject or pillar: <subject-or-pillar>
+- Branch: <a-level | sutd | shared>
+- Subject, pillar, or discipline: <subject-or-pillar-or-discipline>
 - Concept id: <namespaced-id from docs/product/container-build-queue.yaml>
 - Title: <human title>
-- Container path: <branch>/content/<subject-or-pillar>/containers/<slug>
+- Container path: <branch>/content/<subject-or-pillar-or-discipline>/containers/<slug>
 
 Read first:
 - AGENTS.md
@@ -72,6 +72,13 @@ names, file paths, kernel names, or implementation details in the learner UI.
 Show formulas with substitution and units when calculations appear. Use the
 `kernel_dependencies` listed in the build queue; do not inline reusable math,
 physics, graph, control, probability, or state logic in the container.
+
+Path rule:
+- `a-level.*` queue ids live under `a-level/content/<subject>/containers/<slug>`.
+- `sutd.*` queue ids live under `sutd/content/<pillar>/containers/<slug>`.
+- `shared.*` queue ids always live under `shared/content/<discipline>/containers/<slug>`.
+  Never place a `shared.*` queue item inside `a-level/` or `sutd/`; curriculum
+  wrappers can link to shared-core containers later.
 
 Required outcome:
 - Valid v2 container layout.

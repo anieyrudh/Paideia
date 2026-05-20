@@ -11,6 +11,7 @@
   ],
   "references": [
     { "path": "../../a-level/packages/physics-sims" },
+    { "path": "../../shared/packages/sims" },
     { "path": "../../sutd/packages/sims" }
   ]
 }

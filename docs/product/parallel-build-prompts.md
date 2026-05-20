@@ -12,6 +12,11 @@ let both PRs land separately and resolve generated-file conflicts during merge.
 After every rebase or conflict resolution, rerun graph generation and check
 generated outputs before review.
 
+Shared-core rule: a queue id beginning with `shared.` must be built at
+`shared/content/<discipline>/containers/<concept-id>/` and registered through a
+shared package such as `@paideia/shared-sims`. Do not move a shared-core concept
+into `a-level/` or `sutd/`; those curricula can add wrappers in later PRs.
+
 ## SUTD Parallel Wave
 
 Use the prompt in `docs/product/sutd-product-slice-template.md`, replacing the

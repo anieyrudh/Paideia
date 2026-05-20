@@ -92,9 +92,9 @@ Merge only when P0 is zero and P1 is resolved or explicitly deferred in `TECHNIC
 
 | Track | Queue id | Starting status | Required kernels |
 | --- | --- | --- | --- |
-| A-Level Physics | `alevel.physics.momentum` | `ready-for-build` | `core/sim-runtime`, `core/mechanics`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| A-Level Physics | `alevel.physics.momentum` | `reviewed` | `core/sim-runtime`, `core/mechanics`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 | A-Level Physics | `alevel.physics.waves` | `ready-for-build` | `core/sim-runtime`, `core/function-eval`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
-| Shared physics | `shared.physics.free-body-diagram-mechanics` | `ready-for-build` | `core/sim-runtime`, `core/mechanics`, `core/linear-algebra`, `core/prediction-gate`, `core/ui-sim` |
+| Shared physics | `shared.physics.free-body-diagram-mechanics` | `reviewed` | `core/sim-runtime`, `core/mechanics`, `core/linear-algebra`, `core/prediction-gate`, `core/ui-sim` |
 | Shared circuits | `shared.circuits.circuit-phasor-reasoning` | `ready-for-build` | `core/circuits`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 
 Build these as separate PRs. If several are active at once, merge one, sync the others with `main`, regenerate graph, rerun full checks, then merge the next.
