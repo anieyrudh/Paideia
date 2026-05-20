@@ -45,6 +45,10 @@ Do not let two agents claim the same `ready-for-build` entry. If two attempts ex
 
 If a PR fails because the concept needs missing shared logic, stop the container PR and open a kernel or clean-room issue. Do not hide reusable math inside the container.
 
+After syncing or rebasing onto `main`, run `pnpm install` before `pnpm typecheck`
+or package tests. New workspace packages, such as `@paideia/shared-sims`, require
+fresh workspace links even when no third-party dependency changed.
+
 ## Builder Rules
 
 Each builder must:

@@ -73,6 +73,9 @@ Show formulas with substitution and units when calculations appear. Use the
 `kernel_dependencies` listed in the build queue; do not inline reusable math,
 physics, graph, control, probability, or state logic in the container.
 
+After syncing or rebasing onto `main`, run `pnpm install` before typecheck or
+package tests so newly added workspace packages are linked.
+
 Path rule:
 - `a-level.*` queue ids live under `a-level/content/<subject>/containers/<slug>`.
 - `sutd.*` queue ids live under `sutd/content/<pillar>/containers/<slug>`.
@@ -93,6 +96,7 @@ Required outcome:
 
 Run:
 
+pnpm install
 pnpm container:validate
 pnpm container:docs <container-path>
 pnpm graph:generate

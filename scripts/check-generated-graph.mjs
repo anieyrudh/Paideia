@@ -8,6 +8,8 @@
  */
 
 import { spawnSync } from "node:child_process";
+import { createHash } from "node:crypto";
+import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 const REPO_ROOT = resolve(process.cwd());
@@ -25,6 +27,12 @@ const run = (command, args) =>
     stdio: ["ignore", "pipe", "pipe"],
   });
 
+const fileDigest = (path) => {
+  if (!existsSync(path)) return null;
+  return createHash("sha256").update(readFileSync(path)).digest("hex");
+};
+
+const before = new Map(generatedTargets.map((target) => [target, fileDigest(resolve(REPO_ROOT, target))]));
 const generated = run(process.execPath, [generator]);
 process.stdout.write(generated.stdout);
 process.stderr.write(generated.stderr);
@@ -33,19 +41,16 @@ if (generated.status !== 0) {
   process.exit(generated.status ?? 1);
 }
 
-const status = run("git", ["status", "--short", "--", ...generatedTargets]);
-process.stdout.write(status.stdout);
-process.stderr.write(status.stderr);
+const changedByGenerator = generatedTargets.filter(
+  (target) => before.get(target) !== fileDigest(resolve(REPO_ROOT, target)),
+);
 
-if (status.status !== 0) {
-  process.exit(status.status ?? 1);
-}
-
-if (status.stdout.trim().length > 0) {
+if (changedByGenerator.length > 0) {
+  for (const target of changedByGenerator) process.stderr.write(` M ${target}\n`);
   process.stderr.write(
     [
       "Generated graph data is stale.",
-      "Run `pnpm graph:generate`, commit the generated files, and retry.",
+      "Run `pnpm graph:generate`, include the generated files in your PR, and retry.",
       "",
     ].join("\n"),
   );

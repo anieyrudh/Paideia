@@ -204,6 +204,7 @@ Safety:
 - check any new dependency against LICENSES.json before using it
 
 Validation before PR:
+- pnpm install
 - pnpm container:validate
 - pnpm container:docs <container-path>
 - pnpm graph:generate
