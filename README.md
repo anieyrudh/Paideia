@@ -188,6 +188,7 @@ Common tasks:
 | Check generated lesson graph | `pnpm graph:check` |
 | Follow the build roadmap | [Container roadmap](docs/product/container-roadmap.md) |
 | Run a container wave | [Container wave runbook](docs/product/container-wave-runbook.md) |
+| Understand hosting and licensing direction | [Hosting and licensing plan](docs/product/hosting-and-licensing.md) |
 
 ## Project Docs
 
@@ -196,6 +197,7 @@ Common tasks:
 - [Container specification](docs/container-spec.md)
 - [Product roadmap](docs/product/container-roadmap.md)
 - [Container wave runbook](docs/product/container-wave-runbook.md)
+- [Hosting and licensing plan](docs/product/hosting-and-licensing.md)
 - [Core module inventory](docs/core-modules.md)
 - [GitHub setup](docs/github-setup.md)
 - [Clean-room dependency guide](docs/dependency-clean-room.md)
@@ -205,3 +207,7 @@ Common tasks:
 - Code: [MIT](LICENSE)
 - Learning content: [CC-BY-4.0](LICENSE-content)
 - Third-party notices: [NOTICE](NOTICE)
+
+The proposed future direction is Apache-2.0 for code and CC-BY-SA-4.0 for
+curriculum content. That requires a dedicated migration PR; the current license
+files remain authoritative until then.

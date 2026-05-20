@@ -62,10 +62,15 @@ Code is MIT. Curriculum, concept cards, decision matrices, and sources are
 CC-BY-4.0. Third-party notices live in `NOTICE`, and bundled runtime dependency
 licenses must pass `LICENSES.json`.
 
+The proposed future direction is Apache-2.0 for code and CC-BY-SA-4.0 for
+curriculum content. That is a migration plan, not the current effective license;
+see [Hosting and licensing plan](product/hosting-and-licensing.md).
+
 ## Where To Read Next
 
 - [Container specification](container-spec.md)
 - [Public CFE onboarding brief](public/cfe-onboarding.html)
+- [Hosting and licensing plan](product/hosting-and-licensing.md)
 - [Core module inventory](core-modules.md)
 - [Reuse boundaries and clean-room rewrites](reuse-boundaries.md)
 - [GitHub setup](github-setup.md)
