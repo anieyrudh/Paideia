@@ -18,7 +18,7 @@ test.describe("Shared Bayes Updating", () => {
     const observation = page.getByLabel("Observation unlocked");
     await expect(observation).toContainText("Positive evidence reweights the prior");
     await expect(observation).toContainText("Posterior after +");
-    await expect(page.getByLabel("Formula used")).toContainText("P(H \\mid +)");
+    await expect(page.getByLabel("Formula used")).toContainText("P(H | +)");
     await expect(page.getByLabel("Formula legend")).toContainText("false-positive rate");
     await expect(page.getByLabel("Formula used")).toContainText("Substitution");
   });
@@ -40,7 +40,8 @@ test.describe("Shared Bayes Updating", () => {
     await page.getByRole("button", { name: "Commit prediction" }).click();
 
     await expect(page.getByLabel("Positive evidence route chart")).toBeVisible();
-    await expect(page.getByLabel("Formula used")).toContainText("\\color{#2563eb}");
+    await expect(page.getByLabel("Formula used")).toContainText("P(H | +)");
+    await expect(page.getByLabel("Formula used")).not.toContainText("\\color");
     await expect(page.getByLabel("Formula legend")).toContainText("prior probability");
     await expect(page.getByLabel("Formula used")).toContainText("Result:");
     await expect(page.getByLabel("Formula used")).toContainText("because a positive result");

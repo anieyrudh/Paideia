@@ -21,6 +21,7 @@
 | bayes-updating | `core/charting` | Declared in `simulation/simulation.yaml` |
 | bayes-updating | `core/prediction-gate` | Declared in `simulation/simulation.yaml` |
 | bayes-updating | `core/ui-sim` | Declared in `simulation/simulation.yaml` |
+| bayes-updating | `core/shared` | Declared in `simulation/simulation.yaml` |
 
 ## SimulationSpec (frozen)
 
@@ -35,6 +36,7 @@ kernel_deps:
   - core/charting
   - core/prediction-gate
   - core/ui-sim
+  - core/shared
 predict:
   prompt: |
     With prior 10%, sensitivity 95%, and specificity 90%, what is P(H|+) approximately?
@@ -82,7 +84,7 @@ observe:
         Show positive-evidence routes, Bayes formula, substituted values, and posterior interpretation.
 explain:
   prompt: |
-    Explain why high sensitivity can still produce a moderate posterior when the prior probability is low.
+    Which route contributes most to the positive results, and how can you tell?
   socratic: true
   expected_misconceptions_surfaced:
     - A positive test always means high probability
@@ -125,11 +127,18 @@ Filter version: aniegpt v1.0
 - Canonical-path risk: this is a `shared.*` queue item, so it must not live under a curriculum wrapper. Resolved by building at `shared/content/math/containers/bayes-updating`.
 - Package-boundary risk: learner runtime must not live inside the content folder or a curriculum package. Resolved by adding `@paideia/shared-sims/bayes-updating` and declaring that shared package subpath in the simulation spec.
 - Prediction-gate leak risk: posterior readouts, route chart, and formula panel must not enter the DOM before commitment. Resolved with Playwright assertions for blocked reveal, committed reveal, manipulation, formula evidence, and revealed-state axe coverage.
+- Architecture-review risk: Bayes posterior computation must not be owned by the sim layer. Resolved by adding `bayesPositiveEvidence()` to `core/probability-stats` and making the sim consume that kernel result.
+- Embed-boundary risk: host-provided state and theme values must be runtime-validated. Resolved by adding Zod parsing to `embed/index.ts` plus invalid-input embed tests.
+- Pedagogy-review risk: the Explain prompt must not give away the mechanism. Resolved by changing it to the question "Which route contributes most to the positive results, and how can you tell?"
 
 ### P1 issues
 
 - Queue simulation type `probability-tree-updater` is not in the current `SimulationSpec` enum. Resolved by using schema-supported `decision-matrix` while preserving the probability-route updater behavior in the visible sim.
-- Formula evidence could be shallow if it showed only the final answer. Resolved with a color-coded LaTeX formula, nearby legend, substituted values, dimensionless-unit interpretation, and the true-positive/false-positive route chart.
+- Formula evidence could be shallow if it showed only the final answer. Resolved with a color-coded formula code block, nearby legend, substituted values, dimensionless-unit interpretation, and the true-positive/false-positive route chart.
+- Queue-state drift: the build queue entry must not land as `in-build` after the container is reviewed. Resolved by setting `shared.probability.bayes-updating` to `reviewed`.
+- Composite TypeScript wiring: `@paideia/shared-sims` must reference every core package it imports. Resolved by adding `core/charting` and `core/probability-stats` to `shared/packages/sims/tsconfig.json`.
+- Misconception artifact: the container needed a named misconception map with evidence and predict-surface fields. Resolved by adding `concept-map/misconceptions.md`.
+- Accessibility evidence: revealed-state axe coverage is implemented in `simulation/simulation.test.ts`; local Playwright execution is recorded in the PR validation notes when the browser harness runs.
 
 ### High-bandwidth questions surfaced
 

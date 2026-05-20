@@ -39,6 +39,24 @@ export interface HistogramBin {
   readonly density: number;
 }
 
+export interface BayesPositiveEvidenceInput {
+  readonly prior: Probability;
+  readonly sensitivity: Probability;
+  readonly specificity: Probability;
+}
+
+export interface BayesPositiveEvidence {
+  readonly prior: Probability;
+  readonly complementPrior: Probability;
+  readonly sensitivity: Probability;
+  readonly specificity: Probability;
+  readonly falsePositiveRate: Probability;
+  readonly truePositiveWeight: number;
+  readonly falsePositiveWeight: number;
+  readonly posterior: Probability;
+  readonly routes: DiscreteDistribution<"true-positive" | "false-positive">;
+}
+
 export const probabilityStatsTolerance = {
   default: 1e-10,
   tight: 1e-12,
@@ -144,6 +162,47 @@ export const normalizeDistribution = <TId extends string>(
   }
 
   return ok(distribution);
+};
+
+export const bayesPositiveEvidence = (
+  input: BayesPositiveEvidenceInput,
+): KernelResult<BayesPositiveEvidence> => {
+  const prior = probability(Number(input.prior));
+  if (!prior.ok) return prior;
+  const sensitivity = probability(Number(input.sensitivity));
+  if (!sensitivity.ok) return sensitivity;
+  const specificity = probability(Number(input.specificity));
+  if (!specificity.ok) return specificity;
+
+  const complementPrior = probability(1 - Number(prior.value));
+  if (!complementPrior.ok) return complementPrior;
+  const falsePositiveRate = probability(1 - Number(specificity.value));
+  if (!falsePositiveRate.ok) return falsePositiveRate;
+
+  const truePositiveWeight = Number(sensitivity.value) * Number(prior.value);
+  const falsePositiveWeight = Number(falsePositiveRate.value) * Number(complementPrior.value);
+  const routes = normalizeDistribution([
+    { id: "true-positive", weight: truePositiveWeight, value: 1 },
+    { id: "false-positive", weight: falsePositiveWeight, value: 0 },
+  ]);
+  if (!routes.ok) return routes;
+
+  const truePositive = routes.value.find((outcome) => outcome.id === "true-positive");
+  if (truePositive === undefined) {
+    return err("precondition-violated", "Posterior distribution is missing the true-positive route.");
+  }
+
+  return ok({
+    prior: prior.value,
+    complementPrior: complementPrior.value,
+    sensitivity: sensitivity.value,
+    specificity: specificity.value,
+    falsePositiveRate: falsePositiveRate.value,
+    truePositiveWeight,
+    falsePositiveWeight,
+    posterior: truePositive.probability,
+    routes: routes.value,
+  });
 };
 
 export const expectedValue = (

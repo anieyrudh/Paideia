@@ -1,9 +1,9 @@
 import { useMemo, useState } from "react";
 import { Sankey } from "@paideia/charting";
 import type { TPredictSpec, TSimulationSpec } from "@paideia/content-schema";
-import { normalizeDistribution } from "@paideia/probability-stats";
+import { bayesPositiveEvidence } from "@paideia/probability-stats";
 import { PredictionGate } from "@paideia/prediction-gate";
-import { err, ok, type ConceptPackageId, type KernelResult } from "@paideia/shared";
+import { ok, probability, type ConceptPackageId, type KernelResult } from "@paideia/shared";
 import { ControlGroup, Slider } from "@paideia/ui-sim";
 
 export interface BayesState {
@@ -39,7 +39,13 @@ export const bayesUpdatingSpec: TSimulationSpec = {
   id: bayesUpdatingSimId,
   title: "Bayes Updating Explorer",
   interaction_type: "decision-matrix",
-  kernel_deps: ["core/probability-stats", "core/charting", "core/prediction-gate", "core/ui-sim"],
+  kernel_deps: [
+    "core/probability-stats",
+    "core/charting",
+    "core/prediction-gate",
+    "core/ui-sim",
+    "core/shared",
+  ],
   predict: bayesUpdatingPredict,
   manipulate: {
     controls: [
@@ -77,7 +83,7 @@ export const bayesUpdatingSpec: TSimulationSpec = {
     ],
   },
   explain: {
-    prompt: "Explain why a low prior can keep a posterior moderate even when sensitivity is high.",
+    prompt: "Which route contributes most to the positive results, and how can you tell?",
     socratic: true,
     expected_misconceptions_surfaced: [
       "A positive test always means high probability",
@@ -107,32 +113,28 @@ const formatWeight = (weight: number): string => weight.toFixed(3);
 
 export const bayesEvidence = (state: BayesState): KernelResult<BayesEvidence> => {
   const current = normalizeState(state);
-  const prevalence = current.prevalencePercent / 100;
-  const sensitivity = current.sensitivityPercent / 100;
-  const specificity = current.specificityPercent / 100;
-  const falsePositiveRate = 1 - specificity;
-  const truePositiveWeight = sensitivity * prevalence;
-  const falsePositiveWeight = falsePositiveRate * (1 - prevalence);
+  const prevalence = probability(current.prevalencePercent / 100);
+  if (!prevalence.ok) return prevalence;
+  const sensitivity = probability(current.sensitivityPercent / 100);
+  if (!sensitivity.ok) return sensitivity;
+  const specificity = probability(current.specificityPercent / 100);
+  if (!specificity.ok) return specificity;
 
-  const distribution = normalizeDistribution([
-    { id: "true-positive", weight: truePositiveWeight, value: 1 },
-    { id: "false-positive", weight: falsePositiveWeight, value: 0 },
-  ]);
-  if (!distribution.ok) return distribution;
-
-  const truePositive = distribution.value.find((outcome) => outcome.id === "true-positive");
-  if (truePositive === undefined) {
-    return err("precondition-violated", "Posterior distribution is missing the true-positive route.");
-  }
+  const update = bayesPositiveEvidence({
+    prior: prevalence.value,
+    sensitivity: sensitivity.value,
+    specificity: specificity.value,
+  });
+  if (!update.ok) return update;
 
   return ok({
-    prevalence,
-    sensitivity,
-    specificity,
-    falsePositiveRate,
-    truePositiveWeight,
-    falsePositiveWeight,
-    posterior: truePositive.probability,
+    prevalence: Number(update.value.prior),
+    sensitivity: Number(update.value.sensitivity),
+    specificity: Number(update.value.specificity),
+    falsePositiveRate: Number(update.value.falsePositiveRate),
+    truePositiveWeight: update.value.truePositiveWeight,
+    falsePositiveWeight: update.value.falsePositiveWeight,
+    posterior: Number(update.value.posterior),
   });
 };
 
@@ -161,10 +163,15 @@ const FormulaPanel = ({ evidence }: { readonly evidence: BayesEvidence }) => {
       <p className="lab-kicker">Formula used</p>
       <h3>Normalize the positive evidence routes</h3>
       <pre aria-label="LaTeX formula" className="formula-code">
-        <code>{String.raw`\color{#2563eb}{P(H \mid +)} =
-\frac{\color{#d97706}{P(+ \mid H)}\color{#2563eb}{P(H)}}
-{\color{#d97706}{P(+ \mid H)}\color{#2563eb}{P(H)}
- + \color{#059669}{P(+ \mid \neg H)}\color{#7c3aed}{P(\neg H)}}`}</code>
+        <code>
+          <span className="formula-var formula-var--blue">P(H | +)</span> = ({" "}
+          <span className="formula-var formula-var--orange">P(+ | H)</span>{" "}
+          <span className="formula-var formula-var--blue">P(H)</span> ) / ({" "}
+          <span className="formula-var formula-var--orange">P(+ | H)</span>{" "}
+          <span className="formula-var formula-var--blue">P(H)</span> +{" "}
+          <span className="formula-var formula-var--green">P(+ | not H)</span>{" "}
+          <span className="formula-var formula-var--purple">P(not H)</span> )
+        </code>
       </pre>
       <dl aria-label="Formula legend" className="formula-legend">
         <div>

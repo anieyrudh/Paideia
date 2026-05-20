@@ -1,6 +1,7 @@
 import { approxEqual, probability } from "@paideia/shared";
 import { describe, expect, it } from "vitest";
 import {
+  bayesPositiveEvidence,
   expectedValue,
   histogram,
   normalizeDistribution,
@@ -19,6 +20,37 @@ const p = (value: number) => {
 };
 
 describe("@paideia/probability-stats", () => {
+  it("computes a positive-evidence Bayes update through normalized routes", () => {
+    const result = bayesPositiveEvidence({
+      prior: p(0.1),
+      sensitivity: p(0.95),
+      specificity: p(0.9),
+    });
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(result.value.truePositiveWeight).toBeCloseTo(0.095);
+      expect(result.value.falsePositiveWeight).toBeCloseTo(0.09);
+      expect(Number(result.value.posterior)).toBeCloseTo(0.5135, 4);
+      const totalMass = result.value.routes.reduce(
+        (total, outcome) => total + Number(outcome.probability),
+        0,
+      );
+      expect(approxEqual(totalMass, 1, probabilityStatsTolerance.tight)).toBe(true);
+    }
+  });
+
+  it("rejects a positive-evidence Bayes update with no positive route mass", () => {
+    const result = bayesPositiveEvidence({
+      prior: p(0),
+      sensitivity: p(0),
+      specificity: p(1),
+    });
+
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("out-of-domain");
+  });
+
   it("normalizes finite non-negative weights without mutating inputs", () => {
     const outcomes = [
       { id: "a", weight: 2, value: 1 },

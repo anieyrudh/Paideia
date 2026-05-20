@@ -10,6 +10,7 @@ The package exports readonly distribution/data types plus pure functions for:
 - linear-interpolated quantiles
 - z-scores
 - fixed-width histogram bins and densities
+- positive-evidence Bayes updates by normalising true-positive and false-positive routes
 
 Every public operation that can fail returns `KernelResult`.
 
@@ -23,6 +24,7 @@ Every public operation that can fail returns `KernelResult`.
 | Numeric observations must be finite | Shared finite guard across summaries, quantiles, histograms, and z-scores |
 | Sample variance needs at least two observations | `summarize` rejects singleton samples unless `variance: "population"` is requested |
 | Histogram bins cover a valid domain | `histogram` checks `min < max`, positive integer `binCount`, and every value within the selected domain |
+| Bayes positive evidence conserves probability mass | `bayesPositiveEvidence` brands all input probabilities, computes the two evidence routes, and reuses `normalizeDistribution` for posterior mass |
 | Inputs are not mutated | Sorting uses copies; binning and normalisation allocate new arrays |
 
 ## Dependency And License Notes
@@ -41,7 +43,7 @@ No external runtime dependencies are introduced. No GPL, AGPL, LGPL, SSPL, BUSL,
 
 The Filter should reject any sim that displays probability mass, expected value, variance, or histogram density inconsistent with this package. This implementation gives the Filter concrete probes:
 
-- mass conservation: normalised distributions and validated distributions sum to 1 within `probabilityStatsTolerance.default`
+- mass conservation: normalised distributions, Bayes evidence routes, and validated distributions sum to 1 within `probabilityStatsTolerance.default`
 - non-negative spread: generated distribution tests assert variance is never negative
 - order independence: summary tests assert reordering observations preserves mean and variance
 - visual honesty: histogram tests assert integrated density is 1 over the declared domain

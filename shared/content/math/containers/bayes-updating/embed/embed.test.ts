@@ -40,4 +40,11 @@ describe("bayes-updating embed contract", () => {
     expect(secondTarget.hasAttribute("data-paideia-theme")).toBe(false);
     expect(embed.saveState()).toEqual({ predictionCommitted: false });
   });
+
+  it("rejects invalid host-provided state and theme values", () => {
+    const embed = createContainerEmbed();
+
+    expect(() => embed.resume({ predictionCommitted: "yes" } as never)).toThrow();
+    expect(() => embed.syncTheme({ colorScheme: "contrast" } as never)).toThrow();
+  });
 });

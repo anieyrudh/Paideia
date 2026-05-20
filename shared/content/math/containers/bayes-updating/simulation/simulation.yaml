@@ -6,6 +6,7 @@ kernel_deps:
   - core/charting
   - core/prediction-gate
   - core/ui-sim
+  - core/shared
 predict:
   prompt: |
     With prior 10%, sensitivity 95%, and specificity 90%, what is P(H|+) approximately?
@@ -40,7 +41,7 @@ observe:
         Show positive-evidence routes, Bayes formula, substituted values, and posterior interpretation.
 explain:
   prompt: |
-    Explain why high sensitivity can still produce a moderate posterior when the prior probability is low.
+    Which route contributes most to the positive results, and how can you tell?
   socratic: true
   expected_misconceptions_surfaced:
     - "A positive test always means high probability"

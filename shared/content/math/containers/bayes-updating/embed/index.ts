@@ -4,6 +4,16 @@ import type {
   ContainerEmbedState,
   ContainerEmbedTheme,
 } from "./api.js";
+import { z } from "zod";
+
+const ContainerEmbedStateSchema = z.object({
+  predictionCommitted: z.boolean(),
+});
+
+const ContainerEmbedThemeSchema = z.object({
+  colorScheme: z.enum(["light", "dark"]),
+  accentColor: z.string().optional(),
+});
 
 const defaultState: ContainerEmbedState = {
   predictionCommitted: false,
@@ -33,10 +43,11 @@ export const createContainerEmbed = (): ContainerEmbedApi => {
       };
     },
     resume(nextState: ContainerEmbedState): void {
-      state = cloneState(nextState);
+      state = cloneState(ContainerEmbedStateSchema.parse(nextState));
     },
     syncTheme(theme: ContainerEmbedTheme): void {
-      targetElement?.setAttribute("data-paideia-theme", theme.colorScheme);
+      const parsedTheme = ContainerEmbedThemeSchema.parse(theme);
+      targetElement?.setAttribute("data-paideia-theme", parsedTheme.colorScheme);
     },
     destroy(): void {
       targetElement?.removeAttribute("data-paideia-theme");
