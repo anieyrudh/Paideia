@@ -419,7 +419,9 @@ const FormulaTrail = ({ evidence }: { readonly evidence: PhaseEvidence }) => {
       <p>
         Nullclines: x' = 0 gives y = 0. y' = 0 gives -D x + T y = 0, so{" "}
         {approxEqual(state.trace, 0, 1e-9)
-          ? "x = 0 for this trace value."
+          ? approxEqual(state.determinant, 0, 1e-9)
+            ? "y' = 0 is satisfied everywhere because both T and D are zero."
+            : "x = 0 for this trace value."
           : `y = (D / T)x = (${format(state.determinant)} / ${format(state.trace)})x.`}
       </p>
       <p>
