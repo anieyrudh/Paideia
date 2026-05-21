@@ -1,0 +1,64 @@
+id: centripetal-force-vector-lab
+title: "Centripetal Force Vector Lab"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/content-schema
+  - core/mechanics
+  - core/charting
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A rider moves at constant speed around a circular track. Before revealing the vectors, which direction is the acceleration at any instant?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Toward the centre of the circle."
+      - "Forward along the tangent because the rider is moving."
+      - "Outward away from the centre."
+      - "Zero because the speed is constant."
+    correct_index: 0
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: mass
+      label: "Mass"
+      kind: slider
+      kernel_binding: state.massKilograms
+      bounds: { min: 0.2, max: 3, step: 0.1 }
+    - id: speed
+      label: "Speed"
+      kind: slider
+      kernel_binding: state.speedMetresPerSecond
+      bounds: { min: 1, max: 12, step: 0.1 }
+    - id: radius
+      label: "Radius"
+      kind: slider
+      kernel_binding: state.radiusMetres
+      bounds: { min: 1, max: 10, step: 0.1 }
+    - id: position
+      label: "Position on circle"
+      kind: slider
+      kernel_binding: state.angleDegrees
+      bounds: { min: 0, max: 360, step: 5 }
+
+observe:
+  renderers:
+    - id: centripetal-force-vector-lab
+      module: "@paideia/a-level-physics-sims/circular-motion"
+      symbol: CircularMotionSim
+      props_binding: |
+        Show tangent velocity, inward radial acceleration, inward resultant force, speed-force comparison, formula substitution, units, and interpretation.
+
+explain:
+  prompt: |
+    Why can speed stay constant while velocity and acceleration keep changing direction?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Centripetal force is an extra new force"
+    - "Constant speed means zero acceleration"
+    - "The force points outward because the rider feels pushed outward"

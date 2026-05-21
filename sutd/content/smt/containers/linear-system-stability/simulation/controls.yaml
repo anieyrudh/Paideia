@@ -1,0 +1,55 @@
+controls:
+  - id: preset
+    label: "System preset"
+    kind: selector
+    options:
+      - value: damped-oscillator
+        label: "Damped oscillator"
+      - value: fast-settling-node
+        label: "Fast settling node"
+      - value: saddle-split
+        label: "Saddle split"
+      - value: growing-spiral
+        label: "Growing spiral"
+  - id: a-entry
+    label: "a coefficient"
+    kind: slider
+    min: -2
+    max: 2
+    step: 0.05
+    unit: "per time unit"
+  - id: b-entry
+    label: "b coefficient"
+    kind: slider
+    min: -2
+    max: 2
+    step: 0.05
+    unit: "per time unit"
+  - id: c-entry
+    label: "c coefficient"
+    kind: slider
+    min: -2
+    max: 2
+    step: 0.05
+    unit: "per time unit"
+  - id: d-entry
+    label: "d coefficient"
+    kind: slider
+    min: -2
+    max: 2
+    step: 0.05
+    unit: "per time unit"
+  - id: initial-x
+    label: "Initial x"
+    kind: slider
+    min: -2
+    max: 2
+    step: 0.05
+    unit: "state units"
+  - id: initial-y
+    label: "Initial y"
+    kind: slider
+    min: -2
+    max: 2
+    step: 0.05
+    unit: "state units"

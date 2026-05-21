@@ -27,6 +27,9 @@
       "path": "../../../core/mechanics"
     },
     {
+      "path": "../../../core/plotting"
+    },
+    {
       "path": "../../../core/prediction-gate"
     },
     {

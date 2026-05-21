@@ -1,0 +1,16 @@
+labels:
+  targetStep:
+    label: "Target step"
+    unit: steps
+    description: "The state ways(n) being evaluated."
+  strategy:
+    label: "Trace style"
+    description: "Whether the readout emphasises stored-state reuse or plain recursive work."
+  result:
+    label: "Number of sequences"
+    unit: sequences
+    description: "The recurrence value for the selected state."
+  memoHits:
+    label: "Memo hits"
+    unit: reused states
+    description: "Times a previously computed state is reused."
