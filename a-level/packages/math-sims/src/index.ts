@@ -12,6 +12,18 @@ export type {
   HypothesisTail,
 } from "./hypothesis-testing.js";
 export {
+  NormalDistributionSim,
+  normalDistributionModel,
+  normalDistributionPackageId,
+  normalDistributionSimId,
+  normalDistributionSpec,
+} from "./normal-distribution.js";
+export type {
+  NormalAreaMode,
+  NormalDistributionModel,
+  NormalDistributionState,
+} from "./normal-distribution.js";
+export {
   ProbabilityStatisticsSim,
   probabilityStatisticsModel,
   probabilityStatisticsPackageId,
