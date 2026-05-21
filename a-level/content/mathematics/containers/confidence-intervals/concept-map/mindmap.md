@@ -1,0 +1,25 @@
+# Confidence Intervals Mindmap
+
+- Confidence intervals
+  - Estimate a population mean
+    - centre: sample mean
+    - spread: standard error
+    - width: z-star times standard error
+  - Inputs
+    - sample mean in context units
+    - known population standard deviation
+    - sample size
+    - confidence level
+  - Outputs
+    - lower endpoint
+    - upper endpoint
+    - margin of error
+    - interpretation in repeated-sampling language
+  - Links
+    - normal distribution supplies z-star
+    - hypothesis testing shares standard error and critical values
+    - sampling distributions justify method coverage
+  - Misconceptions
+    - parameter-probability wording
+    - higher confidence assumed narrower
+    - unitless margin of error

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Confidence interval thumbnail</title>
+  <desc id="desc">A sample mean with a confidence interval and a claimed mean marker.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <rect x="56" y="56" width="528" height="248" rx="18" fill="#ffffff" stroke="#cbd5e1"/>
+  <line x1="112" x2="528" y1="190" y2="190" stroke="#475569" stroke-width="4" stroke-linecap="round"/>
+  <line x1="168" x2="472" y1="180" y2="180" stroke="#1f5f8b" stroke-width="14" stroke-linecap="round"/>
+  <line x1="168" x2="168" y1="156" y2="204" stroke="#1f5f8b" stroke-width="8" stroke-linecap="round"/>
+  <line x1="472" x2="472" y1="156" y2="204" stroke="#1f5f8b" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="320" cy="180" r="14" fill="#027a48"/>
+  <line x1="266" x2="266" y1="132" y2="228" stroke="#b42318" stroke-width="7" stroke-linecap="round"/>
+  <text x="84" y="102" fill="#0f172a" font-family="Arial, sans-serif" font-size="30" font-weight="700">Confidence interval</text>
+  <text x="170" y="254" fill="#1f2937" font-family="Arial, sans-serif" font-size="18">lower</text>
+  <text x="292" y="254" fill="#1f2937" font-family="Arial, sans-serif" font-size="18">xbar</text>
+  <text x="444" y="254" fill="#1f2937" font-family="Arial, sans-serif" font-size="18">upper</text>
+</svg>

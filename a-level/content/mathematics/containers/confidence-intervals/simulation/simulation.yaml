@@ -1,0 +1,63 @@
+id: mean-interval-lab
+title: "Mean Interval Lab"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/sim-runtime
+  - core/content-schema
+  - core/probability-stats
+  - core/charting
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+predict:
+  prompt: |
+    A sample mean is fixed at 68.0 marks. Before seeing the interval, predict what happens to the confidence interval when the confidence level rises from 90% to 99% while sigma and n stay fixed.
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The interval becomes narrower because higher confidence means more certainty."
+      - "The interval becomes wider because the multiplier must cover more sampling variation."
+      - "The sample mean moves to the centre of the population distribution."
+      - "The interval gives a 99% probability that this fixed parameter is inside it."
+    correct_index: 1
+  rationale_required: true
+manipulate:
+  controls:
+    - id: sample-mean
+      label: "Sample mean"
+      kind: slider
+      kernel_binding: state.sampleMean
+      bounds: { min: 50, max: 80, step: 0.1 }
+    - id: population-standard-deviation
+      label: "Population standard deviation"
+      kind: slider
+      kernel_binding: state.populationStandardDeviation
+      bounds: { min: 4, max: 16, step: 0.5 }
+    - id: sample-size
+      label: "Sample size"
+      kind: slider
+      kernel_binding: state.sampleSize
+      bounds: { min: 16, max: 100, step: 1 }
+    - id: confidence-level
+      label: "Confidence level"
+      kind: selector
+      kernel_binding: state.confidenceLevel
+    - id: comparison-mean
+      label: "Claimed population mean"
+      kind: slider
+      kernel_binding: state.comparisonMean
+      bounds: { min: 50, max: 80, step: 0.1 }
+observe:
+  renderers:
+    - id: mean-interval-lab
+      module: "@paideia/a-level-math-sims/confidence-intervals"
+      symbol: ConfidenceIntervalsSim
+      props_binding: |
+        Show confidence interval, standard error, critical multiplier, margin of error, substitution, units, interpretation, and legend.
+explain:
+  prompt: |
+    Why is it safer to say that the repeated-sampling method captures the true mean in a stated proportion of intervals, rather than that this particular interval has that probability?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "a confidence interval gives the probability the fixed parameter is inside"
+    - "wider intervals mean worse data in every context"
