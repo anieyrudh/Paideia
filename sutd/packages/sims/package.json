@@ -7,6 +7,7 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
+    "./dynamic-programming-state-recursion": "./src/dynamic-programming-state-recursion.tsx",
     "./graph-search-and-shortest-paths": "./src/graph-search-and-shortest-paths.tsx",
     "./linear-programming-feasible-region": "./src/linear-programming-feasible-region.tsx",
     "./load-path-and-daylight-tradeoff": "./src/load-path-and-daylight-tradeoff.tsx",

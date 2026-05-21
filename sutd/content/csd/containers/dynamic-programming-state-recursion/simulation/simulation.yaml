@@ -1,0 +1,46 @@
+id: dynamic-programming-state-recursion
+title: "Dynamic Programming State Recursion"
+interaction_type: algorithm-state-visualisation
+kernel_deps:
+  - core/sim-runtime
+  - core/graph-layout
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    When ways(5) needs ways(4), and ways(4) was already computed, what should the table do?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Reuse ways(4) without changing its value."
+      - "Recompute every branch below ways(4) so the answer is more accurate."
+      - "Change the recurrence because memoisation changes the problem."
+      - "Count only the loop iterations and ignore the state definition."
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: target-step
+      label: "Target step"
+      kind: slider
+      kernel_binding: state.targetStep
+      min: 4
+      max: 8
+      step: 1
+    - id: recursion-strategy
+      label: "Trace style"
+      kind: selector
+      kernel_binding: state.strategy
+      options: ["Memoised trace", "Plain recursion comparison"]
+observe:
+  renderers:
+    - id: state-recursion-panel
+      module: "local"
+      symbol: "DynamicProgrammingStateRecursion"
+      props_binding: "State graph, memo table, recurrence substitution, and trace."
+explain:
+  prompt: "Why does storing repeated states reduce work without changing the recurrence result?"
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "dynamic programming means any loop"
+    - "memoisation changes the recurrence result"

@@ -2,15 +2,16 @@
 import type { ComponentType } from "react";
 import GeneratedSim0LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
 import GeneratedSim1ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
-import GeneratedSim2GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim3TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim4BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim5PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim6LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim7BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim8EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim9VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim10OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim2DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
+import GeneratedSim3GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
+import GeneratedSim4TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim5BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim6PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim7LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim8BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim9EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim10VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim11OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -83,6 +84,15 @@ export const knowledgeGraph = {
     level: "Undergraduate core",
     module: "ASD environmental systems",
     status: "reviewed",
+  },
+  {
+    id: "sutd/csd/dynamic-programming-state-recursion",
+    conceptId: "dynamic-programming-state-recursion",
+    title: "Dynamic Programming State Recursion",
+    subject: "csd",
+    level: "Freshmore",
+    module: "ISTD/CSD",
+    status: "draft",
   },
   {
     id: "sutd/csd/graph-search-and-shortest-paths",
@@ -334,6 +344,52 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/csd/dynamic-programming-state-recursion",
+    branch: "sutd",
+    subject: "Csd",
+    level: "Freshmore",
+    module: "ISTD/CSD",
+    title: "Dynamic Programming State Recursion",
+    summary: "Define DP states, trace a recurrence, and read a memoisation table without changing the recurrence value.",
+    syllabusRef: "SUTD CSD: Algorithms",
+    status: "draft",
+    packageId: "dynamic-programming-state-recursion",
+    simId: "dynamic-programming-state-recursion",
+    predictPrompt: "When ways(5) needs ways(4), and ways(4) was already computed, what should the table do?",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "dynamic programming means any loop",
+      "memoisation changes the recurrence result",
+    ],
+    transferProblem: "Define a state for choosing among the first k projects with b credits left. Write the recurrence and identify which table entries can be reused.",
+    firstPrinciples: "A recursive solution asks the same smaller questions again and again. Dynamic programming works when those questions can be named as states, each state has clear base cases, and later states depend only on earlier states. The table is a memory of solved questions, not a new recurrence.",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "Write what one table entry means before writing code.",
+      "Identify states that do not depend on smaller states.",
+      "Express the target state using smaller states.",
+      "Store each state once and reuse it when it appears again.",
+      "Translate the final state value back to the problem context.",
+    ],
+    prerequisites: [],
+    downstream: [],
+    siblings: [],
+    sims: [
+      {
+        id: "dynamic-programming-state-recursion",
+        harnessId: "sutd/csd/dynamic-programming-state-recursion/dynamic-programming-state-recursion",
+        title: "Dynamic Programming State Recursion",
+        interactionType: "algorithm-state-visualisation",
+        component: GeneratedSim2DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
+      },
+    ],
+  },
+  {
     id: "sutd/csd/graph-search-and-shortest-paths",
     branch: "sutd",
     subject: "Csd",
@@ -379,7 +435,7 @@ export const containers = [
         harnessId: "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths",
         title: "Graph Search and Shortest Paths",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim2GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
+        component: GeneratedSim3GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
       },
     ],
   },
@@ -432,7 +488,7 @@ export const containers = [
         harnessId: "sutd/dai/trust-calibration/trust-calibration",
         title: "Trust Calibration Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim3TrustCalibrationTrustCalibration,
+        component: GeneratedSim4TrustCalibrationTrustCalibration,
       },
     ],
   },
@@ -498,7 +554,7 @@ export const containers = [
         harnessId: "sutd/epd/bode-stability-margin/bode-stability-margin",
         title: "Bode Margin Reader",
         interactionType: "comparative-matrix",
-        component: GeneratedSim4BodeStabilityMarginBodeStabilityMargin,
+        component: GeneratedSim5BodeStabilityMarginBodeStabilityMargin,
       },
     ],
   },
@@ -552,7 +608,7 @@ export const containers = [
         harnessId: "sutd/epd/pid-step-response/pid-step-response",
         title: "PID Step Response Explorer",
         interactionType: "comparative-matrix",
-        component: GeneratedSim5PidStepResponsePidStepResponse,
+        component: GeneratedSim6PidStepResponsePidStepResponse,
       },
     ],
   },
@@ -596,7 +652,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim6LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim7LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -659,7 +715,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim7BayesUpdatingBayesUpdating,
+        component: GeneratedSim8BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -713,7 +769,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim8EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim9EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -765,7 +821,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim9VectorTransformationsVectorTransformations,
+        component: GeneratedSim10VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -831,7 +887,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim10OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim11OdePhasePortraitOdePhasePortrait,
       },
     ],
   }
