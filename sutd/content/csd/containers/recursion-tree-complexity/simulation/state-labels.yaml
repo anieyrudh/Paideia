@@ -1,0 +1,17 @@
+state_labels:
+  inputSize:
+    label: "Input size"
+    unit: "items"
+    description: "The starting problem size n."
+  branchingFactor:
+    label: "Recursive calls"
+    unit: "subproblems per node"
+    description: "The number a in T(n) = aT(n/b) + c n^p."
+  shrinkFactor:
+    label: "Shrink factor"
+    unit: "size divisor"
+    description: "The number b that divides subproblem size at the next level."
+  combineExponent:
+    label: "Combine exponent"
+    unit: "power of input size"
+    description: "The exponent p in the non-recursive combine work c n^p."

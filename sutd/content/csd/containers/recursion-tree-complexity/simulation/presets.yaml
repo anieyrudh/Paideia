@@ -1,0 +1,22 @@
+presets:
+  - id: merge-sort
+    label: "Merge-sort shape"
+    state:
+      inputSize: 128
+      branchingFactor: 2
+      shrinkFactor: 2
+      combineExponent: 1
+  - id: binary-search-like
+    label: "One shrinking branch intuition"
+    state:
+      inputSize: 128
+      branchingFactor: 2
+      shrinkFactor: 3
+      combineExponent: 2
+  - id: leaf-heavy
+    label: "Leaf-heavy tree"
+    state:
+      inputSize: 81
+      branchingFactor: 3
+      shrinkFactor: 2
+      combineExponent: 1
