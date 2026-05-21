@@ -2,6 +2,7 @@ controls:
   - id: mass
     label: "Mass"
     kind: slider
+    kernel_binding: state.massKilograms
     unit: kg
     min: 0.5
     max: 5
@@ -9,6 +10,7 @@ controls:
   - id: spring-constant
     label: "Spring stiffness"
     kind: slider
+    kernel_binding: state.springConstantNewtonsPerMetre
     unit: "N m^-1"
     min: 4
     max: 80
@@ -16,6 +18,7 @@ controls:
   - id: amplitude
     label: "Amplitude"
     kind: slider
+    kernel_binding: state.amplitudeMetres
     unit: m
     min: 0.1
     max: 2
@@ -23,6 +26,7 @@ controls:
   - id: phase
     label: "Starting phase"
     kind: slider
+    kernel_binding: state.phaseRadians
     unit: rad
     min: 0
     max: 6.28
@@ -30,6 +34,7 @@ controls:
   - id: time
     label: "Time marker"
     kind: slider
+    kernel_binding: state.timeSeconds
     unit: s
     min: 0
     max: 8

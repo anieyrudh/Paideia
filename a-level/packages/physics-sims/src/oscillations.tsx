@@ -265,11 +265,20 @@ export const OscillationDiagram = ({
     { x: point.timeSeconds, y: point.accelerationMetresPerSecondSquared, series: "acceleration" },
     { x: point.timeSeconds, y: point.velocityMetresPerSecond, series: "velocity" },
   ]);
+  const traceYLimit = model.trace.reduce(
+    (max, point) =>
+      Math.max(
+        max,
+        Math.abs(point.displacementMetres),
+        Math.abs(point.velocityMetresPerSecond),
+        Math.abs(point.accelerationMetresPerSecondSquared),
+      ),
+    0,
+  );
   const yLimit = Math.max(
     1,
     state.amplitudeMetres * 1.2,
-    Math.abs(model.velocityMetresPerSecond) * 1.2,
-    Math.abs(model.accelerationMetresPerSecondSquared) * 1.2,
+    traceYLimit * 1.2,
   );
 
   return (

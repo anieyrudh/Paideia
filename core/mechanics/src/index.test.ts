@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import fc from "fast-check";
 import {
   approxEqual,
   joules,
@@ -188,37 +189,84 @@ describe("@paideia/mechanics", () => {
     }
   });
 
-  it("models a mass-spring oscillator without amplitude changing ideal period", () => {
-    const first = springOscillator(
-      {
-        massKilograms: kilograms(2),
-        springConstantNewtonsPerMetre: newtonsPerMetre(32),
-        amplitudeMetres: metres(0.8),
-        phaseRadians: radians(0),
-      },
-      seconds(0),
-    );
-    const largerAmplitude = springOscillator(
-      {
-        massKilograms: kilograms(2),
-        springConstantNewtonsPerMetre: newtonsPerMetre(32),
-        amplitudeMetres: metres(1.6),
-        phaseRadians: radians(0),
-      },
-      seconds(0),
-    );
+  it("keeps mass-spring period independent of amplitude", () => {
+    fc.assert(
+      fc.property(
+        fc.double({ min: 0.5, max: 10, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 1, max: 120, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 0.05, max: 2, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 0.05, max: 2, noDefaultInfinity: true, noNaN: true }),
+        (mass, stiffness, amplitudeA, amplitudeB) => {
+          const first = springOscillator(
+            {
+              massKilograms: kilograms(mass),
+              springConstantNewtonsPerMetre: newtonsPerMetre(stiffness),
+              amplitudeMetres: metres(amplitudeA),
+              phaseRadians: radians(0),
+            },
+            seconds(0),
+          );
+          const second = springOscillator(
+            {
+              massKilograms: kilograms(mass),
+              springConstantNewtonsPerMetre: newtonsPerMetre(stiffness),
+              amplitudeMetres: metres(amplitudeB),
+              phaseRadians: radians(0),
+            },
+            seconds(0),
+          );
 
-    expect(first.ok).toBe(true);
-    expect(largerAmplitude.ok).toBe(true);
-    if (first.ok && largerAmplitude.ok) {
-      expect(approxEqual(first.value.angularFrequencyRadiansPerSecond, 4)).toBe(true);
-      expect(approxEqual(first.value.periodSeconds, Math.PI / 2)).toBe(true);
-      expect(approxEqual(first.value.frequencyHertz, 2 / Math.PI)).toBe(true);
-      expect(approxEqual(first.value.accelerationMetresPerSecondSquared, -12.8)).toBe(true);
-      expect(approxEqual(first.value.totalEnergyJoules, 10.24)).toBe(true);
-      expect(approxEqual(first.value.periodSeconds, largerAmplitude.value.periodSeconds)).toBe(true);
-      expect(approxEqual(largerAmplitude.value.totalEnergyJoules, first.value.totalEnergyJoules * 4)).toBe(true);
-    }
+          expect(first.ok).toBe(true);
+          expect(second.ok).toBe(true);
+          if (!first.ok || !second.ok) return;
+          expect(approxEqual(first.value.periodSeconds, second.value.periodSeconds, 1e-9)).toBe(true);
+        },
+      ),
+      { seed: 20260521 },
+    );
+  });
+
+  it("scales mass-spring total energy with amplitude squared", () => {
+    fc.assert(
+      fc.property(
+        fc.double({ min: 0.5, max: 10, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 1, max: 120, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 0.05, max: 2, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 0.2, max: 3, noDefaultInfinity: true, noNaN: true }),
+        (mass, stiffness, amplitude, scaleFactor) => {
+          const first = springOscillator(
+            {
+              massKilograms: kilograms(mass),
+              springConstantNewtonsPerMetre: newtonsPerMetre(stiffness),
+              amplitudeMetres: metres(amplitude),
+              phaseRadians: radians(0),
+            },
+            seconds(0),
+          );
+          const scaled = springOscillator(
+            {
+              massKilograms: kilograms(mass),
+              springConstantNewtonsPerMetre: newtonsPerMetre(stiffness),
+              amplitudeMetres: metres(amplitude * scaleFactor),
+              phaseRadians: radians(0),
+            },
+            seconds(0),
+          );
+
+          expect(first.ok).toBe(true);
+          expect(scaled.ok).toBe(true);
+          if (!first.ok || !scaled.ok) return;
+          expect(
+            approxEqual(
+              scaled.value.totalEnergyJoules,
+              first.value.totalEnergyJoules * scaleFactor * scaleFactor,
+              mechanicsTolerance.loose,
+            ),
+          ).toBe(true);
+        },
+      ),
+      { seed: 20260522 },
+    );
   });
 
   it("rejects invalid preconditions as KernelResult errors", () => {

@@ -13,6 +13,7 @@ All exports under `@paideia/shared`:
 - `VectorField3D = (x: number, y: number, z: number) => [number, number, number]`
 - `ParametricCurve2D = (t: number) => [number, number]`
 - `ParametricCurve3D = (t: number) => [number, number, number]`
+- `approxEqual(actual, expected, tolerance?): boolean`
 
 **Domains**
 - `Interval = { min: number; max: number }`
@@ -32,7 +33,7 @@ All exports under `@paideia/shared`:
 - `Renderer<P> = (target: HTMLElement | SVGElement, r: Renderable<P>) => () => void` (returns cleanup)
 
 **Branded numerics** (nominal types, runtime-equivalent to number)
-- `Seconds`, `Metres`, `Kilograms`, `MetresPerSecond`, `MetresPerSecondSquared`, `Radians`, `Degrees`, `Kelvins`, `Newtons`, `NewtonsPerMetre`, `Joules`, `Watts`, `Hertz`, `Probability`
+- `Seconds`, `Metres`, `Kilograms`, `MetresPerSecond`, `MetresPerSecondSquared`, `Radians`, `RadiansPerSecond`, `Degrees`, `Decibels`, `Kelvins`, `Newtons`, `NewtonsPerMetre`, `Joules`, `Watts`, `Hertz`, `Probability`
 - Constructors: `seconds(n)`, `metres(n)`, … each `Probability(n)` clamps/validates `0 ≤ n ≤ 1`.
 
 **Id brands**
