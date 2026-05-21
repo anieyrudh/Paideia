@@ -12,6 +12,7 @@
     { "path": "../../../core/annotation" },
     { "path": "../../../core/charting" },
     { "path": "../../../core/content-schema" },
+    { "path": "../../../core/circuits" },
     { "path": "../../../core/control-systems" },
     { "path": "../../../core/dynamical-systems" },
     { "path": "../../../core/graph-algorithms" },

@@ -7,6 +7,7 @@ export { default as ShadingDaylightHeatGain } from "./shading-daylight-heat-gain
 export { default as OdePhasePortrait } from "./ode-phase-portrait.js";
 export { default as PidStepResponse } from "./pid-step-response.js";
 export { default as BodeStabilityMargin } from "./bode-stability-margin.js";
+export { default as SignalFilterFrequencyResponse } from "./signal-filter-frequency-response.js";
 export { default as TrustCalibration } from "./trust-calibration.js";
 export { default as VectorTransformations } from "./vector-transformations.js";
 export { default as NewsvendorCriticalFractile } from "./newsvendor-critical-fractile.js";

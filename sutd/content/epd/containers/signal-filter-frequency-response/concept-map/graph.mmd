@@ -1,0 +1,10 @@
+flowchart TD
+  bode["Bode Stability Margin"] --> filter["Signal Filter Frequency Response"]
+  phasor["Circuit Phasor Reasoning"] --> filter
+  osc["Oscillations"] --> filter
+  filter --> stability["Control Stability"]
+  filter --> processing["Signal Processing"]
+  brick["Misconception: brick-wall cutoff"] --> knee["Cutoff is -3 dB knee"]
+  phase["Misconception: phase is decoration"] --> division["RC phasor division"]
+  division --> knee
+  knee --> filter

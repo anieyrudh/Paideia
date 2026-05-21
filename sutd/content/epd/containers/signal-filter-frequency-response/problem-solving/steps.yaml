@@ -1,0 +1,29 @@
+steps:
+  - id: identify-output
+    title: "Identify the measured output"
+    prompt: "Decide whether the output is across the capacitor or resistor."
+    expected: "Across C is low-pass; across R is high-pass."
+  - id: convert-units
+    title: "Convert R and C"
+    prompt: "Convert kOhm to Ohm and uF to F before calculating cutoff."
+    expected: "Use R_ohm = R_kOhm x 1000 and C_F = C_uF x 10^-6."
+  - id: calculate-cutoff
+    title: "Calculate cutoff"
+    prompt: "Compute tau, omega_c, and f_c."
+    expected: "tau = RC, omega_c = 1 / tau, f_c = 1 / (2 pi RC)."
+  - id: choose-transfer-function
+    title: "Choose H(s)"
+    prompt: "Use the transfer function for the selected output."
+    expected: "Low-pass: 1 / (1 + sRC). High-pass: sRC / (1 + sRC)."
+  - id: read-response
+    title: "Read magnitude and phase"
+    prompt: "Evaluate H(j 2 pi f) at each required frequency."
+    expected: "Report magnitude ratio, dB, and phase in degrees."
+  - id: phasor-check
+    title: "Check the circuit phasor"
+    prompt: "Use X_C, |Z|, and RMS current to connect the response to the circuit."
+    expected: "The impedance and current should support the Bode interpretation."
+  - id: interpret
+    title: "Interpret the design"
+    prompt: "Explain whether the filter preserves, attenuates, or delays each signal."
+    expected: "Magnitude and phase are both included in the engineering conclusion."

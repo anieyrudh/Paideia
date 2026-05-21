@@ -2460,7 +2460,7 @@ entries:
   - id: sutd.epd.signal-filter-frequency-response
     title: "Signal Filter Frequency Response"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: EPD signals and control
     discipline: engineering
     reuse_status: curriculum-wrapper

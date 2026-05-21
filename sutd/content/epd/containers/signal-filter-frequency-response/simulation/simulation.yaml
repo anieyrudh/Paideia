@@ -1,0 +1,59 @@
+id: signal-filter-frequency-response
+title: "RC Filter Frequency Response Lab"
+interaction_type: comparative-matrix
+kernel_deps:
+  - core/shared
+  - core/content-schema
+  - core/sim-runtime
+  - core/control-systems
+  - core/circuits
+  - core/charting
+  - core/prediction-gate
+  - core/ui-sim
+manipulate:
+  controls:
+    - id: filter-mode
+      label: "Filter mode"
+      kind: selector
+      kernel_binding: state.mode
+    - id: resistance
+      label: "Resistance"
+      kind: slider
+      kernel_binding: state.resistanceKiloOhms
+      bounds: { min: 1, max: 47, step: 1 }
+    - id: capacitance
+      label: "Capacitance"
+      kind: slider
+      kernel_binding: state.capacitanceMicroFarads
+      bounds: { min: 0.01, max: 0.47, step: 0.01 }
+    - id: probe-frequency
+      label: "Probe frequency"
+      kind: slider
+      kernel_binding: state.probeFrequencyHertz
+      bounds: { min: 20, max: 20000, step: 20 }
+predict:
+  prompt: |
+    For a one-pole RC low-pass filter, what happens to the output at exactly the cutoff frequency?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The output becomes zero because frequencies above cutoff are removed instantly"
+      - "The output is about 0.707 of the input and the phase has already shifted"
+      - "The output is unchanged because cutoff only affects phase"
+      - "The output doubles because the capacitor stores extra charge"
+    correct_index: 1
+  rationale_required: true
+observe:
+  renderers:
+    - id: filter-bode-readout
+      module: "@paideia/sutd-sims/signal-filter-frequency-response"
+      symbol: SignalFilterFrequencyResponse
+      props_binding: |
+        Show magnitude and phase traces for the selected RC filter and explain the cutoff-frequency substitution.
+explain:
+  prompt: |
+    Why is cutoff a gradual response marker rather than an on/off boundary, and why must the phase trace be read with the magnitude trace?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Filters remove all frequencies above cutoff instantly"
+    - "Phase shift is optional decoration"
