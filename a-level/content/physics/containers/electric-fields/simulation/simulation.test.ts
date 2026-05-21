@@ -7,14 +7,14 @@ test.describe("a-level/physics/electric-fields/charge-field-vector-lab predictio
     await mountSim(page, "a-level/physics/electric-fields/charge-field-vector-lab");
 
     await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByText("Electric field strength").first()).toHaveCount(0);
+    await expect(page.getByLabel("Electric field readout")).toHaveCount(0);
 
     await page.getByRole("button", { name: "Set charge position" }).click();
     await page.getByRole("button", { name: "Reveal field result" }).click();
 
     await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
     await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByText("Electric field strength").first()).toHaveCount(0);
+    await expect(page.getByLabel("Electric field readout")).toHaveCount(0);
 
     await page.getByLabel("To the left").check();
     await page
@@ -24,8 +24,8 @@ test.describe("a-level/physics/electric-fields/charge-field-vector-lab predictio
 
     await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByText("Electric field strength", { exact: true })).toBeVisible();
-    await expect(page.getByText("2.00 x 10^5 N/C").first()).toBeVisible();
-    await expect(page.getByText("Delta U = q Delta V").first()).toBeVisible();
+    await expect(page.getByLabel("Electric field readout")).toContainText("2.00 x 10^5 N/C");
+    await expect(page.getByLabel("Formula used")).toContainText("Delta U = q Delta V");
   });
 
   test("main controls change visible field state before reveal", async ({ page }) => {
