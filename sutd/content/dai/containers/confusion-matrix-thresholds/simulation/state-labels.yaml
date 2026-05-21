@@ -1,0 +1,10 @@
+state_labels:
+  thresholdPercent:
+    label: "Decision threshold"
+    meaning: "Minimum classifier score required before the positive class is predicted."
+  falseNegativeCost:
+    label: "False-negative cost"
+    meaning: "Stakeholder cost paid for each actually positive case missed by the model."
+  falsePositiveCost:
+    label: "False-positive cost"
+    meaning: "Stakeholder cost paid for each actually negative case incorrectly flagged positive."

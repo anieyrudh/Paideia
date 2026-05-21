@@ -1,0 +1,10 @@
+graph TD
+  Probability["Probability"] --> Thresholds["Confusion Matrix Thresholds"]
+  Classification["Classification"] --> Thresholds
+  Trust["Trust Calibration"] --> Thresholds
+  Thresholds --> Precision["Precision and Recall Tradeoff"]
+  Thresholds --> Cost["Stakeholder Cost Interpretation"]
+  Thresholds --> Fairness["Fairness Auditing"]
+  Thresholds --> Governance["Model Governance"]
+  AccuracyMis["Misconception: accuracy is enough"] -. challenged by .-> Cost
+  NeutralMis["Misconception: one threshold is neutral"] -. challenged by .-> Fairness

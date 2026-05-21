@@ -1,0 +1,19 @@
+presets:
+  - id: balanced-review
+    label: "Balanced review"
+    state:
+      thresholdPercent: 65
+      falseNegativeCost: 25
+      falsePositiveCost: 6
+  - id: catch-more-positives
+    label: "Catch more positives"
+    state:
+      thresholdPercent: 45
+      falseNegativeCost: 35
+      falsePositiveCost: 5
+  - id: reduce-false-alarms
+    label: "Reduce false alarms"
+    state:
+      thresholdPercent: 80
+      falseNegativeCost: 20
+      falsePositiveCost: 10
