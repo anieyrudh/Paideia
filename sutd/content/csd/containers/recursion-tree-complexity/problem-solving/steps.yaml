@@ -1,0 +1,27 @@
+schema_version: "1.0.0"
+concept_id: recursion-tree-complexity
+steps:
+  - id: identify-parameters
+    title: "Identify recurrence parameters"
+    action: "Extract a, b, c, p, and n from the recurrence."
+    check: "The recurrence is in the form T(n) = aT(n/b) + c n^p."
+  - id: build-level-cost
+    title: "Build the level-cost expression"
+    action: "Multiply node count by per-node work at level k."
+    check: "The expression includes both a^k and (n/b^k)^p."
+  - id: compare-ratio
+    title: "Compare the level ratio"
+    action: "Compute a / b^p."
+    check: "The ratio is classified as less than, equal to, or greater than 1."
+  - id: count-height
+    title: "Count the tree height"
+    action: "Use h = log_b n to determine the number of non-leaf levels."
+    check: "The height is measured in recursion levels."
+  - id: decide-growth
+    title: "Decide asymptotic growth"
+    action: "Use the dominant region to write the Theta bound."
+    check: "The interpretation names the dominant region and units."
+transfer:
+  - id: cache-oblivious-search-index
+    title: "Search-index shard merge"
+    prompt_path: "problem-solving/cache-oblivious-search-index.md"

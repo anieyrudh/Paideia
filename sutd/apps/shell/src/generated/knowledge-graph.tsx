@@ -5,18 +5,19 @@ import GeneratedSim1ShadingDaylightHeatGainShadingDaylightHeatGain from "@paidei
 import GeneratedSim2StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
 import GeneratedSim3DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
 import GeneratedSim4GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim5ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
-import GeneratedSim6TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim7BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim8PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim9LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim10MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
-import GeneratedSim11NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim12BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim13EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim14VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim15LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim16OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim5RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
+import GeneratedSim6ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
+import GeneratedSim7TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim8BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim9PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim10LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim11MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
+import GeneratedSim12NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim13BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim14EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim15VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim16LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim17OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -112,6 +113,15 @@ export const knowledgeGraph = {
     id: "sutd/csd/graph-search-and-shortest-paths",
     conceptId: "graph-search-and-shortest-paths",
     title: "Graph Search and Shortest Paths",
+    subject: "csd",
+    level: "Freshmore",
+    module: "ISTD/CSD",
+    status: "draft",
+  },
+  {
+    id: "sutd/csd/recursion-tree-complexity",
+    conceptId: "recursion-tree-complexity",
+    title: "Recursion Tree Complexity",
     subject: "csd",
     level: "Freshmore",
     module: "ISTD/CSD",
@@ -245,6 +255,13 @@ export const knowledgeGraph = {
   { from: "sutd/asd/structural-load-path-diagram", to: "sutd/asd/structural-optimisation", kind: "downstream" },
   { from: "sutd/asd/structural-load-path-diagram", to: "sutd/asd/facade-tradeoff-design", kind: "downstream" },
   { from: "sutd/asd/structural-load-path-diagram", to: "sutd/asd/shading-daylight-heat-gain", kind: "sibling" },
+  { from: "sutd/csd/dynamic-programming-state-recursion", to: "sutd/csd/recursion-tree-complexity", kind: "prerequisite" },
+  { from: "sutd/csd/graph-search-and-shortest-paths", to: "sutd/csd/recursion-tree-complexity", kind: "prerequisite" },
+  { from: "sutd/csd/asymptotic-notation", to: "sutd/csd/recursion-tree-complexity", kind: "prerequisite" },
+  { from: "sutd/csd/recursion-tree-complexity", to: "sutd/csd/divide-and-conquer", kind: "downstream" },
+  { from: "sutd/csd/recursion-tree-complexity", to: "sutd/csd/algorithm-analysis", kind: "downstream" },
+  { from: "sutd/csd/recursion-tree-complexity", to: "sutd/csd/master-theorem", kind: "sibling" },
+  { from: "sutd/csd/recursion-tree-complexity", to: "sutd/csd/recurrence-substitution", kind: "sibling" },
   { from: "sutd/dai/trust-calibration", to: "sutd/dai/confusion-matrix-thresholds", kind: "prerequisite" },
   { from: "sutd/dai/probability", to: "sutd/dai/confusion-matrix-thresholds", kind: "prerequisite" },
   { from: "sutd/dai/classification", to: "sutd/dai/confusion-matrix-thresholds", kind: "prerequisite" },
@@ -584,6 +601,56 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/csd/recursion-tree-complexity",
+    branch: "sutd",
+    subject: "Csd",
+    level: "Freshmore",
+    module: "ISTD/CSD",
+    title: "Recursion Tree Complexity",
+    summary: "Estimate divide-and-conquer recurrence growth by comparing cost across recursion-tree levels.",
+    syllabusRef: "SUTD CSD: Algorithms",
+    status: "draft",
+    packageId: "recursion-tree-complexity",
+    simId: "recursion-tree-complexity",
+    predictPrompt: "For T(n) = 2T(n/2) + n, which part of the recursion tree contributes the same order of work as every other level?",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "recursive code always has exponential cost",
+      "base cases do not affect total work",
+    ],
+    transferProblem: "A search-index build splits the records into three equal shards and does linear merge work at each node: T(n) = 3T(n/3) + 2n. Build the first three recursion-tree levels, compare their costs, and decide the asymptotic order.",
+    firstPrinciples: "A recursion tree turns a recurrence into a picture of work. Each node is one subproblem, each edge is a recursive call, and each level groups subproblems of the same depth. The total work is the sum of all level costs plus the leaf/base-case work.",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [],
+    prerequisites: [
+      "Dynamic Programming State Recursion",
+      "Graph Search and Shortest Paths",
+      "Asymptotic Notation",
+    ],
+    downstream: [
+      "Divide and Conquer",
+      "Algorithm Analysis",
+    ],
+    siblings: [
+      "Master Theorem",
+      "Recurrence Substitution",
+    ],
+    sims: [
+      {
+        id: "recursion-tree-complexity",
+        harnessId: "sutd/csd/recursion-tree-complexity/recursion-tree-complexity",
+        title: "Recursion Tree Complexity Lab",
+        interactionType: "algorithm-state-visualisation",
+        component: GeneratedSim5RecursionTreeComplexityRecursionTreeComplexity,
+      },
+    ],
+  },
+  {
     id: "sutd/dai/confusion-matrix-thresholds",
     branch: "sutd",
     subject: "Dai",
@@ -644,7 +711,7 @@ export const containers = [
         harnessId: "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds",
         title: "Confusion Matrix Threshold Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim5ConfusionMatrixThresholdsConfusionMatrixThresholds,
+        component: GeneratedSim6ConfusionMatrixThresholdsConfusionMatrixThresholds,
       },
     ],
   },
@@ -697,7 +764,7 @@ export const containers = [
         harnessId: "sutd/dai/trust-calibration/trust-calibration",
         title: "Trust Calibration Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim6TrustCalibrationTrustCalibration,
+        component: GeneratedSim7TrustCalibrationTrustCalibration,
       },
     ],
   },
@@ -763,7 +830,7 @@ export const containers = [
         harnessId: "sutd/epd/bode-stability-margin/bode-stability-margin",
         title: "Bode Margin Reader",
         interactionType: "comparative-matrix",
-        component: GeneratedSim7BodeStabilityMarginBodeStabilityMargin,
+        component: GeneratedSim8BodeStabilityMarginBodeStabilityMargin,
       },
     ],
   },
@@ -817,7 +884,7 @@ export const containers = [
         harnessId: "sutd/epd/pid-step-response/pid-step-response",
         title: "PID Step Response Explorer",
         interactionType: "comparative-matrix",
-        component: GeneratedSim8PidStepResponsePidStepResponse,
+        component: GeneratedSim9PidStepResponsePidStepResponse,
       },
     ],
   },
@@ -861,7 +928,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim9LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim10LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -923,7 +990,7 @@ export const containers = [
         harnessId: "sutd/esd/markov-chain-steady-state/markov-chain-steady-state",
         title: "Markov Chain Steady-State Lab",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim10MarkovChainSteadyStateMarkovChainSteadyState,
+        component: GeneratedSim11MarkovChainSteadyStateMarkovChainSteadyState,
       },
     ],
   },
@@ -989,7 +1056,7 @@ export const containers = [
         harnessId: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
         title: "Newsvendor Critical Fractile Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim11NewsvendorCriticalFractileNewsvendorCriticalFractile,
+        component: GeneratedSim12NewsvendorCriticalFractileNewsvendorCriticalFractile,
       },
     ],
   },
@@ -1052,7 +1119,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim12BayesUpdatingBayesUpdating,
+        component: GeneratedSim13BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -1106,7 +1173,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim13EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim14EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -1158,7 +1225,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim14VectorTransformationsVectorTransformations,
+        component: GeneratedSim15VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -1215,7 +1282,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim15LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim16LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -1281,7 +1348,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim16OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim17OdePhasePortraitOdePhasePortrait,
       },
     ],
   }
