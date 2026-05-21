@@ -1,0 +1,6 @@
+runtime:
+  package: "@paideia/sutd-sims/structural-load-path-diagram"
+  component: StructuralLoadPathDiagram
+  persistence: local
+  prediction_gate: required
+  responsive: true

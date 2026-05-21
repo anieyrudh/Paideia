@@ -1,0 +1,66 @@
+id: structural-load-path-diagram
+title: "Structural Load Path Diagram"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/mechanics
+  - core/linear-algebra
+  - core/graph-layout
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+predict:
+  prompt: |
+    A braced bay takes a strong sideways load. Before calculating, which part is most likely to govern the load path?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The diagonal brace force, because it resolves the sideways load."
+      - "The roof load, because all members carry the same force."
+      - "The supports, because loads disappear when they reach the ground."
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: load-direction
+      label: "Load direction"
+      kind: selector
+      kernel_binding: state.loadDirection
+    - id: brace-size
+      label: "Brace size"
+      kind: selector
+      kernel_binding: state.braceSize
+    - id: lateral-load
+      label: "Sideways load"
+      kind: slider
+      kernel_binding: state.lateralLoadKn
+      bounds: { min: 10, max: 54, step: 2 }
+    - id: roof-load
+      label: "Roof gravity load"
+      kind: slider
+      kernel_binding: state.roofLoadKn
+      bounds: { min: 48, max: 132, step: 6 }
+    - id: bay-width
+      label: "Bay width"
+      kind: slider
+      kernel_binding: state.bayWidthM
+      bounds: { min: 4, max: 9, step: 0.5 }
+    - id: storey-height
+      label: "Storey height"
+      kind: slider
+      kernel_binding: state.storeyHeightM
+      bounds: { min: 3, max: 6, step: 0.5 }
+observe:
+  renderers:
+    - id: structural-load-path-renderer
+      module: local
+      symbol: StructuralLoadPathDiagram
+      props_binding: |
+        Resolve lateral load through a diagonal brace, calculate support reactions, and label compression or tension paths.
+explain:
+  prompt: |
+    Explain why the diagonal force is larger than the applied sideways load, then transfer the same reasoning to a canopy frame.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Loads disappear at supports"
+    - "All members carry equal force"

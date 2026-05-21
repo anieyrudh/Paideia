@@ -1,0 +1,28 @@
+presets:
+  - id: balanced-studio-bay
+    label: "Balanced studio bay"
+    state:
+      lateralLoadKn: 24
+      roofLoadKn: 84
+      bayWidthM: 6
+      storeyHeightM: 4
+      braceSize: standard
+      loadDirection: left-to-right
+  - id: brace-overstress
+    label: "Brace overstress"
+    state:
+      lateralLoadKn: 46
+      roofLoadKn: 90
+      bayWidthM: 6
+      storeyHeightM: 4.5
+      braceSize: light
+      loadDirection: left-to-right
+  - id: uplift-risk
+    label: "Uplift risk"
+    state:
+      lateralLoadKn: 54
+      roofLoadKn: 48
+      bayWidthM: 4
+      storeyHeightM: 6
+      braceSize: deep
+      loadDirection: right-to-left

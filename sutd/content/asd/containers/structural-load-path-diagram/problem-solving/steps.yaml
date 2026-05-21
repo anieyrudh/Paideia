@@ -1,0 +1,22 @@
+steps:
+  - id: isolate-bay
+    label: "Isolate the bay"
+    prompt: "Draw only the bay, applied loads, and unknown support reactions."
+  - id: trace-load-entry
+    label: "Trace load entry"
+    prompt: "Name the first member or diaphragm that receives each load."
+  - id: resolve-diagonal
+    label: "Resolve the diagonal force"
+    prompt: "Use the brace angle to calculate the axial force needed for horizontal equilibrium."
+  - id: calculate-reactions
+    label: "Calculate support reactions"
+    prompt: "Use force and moment equilibrium to find vertical and horizontal reactions."
+  - id: label-members
+    label: "Label member demand"
+    prompt: "Identify the governing brace, column, or support condition."
+  - id: interpret
+    label: "Interpret the diagram"
+    prompt: "State whether the path is clear, overstressed, or at uplift risk."
+  - id: transfer
+    label: "Transfer to a new frame"
+    prompt: "Apply the same sequence to a canopy or facade bay with different loads."
