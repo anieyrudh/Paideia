@@ -2,6 +2,7 @@ import { approxEqual, probability } from "@paideia/shared";
 import { describe, expect, it } from "vitest";
 import {
   bayesPositiveEvidence,
+  binaryConfusionCounts,
   expectedValue,
   histogram,
   normalMeanHypothesisTest,
@@ -10,6 +11,8 @@ import {
   quantile,
   samplingDistributionOfMean,
   summarize,
+  thresholdCaseOutcomes,
+  thresholdClassificationEvidence,
   variance,
   zScore,
   type DiscreteDistribution,
@@ -51,6 +54,99 @@ describe("@paideia/probability-stats", () => {
 
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.error.code).toBe("out-of-domain");
+  });
+
+  it("computes binary confusion counts and threshold metrics", () => {
+    const cases = [
+      { id: "a", score: p(0.9), actual: "actual-positive" },
+      { id: "b", score: p(0.8), actual: "actual-negative" },
+      { id: "c", score: p(0.4), actual: "actual-positive" },
+      { id: "d", score: p(0.3), actual: "actual-negative" },
+    ] as const;
+
+    const counts = binaryConfusionCounts(cases, p(0.5));
+    expect(counts.ok).toBe(true);
+    if (counts.ok) {
+      expect(counts.value).toEqual({
+        truePositive: 1,
+        falsePositive: 1,
+        trueNegative: 1,
+        falseNegative: 1,
+      });
+    }
+
+    const outcomes = thresholdCaseOutcomes(cases, p(0.5));
+    expect(outcomes.ok).toBe(true);
+    if (outcomes.ok) {
+      expect(outcomes.value.map((outcome) => outcome.cell)).toEqual([
+        "true-positive",
+        "false-positive",
+        "false-negative",
+        "true-negative",
+      ]);
+    }
+
+    const evidence = thresholdClassificationEvidence({
+      cases,
+      threshold: p(0.5),
+      falsePositiveCost: 3,
+      falseNegativeCost: 10,
+      curveThresholds: [p(0.5), p(0.85)],
+    });
+    expect(evidence.ok).toBe(true);
+    if (evidence.ok) {
+      expect(Number(evidence.value.precision)).toBeCloseTo(0.5);
+      expect(Number(evidence.value.recall)).toBeCloseTo(0.5);
+      expect(Number(evidence.value.accuracy)).toBeCloseTo(0.5);
+      expect(Number(evidence.value.baseRate)).toBeCloseTo(0.5);
+      expect(evidence.value.falsePositiveCostTotal).toBe(3);
+      expect(evidence.value.falseNegativeCostTotal).toBe(10);
+      expect(evidence.value.totalCost).toBe(13);
+      expect(evidence.value.curve).toHaveLength(2);
+    }
+  });
+
+  it("rejects empty threshold-classification data and negative costs", () => {
+    const empty = thresholdClassificationEvidence({
+      cases: [],
+      threshold: p(0.5),
+      falsePositiveCost: 1,
+      falseNegativeCost: 1,
+    });
+    expect(empty.ok).toBe(false);
+    if (!empty.ok) expect(empty.error.code).toBe("precondition-violated");
+
+    const negativeCost = thresholdClassificationEvidence({
+      cases: [{ id: "a", score: p(0.9), actual: "actual-positive" }],
+      threshold: p(0.5),
+      falsePositiveCost: -1,
+      falseNegativeCost: 1,
+    });
+    expect(negativeCost.ok).toBe(false);
+    if (!negativeCost.ok) expect(negativeCost.error.code).toBe("out-of-domain");
+  });
+
+  it("rejects malformed binary labels and overflowing threshold costs", () => {
+    const malformed = thresholdClassificationEvidence({
+      cases: [{ id: "bad", score: p(0.9), actual: "maybe-positive" as never }],
+      threshold: p(0.5),
+      falsePositiveCost: 1,
+      falseNegativeCost: 1,
+    });
+    expect(malformed.ok).toBe(false);
+    if (!malformed.ok) expect(malformed.error.code).toBe("precondition-violated");
+
+    const overflow = thresholdClassificationEvidence({
+      cases: [
+        { id: "fp-a", score: p(0.9), actual: "actual-negative" },
+        { id: "fp-b", score: p(0.8), actual: "actual-negative" },
+      ],
+      threshold: p(0.5),
+      falsePositiveCost: Number.MAX_VALUE,
+      falseNegativeCost: Number.MAX_VALUE,
+    });
+    expect(overflow.ok).toBe(false);
+    if (!overflow.ok) expect(overflow.error.code).toBe("numerical-instability");
   });
 
   it("normalizes finite non-negative weights without mutating inputs", () => {

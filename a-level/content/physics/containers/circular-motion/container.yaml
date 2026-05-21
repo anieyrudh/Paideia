@@ -1,0 +1,132 @@
+schema_version: "1.0.0"
+id: circular-motion
+aliases:
+  - uniform circular motion
+  - centripetal acceleration
+  - centripetal force
+branch: a-level
+subject: physics
+level: "H2"
+module: "Forces and Motion"
+title: "Circular Motion"
+one_line_summary: "Relate constant speed on a circular path to inward acceleration and resultant force."
+syllabus_ref: "9478 / Section II / Circular Motion"
+prerequisites:
+  - resolving-vectors
+  - kinematics-in-one-dimension
+  - forces-and-equilibrium
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A rider moves at constant speed around a circular track. Before revealing the vectors, predict the direction of the acceleration and resultant force.
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Toward the centre of the circle."
+      - "Forward along the tangent because the rider is moving."
+      - "Outward away from the centre."
+      - "Zero because the speed is constant."
+    correct_index: 0
+  rationale_required: true
+package_explain:
+  prompt: |
+    Why can speed stay constant while velocity and acceleration keep changing direction in circular motion?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Constant speed means zero acceleration"
+    - "Centripetal force is an extra new force"
+    - "Circular motion force points outward"
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: orbital-speed-check
+    prompt: |
+      A satellite of mass 120 kg moves at 7600 m/s in a circular orbit of radius 6.8 x 10^6 m. Find the inward acceleration, the gravitational force required, and state how the force demand changes if the same satellite moves faster at the same orbital radius.
+    surface_form: "orbital-motion"
+    same_concept_check: "Same concept: constant speed still requires inward acceleration and an inward resultant force, but the transfer now uses gravity and orbital scale rather than a track object with classroom-scale sliders."
+    rubric_path: problem-solving/orbital-speed-check.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-21"
+      author: "Codex"
+      summary: "Built A-Level circular motion product slice using core/mechanics, charting, sim-runtime, prediction-gate, and ui-sim."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-21"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-21"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Centripetal force is an extra new force"
+    description: "Learners may draw a separate centripetal force in addition to real forces instead of treating it as the inward resultant force."
+    evidence_source: "OpenStax University Physics Volume 1, Section 6.3 Centripetal Force."
+    surface_in_predict: false
+  - name: "Constant speed means zero acceleration"
+    description: "Learners may focus only on speed magnitude and miss that velocity changes direction continuously in circular motion."
+    evidence_source: "OpenStax University Physics Volume 1, Section 4.4 Uniform Circular Motion."
+    surface_in_predict: true
+  - name: "Circular motion force points outward"
+    description: "Learners may interpret the outward sensation in a turning frame as an outward force in an inertial force diagram."
+    evidence_source: "OpenStax University Physics Volume 1, Section 6.3 Centripetal Force."
+    surface_in_predict: true
+sources:
+  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
+    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf"
+    publication_year: 2025
+    license: "Copyright MOE & Cambridge University Press & Assessment"
+    seab_alignment: matches
+  - citation: "Moebs, W., Ling, S. J., and Sanny, J. University Physics Volume 1, Sections 4.4 Uniform Circular Motion and 6.3 Centripetal Force. OpenStax, 2016."
+    url: "https://openstax.org/books/university-physics-volume-1/pages/6-3-centripetal-force"
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: matches
+language: en

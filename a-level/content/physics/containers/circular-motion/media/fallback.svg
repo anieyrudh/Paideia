@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 480 320">
+  <title id="title">Circular motion fallback diagram</title>
+  <desc id="desc">A circle showing tangent velocity and radial acceleration directions.</desc>
+  <rect width="480" height="320" rx="18" fill="#f8fbff"/>
+  <circle cx="240" cy="160" r="95" fill="#e8f4ff"/>
+  <circle cx="240" cy="160" r="75" fill="none" stroke="#78909c" stroke-width="5"/>
+  <circle cx="240" cy="160" r="5" fill="#10201a"/>
+  <circle cx="305" cy="123" r="16" fill="#f0b429" stroke="#8a5d00" stroke-width="3"/>
+  <path d="M305 123 L365 188" stroke="#1f5f8b" stroke-width="7" stroke-linecap="round"/>
+  <path d="M365 188 l-22 -6 l15 -15 z" fill="#1f5f8b"/>
+  <path d="M305 123 L250 154" stroke="#c2410c" stroke-width="7" stroke-linecap="round"/>
+  <path d="M250 154 l21 -2 l-11 -18 z" fill="#c2410c"/>
+  <text x="37" y="282" fill="#10201a" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="800">a_c = v^2 / r, F_c = m a_c</text>
+</svg>

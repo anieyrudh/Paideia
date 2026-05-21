@@ -3,15 +3,15 @@
 import { describe, expect, it } from "vitest";
 import fc from "fast-check";
 import { approxEqual } from "@paideia/shared";
-import { hypothesisTestingModel } from "./hypothesis-testing.js";
+import { hypothesisTestingModel, type HypothesisTestingState } from "./hypothesis-testing.js";
 import { runHypothesisTestingGateContract } from "./hypothesis-testing.contract.js";
 
-const validState = fc.record({
+const validState: fc.Arbitrary<HypothesisTestingState> = fc.record({
   nullMean: fc.double({ min: 50, max: 80, noDefaultInfinity: true, noNaN: true }),
   observedMean: fc.double({ min: 50, max: 80, noDefaultInfinity: true, noNaN: true }),
   populationStandardDeviation: fc.double({ min: 4, max: 16, noDefaultInfinity: true, noNaN: true }),
   sampleSize: fc.integer({ min: 16, max: 100 }),
-  alpha: fc.constantFrom(0.1, 0.05, 0.01),
+  alpha: fc.constantFrom(0.1 as const, 0.05 as const, 0.01 as const),
   tail: fc.constantFrom("greater" as const, "less" as const, "two-sided" as const),
 });
 

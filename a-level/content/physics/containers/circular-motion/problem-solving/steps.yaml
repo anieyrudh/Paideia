@@ -1,0 +1,21 @@
+steps:
+  - id: choose-centre
+    title: "Choose the centre direction"
+    student_action: "Mark the centre and draw the inward radial direction from the object."
+    success_criteria: "Acceleration and resultant force are both directed toward the centre."
+  - id: separate-speed-velocity
+    title: "Separate speed from velocity"
+    student_action: "Draw the velocity tangent to the circle and state that its direction changes."
+    success_criteria: "Learner explains why constant speed does not mean zero acceleration."
+  - id: calculate-acceleration
+    title: "Calculate radial acceleration"
+    student_action: "Substitute speed and radius into a_c = v^2 / r."
+    success_criteria: "Answer includes m s^-2 and is larger for higher speed or smaller radius."
+  - id: calculate-force
+    title: "Calculate inward resultant force"
+    student_action: "Multiply radial acceleration by mass."
+    success_criteria: "Answer includes newtons and is interpreted as the required inward resultant."
+  - id: name-real-force
+    title: "Name the real force"
+    student_action: "Identify friction, tension, gravity, normal contact, or a combination as the source."
+    success_criteria: "Learner does not draw centripetal force as an extra separate interaction."

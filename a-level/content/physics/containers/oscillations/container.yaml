@@ -1,0 +1,129 @@
+schema_version: "1.0.0"
+id: oscillations
+aliases:
+  - simple harmonic motion
+  - shm
+  - oscillator
+branch: a-level
+subject: physics
+level: "H2"
+module: "Oscillations"
+title: "Oscillations"
+one_line_summary: "Connect restoring acceleration, period, frequency, and energy exchange in simple harmonic motion."
+syllabus_ref: "9478 / Section IV / Oscillations"
+prerequisites:
+  - kinematics-in-one-dimension
+  - work-energy-power
+  - waves
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A spring oscillator has the same mass and spring constant, but the amplitude is doubled. Before revealing the lab, what happens to the period?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The period doubles"
+      - "The period stays the same"
+      - "The period halves"
+      - "The period becomes zero at equilibrium"
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: car-suspension-bump
+    prompt: |
+      A car body oscillates after a bump. Compare a bigger bump, a heavier load, and a stiffer suspension using the ideal spring model.
+    surface_form: "car suspension after a road bump"
+    same_concept_check: "Same concept: an ideal oscillator's period depends on mass and stiffness, while amplitude changes displacement and energy."
+    rubric_path: problem-solving/car-suspension-bump.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-21"
+      author: "Codex"
+      summary: "Built A-Level oscillations product slice using mechanics, charting, sim-runtime, prediction-gate, and ui-sim."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-21"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-21"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Amplitude changes the period for every oscillator"
+    description: "Learners may assume a wider swing must take longer even in the ideal simple harmonic spring model where amplitude is not in the period formula."
+    evidence_source: "OpenStax College Physics 2e, Section 16.3 Simple Harmonic Motion: A Special Periodic Motion."
+    surface_in_predict: true
+  - name: "Acceleration is greatest at equilibrium"
+    description: "Learners may connect greatest speed at equilibrium to greatest acceleration, missing that restoring acceleration is proportional to displacement from equilibrium."
+    evidence_source: "OpenStax University Physics Volume 1, Section 15.1 Simple Harmonic Motion."
+    surface_in_predict: false
+  - name: "Zero displacement means zero speed and zero energy"
+    description: "Learners may treat the equilibrium position as a rest state instead of the point where kinetic energy is maximum in the ideal oscillator."
+    evidence_source: "OpenStax University Physics Volume 1, Section 15.2 Energy in Simple Harmonic Motion."
+    surface_in_predict: false
+sources:
+  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
+    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf"
+    publication_year: 2025
+    license: "Copyright MOE & Cambridge University Press & Assessment"
+    seab_alignment: matches
+  - citation: "OpenStax. College Physics 2e, Section 16.3 Simple Harmonic Motion: A Special Periodic Motion. OpenStax, 2022."
+    url: "https://openstax.org/books/college-physics-2e/pages/16-3-simple-harmonic-motion-a-special-periodic-motion"
+    publication_year: 2022
+    license: "CC BY 4.0"
+    seab_alignment: matches
+  - citation: "OpenStax. University Physics Volume 1, Sections 15.1 and 15.2. OpenStax, 2016."
+    url: "https://openstax.org/books/university-physics-volume-1/pages/15-1-simple-harmonic-motion"
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: matches
+language: en

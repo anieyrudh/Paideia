@@ -1,0 +1,31 @@
+steps:
+  - id: matrix-form
+    title: "Write the system matrix"
+    prompt: "Identify a, b, c, and d in z' = A z."
+    checks:
+      - "A has two rows and two columns."
+      - "Each entry has units per time unit."
+  - id: trace-determinant
+    title: "Compute T and D"
+    prompt: "Use T = a + d and D = ad - bc."
+    checks:
+      - "Trace sign is recorded."
+      - "Determinant sign is recorded."
+  - id: discriminant
+    title: "Compute Delta"
+    prompt: "Use Delta = T^2 - 4D to decide real or spiral-paired eigenvalues."
+    checks:
+      - "Positive Delta means real eigenvalues."
+      - "Negative Delta means a complex pair."
+  - id: eigenvalue-signs
+    title: "Read growth rates"
+    prompt: "Check both eigenvalues, or the real part of the complex pair."
+    checks:
+      - "No positive real part is ignored."
+      - "A saddle is marked unstable."
+  - id: interpretation
+    title: "Connect to motion"
+    prompt: "State whether perturbations settle, split, rotate, or grow."
+    checks:
+      - "Interpretation uses plain language."
+      - "Units are included for rates."

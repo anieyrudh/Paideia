@@ -1,0 +1,41 @@
+presets:
+  - id: room-gas-sample
+    label: "Room gas sample"
+    state:
+      volumeLitres: 1
+      gasTemperatureCelsius: 27
+      amountMoles: 0.04
+      heatingMassKilograms: 0.25
+      initialTemperatureCelsius: 20
+      finalTemperatureCelsius: 60
+      specificHeatCapacityJoulesPerKilogramKelvin: 4180
+  - id: compressed-syringe
+    label: "Compressed syringe"
+    state:
+      volumeLitres: 0.65
+      gasTemperatureCelsius: 27
+      amountMoles: 0.04
+      heatingMassKilograms: 0.25
+      initialTemperatureCelsius: 20
+      finalTemperatureCelsius: 60
+      specificHeatCapacityJoulesPerKilogramKelvin: 4180
+  - id: warmed-sealed-sample
+    label: "Warmed sealed sample"
+    state:
+      volumeLitres: 1.2
+      gasTemperatureCelsius: 80
+      amountMoles: 0.04
+      heatingMassKilograms: 0.25
+      initialTemperatureCelsius: 20
+      finalTemperatureCelsius: 60
+      specificHeatCapacityJoulesPerKilogramKelvin: 4180
+  - id: small-hot-sample
+    label: "Small hot sample"
+    state:
+      volumeLitres: 0.9
+      gasTemperatureCelsius: 100
+      amountMoles: 0.025
+      heatingMassKilograms: 0.1
+      initialTemperatureCelsius: 25
+      finalTemperatureCelsius: 90
+      specificHeatCapacityJoulesPerKilogramKelvin: 4180

@@ -1,0 +1,11 @@
+state_labels:
+  volumeLitres: "gas volume / L"
+  gasTemperatureCelsius: "gas temperature / deg C"
+  amountMoles: "amount of gas / mol"
+  heatingMassKilograms: "mass heated / kg"
+  initialTemperatureCelsius: "initial temperature / deg C"
+  finalTemperatureCelsius: "final temperature / deg C"
+  specificHeatCapacityJoulesPerKilogramKelvin: "specific heat capacity / J kg^-1 K^-1"
+  gasTemperatureKelvins: "thermodynamic temperature / K"
+  pressureKilopascals: "gas pressure / kPa"
+  thermalEnergyTransferJoules: "thermal energy transfer / J"

@@ -32,7 +32,11 @@ test("navigates the generated mini knowledge graph", async ({ page }) => {
   await expect(page.getByText(/\d+ concepts ready/)).toBeVisible();
   await expect(page.getByRole("heading", { name: "First principles" })).toBeVisible();
   await expect(page.getByRole("navigation", { name: "Concept containers" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "Set up distribution" })).toBeVisible();
+  await expect(
+    page
+      .getByRole("navigation", { name: "Concept containers" })
+      .getByRole("link", { name: /^Probability and Statistics Probability and Statistics \/ H2$/ }),
+  ).toBeVisible();
 
   await page
     .getByRole("navigation", { name: "Concept containers" })
@@ -90,6 +94,18 @@ test("reveals the work-energy-power route from generated catalogue data", async 
   await expect(page.getByLabel("Observation unlocked")).toBeVisible();
   await expect(page.getByLabel("Formula used")).toContainText("W = F s cos(theta)");
   await expect(page.getByLabel("Observation unlocked")).toContainText("+30.00 J");
+});
+
+test("keeps the active thermal container when topbar lab links scroll", async ({ page }) => {
+  await page.goto("/#a-level%2Fphysics%2Fthermal-physics");
+
+  await expect(page.getByRole("heading", { name: "Thermal Physics" })).toBeVisible();
+  await page.getByRole("link", { name: "Start lab" }).click();
+
+  await expect(page).toHaveURL(/#a-level%2Fphysics%2Fthermal-physics$/);
+  await expect(page.getByRole("heading", { name: "Thermal Physics" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Gas Law and Energy Transfer Lab" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Set up thermal lab" })).toBeVisible();
 });
 
 test("reveals the probability-statistics route from generated catalogue data", async ({ page }) => {

@@ -1,0 +1,17 @@
+<svg aria-labelledby="title desc" fill="none" height="360" role="img" viewBox="0 0 640 360" width="640" xmlns="http://www.w3.org/2000/svg">
+  <title id="title">Static linear stability fallback</title>
+  <desc id="desc">A phase-plane sketch with a formula panel for trace, determinant, discriminant, and eigenvalues.</desc>
+  <rect fill="#f8fafc" height="360" rx="12" width="640"/>
+  <rect fill="#ffffff" height="266" rx="8" stroke="#cbd5e1" width="292" x="28" y="56"/>
+  <path d="M60 190H286" stroke="#94a3b8" stroke-width="2"/>
+  <path d="M174 82V296" stroke="#94a3b8" stroke-width="2"/>
+  <path d="M257 152C230 74 104 80 82 151C60 222 127 282 201 242C261 210 242 135 181 141C139 145 127 200 165 216" stroke="#0f766e" stroke-linecap="round" stroke-width="4"/>
+  <circle cx="174" cy="190" fill="#202a33" r="5"/>
+  <rect fill="#ffffff" height="266" rx="8" stroke="#cbd5e1" width="264" x="348" y="56"/>
+  <text fill="#202a33" font-family="Arial, sans-serif" font-size="20" font-weight="700" x="372" y="94">Formula panel</text>
+  <text fill="#0f766e" font-family="Arial, sans-serif" font-size="16" x="372" y="132">T = a + d</text>
+  <text fill="#2563eb" font-family="Arial, sans-serif" font-size="16" x="372" y="166">D = ad - bc</text>
+  <text fill="#b91c1c" font-family="Arial, sans-serif" font-size="16" x="372" y="200">Delta = T^2 - 4D</text>
+  <text fill="#334155" font-family="Arial, sans-serif" font-size="16" x="372" y="240">lambda = (T +/- sqrt(Delta)) / 2</text>
+  <text fill="#334155" font-family="Arial, sans-serif" font-size="16" x="372" y="278">negative real parts -> settles</text>
+</svg>

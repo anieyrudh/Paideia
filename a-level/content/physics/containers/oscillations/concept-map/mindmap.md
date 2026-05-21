@@ -1,0 +1,23 @@
+# Oscillations Mindmap
+
+- Oscillations
+  - Equilibrium
+    - zero resultant force
+    - zero acceleration
+    - speed may be greatest
+  - Simple harmonic condition
+    - acceleration proportional to displacement
+    - acceleration points towards equilibrium
+    - `a = -omega^2 x`
+  - Timing
+    - angular frequency `omega`
+    - period `T`
+    - frequency `f`
+  - Energy exchange
+    - elastic or gravitational potential store
+    - kinetic store
+    - total energy fixed in the ideal model
+  - Misconceptions
+    - amplitude changes every period
+    - equilibrium means rest
+    - zero displacement means no energy

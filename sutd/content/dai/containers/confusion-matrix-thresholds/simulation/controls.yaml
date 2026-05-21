@@ -1,0 +1,22 @@
+controls:
+  - id: threshold-percent
+    label: "Decision threshold"
+    kind: slider
+    default: 65
+    min: 35
+    max: 85
+    step: 5
+  - id: false-negative-cost
+    label: "False-negative cost"
+    kind: slider
+    default: 25
+    min: 5
+    max: 45
+    step: 5
+  - id: false-positive-cost
+    label: "False-positive cost"
+    kind: slider
+    default: 6
+    min: 1
+    max: 15
+    step: 1

@@ -1,0 +1,66 @@
+schema_version: "1.0.0"
+concept_id: linear-system-stability
+title: "Linear System Stability Concept Map"
+nodes:
+  - id: ode-phase-portrait
+    label: "ODE phase portrait"
+    kind: prerequisite
+    relationship: "Stability is observed through nearby trajectories in the phase plane."
+  - id: vector-transformations
+    label: "Vector transformations"
+    kind: prerequisite
+    relationship: "The matrix maps each state direction to a rate direction."
+  - id: eigenvectors
+    label: "Eigenvectors"
+    kind: prerequisite
+    relationship: "Real eigendirections reveal the natural directions of growth or decay."
+  - id: trace-determinant
+    label: "Trace and determinant"
+    kind: core
+    relationship: "T = a + d and D = ad - bc summarize the two eigenvalues."
+  - id: discriminant
+    label: "Discriminant"
+    kind: core
+    relationship: "Delta = T^2 - 4D separates real node/saddle cases from spirals."
+  - id: eigenvalue-sign
+    label: "Eigenvalue sign interpretation"
+    kind: core
+    relationship: "Signs of eigenvalues, or real parts, decide settling or growth."
+  - id: stability-class
+    label: "Stability class"
+    kind: outcome
+    relationship: "Node, spiral, saddle, centre, and degenerate cases predict local behaviour."
+  - id: control-stability
+    label: "Control stability"
+    kind: downstream
+    relationship: "Linear stability decisions transfer to feedback operating points."
+  - id: nonlinear-local-analysis
+    label: "Nonlinear local analysis"
+    kind: downstream
+    relationship: "Linearisation supplies the first local stability check near equilibria."
+edges:
+  - from: ode-phase-portrait
+    to: stability-class
+  - from: vector-transformations
+    to: trace-determinant
+  - from: eigenvectors
+    to: eigenvalue-sign
+  - from: trace-determinant
+    to: discriminant
+  - from: discriminant
+    to: eigenvalue-sign
+  - from: eigenvalue-sign
+    to: stability-class
+  - from: stability-class
+    to: control-stability
+  - from: stability-class
+    to: nonlinear-local-analysis
+misconceptions:
+  - id: stable-stops-instantly
+    statement: "Stable means every state stops moving instantly."
+    correction: "Stable means nearby paths eventually return; rates away from equilibrium can be nonzero."
+    surfaced_in: predict
+  - id: one-eigenvalue-only
+    statement: "Only one eigenvalue matters."
+    correction: "Every eigenvalue, or every real part, must point inward for asymptotic stability."
+    surfaced_in: observe

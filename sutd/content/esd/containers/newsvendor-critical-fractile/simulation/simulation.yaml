@@ -1,0 +1,59 @@
+id: newsvendor-critical-fractile
+title: "Newsvendor Critical Fractile Explorer"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/content-schema
+  - core/shared
+  - core/sim-runtime
+  - core/probability-stats
+  - core/optimization
+  - core/charting
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    If one missed sale costs far more than one leftover unit, where should the stocking target move?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Above the mean-demand point"
+      - "Exactly at mean demand"
+      - "To the lowest possible order"
+      - "Lower, because service is always expensive"
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: demand-setting
+      label: "Demand setting"
+      kind: selector
+      kernel_binding: state.scenario
+    - id: order-quantity
+      label: "Trial order quantity"
+      kind: slider
+      kernel_binding: state.orderQuantity
+      bounds: { min: 40, max: 150, step: 5 }
+    - id: underage-cost
+      label: "Shortage cost per unit"
+      kind: slider
+      kernel_binding: state.underageCost
+      bounds: { min: 2, max: 30, step: 1 }
+    - id: overage-cost
+      label: "Leftover cost per unit"
+      kind: slider
+      kernel_binding: state.overageCost
+      bounds: { min: 2, max: 30, step: 1 }
+observe:
+  renderers:
+    - id: critical-fractile-readout
+      module: "@paideia/sutd-sims/newsvendor-critical-fractile"
+      symbol: "NewsvendorCriticalFractile"
+      props_binding: |
+        Render the critical fractile formula, color-coded legend, substituted values with SGD/unit and units, expected-cost curve, and plain-language interpretation.
+explain:
+  prompt: |
+    Explain why the optimal order is a demand fractile chosen by shortage and leftover costs, not automatically the mean.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "The optimal stock is always mean demand."
+    - "A higher service level is always cheaper."

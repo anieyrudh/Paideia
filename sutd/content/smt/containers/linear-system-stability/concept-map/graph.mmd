@@ -1,0 +1,16 @@
+flowchart TD
+  ode["ODE phase portrait"] --> stability["Linear system stability"]
+  vector["Vector transformations"] --> matrix["Matrix A"]
+  eigenvectors["Eigenvectors"] --> eigensigns["Eigenvalue signs and real parts"]
+  matrix --> trace["Trace T = a + d"]
+  matrix --> determinant["Determinant D = ad - bc"]
+  trace --> discriminant["Delta = T^2 - 4D"]
+  determinant --> discriminant
+  discriminant --> eigensigns
+  eigensigns --> classes["Node, spiral, saddle, centre"]
+  classes --> control["Control stability"]
+  classes --> nonlinear["Nonlinear local analysis"]
+  misconceptionA["Stable means instant stopping"] --> correctionA["Stable means eventual return"]
+  misconceptionB["One eigenvalue matters"] --> correctionB["All real parts must be inward"]
+  correctionA --> stability
+  correctionB --> eigensigns

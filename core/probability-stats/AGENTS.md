@@ -20,9 +20,20 @@ Exports from `@paideia/probability-stats`:
 - `NormalMeanHypothesisTestAlpha = 0.1 | 0.05 | 0.01`
 - `NormalMeanHypothesisTestInput = { nullMean: number; observedMean: number; populationStandardDeviation: number; sampleSize: number; alpha: NormalMeanHypothesisTestAlpha; alternative: NormalMeanHypothesisTestAlternative }`
 - `NormalMeanHypothesisTestDecision = { nullMean: number; observedMean: number; standardError: number; z: number; alpha: NormalMeanHypothesisTestAlpha; alternative: NormalMeanHypothesisTestAlternative; criticalBoundary: number; rejectNull: boolean; pValueRelation: "less-than-alpha" | "at-least-alpha" }`
+- `BinaryClassLabel = "actual-positive" | "actual-negative"`
+- `ThresholdClassifierCase<TId extends string = string> = { id: TId; score: number; actual: BinaryClassLabel }`
+- `BinaryConfusionCounts = { truePositive: number; falsePositive: number; trueNegative: number; falseNegative: number }`
+- `BinaryConfusionCell = "true-positive" | "false-positive" | "true-negative" | "false-negative"`
+- `ThresholdCaseOutcome<TId extends string = string> = { id: TId; score: number; actual: BinaryClassLabel; predictedPositive: boolean; cell: BinaryConfusionCell }`
+- `ThresholdCurvePoint = { thresholdPercent: number; precision: number; recall: number; accuracy: number; falsePositiveCostTotal: number; falseNegativeCostTotal: number; totalCost: number }`
+- `ThresholdClassificationInput<TId extends string = string> = { cases: readonly ThresholdClassifierCase<TId>[]; threshold: number; falsePositiveCost: number; falseNegativeCost: number; curveThresholds?: readonly number[] }`
+- `ThresholdClassificationEvidence = { threshold: Probability; counts: BinaryConfusionCounts; precision: Probability; recall: Probability; accuracy: Probability; baseRate: Probability; falsePositiveCost: number; falseNegativeCost: number; falsePositiveCostTotal: number; falseNegativeCostTotal: number; totalCost: number; curve: readonly ThresholdCurvePoint[] }`
 - `probabilityStatsTolerance: { default: number; tight: number; loose: number }`
 - `normalizeDistribution<TId extends string>(outcomes: readonly WeightedOutcome<TId>[]): KernelResult<DiscreteDistribution<TId>>` — converts finite non-negative weights into branded probabilities that sum to 1.
 - `bayesPositiveEvidence(input: BayesPositiveEvidenceInput): KernelResult<BayesPositiveEvidence>` — computes the positive-evidence Bayes update by normalising true-positive and false-positive routes.
+- `thresholdCaseOutcomes<TId extends string>(cases: readonly ThresholdClassifierCase<TId>[], threshold: number): KernelResult<readonly ThresholdCaseOutcome<TId>[]>` — classifies thresholded binary cases into confusion-matrix cells.
+- `binaryConfusionCounts<TId extends string>(cases: readonly ThresholdClassifierCase<TId>[], threshold: number): KernelResult<BinaryConfusionCounts>` — aggregates thresholded cases into TP/FP/TN/FN counts.
+- `thresholdClassificationEvidence<TId extends string>(input: ThresholdClassificationInput<TId>): KernelResult<ThresholdClassificationEvidence>` — computes counts, precision, recall, accuracy, base rate, cost totals, and optional threshold-curve points.
 - `expectedValue(distribution: DiscreteDistribution): KernelResult<number>` — computes E(X) for a validated finite distribution.
 - `variance(distribution: DiscreteDistribution): KernelResult<number>` — computes Var(X) for a validated finite distribution.
 - `samplingDistributionOfMean(input: SamplingDistributionOfMeanInput): KernelResult<SamplingDistributionOfMean>` — maps caller-owned random thresholds into repeated sample means and derives population/sample-mean statistics.
@@ -35,6 +46,10 @@ Exports from `@paideia/probability-stats`:
 ## Invariants the caller must preserve
 - Distribution probabilities are branded `Probability` values and must sum to 1 within `probabilityStatsTolerance.default`.
 - Outcome values, observations, bounds, and bin counts must be finite where applicable.
+- Binary classifier case scores and thresholds must be valid probabilities, and
+  `actual` labels must be `actual-positive` or `actual-negative`.
+- Binary classifier false-positive and false-negative costs must be finite and
+  non-negative.
 - Sample variance requires at least two observations. Population variance requires at least one observation.
 - Histogram domains are half-open per bin except the final bin, which includes `domain.max`.
 - Normal mean hypothesis tests require positive population standard deviation, positive integer sample size, and alpha in `{0.1, 0.05, 0.01}`.
@@ -49,7 +64,7 @@ Exports from `@paideia/probability-stats`:
 - Does **not** infer units or curriculum branch behavior.
 
 ## When to consider this module
-Use `core/probability-stats` when a sim needs canonical expected value, variance, quantiles, descriptive summaries, z-scores, normal-mean hypothesis-test decision quantities, Bayes-route normalisation, sampling distributions of means from caller-owned thresholds, or histogram bins from finite learner-controlled data. If a sim is about probability trees, random variables, normalisation, hypothesis-test critical regions, summary measures, or data distributions, consume this kernel instead of inlining the formulas.
+Use `core/probability-stats` when a sim needs canonical expected value, variance, quantiles, descriptive summaries, z-scores, normal-mean hypothesis-test decision quantities, Bayes-route normalisation, binary threshold/confusion-matrix metrics, sampling distributions of means from caller-owned thresholds, or histogram bins from finite learner-controlled data. If a sim is about probability trees, random variables, normalisation, hypothesis-test critical regions, summary measures, threshold tradeoffs, or data distributions, consume this kernel instead of inlining the formulas.
 
 ## Extension protocol
 1. Open a `core-change-proposal` issue naming every current consumer.
