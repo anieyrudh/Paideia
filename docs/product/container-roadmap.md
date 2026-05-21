@@ -151,24 +151,25 @@ Latest slice notes:
 - Deep review on recent slices found and fixed missing substitution units,
   package-local project-reference typecheck drift, downstream taxonomy mismatch,
   and student-facing copy that exposed implementation details.
-- `work-energy-power`, `momentum`, `waves`, `circuits`, and A-Level
-  `probability-statistics` are now reviewed. The next A-Level work should pick
+- `work-energy-power`, `momentum`, `waves`, `circuits`, A-Level
+  `probability-statistics`, `circular-motion`, `oscillations`,
+  `thermal-physics`, `gravitational-fields`, `electric-fields`, and
+  `hypothesis-testing` are now reviewed. The next A-Level work should pick
   from the queue rather than rebuilding these landed slices.
 
 Next ready-for-build A-Level wave:
 
 | Subject | Queue ID | Why next |
 | --- | --- | --- |
-| Physics | `alevel.physics.circular-motion` | Extends vectors, kinematics, and force balance into radial acceleration. |
-| Physics | `alevel.physics.oscillations` | Bridges mechanics, waves, and energy-transfer reasoning. |
-| Physics | `alevel.physics.thermal-physics` | Opens the thermal/gas-law path using existing numerical and charting kernels. |
-| Physics | `alevel.physics.gravitational-fields` | Extends mechanics into inverse-square field reasoning. |
-| Physics | `alevel.physics.electric-fields` | Connects circuits, vector direction, and field-force reasoning. |
-| Mathematics | `alevel.math.hypothesis-testing` | Continues probability and statistics into decision-making and p-value misconceptions. |
+| Physics | `alevel.physics.capacitance` | Extends electric fields into stored charge, voltage, and energy. |
+| Physics | `alevel.physics.alternating-current` | Builds on circuits, waves, and oscillations with RMS and phase reasoning. |
+| Physics | `alevel.physics.magnetic-fields` | Connects circular motion and field direction to force-on-charge reasoning. |
+| Mathematics | `alevel.math.normal-distribution` | Gives hypothesis testing its missing visual probability foundation. |
+| Mathematics | `alevel.math.confidence-intervals` | Completes the first inference loop after normal distribution and hypothesis tests. |
 
 ### SUTD First Pillar Slices
 
-Status: ten SUTD product slices have landed on `main` and are
+Status: fifteen SUTD product slices have landed on `main` and are
 tracked in the build queue with required kernels:
 
 | Pillar | Container | Status | Required kernels |
@@ -183,18 +184,26 @@ tracked in the build queue with required kernels:
 | Freshmore | `sutd.freshmore.bayes-updating` | reviewed | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 | Freshmore | `sutd.freshmore.eigenvector-transformations` | reviewed | `core/sim-runtime`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
 | EPD | `sutd.epd.bode-stability-margin` | reviewed | `core/sim-runtime`, `core/control-systems`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| ESD | `sutd.esd.newsvendor-critical-fractile` | reviewed | `core/sim-runtime`, `core/probability-stats`, `core/optimization`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| CSD | `sutd.csd.dynamic-programming-state-recursion` | reviewed | `core/sim-runtime`, `core/graph-layout`, `core/prediction-gate`, `core/ui-sim` |
+| ASD | `sutd.asd.shading-daylight-heat-gain` | reviewed | `core/sim-runtime`, `core/linear-algebra`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| DAI | `sutd.dai.confusion-matrix-thresholds` | reviewed | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/annotation`, `core/prediction-gate`, `core/ui-sim` |
+| SMT | `sutd.smt.linear-system-stability` | reviewed | `core/sim-runtime`, `core/dynamical-systems`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
 
 Next SUTD candidates in order:
 
-1. `sutd.esd.newsvendor-critical-fractile` — first stochastic optimisation
-   operations slice.
-2. `sutd.csd.dynamic-programming-state-recursion` — next algorithms slice after
-   graph search.
-3. `sutd.asd.shading-daylight-heat-gain` — second ASD environmental tradeoff
-   slice.
-4. `sutd.dai.confusion-matrix-thresholds` — next human-AI evaluation slice.
-5. `sutd.smt.linear-system-stability` — next SMT modelling slice after phase
-   portraits.
+1. `sutd.esd.markov-chain-steady-state` — next stochastic systems slice after
+   newsvendor and linear programming.
+2. `sutd.csd.recursion-tree-complexity` — next algorithms slice after dynamic
+   programming.
+3. `sutd.epd.signal-filter-frequency-response` — next signals/control slice
+   after Bode stability and circuit phasors.
+4. `sutd.asd.structural-load-path-diagram` — next ASD structural reasoning
+   slice after load-path/daylight tradeoffs.
+5. `sutd.dai.fairness-threshold-audit` — next human-AI evaluation slice after
+   confusion-matrix thresholds.
+6. `sutd.smt.fourier-mode-superposition` — next SMT modelling slice after
+   linear system stability.
 
 ### Build Queue Discipline
 
@@ -331,12 +340,17 @@ First useful A-Level sequence:
 8. Waves. Status: reviewed product slice.
 9. Circuits. Status: reviewed product slice.
 10. Probability and statistics. Status: reviewed product slice.
-11. Circular motion. Status: ready for build.
-12. Oscillations. Status: ready for build.
-13. Thermal physics. Status: ready for build.
-14. Gravitational fields. Status: ready for build.
-15. Electric fields. Status: ready for build.
-16. Hypothesis testing. Status: ready for build.
+11. Circular motion. Status: reviewed product slice.
+12. Oscillations. Status: reviewed product slice.
+13. Thermal physics. Status: reviewed product slice.
+14. Gravitational fields. Status: reviewed product slice.
+15. Electric fields. Status: reviewed product slice.
+16. Hypothesis testing. Status: reviewed product slice.
+17. Capacitance. Status: ready for build.
+18. Alternating current. Status: ready for build.
+19. Magnetic fields. Status: ready for build.
+20. Normal distribution. Status: ready for build.
+21. Confidence intervals. Status: ready for build.
 
 ### IB
 
