@@ -153,23 +153,21 @@ Latest slice notes:
   and student-facing copy that exposed implementation details.
 - `work-energy-power`, `momentum`, `waves`, `circuits`, A-Level
   `probability-statistics`, `circular-motion`, `oscillations`,
-  `thermal-physics`, `gravitational-fields`, `electric-fields`, and
-  `hypothesis-testing` are now reviewed. The next A-Level work should pick
-  from the queue rather than rebuilding these landed slices.
+  `thermal-physics`, `gravitational-fields`, `electric-fields`,
+  `hypothesis-testing`, `capacitance`, `alternating-current`,
+  `magnetic-fields`, `normal-distribution`, and `confidence-intervals` are now
+  reviewed. The next A-Level work should be promoted in the queue before
+  agents start another wave.
 
 Next ready-for-build A-Level wave:
 
-| Subject | Queue ID | Why next |
-| --- | --- | --- |
-| Physics | `alevel.physics.capacitance` | Extends electric fields into stored charge, voltage, and energy. |
-| Physics | `alevel.physics.alternating-current` | Builds on circuits, waves, and oscillations with RMS and phase reasoning. |
-| Physics | `alevel.physics.magnetic-fields` | Connects circular motion and field direction to force-on-charge reasoning. |
-| Mathematics | `alevel.math.normal-distribution` | Gives hypothesis testing its missing visual probability foundation. |
-| Mathematics | `alevel.math.confidence-intervals` | Completes the first inference loop after normal distribution and hypothesis tests. |
+No A-Level entries are currently promoted after the May 21, 2026 container
+wave. Promote the next candidates in `container-build-queue.yaml` before
+launching more agents.
 
 ### SUTD First Pillar Slices
 
-Status: fifteen SUTD product slices have landed on `main` and are
+Status: twenty-one SUTD product slices have landed on `main` and are
 tracked in the build queue with required kernels:
 
 | Pillar | Container | Status | Required kernels |
@@ -189,21 +187,18 @@ tracked in the build queue with required kernels:
 | ASD | `sutd.asd.shading-daylight-heat-gain` | reviewed | `core/sim-runtime`, `core/linear-algebra`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 | DAI | `sutd.dai.confusion-matrix-thresholds` | reviewed | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/annotation`, `core/prediction-gate`, `core/ui-sim` |
 | SMT | `sutd.smt.linear-system-stability` | reviewed | `core/sim-runtime`, `core/dynamical-systems`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+| ESD | `sutd.esd.markov-chain-steady-state` | reviewed | `core/sim-runtime`, `core/probability-stats`, `core/linear-algebra`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| CSD | `sutd.csd.recursion-tree-complexity` | reviewed | `core/sim-runtime`, `core/algorithm-trace`, `core/graph-layout`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| EPD | `sutd.epd.signal-filter-frequency-response` | reviewed | `core/sim-runtime`, `core/control-systems`, `core/circuits`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| ASD | `sutd.asd.structural-load-path-diagram` | reviewed | `core/sim-runtime`, `core/mechanics`, `core/linear-algebra`, `core/graph-layout`, `core/prediction-gate`, `core/ui-sim` |
+| DAI | `sutd.dai.fairness-threshold-audit` | reviewed | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/annotation`, `core/prediction-gate`, `core/ui-sim` |
+| SMT | `sutd.smt.fourier-mode-superposition` | reviewed | `core/sim-runtime`, `core/numerical-math`, `core/charting`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
 
 Next SUTD candidates in order:
 
-1. `sutd.esd.markov-chain-steady-state` — next stochastic systems slice after
-   newsvendor and linear programming.
-2. `sutd.csd.recursion-tree-complexity` — next algorithms slice after dynamic
-   programming.
-3. `sutd.epd.signal-filter-frequency-response` — next signals/control slice
-   after Bode stability and circuit phasors.
-4. `sutd.asd.structural-load-path-diagram` — next ASD structural reasoning
-   slice after load-path/daylight tradeoffs.
-5. `sutd.dai.fairness-threshold-audit` — next human-AI evaluation slice after
-   confusion-matrix thresholds.
-6. `sutd.smt.fourier-mode-superposition` — next SMT modelling slice after
-   linear system stability.
+No SUTD entries are currently promoted after the May 21, 2026 container wave.
+Promote the next pillar candidates in `container-build-queue.yaml` before
+launching more agents.
 
 ### Build Queue Discipline
 
@@ -346,11 +341,11 @@ First useful A-Level sequence:
 14. Gravitational fields. Status: reviewed product slice.
 15. Electric fields. Status: reviewed product slice.
 16. Hypothesis testing. Status: reviewed product slice.
-17. Capacitance. Status: ready for build.
-18. Alternating current. Status: ready for build.
-19. Magnetic fields. Status: ready for build.
-20. Normal distribution. Status: ready for build.
-21. Confidence intervals. Status: ready for build.
+17. Capacitance. Status: reviewed product slice.
+18. Alternating current. Status: reviewed product slice.
+19. Magnetic fields. Status: reviewed product slice.
+20. Normal distribution. Status: reviewed product slice.
+21. Confidence intervals. Status: reviewed product slice.
 
 ### IB
 
