@@ -66,3 +66,18 @@ test("maps concept clusters across all SUTD pillars", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "SMT" })).toBeVisible();
   await expect(page.getByText("sutd.smt.ode-phase-portrait")).toBeVisible();
 });
+
+test("updates the container preview when the hash route changes in place", async ({ page }) => {
+  await page.goto("/#sutd/esd/markov-chain-steady-state");
+
+  await expect(page.getByRole("heading", { name: "Markov Chain Steady State" })).toBeVisible();
+  await expect(page.getByRole("button", { name: /ESD/ })).toHaveAttribute("aria-pressed", "true");
+
+  await page.evaluate(() => {
+    window.location.hash = "#sutd/smt/fourier-mode-superposition";
+  });
+
+  await expect(page.getByRole("heading", { name: "Fourier Mode Superposition" })).toBeVisible();
+  await expect(page.getByRole("button", { name: /SMT/ })).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("heading", { name: "Markov Chain Steady State" })).toBeHidden();
+});
