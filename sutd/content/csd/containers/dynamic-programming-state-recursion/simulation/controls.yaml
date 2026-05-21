@@ -1,0 +1,18 @@
+controls:
+  - id: target-step
+    label: "Target step"
+    type: slider
+    min: 4
+    max: 8
+    step: 1
+    default: 5
+    unit: steps
+  - id: recursion-strategy
+    label: "Trace style"
+    type: selector
+    options:
+      - value: memoized
+        label: "Memoised trace"
+      - value: plain
+        label: "Plain recursion comparison"
+    default: memoized

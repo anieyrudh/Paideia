@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Static gravitational field fallback</title>
+  <desc id="desc">Formula summary for gravitational field strength and potential.</desc>
+  <rect width="640" height="360" fill="#f8fbff"/>
+  <rect x="64" y="56" width="512" height="248" rx="18" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="96" y="124" fill="#10201a" font-family="Arial, sans-serif" font-size="34" font-weight="700">Gravitational Fields</text>
+  <text x="96" y="176" fill="#1f5f8b" font-family="Arial, sans-serif" font-size="28">g = GM / r²</text>
+  <text x="96" y="220" fill="#7657d8" font-family="Arial, sans-serif" font-size="28">φ = -GM / r</text>
+  <text x="96" y="264" fill="#027a48" font-family="Arial, sans-serif" font-size="22">Field vectors point inward; potential is zero at infinity.</text>
+</svg>

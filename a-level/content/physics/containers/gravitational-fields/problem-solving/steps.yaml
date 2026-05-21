@@ -1,0 +1,19 @@
+steps:
+  - id: identify-source
+    label: "Identify the source mass and radius"
+    check: "The radius is measured from the centre of the mass creating the field."
+  - id: choose-quantity
+    label: "Choose field, force, potential, energy, or orbit speed"
+    check: "Do not multiply by test mass unless the question asks for force or potential energy."
+  - id: field-strength
+    label: "Calculate field strength"
+    formula: "g = GM / r^2"
+  - id: force-or-potential
+    label: "Calculate the requested linked quantity"
+    formula: "F = mg, phi = -GM / r, E_p = m phi"
+  - id: orbit-speed
+    label: "Use circular-motion balance when needed"
+    formula: "v = sqrt(GM / r)"
+  - id: interpret
+    label: "Interpret direction, sign, and units"
+    check: "Field direction is inward; potential is negative when zero is at infinity."

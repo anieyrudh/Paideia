@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Newsvendor critical fractile fallback visual</title>
+  <desc id="desc">A demand distribution, expected cost curve, and highlighted service-level threshold for a one-period inventory decision.</desc>
+  <rect width="640" height="360" fill="#fffdf7"/>
+  <rect x="36" y="36" width="568" height="288" rx="8" fill="#f7fbf8" stroke="#b9c9bf"/>
+  <text x="64" y="76" fill="#172026" font-family="Arial, sans-serif" font-size="26" font-weight="700">Newsvendor critical fractile</text>
+  <text x="64" y="105" fill="#506357" font-family="Arial, sans-serif" font-size="16">choose the smallest Q where F(Q) reaches the cost-balanced target</text>
+  <g aria-label="demand bars">
+    <line x1="82" y1="270" x2="302" y2="270" stroke="#51635a" stroke-width="2"/>
+    <line x1="82" y1="140" x2="82" y2="270" stroke="#51635a" stroke-width="2"/>
+    <rect x="110" y="226" width="28" height="44" fill="#2f6f73"/>
+    <rect x="150" y="198" width="28" height="72" fill="#2f6f73"/>
+    <rect x="190" y="168" width="28" height="102" fill="#2f6f73"/>
+    <rect x="230" y="188" width="28" height="82" fill="#2f6f73"/>
+    <rect x="270" y="226" width="28" height="44" fill="#2f6f73"/>
+    <text x="113" y="292" fill="#172026" font-family="Arial, sans-serif" font-size="12">60</text>
+    <text x="153" y="292" fill="#172026" font-family="Arial, sans-serif" font-size="12">75</text>
+    <text x="193" y="292" fill="#172026" font-family="Arial, sans-serif" font-size="12">90</text>
+    <text x="229" y="292" fill="#172026" font-family="Arial, sans-serif" font-size="12">105</text>
+    <text x="269" y="292" fill="#172026" font-family="Arial, sans-serif" font-size="12">120</text>
+  </g>
+  <g aria-label="expected cost curve">
+    <line x1="352" y1="270" x2="558" y2="270" stroke="#51635a" stroke-width="2"/>
+    <line x1="352" y1="140" x2="352" y2="270" stroke="#51635a" stroke-width="2"/>
+    <path d="M358 160 C390 212 422 246 454 252 C486 254 518 230 552 178" fill="none" stroke="#1f5f8b" stroke-width="5"/>
+    <line x1="472" y1="132" x2="472" y2="276" stroke="#6941c6" stroke-width="3" stroke-dasharray="6 5"/>
+    <circle cx="472" cy="252" r="7" fill="#6941c6"/>
+    <text x="402" y="310" fill="#172026" font-family="Arial, sans-serif" font-size="14">expected mismatch cost</text>
+  </g>
+  <rect x="64" y="116" width="178" height="34" rx="6" fill="#f5f1e8" stroke="#d8ccb5"/>
+  <text x="78" y="138" fill="#172026" font-family="Arial, sans-serif" font-size="14">CR = C_under / (C_under + C_over)</text>
+</svg>

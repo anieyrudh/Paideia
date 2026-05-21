@@ -1,0 +1,130 @@
+schema_version: "1.0.0"
+id: newsvendor-critical-fractile
+aliases:
+  - newsvendor critical ratio
+  - single-period inventory fractile
+  - service-level cost balance
+branch: sutd
+subject: esd
+level: "SUTD ESD"
+module: "Stochastic Optimisation and Supply Chain Decisions"
+title: "Newsvendor Critical Fractile"
+one_line_summary: "Balance shortage and leftover costs to choose the demand fractile for a one-period stocking decision."
+syllabus_ref: "SUTD ESD stochastic optimisation / supply-chain inventory modelling"
+prerequisites:
+  - probability-distributions
+  - expected-value
+  - linear-programming-feasible-region
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    If one missed sale costs far more than one leftover unit, where should the stocking target move?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Above the mean-demand point"
+      - "Exactly at mean demand"
+      - "To the lowest possible order"
+      - "Lower, because service is always expensive"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: lab-kit-pop-up
+    prompt: |
+      A one-day lab-kit pop-up faces uncertain demand at 50, 70, 90, 110, and 130 kits. A missed kit costs 24 SGD and a leftover kit costs 8 SGD. Compute the critical fractile, choose the smallest demand point whose cumulative probability reaches it, and explain whether the answer should be above or below mean demand.
+    surface_form: "single-period event inventory"
+    same_concept_check: "Same concept: compare underage and overage costs, then map the critical fractile onto the demand CDF."
+    rubric_path: problem-solving/steps.yaml
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-21"
+      author: "Codex"
+      summary: "Built SUTD ESD newsvendor critical fractile container and simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-21"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-21"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "The optimal stock is always mean demand"
+    description: "Learners may use the expected demand as the order quantity even when shortage and leftover costs are strongly asymmetric."
+    evidence_source: "Newsvendor teaching examples contrast mean-demand ordering with the critical-ratio optimum."
+    surface_in_predict: true
+  - name: "A higher service level is always cheaper"
+    description: "Learners may treat service level as a monotone improvement rather than a marginal tradeoff against leftover cost."
+    evidence_source: "Inventory models frame service level as a cost-balanced fractile, not a universal target."
+    surface_in_predict: true
+sources:
+  - citation: "SUTD Engineering Systems and Design Inventory Stack project description identifies Newsvendor and (Q,r) models as hands-on inventory learning targets."
+    url: "https://www.sutd.edu.sg/esd/course-publication/inventory-stack/"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+  - citation: "MIT OpenCourseWare ESD.273J Logistics and Supply Chain Management readings include stochastic inventory models and newsvendor models."
+    url: "https://ocw.mit.edu/courses/esd-273j-logistics-and-supply-chain-management-fall-2009/pages/readings/"
+    publication_year: 2009
+    license: "CC BY-NC-SA"
+    seab_alignment: n/a
+  - citation: "MIT OpenCourseWare ESD.273J lecture notes on stochastic inventory models and supply contracts use order quantity, demand scenarios, and expected-profit curves."
+    url: "https://ocw.mit.edu/courses/esd-273j-logistics-and-supply-chain-management-fall-2009/34e5cfa83eac1bf9711374828c260a22_MITESD_273JF09_lec05.pdf"
+    publication_year: 2009
+    license: "CC BY-NC-SA"
+    seab_alignment: n/a
+  - citation: "UT Dallas OR notes describe the newsvendor critical ratio Cu/(Co + Cu) for expected cost/profit optimisation."
+    url: "https://personal.utdallas.edu/~metin/Or6302/Folios/omnewsvendor.pdf"
+    publication_year: 2025
+    license: "Public course notes"
+    seab_alignment: n/a
+language: en

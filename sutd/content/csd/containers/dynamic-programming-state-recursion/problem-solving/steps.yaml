@@ -1,0 +1,21 @@
+steps:
+  - id: define-state
+    title: "Define the state"
+    prompt: "Write what one table entry means before writing code."
+    success_criteria: "The state has an index and a value with units."
+  - id: base-cases
+    title: "Set base cases"
+    prompt: "Identify states that do not depend on smaller states."
+    success_criteria: "Base cases are enough to start the recurrence."
+  - id: recurrence
+    title: "Write the recurrence"
+    prompt: "Express the target state using smaller states."
+    success_criteria: "Each dependency points to an already smaller subproblem."
+  - id: memo-table
+    title: "Use the table"
+    prompt: "Store each state once and reuse it when it appears again."
+    success_criteria: "The final value is unchanged while repeated work decreases."
+  - id: interpret
+    title: "Interpret the result"
+    prompt: "Translate the final state value back to the problem context."
+    success_criteria: "The answer includes units and a plain-language meaning."

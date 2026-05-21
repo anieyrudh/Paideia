@@ -1,0 +1,25 @@
+# Linear System Stability Mindmap
+
+- Linear system stability
+  - Model form
+    - State vector `z = (x, y)`
+    - System matrix `A = [[a, b], [c, d]]`
+    - Rate equation `z' = A z`
+  - Stability evidence
+    - Trace `T = a + d`
+    - Determinant `D = ad - bc`
+    - Discriminant `Delta = T^2 - 4D`
+    - Eigenvalues `lambda = (T +/- sqrt(Delta)) / 2`
+  - Behaviours
+    - Stable node
+    - Stable spiral
+    - Saddle
+    - Unstable node
+    - Unstable spiral
+    - Centre
+  - Misconceptions
+    - Stability is instant stopping
+    - One eigenvalue is enough
+  - Transfer
+    - Control-loop stability
+    - Nonlinear local analysis

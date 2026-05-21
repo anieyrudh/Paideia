@@ -1,0 +1,16 @@
+steps:
+  - id: identify-costs
+    prompt: "What is the shortage cost and what is the leftover cost?"
+    expected_action: "Name C_under and C_over with SGD/unit units."
+  - id: compute-fractile
+    prompt: "What target probability does the cost balance imply?"
+    expected_action: "Compute C_under / (C_under + C_over) and express it as a percentage."
+  - id: locate-cdf-crossing
+    prompt: "Where does the demand CDF first reach that target?"
+    expected_action: "Use cumulative probabilities and choose the smallest order quantity with F(Q) >= CR."
+  - id: compare-mean
+    prompt: "Is this quantity above, near, or below mean demand, and why?"
+    expected_action: "Connect the direction to asymmetric shortage and leftover costs."
+  - id: interpret-service
+    prompt: "What does the chosen service level mean in plain language?"
+    expected_action: "State the chance of satisfying all demand and the cost tradeoff it accepts."

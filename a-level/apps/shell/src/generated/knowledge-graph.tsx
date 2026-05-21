@@ -2,15 +2,17 @@
 import type { ComponentType } from "react";
 import GeneratedSim0ProbabilityStatisticsProbabilityStatisticsLab from "@paideia/a-level-math-sims/probability-statistics";
 import GeneratedSim1CircuitsSeriesParallelCircuitLab from "@paideia/a-level-physics-sims/circuits";
-import GeneratedSim2ForcesAndEquilibriumForceBalance from "@paideia/a-level-physics-sims/forces-and-equilibrium";
-import GeneratedSim3KinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
-import GeneratedSim4MomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
-import GeneratedSim5PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
-import GeneratedSim6ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
-import GeneratedSim7ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
-import GeneratedSim8ThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
-import GeneratedSim9WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
-import GeneratedSim10WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
+import GeneratedSim2CircularMotionCentripetalForceVectorLab from "@paideia/a-level-physics-sims/circular-motion";
+import GeneratedSim3ForcesAndEquilibriumForceBalance from "@paideia/a-level-physics-sims/forces-and-equilibrium";
+import GeneratedSim4GravitationalFieldsInverseSquareFieldLab from "@paideia/a-level-physics-sims/gravitational-fields";
+import GeneratedSim5KinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
+import GeneratedSim6MomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
+import GeneratedSim7PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
+import GeneratedSim8ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
+import GeneratedSim9ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
+import GeneratedSim10ThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
+import GeneratedSim11WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
+import GeneratedSim12WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -85,12 +87,30 @@ export const knowledgeGraph = {
     status: "reviewed",
   },
   {
+    id: "a-level/physics/circular-motion",
+    conceptId: "circular-motion",
+    title: "Circular Motion",
+    subject: "physics",
+    level: "H2",
+    module: "Forces and Motion",
+    status: "reviewed",
+  },
+  {
     id: "a-level/physics/forces-and-equilibrium",
     conceptId: "forces-and-equilibrium",
     title: "Forces and Equilibrium",
     subject: "physics",
     level: "H2",
     module: "Forces and Motion",
+    status: "reviewed",
+  },
+  {
+    id: "a-level/physics/gravitational-fields",
+    conceptId: "gravitational-fields",
+    title: "Gravitational Fields",
+    subject: "physics",
+    level: "H2",
+    module: "Energy and Fields",
     status: "reviewed",
   },
   {
@@ -176,6 +196,17 @@ export const knowledgeGraph = {
   { from: "a-level/physics/circuits", to: "a-level/physics/alternating-current", kind: "downstream" },
   { from: "a-level/physics/circuits", to: "a-level/physics/electromagnetism", kind: "downstream" },
   { from: "a-level/physics/circuits", to: "a-level/physics/work-energy-power", kind: "sibling" },
+  { from: "a-level/physics/resolving-vectors", to: "a-level/physics/circular-motion", kind: "prerequisite" },
+  { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/circular-motion", kind: "prerequisite" },
+  { from: "a-level/physics/forces-and-equilibrium", to: "a-level/physics/circular-motion", kind: "prerequisite" },
+  { from: "a-level/physics/circular-motion", to: "a-level/physics/gravitational-fields", kind: "downstream" },
+  { from: "a-level/physics/circular-motion", to: "a-level/physics/oscillations", kind: "downstream" },
+  { from: "a-level/physics/circular-motion", to: "a-level/physics/forces-and-newtons-laws", kind: "sibling" },
+  { from: "a-level/physics/circular-motion", to: "a-level/physics/gravitational-fields", kind: "prerequisite" },
+  { from: "a-level/physics/forces-and-equilibrium", to: "a-level/physics/gravitational-fields", kind: "prerequisite" },
+  { from: "a-level/physics/gravitational-fields", to: "a-level/physics/orbital-motion", kind: "downstream" },
+  { from: "a-level/physics/gravitational-fields", to: "a-level/physics/electric-fields", kind: "downstream" },
+  { from: "a-level/physics/gravitational-fields", to: "a-level/physics/work-energy-power", kind: "sibling" },
   { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/kinematics-in-one-dimension", kind: "prerequisite" },
   { from: "a-level/physics/scalars-and-vectors", to: "a-level/physics/kinematics-in-one-dimension", kind: "prerequisite" },
   { from: "a-level/physics/resolving-vectors", to: "a-level/physics/kinematics-in-one-dimension", kind: "prerequisite" },
@@ -349,6 +380,56 @@ export const containers = [
     ],
   },
   {
+    id: "a-level/physics/circular-motion",
+    branch: "a-level",
+    subject: "Physics",
+    level: "H2",
+    module: "Forces and Motion",
+    title: "Circular Motion",
+    summary: "Relate constant speed on a circular path to inward acceleration and resultant force.",
+    syllabusRef: "9478 / Section II / Circular Motion",
+    status: "reviewed",
+    packageId: "circular-motion",
+    simId: "centripetal-force-vector-lab",
+    predictPrompt: "A rider moves at constant speed around a circular track. Before revealing the vectors, predict the direction of the acceleration and resultant force.",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "Centripetal force is an extra new force",
+      "Constant speed means zero acceleration",
+      "Circular motion force points outward",
+    ],
+    transferProblem: "A satellite of mass 120 kg moves at 7600 m/s in a circular orbit of radius 6.8 x 10^6 m. Find the inward acceleration, the gravitational force required, and state how the force demand changes if the same satellite moves faster at the same orbital radius.",
+    firstPrinciples: "Uniform circular motion has constant speed but changing velocity because the direction of motion changes continuously. The acceleration is radial and points toward the centre of the circle, so the resultant force required for the motion also points toward the centre.",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [],
+    prerequisites: [
+      "Resolving Vectors",
+      "Kinematics in One Dimension",
+      "Forces and Equilibrium",
+    ],
+    downstream: [
+      "Gravitational Fields",
+      "Oscillations",
+    ],
+    siblings: [
+      "Forces and Newton's Laws",
+    ],
+    sims: [
+      {
+        id: "centripetal-force-vector-lab",
+        harnessId: "a-level/physics/circular-motion/centripetal-force-vector-lab",
+        title: "Centripetal Force Vector Lab",
+        interactionType: "diagram-builder",
+        component: GeneratedSim2CircularMotionCentripetalForceVectorLab,
+      },
+    ],
+  },
+  {
     id: "a-level/physics/forces-and-equilibrium",
     branch: "a-level",
     subject: "Physics",
@@ -397,7 +478,63 @@ export const containers = [
         harnessId: "a-level/physics/forces-and-equilibrium/force-balance",
         title: "Force Balance Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim2ForcesAndEquilibriumForceBalance,
+        component: GeneratedSim3ForcesAndEquilibriumForceBalance,
+      },
+    ],
+  },
+  {
+    id: "a-level/physics/gravitational-fields",
+    branch: "a-level",
+    subject: "Physics",
+    level: "H2",
+    module: "Energy and Fields",
+    title: "Gravitational Fields",
+    summary: "Use inverse-square reasoning to connect gravitational field strength, force, potential, and orbital speed.",
+    syllabusRef: "9478 / Section II / Energy and Fields",
+    status: "reviewed",
+    packageId: "gravitational-fields",
+    simId: "inverse-square-field-lab",
+    predictPrompt: "A probe moves from 1 Earth radius to 2 Earth radii from Earth's centre. Before revealing the lab, what happens to the gravitational field strength?",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "Field strength is constant near every mass",
+      "Potential energy must be positive",
+      "A heavier probe changes the field strength at a point",
+    ],
+    transferProblem: "You now meet an electric field around a positive point charge. Without using any new formula beyond the analogy, decide what should correspond to source mass, test mass, field strength, force, and potential. Then state one sign or direction difference that must be handled with care.",
+    firstPrinciples: "Masses attract other masses. Instead of drawing a separate force pair for every possible probe, we describe what the source mass sets up around itself: at each point in space there is a direction and a force per kilogram that a small test mass would experience. That description is the gravitational field.",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "Identify the source mass and radius",
+      "Choose field, force, potential, energy, or orbit speed",
+      "Calculate field strength",
+      "Calculate the requested linked quantity",
+      "Use circular-motion balance when needed",
+      "Interpret direction, sign, and units",
+    ],
+    prerequisites: [
+      "Circular Motion",
+      "Forces and Equilibrium",
+    ],
+    downstream: [
+      "Orbital Motion",
+      "Electric Fields",
+    ],
+    siblings: [
+      "Work, Energy, Power",
+    ],
+    sims: [
+      {
+        id: "inverse-square-field-lab",
+        harnessId: "a-level/physics/gravitational-fields/inverse-square-field-lab",
+        title: "Inverse-Square Field Lab",
+        interactionType: "function-plot-with-draggable",
+        component: GeneratedSim4GravitationalFieldsInverseSquareFieldLab,
       },
     ],
   },
@@ -465,7 +602,7 @@ export const containers = [
         harnessId: "a-level/physics/kinematics-in-one-dimension/motion-equations-lab",
         title: "Motion Equations Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim3KinematicsInOneDimensionMotionEquationsLab,
+        component: GeneratedSim5KinematicsInOneDimensionMotionEquationsLab,
       },
     ],
   },
@@ -530,7 +667,7 @@ export const containers = [
         harnessId: "a-level/physics/momentum/momentum-collision-lab",
         title: "Collision and Impulse Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim4MomentumMomentumCollisionLab,
+        component: GeneratedSim6MomentumMomentumCollisionLab,
       },
     ],
   },
@@ -595,7 +732,7 @@ export const containers = [
         harnessId: "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab",
         title: "Measurement and Uncertainty Lab",
         interactionType: "decision-matrix",
-        component: GeneratedSim5PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
+        component: GeneratedSim7PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
       },
     ],
   },
@@ -658,7 +795,7 @@ export const containers = [
         harnessId: "a-level/physics/resolving-vectors/component-resolution",
         title: "Component Resolution Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim6ResolvingVectorsComponentResolution,
+        component: GeneratedSim8ResolvingVectorsComponentResolution,
       },
     ],
   },
@@ -720,7 +857,7 @@ export const containers = [
         harnessId: "a-level/physics/scalars-and-vectors/resultant-magnitude",
         title: "Resultant Magnitude Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim7ScalarsAndVectorsResultantMagnitude,
+        component: GeneratedSim9ScalarsAndVectorsResultantMagnitude,
       },
     ],
   },
@@ -788,7 +925,7 @@ export const containers = [
         harnessId: "a-level/physics/thermal-physics/gas-law-energy-transfer-lab",
         title: "Gas Law and Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim8ThermalPhysicsGasLawEnergyTransferLab,
+        component: GeneratedSim10ThermalPhysicsGasLawEnergyTransferLab,
       },
     ],
   },
@@ -852,7 +989,7 @@ export const containers = [
         harnessId: "a-level/physics/waves/wave-superposition-lab",
         title: "Wave Superposition Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim9WavesWaveSuperpositionLab,
+        component: GeneratedSim11WavesWaveSuperpositionLab,
       },
     ],
   },
@@ -917,7 +1054,7 @@ export const containers = [
         harnessId: "a-level/physics/work-energy-power/energy-transfer-lab",
         title: "Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim10WorkEnergyPowerEnergyTransferLab,
+        component: GeneratedSim12WorkEnergyPowerEnergyTransferLab,
       },
     ],
   }

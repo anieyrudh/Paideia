@@ -1,0 +1,14 @@
+<svg aria-labelledby="title desc" fill="none" height="180" role="img" viewBox="0 0 320 180" width="320" xmlns="http://www.w3.org/2000/svg">
+  <title id="title">Linear system stability thumbnail</title>
+  <desc id="desc">Trace, determinant, and eigenvalue signs connected to a damped phase path.</desc>
+  <rect fill="#f8fafc" height="180" rx="8" width="320"/>
+  <path d="M46 148H278" stroke="#94a3b8" stroke-width="2"/>
+  <path d="M162 24V154" stroke="#94a3b8" stroke-width="2"/>
+  <path d="M235 76C219 30 145 29 111 64C75 101 105 143 151 139C195 135 210 101 190 80C171 60 139 71 134 94C129 116 151 128 167 119" stroke="#0f766e" stroke-linecap="round" stroke-width="4"/>
+  <path d="M114 59L111 64L117 65" stroke="#0f766e" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+  <path d="M61 128L89 106" stroke="#2563eb" stroke-linecap="round" stroke-width="3"/>
+  <path d="M259 51L230 73" stroke="#b91c1c" stroke-linecap="round" stroke-width="3"/>
+  <circle cx="162" cy="90" fill="#202a33" r="4"/>
+  <text fill="#202a33" font-family="Arial, sans-serif" font-size="17" font-weight="700" x="22" y="28">linear stability</text>
+  <text fill="#475569" font-family="Arial, sans-serif" font-size="13" x="22" y="50">T, D, Delta -> eigenvalues</text>
+</svg>

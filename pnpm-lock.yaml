@@ -139,6 +139,9 @@ importers:
       '@paideia/numerical-math':
         specifier: workspace:*
         version: link:../../../core/numerical-math
+      '@paideia/plotting':
+        specifier: workspace:*
+        version: link:../../../core/plotting
       '@paideia/prediction-gate':
         specifier: workspace:*
         version: link:../../../core/prediction-gate
@@ -413,6 +416,9 @@ importers:
         specifier: workspace:*
         version: link:../shared
     devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
       typescript:
         specifier: ^5.6.0
         version: 5.9.3
@@ -460,10 +466,16 @@ importers:
 
   core/optimization:
     dependencies:
+      '@paideia/probability-stats':
+        specifier: workspace:*
+        version: link:../probability-stats
       '@paideia/shared':
         specifier: workspace:*
         version: link:../shared
     devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
       typescript:
         specifier: ^5.6.0
         version: 5.9.3

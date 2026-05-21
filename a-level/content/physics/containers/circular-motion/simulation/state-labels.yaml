@@ -1,0 +1,33 @@
+state_labels:
+  massKilograms:
+    label: "mass"
+    unit: kg
+    description: "Mass of the moving object."
+  speedMetresPerSecond:
+    label: "speed"
+    unit: "m s^-1"
+    description: "Magnitude of velocity along the tangent."
+  radiusMetres:
+    label: "radius"
+    unit: m
+    description: "Distance from the object to the centre of the circle."
+  angleDegrees:
+    label: "position on circle"
+    unit: deg
+    description: "Object position around the circular path."
+  centripetalAccelerationMetresPerSecondSquared:
+    label: "radial acceleration"
+    unit: "m s^-2"
+    description: "Acceleration toward the centre of the circle."
+  centripetalForceNewtons:
+    label: "centre-seeking resultant force"
+    unit: N
+    description: "Inward resultant force required for the circular motion."
+  angularSpeedRadiansPerSecond:
+    label: "angular speed"
+    unit: "rad s^-1"
+    description: "Rate at which the angle changes."
+  periodSeconds:
+    label: "time for one lap"
+    unit: s
+    description: "Time taken to complete one revolution."
