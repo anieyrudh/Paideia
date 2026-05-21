@@ -57,6 +57,12 @@ roadmap_coverage:
     - alevel.physics.gravitational-fields
     - alevel.physics.electric-fields
     - alevel.math.hypothesis-testing
+  alevel_next_wave_2:
+    - alevel.physics.capacitance
+    - alevel.physics.alternating-current
+    - alevel.physics.magnetic-fields
+    - alevel.math.normal-distribution
+    - alevel.math.confidence-intervals
   sutd_initial_pillar_slices:
     - sutd.freshmore.vector-transformations
     - sutd.epd.pid-step-response
@@ -65,6 +71,13 @@ roadmap_coverage:
     - sutd.asd.load-path-and-daylight-tradeoff
     - sutd.dai.trust-calibration
     - sutd.smt.ode-phase-portrait
+  sutd_next_wave_2:
+    - sutd.esd.markov-chain-steady-state
+    - sutd.csd.recursion-tree-complexity
+    - sutd.epd.signal-filter-frequency-response
+    - sutd.asd.structural-load-path-diagram
+    - sutd.dai.fairness-threshold-audit
+    - sutd.smt.fourier-mode-superposition
 
 sutd_cluster_mappings:
   - id: sutd.freshmore.probability-statistics
@@ -103,6 +116,7 @@ sutd_cluster_mappings:
     entry_ids:
       - sutd.csd.graph-search-and-shortest-paths
       - sutd.csd.dynamic-programming-state-recursion
+      - sutd.csd.recursion-tree-complexity
       - shared.algorithms.graph-algorithm-explorer
       - shared.optimization.gradient-descent-landscape
   - id: sutd.epd.control-systems
@@ -113,6 +127,7 @@ sutd_cluster_mappings:
     entry_ids:
       - sutd.epd.pid-step-response
       - sutd.epd.bode-stability-margin
+      - sutd.epd.signal-filter-frequency-response
       - shared.control.pid-bode-builder
       - shared.dynamical-systems.ode-phase-portrait
       - shared.circuits.circuit-phasor-reasoning
@@ -125,6 +140,7 @@ sutd_cluster_mappings:
     entry_ids:
       - sutd.esd.linear-programming-feasible-region
       - sutd.esd.newsvendor-critical-fractile
+      - sutd.esd.markov-chain-steady-state
       - shared.optimization.linear-programming-feasible-region
       - shared.optimization.gradient-descent-landscape
       - shared.inference.hypothesis-test-decision
@@ -136,6 +152,7 @@ sutd_cluster_mappings:
     entry_ids:
       - sutd.asd.load-path-and-daylight-tradeoff
       - sutd.asd.shading-daylight-heat-gain
+      - sutd.asd.structural-load-path-diagram
   - id: sutd.dai.human-ai-evaluation
     title: "DAI human-centred AI and evaluation"
     workstreams:
@@ -144,6 +161,7 @@ sutd_cluster_mappings:
     entry_ids:
       - sutd.dai.trust-calibration
       - sutd.dai.confusion-matrix-thresholds
+      - sutd.dai.fairness-threshold-audit
       - shared.optimization.gradient-descent-landscape
   - id: sutd.smt.advanced-science-math
     title: "SMT advanced science and mathematical modelling"
@@ -153,6 +171,7 @@ sutd_cluster_mappings:
     entry_ids:
       - sutd.smt.ode-phase-portrait
       - sutd.smt.linear-system-stability
+      - sutd.smt.fourier-mode-superposition
       - shared.dynamical-systems.ode-phase-portrait
 
 entries:
@@ -1208,7 +1227,7 @@ entries:
   - id: sutd.esd.newsvendor-critical-fractile
     title: "Newsvendor Critical Fractile"
     priority: P0
-    status: in-build
+    status: reviewed
     cluster: ESD stochastic optimisation
     discipline: systems
     reuse_status: curriculum-wrapper
@@ -1254,7 +1273,7 @@ entries:
   - id: sutd.csd.dynamic-programming-state-recursion
     title: "Dynamic Programming State Recursion"
     priority: P0
-    status: in-build
+    status: reviewed
     cluster: CSD algorithms
     discipline: cs
     reuse_status: curriculum-wrapper
@@ -1298,7 +1317,7 @@ entries:
   - id: sutd.asd.shading-daylight-heat-gain
     title: "Shading, Daylight, and Heat Gain"
     priority: P0
-    status: in-build
+    status: reviewed
     cluster: ASD environmental systems
     discipline: architecture
     reuse_status: curriculum-wrapper
@@ -1343,7 +1362,7 @@ entries:
   - id: sutd.dai.confusion-matrix-thresholds
     title: "Confusion Matrix Thresholds"
     priority: P0
-    status: in-build
+    status: reviewed
     cluster: DAI human-centred AI
     discipline: design-ai
     reuse_status: curriculum-wrapper
@@ -1389,7 +1408,7 @@ entries:
   - id: sutd.smt.linear-system-stability
     title: "Linear System Stability"
     priority: P0
-    status: in-build
+    status: reviewed
     cluster: SMT mathematical modelling
     discipline: science
     reuse_status: curriculum-wrapper
@@ -1859,7 +1878,7 @@ entries:
   - id: alevel.physics.circular-motion
     title: "Circular Motion"
     priority: P0
-    status: in-build
+    status: reviewed
     cluster: A-Level mechanics
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -1903,7 +1922,7 @@ entries:
   - id: alevel.physics.oscillations
     title: "Oscillations"
     priority: P0
-    status: in-build
+    status: reviewed
     cluster: A-Level oscillations
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -1947,7 +1966,7 @@ entries:
   - id: alevel.physics.thermal-physics
     title: "Thermal Physics"
     priority: P0
-    status: in-build
+    status: reviewed
     cluster: A-Level thermal physics
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -1990,7 +2009,7 @@ entries:
   - id: alevel.physics.gravitational-fields
     title: "Gravitational Fields"
     priority: P0
-    status: in-build
+    status: reviewed
     cluster: A-Level fields
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -2035,7 +2054,7 @@ entries:
   - id: alevel.physics.electric-fields
     title: "Electric Fields"
     priority: P0
-    status: in-build
+    status: reviewed
     cluster: A-Level fields
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -2081,7 +2100,7 @@ entries:
   - id: alevel.math.hypothesis-testing
     title: "Hypothesis Testing"
     priority: P0
-    status: in-build
+    status: reviewed
     cluster: A-Level probability and statistics
     discipline: math
     reuse_status: curriculum-wrapper
@@ -2119,4 +2138,507 @@ entries:
     assignment:
       workstream: alevel-math
       concept_cluster: A-Level probability and statistics
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.capacitance
+    title: "Capacitance"
+    priority: P0
+    status: ready-for-build
+    cluster: A-Level fields
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+    simulation_type: capacitor-charge-energy-lab
+    problem_solving_elements:
+      - charge-voltage-capacitance relation
+      - stored energy comparison
+      - discharge-curve interpretation
+    concept_map_needs:
+      prerequisites:
+        - electric fields
+        - circuits
+        - exponential change
+      downstream:
+        - alternating current
+        - electromagnetic induction
+      misconceptions:
+        - capacitance depends on stored charge alone
+        - capacitors create charge rather than separate charge
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/electromagnetism
+      - core/charting
+      - core/prediction-gate
+      - core/shared
+      - core/ui-sim
+    repo_package_name: alevel-sim-capacitance
+    estimated_effort: M
+    repo:
+      container_path: a-level/content/physics/containers/capacitance
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level fields
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.alternating-current
+    title: "Alternating Current"
+    priority: P0
+    status: ready-for-build
+    cluster: A-Level circuits
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+    simulation_type: ac-rms-phase-lab
+    problem_solving_elements:
+      - peak-rms conversion
+      - phase and frequency reading
+      - power comparison
+    concept_map_needs:
+      prerequisites:
+        - circuits
+        - oscillations
+        - waves
+      downstream:
+        - electromagnetic induction
+        - transformers
+      misconceptions:
+        - rms is an average voltage
+        - higher frequency always means higher rms value
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/circuits
+      - core/charting
+      - core/prediction-gate
+      - core/shared
+      - core/ui-sim
+    repo_package_name: alevel-sim-alternating-current
+    estimated_effort: M
+    repo:
+      container_path: a-level/content/physics/containers/alternating-current
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level circuits
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.magnetic-fields
+    title: "Magnetic Fields"
+    priority: P0
+    status: ready-for-build
+    cluster: A-Level fields
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+    simulation_type: magnetic-force-direction-lab
+    problem_solving_elements:
+      - Fleming left-hand rule
+      - force on moving charge or current
+      - circular path in a magnetic field
+    concept_map_needs:
+      prerequisites:
+        - electric fields
+        - circular motion
+        - resolving vectors
+      downstream:
+        - electromagnetic induction
+        - charged-particle motion
+      misconceptions:
+        - magnetic force acts along the field line
+        - stationary charges feel magnetic force
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/electromagnetism
+      - core/mechanics
+      - core/linear-algebra
+      - core/prediction-gate
+      - core/shared
+      - core/ui-sim
+    repo_package_name: alevel-sim-magnetic-fields
+    estimated_effort: H
+    repo:
+      container_path: a-level/content/physics/containers/magnetic-fields
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level fields
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.math.normal-distribution
+    title: "Normal Distribution"
+    priority: P0
+    status: ready-for-build
+    cluster: A-Level probability and statistics
+    discipline: math
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Mathematics
+    simulation_type: normal-area-standardisation-lab
+    problem_solving_elements:
+      - z-standardisation
+      - area-probability lookup
+      - tail probability interpretation
+    concept_map_needs:
+      prerequisites:
+        - probability and statistics
+        - functions and graphs
+      downstream:
+        - hypothesis testing
+        - confidence intervals
+      misconceptions:
+        - z-score is a probability
+        - symmetric distributions make every interval equally likely
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/probability-stats
+      - core/charting
+      - core/prediction-gate
+      - core/shared
+      - core/ui-sim
+    repo_package_name: alevel-sim-normal-distribution
+    estimated_effort: M
+    repo:
+      container_path: a-level/content/mathematics/containers/normal-distribution
+    assignment:
+      workstream: alevel-math
+      concept_cluster: A-Level probability and statistics
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.math.confidence-intervals
+    title: "Confidence Intervals"
+    priority: P0
+    status: ready-for-build
+    cluster: A-Level inference
+    discipline: math
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Mathematics
+    simulation_type: interval-estimation-lab
+    problem_solving_elements:
+      - standard-error calculation
+      - confidence-level multiplier
+      - interval interpretation
+    concept_map_needs:
+      prerequisites:
+        - normal distribution
+        - hypothesis testing
+      downstream:
+        - model criticism
+        - sampling distributions
+      misconceptions:
+        - a confidence interval gives the probability the fixed parameter is inside
+        - wider intervals mean worse data in every context
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/probability-stats
+      - core/charting
+      - core/prediction-gate
+      - core/shared
+      - core/ui-sim
+    repo_package_name: alevel-sim-confidence-intervals
+    estimated_effort: M
+    repo:
+      container_path: a-level/content/mathematics/containers/confidence-intervals
+    assignment:
+      workstream: alevel-math
+      concept_cluster: A-Level inference
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.esd.markov-chain-steady-state
+    title: "Markov Chain Steady State"
+    priority: P0
+    status: ready-for-build
+    cluster: ESD stochastic systems
+    discipline: systems
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - ESD stochastic modelling
+          - ESD optimisation
+    simulation_type: transition-matrix-steady-state-lab
+    problem_solving_elements:
+      - transition-matrix reading
+      - repeated-state update
+      - steady-state interpretation
+    concept_map_needs:
+      prerequisites:
+        - probability distributions
+        - matrix multiplication
+        - eigenvectors
+      downstream:
+        - queueing systems
+        - inventory policy
+      misconceptions:
+        - steady state means no individual transitions happen
+        - the largest immediate transition always dominates long-run state
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/probability-stats
+      - core/linear-algebra
+      - core/charting
+      - core/prediction-gate
+      - core/shared
+      - core/ui-sim
+    repo_package_name: sutd-sim-markov-chain-steady-state
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/esd/containers/markov-chain-steady-state
+    assignment:
+      workstream: sutd-esd
+      concept_cluster: ESD stochastic systems
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.csd.recursion-tree-complexity
+    title: "Recursion Tree Complexity"
+    priority: P0
+    status: ready-for-build
+    cluster: CSD algorithms
+    discipline: cs
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - CSD algorithms
+          - ISTD algorithms
+    simulation_type: recursion-tree-growth-lab
+    problem_solving_elements:
+      - recurrence expansion
+      - level cost comparison
+      - asymptotic-growth decision
+    concept_map_needs:
+      prerequisites:
+        - dynamic programming state recursion
+        - graph search and shortest paths
+      downstream:
+        - divide and conquer
+        - algorithm analysis
+      misconceptions:
+        - recursive code always has exponential cost
+        - base cases do not affect total work
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/algorithm-trace
+      - core/graph-layout
+      - core/charting
+      - core/prediction-gate
+      - core/shared
+      - core/ui-sim
+    repo_package_name: sutd-sim-recursion-tree-complexity
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/csd/containers/recursion-tree-complexity
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: CSD algorithms
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.epd.signal-filter-frequency-response
+    title: "Signal Filter Frequency Response"
+    priority: P0
+    status: ready-for-build
+    cluster: EPD signals and control
+    discipline: engineering
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - EPD control systems
+          - Signals and systems
+    simulation_type: filter-bode-response-lab
+    problem_solving_elements:
+      - cutoff-frequency reading
+      - magnitude-phase interpretation
+      - time-domain versus frequency-domain comparison
+    concept_map_needs:
+      prerequisites:
+        - Bode stability margin
+        - circuit phasor reasoning
+        - oscillations
+      downstream:
+        - control stability
+        - signal processing
+      misconceptions:
+        - filters remove all frequencies above cutoff instantly
+        - phase shift is optional decoration
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/control-systems
+      - core/circuits
+      - core/charting
+      - core/prediction-gate
+      - core/shared
+      - core/ui-sim
+    repo_package_name: sutd-sim-signal-filter-frequency-response
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/epd/containers/signal-filter-frequency-response
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: EPD signals and control
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.asd.structural-load-path-diagram
+    title: "Structural Load Path Diagram"
+    priority: P0
+    status: ready-for-build
+    cluster: ASD structural systems
+    discipline: architecture
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - ASD structural systems
+          - ASD building performance
+    simulation_type: load-path-free-body-lab
+    problem_solving_elements:
+      - load tracing through members
+      - reaction-force calculation
+      - compression-tension labelling
+    concept_map_needs:
+      prerequisites:
+        - load path and daylight tradeoff
+        - free-body diagram mechanics
+      downstream:
+        - structural optimisation
+        - facade tradeoff design
+      misconceptions:
+        - loads disappear at supports
+        - all members carry equal force
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/mechanics
+      - core/linear-algebra
+      - core/graph-layout
+      - core/prediction-gate
+      - core/shared
+      - core/ui-sim
+    repo_package_name: sutd-sim-structural-load-path-diagram
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/asd/containers/structural-load-path-diagram
+    assignment:
+      workstream: sutd-asd
+      concept_cluster: ASD structural systems
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.dai.fairness-threshold-audit
+    title: "Fairness Threshold Audit"
+    priority: P0
+    status: ready-for-build
+    cluster: DAI human-centred AI
+    discipline: design-ai
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - Design and Artificial Intelligence
+          - Human-centred AI
+    simulation_type: group-threshold-audit-lab
+    problem_solving_elements:
+      - group confusion-matrix comparison
+      - threshold tradeoff audit
+      - stakeholder-impact explanation
+    concept_map_needs:
+      prerequisites:
+        - confusion matrix thresholds
+        - trust calibration
+      downstream:
+        - model governance
+        - deployment monitoring
+      misconceptions:
+        - equal accuracy means equal impact
+        - one global threshold is always fairest
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/probability-stats
+      - core/charting
+      - core/annotation
+      - core/prediction-gate
+      - core/shared
+      - core/ui-sim
+    repo_package_name: sutd-sim-fairness-threshold-audit
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/dai/containers/fairness-threshold-audit
+    assignment:
+      workstream: sutd-dai
+      concept_cluster: DAI human-centred AI
+      target_container_kind: curriculum-wrapper
+
+  - id: sutd.smt.fourier-mode-superposition
+    title: "Fourier Mode Superposition"
+    priority: P0
+    status: ready-for-build
+    cluster: SMT mathematical modelling
+    discipline: science
+    reuse_status: curriculum-wrapper
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        modules:
+          - Science, Mathematics and Technology
+          - Mathematical modelling
+    simulation_type: mode-superposition-lab
+    problem_solving_elements:
+      - basis-mode selection
+      - coefficient interpretation
+      - reconstruction-error comparison
+    concept_map_needs:
+      prerequisites:
+        - linear system stability
+        - oscillations
+        - eigenvectors
+      downstream:
+        - signal processing
+        - partial differential equations
+      misconceptions:
+        - one mode must explain every shape
+        - coefficients are arbitrary visual sliders
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/numerical-math
+      - core/charting
+      - core/plotting
+      - core/prediction-gate
+      - core/shared
+      - core/ui-sim
+    repo_package_name: sutd-sim-fourier-mode-superposition
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/smt/containers/fourier-mode-superposition
+    assignment:
+      workstream: sutd-smt
+      concept_cluster: SMT mathematical modelling
       target_container_kind: curriculum-wrapper
