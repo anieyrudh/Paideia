@@ -1,0 +1,20 @@
+runtime:
+  package: "@paideia/a-level-physics-sims"
+  export: CircularMotionSim
+  sim_id: centripetal-force-vector-lab
+  prediction_gate:
+    required: true
+    blocks:
+      - "Observation unlocked"
+      - "Formula used"
+      - "Circular motion readout"
+  stages:
+    - predict
+    - manipulate
+    - observe
+    - explain
+    - transfer
+  accessibility:
+    keyboard_controls: true
+    labelled_svg: true
+    axe_revealed_state_required: true

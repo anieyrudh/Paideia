@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Circular motion vector thumbnail</title>
+  <desc id="desc">An object on a circular track with tangent velocity and inward acceleration arrows.</desc>
+  <rect width="640" height="360" fill="#f8fbff"/>
+  <circle cx="300" cy="180" r="112" fill="#e8f4ff"/>
+  <circle cx="300" cy="180" r="88" fill="none" stroke="#78909c" stroke-width="8"/>
+  <circle cx="300" cy="180" r="7" fill="#10201a"/>
+  <line x1="300" y1="180" x2="362" y2="118" stroke="#94a3b8" stroke-width="4" stroke-dasharray="10 10"/>
+  <circle cx="362" cy="118" r="22" fill="#f0b429" stroke="#8a5d00" stroke-width="5"/>
+  <path d="M362 118 L452 208" stroke="#1f5f8b" stroke-width="10" stroke-linecap="round"/>
+  <path d="M452 208 l-30 -8 l20 -20 z" fill="#1f5f8b"/>
+  <path d="M362 118 L310 170" stroke="#c2410c" stroke-width="10" stroke-linecap="round"/>
+  <path d="M310 170 l28 -12 l-11 -25 z" fill="#c2410c"/>
+  <text x="70" y="75" fill="#10201a" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="800">Circular Motion</text>
+  <text x="70" y="116" fill="#395065" font-family="Inter, Arial, sans-serif" font-size="20">constant speed, inward acceleration</text>
+</svg>

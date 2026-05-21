@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import fc from "fast-check";
 import {
   approxEqual,
   joules,
@@ -29,6 +30,7 @@ import {
   netForce,
   projectileAt,
   simpleHarmonicMotion,
+  uniformCircularMotion,
   universalGravitationalConstant,
   workDone,
   workEnergyTransfer,
@@ -128,6 +130,69 @@ describe("@paideia/mechanics", () => {
     const momentum = momentum1D(kilograms(4), -6);
     expect(momentum.ok).toBe(true);
     if (momentum.ok) expect(momentum.value).toBe(-24);
+  });
+
+  it("computes uniform circular motion requirements", () => {
+    const motion = uniformCircularMotion({
+      massKilograms: kilograms(2),
+      speedMetresPerSecond: metresPerSecond(6),
+      radiusMetres: metres(3),
+    });
+
+    expect(motion.ok).toBe(true);
+    if (motion.ok) {
+      expect(motion.value.centripetalAccelerationMetresPerSecondSquared).toBe(12);
+      expect(motion.value.centripetalForceNewtons).toBe(24);
+      expect(motion.value.angularSpeedRadiansPerSecond).toBe(2);
+      expect(approxEqual(motion.value.periodSeconds, Math.PI, mechanicsTolerance.default)).toBe(true);
+    }
+  });
+
+  it("preserves uniform circular motion formula invariants over seeded positive inputs", () => {
+    fc.assert(
+      fc.property(
+        fc.double({ min: 0.1, max: 20, noNaN: true, noDefaultInfinity: true }),
+        fc.double({ min: 0.2, max: 80, noNaN: true, noDefaultInfinity: true }),
+        fc.double({ min: 0.2, max: 50, noNaN: true, noDefaultInfinity: true }),
+        (mass, speed, radius) => {
+          const motion = uniformCircularMotion({
+            massKilograms: kilograms(mass),
+            speedMetresPerSecond: metresPerSecond(speed),
+            radiusMetres: metres(radius),
+          });
+
+          expect(motion.ok).toBe(true);
+          if (!motion.ok) return false;
+
+          const acceleration = (speed * speed) / radius;
+          const angularSpeed = speed / radius;
+
+          return (
+            approxEqual(
+              motion.value.centripetalAccelerationMetresPerSecondSquared,
+              acceleration,
+              mechanicsTolerance.loose,
+            ) &&
+            approxEqual(
+              motion.value.centripetalForceNewtons,
+              mass * acceleration,
+              mechanicsTolerance.loose,
+            ) &&
+            approxEqual(
+              motion.value.angularSpeedRadiansPerSecond,
+              angularSpeed,
+              mechanicsTolerance.loose,
+            ) &&
+            approxEqual(
+              motion.value.periodSeconds,
+              (2 * Math.PI) / angularSpeed,
+              mechanicsTolerance.loose,
+            )
+          );
+        },
+      ),
+      { numRuns: 100, seed: 260119 },
+    );
   });
 
   it("computes work-energy transfer and average power helpers", () => {
@@ -306,6 +371,14 @@ describe("@paideia/mechanics", () => {
     const zeroMass = accelerationFromForce({ x: 1, y: 1 }, kilograms(0));
     expect(zeroMass.ok).toBe(false);
     if (!zeroMass.ok) expect(zeroMass.error.code).toBe("precondition-violated");
+
+    const zeroRadius = uniformCircularMotion({
+      massKilograms: kilograms(1),
+      speedMetresPerSecond: metresPerSecond(2),
+      radiusMetres: metres(0),
+    });
+    expect(zeroRadius.ok).toBe(false);
+    if (!zeroRadius.ok) expect(zeroRadius.error.code).toBe("precondition-violated");
 
     const invalidForce = netForce([{ x: Number.NaN, y: 0 }]);
     expect(invalidForce.ok).toBe(false);

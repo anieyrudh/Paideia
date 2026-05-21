@@ -1,0 +1,37 @@
+controls:
+  - id: mass
+    label: "Mass"
+    kind: slider
+    unit: kg
+    min: 0.2
+    max: 3
+    step: 0.1
+    default: 1.2
+    purpose: "Change the resultant force without changing radial acceleration."
+  - id: speed
+    label: "Speed"
+    kind: slider
+    unit: "m s^-1"
+    min: 1
+    max: 12
+    step: 0.1
+    default: 6
+    purpose: "Reveal the squared dependence of acceleration and force on speed."
+  - id: radius
+    label: "Radius"
+    kind: slider
+    unit: m
+    min: 1
+    max: 10
+    step: 0.1
+    default: 4
+    purpose: "Compare wide and tight turns at the same speed."
+  - id: position
+    label: "Position on circle"
+    kind: slider
+    unit: deg
+    min: 0
+    max: 360
+    step: 5
+    default: 45
+    purpose: "Move the object and see that the inward vector keeps pointing to the centre."

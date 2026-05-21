@@ -4,8 +4,8 @@
 The deterministic Newtonian mechanics kernel for Paideia simulations. It owns
 constant-acceleration kinematics, projectile samples, force aggregation,
 Newton's second law, work/energy/momentum helpers, one-dimensional elastic
-collisions, simple harmonic motion, and inverse-square gravitational field
-quantities. It is pure TypeScript and returns
+collisions, uniform circular motion, simple harmonic motion, and inverse-square
+gravitational field quantities. It is pure TypeScript and returns
 `KernelResult` values for expected invalid inputs.
 
 ## Public interface
@@ -22,6 +22,8 @@ Exports from `@paideia/mechanics`:
 - `type ElasticCollision1DInput`
 - `type ElasticCollision1DResult`
 - `type WorkEnergyTransferResult`
+- `type UniformCircularMotionInput`
+- `type UniformCircularMotionResult`
 - `type GravitationalFieldInput`
 - `type GravitationalInteractionInput`
 - `type GravitationalComparisonInput`
@@ -45,6 +47,7 @@ Exports from `@paideia/mechanics`:
 - `gravitationalInverseSquareScale(radiusMetres: Metres): KernelResult<number>`
 - `gravitationalFieldVector2D(input: GravitationalFieldSample2DInput): KernelResult<Vector2>`
 - `momentum1D(massKilograms: Kilograms, velocityMetresPerSecond: number): KernelResult<number>`
+- `uniformCircularMotion(input: UniformCircularMotionInput): KernelResult<UniformCircularMotionResult>`
 - `elasticCollision1D(input: ElasticCollision1DInput): KernelResult<ElasticCollision1DResult>`
 - `simpleHarmonicMotion(input: SimpleHarmonicMotionInput, elapsedSeconds: Seconds): KernelResult<SimpleHarmonicMotionSample>`
 
@@ -59,6 +62,7 @@ Exports from `@paideia/mechanics`:
 - Projectile motion assumes constant acceleration over the sample interval.
 - Simple harmonic motion assumes an undamped oscillator with fixed angular
   frequency.
+- Uniform circular motion assumes constant speed and positive radius.
 
 ## What this module does NOT do
 - Does **not** model drag, rolling friction, variable mass, or relativistic
@@ -72,8 +76,8 @@ Exports from `@paideia/mechanics`:
 Use `core/mechanics` when a simulation needs shared calculations for
 kinematics, forces, energy, momentum, collisions, projectile motion, or simple
 harmonic motion. If a sim is about to inline SUVAT, `F = ma`, `KE = 1/2 mv^2`,
-one-dimensional elastic collision formulae, or `GM/r^2` gravitational field
-formulae, use this module instead.
+`a_c = v^2 / r`, one-dimensional elastic collision formulae, or `GM/r^2`
+gravitational field formulae, use this module instead.
 
 ## Extension protocol
 1. Open a `core-change-proposal` issue naming every consuming mechanics sim.
