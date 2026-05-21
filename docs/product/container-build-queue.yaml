@@ -1298,7 +1298,7 @@ entries:
   - id: sutd.asd.shading-daylight-heat-gain
     title: "Shading, Daylight, and Heat Gain"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: ASD environmental systems
     discipline: architecture
     reuse_status: curriculum-wrapper

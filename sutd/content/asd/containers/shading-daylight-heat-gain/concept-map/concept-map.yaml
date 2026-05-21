@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: shading-daylight-heat-gain
+prerequisites:
+  - id: load-path-and-daylight-tradeoff
+    title: Load Path and Daylight Tradeoff
+    relationship: Prepares multi-objective facade thinking in ASD systems.
+    status: available
+  - id: ratio-reasoning
+    title: Ratio Reasoning
+    relationship: Shaded fraction, glazing ratio, and proxy scores are ratio-based.
+    status: planned
+  - id: trigonometry
+    title: Trigonometry
+    relationship: Solar altitude and overhang depth form a right-triangle shadow estimate.
+    status: planned
+downstream:
+  - id: passive-design
+    title: Passive Design
+    relationship: Shading is a first passive-control design move.
+    status: planned
+  - id: building-performance-optimisation
+    title: Building Performance Optimisation
+    relationship: Facade tradeoffs become multi-objective design decisions.
+    status: planned
+siblings:
+  - id: load-path-and-daylight-tradeoff
+    title: Load Path and Daylight Tradeoff
+    relationship: Same ASD facade system, now focused on environmental performance.
+    status: available
+misconception_graph:
+  nodes:
+    - id: more-glass-always-better
+      label: "More glass always improves daylight quality"
+    - id: shading-only-reduces-light
+      label: "Shading only reduces light and never heat"
+    - id: single-metric-facade
+      label: "One metric decides the facade"
+  edges:
+    - from: more-glass-always-better
+      to: single-metric-facade
+      label: "Both optimise one visible benefit and ignore penalties."
+    - from: shading-only-reduces-light
+      to: single-metric-facade
+      label: "Both miss that shading changes daylight and heat together."
+mermaid_source: graph.mmd
