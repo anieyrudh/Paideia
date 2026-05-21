@@ -12,6 +12,7 @@ permissions:
 
 env:
   NODE_VERSION: "24"
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
 jobs:
   weekly-deps:
@@ -19,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
@@ -27,7 +28,7 @@ jobs:
           run_install: false
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: "pnpm"
@@ -60,7 +61,7 @@ jobs:
           } >> "$GITHUB_OUTPUT"
 
       - name: File weekly Issue with results
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         env:
           OUTDATED: ${{ steps.outdated.outputs.report }}
           LICENSES: ${{ steps.licenses.outputs.report }}
