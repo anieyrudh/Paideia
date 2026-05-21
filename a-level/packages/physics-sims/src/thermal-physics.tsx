@@ -5,6 +5,7 @@ import { linearRegression } from "@paideia/numerical-math";
 import type { PredictionEvent } from "@paideia/prediction-gate";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
 import {
+  approxEqual,
   err,
   joules,
   kelvins,
@@ -280,7 +281,7 @@ export const thermalPhysicsModel = (
     ? celsiusTrapPressure.value
     : kilopascals(0);
   const celsiusTrapPercent =
-    pressure.value === 0
+    approxEqual(pressure.value, 0, 1e-9)
       ? 0
       : ((pressure.value - safeCelsiusTrapPressure) / pressure.value) * 100;
 

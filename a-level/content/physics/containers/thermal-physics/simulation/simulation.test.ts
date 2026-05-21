@@ -35,9 +35,14 @@ test.describe("a-level/physics/thermal-physics/gas-law-energy-transfer-lab predi
   test("manipulation changes pressure and keeps formula evidence visible", async ({ page }) => {
     await mountSim(page, "a-level/physics/thermal-physics/gas-law-energy-transfer-lab");
 
+    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
+    await expect(page.getByLabel("Thermal readout")).toHaveCount(0);
+
     await page.getByRole("button", { name: "Set up thermal lab" }).click();
     await page.getByRole("slider", { name: "Gas volume" }).fill("0.5");
     await page.getByRole("button", { name: "Reveal thermal behaviour" }).click();
+    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
+    await expect(page.getByLabel("Thermal readout")).toHaveCount(0);
     await page.getByLabel("100 kPa").check();
     await page
       .getByLabel("Rationale")
@@ -53,8 +58,13 @@ test.describe("a-level/physics/thermal-physics/gas-law-energy-transfer-lab predi
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, "a-level/physics/thermal-physics/gas-law-energy-transfer-lab");
 
+    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
+    await expect(page.getByLabel("Thermal readout")).toHaveCount(0);
+
     await page.getByRole("button", { name: "Set up thermal lab" }).click();
     await page.getByRole("button", { name: "Reveal thermal behaviour" }).click();
+    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
+    await expect(page.getByLabel("Thermal readout")).toHaveCount(0);
     await page.getByLabel("100 kPa").check();
     await page
       .getByLabel("Rationale")
