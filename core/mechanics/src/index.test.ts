@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import fc from "fast-check";
 import {
   approxEqual,
   joules,
@@ -135,6 +136,53 @@ describe("@paideia/mechanics", () => {
       expect(motion.value.angularSpeedRadiansPerSecond).toBe(2);
       expect(approxEqual(motion.value.periodSeconds, Math.PI, mechanicsTolerance.default)).toBe(true);
     }
+  });
+
+  it("preserves uniform circular motion formula invariants over seeded positive inputs", () => {
+    fc.assert(
+      fc.property(
+        fc.double({ min: 0.1, max: 20, noNaN: true, noDefaultInfinity: true }),
+        fc.double({ min: 0.2, max: 80, noNaN: true, noDefaultInfinity: true }),
+        fc.double({ min: 0.2, max: 50, noNaN: true, noDefaultInfinity: true }),
+        (mass, speed, radius) => {
+          const motion = uniformCircularMotion({
+            massKilograms: kilograms(mass),
+            speedMetresPerSecond: metresPerSecond(speed),
+            radiusMetres: metres(radius),
+          });
+
+          expect(motion.ok).toBe(true);
+          if (!motion.ok) return false;
+
+          const acceleration = (speed * speed) / radius;
+          const angularSpeed = speed / radius;
+
+          return (
+            approxEqual(
+              motion.value.centripetalAccelerationMetresPerSecondSquared,
+              acceleration,
+              mechanicsTolerance.loose,
+            ) &&
+            approxEqual(
+              motion.value.centripetalForceNewtons,
+              mass * acceleration,
+              mechanicsTolerance.loose,
+            ) &&
+            approxEqual(
+              motion.value.angularSpeedRadiansPerSecond,
+              angularSpeed,
+              mechanicsTolerance.loose,
+            ) &&
+            approxEqual(
+              motion.value.periodSeconds,
+              (2 * Math.PI) / angularSpeed,
+              mechanicsTolerance.loose,
+            )
+          );
+        },
+      ),
+      { numRuns: 100, seed: 260119 },
+    );
   });
 
   it("computes work-energy transfer and average power helpers", () => {
