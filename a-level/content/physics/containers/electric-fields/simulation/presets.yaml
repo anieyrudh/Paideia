@@ -1,0 +1,33 @@
+presets:
+  - id: attraction
+    label: attraction
+    state:
+      sourceChargeMicroC: 0.5
+      testChargeNanoC: -20
+      separationCm: 15
+      angleDegrees: 0
+    teaching_note: Positive source, negative test charge; field and force point opposite ways.
+  - id: repulsion
+    label: repulsion
+    state:
+      sourceChargeMicroC: 0.5
+      testChargeNanoC: 20
+      separationCm: 15
+      angleDegrees: 0
+    teaching_note: Positive source, positive test charge; field and force point the same way.
+  - id: negative-source
+    label: negative source
+    state:
+      sourceChargeMicroC: -0.6
+      testChargeNanoC: 15
+      separationCm: 12
+      angleDegrees: 45
+    teaching_note: Negative source makes the field point inward.
+  - id: far-point
+    label: far point
+    state:
+      sourceChargeMicroC: 0.8
+      testChargeNanoC: -10
+      separationCm: 24
+      angleDegrees: 120
+    teaching_note: Larger separation weakens the point-charge field by inverse-square scaling.

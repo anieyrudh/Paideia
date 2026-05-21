@@ -4,17 +4,18 @@ import GeneratedSim0HypothesisTestingTestStatisticDecisionLab from "@paideia/a-l
 import GeneratedSim1ProbabilityStatisticsProbabilityStatisticsLab from "@paideia/a-level-math-sims/probability-statistics";
 import GeneratedSim2CircuitsSeriesParallelCircuitLab from "@paideia/a-level-physics-sims/circuits";
 import GeneratedSim3CircularMotionCentripetalForceVectorLab from "@paideia/a-level-physics-sims/circular-motion";
-import GeneratedSim4ForcesAndEquilibriumForceBalance from "@paideia/a-level-physics-sims/forces-and-equilibrium";
-import GeneratedSim5GravitationalFieldsInverseSquareFieldLab from "@paideia/a-level-physics-sims/gravitational-fields";
-import GeneratedSim6KinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
-import GeneratedSim7MomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
-import GeneratedSim8OscillationsSimpleHarmonicMotionLab from "@paideia/a-level-physics-sims/oscillations";
-import GeneratedSim9PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
-import GeneratedSim10ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
-import GeneratedSim11ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
-import GeneratedSim12ThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
-import GeneratedSim13WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
-import GeneratedSim14WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
+import GeneratedSim4ElectricFieldsChargeFieldVectorLab from "@paideia/a-level-physics-sims/electric-fields";
+import GeneratedSim5ForcesAndEquilibriumForceBalance from "@paideia/a-level-physics-sims/forces-and-equilibrium";
+import GeneratedSim6GravitationalFieldsInverseSquareFieldLab from "@paideia/a-level-physics-sims/gravitational-fields";
+import GeneratedSim7KinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
+import GeneratedSim8MomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
+import GeneratedSim9OscillationsSimpleHarmonicMotionLab from "@paideia/a-level-physics-sims/oscillations";
+import GeneratedSim10PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
+import GeneratedSim11ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
+import GeneratedSim12ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
+import GeneratedSim13ThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
+import GeneratedSim14WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
+import GeneratedSim15WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -104,6 +105,15 @@ export const knowledgeGraph = {
     subject: "physics",
     level: "H2",
     module: "Forces and Motion",
+    status: "reviewed",
+  },
+  {
+    id: "a-level/physics/electric-fields",
+    conceptId: "electric-fields",
+    title: "Electric Fields",
+    subject: "physics",
+    level: "H2",
+    module: "Electricity and Magnetism",
     status: "reviewed",
   },
   {
@@ -227,6 +237,13 @@ export const knowledgeGraph = {
   { from: "a-level/physics/circular-motion", to: "a-level/physics/gravitational-fields", kind: "downstream" },
   { from: "a-level/physics/circular-motion", to: "a-level/physics/oscillations", kind: "downstream" },
   { from: "a-level/physics/circular-motion", to: "a-level/physics/forces-and-newtons-laws", kind: "sibling" },
+  { from: "a-level/physics/circuits", to: "a-level/physics/electric-fields", kind: "prerequisite" },
+  { from: "a-level/physics/resolving-vectors", to: "a-level/physics/electric-fields", kind: "prerequisite" },
+  { from: "a-level/physics/gravitational-fields", to: "a-level/physics/electric-fields", kind: "prerequisite" },
+  { from: "a-level/physics/electric-fields", to: "a-level/physics/capacitance", kind: "downstream" },
+  { from: "a-level/physics/electric-fields", to: "a-level/physics/electromagnetism", kind: "downstream" },
+  { from: "a-level/physics/electric-fields", to: "a-level/physics/circuits", kind: "sibling" },
+  { from: "a-level/physics/electric-fields", to: "a-level/physics/gravitational-fields", kind: "sibling" },
   { from: "a-level/physics/circular-motion", to: "a-level/physics/gravitational-fields", kind: "prerequisite" },
   { from: "a-level/physics/forces-and-equilibrium", to: "a-level/physics/gravitational-fields", kind: "prerequisite" },
   { from: "a-level/physics/gravitational-fields", to: "a-level/physics/orbital-motion", kind: "downstream" },
@@ -518,6 +535,74 @@ export const containers = [
     ],
   },
   {
+    id: "a-level/physics/electric-fields",
+    branch: "a-level",
+    subject: "Physics",
+    level: "H2",
+    module: "Electricity and Magnetism",
+    title: "Electric Fields",
+    summary: "Predict field direction, calculate force on a charge, and connect electric potential to energy transfer.",
+    syllabusRef: "9478 / Section V / Electricity and Magnetism",
+    status: "reviewed",
+    packageId: "electric-fields",
+    simId: "charge-field-vector-lab",
+    predictPrompt: "A negative test charge is placed to the right of a positive source charge. Before revealing the vectors, which way does the force on the test charge point?",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "Positive and negative charges feel force in the same field direction",
+      "Voltage is the same thing as field strength",
+      "Field strength depends on the test charge",
+    ],
+    transferProblem: "An electron moves through a 240 V potential difference between two plates. Calculate the change in electric potential energy and explain why the electron accelerates in the direction opposite to the electric field.",
+    firstPrinciples: "An electric field describes how a source charge changes the space around it. At any point, the electric field strength is the force per unit positive test charge placed at that point. That definition separates the field made by the source from the force felt by a particular test charge.",
+    keyDefinitions: [
+      "Electric field strength, E: force per unit positive test charge at a point, measured in N/C or V/m.",
+      "Source charge, Q: the charge that creates the field being studied.",
+      "Test charge, q: the charge placed in the field to find the force on it.",
+      "Electric potential, V: electric potential energy per unit charge, measured in volts.",
+      "Potential difference: change in potential between two points; it gives energy change through Delta U = q Delta V.",
+    ],
+    canonicalExamples: [
+      "A positive source charge makes an outward field; a positive test charge is repelled outward.",
+      "A positive source charge still makes an outward field, but a negative test charge is attracted inward because F = qE.",
+      "Doubling the distance from a point charge reduces field strength to one quarter.",
+      "Moving a charge through a potential difference changes its electric potential energy by q Delta V.",
+    ],
+    problemSolvingSteps: [
+      "Identify source and test charge",
+      "Choose field, force, or energy relationship",
+      "Draw the direction before calculating",
+      "Substitute SI values",
+      "Interpret the sign and unit",
+    ],
+    prerequisites: [
+      "Circuits",
+      "Resolving Vectors",
+      "Gravitational Fields",
+    ],
+    downstream: [
+      "Capacitance",
+      "Electromagnetism",
+    ],
+    siblings: [
+      "Circuits",
+      "Gravitational Fields",
+    ],
+    sims: [
+      {
+        id: "charge-field-vector-lab",
+        harnessId: "a-level/physics/electric-fields/charge-field-vector-lab",
+        title: "Charge Field Vector Lab",
+        interactionType: "diagram-builder",
+        component: GeneratedSim4ElectricFieldsChargeFieldVectorLab,
+      },
+    ],
+  },
+  {
     id: "a-level/physics/forces-and-equilibrium",
     branch: "a-level",
     subject: "Physics",
@@ -566,7 +651,7 @@ export const containers = [
         harnessId: "a-level/physics/forces-and-equilibrium/force-balance",
         title: "Force Balance Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim4ForcesAndEquilibriumForceBalance,
+        component: GeneratedSim5ForcesAndEquilibriumForceBalance,
       },
     ],
   },
@@ -622,7 +707,7 @@ export const containers = [
         harnessId: "a-level/physics/gravitational-fields/inverse-square-field-lab",
         title: "Inverse-Square Field Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim5GravitationalFieldsInverseSquareFieldLab,
+        component: GeneratedSim6GravitationalFieldsInverseSquareFieldLab,
       },
     ],
   },
@@ -690,7 +775,7 @@ export const containers = [
         harnessId: "a-level/physics/kinematics-in-one-dimension/motion-equations-lab",
         title: "Motion Equations Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim6KinematicsInOneDimensionMotionEquationsLab,
+        component: GeneratedSim7KinematicsInOneDimensionMotionEquationsLab,
       },
     ],
   },
@@ -755,7 +840,7 @@ export const containers = [
         harnessId: "a-level/physics/momentum/momentum-collision-lab",
         title: "Collision and Impulse Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim7MomentumMomentumCollisionLab,
+        component: GeneratedSim8MomentumMomentumCollisionLab,
       },
     ],
   },
@@ -823,7 +908,7 @@ export const containers = [
         harnessId: "a-level/physics/oscillations/simple-harmonic-motion-lab",
         title: "Simple Harmonic Motion Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim8OscillationsSimpleHarmonicMotionLab,
+        component: GeneratedSim9OscillationsSimpleHarmonicMotionLab,
       },
     ],
   },
@@ -888,7 +973,7 @@ export const containers = [
         harnessId: "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab",
         title: "Measurement and Uncertainty Lab",
         interactionType: "decision-matrix",
-        component: GeneratedSim9PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
+        component: GeneratedSim10PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
       },
     ],
   },
@@ -951,7 +1036,7 @@ export const containers = [
         harnessId: "a-level/physics/resolving-vectors/component-resolution",
         title: "Component Resolution Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim10ResolvingVectorsComponentResolution,
+        component: GeneratedSim11ResolvingVectorsComponentResolution,
       },
     ],
   },
@@ -1013,7 +1098,7 @@ export const containers = [
         harnessId: "a-level/physics/scalars-and-vectors/resultant-magnitude",
         title: "Resultant Magnitude Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim11ScalarsAndVectorsResultantMagnitude,
+        component: GeneratedSim12ScalarsAndVectorsResultantMagnitude,
       },
     ],
   },
@@ -1081,7 +1166,7 @@ export const containers = [
         harnessId: "a-level/physics/thermal-physics/gas-law-energy-transfer-lab",
         title: "Gas Law and Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim12ThermalPhysicsGasLawEnergyTransferLab,
+        component: GeneratedSim13ThermalPhysicsGasLawEnergyTransferLab,
       },
     ],
   },
@@ -1145,7 +1230,7 @@ export const containers = [
         harnessId: "a-level/physics/waves/wave-superposition-lab",
         title: "Wave Superposition Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim13WavesWaveSuperpositionLab,
+        component: GeneratedSim14WavesWaveSuperpositionLab,
       },
     ],
   },
@@ -1210,7 +1295,7 @@ export const containers = [
         harnessId: "a-level/physics/work-energy-power/energy-transfer-lab",
         title: "Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim14WorkEnergyPowerEnergyTransferLab,
+        component: GeneratedSim15WorkEnergyPowerEnergyTransferLab,
       },
     ],
   }

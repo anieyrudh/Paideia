@@ -1,0 +1,135 @@
+schema_version: "1.0.0"
+id: electric-fields
+aliases:
+  - electric field strength
+  - point charge field
+  - force on a charge
+branch: a-level
+subject: physics
+level: "H2"
+module: "Electricity and Magnetism"
+title: "Electric Fields"
+one_line_summary: "Predict field direction, calculate force on a charge, and connect electric potential to energy transfer."
+syllabus_ref: "9478 / Section V / Electricity and Magnetism"
+prerequisites:
+  - circuits
+  - resolving-vectors
+  - gravitational-fields
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A negative test charge is placed to the right of a positive source charge. Before revealing the vectors, which way does the force on the test charge point?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "To the right, because the electric field points away from a positive source."
+      - "To the left, because a negative test charge feels force opposite to the electric field."
+      - "Upwards, because field lines curve around the source."
+      - "There is no force because electric field and voltage are the same thing."
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods:
+    - load
+    - saveState
+    - score
+    - resume
+    - syncTheme
+    - destroy
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: electron-through-field
+    prompt: |
+      An electron moves through a 240 V potential difference between two plates. Calculate the change in electric potential energy and explain why the electron accelerates in the direction opposite to the electric field.
+    surface_form: "electron between charged plates"
+    same_concept_check: "Same concept: use force direction from F = qE and energy transfer from Delta U = q Delta V, even though the field is now treated as uniform between plates."
+    rubric_path: problem-solving/electron-through-field.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-21"
+      author: "Codex"
+      summary: "Built A-Level electric fields product slice with point-charge vectors, force readouts, potential-energy transfer, and prediction-gated tests."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-21"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-21"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Positive and negative charges feel force in the same field direction"
+    description: "Learners may remember that electric field lines show force direction but omit the phrase 'on a positive test charge', causing them to put negative-charge force in the field direction."
+    evidence_source: "OpenStax College Physics 2e, Chapter 18 Electric Charge and Electric Field."
+    surface_in_predict: true
+  - name: "Voltage is the same thing as field strength"
+    description: "Learners may use volt and newton per coulomb interchangeably, instead of distinguishing electric potential as energy per charge from electric field strength as force per charge."
+    evidence_source: "OpenStax College Physics 2e, Chapter 19 Electric Potential and Electric Field."
+    surface_in_predict: true
+  - name: "Field strength depends on the test charge"
+    description: "Learners may think increasing the test charge makes the electric field at the point stronger, rather than only increasing the force experienced by that charge."
+    evidence_source: "OpenStax College Physics 2e, Chapter 18 Electric Charge and Electric Field."
+    surface_in_predict: false
+sources:
+  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
+    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf"
+    publication_year: 2025
+    license: "Copyright MOE & Cambridge University Press & Assessment"
+    seab_alignment: matches
+  - citation: "OpenStax. College Physics 2e, Chapter 18 Electric Charge and Electric Field. OpenStax, 2022."
+    url: "https://openstax.org/books/college-physics-2e/pages/18-introduction-to-electric-charge-and-electric-field"
+    publication_year: 2022
+    license: "CC BY 4.0"
+    seab_alignment: matches
+  - citation: "OpenStax. College Physics 2e, Chapter 19 Electric Potential and Electric Field. OpenStax, 2022."
+    url: "https://openstax.org/books/college-physics-2e/pages/19-introduction-to-electric-potential-and-electric-field"
+    publication_year: 2022
+    license: "CC BY 4.0"
+    seab_alignment: matches
+language: en

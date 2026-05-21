@@ -1,0 +1,26 @@
+# Electric Fields Mindmap
+
+- Electric fields
+  - Made by a source charge
+    - Positive source: field points away
+    - Negative source: field points towards
+  - Measured at a point
+    - Depends on source charge Q
+    - Depends on distance r
+    - Does not depend on the test charge q
+  - Force on a charge
+    - F = qE
+    - Positive q: force follows field
+    - Negative q: force opposes field
+  - Point-charge model
+    - E = kQ/r^2
+    - Direction is radial
+    - Inverse-square distance dependence
+  - Potential and energy
+    - V = kQ/r
+    - Delta U = q Delta V
+    - Potential difference transfers energy per unit charge
+  - Misconceptions
+    - Field arrow is not always force arrow
+    - Voltage is not the same quantity as field strength
+    - Test charge changes force, not source field

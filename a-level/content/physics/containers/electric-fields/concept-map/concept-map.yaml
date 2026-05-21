@@ -1,0 +1,49 @@
+schema_version: "1.0.0"
+concept_id: electric-fields
+prerequisites:
+  - id: circuits
+    title: Circuits
+    relationship: potential difference and charge flow context
+    status: available
+  - id: resolving-vectors
+    title: Resolving Vectors
+    relationship: field and force are vector quantities
+    status: available
+  - id: gravitational-fields
+    title: Gravitational Fields
+    relationship: inverse-square field analogy
+    status: planned
+downstream:
+  - id: capacitance
+    title: Capacitance
+    relationship: electric field and potential difference between plates
+    status: planned
+  - id: electromagnetism
+    title: Electromagnetism
+    relationship: fields acting on moving charges
+    status: planned
+siblings:
+  - id: circuits
+    title: Circuits
+    relationship: potential difference supplies energy per unit charge
+    status: available
+  - id: gravitational-fields
+    title: Gravitational Fields
+    relationship: compare inverse-square field models
+    status: planned
+misconception_graph:
+  nodes:
+    - id: negative-charge-follows-field
+      label: Negative charges follow field arrows
+    - id: voltage-equals-field
+      label: Voltage is the same as field strength
+    - id: test-charge-changes-field
+      label: Test charge changes the field
+  edges:
+    - from: negative-charge-follows-field
+      to: test-charge-changes-field
+      label: both confuse field with force on a particular charge
+    - from: voltage-equals-field
+      to: test-charge-changes-field
+      label: both collapse source-defined field and charge-dependent effect
+mermaid_source: graph.mmd

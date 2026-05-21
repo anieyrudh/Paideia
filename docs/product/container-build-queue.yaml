@@ -2035,7 +2035,7 @@ entries:
   - id: alevel.physics.electric-fields
     title: "Electric Fields"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level fields
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -2063,10 +2063,11 @@ entries:
         - voltage is the same thing as field strength
     kernel_dependencies:
       - core/sim-runtime
+      - core/electromagnetism
       - core/linear-algebra
-      - core/function-eval
       - core/plotting
       - core/prediction-gate
+      - core/shared
       - core/ui-sim
     repo_package_name: alevel-sim-electric-fields
     estimated_effort: H
