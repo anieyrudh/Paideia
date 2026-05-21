@@ -1,0 +1,44 @@
+controls:
+  - id: mean
+    label: "Mean"
+    type: slider
+    unit: marks
+    min: 60
+    max: 140
+    step: 1
+    default: 100
+  - id: standard-deviation
+    label: "Standard deviation"
+    type: slider
+    unit: marks
+    min: 4
+    max: 24
+    step: 0.5
+    default: 12
+  - id: lower-bound
+    label: "Lower bound"
+    type: slider
+    unit: marks
+    min: 40
+    max: 160
+    step: 1
+    default: 88
+  - id: upper-bound
+    label: "Upper bound"
+    type: slider
+    unit: marks
+    min: 40
+    max: 160
+    step: 1
+    default: 112
+  - id: area-mode
+    label: "Area mode"
+    type: selector
+    default: between
+    options:
+      - value: between
+        label: "Between lower and upper"
+      - value: left-tail
+        label: "Left tail below lower"
+      - value: right-tail
+        label: "Right tail above upper"

@@ -1,0 +1,63 @@
+id: normal-area-standardisation-lab
+title: "Normal Area Standardisation Lab"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/sim-runtime
+  - core/content-schema
+  - core/probability-stats
+  - core/charting
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+predict:
+  prompt: |
+    A score is modelled as normal with mean 100 and standard deviation 12. Before seeing the area, predict which probability is larger.
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The central interval from 88 to 112 marks is larger."
+      - "The upper tail above 124 marks is larger."
+      - "Both regions are equal because the normal curve is symmetric."
+      - "The z-score itself is the probability area."
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: mean
+      label: "Mean"
+      kind: slider
+      kernel_binding: state.mean
+      bounds: { min: 60, max: 140, step: 1 }
+    - id: standard-deviation
+      label: "Standard deviation"
+      kind: slider
+      kernel_binding: state.standardDeviation
+      bounds: { min: 4, max: 24, step: 0.5 }
+    - id: lower-bound
+      label: "Lower bound"
+      kind: slider
+      kernel_binding: state.lowerBound
+      bounds: { min: 40, max: 160, step: 1 }
+    - id: upper-bound
+      label: "Upper bound"
+      kind: slider
+      kernel_binding: state.upperBound
+      bounds: { min: 40, max: 160, step: 1 }
+    - id: area-mode
+      label: "Area mode"
+      kind: selector
+      kernel_binding: state.mode
+observe:
+  renderers:
+    - id: normal-area-standardisation-lab
+      module: "@paideia/a-level-math-sims/normal-distribution"
+      symbol: NormalDistributionSim
+      props_binding: |
+        Show normal density curve, interval or tail markers, z-standardisation, area probability, formula substitution, units, interpretation, and legend.
+explain:
+  prompt: |
+    Why is the z-score not itself a probability, and why does symmetry only let you mirror equal distances from the mean?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "z-score is a probability"
+    - "symmetric distributions make every interval equally likely"

@@ -1,0 +1,12 @@
+flowchart TD
+  probability_statistics["Probability and Statistics"] --> normal_distribution["Normal Distribution"]
+  functions_graphs["Functions and Graphs"] --> normal_distribution
+  normal_distribution --> standardisation["z-standardisation"]
+  normal_distribution --> normal_area["interval and tail area"]
+  standardisation --> hypothesis_testing["Hypothesis Testing"]
+  normal_area --> confidence_intervals["Confidence Intervals"]
+  central_limit["Central Limit Theorem"] -. sibling .- normal_distribution
+  binomial_distribution["Binomial Distribution"] -. sibling .- normal_distribution
+  z_misconception["z-score is a probability"] -. blocks .-> normal_area
+  symmetry_misconception["symmetry makes every interval equal"] -. blocks .-> normal_area
+  unit_misconception["sigma has no unit"] -. blocks .-> standardisation

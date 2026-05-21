@@ -1,0 +1,33 @@
+schema_version: "1.0.0"
+algorithm: problem-solving/algorithm.md
+steps:
+  - id: identify-model
+    title: "Identify the normal model"
+    prompt: "Write the random variable, mean, variance, standard deviation, and unit."
+    checks:
+      - "Uses sigma, not sigma squared, in the denominator."
+      - "Names the context of X."
+  - id: translate-region
+    title: "Translate the region"
+    prompt: "Convert the wording into a left-tail, right-tail, or interval probability."
+    checks:
+      - "Uses inequalities with X before standardising."
+      - "Chooses the correct tail or interval."
+  - id: standardise
+    title: "Standardise boundaries"
+    prompt: "Compute each z-score with z = (x - mu) / sigma."
+    checks:
+      - "Raw units cancel."
+      - "Each boundary receives its own z-score."
+  - id: read-area
+    title: "Read the standard normal area"
+    prompt: "Use Phi values to compute the requested area."
+    checks:
+      - "Uses Phi(z_b) - Phi(z_a) for intervals."
+      - "Uses 1 - Phi(z) for right tails."
+  - id: interpret
+    title: "Interpret in context"
+    prompt: "State what the probability means for the original measurement."
+    checks:
+      - "Reports probability or percentage."
+      - "Does not call the z-score a probability."

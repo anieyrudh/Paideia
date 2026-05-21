@@ -1,0 +1,15 @@
+runtime:
+  package_id: normal-distribution
+  sim_id: normal-area-standardisation-lab
+  pmoet:
+    predict: required
+    manipulate: required
+    observe: gated
+    explain: required
+  state:
+    persistence: session
+    prediction_key: "paideia.predict.normal-distribution.normal-area-standardisation-lab"
+  accessibility:
+    keyboard_controls: true
+    aria_live_updates: false
+    reduced_motion_safe: true

@@ -1,0 +1,25 @@
+presets:
+  - id: central-band
+    label: "central band"
+    state:
+      mean: 100
+      standardDeviation: 12
+      lowerBound: 88
+      upperBound: 112
+      mode: between
+  - id: upper-tail
+    label: "upper tail"
+    state:
+      mean: 100
+      standardDeviation: 12
+      lowerBound: 88
+      upperBound: 124
+      mode: right-tail
+  - id: shifted-exam
+    label: "shifted exam"
+    state:
+      mean: 72
+      standardDeviation: 9
+      lowerBound: 65
+      upperBound: 80
+      mode: between
