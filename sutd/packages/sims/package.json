@@ -10,6 +10,7 @@
     "./graph-search-and-shortest-paths": "./src/graph-search-and-shortest-paths.tsx",
     "./linear-programming-feasible-region": "./src/linear-programming-feasible-region.tsx",
     "./load-path-and-daylight-tradeoff": "./src/load-path-and-daylight-tradeoff.tsx",
+    "./linear-system-stability": "./src/linear-system-stability.tsx",
     "./ode-phase-portrait": "./src/ode-phase-portrait.tsx",
     "./pid-step-response": "./src/pid-step-response.tsx",
     "./bode-stability-margin": "./src/bode-stability-margin.tsx",

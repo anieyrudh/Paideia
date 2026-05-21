@@ -1,0 +1,14 @@
+state_labels:
+  preset: "System preset"
+  aPerTimeUnit: "Matrix entry a, per time unit"
+  bPerTimeUnit: "Matrix entry b, per time unit"
+  cPerTimeUnit: "Matrix entry c, per time unit"
+  dPerTimeUnit: "Matrix entry d, per time unit"
+  initialXStateUnits: "Initial x state, state units"
+  initialYStateUnits: "Initial y state, state units"
+derived_labels:
+  trace: "Trace T = a + d"
+  determinant: "Determinant D = ad - bc"
+  discriminant: "Discriminant Delta = T^2 - 4D"
+  eigenvalues: "Eigenvalues"
+  classification: "Stability class"

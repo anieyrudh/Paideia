@@ -1390,7 +1390,7 @@ entries:
   - id: sutd.smt.linear-system-stability
     title: "Linear System Stability"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: SMT mathematical modelling
     discipline: science
     reuse_status: curriculum-wrapper
