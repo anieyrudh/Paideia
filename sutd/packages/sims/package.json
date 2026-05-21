@@ -16,7 +16,8 @@
     "./trust-calibration": "./src/trust-calibration.tsx",
     "./vector-transformations": "./src/vector-transformations.tsx",
     "./bayes-updating": "./src/bayes-updating.tsx",
-    "./eigenvector-transformations": "./src/eigenvector-transformations.tsx"
+    "./eigenvector-transformations": "./src/eigenvector-transformations.tsx",
+    "./newsvendor-critical-fractile": "./src/newsvendor-critical-fractile.tsx"
   },
   "scripts": {
     "build": "tsc -b",

@@ -1,8 +1,12 @@
 import { describe, expect, it } from "vitest";
+import { probability } from "@paideia/shared";
 import {
+  costSgdPerUnit,
   gradientDescent,
   linearFeasibleRegion,
+  newsvendorCriticalFractile,
   optimizationTolerance,
+  orderQuantityUnits,
   optimizeLinearObjective,
   type LinearConstraint,
   type Point2,
@@ -19,7 +23,37 @@ const distance = (left: Point2, right: Point2): number =>
 const approxEqual = (left: number, right: number, tolerance: number): boolean =>
   Number.isFinite(left) && Number.isFinite(right) && Math.abs(left - right) <= tolerance;
 
+const p = (value: number) => {
+  const result = probability(value);
+  if (!result.ok) throw new Error(result.error.message);
+  return result.value;
+};
+
 describe("@paideia/optimization", () => {
+  it("computes a newsvendor critical fractile and CDF crossing", () => {
+    const analysis = newsvendorCriticalFractile({
+      distribution: [
+        { id: "d60", value: 60, probability: p(0.12) },
+        { id: "d75", value: 75, probability: p(0.2) },
+        { id: "d90", value: 90, probability: p(0.32) },
+        { id: "d105", value: 105, probability: p(0.24) },
+        { id: "d120", value: 120, probability: p(0.12) },
+      ],
+      orderQuantity: orderQuantityUnits(90),
+      underageCost: costSgdPerUnit(18),
+      overageCost: costSgdPerUnit(6),
+      quantityStep: orderQuantityUnits(5),
+    });
+
+    expect(analysis.ok).toBe(true);
+    if (!analysis.ok) return;
+    expect(Number(analysis.value.criticalFractile)).toBeCloseTo(0.75);
+    expect(Number(analysis.value.recommendedQuantity)).toBe(105);
+    expect(Number(analysis.value.recommendedServiceLevel)).toBeCloseTo(0.88);
+    expect(analysis.value.dominantPenalty).toBe("shortage");
+    expect(analysis.value.costCurve.length).toBeGreaterThan(5);
+  });
+
   it("traces gradient descent toward a convex quadratic minimizer", () => {
     const result = gradientDescent(
       (x, y) => (x - 2) ** 2 + (y + 1) ** 2,

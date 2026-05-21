@@ -1,10 +1,17 @@
 import {
   err,
   ok,
+  probability,
+  type Brand,
   type Function3D,
   type KernelResult,
+  type Probability,
   type Rect,
 } from "@paideia/shared";
+import {
+  expectedValue,
+  type DiscreteDistribution,
+} from "@paideia/probability-stats";
 
 export type Point2 = readonly [number, number];
 
@@ -54,6 +61,47 @@ export interface LinearProgramSolution {
   readonly value: number;
   readonly activeConstraints: readonly number[];
 }
+
+export type OrderQuantityUnits = Brand<number, "OrderQuantityUnits">;
+export type CostSgdPerUnit = Brand<number, "CostSgdPerUnit">;
+export type ExpectedCostSgd = Brand<number, "ExpectedCostSgd">;
+
+export interface NewsvendorInput {
+  readonly distribution: DiscreteDistribution;
+  readonly orderQuantity: OrderQuantityUnits;
+  readonly underageCost: CostSgdPerUnit;
+  readonly overageCost: CostSgdPerUnit;
+  readonly quantityStep?: OrderQuantityUnits;
+}
+
+export interface NewsvendorCdfPoint {
+  readonly quantity: OrderQuantityUnits;
+  readonly probability: Probability;
+  readonly cumulativeProbability: Probability;
+}
+
+export interface NewsvendorCostCurvePoint {
+  readonly quantity: OrderQuantityUnits;
+  readonly expectedCost: ExpectedCostSgd;
+}
+
+export interface NewsvendorAnalysis {
+  readonly meanDemand: OrderQuantityUnits;
+  readonly criticalFractile: Probability;
+  readonly recommendedQuantity: OrderQuantityUnits;
+  readonly recommendedServiceLevel: Probability;
+  readonly selectedServiceLevel: Probability;
+  readonly selectedExpectedCost: ExpectedCostSgd;
+  readonly recommendedExpectedCost: ExpectedCostSgd;
+  readonly meanDemandExpectedCost: ExpectedCostSgd;
+  readonly cdf: readonly NewsvendorCdfPoint[];
+  readonly costCurve: readonly NewsvendorCostCurvePoint[];
+  readonly dominantPenalty: "shortage" | "surplus";
+}
+
+export const orderQuantityUnits = (n: number): OrderQuantityUnits => n as OrderQuantityUnits;
+export const costSgdPerUnit = (n: number): CostSgdPerUnit => n as CostSgdPerUnit;
+export const expectedCostSgd = (n: number): ExpectedCostSgd => n as ExpectedCostSgd;
 
 export const optimizationTolerance = {
   default: 1e-7,
@@ -431,5 +479,154 @@ export const optimizeLinearObjective = (
     point: bestPoint,
     value: bestValue,
     activeConstraints,
+  });
+};
+
+const cumulativeProbabilityAt = (
+  distribution: DiscreteDistribution,
+  quantity: number,
+): KernelResult<Probability> =>
+  probability(Math.min(1, Math.max(0,
+    distribution.reduce(
+      (sum, outcome) => sum + (outcome.value <= quantity ? Number(outcome.probability) : 0),
+      0,
+    ),
+  )));
+
+const mismatchCost = (
+  distribution: DiscreteDistribution,
+  quantity: number,
+  underageCost: number,
+  overageCost: number,
+): ExpectedCostSgd => expectedCostSgd(
+  distribution.reduce((sum, outcome) => {
+    const demand = outcome.value;
+    const probabilityValue = Number(outcome.probability);
+    const shortage = Math.max(0, demand - quantity);
+    const leftover = Math.max(0, quantity - demand);
+    return sum + probabilityValue * (underageCost * shortage + overageCost * leftover);
+  }, 0),
+);
+
+const newsvendorCdf = (
+  distribution: DiscreteDistribution,
+): KernelResult<readonly NewsvendorCdfPoint[]> => {
+  const sorted = [...distribution].sort((left, right) => left.value - right.value);
+  let cumulative = 0;
+  const cdf: NewsvendorCdfPoint[] = [];
+
+  for (const outcome of sorted) {
+    cumulative += Number(outcome.probability);
+    const cumulativeProbability = probability(Math.min(1, Math.max(0, cumulative)));
+    if (!cumulativeProbability.ok) return cumulativeProbability;
+    cdf.push({
+      quantity: orderQuantityUnits(outcome.value),
+      probability: outcome.probability,
+      cumulativeProbability: cumulativeProbability.value,
+    });
+  }
+
+  return ok(cdf);
+};
+
+const recommendedQuantityFromCdf = (
+  cdf: readonly NewsvendorCdfPoint[],
+  criticalFractile: Probability,
+): KernelResult<OrderQuantityUnits> => {
+  for (const point of cdf) {
+    if (Number(point.cumulativeProbability) >= Number(criticalFractile)) {
+      return ok(point.quantity);
+    }
+  }
+  const last = cdf.at(-1);
+  return last === undefined
+    ? err("precondition-violated", "Newsvendor CDF requires at least one demand point")
+    : ok(last.quantity);
+};
+
+const costCurve = (
+  distribution: DiscreteDistribution,
+  underageCost: number,
+  overageCost: number,
+  quantityStep: number,
+): KernelResult<readonly NewsvendorCostCurvePoint[]> => {
+  if (!Number.isFinite(quantityStep) || quantityStep <= 0) {
+    return err("precondition-violated", `quantityStep must be positive; got ${quantityStep}`);
+  }
+
+  const values = distribution.map((outcome) => outcome.value);
+  const minDemand = Math.min(...values);
+  const maxDemand = Math.max(...values);
+  const points: NewsvendorCostCurvePoint[] = [];
+  for (let quantity = minDemand; quantity <= maxDemand + optimizationTolerance.tight; quantity += quantityStep) {
+    points.push({
+      quantity: orderQuantityUnits(quantity),
+      expectedCost: mismatchCost(distribution, quantity, underageCost, overageCost),
+    });
+  }
+  return ok(points);
+};
+
+export const newsvendorCriticalFractile = (
+  input: NewsvendorInput,
+): KernelResult<NewsvendorAnalysis> => {
+  const underageCost = Number(input.underageCost);
+  const overageCost = Number(input.overageCost);
+  const orderQuantity = Number(input.orderQuantity);
+  const quantityStep = Number(input.quantityStep ?? orderQuantityUnits(1));
+
+  for (const [label, value] of [
+    ["underageCost", underageCost],
+    ["overageCost", overageCost],
+    ["orderQuantity", orderQuantity],
+  ] as const) {
+    if (!Number.isFinite(value)) {
+      return err("precondition-violated", `${label} must be finite; got ${value}`);
+    }
+  }
+  if (underageCost < 0 || overageCost < 0 || underageCost + overageCost <= 0) {
+    return err("out-of-domain", "Shortage and leftover costs must be non-negative with positive total cost.");
+  }
+
+  const criticalFractile = probability(underageCost / (underageCost + overageCost));
+  if (!criticalFractile.ok) return criticalFractile;
+  const meanDemand = expectedValue(input.distribution);
+  if (!meanDemand.ok) return meanDemand;
+  const cdf = newsvendorCdf(input.distribution);
+  if (!cdf.ok) return cdf;
+  const recommendedQuantity = recommendedQuantityFromCdf(cdf.value, criticalFractile.value);
+  if (!recommendedQuantity.ok) return recommendedQuantity;
+  const selectedServiceLevel = cumulativeProbabilityAt(input.distribution, orderQuantity);
+  if (!selectedServiceLevel.ok) return selectedServiceLevel;
+  const recommendedServiceLevel = cumulativeProbabilityAt(
+    input.distribution,
+    Number(recommendedQuantity.value),
+  );
+  if (!recommendedServiceLevel.ok) return recommendedServiceLevel;
+  const curve = costCurve(input.distribution, underageCost, overageCost, quantityStep);
+  if (!curve.ok) return curve;
+
+  return ok({
+    meanDemand: orderQuantityUnits(meanDemand.value),
+    criticalFractile: criticalFractile.value,
+    recommendedQuantity: recommendedQuantity.value,
+    recommendedServiceLevel: recommendedServiceLevel.value,
+    selectedServiceLevel: selectedServiceLevel.value,
+    selectedExpectedCost: mismatchCost(input.distribution, orderQuantity, underageCost, overageCost),
+    recommendedExpectedCost: mismatchCost(
+      input.distribution,
+      Number(recommendedQuantity.value),
+      underageCost,
+      overageCost,
+    ),
+    meanDemandExpectedCost: mismatchCost(
+      input.distribution,
+      meanDemand.value,
+      underageCost,
+      overageCost,
+    ),
+    cdf: cdf.value,
+    costCurve: curve.value,
+    dominantPenalty: underageCost >= overageCost ? "shortage" : "surplus",
   });
 };

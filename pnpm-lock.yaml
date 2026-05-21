@@ -457,6 +457,9 @@ importers:
 
   core/optimization:
     dependencies:
+      '@paideia/probability-stats':
+        specifier: workspace:*
+        version: link:../probability-stats
       '@paideia/shared':
         specifier: workspace:*
         version: link:../shared

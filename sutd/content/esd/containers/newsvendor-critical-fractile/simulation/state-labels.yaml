@@ -1,0 +1,14 @@
+labels:
+  scenario: "Demand setting"
+  orderQuantity: "Trial order quantity"
+  underageCost: "Shortage cost per unit"
+  overageCost: "Leftover cost per unit"
+units:
+  orderQuantity: "units"
+  underageCost: "SGD/unit"
+  overageCost: "SGD/unit"
+derived:
+  criticalFractile: "Critical fractile"
+  recommendedQuantity: "Rule order"
+  selectedServiceLevel: "Trial service level"
+  selectedExpectedCost: "Trial expected mismatch cost"
