@@ -34,6 +34,9 @@ potential in `J kg^-1`, and potential energy in joules using SI inputs. Expected
 
 Work-energy helpers own the shared calculations for final kinetic store and
 average power so simulations do not reimplement those formulas locally.
+`springOscillator` owns the ideal mass-spring timing, SHM sample, and kinetic
+plus elastic potential energy trace for containers that need a product-facing
+spring oscillator without duplicating oscillator formulae.
 Uniform circular motion owns the shared `a_c = v^2 / r`, `F_c = ma_c`, angular
 speed, and period calculations for constant-speed circular paths.
 

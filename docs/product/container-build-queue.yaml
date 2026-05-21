@@ -1903,7 +1903,7 @@ entries:
   - id: alevel.physics.oscillations
     title: "Oscillations"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level oscillations
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -1932,7 +1932,6 @@ entries:
     kernel_dependencies:
       - core/sim-runtime
       - core/mechanics
-      - core/function-eval
       - core/charting
       - core/prediction-gate
       - core/ui-sim

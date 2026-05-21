@@ -783,6 +783,10 @@ textarea:focus-visible {
   color: #34d399;
 }
 
+.formula-var--red {
+  color: #f87171;
+}
+
 .formula-var--purple {
   color: #c084fc;
 }
@@ -836,6 +840,14 @@ textarea:focus-visible {
 
 .legend-swatch--green {
   background: #34d399;
+}
+
+.legend-swatch--red {
+  background: #f87171;
+}
+
+.legend-swatch--purple {
+  background: #a78bfa;
 }
 
 .measurement-lab {

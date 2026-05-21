@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { getSimHarnessEntry, simRegistry } from "./registry.js";
+import "./harness.css";
 
 const root = document.getElementById("root");
 if (root === null) {

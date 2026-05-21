@@ -1,0 +1,33 @@
+presets:
+  - id: released-from-the-right
+    label: "released from the right"
+    values:
+      massKilograms: 2
+      springConstantNewtonsPerMetre: 32
+      amplitudeMetres: 0.8
+      phaseRadians: 0
+      timeSeconds: 0
+  - id: crossing-equilibrium
+    label: "crossing equilibrium"
+    values:
+      massKilograms: 2
+      springConstantNewtonsPerMetre: 32
+      amplitudeMetres: 0.8
+      phaseRadians: 1.5708
+      timeSeconds: 0
+  - id: stiffer-spring
+    label: "stiffer spring"
+    values:
+      massKilograms: 2
+      springConstantNewtonsPerMetre: 64
+      amplitudeMetres: 0.8
+      phaseRadians: 0
+      timeSeconds: 0
+  - id: larger-amplitude
+    label: "same period, larger amplitude"
+    values:
+      massKilograms: 2
+      springConstantNewtonsPerMetre: 32
+      amplitudeMetres: 1.6
+      phaseRadians: 0
+      timeSeconds: 0

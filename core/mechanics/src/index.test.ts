@@ -7,7 +7,9 @@ import {
   metres,
   metresPerSecond,
   newtons,
+  newtonsPerMetre,
   radians,
+  radiansPerSecond,
   seconds,
 } from "@paideia/shared";
 import {
@@ -30,6 +32,7 @@ import {
   netForce,
   projectileAt,
   simpleHarmonicMotion,
+  springOscillator,
   uniformCircularMotion,
   universalGravitationalConstant,
   workDone,
@@ -341,7 +344,7 @@ describe("@paideia/mechanics", () => {
       {
         equilibriumMetres: metres(1),
         amplitudeMetres: metres(2),
-        angularFrequencyRadiansPerSecond: 3,
+        angularFrequencyRadiansPerSecond: radiansPerSecond(3),
         phaseRadians: radians(0),
       },
       seconds(Math.PI / 6),
@@ -354,6 +357,86 @@ describe("@paideia/mechanics", () => {
       expect(approxEqual(sample.value.velocityMetresPerSecond, -6, mechanicsTolerance.default)).toBe(true);
       expect(approxEqual(sample.value.accelerationMetresPerSecondSquared, 0, mechanicsTolerance.loose)).toBe(true);
     }
+  });
+
+  it("keeps mass-spring period independent of amplitude", () => {
+    fc.assert(
+      fc.property(
+        fc.double({ min: 0.5, max: 10, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 1, max: 120, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 0.05, max: 2, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 0.05, max: 2, noDefaultInfinity: true, noNaN: true }),
+        (mass, stiffness, amplitudeA, amplitudeB) => {
+          const first = springOscillator(
+            {
+              massKilograms: kilograms(mass),
+              springConstantNewtonsPerMetre: newtonsPerMetre(stiffness),
+              amplitudeMetres: metres(amplitudeA),
+              phaseRadians: radians(0),
+            },
+            seconds(0),
+          );
+          const second = springOscillator(
+            {
+              massKilograms: kilograms(mass),
+              springConstantNewtonsPerMetre: newtonsPerMetre(stiffness),
+              amplitudeMetres: metres(amplitudeB),
+              phaseRadians: radians(0),
+            },
+            seconds(0),
+          );
+
+          expect(first.ok).toBe(true);
+          expect(second.ok).toBe(true);
+          if (!first.ok || !second.ok) return;
+          expect(approxEqual(first.value.periodSeconds, second.value.periodSeconds, 1e-9)).toBe(true);
+        },
+      ),
+      { seed: 20260521 },
+    );
+  });
+
+  it("scales mass-spring total energy with amplitude squared", () => {
+    fc.assert(
+      fc.property(
+        fc.double({ min: 0.5, max: 10, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 1, max: 120, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 0.05, max: 2, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 0.2, max: 3, noDefaultInfinity: true, noNaN: true }),
+        (mass, stiffness, amplitude, scaleFactor) => {
+          const first = springOscillator(
+            {
+              massKilograms: kilograms(mass),
+              springConstantNewtonsPerMetre: newtonsPerMetre(stiffness),
+              amplitudeMetres: metres(amplitude),
+              phaseRadians: radians(0),
+            },
+            seconds(0),
+          );
+          const scaled = springOscillator(
+            {
+              massKilograms: kilograms(mass),
+              springConstantNewtonsPerMetre: newtonsPerMetre(stiffness),
+              amplitudeMetres: metres(amplitude * scaleFactor),
+              phaseRadians: radians(0),
+            },
+            seconds(0),
+          );
+
+          expect(first.ok).toBe(true);
+          expect(scaled.ok).toBe(true);
+          if (!first.ok || !scaled.ok) return;
+          expect(
+            approxEqual(
+              scaled.value.totalEnergyJoules,
+              first.value.totalEnergyJoules * scaleFactor * scaleFactor,
+              mechanicsTolerance.loose,
+            ),
+          ).toBe(true);
+        },
+      ),
+      { seed: 20260522 },
+    );
   });
 
   it("rejects invalid preconditions as KernelResult errors", () => {

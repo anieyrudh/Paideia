@@ -7,12 +7,13 @@ import GeneratedSim3ForcesAndEquilibriumForceBalance from "@paideia/a-level-phys
 import GeneratedSim4GravitationalFieldsInverseSquareFieldLab from "@paideia/a-level-physics-sims/gravitational-fields";
 import GeneratedSim5KinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
 import GeneratedSim6MomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
-import GeneratedSim7PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
-import GeneratedSim8ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
-import GeneratedSim9ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
-import GeneratedSim10ThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
-import GeneratedSim11WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
-import GeneratedSim12WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
+import GeneratedSim7OscillationsSimpleHarmonicMotionLab from "@paideia/a-level-physics-sims/oscillations";
+import GeneratedSim8PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
+import GeneratedSim9ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
+import GeneratedSim10ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
+import GeneratedSim11ThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
+import GeneratedSim12WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
+import GeneratedSim13WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -132,6 +133,15 @@ export const knowledgeGraph = {
     status: "reviewed",
   },
   {
+    id: "a-level/physics/oscillations",
+    conceptId: "oscillations",
+    title: "Oscillations",
+    subject: "physics",
+    level: "H2",
+    module: "Oscillations",
+    status: "reviewed",
+  },
+  {
     id: "a-level/physics/physical-quantities-and-units",
     conceptId: "physical-quantities-and-units",
     title: "Physical Quantities and Units",
@@ -218,6 +228,13 @@ export const knowledgeGraph = {
   { from: "a-level/physics/momentum", to: "a-level/physics/momentum", kind: "downstream" },
   { from: "a-level/physics/momentum", to: "a-level/physics/oscillations", kind: "downstream" },
   { from: "a-level/physics/momentum", to: "a-level/physics/forces-and-newtons-laws", kind: "sibling" },
+  { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/oscillations", kind: "prerequisite" },
+  { from: "a-level/physics/work-energy-power", to: "a-level/physics/oscillations", kind: "prerequisite" },
+  { from: "a-level/physics/waves", to: "a-level/physics/oscillations", kind: "prerequisite" },
+  { from: "a-level/physics/oscillations", to: "a-level/physics/resonance", kind: "downstream" },
+  { from: "a-level/physics/oscillations", to: "a-level/physics/alternating-current", kind: "downstream" },
+  { from: "a-level/physics/oscillations", to: "a-level/physics/circular-motion", kind: "sibling" },
+  { from: "a-level/physics/oscillations", to: "a-level/physics/waves", kind: "sibling" },
   { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/scalars-and-vectors", kind: "downstream" },
   { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/resolving-vectors", kind: "downstream" },
   { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/resolving-vectors", kind: "prerequisite" },
@@ -672,6 +689,74 @@ export const containers = [
     ],
   },
   {
+    id: "a-level/physics/oscillations",
+    branch: "a-level",
+    subject: "Physics",
+    level: "H2",
+    module: "Oscillations",
+    title: "Oscillations",
+    summary: "Connect restoring acceleration, period, frequency, and energy exchange in simple harmonic motion.",
+    syllabusRef: "9478 / Section IV / Oscillations",
+    status: "reviewed",
+    packageId: "oscillations",
+    simId: "simple-harmonic-motion-lab",
+    predictPrompt: "A spring oscillator has the same mass and spring constant, but the amplitude is doubled. Before revealing the lab, what happens to the period?",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "Amplitude changes the period for every oscillator",
+      "Acceleration is greatest at equilibrium",
+      "Zero displacement means zero speed and zero energy",
+    ],
+    transferProblem: "A car body oscillates after a bump. Compare a bigger bump, a heavier load, and a stiffer suspension using the ideal spring model.",
+    firstPrinciples: "An oscillation is a repeated motion about an equilibrium position. In simple harmonic motion, the acceleration is proportional to the displacement from equilibrium and points back towards equilibrium.",
+    keyDefinitions: [
+      "Equilibrium position: the position where the resultant force and acceleration are zero.",
+      "Displacement: signed distance from equilibrium.",
+      "Amplitude: maximum displacement from equilibrium.",
+      "Period: time for one complete oscillation.",
+      "Frequency: oscillations per second, measured in hertz.",
+    ],
+    canonicalExamples: [
+      "A mass on a spring released from rest at maximum displacement.",
+      "A small-angle pendulum moving repeatedly through equilibrium.",
+      "A car suspension oscillating after a bump.",
+    ],
+    problemSolvingSteps: [
+      "Define equilibrium and sign",
+      "Apply the restoring rule",
+      "Convert timing quantities",
+      "Evaluate displacement at the time",
+      "Interpret energy exchange",
+      "Address the misconception",
+    ],
+    prerequisites: [
+      "Kinematics in One Dimension",
+      "Work, Energy, Power",
+      "Waves",
+    ],
+    downstream: [
+      "Resonance",
+      "Alternating Current",
+    ],
+    siblings: [
+      "Circular Motion",
+      "Waves",
+    ],
+    sims: [
+      {
+        id: "simple-harmonic-motion-lab",
+        harnessId: "a-level/physics/oscillations/simple-harmonic-motion-lab",
+        title: "Simple Harmonic Motion Lab",
+        interactionType: "animation-playback",
+        component: GeneratedSim7OscillationsSimpleHarmonicMotionLab,
+      },
+    ],
+  },
+  {
     id: "a-level/physics/physical-quantities-and-units",
     branch: "a-level",
     subject: "Physics",
@@ -732,7 +817,7 @@ export const containers = [
         harnessId: "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab",
         title: "Measurement and Uncertainty Lab",
         interactionType: "decision-matrix",
-        component: GeneratedSim7PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
+        component: GeneratedSim8PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
       },
     ],
   },
@@ -795,7 +880,7 @@ export const containers = [
         harnessId: "a-level/physics/resolving-vectors/component-resolution",
         title: "Component Resolution Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim8ResolvingVectorsComponentResolution,
+        component: GeneratedSim9ResolvingVectorsComponentResolution,
       },
     ],
   },
@@ -857,7 +942,7 @@ export const containers = [
         harnessId: "a-level/physics/scalars-and-vectors/resultant-magnitude",
         title: "Resultant Magnitude Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim9ScalarsAndVectorsResultantMagnitude,
+        component: GeneratedSim10ScalarsAndVectorsResultantMagnitude,
       },
     ],
   },
@@ -925,7 +1010,7 @@ export const containers = [
         harnessId: "a-level/physics/thermal-physics/gas-law-energy-transfer-lab",
         title: "Gas Law and Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim10ThermalPhysicsGasLawEnergyTransferLab,
+        component: GeneratedSim11ThermalPhysicsGasLawEnergyTransferLab,
       },
     ],
   },
@@ -989,7 +1074,7 @@ export const containers = [
         harnessId: "a-level/physics/waves/wave-superposition-lab",
         title: "Wave Superposition Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim11WavesWaveSuperpositionLab,
+        component: GeneratedSim12WavesWaveSuperpositionLab,
       },
     ],
   },
@@ -1054,7 +1139,7 @@ export const containers = [
         harnessId: "a-level/physics/work-energy-power/energy-transfer-lab",
         title: "Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim12WorkEnergyPowerEnergyTransferLab,
+        component: GeneratedSim13WorkEnergyPowerEnergyTransferLab,
       },
     ],
   }

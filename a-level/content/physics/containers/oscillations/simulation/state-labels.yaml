@@ -1,0 +1,33 @@
+state_labels:
+  massKilograms:
+    label: "mass"
+    unit: kg
+    meaning: "The oscillator's mass; increasing it increases the ideal period."
+  springConstantNewtonsPerMetre:
+    label: "spring stiffness"
+    unit: "N m^-1"
+    meaning: "The restoring force per metre of displacement; increasing it decreases the ideal period."
+  amplitudeMetres:
+    label: "amplitude"
+    unit: m
+    meaning: "Maximum displacement from equilibrium; changing it changes energy but not the ideal period."
+  phaseRadians:
+    label: "starting phase"
+    unit: rad
+    meaning: "Where in the cycle the oscillator begins."
+  timeSeconds:
+    label: "time marker"
+    unit: s
+    meaning: "The instant sampled on the oscillation trace."
+  periodSeconds:
+    label: "period"
+    unit: s
+    meaning: "Time for one complete oscillation."
+  frequencyHertz:
+    label: "frequency"
+    unit: Hz
+    meaning: "Number of oscillations per second."
+  accelerationMetresPerSecondSquared:
+    label: "acceleration"
+    unit: "m s^-2"
+    meaning: "Restoring acceleration, proportional to negative displacement."
