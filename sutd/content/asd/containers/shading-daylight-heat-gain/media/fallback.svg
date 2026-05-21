@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 480 300">
+  <title id="title">Shading tradeoff fallback graphic</title>
+  <desc id="desc">A simple section diagram showing an overhang shading a glazed facade.</desc>
+  <rect width="480" height="300" fill="#ffffff"/>
+  <rect x="80" y="48" width="170" height="210" fill="#e5e7eb"/>
+  <rect x="118" y="92" width="94" height="126" fill="#9bd6ee"/>
+  <rect x="118" y="92" width="94" height="60" fill="#f7c948" opacity="0.55"/>
+  <line x1="80" x2="214" y1="72" y2="72" stroke="#344054" stroke-linecap="round" stroke-width="14"/>
+  <line x1="380" x2="236" y1="52" y2="138" stroke="#b54708" stroke-linecap="round" stroke-width="7"/>
+  <line x1="400" x2="256" y1="92" y2="178" stroke="#b54708" stroke-linecap="round" stroke-width="7"/>
+  <path d="M214 72 212 152" fill="none" stroke="#7a5b00" stroke-width="3" stroke-dasharray="7 7"/>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Thermal physics fallback visual</title>
+  <desc id="desc">Static formula summary for thermal physics showing kelvin conversion, ideal gas law, and heat transfer.</desc>
+  <rect width="640" height="360" fill="#f8fbff"/>
+  <rect x="56" y="52" width="528" height="256" rx="24" fill="#ffffff" stroke="#cbd5e1" stroke-width="4"/>
+  <text x="96" y="112" fill="#0f172a" font-family="Arial, sans-serif" font-size="32" font-weight="700">Thermal Physics</text>
+  <text x="96" y="164" fill="#1f5f8b" font-family="Arial, sans-serif" font-size="28" font-weight="700">T_K = T_C + 273.15</text>
+  <text x="96" y="214" fill="#1f5f8b" font-family="Arial, sans-serif" font-size="28" font-weight="700">pV = nRT_K</text>
+  <text x="96" y="264" fill="#1f5f8b" font-family="Arial, sans-serif" font-size="28" font-weight="700">Q = mc Delta T</text>
+</svg>

@@ -1,0 +1,21 @@
+# Gravitational Fields Mindmap
+
+- Definition
+  - Field strength is force per unit mass
+  - Direction is towards the attracting source mass
+- Inverse-square law
+  - `g = GM / r^2`
+  - Doubling radius quarters field strength
+  - Source mass scales field strength directly
+- Potential
+  - Zero potential is defined at infinity
+  - `phi = -GM / r`
+  - `E_p = m phi`
+- Orbit link
+  - Gravity supplies centripetal force
+  - `v = sqrt(GM / r)`
+  - Test mass cancels for circular orbit speed
+- Misconceptions
+  - Constant near-Earth field overgeneralised
+  - Negative potential misread as impossible energy
+  - Test mass confused with source of the field

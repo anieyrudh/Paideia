@@ -1208,7 +1208,7 @@ entries:
   - id: sutd.esd.newsvendor-critical-fractile
     title: "Newsvendor Critical Fractile"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: ESD stochastic optimisation
     discipline: systems
     reuse_status: curriculum-wrapper
@@ -1254,7 +1254,7 @@ entries:
   - id: sutd.csd.dynamic-programming-state-recursion
     title: "Dynamic Programming State Recursion"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: CSD algorithms
     discipline: cs
     reuse_status: curriculum-wrapper
@@ -1283,7 +1283,6 @@ entries:
         - memoisation changes the recurrence result
     kernel_dependencies:
       - core/sim-runtime
-      - core/algorithm-trace
       - core/graph-layout
       - core/prediction-gate
       - core/ui-sim
@@ -1299,7 +1298,7 @@ entries:
   - id: sutd.asd.shading-daylight-heat-gain
     title: "Shading, Daylight, and Heat Gain"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: ASD environmental systems
     discipline: architecture
     reuse_status: curriculum-wrapper
@@ -1344,7 +1343,7 @@ entries:
   - id: sutd.dai.confusion-matrix-thresholds
     title: "Confusion Matrix Thresholds"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: DAI human-centred AI
     discipline: design-ai
     reuse_status: curriculum-wrapper
@@ -1390,7 +1389,7 @@ entries:
   - id: sutd.smt.linear-system-stability
     title: "Linear System Stability"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: SMT mathematical modelling
     discipline: science
     reuse_status: curriculum-wrapper
@@ -1860,7 +1859,7 @@ entries:
   - id: alevel.physics.circular-motion
     title: "Circular Motion"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level mechanics
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -1948,7 +1947,7 @@ entries:
   - id: alevel.physics.thermal-physics
     title: "Thermal Physics"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level thermal physics
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -1991,7 +1990,7 @@ entries:
   - id: alevel.physics.gravitational-fields
     title: "Gravitational Fields"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level fields
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -2018,10 +2017,11 @@ entries:
         - potential energy must be positive
     kernel_dependencies:
       - core/sim-runtime
+      - core/content-schema
       - core/mechanics
-      - core/function-eval
       - core/plotting
       - core/prediction-gate
+      - core/shared
       - core/ui-sim
     repo_package_name: alevel-sim-gravitational-fields
     estimated_effort: H

@@ -43,6 +43,12 @@ export {
   workEnergyPowerModel,
   workEnergyPowerSpec,
 } from "./work-energy-power.js";
+export {
+  GravitationalFieldDiagram,
+  GravitationalFieldsSim,
+  gravitationalFieldsModel,
+  gravitationalFieldsSpec,
+} from "./gravitational-fields.js";
 export type {
   ForceBalanceModel,
   ForceBalanceState,
@@ -71,6 +77,11 @@ export type {
   WorkEnergyPowerModel,
   WorkEnergyPowerState,
 } from "./work-energy-power.js";
+export type {
+  GravitationalFieldsModel,
+  GravitationalFieldsPredictionEvent,
+  GravitationalFieldsState,
+} from "./gravitational-fields.js";
 
 export {
   MomentumCollisionDiagram,

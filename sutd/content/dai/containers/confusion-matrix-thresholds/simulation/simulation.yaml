@@ -1,0 +1,54 @@
+id: confusion-matrix-thresholds
+title: "Confusion Matrix Threshold Explorer"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/sim-runtime
+  - core/probability-stats
+  - core/charting
+  - core/annotation
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    If the threshold rises from 65% to 80% while false negatives are costly, what is most likely to happen?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Precision and recall both increase"
+      - "Recall falls, so missed-positive cost can rise"
+      - "Accuracy is unchanged"
+    correct_index: 1
+  rationale_required: true
+manipulate:
+  controls:
+    - id: threshold-percent
+      label: "Decision threshold"
+      kind: slider
+      kernel_binding: state.thresholdPercent
+      bounds: { min: 35, max: 85, step: 5 }
+    - id: false-negative-cost
+      label: "False-negative cost"
+      kind: slider
+      kernel_binding: state.falseNegativeCost
+      bounds: { min: 5, max: 45, step: 5 }
+    - id: false-positive-cost
+      label: "False-positive cost"
+      kind: slider
+      kernel_binding: state.falsePositiveCost
+      bounds: { min: 1, max: 15, step: 1 }
+
+observe:
+  renderers:
+    - id: confusion-matrix-threshold-renderer
+      module: "@paideia/sutd-sims/confusion-matrix-thresholds"
+      symbol: "ConfusionMatrixThresholds"
+      props_binding: |
+        Show thresholded cases, confusion-matrix counts, precision, recall, accuracy, and cost formula with substituted values.
+
+explain:
+  prompt: |
+    Which cell in your confusion matrix would you defend first to a stakeholder, and what evidence shows that accuracy alone is not enough?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Accuracy is enough for every deployment"
+    - "A single threshold is neutral for all groups"

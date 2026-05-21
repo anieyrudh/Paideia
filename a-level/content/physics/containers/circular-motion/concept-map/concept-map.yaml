@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: circular-motion
+prerequisites:
+  - id: resolving-vectors
+    title: "Resolving Vectors"
+    relationship: "Velocity, acceleration, and force are vectors whose directions matter."
+    status: available
+  - id: kinematics-in-one-dimension
+    title: "Kinematics in One Dimension"
+    relationship: "Speed and acceleration units transfer to circular motion calculations."
+    status: available
+  - id: forces-and-equilibrium
+    title: "Forces and Equilibrium"
+    relationship: "Resultant force reasoning is needed to identify the inward force source."
+    status: available
+downstream:
+  - id: gravitational-fields
+    title: "Gravitational Fields"
+    relationship: "Gravity can supply the inward resultant force for orbital motion."
+    status: planned
+  - id: oscillations
+    title: "Oscillations"
+    relationship: "Radial acceleration and changing direction prepare for phase and angular frequency reasoning."
+    status: planned
+siblings:
+  - id: forces-and-newtons-laws
+    title: "Forces and Newton's Laws"
+    relationship: "Newton's second law links the inward resultant force to radial acceleration."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: constant-speed-zero-acceleration
+      label: "Constant speed means zero acceleration"
+    - id: extra-centripetal-force
+      label: "Centripetal force is an extra new force"
+    - id: outward-force
+      label: "The force points outward"
+  edges:
+    - from: constant-speed-zero-acceleration
+      to: outward-force
+      label: "both miss that velocity direction changes continuously"
+    - from: extra-centripetal-force
+      to: outward-force
+      label: "both misread the inward resultant force"
+mermaid_source: graph.mmd

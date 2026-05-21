@@ -1,0 +1,23 @@
+# Thermal Physics Mindmap
+
+- Thermal physics
+  - Temperature
+    - Thermodynamic scale in kelvin
+    - Celsius conversion before gas-law use
+    - Thermal equilibrium compares temperature, not stored energy
+  - Ideal-gas law
+    - `pV = nRT`
+    - Pressure rises with amount and kelvin temperature
+    - Pressure falls with volume when amount and temperature are fixed
+  - Energy transfer
+    - `Q = mc Delta T`
+    - Depends on mass, material, and temperature change
+    - Same temperature can correspond to different energy transfers
+  - Misconception checks
+    - Celsius substitution gives a pressure that is too small
+    - Temperature is not the amount of thermal energy
+    - Volume-pressure reasoning needs controlled variables
+  - Transfer
+    - Weather balloon volume changes
+    - Heating and cooling material samples
+    - Compressed-gas safety and thermometer interpretation

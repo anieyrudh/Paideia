@@ -1,0 +1,43 @@
+schema_version: "1.0.0"
+concept_id: confusion-matrix-thresholds
+prerequisites:
+  - id: trust-calibration
+    title: "Trust Calibration"
+    relationship: "trust policy context"
+    status: available
+  - id: probability
+    title: "Probability"
+    relationship: "rates and proportions"
+    status: planned
+  - id: classification
+    title: "Classification"
+    relationship: "scores and predicted labels"
+    status: planned
+downstream:
+  - id: fairness-auditing
+    title: "Fairness Auditing"
+    relationship: "thresholds across groups"
+    status: planned
+  - id: model-governance
+    title: "Model Governance"
+    relationship: "deployment policy justification"
+    status: planned
+siblings:
+  - id: trust-calibration
+    title: "Trust Calibration"
+    relationship: "adjacent DAI decision policy"
+    status: available
+misconception_graph:
+  nodes:
+    - id: accuracy-is-enough
+      label: "Accuracy is enough for every deployment"
+    - id: single-threshold-neutral
+      label: "A single threshold is neutral for all groups"
+  edges:
+    - from: accuracy-is-enough
+      to: confusion-matrix-thresholds
+      label: "countered by error-cell costs"
+    - from: single-threshold-neutral
+      to: fairness-auditing
+      label: "transfers to group audits"
+mermaid_source: graph.mmd

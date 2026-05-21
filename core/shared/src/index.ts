@@ -163,7 +163,9 @@ export type Decibels = Brand<number, "Decibels">;
 export type Kelvins = Brand<number, "Kelvins">;
 export type Newtons = Brand<number, "Newtons">;
 export type NewtonsPerMetre = Brand<number, "NewtonsPerMetre">;
+export type NewtonsPerKilogram = Brand<number, "NewtonsPerKilogram">;
 export type Joules = Brand<number, "Joules">;
+export type JoulesPerKilogram = Brand<number, "JoulesPerKilogram">;
 export type Watts = Brand<number, "Watts">;
 export type Hertz = Brand<number, "Hertz">;
 export type Probability = Brand<number, "Probability">; // [0, 1]
@@ -181,7 +183,9 @@ export const decibels = (n: number) => n as Decibels;
 export const kelvins = (n: number) => n as Kelvins;
 export const newtons = (n: number) => n as Newtons;
 export const newtonsPerMetre = (n: number) => n as NewtonsPerMetre;
+export const newtonsPerKilogram = (n: number) => n as NewtonsPerKilogram;
 export const joules = (n: number) => n as Joules;
+export const joulesPerKilogram = (n: number) => n as JoulesPerKilogram;
 export const watts = (n: number) => n as Watts;
 export const hertz = (n: number) => n as Hertz;
 export const probability = (n: number): KernelResult<Probability> =>

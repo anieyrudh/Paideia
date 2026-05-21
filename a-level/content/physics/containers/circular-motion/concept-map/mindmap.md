@@ -1,0 +1,23 @@
+# Circular Motion Mindmap
+
+- Circular motion
+  - Constant speed
+    - scalar magnitude stays fixed
+    - velocity direction changes
+  - Radial acceleration
+    - points to the centre
+    - `a_c = v^2 / r`
+    - increases strongly with speed
+  - Inward resultant force
+    - `F_c = m a_c`
+    - `F_c = m v^2 / r`
+    - not an extra force
+  - Real force source
+    - friction on a flat bend
+    - tension in a string
+    - gravity for orbital motion
+  - Problem-solving checks
+    - choose centre direction
+    - convert to SI units
+    - substitute values with units
+    - interpret the physical force

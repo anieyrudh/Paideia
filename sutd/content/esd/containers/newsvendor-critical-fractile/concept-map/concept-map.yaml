@@ -1,0 +1,49 @@
+schema_version: "1.0.0"
+concept_id: newsvendor-critical-fractile
+prerequisites:
+  - id: probability-distributions
+    title: "Probability Distributions"
+    relationship: "The demand CDF supplies the service level F(Q)."
+    status: planned
+  - id: expected-value
+    title: "Expected Value"
+    relationship: "Expected mismatch cost averages shortage and leftover costs over demand outcomes."
+    status: planned
+  - id: linear-programming-feasible-region
+    title: "Linear Programming Feasible Region"
+    relationship: "The marginal tradeoff is an optimisation decision under constraints."
+    status: available
+downstream:
+  - id: inventory-policy
+    title: "Inventory Policy"
+    relationship: "Critical fractile becomes a base-stock or service-level target in richer inventory settings."
+    status: planned
+  - id: supply-chain-risk
+    title: "Supply-chain Risk"
+    relationship: "Cost asymmetry makes resilience decisions depend on the demand tail."
+    status: planned
+siblings:
+  - id: bayes-updating
+    title: "Bayes Updating"
+    relationship: "Both map probabilities into decision-relevant readouts."
+    status: available
+  - id: linear-programming-feasible-region
+    title: "Linear Programming Feasible Region"
+    relationship: "Both connect objective coefficients to optimal decision locations."
+    status: available
+misconception_graph:
+  nodes:
+    - id: mean-demand-optimum
+      label: "Optimal stock is always mean demand"
+    - id: service-always-cheaper
+      label: "Higher service level is always cheaper"
+    - id: ignore-leftover-cost
+      label: "Leftovers do not affect the optimum"
+  edges:
+    - from: mean-demand-optimum
+      to: ignore-leftover-cost
+      label: "both ignore cost asymmetry"
+    - from: service-always-cheaper
+      to: ignore-leftover-cost
+      label: "both miss marginal tradeoff"
+mermaid_source: graph.mmd

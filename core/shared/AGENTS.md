@@ -33,7 +33,7 @@ All exports under `@paideia/shared`:
 - `Renderer<P> = (target: HTMLElement | SVGElement, r: Renderable<P>) => () => void` (returns cleanup)
 
 **Branded numerics** (nominal types, runtime-equivalent to number)
-- `Seconds`, `Metres`, `Kilograms`, `MetresPerSecond`, `MetresPerSecondSquared`, `Radians`, `RadiansPerSecond`, `Degrees`, `Decibels`, `Kelvins`, `Newtons`, `NewtonsPerMetre`, `Joules`, `Watts`, `Hertz`, `Probability`
+- `Seconds`, `Metres`, `Kilograms`, `MetresPerSecond`, `MetresPerSecondSquared`, `Radians`, `RadiansPerSecond`, `Degrees`, `Decibels`, `Kelvins`, `Newtons`, `NewtonsPerMetre`, `NewtonsPerKilogram`, `Joules`, `JoulesPerKilogram`, `Watts`, `Hertz`, `Probability`
 - Constructors: `seconds(n)`, `metres(n)`, … each `Probability(n)` clamps/validates `0 ≤ n ≤ 1`.
 
 **Id brands**

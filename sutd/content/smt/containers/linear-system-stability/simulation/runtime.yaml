@@ -1,0 +1,12 @@
+runtime:
+  pmoe_t:
+    - predict
+    - manipulate
+    - observe
+    - explain
+    - transfer
+  integration:
+    method: shared linear-system trajectory sampler
+    dt: 0.04
+    steps: 80
+  reveal_requires_prediction: true

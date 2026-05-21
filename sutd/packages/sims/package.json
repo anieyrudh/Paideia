@@ -7,16 +7,21 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
+    "./dynamic-programming-state-recursion": "./src/dynamic-programming-state-recursion.tsx",
     "./graph-search-and-shortest-paths": "./src/graph-search-and-shortest-paths.tsx",
     "./linear-programming-feasible-region": "./src/linear-programming-feasible-region.tsx",
     "./load-path-and-daylight-tradeoff": "./src/load-path-and-daylight-tradeoff.tsx",
+    "./linear-system-stability": "./src/linear-system-stability.tsx",
+    "./shading-daylight-heat-gain": "./src/shading-daylight-heat-gain.tsx",
     "./ode-phase-portrait": "./src/ode-phase-portrait.tsx",
     "./pid-step-response": "./src/pid-step-response.tsx",
     "./bode-stability-margin": "./src/bode-stability-margin.tsx",
     "./trust-calibration": "./src/trust-calibration.tsx",
     "./vector-transformations": "./src/vector-transformations.tsx",
     "./bayes-updating": "./src/bayes-updating.tsx",
-    "./eigenvector-transformations": "./src/eigenvector-transformations.tsx"
+    "./eigenvector-transformations": "./src/eigenvector-transformations.tsx",
+    "./newsvendor-critical-fractile": "./src/newsvendor-critical-fractile.tsx",
+    "./confusion-matrix-thresholds": "./src/confusion-matrix-thresholds.tsx"
   },
   "scripts": {
     "build": "tsc -b",
