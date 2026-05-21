@@ -51,7 +51,6 @@ predict:
       - Mode 2, the two-lobed shape
       - Mode 3, the three-lobed shape
       - Mode 4, the four-lobed shape
-    correct_index: 0
   rationale_required: true
 manipulate:
   controls:
@@ -151,6 +150,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer
 
 ### P1 addressed or deferred
 - Student UI exposing implementation details — addressed by keeping visible labels to modes, coefficients, target shapes, units, and reconstruction evidence.
+- Dynamic target prediction key — addressed by removing the fixed `correct_index` because the dominant mode depends on the selected target shape.
 - Formula standard coverage — addressed with formula source, symbol legend, substituted values, units, and interpretation in the revealed formula panel.
 
 ### P2 noted

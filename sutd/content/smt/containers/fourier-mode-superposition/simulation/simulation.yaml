@@ -19,7 +19,6 @@ predict:
       - "Mode 2, the two-lobed shape"
       - "Mode 3, the three-lobed shape"
       - "Mode 4, the four-lobed shape"
-    correct_index: 0
   rationale_required: true
 manipulate:
   controls:

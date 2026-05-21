@@ -121,7 +121,6 @@ export const fourierModeSuperpositionSpec: TSimulationSpec = {
         "Mode 3, the three-lobed shape",
         "Mode 4, the four-lobed shape",
       ],
-      correct_index: 0,
     },
     rationale_required: true,
   },
@@ -396,7 +395,7 @@ const FormulaPanel = ({ evidence }: { readonly evidence: FourierEvidence }) => {
         <LegendItem color="#0f766e" label="E_rms" text="root-mean-square reconstruction error" />
       </div>
       <pre>
-        <code>{String.raw`\color{#2563eb}{c_n}=\frac{2}{\color{#64748b}{L}}\int_0^{\color{#64748b}{L}}\color{#7c3aed}{f(x)}\color{#d97706}{\sin(n\pi x/L)}\,dx`}</code>
+        <code>c_n = (2 / L) * integral from 0 to L of f(x) * sin(n pi x / L) dx</code>
       </pre>
       <p>
         Substitution for the dominant term: c_{mode} = 2 / ({fmt(stringLengthMetres, 2)} m) times
@@ -404,7 +403,7 @@ const FormulaPanel = ({ evidence }: { readonly evidence: FourierEvidence }) => {
         giving {coefficientText(dominantCoefficient)}.
       </p>
       <pre>
-        <code>{String.raw`\color{#0f766e}{E_{\mathrm{rms}}}=\sqrt{\frac{1}{M}\sum_{i=1}^{M}\left(\color{#7c3aed}{f(x_i)}-\sum_{n=1}^{4}\color{#2563eb}{c_n}\color{#d97706}{\phi_n(x_i)}\right)^2}`}</code>
+        <code>E_rms = sqrt((1 / M) * sum from i = 1 to M of (f(x_i) - sum from n = 1 to 4 of c_n * phi_n(x_i))^2)</code>
       </pre>
       <p>
         Substitution: with M = {sampleCount} samples and current {modeLabel(mode)} coefficient{" "}
