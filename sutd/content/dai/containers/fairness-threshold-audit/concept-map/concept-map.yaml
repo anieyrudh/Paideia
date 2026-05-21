@@ -1,0 +1,54 @@
+schema_version: "1.0.0"
+concept_id: fairness-threshold-audit
+prerequisites:
+  - id: confusion-matrix-thresholds
+    title: "Confusion Matrix Thresholds"
+    relationship: "Provides TP, FP, TN, FN, precision, recall, and cost calculations."
+    status: available
+  - id: trust-calibration
+    title: "Trust Calibration"
+    relationship: "Frames when users should rely on model scores and when audit evidence should change trust."
+    status: available
+  - id: probability
+    title: "Probability and Rates"
+    relationship: "Supports interpreting recall, accuracy, and threshold percentages."
+    status: planned
+downstream:
+  - id: model-governance
+    title: "Model Governance"
+    relationship: "Uses audit evidence to set deployment review and monitoring rules."
+    status: planned
+  - id: deployment-monitoring
+    title: "Deployment Monitoring"
+    relationship: "Checks whether threshold fairness holds after launch."
+    status: planned
+siblings:
+  - id: confusion-matrix-thresholds
+    title: "Confusion Matrix Thresholds"
+    relationship: "Single-population threshold tradeoff that this container extends to group auditing."
+    status: available
+  - id: trust-calibration
+    title: "Trust Calibration"
+    relationship: "Connects measured performance to human reliance decisions."
+    status: available
+misconception_graph:
+  nodes:
+    - id: equal-accuracy-equal-impact
+      label: "Equal accuracy means equal impact"
+    - id: global-threshold-always-fairest
+      label: "One global threshold is always fairest"
+    - id: group-confusion-matrix
+      label: "Group confusion matrix"
+    - id: stakeholder-harm-cost
+      label: "Stakeholder harm cost"
+  edges:
+    - from: equal-accuracy-equal-impact
+      to: group-confusion-matrix
+      label: "challenged by"
+    - from: group-confusion-matrix
+      to: stakeholder-harm-cost
+      label: "feeds"
+    - from: global-threshold-always-fairest
+      to: stakeholder-harm-cost
+      label: "tested by"
+mermaid_source: graph.mmd

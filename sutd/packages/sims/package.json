@@ -21,7 +21,8 @@
     "./bayes-updating": "./src/bayes-updating.tsx",
     "./eigenvector-transformations": "./src/eigenvector-transformations.tsx",
     "./newsvendor-critical-fractile": "./src/newsvendor-critical-fractile.tsx",
-    "./confusion-matrix-thresholds": "./src/confusion-matrix-thresholds.tsx"
+    "./confusion-matrix-thresholds": "./src/confusion-matrix-thresholds.tsx",
+    "./fairness-threshold-audit": "./src/fairness-threshold-audit.tsx"
   },
   "scripts": {
     "build": "tsc -b",

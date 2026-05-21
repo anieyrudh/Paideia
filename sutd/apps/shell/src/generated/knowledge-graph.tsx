@@ -5,16 +5,17 @@ import GeneratedSim1ShadingDaylightHeatGainShadingDaylightHeatGain from "@paidei
 import GeneratedSim2DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
 import GeneratedSim3GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
 import GeneratedSim4ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
-import GeneratedSim5TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim6BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim7PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim8LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim9NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim10BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim11EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim12VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim13LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim14OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim5FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
+import GeneratedSim6TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim7BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim8PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim9LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim10NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim11BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim12EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim13VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim14LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim15OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -110,6 +111,15 @@ export const knowledgeGraph = {
     id: "sutd/dai/confusion-matrix-thresholds",
     conceptId: "confusion-matrix-thresholds",
     title: "Confusion Matrix Thresholds",
+    subject: "dai",
+    level: "Freshmore",
+    module: "Design and Artificial Intelligence",
+    status: "reviewed",
+  },
+  {
+    id: "sutd/dai/fairness-threshold-audit",
+    conceptId: "fairness-threshold-audit",
+    title: "Fairness Threshold Audit",
     subject: "dai",
     level: "Freshmore",
     module: "Design and Artificial Intelligence",
@@ -225,6 +235,13 @@ export const knowledgeGraph = {
   { from: "sutd/dai/confusion-matrix-thresholds", to: "sutd/dai/fairness-auditing", kind: "downstream" },
   { from: "sutd/dai/confusion-matrix-thresholds", to: "sutd/dai/model-governance", kind: "downstream" },
   { from: "sutd/dai/confusion-matrix-thresholds", to: "sutd/dai/trust-calibration", kind: "sibling" },
+  { from: "sutd/dai/confusion-matrix-thresholds", to: "sutd/dai/fairness-threshold-audit", kind: "prerequisite" },
+  { from: "sutd/dai/trust-calibration", to: "sutd/dai/fairness-threshold-audit", kind: "prerequisite" },
+  { from: "sutd/dai/probability", to: "sutd/dai/fairness-threshold-audit", kind: "prerequisite" },
+  { from: "sutd/dai/fairness-threshold-audit", to: "sutd/dai/model-governance", kind: "downstream" },
+  { from: "sutd/dai/fairness-threshold-audit", to: "sutd/dai/deployment-monitoring", kind: "downstream" },
+  { from: "sutd/dai/fairness-threshold-audit", to: "sutd/dai/confusion-matrix-thresholds", kind: "sibling" },
+  { from: "sutd/dai/fairness-threshold-audit", to: "sutd/dai/trust-calibration", kind: "sibling" },
   { from: "sutd/epd/pid-step-response", to: "sutd/epd/bode-stability-margin", kind: "prerequisite" },
   { from: "sutd/epd/transfer-functions", to: "sutd/epd/bode-stability-margin", kind: "prerequisite" },
   { from: "sutd/epd/feedback-control", to: "sutd/epd/bode-stability-margin", kind: "prerequisite" },
@@ -548,6 +565,64 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/dai/fairness-threshold-audit",
+    branch: "sutd",
+    subject: "Dai",
+    level: "Freshmore",
+    module: "Design and Artificial Intelligence",
+    title: "Fairness Threshold Audit",
+    summary: "Compare group confusion matrices under a threshold policy and explain when a shared threshold creates unequal stakeholder harm.",
+    syllabusRef: "SUTD DAI / Human-centred AI fairness evaluation",
+    status: "reviewed",
+    packageId: "fairness-threshold-audit",
+    simId: "fairness-threshold-audit",
+    predictPrompt: "Two student groups receive the same risk-score model. If both groups use one 70% threshold, which audit result is most plausible?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+      "annotated-source",
+    ],
+    misconceptions: [
+      "Equal accuracy means equal impact",
+      "One global threshold is always fairest",
+    ],
+    transferProblem: "A hiring shortlist model screens two applicant groups. At the current threshold, Group A has TP=18, FP=6, TN=28, FN=8. Group B has TP=10, FP=5, TN=29, FN=16. False negatives cost 30 stakeholder-harm units and false positives cost 8 review-burden units. Audit whether one threshold is acceptable, compute recall and weighted harm for each group, and propose one policy revision.",
+    firstPrinciples: "A threshold converts a risk score into a decision. If a score is at or above the threshold, the system predicts positive; otherwise it predicts negative. For each group, this creates a confusion matrix:",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "Define the decision",
+      "Count group confusion matrices",
+      "Compute recall",
+      "Compute weighted harm",
+      "Compare gaps",
+      "Justify the policy",
+    ],
+    prerequisites: [
+      "Confusion Matrix Thresholds",
+      "Trust Calibration",
+      "Probability and Rates",
+    ],
+    downstream: [
+      "Model Governance",
+      "Deployment Monitoring",
+    ],
+    siblings: [
+      "Confusion Matrix Thresholds",
+      "Trust Calibration",
+    ],
+    sims: [
+      {
+        id: "fairness-threshold-audit",
+        harnessId: "sutd/dai/fairness-threshold-audit/fairness-threshold-audit",
+        title: "Fairness Threshold Audit Lab",
+        interactionType: "decision-matrix",
+        component: GeneratedSim5FairnessThresholdAuditFairnessThresholdAudit,
+      },
+    ],
+  },
+  {
     id: "sutd/dai/trust-calibration",
     branch: "sutd",
     subject: "Dai",
@@ -596,7 +671,7 @@ export const containers = [
         harnessId: "sutd/dai/trust-calibration/trust-calibration",
         title: "Trust Calibration Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim5TrustCalibrationTrustCalibration,
+        component: GeneratedSim6TrustCalibrationTrustCalibration,
       },
     ],
   },
@@ -662,7 +737,7 @@ export const containers = [
         harnessId: "sutd/epd/bode-stability-margin/bode-stability-margin",
         title: "Bode Margin Reader",
         interactionType: "comparative-matrix",
-        component: GeneratedSim6BodeStabilityMarginBodeStabilityMargin,
+        component: GeneratedSim7BodeStabilityMarginBodeStabilityMargin,
       },
     ],
   },
@@ -716,7 +791,7 @@ export const containers = [
         harnessId: "sutd/epd/pid-step-response/pid-step-response",
         title: "PID Step Response Explorer",
         interactionType: "comparative-matrix",
-        component: GeneratedSim7PidStepResponsePidStepResponse,
+        component: GeneratedSim8PidStepResponsePidStepResponse,
       },
     ],
   },
@@ -760,7 +835,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim8LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim9LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -826,7 +901,7 @@ export const containers = [
         harnessId: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
         title: "Newsvendor Critical Fractile Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim9NewsvendorCriticalFractileNewsvendorCriticalFractile,
+        component: GeneratedSim10NewsvendorCriticalFractileNewsvendorCriticalFractile,
       },
     ],
   },
@@ -889,7 +964,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim10BayesUpdatingBayesUpdating,
+        component: GeneratedSim11BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -943,7 +1018,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim11EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim12EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -995,7 +1070,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim12VectorTransformationsVectorTransformations,
+        component: GeneratedSim13VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -1052,7 +1127,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim13LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim14LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -1118,7 +1193,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim14OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim15OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

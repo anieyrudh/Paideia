@@ -1,0 +1,25 @@
+presets:
+  - id: single-threshold
+    label: "Single threshold"
+    description: "Apply one 70% threshold to both groups and reveal the baseline audit gap."
+    state:
+      globalThresholdPercent: 70
+      groupBAdjustmentPercent: 0
+      falseNegativeCost: 25
+      falsePositiveCost: 6
+  - id: equalise-recall
+    label: "Lower Group B threshold"
+    description: "Lower Group B's threshold to test whether the recall and harm gaps shrink."
+    state:
+      globalThresholdPercent: 70
+      groupBAdjustmentPercent: -10
+      falseNegativeCost: 25
+      falsePositiveCost: 6
+  - id: reduce-review-load
+    label: "Reduce review load"
+    description: "Raise the shared threshold and increase false-positive cost to test review-burden tradeoffs."
+    state:
+      globalThresholdPercent: 80
+      groupBAdjustmentPercent: 0
+      falseNegativeCost: 20
+      falsePositiveCost: 12

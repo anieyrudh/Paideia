@@ -1,0 +1,30 @@
+# Fairness Threshold Audit Mindmap
+
+- Fairness threshold audit
+  - Inputs
+    - Group score lists
+    - Actual positive and actual negative labels
+    - Threshold policy
+    - False-positive and false-negative cost units
+  - Per-group evidence
+    - Confusion matrix
+    - Recall
+    - Accuracy
+    - Weighted stakeholder harm
+  - Audit comparisons
+    - Recall gap
+    - Accuracy gap
+    - Weighted harm gap
+  - Policy interpretations
+    - Keep one global threshold with monitoring
+    - Adjust a group threshold with justification
+    - Improve data or model before deployment
+  - Misconceptions
+    - Equal accuracy means equal impact
+    - One global threshold is always fairest
+    - A threshold adjustment is automatically fair
+  - Transfer settings
+    - Hiring shortlists
+    - Student support triage
+    - Loan review
+    - Content moderation

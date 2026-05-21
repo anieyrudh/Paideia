@@ -1,0 +1,17 @@
+state_labels:
+  globalThresholdPercent:
+    label: "Global threshold"
+    unit: "%"
+    interpretation: "Minimum risk score for a positive decision before any group-specific adjustment."
+  groupBAdjustmentPercent:
+    label: "Group B threshold adjustment"
+    unit: "percentage points"
+    interpretation: "Change applied to Group B's threshold for audit comparison."
+  falseNegativeCost:
+    label: "False-negative cost"
+    unit: "cost units"
+    interpretation: "Stakeholder harm assigned to each missed actual positive."
+  falsePositiveCost:
+    label: "False-positive cost"
+    unit: "cost units"
+    interpretation: "Review burden assigned to each unnecessary positive decision."
