@@ -30,6 +30,16 @@ describe("newsvendor critical fractile embed API", () => {
     embed.syncTheme({ colorScheme: "dark", accentColor: "#155e63" });
     expect(host.getAttribute("data-paideia-theme")).toBe("dark");
     expect(host.getAttribute("data-paideia-accent")).toBe("#155e63");
+    embed.syncTheme({ colorScheme: "light" });
+    expect(host.getAttribute("data-paideia-theme")).toBe("light");
+    expect(host.hasAttribute("data-paideia-accent")).toBe(false);
+
+    const nextHost = new HostElement();
+    embed.syncTheme({ colorScheme: "dark", accentColor: "#155e63" });
+    await embed.load(nextHost as unknown as Element);
+    expect(host.hasAttribute("data-paideia-theme")).toBe(false);
+    expect(host.hasAttribute("data-paideia-accent")).toBe(false);
+
     expect(embed.score()).toEqual({
       completed: false,
       predictionCommitted: false,

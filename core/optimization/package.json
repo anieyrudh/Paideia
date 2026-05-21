@@ -19,6 +19,7 @@
     "@paideia/shared": "workspace:*"
   },
   "devDependencies": {
+    "fast-check": "^3.23.2",
     "typescript": "^5.6.0",
     "vitest": "^4.1.7"
   }

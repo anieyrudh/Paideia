@@ -99,6 +99,8 @@ export interface NewsvendorAnalysis {
   readonly dominantPenalty: "shortage" | "surplus";
 }
 
+const maxNewsvendorCostCurvePoints = 10_000;
+
 export const orderQuantityUnits = (n: number): OrderQuantityUnits => n as OrderQuantityUnits;
 export const costSgdPerUnit = (n: number): CostSgdPerUnit => n as CostSgdPerUnit;
 export const expectedCostSgd = (n: number): ExpectedCostSgd => n as ExpectedCostSgd;
@@ -557,6 +559,15 @@ const costCurve = (
   const values = distribution.map((outcome) => outcome.value);
   const minDemand = Math.min(...values);
   const maxDemand = Math.max(...values);
+  const estimatedPoints =
+    Math.floor((maxDemand - minDemand + optimizationTolerance.tight) / quantityStep) + 1;
+  if (estimatedPoints > maxNewsvendorCostCurvePoints) {
+    return err(
+      "precondition-violated",
+      `quantityStep is too small for demand range; would generate ${estimatedPoints} points`,
+    );
+  }
+
   const points: NewsvendorCostCurvePoint[] = [];
   for (let quantity = minDemand; quantity <= maxDemand + optimizationTolerance.tight; quantity += quantityStep) {
     points.push({

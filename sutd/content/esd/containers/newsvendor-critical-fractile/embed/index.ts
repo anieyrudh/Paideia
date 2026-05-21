@@ -35,6 +35,7 @@ export const createContainerEmbed = (): ContainerEmbedApi => {
   return {
     async load(target: Element): Promise<void> {
       targetElement?.removeAttribute("data-paideia-theme");
+      targetElement?.removeAttribute("data-paideia-accent");
       targetElement = target;
     },
     saveState(): ContainerEmbedState {
@@ -54,6 +55,8 @@ export const createContainerEmbed = (): ContainerEmbedApi => {
       targetElement?.setAttribute("data-paideia-theme", theme.colorScheme);
       if (theme.accentColor !== undefined) {
         targetElement?.setAttribute("data-paideia-accent", theme.accentColor);
+      } else {
+        targetElement?.removeAttribute("data-paideia-accent");
       }
     },
     destroy(): void {

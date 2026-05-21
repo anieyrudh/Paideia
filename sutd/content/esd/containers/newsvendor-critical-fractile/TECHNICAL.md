@@ -139,12 +139,12 @@ Filter version: aniegpt v1.0
 ### P1 issues
 
 - Misconception coverage too implicit: resolved by mapping both queue misconceptions into `container.yaml`, concept card, concept map, formula interpretation, and transfer.
-- Kernel boundary risk: resolved by consuming declared core kernels and leaving only domain-specific newsvendor cost aggregation in the sim package.
+- Kernel boundary risk: resolved by moving reusable newsvendor critical-fractile logic into `core/optimization`, updating the kernel contract, and tracking the additive public API in [core-change issue #128](https://github.com/anieyrudh/Paideia/issues/128).
 - Accessibility risk: addressed with semantic regions, labelled formula/legend sections, text alternatives, and axe coverage.
 
 ### High-bandwidth questions surfaced
 
-- Should newsvendor expected mismatch become a shared `core/inventory-optimization` kernel once more inventory containers are queued?
+- Should newsvendor expected mismatch move from `core/optimization` into a dedicated `core/inventory-optimization` kernel once more inventory containers are queued?
 - Should generated graph metadata represent queue dependencies differently from curricular prerequisites?
 
 ## Iteration log
