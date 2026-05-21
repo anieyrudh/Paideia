@@ -11,7 +11,8 @@ import GeneratedSim7LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegi
 import GeneratedSim8BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
 import GeneratedSim9EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
 import GeneratedSim10VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim11OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim11LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim12OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -164,6 +165,15 @@ export const knowledgeGraph = {
     subject: "freshmore",
     level: "Freshmore",
     module: "Linear Algebra and Differential Equations",
+    status: "reviewed",
+  },
+  {
+    id: "sutd/smt/linear-system-stability",
+    conceptId: "linear-system-stability",
+    title: "Linear System Stability",
+    subject: "smt",
+    level: "Undergraduate",
+    module: "Science, Mathematics and Technology",
     status: "reviewed",
   },
   {
@@ -826,6 +836,63 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/smt/linear-system-stability",
+    branch: "sutd",
+    subject: "Smt",
+    level: "Undergraduate",
+    module: "Science, Mathematics and Technology",
+    title: "Linear System Stability",
+    summary: "Predict whether a two-state linear system settles, rotates, splits, or grows by reading the trace, determinant, discriminant, and eigenvalues.",
+    syllabusRef: "SUTD SMT / mathematical modelling / systems of differential equations",
+    status: "reviewed",
+    packageId: "linear-system-stability",
+    simId: "linear-system-stability",
+    predictPrompt: "For the system matrix you just set, what should happen to a small perturbation from the origin?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Stable means every state stops moving instantly",
+      "Only one eigenvalue matters",
+    ],
+    transferProblem: "A control loop linearises near an operating point to A = [[0, 1], [-0.8, 0.4]]. Classify the operating point, predict whether a small perturbation settles or grows, and name one coefficient change that would reverse the stability.",
+    firstPrinciples: "Picture a small disturbance from an operating point. The state starts as a dot near the origin, and the rate arrows around it decide whether the dot is pulled back, sent away, or made to rotate. Stability is therefore a local motion question: do nearby paths shrink toward the operating point, or is there some direction that grows?",
+    keyDefinitions: [
+      "Linear system: a coupled rate model z' = A z.",
+      "State: the pair (x, y) that records the two quantities being modelled.",
+      "Trace: T = a + d, the sum of the diagonal entries.",
+      "Determinant: D = ad - bc, which separates saddle cases from paired eigenvalue behaviour.",
+      "Discriminant: Delta = T^2 - 4D, which separates real eigenvalues from a spiral pair.",
+    ],
+    canonicalExamples: [
+      "A damped oscillator has complex eigenvalues with negative real part, so it rotates inward.",
+      "A stable node has two negative real eigenvalues, so it returns without rotating.",
+      "A saddle has one negative and one positive real eigenvalue, so one direction escapes.",
+      "An unstable spiral has complex eigenvalues with positive real part, so it rotates outward.",
+    ],
+    problemSolvingSteps: [
+      "Identify a, b, c, and d in z' = A z.",
+      "Use T = a + d and D = ad - bc.",
+      "Use Delta = T^2 - 4D to decide real or spiral-paired eigenvalues.",
+      "Check both eigenvalues, or the real part of the complex pair.",
+      "State whether perturbations settle, split, rotate, or grow.",
+    ],
+    prerequisites: [],
+    downstream: [],
+    siblings: [],
+    sims: [
+      {
+        id: "linear-system-stability",
+        harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
+        title: "Linear System Stability Lab",
+        interactionType: "function-plot-with-draggable",
+        component: GeneratedSim11LinearSystemStabilityLinearSystemStability,
+      },
+    ],
+  },
+  {
     id: "sutd/smt/ode-phase-portrait",
     branch: "sutd",
     subject: "Smt",
@@ -887,7 +954,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim11OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim12OdePhasePortraitOdePhasePortrait,
       },
     ],
   }
