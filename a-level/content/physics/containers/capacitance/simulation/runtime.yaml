@@ -1,0 +1,17 @@
+runtime:
+  package_id: capacitance
+  sim_id: capacitor-charge-energy-lab
+  stages:
+    - predict
+    - manipulate
+    - observe
+    - explain
+  prediction_gate:
+    required: true
+    sim_level: true
+    blocks:
+      - capacitance-readout
+      - discharge-curve
+      - formula-substitution
+  state_source: "@paideia/sim-runtime"
+  render_entry: "@paideia/a-level-physics-sims/capacitance"

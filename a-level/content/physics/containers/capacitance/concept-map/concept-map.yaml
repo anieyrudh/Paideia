@@ -1,0 +1,58 @@
+schema_version: "1.0.0"
+concept_id: capacitance
+prerequisites:
+  - id: electric-fields
+    title: Electric Fields
+    relationship: "Electric field and potential difference explain where capacitor energy is stored."
+    status: available
+  - id: circuits
+    title: Circuits
+    relationship: "Resistor-capacitor discharge uses current, voltage, and resistance reasoning."
+    status: available
+  - id: exponential-change
+    title: Exponential Change
+    relationship: "Discharge curves fall by equal fractions per time constant."
+    status: planned
+downstream:
+  - id: alternating-current
+    title: Alternating Current
+    relationship: "Capacitors in AC circuits connect stored charge to phase and reactance."
+    status: planned
+  - id: electromagnetic-induction
+    title: Electromagnetic Induction
+    relationship: "Energy storage in fields prepares comparison with magnetic field energy."
+    status: planned
+siblings:
+  - id: electric-fields
+    title: Electric Fields
+    relationship: "Both use potential difference and field energy."
+    status: available
+  - id: circuits
+    title: Circuits
+    relationship: "Both track voltage, current, resistance, and energy transfer."
+    status: available
+misconception_graph:
+  nodes:
+    - id: charge-alone
+      label: "Capacitance depends on charge alone"
+    - id: creates-charge
+      label: "Capacitors create charge"
+    - id: linear-discharge
+      label: "Discharge is linear"
+    - id: ratio-model
+      label: "C is charge per volt"
+    - id: separation-model
+      label: "Plates separate equal and opposite charge"
+    - id: time-constant-model
+      label: "RC sets equal-fraction decay"
+  edges:
+    - from: charge-alone
+      to: ratio-model
+      label: "replace with"
+    - from: creates-charge
+      to: separation-model
+      label: "replace with"
+    - from: linear-discharge
+      to: time-constant-model
+      label: "replace with"
+mermaid_source: graph.mmd

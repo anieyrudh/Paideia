@@ -1,0 +1,29 @@
+presets:
+  - id: standard-store
+    label: standard store
+    values:
+      capacitanceMicrofarads: 470
+      supplyVoltageVolts: 6
+      dischargeResistanceKilohms: 5
+      sampleTimeMilliseconds: 1500
+  - id: larger-capacitor
+    label: larger capacitor
+    values:
+      capacitanceMicrofarads: 940
+      supplyVoltageVolts: 6
+      dischargeResistanceKilohms: 5
+      sampleTimeMilliseconds: 1500
+  - id: higher-voltage
+    label: higher voltage
+    values:
+      capacitanceMicrofarads: 470
+      supplyVoltageVolts: 10
+      dischargeResistanceKilohms: 5
+      sampleTimeMilliseconds: 1500
+  - id: slow-discharge
+    label: slow discharge
+    values:
+      capacitanceMicrofarads: 680
+      supplyVoltageVolts: 8
+      dischargeResistanceKilohms: 15
+      sampleTimeMilliseconds: 3000

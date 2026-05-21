@@ -13,6 +13,21 @@ export type {
 } from "./circuits.js";
 
 export {
+  CapacitorDiagram,
+  CapacitanceSim,
+  capacitanceModel,
+  capacitancePackageId,
+  capacitanceSimId,
+  capacitanceSpec,
+} from "./capacitance.js";
+export type {
+  CapacitanceModel,
+  CapacitancePredictionEvent,
+  CapacitanceState,
+  DischargeTracePoint,
+} from "./capacitance.js";
+
+export {
   ElectricFieldDiagram,
   ElectricFieldsSim,
   electricFieldsModel,

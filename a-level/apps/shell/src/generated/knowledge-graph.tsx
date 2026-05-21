@@ -2,20 +2,21 @@
 import type { ComponentType } from "react";
 import GeneratedSim0HypothesisTestingTestStatisticDecisionLab from "@paideia/a-level-math-sims/hypothesis-testing";
 import GeneratedSim1ProbabilityStatisticsProbabilityStatisticsLab from "@paideia/a-level-math-sims/probability-statistics";
-import GeneratedSim2CircuitsSeriesParallelCircuitLab from "@paideia/a-level-physics-sims/circuits";
-import GeneratedSim3CircularMotionCentripetalForceVectorLab from "@paideia/a-level-physics-sims/circular-motion";
-import GeneratedSim4ElectricFieldsChargeFieldVectorLab from "@paideia/a-level-physics-sims/electric-fields";
-import GeneratedSim5ForcesAndEquilibriumForceBalance from "@paideia/a-level-physics-sims/forces-and-equilibrium";
-import GeneratedSim6GravitationalFieldsInverseSquareFieldLab from "@paideia/a-level-physics-sims/gravitational-fields";
-import GeneratedSim7KinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
-import GeneratedSim8MomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
-import GeneratedSim9OscillationsSimpleHarmonicMotionLab from "@paideia/a-level-physics-sims/oscillations";
-import GeneratedSim10PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
-import GeneratedSim11ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
-import GeneratedSim12ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
-import GeneratedSim13ThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
-import GeneratedSim14WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
-import GeneratedSim15WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
+import GeneratedSim2CapacitanceCapacitorChargeEnergyLab from "@paideia/a-level-physics-sims/capacitance";
+import GeneratedSim3CircuitsSeriesParallelCircuitLab from "@paideia/a-level-physics-sims/circuits";
+import GeneratedSim4CircularMotionCentripetalForceVectorLab from "@paideia/a-level-physics-sims/circular-motion";
+import GeneratedSim5ElectricFieldsChargeFieldVectorLab from "@paideia/a-level-physics-sims/electric-fields";
+import GeneratedSim6ForcesAndEquilibriumForceBalance from "@paideia/a-level-physics-sims/forces-and-equilibrium";
+import GeneratedSim7GravitationalFieldsInverseSquareFieldLab from "@paideia/a-level-physics-sims/gravitational-fields";
+import GeneratedSim8KinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
+import GeneratedSim9MomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
+import GeneratedSim10OscillationsSimpleHarmonicMotionLab from "@paideia/a-level-physics-sims/oscillations";
+import GeneratedSim11PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
+import GeneratedSim12ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
+import GeneratedSim13ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
+import GeneratedSim14ThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
+import GeneratedSim15WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
+import GeneratedSim16WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -87,6 +88,15 @@ export const knowledgeGraph = {
     subject: "mathematics",
     level: "H2",
     module: "Probability and Statistics",
+    status: "reviewed",
+  },
+  {
+    id: "a-level/physics/capacitance",
+    conceptId: "capacitance",
+    title: "Capacitance",
+    subject: "physics",
+    level: "H2",
+    module: "Electricity and Magnetism",
     status: "reviewed",
   },
   {
@@ -227,6 +237,13 @@ export const knowledgeGraph = {
   { from: "a-level/mathematics/probability-statistics", to: "a-level/mathematics/inference", kind: "downstream" },
   { from: "a-level/mathematics/probability-statistics", to: "a-level/mathematics/modelling", kind: "downstream" },
   { from: "a-level/mathematics/probability-statistics", to: "a-level/mathematics/binomial-distribution", kind: "sibling" },
+  { from: "a-level/physics/electric-fields", to: "a-level/physics/capacitance", kind: "prerequisite" },
+  { from: "a-level/physics/circuits", to: "a-level/physics/capacitance", kind: "prerequisite" },
+  { from: "a-level/physics/exponential-change", to: "a-level/physics/capacitance", kind: "prerequisite" },
+  { from: "a-level/physics/capacitance", to: "a-level/physics/alternating-current", kind: "downstream" },
+  { from: "a-level/physics/capacitance", to: "a-level/physics/electromagnetic-induction", kind: "downstream" },
+  { from: "a-level/physics/capacitance", to: "a-level/physics/electric-fields", kind: "sibling" },
+  { from: "a-level/physics/capacitance", to: "a-level/physics/circuits", kind: "sibling" },
   { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/circuits", kind: "prerequisite" },
   { from: "a-level/physics/circuits", to: "a-level/physics/alternating-current", kind: "downstream" },
   { from: "a-level/physics/circuits", to: "a-level/physics/electromagnetism", kind: "downstream" },
@@ -420,6 +437,75 @@ export const containers = [
     ],
   },
   {
+    id: "a-level/physics/capacitance",
+    branch: "a-level",
+    subject: "Physics",
+    level: "H2",
+    module: "Electricity and Magnetism",
+    title: "Capacitance",
+    summary: "Predict stored charge and energy in a capacitor, then interpret exponential discharge through the time constant.",
+    syllabusRef: "9478 / Section V / Electricity and Magnetism",
+    status: "reviewed",
+    packageId: "capacitance",
+    simId: "capacitor-charge-energy-lab",
+    predictPrompt: "A capacitor is connected to a fixed 6.0 V supply. Before revealing the lab, what happens if the capacitance is doubled while the voltage is kept the same?",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "Capacitance depends on stored charge alone",
+      "Capacitors create charge rather than separate charge",
+      "Capacitor discharge is linear",
+    ],
+    transferProblem: "A 680 microF flash capacitor is charged to 9.0 V and then discharged through a 3.0 kOhm resistor. Find the initial stored charge, the stored energy, the time constant, and the voltage left after 4.0 s. Explain why the voltage does not fall linearly.",
+    firstPrinciples: "A capacitor stores energy by separating equal and opposite charge onto two conductors. The supply does work to move charge from one plate to the other, creating an electric field in the space between the plates.",
+    keyDefinitions: [
+      "Capacitance, C: charge separated per unit potential difference, measured in farads.",
+      "Stored charge, Q: magnitude of charge on either plate, measured in coulombs.",
+      "Potential difference, V: energy transferred per unit charge by the supply, measured in volts.",
+      "Stored energy, U: energy in the electric field between the plates, measured in joules.",
+      "Time constant, tau: RC for a resistor-capacitor discharge, measured in seconds.",
+    ],
+    canonicalExamples: [
+      "At fixed voltage, doubling capacitance doubles stored charge and doubles stored energy.",
+      "At fixed capacitance, doubling voltage doubles stored charge but quadruples stored energy.",
+      "A 470 microF capacitor at 6.0 V stores Q = (470 x 10^-6 F)(6.0 V) = 2.82 x 10^-3 C.",
+      "A larger discharge resistance gives a larger time constant, so the capacitor voltage falls more slowly.",
+    ],
+    problemSolvingSteps: [
+      "Identify the capacitor state",
+      "Convert to SI units",
+      "Calculate separated charge",
+      "Calculate stored energy",
+      "Calculate discharge state",
+      "Interpret the physical meaning",
+    ],
+    prerequisites: [
+      "Electric Fields",
+      "Circuits",
+      "Exponential Change",
+    ],
+    downstream: [
+      "Alternating Current",
+      "Electromagnetic Induction",
+    ],
+    siblings: [
+      "Electric Fields",
+      "Circuits",
+    ],
+    sims: [
+      {
+        id: "capacitor-charge-energy-lab",
+        harnessId: "a-level/physics/capacitance/capacitor-charge-energy-lab",
+        title: "Capacitor Charge and Energy Lab",
+        interactionType: "diagram-builder",
+        component: GeneratedSim2CapacitanceCapacitorChargeEnergyLab,
+      },
+    ],
+  },
+  {
     id: "a-level/physics/circuits",
     branch: "a-level",
     subject: "Physics",
@@ -480,7 +566,7 @@ export const containers = [
         harnessId: "a-level/physics/circuits/series-parallel-circuit-lab",
         title: "Series-Parallel Circuit Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim2CircuitsSeriesParallelCircuitLab,
+        component: GeneratedSim3CircuitsSeriesParallelCircuitLab,
       },
     ],
   },
@@ -530,7 +616,7 @@ export const containers = [
         harnessId: "a-level/physics/circular-motion/centripetal-force-vector-lab",
         title: "Centripetal Force Vector Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim3CircularMotionCentripetalForceVectorLab,
+        component: GeneratedSim4CircularMotionCentripetalForceVectorLab,
       },
     ],
   },
@@ -598,7 +684,7 @@ export const containers = [
         harnessId: "a-level/physics/electric-fields/charge-field-vector-lab",
         title: "Charge Field Vector Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim4ElectricFieldsChargeFieldVectorLab,
+        component: GeneratedSim5ElectricFieldsChargeFieldVectorLab,
       },
     ],
   },
@@ -651,7 +737,7 @@ export const containers = [
         harnessId: "a-level/physics/forces-and-equilibrium/force-balance",
         title: "Force Balance Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim5ForcesAndEquilibriumForceBalance,
+        component: GeneratedSim6ForcesAndEquilibriumForceBalance,
       },
     ],
   },
@@ -707,7 +793,7 @@ export const containers = [
         harnessId: "a-level/physics/gravitational-fields/inverse-square-field-lab",
         title: "Inverse-Square Field Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim6GravitationalFieldsInverseSquareFieldLab,
+        component: GeneratedSim7GravitationalFieldsInverseSquareFieldLab,
       },
     ],
   },
@@ -775,7 +861,7 @@ export const containers = [
         harnessId: "a-level/physics/kinematics-in-one-dimension/motion-equations-lab",
         title: "Motion Equations Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim7KinematicsInOneDimensionMotionEquationsLab,
+        component: GeneratedSim8KinematicsInOneDimensionMotionEquationsLab,
       },
     ],
   },
@@ -840,7 +926,7 @@ export const containers = [
         harnessId: "a-level/physics/momentum/momentum-collision-lab",
         title: "Collision and Impulse Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim8MomentumMomentumCollisionLab,
+        component: GeneratedSim9MomentumMomentumCollisionLab,
       },
     ],
   },
@@ -908,7 +994,7 @@ export const containers = [
         harnessId: "a-level/physics/oscillations/simple-harmonic-motion-lab",
         title: "Simple Harmonic Motion Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim9OscillationsSimpleHarmonicMotionLab,
+        component: GeneratedSim10OscillationsSimpleHarmonicMotionLab,
       },
     ],
   },
@@ -973,7 +1059,7 @@ export const containers = [
         harnessId: "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab",
         title: "Measurement and Uncertainty Lab",
         interactionType: "decision-matrix",
-        component: GeneratedSim10PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
+        component: GeneratedSim11PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
       },
     ],
   },
@@ -1036,7 +1122,7 @@ export const containers = [
         harnessId: "a-level/physics/resolving-vectors/component-resolution",
         title: "Component Resolution Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim11ResolvingVectorsComponentResolution,
+        component: GeneratedSim12ResolvingVectorsComponentResolution,
       },
     ],
   },
@@ -1098,7 +1184,7 @@ export const containers = [
         harnessId: "a-level/physics/scalars-and-vectors/resultant-magnitude",
         title: "Resultant Magnitude Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim12ScalarsAndVectorsResultantMagnitude,
+        component: GeneratedSim13ScalarsAndVectorsResultantMagnitude,
       },
     ],
   },
@@ -1166,7 +1252,7 @@ export const containers = [
         harnessId: "a-level/physics/thermal-physics/gas-law-energy-transfer-lab",
         title: "Gas Law and Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim13ThermalPhysicsGasLawEnergyTransferLab,
+        component: GeneratedSim14ThermalPhysicsGasLawEnergyTransferLab,
       },
     ],
   },
@@ -1230,7 +1316,7 @@ export const containers = [
         harnessId: "a-level/physics/waves/wave-superposition-lab",
         title: "Wave Superposition Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim14WavesWaveSuperpositionLab,
+        component: GeneratedSim15WavesWaveSuperpositionLab,
       },
     ],
   },
@@ -1295,7 +1381,7 @@ export const containers = [
         harnessId: "a-level/physics/work-energy-power/energy-transfer-lab",
         title: "Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim15WorkEnergyPowerEnergyTransferLab,
+        component: GeneratedSim16WorkEnergyPowerEnergyTransferLab,
       },
     ],
   }

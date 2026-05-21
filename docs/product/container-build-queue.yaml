@@ -2143,7 +2143,7 @@ entries:
   - id: alevel.physics.capacitance
     title: "Capacitance"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level fields
     discipline: physics
     reuse_status: curriculum-wrapper

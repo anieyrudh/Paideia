@@ -1,0 +1,23 @@
+# Capacitance Mindmap
+
+- Capacitance
+  - Charge relation
+    - C = Q / V
+    - Q = CV
+    - farad means coulomb per volt
+  - Energy storage
+    - U = 1/2 QV
+    - U = 1/2 CV^2
+    - energy is in the electric field
+  - Discharge
+    - tau = RC
+    - V(t) = V0 e^(-t/RC)
+    - equal fractions disappear per time constant
+  - Misconceptions
+    - capacitance depends on charge alone
+    - capacitors create net charge
+    - discharge is a straight-line fall
+  - Transfer
+    - camera flash capacitors
+    - timing circuits
+    - smoothing capacitors
