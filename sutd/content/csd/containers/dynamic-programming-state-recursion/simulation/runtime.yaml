@@ -1,0 +1,13 @@
+runtime:
+  package_id: sutd/csd/dynamic-programming-state-recursion
+  sim_id: dynamic-programming-state-recursion
+  entrypoint: simulation/index.tsx
+  initial_state:
+    targetStep: 5
+    strategy: memoized
+  pmote:
+    predict: package-level
+    manipulate: target step and trace style controls
+    observe: state graph, table, formula, trace readout
+    explain: recurrence result versus repeated-work interpretation
+    transfer: resource allocation state table

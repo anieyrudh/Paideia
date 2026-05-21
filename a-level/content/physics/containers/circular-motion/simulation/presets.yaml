@@ -1,0 +1,33 @@
+presets:
+  - id: gentle-curve
+    label: "gentle curve"
+    state:
+      massKilograms: 1.2
+      speedMetresPerSecond: 6
+      radiusMetres: 4
+      angleDegrees: 45
+    learning_focus: "Baseline path for direction and substitution."
+  - id: fast-bend
+    label: "fast bend"
+    state:
+      massKilograms: 1.2
+      speedMetresPerSecond: 10
+      radiusMetres: 4
+      angleDegrees: 45
+    learning_focus: "Speed has a squared effect on acceleration and force."
+  - id: tight-corner
+    label: "tight corner"
+    state:
+      massKilograms: 1.2
+      speedMetresPerSecond: 6
+      radiusMetres: 2
+      angleDegrees: 120
+    learning_focus: "Smaller radius requires a larger inward resultant force."
+  - id: heavier-rider
+    label: "heavier rider"
+    state:
+      massKilograms: 2.4
+      speedMetresPerSecond: 6
+      radiusMetres: 4
+      angleDegrees: 300
+    learning_focus: "Mass changes force but not radial acceleration for the same speed and radius."

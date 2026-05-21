@@ -1,0 +1,16 @@
+steps:
+  - id: choose-threshold
+    prompt: "What threshold is being tested?"
+    expected_action: "State the threshold as a percentage and explain what score counts as predicted positive."
+  - id: update-counts
+    prompt: "How does each case update the confusion matrix?"
+    expected_action: "Count TP, FP, TN, and FN from the thresholded cases."
+  - id: compute-metrics
+    prompt: "Which metrics describe the count pattern?"
+    expected_action: "Compute precision, recall, and accuracy with substituted counts."
+  - id: compute-cost
+    prompt: "What cost follows from the two error cells?"
+    expected_action: "Multiply FP and FN by their costs, include units, and add them."
+  - id: interpret-stakeholders
+    prompt: "Who is helped or harmed by this threshold?"
+    expected_action: "Explain the cost and error pattern in stakeholder language, not only metric language."

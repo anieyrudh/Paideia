@@ -1,0 +1,119 @@
+schema_version: "1.0.0"
+id: shading-daylight-heat-gain
+aliases:
+  - facade shading
+  - daylight heat gain tradeoff
+  - passive solar control
+branch: sutd
+subject: asd
+level: "Undergraduate core"
+module: "ASD environmental systems"
+title: "Shading, Daylight, and Heat Gain"
+one_line_summary: "Tune facade shading to compare useful daylight against direct solar heat gain."
+syllabus_ref: "SUTD ASD / Environmental systems / Building performance"
+prerequisites:
+  - load-path-and-daylight-tradeoff
+  - ratio-reasoning
+  - trigonometry
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A studio facade gets deeper horizontal shading while the glazing area stays fixed. What is the most likely tradeoff?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Daylight and heat gain both increase."
+      - "Heat gain falls, but useful daylight can also fall if the shade is too deep."
+      - "Only daylight changes; heat gain is controlled only by wall insulation."
+      - "A deeper shade always improves every performance metric."
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: atrium-rooflight-retrofit
+    prompt: |
+      An atrium rooflight overheats at noon. The current design uses 55 percent roof glazing and shallow horizontal fins. Propose whether to add deeper fins, reduce rooflight area, or combine both, then justify the choice by separating shaded fraction from exposed glass area.
+    surface_form: "atrium rooflight retrofit"
+    same_concept_check: "Same concept: a shading device changes the sunlit glass fraction, while glazing area sets the exposed aperture; daylight and heat gain still have to be read together."
+    rubric_path: problem-solving/atrium-rooflight-retrofit.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-21"
+      author: "Codex"
+      summary: "Built SUTD ASD shading, daylight, and heat-gain product slice."
+authors:
+  - "Codex"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-21"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-21"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "More glass always improves daylight quality"
+    description: "Learners may maximise glazing area without checking glare, direct sun, and heat gain penalties."
+    evidence_source: "CIBSE Lighting Guide 10, Daylighting and window design."
+    surface_in_predict: true
+  - name: "Shading only reduces light and never heat"
+    description: "Learners may treat shading as a daylight-only device and miss that it also reduces direct solar gains through glass."
+    evidence_source: "Whole Building Design Guide, Sun Control and Shading Devices."
+    surface_in_predict: true
+sources:
+  - citation: "Whole Building Design Guide. Sun Control and Shading Devices. National Institute of Building Sciences."
+    url: "https://www.wbdg.org/resources/sun-control-and-shading-devices"
+    publication_year: 2024
+    license: "Public web guidance"
+    seab_alignment: n/a
+  - citation: "CIBSE. Lighting Guide 10: Daylighting - a guide for designers. Chartered Institution of Building Services Engineers, 2014."
+    publication_year: 2014
+    license: "Copyright CIBSE"
+    seab_alignment: n/a
+language: en

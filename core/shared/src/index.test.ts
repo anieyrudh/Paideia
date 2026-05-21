@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   err,
+  metresPerSecondSquared,
   metresPerSecond,
   ok,
   probability,
@@ -55,6 +56,11 @@ describe("@paideia/shared", () => {
     it("metresPerSecond() brands a number for compile-time safety", () => {
       const v = metresPerSecond(2.5);
       expect(v).toBe(2.5);
+    });
+
+    it("metresPerSecondSquared() brands a number for compile-time safety", () => {
+      const a = metresPerSecondSquared(9.8);
+      expect(a).toBe(9.8);
     });
   });
 

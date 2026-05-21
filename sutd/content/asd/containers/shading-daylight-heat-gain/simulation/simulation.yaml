@@ -1,0 +1,56 @@
+id: shading-daylight-heat-gain
+title: "Shading, Daylight, and Heat Gain"
+interaction_type: systems-flow-diagram
+kernel_deps:
+  - core/sim-runtime
+  - core/linear-algebra
+  - core/charting
+  - core/prediction-gate
+  - core/ui-sim
+manipulate:
+  controls:
+    - id: overhang-depth
+      label: "Overhang depth"
+      kind: slider
+      kernel_binding: state.overhangDepthM
+      bounds: { min: 0.2, max: 1.8, step: 0.1 }
+    - id: glazing-ratio
+      label: "Glazing ratio"
+      kind: slider
+      kernel_binding: state.glazingRatio
+      bounds: { min: 0.3, max: 0.9, step: 0.05 }
+    - id: solar-altitude
+      label: "Solar altitude"
+      kind: slider
+      kernel_binding: state.solarAltitudeDeg
+      bounds: { min: 20, max: 75, step: 5 }
+    - id: facade-orientation
+      label: "Facade orientation"
+      kind: selector
+      kernel_binding: state.facadeOrientation
+predict:
+  prompt: |
+    A studio facade gets deeper horizontal shading while the glazing area stays fixed. What is the most likely tradeoff?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Daylight and heat gain both increase."
+      - "Heat gain falls, but useful daylight can also fall if the shade is too deep."
+      - "Only daylight changes; heat gain is controlled only by wall insulation."
+      - "A deeper shade always improves every performance metric."
+    correct_index: 1
+  rationale_required: true
+observe:
+  renderers:
+    - id: shading-daylight-readout
+      module: "@paideia/sutd-sims/shading-daylight-heat-gain"
+      symbol: ShadingDaylightHeatGain
+      props_binding: |
+        Show facade shading geometry, daylight proxy, heat-gain proxy, formula trail, and tradeoff curve.
+explain:
+  prompt: |
+    Which input changed the shaded fraction most, and how did that same fraction affect daylight and heat gain differently?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "More glass always improves daylight quality"
+    - "Shading only reduces light and never heat"

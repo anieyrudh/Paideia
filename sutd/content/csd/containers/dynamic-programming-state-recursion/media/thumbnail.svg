@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Dynamic programming state recursion thumbnail</title>
+  <desc id="desc">A state dependency graph beside a memoisation table.</desc>
+  <rect width="640" height="360" fill="#f7fbf5"/>
+  <rect x="34" y="34" width="572" height="292" rx="8" fill="#ffffff" stroke="#cbd8cf"/>
+  <g stroke="#8aa397" stroke-width="5">
+    <line x1="190" x2="135" y1="115" y2="190"/>
+    <line x1="190" x2="245" y1="115" y2="190"/>
+    <line x1="245" x2="190" y1="190" y2="265"/>
+    <line x1="245" x2="300" y1="190" y2="265"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700" text-anchor="middle">
+    <circle cx="190" cy="115" r="38" fill="#4f9d69"/>
+    <text x="190" y="123" fill="#fff">w5</text>
+    <circle cx="135" cy="190" r="34" fill="#4f9d69"/>
+    <text x="135" y="198" fill="#fff">w4</text>
+    <circle cx="245" cy="190" r="34" fill="#4f9d69"/>
+    <text x="245" y="198" fill="#fff">w3</text>
+    <circle cx="190" cy="265" r="30" fill="#f7c948"/>
+    <text x="190" y="273" fill="#1f1a08">w1</text>
+    <circle cx="300" cy="265" r="30" fill="#f7c948"/>
+    <text x="300" y="273" fill="#1f1a08">w0</text>
+  </g>
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="382" y="92" fill="#17211d" font-size="28" font-weight="700">Memo table</text>
+    <rect x="378" y="118" width="170" height="38" fill="#e8f2ec"/>
+    <rect x="378" y="156" width="170" height="38" fill="#ffffff"/>
+    <rect x="378" y="194" width="170" height="38" fill="#e8f2ec"/>
+    <text x="394" y="144" fill="#17211d" font-size="22">w(3) = 3</text>
+    <text x="394" y="182" fill="#17211d" font-size="22">w(4) = 5</text>
+    <text x="394" y="220" fill="#17211d" font-size="22">w(5) = 8</text>
+  </g>
+</svg>

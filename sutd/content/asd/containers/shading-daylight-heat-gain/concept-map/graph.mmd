@@ -1,0 +1,10 @@
+flowchart LR
+  load["Load path and daylight tradeoff"] --> current["Shading, daylight, and heat gain"]
+  ratio["Ratio reasoning"] --> current
+  trig["Trigonometry"] --> current
+  current --> passive["Passive design"]
+  current --> optimisation["Building performance optimisation"]
+  current --- sibling["Facade tradeoff systems"]
+  misconception1["More glass always improves daylight"] -.-> current
+  misconception2["Shading only reduces light"] -.-> current
+  misconception3["One metric decides"] -.-> optimisation

@@ -1,0 +1,123 @@
+schema_version: "1.0.0"
+id: gravitational-fields
+aliases:
+  - gravity field
+  - inverse-square field
+  - gravitational potential
+branch: a-level
+subject: physics
+level: "H2"
+module: "Energy and Fields"
+title: "Gravitational Fields"
+one_line_summary: "Use inverse-square reasoning to connect gravitational field strength, force, potential, and orbital speed."
+syllabus_ref: "9478 / Section II / Energy and Fields"
+prerequisites:
+  - circular-motion
+  - forces-and-equilibrium
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A probe moves from 1 Earth radius to 2 Earth radii from Earth's centre. Before revealing the lab, what happens to the gravitational field strength?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "It halves."
+      - "It becomes one quarter as large."
+      - "It stays constant."
+      - "It becomes negative because gravity points inward."
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: satellite-radius-change
+    prompt: |
+      You now meet an electric field around a positive point charge. Without using any new formula beyond the analogy, decide what should correspond to source mass, test mass, field strength, force, and potential. Then state one sign or direction difference that must be handled with care.
+    surface_form: "electric-field analogy"
+    same_concept_check: "Same concept: a source property creates a field; a test object experiences force because of that field, while sign and direction conventions must be interpreted separately."
+    rubric_path: problem-solving/electric-field-analogy.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-21"
+      author: "Codex"
+      summary: "Built A-Level gravitational fields product slice using mechanics, function-eval, plotting, sim-runtime, prediction-gate, and ui-sim."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-21"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-21"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Field strength is constant near every mass"
+    description: "Learners may transfer the near-Earth approximation g is roughly constant to every radius around every mass, missing the inverse-square dependence on distance from the centre."
+    evidence_source: "Singapore-Cambridge H2 Physics 9478 syllabus, Energy and Fields learning outcomes on field strength and inverse-square fields."
+    surface_in_predict: true
+  - name: "Potential energy must be positive"
+    description: "Learners may expect gravitational potential and potential energy to be positive because they associate energy with a stored positive quantity, rather than using zero at infinity for attractive fields."
+    evidence_source: "OpenStax University Physics Volume 1, Section 13.4 Gravitational Potential Energy and Total Energy."
+    surface_in_predict: false
+  - name: "A heavier probe changes the field strength at a point"
+    description: "Learners may multiply by the probe mass too early and mistake force on a test mass for the field strength created by the source mass."
+    evidence_source: "Singapore-Cambridge H2 Physics 9478 syllabus definition of gravitational field strength as force per unit mass."
+    surface_in_predict: false
+sources:
+  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
+    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf"
+    publication_year: 2025
+    license: "Copyright MOE & Cambridge University Press & Assessment"
+    seab_alignment: matches
+  - citation: "Moebs, W., Ling, S. J., and Sanny, J. University Physics Volume 1, Chapter 13 Gravitation. OpenStax, 2016."
+    url: "https://openstax.org/books/university-physics-volume-1/pages/13-introduction"
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: matches
+language: en
