@@ -1,9 +1,15 @@
 import { useMemo } from "react";
-import { evaluate } from "@paideia/function-eval";
+import {
+  coulombs,
+  pointChargeElectricField,
+  pointChargeModel,
+  type Coulombs,
+  type NewtonsPerCoulomb,
+  type Volts,
+} from "@paideia/electromagnetism";
 import {
   norm2,
   normalize2,
-  scale2,
   vector2,
   type Vector2,
 } from "@paideia/linear-algebra";
@@ -11,7 +17,6 @@ import { VectorFieldPlot } from "@paideia/plotting";
 import type { PredictionEvent } from "@paideia/prediction-gate";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
 import {
-  err,
   ok,
   type ConceptPackageId,
   type KernelResult,
@@ -27,15 +32,8 @@ type MicroCoulombs = number & { readonly __brand: "MicroCoulombs" };
 type NanoCoulombs = number & { readonly __brand: "NanoCoulombs" };
 type Centimetres = number & { readonly __brand: "Centimetres" };
 type DegreesValue = number & { readonly __brand: "DegreesValue" };
-type CoulombsValue = number & { readonly __brand: "CoulombsValue" };
-type NewtonsPerCoulomb = number & { readonly __brand: "NewtonsPerCoulomb" };
-type VoltsValue = number & { readonly __brand: "VoltsValue" };
 
-const COULOMB_CONSTANT = 8.99e9;
 const MIN_FIELD_RADIUS_METRES = 0.025;
-const inverseSquareExpression = "k * source / (r * r)";
-const potentialExpression = "k * source / r";
-const energyExpression = "q * v";
 
 export interface ElectricFieldsState {
   readonly sourceChargeMicroC: MicroCoulombs;
@@ -45,15 +43,15 @@ export interface ElectricFieldsState {
 }
 
 export interface ElectricFieldsModel {
-  readonly sourceChargeCoulombs: CoulombsValue;
-  readonly testChargeCoulombs: CoulombsValue;
+  readonly sourceChargeCoulombs: Coulombs;
+  readonly testChargeCoulombs: Coulombs;
   readonly separationMetres: number;
   readonly positionVectorMetres: Vector2;
   readonly electricFieldVectorNPerC: Vector2;
   readonly electricFieldStrengthNPerC: NewtonsPerCoulomb;
   readonly forceVectorNewtons: Vector2;
   readonly forceMagnitudeNewtons: number;
-  readonly potentialVolts: VoltsValue;
+  readonly potentialVolts: Volts;
   readonly potentialEnergyJoules: number;
   readonly fieldDirectionSummary: string;
   readonly forceDirectionSummary: string;
@@ -65,8 +63,8 @@ export const electricFieldsSpec = {
   interaction_type: "diagram-builder",
   kernel_deps: [
     "core/sim-runtime",
+    "core/electromagnetism",
     "core/linear-algebra",
-    "core/function-eval",
     "core/plotting",
     "core/prediction-gate",
     "core/shared",
@@ -231,83 +229,34 @@ const positionFromState = (state: ElectricFieldsState): KernelResult<Vector2> =>
   );
 };
 
-const evaluateNumber = (
-  expression: string,
-  vars: Record<string, number>,
-): KernelResult<number> => {
-  const result = evaluate(expression, vars);
-  return result.ok && Number.isFinite(result.value)
-    ? ok(result.value)
-    : result.ok
-      ? err("undefined-at-point", "Expression produced a non-finite value.")
-      : result;
-};
-
 export const electricFieldVectorAt = (
   sourceChargeCoulombs: number,
   pointMetres: Vector2,
-): KernelResult<Vector2> => {
-  if (!Number.isFinite(sourceChargeCoulombs)) {
-    return err("precondition-violated", "Source charge must be finite.");
-  }
-
-  const distance = norm2(pointMetres);
-  if (!distance.ok) return distance;
-  if (distance.value < MIN_FIELD_RADIUS_METRES) {
-    return ok([0, 0]);
-  }
-  if (sourceChargeCoulombs === 0) {
-    return ok([0, 0]);
-  }
-
-  const direction = normalize2(pointMetres);
-  if (!direction.ok) return direction;
-  const magnitude = evaluateNumber(inverseSquareExpression, {
-    k: COULOMB_CONSTANT,
-    source: Math.abs(sourceChargeCoulombs),
-    r: distance.value,
+): KernelResult<Vector2> =>
+  pointChargeElectricField({
+    minRadiusMetres: MIN_FIELD_RADIUS_METRES,
+    pointMetres,
+    sourceChargeCoulombs: coulombs(sourceChargeCoulombs),
   });
-  if (!magnitude.ok) return magnitude;
-
-  return scale2(direction.value, Math.sign(sourceChargeCoulombs) * magnitude.value);
-};
 
 export const electricFieldsModel = (
   state: ElectricFieldsState,
 ): KernelResult<ElectricFieldsModel> => {
-  const sourceChargeCoulombs = (state.sourceChargeMicroC * 1e-6) as CoulombsValue;
-  const testChargeCoulombs = (state.testChargeNanoC * 1e-9) as CoulombsValue;
+  const sourceChargeCoulombs = coulombs(state.sourceChargeMicroC * 1e-6);
+  const testChargeCoulombs = coulombs(state.testChargeNanoC * 1e-9);
   const position = positionFromState(state);
   if (!position.ok) return position;
-  const separation = norm2(position.value);
-  if (!separation.ok) return separation;
-
-  const field = electricFieldVectorAt(sourceChargeCoulombs, position.value);
-  if (!field.ok) return field;
-  const fieldStrength = norm2(field.value);
-  if (!fieldStrength.ok) return fieldStrength;
-
-  const force = scale2(field.value, testChargeCoulombs);
-  if (!force.ok) return force;
-  const forceMagnitude = norm2(force.value);
-  if (!forceMagnitude.ok) return forceMagnitude;
-
-  const potential = evaluateNumber(potentialExpression, {
-    k: COULOMB_CONSTANT,
-    source: sourceChargeCoulombs,
-    r: separation.value,
+  const model = pointChargeModel({
+    minRadiusMetres: MIN_FIELD_RADIUS_METRES,
+    pointMetres: position.value,
+    sourceChargeCoulombs,
+    testChargeCoulombs,
   });
-  if (!potential.ok) return potential;
-
-  const potentialEnergy = evaluateNumber(energyExpression, {
-    q: testChargeCoulombs,
-    v: potential.value,
-  });
-  if (!potentialEnergy.ok) return potentialEnergy;
+  if (!model.ok) return model;
 
   return ok({
-    electricFieldStrengthNPerC: fieldStrength.value as NewtonsPerCoulomb,
-    electricFieldVectorNPerC: field.value,
+    electricFieldStrengthNPerC: model.value.electricFieldStrengthNewtonsPerCoulomb,
+    electricFieldVectorNPerC: model.value.electricFieldVectorNewtonsPerCoulomb,
     fieldDirectionSummary:
       sourceChargeCoulombs > 0
         ? "The electric field points away from the positive source."
@@ -320,12 +269,12 @@ export const electricFieldsModel = (
         : testChargeCoulombs < 0
           ? "The negative test charge feels force opposite to the field direction."
           : "A zero test charge feels no electric force.",
-    forceMagnitudeNewtons: forceMagnitude.value,
-    forceVectorNewtons: force.value,
+    forceMagnitudeNewtons: model.value.forceMagnitudeNewtons,
+    forceVectorNewtons: model.value.forceVectorNewtons,
     positionVectorMetres: position.value,
-    potentialEnergyJoules: potentialEnergy.value,
-    potentialVolts: potential.value as VoltsValue,
-    separationMetres: separation.value,
+    potentialEnergyJoules: model.value.potentialEnergyJoules,
+    potentialVolts: model.value.potentialVolts,
+    separationMetres: model.value.separationMetres,
     sourceChargeCoulombs,
     testChargeCoulombs,
   });

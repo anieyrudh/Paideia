@@ -3,8 +3,8 @@ title: "Charge Field Vector Lab"
 interaction_type: diagram-builder
 kernel_deps:
   - core/sim-runtime
+  - core/electromagnetism
   - core/linear-algebra
-  - core/function-eval
   - core/plotting
   - core/prediction-gate
   - core/shared

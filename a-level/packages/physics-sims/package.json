@@ -28,6 +28,7 @@
     "@paideia/charting": "workspace:*",
     "@paideia/circuits": "workspace:*",
     "@paideia/content-schema": "workspace:*",
+    "@paideia/electromagnetism": "workspace:*",
     "@paideia/function-eval": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/mechanics": "workspace:*",

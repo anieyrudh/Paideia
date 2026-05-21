@@ -2064,8 +2064,8 @@ entries:
         - voltage is the same thing as field strength
     kernel_dependencies:
       - core/sim-runtime
+      - core/electromagnetism
       - core/linear-algebra
-      - core/function-eval
       - core/plotting
       - core/prediction-gate
       - core/shared

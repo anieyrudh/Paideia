@@ -18,8 +18,8 @@
 | Sim | Module | Symbols / role |
 |---|---|---|
 | charge-field-vector-lab | `core/sim-runtime` | Declared in `simulation/simulation.yaml` |
+| charge-field-vector-lab | `core/electromagnetism` | Declared in `simulation/simulation.yaml` |
 | charge-field-vector-lab | `core/linear-algebra` | Declared in `simulation/simulation.yaml` |
-| charge-field-vector-lab | `core/function-eval` | Declared in `simulation/simulation.yaml` |
 | charge-field-vector-lab | `core/plotting` | Declared in `simulation/simulation.yaml` |
 | charge-field-vector-lab | `core/prediction-gate` | Declared in `simulation/simulation.yaml` |
 | charge-field-vector-lab | `core/shared` | Declared in `simulation/simulation.yaml` |
@@ -35,8 +35,8 @@ title: Charge Field Vector Lab
 interaction_type: diagram-builder
 kernel_deps:
   - core/sim-runtime
+  - core/electromagnetism
   - core/linear-algebra
-  - core/function-eval
   - core/plotting
   - core/prediction-gate
   - core/shared
@@ -139,6 +139,7 @@ Filter version: aniegpt v1.0
 
 - Empty Filter pass placeholder. Resolution: replaced scaffolded placeholder with this concrete review record and reran container validation.
 - Undeclared shared kernel dependency. Resolution: added `core/shared` to queue metadata, `simulation/simulation.yaml`, and the runtime `electricFieldsSpec` because the sim uses shared `KernelResult`, IDs, and unit/result contracts.
+- Inline Coulomb-field math in the sim package. Resolution: added `core/electromagnetism` under core-change proposal [#130](https://github.com/anieyrudh/Paideia/issues/130), moved point-charge field, force, potential, and potential-energy computation into that kernel, and kept only state conversion, rendering, and explanation text in the sim.
 - Non-canonical misconception and sim-transfer artifacts requested by one reviewer. Resolution: kept misconception coverage in `container.yaml` plus `concept-map/concept-map.yaml`, and transfer in `transfer_problems`, because the locked v2 schema and validator do not allow a top-level `misconceptions.md` or sim-level transfer field.
 
 ### P1 addressed or deferred
@@ -151,16 +152,16 @@ Filter version: aniegpt v1.0
 
 ### P2 noted
 
-- A future electric-fields core kernel would be the right home if additional containers reuse Coulomb-field calculations beyond this A-Level product slice.
 - Legend structure was changed from table to definition-list cards to fit existing responsive shell styling.
 
 ### High-bandwidth questions surfaced
 
 - Should `core/sim-runtime` expose a safe post-reveal manipulation mode so students can continue tuning without resetting prediction state?
-- Should an electromagnetism kernel be created before capacitance/electromagnetism containers enter the queue?
+- Should `core/electromagnetism` expand to distributed-charge and capacitance helpers, or should those become separate kernels?
 
 ## Iteration log
 
 - 2026-05-21: Scaffolded the canonical container, filled concept card, concept map, sim metadata, embed API, media, and transfer problem.
 - 2026-05-21: Added the A-Level physics sim package slice with prediction gate tests, inverse-square model tests, formula/legend/readout checks, and generated graph/harness entries.
 - 2026-05-21: Rejected non-canonical extra top-level content files because `pnpm container:validate` enforces the locked v2 layout.
+- 2026-05-21: Moved Coulomb-field computation into `core/electromagnetism` and updated the container kernel declarations.
