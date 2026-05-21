@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Dynamic programming fallback</title>
+  <desc id="desc">Formula and table for dynamic programming state recursion.</desc>
+  <rect width="640" height="360" fill="#fbfdf9"/>
+  <text x="44" y="82" fill="#17211d" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700">ways(i) = ways(i - 1) + ways(i - 2)</text>
+  <rect x="44" y="124" width="552" height="178" rx="8" fill="#ffffff" stroke="#cbd8cf"/>
+  <g font-family="Inter, Arial, sans-serif" font-size="24" fill="#17211d">
+    <text x="78" y="176">State</text>
+    <text x="238" y="176">Value</text>
+    <text x="390" y="176">Meaning</text>
+    <text x="78" y="224">ways(4)</text>
+    <text x="238" y="224">5</text>
+    <text x="390" y="224">stored once</text>
+    <text x="78" y="264">ways(5)</text>
+    <text x="238" y="264">8</text>
+    <text x="390" y="264">reuses ways(4)</text>
+  </g>
+</svg>

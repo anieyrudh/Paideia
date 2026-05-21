@@ -1,0 +1,41 @@
+schema_version: "1.0.0"
+concept_id: gravitational-fields
+prerequisites:
+  - id: circular-motion
+    title: "Circular Motion"
+    relationship: "Centripetal acceleration is needed for the orbit-speed link."
+    status: planned
+  - id: forces-and-equilibrium
+    title: "Forces and Equilibrium"
+    relationship: "Force vectors and resultant force underpin field direction."
+    status: available
+downstream:
+  - id: orbital-motion
+    title: "Orbital Motion"
+    relationship: "Gravitational fields supply centripetal acceleration."
+    status: planned
+  - id: electric-fields
+    title: "Electric Fields"
+    relationship: "Inverse-square field reasoning transfers to point charges with sign conventions."
+    status: planned
+siblings:
+  - id: work-energy-power
+    title: "Work, Energy, Power"
+    relationship: "Potential energy and work done by a force share the energy-transfer frame."
+    status: available
+misconception_graph:
+  nodes:
+    - id: constant-field
+      label: "Field strength is constant near every mass"
+    - id: positive-potential
+      label: "Potential energy must be positive"
+    - id: probe-changes-field
+      label: "A heavier probe changes the field strength"
+  edges:
+    - from: constant-field
+      to: probe-changes-field
+      label: "Both confuse local force experience with field definition"
+    - from: positive-potential
+      to: probe-changes-field
+      label: "Both multiply symbols without checking the reference quantity"
+mermaid_source: graph.mmd

@@ -13,7 +13,16 @@ import {
 import {
   accelerationFromForce,
   averagePower,
+  circularOrbitSpeed,
+  gravitationalAccelerationFromForce,
   elasticCollision1D,
+  gravitationalFieldStrengthRatio,
+  gravitationalFieldVector2D,
+  gravitationalFieldStrength,
+  gravitationalForce,
+  gravitationalInverseSquareScale,
+  gravitationalPotential,
+  gravitationalPotentialEnergy,
   kineticEnergy,
   kinematics1D,
   mechanicsTolerance,
@@ -22,6 +31,7 @@ import {
   projectileAt,
   simpleHarmonicMotion,
   uniformCircularMotion,
+  universalGravitationalConstant,
   workDone,
   workEnergyTransfer,
   type Vector2,
@@ -205,6 +215,102 @@ describe("@paideia/mechanics", () => {
     if (power.ok) expect(power.value).toBe(15);
   });
 
+  it("computes inverse-square gravitational field quantities", () => {
+    const earthMass = kilograms(5.972e24);
+    const earthRadius = metres(6.371e6);
+    const satelliteMass = kilograms(1000);
+
+    const field = gravitationalFieldStrength({
+      sourceMassKilograms: earthMass,
+      radiusMetres: earthRadius,
+    });
+    expect(field.ok).toBe(true);
+    if (field.ok) {
+      expect(approxEqual(field.value, 9.819973426224687, mechanicsTolerance.loose)).toBe(true);
+    }
+
+    const force = gravitationalForce({
+      sourceMassKilograms: earthMass,
+      testMassKilograms: satelliteMass,
+      radiusMetres: earthRadius,
+    });
+    expect(force.ok).toBe(true);
+    if (force.ok && field.ok) {
+      expect(approxEqual(force.value, satelliteMass * field.value, mechanicsTolerance.loose)).toBe(true);
+    }
+
+    const acceleration = gravitationalAccelerationFromForce({
+      sourceMassKilograms: earthMass,
+      testMassKilograms: satelliteMass,
+      radiusMetres: earthRadius,
+    });
+    expect(acceleration.ok).toBe(true);
+    if (acceleration.ok && field.ok) {
+      expect(approxEqual(acceleration.value, field.value, mechanicsTolerance.loose)).toBe(true);
+    }
+
+    const potential = gravitationalPotential({
+      sourceMassKilograms: earthMass,
+      radiusMetres: earthRadius,
+    });
+    expect(potential.ok).toBe(true);
+    if (potential.ok) {
+      expect(potential.value).toBeLessThan(0);
+      expect(approxEqual(potential.value, -universalGravitationalConstant * earthMass / earthRadius)).toBe(true);
+    }
+
+    const energy = gravitationalPotentialEnergy({
+      sourceMassKilograms: earthMass,
+      testMassKilograms: satelliteMass,
+      radiusMetres: earthRadius,
+    });
+    expect(energy.ok).toBe(true);
+    if (energy.ok && potential.ok) {
+      expect(approxEqual(energy.value, satelliteMass * potential.value)).toBe(true);
+    }
+  });
+
+  it("keeps circular orbit speed tied to source mass and radius", () => {
+    const speed = circularOrbitSpeed({
+      sourceMassKilograms: kilograms(5.972e24),
+      radiusMetres: metres(42_164_000),
+    });
+
+    expect(speed.ok).toBe(true);
+    if (speed.ok) {
+      expect(approxEqual(speed.value, 3074.622910711152, mechanicsTolerance.loose)).toBe(true);
+    }
+  });
+
+  it("samples gravitational ratios and vectors through mechanics", () => {
+    const sourceMassKilograms = kilograms(5.972e24);
+    const radiusMetres = metres(6.371e6);
+    const comparisonRadiusMetres = metres(2 * 6.371e6);
+
+    const ratio = gravitationalFieldStrengthRatio({
+      sourceMassKilograms,
+      radiusMetres,
+      comparisonRadiusMetres,
+    });
+    expect(ratio.ok).toBe(true);
+    if (ratio.ok) expect(approxEqual(ratio.value, 0.25, mechanicsTolerance.default)).toBe(true);
+
+    const scale = gravitationalInverseSquareScale(radiusMetres);
+    expect(scale.ok).toBe(true);
+    if (scale.ok) expect(approxEqual(scale.value, 1 / (6.371e6 * 6.371e6))).toBe(true);
+
+    const vector = gravitationalFieldVector2D({
+      sourceMassKilograms,
+      xMetres: radiusMetres,
+      yMetres: metres(0),
+    });
+    expect(vector.ok).toBe(true);
+    if (vector.ok) {
+      expect(vector.value.x).toBeLessThan(0);
+      expect(approxEqual(vector.value.y, 0)).toBe(true);
+    }
+  });
+
   it("conserves momentum and kinetic energy in elastic collisions", () => {
     for (const base of deterministicCases(60)) {
       const result = elasticCollision1D({
@@ -277,6 +383,13 @@ describe("@paideia/mechanics", () => {
     const invalidForce = netForce([{ x: Number.NaN, y: 0 }]);
     expect(invalidForce.ok).toBe(false);
     if (!invalidForce.ok) expect(invalidForce.error.code).toBe("precondition-violated");
+
+    const invalidGravity = gravitationalFieldStrength({
+      sourceMassKilograms: kilograms(5.972e24),
+      radiusMetres: metres(0),
+    });
+    expect(invalidGravity.ok).toBe(false);
+    if (!invalidGravity.ok) expect(invalidGravity.error.code).toBe("precondition-violated");
   });
 
   it("rejects elastic collision outputs that overflow from finite inputs", () => {

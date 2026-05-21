@@ -1,0 +1,22 @@
+presets:
+  - id: balanced-studio
+    label: "Balanced studio"
+    state:
+      overhangDepthM: 0.9
+      glazingRatio: 0.6
+      solarAltitudeDeg: 50
+      facadeOrientation: south
+  - id: hot-glass
+    label: "Hot glass"
+    state:
+      overhangDepthM: 0.3
+      glazingRatio: 0.85
+      solarAltitudeDeg: 35
+      facadeOrientation: west
+  - id: over-shaded
+    label: "Over-shaded"
+    state:
+      overhangDepthM: 1.7
+      glazingRatio: 0.45
+      solarAltitudeDeg: 70
+      facadeOrientation: south
