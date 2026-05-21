@@ -36,6 +36,21 @@ describe("point-charge electromagnetism", () => {
     expect(field.error.code).toBe("undefined-at-point");
   });
 
+  it("returns zero field and potential for zero source charge at the source point", () => {
+    const model = pointChargeModel({
+      pointMetres: [0, 0],
+      sourceChargeCoulombs: coulombs(0),
+      testChargeCoulombs: coulombs(20e-9),
+    });
+
+    expect(model.ok).toBe(true);
+    if (!model.ok) throw new Error(model.error.message);
+    expect(model.value.electricFieldVectorNewtonsPerCoulomb).toEqual([0, 0]);
+    expect(model.value.electricFieldStrengthNewtonsPerCoulomb).toBe(0);
+    expect(model.value.potentialVolts).toBe(0);
+    expect(model.value.potentialEnergyJoules).toBe(0);
+  });
+
   it("rejects non-finite charges", () => {
     const force = electricForceOnCharge({
       electricFieldNewtonsPerCoulomb: [1, 0],

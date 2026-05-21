@@ -104,12 +104,13 @@ export const pointChargeElectricField = (
 ): KernelResult<Vector2> => {
   const sourceCharge = finite(input.sourceChargeCoulombs, "sourceChargeCoulombs");
   if (!sourceCharge.ok) return sourceCharge;
+  if (input.sourceChargeCoulombs === 0) return ok([0, 0]);
   const minRadiusMetres = input.minRadiusMetres ?? 0;
   const distance = norm2(input.pointMetres);
   if (!distance.ok) return distance;
   const radius = validRadius(distance.value, minRadiusMetres);
   if (!radius.ok) return radius;
-  if (radius.value === "clamped" || input.sourceChargeCoulombs === 0) return ok([0, 0]);
+  if (radius.value === "clamped") return ok([0, 0]);
 
   const direction = normalize2(input.pointMetres);
   if (!direction.ok) return direction;
@@ -126,6 +127,7 @@ export const pointChargeElectricPotential = (
 ): KernelResult<Volts> => {
   const sourceCharge = finite(input.sourceChargeCoulombs, "sourceChargeCoulombs");
   if (!sourceCharge.ok) return sourceCharge;
+  if (input.sourceChargeCoulombs === 0) return ok(volts(0));
   const minRadiusMetres = input.minRadiusMetres ?? 0;
   const radius = validRadius(input.radiusMetres, minRadiusMetres);
   if (!radius.ok) return radius;
