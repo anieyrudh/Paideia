@@ -2233,7 +2233,7 @@ entries:
   - id: alevel.physics.magnetic-fields
     title: "Magnetic Fields"
     priority: P0
-    status: ready-for-build
+    status: reviewed
     cluster: A-Level fields
     discipline: physics
     reuse_status: curriculum-wrapper

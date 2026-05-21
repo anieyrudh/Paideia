@@ -1,0 +1,22 @@
+steps:
+  - id: classify-system
+    label: Classify the system
+    prompt: Decide whether the object is a current-carrying conductor or a moving charge.
+  - id: convert-units
+    label: Convert to SI units
+    prompt: Convert mT to T, cm to m, microC to C, and km s^-1 to m s^-1.
+  - id: choose-formula
+    label: Choose the magnetic-force formula
+    prompt: Use BILsin(theta) for a wire or |q|vBsin(theta) for a charge.
+  - id: substitute
+    label: Substitute with units
+    prompt: Write the calculation with each SI unit visible and finish in newtons.
+  - id: direction
+    label: Apply Fleming's left-hand rule
+    prompt: Use field, current or velocity, and force fingers; reverse for a negative charge.
+  - id: circular-path
+    label: Check circular path
+    prompt: If the motion is perpendicular, equate magnetic force to mv^2/r.
+  - id: interpret
+    label: Interpret the result
+    prompt: State the force direction, zero-force conditions, and what parameter changes the magnitude.

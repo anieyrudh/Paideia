@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Magnetic fields thumbnail</title>
+  <desc id="desc">A current-carrying wire in a magnetic field into the page with an upward force arrow.</desc>
+  <rect width="640" height="360" rx="32" fill="#f8fbff"/>
+  <g fill="#dbeafe">
+    <circle cx="90" cy="70" r="20"/><circle cx="180" cy="70" r="20"/><circle cx="270" cy="70" r="20"/><circle cx="360" cy="70" r="20"/><circle cx="450" cy="70" r="20"/><circle cx="540" cy="70" r="20"/>
+    <circle cx="90" cy="150" r="20"/><circle cx="180" cy="150" r="20"/><circle cx="270" cy="150" r="20"/><circle cx="360" cy="150" r="20"/><circle cx="450" cy="150" r="20"/><circle cx="540" cy="150" r="20"/>
+    <circle cx="90" cy="230" r="20"/><circle cx="180" cy="230" r="20"/><circle cx="270" cy="230" r="20"/><circle cx="360" cy="230" r="20"/><circle cx="450" cy="230" r="20"/><circle cx="540" cy="230" r="20"/>
+  </g>
+  <g fill="#1e3a8a" font-family="Arial, sans-serif" font-size="28" font-weight="800" text-anchor="middle">
+    <text x="90" y="80">x</text><text x="180" y="80">x</text><text x="270" y="80">x</text><text x="360" y="80">x</text><text x="450" y="80">x</text><text x="540" y="80">x</text>
+    <text x="90" y="160">x</text><text x="180" y="160">x</text><text x="270" y="160">x</text><text x="360" y="160">x</text><text x="450" y="160">x</text><text x="540" y="160">x</text>
+    <text x="90" y="240">x</text><text x="180" y="240">x</text><text x="270" y="240">x</text><text x="360" y="240">x</text><text x="450" y="240">x</text><text x="540" y="240">x</text>
+  </g>
+  <defs>
+    <marker id="blue-arrow" markerHeight="12" markerWidth="12" orient="auto" refX="10" refY="6">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#1f5f8b"/>
+    </marker>
+    <marker id="orange-arrow" markerHeight="12" markerWidth="12" orient="auto" refX="10" refY="6">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#c2410c"/>
+    </marker>
+  </defs>
+  <line x1="155" y1="260" x2="455" y2="260" stroke="#1f5f8b" stroke-linecap="round" stroke-width="18" marker-end="url(#blue-arrow)"/>
+  <line x1="455" y1="260" x2="455" y2="130" stroke="#c2410c" stroke-linecap="round" stroke-width="16" marker-end="url(#orange-arrow)"/>
+  <text x="155" y="320" fill="#10201a" font-family="Arial, sans-serif" font-size="28" font-weight="800">Magnetic Fields</text>
+  <text x="455" y="106" fill="#c2410c" font-family="Arial, sans-serif" font-size="24" font-weight="800">F</text>
+</svg>

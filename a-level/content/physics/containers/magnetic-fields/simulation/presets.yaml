@@ -1,0 +1,41 @@
+presets:
+  - id: motor-effect
+    label: Motor effect
+    state:
+      fieldMilliTesla: 40
+      currentAmperes: 6
+      activeLengthCm: 8
+      angleDegrees: 90
+      particleChargeMicroC: 2
+      particleSpeedKmPerSecond: 1
+      particleMassMilligrams: 50
+  - id: no-angle
+    label: No perpendicular component
+    state:
+      fieldMilliTesla: 40
+      currentAmperes: 6
+      activeLengthCm: 8
+      angleDegrees: 0
+      particleChargeMicroC: 2
+      particleSpeedKmPerSecond: 1
+      particleMassMilligrams: 50
+  - id: negative-charge
+    label: Negative charge
+    state:
+      fieldMilliTesla: 40
+      currentAmperes: 6
+      activeLengthCm: 8
+      angleDegrees: 90
+      particleChargeMicroC: -3
+      particleSpeedKmPerSecond: 1
+      particleMassMilligrams: 50
+  - id: stronger-field
+    label: Stronger field
+    state:
+      fieldMilliTesla: 80
+      currentAmperes: 8
+      activeLengthCm: 8
+      angleDegrees: 90
+      particleChargeMicroC: 2
+      particleSpeedKmPerSecond: 1
+      particleMassMilligrams: 50

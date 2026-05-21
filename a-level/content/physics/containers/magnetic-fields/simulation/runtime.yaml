@@ -1,0 +1,11 @@
+runtime:
+  package: "@paideia/a-level-physics-sims/magnetic-fields"
+  default_export: MagneticFieldsSim
+  named_exports:
+    - MagneticFieldsSim
+    - MagneticFieldDiagram
+    - magneticFieldsModel
+    - magneticFieldsSpec
+  prediction_gate: required
+  reveal_blocked_until_prediction: true
+  student_facing_only: true
