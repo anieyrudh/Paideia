@@ -1344,7 +1344,7 @@ entries:
   - id: sutd.dai.confusion-matrix-thresholds
     title: "Confusion Matrix Thresholds"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: DAI human-centred AI
     discipline: design-ai
     reuse_status: curriculum-wrapper

@@ -6,3 +6,4 @@ export { default as PidStepResponse } from "./pid-step-response.js";
 export { default as BodeStabilityMargin } from "./bode-stability-margin.js";
 export { default as TrustCalibration } from "./trust-calibration.js";
 export { default as VectorTransformations } from "./vector-transformations.js";
+export { default as ConfusionMatrixThresholds } from "./confusion-matrix-thresholds.js";

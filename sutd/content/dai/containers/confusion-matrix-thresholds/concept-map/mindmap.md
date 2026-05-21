@@ -1,0 +1,27 @@
+# Confusion Matrix Thresholds Mindmap
+
+- Threshold as policy
+  - score cut-off
+  - positive prediction
+  - negative prediction
+- Confusion matrix
+  - true positive
+  - false positive
+  - true negative
+  - false negative
+- Metrics
+  - precision
+  - recall
+  - accuracy
+- Stakeholder interpretation
+  - false-negative cost
+  - false-positive cost
+  - total cost units
+- Misconceptions
+  - accuracy is enough
+  - one threshold is automatically neutral
+  - evidence notes: concept-map/misconceptions.md
+- Transfer
+  - loan review
+  - fairness audit
+  - governance sign-off

@@ -73,6 +73,68 @@ export interface BayesPositiveEvidence {
   readonly routes: DiscreteDistribution<"true-positive" | "false-positive">;
 }
 
+export type BinaryClassLabel = "actual-positive" | "actual-negative";
+
+export interface ThresholdClassifierCase<TId extends string = string> {
+  readonly id: TId;
+  readonly score: number;
+  readonly actual: BinaryClassLabel;
+}
+
+export interface BinaryConfusionCounts {
+  readonly truePositive: number;
+  readonly falsePositive: number;
+  readonly trueNegative: number;
+  readonly falseNegative: number;
+}
+
+export type BinaryConfusionCell =
+  | "true-positive"
+  | "false-positive"
+  | "true-negative"
+  | "false-negative";
+
+export interface ThresholdCaseOutcome<TId extends string = string> {
+  readonly id: TId;
+  readonly score: number;
+  readonly actual: BinaryClassLabel;
+  readonly predictedPositive: boolean;
+  readonly cell: BinaryConfusionCell;
+}
+
+export interface ThresholdCurvePoint {
+  readonly thresholdPercent: number;
+  readonly precision: number;
+  readonly recall: number;
+  readonly accuracy: number;
+  readonly falsePositiveCostTotal: number;
+  readonly falseNegativeCostTotal: number;
+  readonly totalCost: number;
+}
+
+export interface ThresholdClassificationInput<TId extends string = string> {
+  readonly cases: readonly ThresholdClassifierCase<TId>[];
+  readonly threshold: number;
+  readonly falsePositiveCost: number;
+  readonly falseNegativeCost: number;
+  readonly curveThresholds?: readonly number[];
+}
+
+export interface ThresholdClassificationEvidence {
+  readonly threshold: Probability;
+  readonly counts: BinaryConfusionCounts;
+  readonly precision: Probability;
+  readonly recall: Probability;
+  readonly accuracy: Probability;
+  readonly baseRate: Probability;
+  readonly falsePositiveCost: number;
+  readonly falseNegativeCost: number;
+  readonly falsePositiveCostTotal: number;
+  readonly falseNegativeCostTotal: number;
+  readonly totalCost: number;
+  readonly curve: readonly ThresholdCurvePoint[];
+}
+
 export const probabilityStatsTolerance = {
   default: 1e-10,
   tight: 1e-12,
@@ -219,6 +281,172 @@ export const bayesPositiveEvidence = (
     posterior: truePositive.probability,
     routes: routes.value,
   });
+};
+
+const validateNonNegativeCost = (value: number, label: string): KernelResult<number> => {
+  const finiteValue = finite(value, label);
+  if (!finiteValue.ok) return finiteValue;
+  if (value < 0) {
+    return err("out-of-domain", `${label} must be non-negative`);
+  }
+  return ok(value);
+};
+
+const ratioProbability = (numerator: number, denominator: number): KernelResult<Probability> =>
+  probability(denominator <= 0 ? 0 : numerator / denominator);
+
+const validateThresholdCases = <TId extends string>(
+  cases: readonly ThresholdClassifierCase<TId>[],
+): KernelResult<readonly ThresholdClassifierCase<TId>[]> => {
+  if (cases.length === 0) {
+    return err("precondition-violated", "Threshold classification requires at least one case");
+  }
+
+  for (const entry of cases) {
+    const score = probability(Number(entry.score));
+    if (!score.ok) return score;
+  }
+
+  return ok(cases);
+};
+
+export const thresholdCaseOutcomes = <TId extends string>(
+  cases: readonly ThresholdClassifierCase<TId>[],
+  threshold: number,
+): KernelResult<readonly ThresholdCaseOutcome<TId>[]> => {
+  const validCases = validateThresholdCases(cases);
+  if (!validCases.ok) return validCases;
+  const validThreshold = probability(Number(threshold));
+  if (!validThreshold.ok) return validThreshold;
+
+  const outcomes = validCases.value.map((entry) => {
+    const predictedPositive = Number(entry.score) >= Number(validThreshold.value);
+    const cell: BinaryConfusionCell =
+      predictedPositive && entry.actual === "actual-positive"
+        ? "true-positive"
+        : predictedPositive
+          ? "false-positive"
+          : entry.actual === "actual-negative"
+            ? "true-negative"
+            : "false-negative";
+    return { ...entry, predictedPositive, cell };
+  });
+
+  return ok(outcomes);
+};
+
+export const binaryConfusionCounts = <TId extends string>(
+  cases: readonly ThresholdClassifierCase<TId>[],
+  threshold: number,
+): KernelResult<BinaryConfusionCounts> => {
+  const outcomes = thresholdCaseOutcomes(cases, threshold);
+  if (!outcomes.ok) return outcomes;
+
+  let truePositive = 0;
+  let falsePositive = 0;
+  let trueNegative = 0;
+  let falseNegative = 0;
+
+  for (const entry of outcomes.value) {
+    if (entry.cell === "true-positive") truePositive += 1;
+    if (entry.cell === "false-positive") falsePositive += 1;
+    if (entry.cell === "true-negative") trueNegative += 1;
+    if (entry.cell === "false-negative") falseNegative += 1;
+  }
+
+  return ok({ truePositive, falsePositive, trueNegative, falseNegative });
+};
+
+const thresholdClassificationPoint = <TId extends string>(
+  cases: readonly ThresholdClassifierCase<TId>[],
+  threshold: Probability,
+  falsePositiveCost: number,
+  falseNegativeCost: number,
+): KernelResult<Omit<ThresholdClassificationEvidence, "curve">> => {
+  const counts = binaryConfusionCounts(cases, threshold);
+  if (!counts.ok) return counts;
+
+  const precision = ratioProbability(
+    counts.value.truePositive,
+    counts.value.truePositive + counts.value.falsePositive,
+  );
+  if (!precision.ok) return precision;
+  const recall = ratioProbability(
+    counts.value.truePositive,
+    counts.value.truePositive + counts.value.falseNegative,
+  );
+  if (!recall.ok) return recall;
+  const accuracy = ratioProbability(
+    counts.value.truePositive + counts.value.trueNegative,
+    cases.length,
+  );
+  if (!accuracy.ok) return accuracy;
+
+  const positiveCount = cases.filter((entry) => entry.actual === "actual-positive").length;
+  const baseRate = ratioProbability(positiveCount, cases.length);
+  if (!baseRate.ok) return baseRate;
+
+  const falsePositiveCostTotal = counts.value.falsePositive * falsePositiveCost;
+  const falseNegativeCostTotal = counts.value.falseNegative * falseNegativeCost;
+
+  return ok({
+    threshold,
+    counts: counts.value,
+    precision: precision.value,
+    recall: recall.value,
+    accuracy: accuracy.value,
+    baseRate: baseRate.value,
+    falsePositiveCost,
+    falseNegativeCost,
+    falsePositiveCostTotal,
+    falseNegativeCostTotal,
+    totalCost: falsePositiveCostTotal + falseNegativeCostTotal,
+  });
+};
+
+export const thresholdClassificationEvidence = <TId extends string>(
+  input: ThresholdClassificationInput<TId>,
+): KernelResult<ThresholdClassificationEvidence> => {
+  const validCases = validateThresholdCases(input.cases);
+  if (!validCases.ok) return validCases;
+  const threshold = probability(Number(input.threshold));
+  if (!threshold.ok) return threshold;
+  const falsePositiveCost = validateNonNegativeCost(input.falsePositiveCost, "False-positive cost");
+  if (!falsePositiveCost.ok) return falsePositiveCost;
+  const falseNegativeCost = validateNonNegativeCost(input.falseNegativeCost, "False-negative cost");
+  if (!falseNegativeCost.ok) return falseNegativeCost;
+
+  const base = thresholdClassificationPoint(
+    validCases.value,
+    threshold.value,
+    falsePositiveCost.value,
+    falseNegativeCost.value,
+  );
+  if (!base.ok) return base;
+
+  const curve: ThresholdCurvePoint[] = [];
+  for (const candidate of input.curveThresholds ?? []) {
+    const validCandidate = probability(Number(candidate));
+    if (!validCandidate.ok) return validCandidate;
+    const point = thresholdClassificationPoint(
+      validCases.value,
+      validCandidate.value,
+      falsePositiveCost.value,
+      falseNegativeCost.value,
+    );
+    if (!point.ok) return point;
+    curve.push({
+      thresholdPercent: Number(validCandidate.value) * 100,
+      precision: Number(point.value.precision),
+      recall: Number(point.value.recall),
+      accuracy: Number(point.value.accuracy),
+      falsePositiveCostTotal: point.value.falsePositiveCostTotal,
+      falseNegativeCostTotal: point.value.falseNegativeCostTotal,
+      totalCost: point.value.totalCost,
+    });
+  }
+
+  return ok({ ...base.value, curve });
 };
 
 export const expectedValue = (

@@ -2,14 +2,15 @@
 import type { ComponentType } from "react";
 import GeneratedSim0LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
 import GeneratedSim1GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim2TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim3BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim4PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim5LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim6BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim7EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim8VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim9OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim2ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
+import GeneratedSim3TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim4BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim5PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim6LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim7BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim8EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim9VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim10OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -82,6 +83,15 @@ export const knowledgeGraph = {
     level: "Freshmore",
     module: "ISTD/CSD",
     status: "draft",
+  },
+  {
+    id: "sutd/dai/confusion-matrix-thresholds",
+    conceptId: "confusion-matrix-thresholds",
+    title: "Confusion Matrix Thresholds",
+    subject: "dai",
+    level: "Freshmore",
+    module: "Design and Artificial Intelligence",
+    status: "reviewed",
   },
   {
     id: "sutd/dai/trust-calibration",
@@ -163,6 +173,12 @@ export const knowledgeGraph = {
   { from: "sutd/asd/load-path-and-daylight-tradeoff", to: "sutd/asd/structural-systems", kind: "downstream" },
   { from: "sutd/asd/load-path-and-daylight-tradeoff", to: "sutd/asd/building-performance", kind: "downstream" },
   { from: "sutd/asd/load-path-and-daylight-tradeoff", to: "sutd/asd/passive-design", kind: "sibling" },
+  { from: "sutd/dai/trust-calibration", to: "sutd/dai/confusion-matrix-thresholds", kind: "prerequisite" },
+  { from: "sutd/dai/probability", to: "sutd/dai/confusion-matrix-thresholds", kind: "prerequisite" },
+  { from: "sutd/dai/classification", to: "sutd/dai/confusion-matrix-thresholds", kind: "prerequisite" },
+  { from: "sutd/dai/confusion-matrix-thresholds", to: "sutd/dai/fairness-auditing", kind: "downstream" },
+  { from: "sutd/dai/confusion-matrix-thresholds", to: "sutd/dai/model-governance", kind: "downstream" },
+  { from: "sutd/dai/confusion-matrix-thresholds", to: "sutd/dai/trust-calibration", kind: "sibling" },
   { from: "sutd/epd/pid-step-response", to: "sutd/epd/bode-stability-margin", kind: "prerequisite" },
   { from: "sutd/epd/transfer-functions", to: "sutd/epd/bode-stability-margin", kind: "prerequisite" },
   { from: "sutd/epd/feedback-control", to: "sutd/epd/bode-stability-margin", kind: "prerequisite" },
@@ -311,6 +327,71 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/dai/confusion-matrix-thresholds",
+    branch: "sutd",
+    subject: "Dai",
+    level: "Freshmore",
+    module: "Design and Artificial Intelligence",
+    title: "Confusion Matrix Thresholds",
+    summary: "Tune a classifier threshold and explain how false positives, false negatives, precision, recall, and stakeholder cost move together.",
+    syllabusRef: "SUTD DAI / Human-centred AI decision thresholds",
+    status: "reviewed",
+    packageId: "confusion-matrix-thresholds",
+    simId: "confusion-matrix-thresholds",
+    predictPrompt: "Before revealing the counts, predict what happens if the threshold is raised from 65% to 80% while false negatives are costly.",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Accuracy is enough for every deployment",
+      "A single threshold is neutral for all groups",
+    ],
+    transferProblem: "A loan-review model flags applications for manual review. False positives slow down eligible applicants; false negatives approve risky applications. Choose a threshold, compute the confusion matrix, and justify the policy using precision, recall, and cost units.",
+    firstPrinciples: "A classifier score is not yet a decision. A threshold turns the score into a positive or negative prediction. Once the threshold is chosen, every case lands in one of four cells: true positive, false positive, true negative, or false negative. The confusion matrix is the accounting table that keeps those cells visible.",
+    keyDefinitions: [
+      "Threshold: the minimum model score needed to predict the positive class.",
+      "True positive (TP): predicted positive and actually positive.",
+      "False positive (FP): predicted positive but actually negative.",
+      "True negative (TN): predicted negative and actually negative.",
+      "False negative (FN): predicted negative but actually positive.",
+    ],
+    canonicalExamples: [
+      "A clinic triage model where false negatives miss urgent patients.",
+      "A loan-review model where false positives delay eligible applicants.",
+      "A moderation queue where the threshold trades missed harmful content against unnecessary human review.",
+    ],
+    problemSolvingSteps: [
+      "What threshold is being tested?",
+      "How does each case update the confusion matrix?",
+      "Which metrics describe the count pattern?",
+      "What cost follows from the two error cells?",
+      "Who is helped or harmed by this threshold?",
+    ],
+    prerequisites: [
+      "Trust Calibration",
+      "Probability",
+      "Classification",
+    ],
+    downstream: [
+      "Fairness Auditing",
+      "Model Governance",
+    ],
+    siblings: [
+      "Trust Calibration",
+    ],
+    sims: [
+      {
+        id: "confusion-matrix-thresholds",
+        harnessId: "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds",
+        title: "Confusion Matrix Threshold Explorer",
+        interactionType: "decision-matrix",
+        component: GeneratedSim2ConfusionMatrixThresholdsConfusionMatrixThresholds,
+      },
+    ],
+  },
+  {
     id: "sutd/dai/trust-calibration",
     branch: "sutd",
     subject: "Dai",
@@ -359,7 +440,7 @@ export const containers = [
         harnessId: "sutd/dai/trust-calibration/trust-calibration",
         title: "Trust Calibration Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim2TrustCalibrationTrustCalibration,
+        component: GeneratedSim3TrustCalibrationTrustCalibration,
       },
     ],
   },
@@ -425,7 +506,7 @@ export const containers = [
         harnessId: "sutd/epd/bode-stability-margin/bode-stability-margin",
         title: "Bode Margin Reader",
         interactionType: "comparative-matrix",
-        component: GeneratedSim3BodeStabilityMarginBodeStabilityMargin,
+        component: GeneratedSim4BodeStabilityMarginBodeStabilityMargin,
       },
     ],
   },
@@ -479,7 +560,7 @@ export const containers = [
         harnessId: "sutd/epd/pid-step-response/pid-step-response",
         title: "PID Step Response Explorer",
         interactionType: "comparative-matrix",
-        component: GeneratedSim4PidStepResponsePidStepResponse,
+        component: GeneratedSim5PidStepResponsePidStepResponse,
       },
     ],
   },
@@ -523,7 +604,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim5LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim6LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -586,7 +667,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim6BayesUpdatingBayesUpdating,
+        component: GeneratedSim7BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -640,7 +721,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim7EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim8EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -692,7 +773,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim8VectorTransformationsVectorTransformations,
+        component: GeneratedSim9VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -758,7 +839,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim9OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim10OdePhasePortraitOdePhasePortrait,
       },
     ],
   }
