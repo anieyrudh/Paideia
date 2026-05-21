@@ -15,3 +15,4 @@ export { default as VectorTransformations } from "./vector-transformations.js";
 export { default as NewsvendorCriticalFractile } from "./newsvendor-critical-fractile.js";
 export { default as ConfusionMatrixThresholds } from "./confusion-matrix-thresholds.js";
 export { default as MarkovChainSteadyState } from "./markov-chain-steady-state.js";
+export { default as FairnessThresholdAudit } from "./fairness-threshold-audit.js";

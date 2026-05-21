@@ -1,0 +1,33 @@
+controls:
+  - id: global-threshold-percent
+    label: "Global threshold"
+    kind: slider
+    unit: "%"
+    min: 40
+    max: 85
+    step: 5
+    default: 70
+  - id: group-b-adjustment-percent
+    label: "Group B threshold adjustment"
+    kind: slider
+    unit: "percentage points"
+    min: -15
+    max: 15
+    step: 5
+    default: 0
+  - id: false-negative-cost
+    label: "False-negative cost"
+    kind: slider
+    unit: "cost units"
+    min: 10
+    max: 45
+    step: 5
+    default: 25
+  - id: false-positive-cost
+    label: "False-positive cost"
+    kind: slider
+    unit: "cost units"
+    min: 2
+    max: 18
+    step: 2
+    default: 6

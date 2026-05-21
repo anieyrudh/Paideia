@@ -1,0 +1,21 @@
+runtime:
+  package_id: sutd/dai/fairness-threshold-audit
+  sim_id: fairness-threshold-audit
+  stages:
+    - predict
+    - manipulate
+    - observe
+    - explain
+  prediction_gate:
+    required: true
+    rationale_required: true
+    reveal_target: "group audit tables, chart, formula panel, and annotated stakeholder interpretation"
+  persistence:
+    prediction: local
+    manipulation_state: session
+  accessibility:
+    keyboard_controls: true
+    critical_axe_violations_allowed: 0
+  visual_smoke_targets:
+    - desktop
+    - mobile

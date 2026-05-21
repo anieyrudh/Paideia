@@ -1,0 +1,12 @@
+graph TD
+  CMT["Confusion matrix thresholds"] --> FTA["Fairness threshold audit"]
+  TC["Trust calibration"] --> FTA
+  PR["Probability and rates"] --> FTA
+  FTA --> GM["Group confusion matrix comparison"]
+  GM --> RG["Recall gap"]
+  GM --> HG["Weighted harm gap"]
+  RG --> GOV["Model governance"]
+  HG --> GOV
+  GOV --> MON["Deployment monitoring"]
+  M1["Misconception: equal accuracy means equal impact"] -. challenged by .-> GM
+  M2["Misconception: one global threshold is always fairest"] -. tested by .-> HG

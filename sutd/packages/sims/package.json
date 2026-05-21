@@ -25,7 +25,8 @@
     "./eigenvector-transformations": "./src/eigenvector-transformations.tsx",
     "./newsvendor-critical-fractile": "./src/newsvendor-critical-fractile.tsx",
     "./confusion-matrix-thresholds": "./src/confusion-matrix-thresholds.tsx",
-    "./markov-chain-steady-state": "./src/markov-chain-steady-state.tsx"
+    "./markov-chain-steady-state": "./src/markov-chain-steady-state.tsx",
+    "./fairness-threshold-audit": "./src/fairness-threshold-audit.tsx"
   },
   "scripts": {
     "build": "tsc -b",

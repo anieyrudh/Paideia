@@ -2553,7 +2553,7 @@ entries:
   - id: sutd.dai.fairness-threshold-audit
     title: "Fairness Threshold Audit"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: DAI human-centred AI
     discipline: design-ai
     reuse_status: curriculum-wrapper
