@@ -1,0 +1,122 @@
+schema_version: "1.0.0"
+id: fourier-mode-superposition
+aliases:
+  - Fourier series modes
+  - sine basis reconstruction
+  - modal reconstruction
+branch: sutd
+subject: smt
+level: "Undergraduate"
+module: "Science, Mathematics and Technology"
+title: "Fourier Mode Superposition"
+one_line_summary: "Build a target shape from sine basis modes, interpret each coefficient, and compare reconstruction error as modes are added."
+syllabus_ref: "SUTD SMT / mathematical modelling / Fourier series and modal approximation"
+prerequisites:
+  - linear-system-stability
+  - oscillations
+  - eigenvectors
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    For the selected target shape, which basis mode do you expect to carry the largest coefficient after projection?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Mode 1, the longest single arch"
+      - "Mode 2, the two-lobed shape"
+      - "Mode 3, the three-lobed shape"
+      - "Mode 4, the four-lobed shape"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: heat-rod-initial-temperature
+    prompt: |
+      A one metre rod has an initial temperature profile with one warm lobe near the centre and cooler fixed ends. Choose the sine basis modes you would keep first, compute the first four coefficients, and state which added mode most reduces the reconstruction error.
+    surface_form: "heat-equation initial-temperature decomposition"
+    same_concept_check: "The setting changes from a string-shaped displacement to an initial temperature profile, but the work is still sine-basis projection, coefficient interpretation, and reconstruction-error comparison."
+    rubric_path: problem-solving/heat-rod-initial-temperature.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-21"
+      author: "Codex"
+      summary: "Built SUTD SMT Fourier mode superposition product slice with prediction-gated reconstruction lab."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-21"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-21"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "One mode must explain every shape"
+    description: "Learners may try to make a single sine arch match every target, instead of reading the residual as evidence that more orthogonal modes are needed."
+    evidence_source: "Kreyszig, Advanced Engineering Mathematics, Fourier series chapters."
+    surface_in_predict: true
+  - name: "Coefficients are arbitrary visual sliders"
+    description: "Learners may treat modal coefficients as cosmetic controls, rather than signed projections that measure how much of each basis shape is present."
+    evidence_source: "Strang, Introduction to Linear Algebra, orthogonality and Fourier series sections."
+    surface_in_predict: true
+sources:
+  - citation: "Kreyszig, E. Advanced Engineering Mathematics. 10th ed. Wiley, 2011."
+    publication_year: 2011
+    license: "Publisher copyright"
+    seab_alignment: n/a
+  - citation: "Strang, G. Introduction to Linear Algebra. 5th ed. Wellesley-Cambridge Press, 2016."
+    publication_year: 2016
+    license: "Publisher copyright"
+    seab_alignment: n/a
+  - citation: "Haberman, R. Applied Partial Differential Equations with Fourier Series and Boundary Value Problems. 5th ed. Pearson, 2013."
+    publication_year: 2013
+    license: "Publisher copyright"
+    seab_alignment: n/a
+language: en

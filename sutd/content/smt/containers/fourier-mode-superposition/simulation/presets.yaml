@@ -1,0 +1,13 @@
+presets:
+  - id: centre-pluck
+    label: "Centre pluck"
+    target_shape: centre-pluck
+    coefficients_m: [0.12, 0, 0, 0]
+  - id: two-lobed
+    label: "Two-lobed shape"
+    target_shape: two-lobed
+    coefficients_m: [0, 0.12, 0, 0]
+  - id: edge-rich
+    label: "Edge-rich kink"
+    target_shape: edge-rich
+    coefficients_m: [0.08, -0.03, 0.04, -0.02]

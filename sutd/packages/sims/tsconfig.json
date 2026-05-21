@@ -18,6 +18,7 @@
     { "path": "../../../core/graph-layout" },
     { "path": "../../../core/linear-algebra" },
     { "path": "../../../core/mechanics" },
+    { "path": "../../../core/numerical-math" },
     { "path": "../../../core/optimization" },
     { "path": "../../../core/plotting" },
     { "path": "../../../core/prediction-gate" },

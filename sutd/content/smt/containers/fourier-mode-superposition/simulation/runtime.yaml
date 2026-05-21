@@ -1,0 +1,13 @@
+runtime:
+  pmoe_t:
+    predict: "Learner commits which mode should dominate before seeing coefficients or error."
+    manipulate: "Learner selects the target family and sets the first four coefficients."
+    observe: "Lab reveals reconstruction, projection coefficients, RMS error, and formula substitution."
+    explain: "Learner connects coefficient sign and residual shape to a transfer PDE context."
+  prediction_gate:
+    required: true
+    blocks:
+      - projection coefficients
+      - reconstruction error
+      - target/reconstruction chart
+      - formula panel

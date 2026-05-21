@@ -29,15 +29,16 @@ import GeneratedSim25SutdEsdNewsvendorCriticalFractileNewsvendorCriticalFractile
 import GeneratedSim26SutdFreshmoreBayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
 import GeneratedSim27SutdFreshmoreEigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
 import GeneratedSim28SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim29SutdSmtLinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim30SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
-import GeneratedSim31SharedCsGradientDescentLandscapeLossSurfaceStepper from "@paideia/shared-sims/gradient-descent-landscape";
-import GeneratedSim32SharedMathBayesUpdatingBayesUpdating from "@paideia/shared-sims/bayes-updating";
-import GeneratedSim33SharedMathCentralLimitTheoremCltSampler from "@paideia/shared-sims/central-limit-theorem";
-import GeneratedSim34SharedMathEigenvectorTransformationsEigenvectorTransformations from "@paideia/shared-sims/eigenvector-transformations";
-import GeneratedSim35SharedMathOdePhasePortraitOdePhasePortrait from "@paideia/shared-sims/ode-phase-portrait";
-import GeneratedSim36SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab from "@paideia/shared-sims/circuit-phasor-reasoning";
-import GeneratedSim37SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
+import GeneratedSim29SutdSmtFourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
+import GeneratedSim30SutdSmtLinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim31SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim32SharedCsGradientDescentLandscapeLossSurfaceStepper from "@paideia/shared-sims/gradient-descent-landscape";
+import GeneratedSim33SharedMathBayesUpdatingBayesUpdating from "@paideia/shared-sims/bayes-updating";
+import GeneratedSim34SharedMathCentralLimitTheoremCltSampler from "@paideia/shared-sims/central-limit-theorem";
+import GeneratedSim35SharedMathEigenvectorTransformationsEigenvectorTransformations from "@paideia/shared-sims/eigenvector-transformations";
+import GeneratedSim36SharedMathOdePhasePortraitOdePhasePortrait from "@paideia/shared-sims/ode-phase-portrait";
+import GeneratedSim37SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab from "@paideia/shared-sims/circuit-phasor-reasoning";
+import GeneratedSim38SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -191,50 +192,55 @@ export const simRegistry = {
     title: "2D Matrix-Vector Transformation Explorer",
     Component: GeneratedSim28SutdFreshmoreVectorTransformationsVectorTransformations,
   },
+  "sutd/smt/fourier-mode-superposition/fourier-mode-superposition": {
+    id: "sutd/smt/fourier-mode-superposition/fourier-mode-superposition",
+    title: "Fourier Mode Superposition Lab",
+    Component: GeneratedSim29SutdSmtFourierModeSuperpositionFourierModeSuperposition,
+  },
   "sutd/smt/linear-system-stability/linear-system-stability": {
     id: "sutd/smt/linear-system-stability/linear-system-stability",
     title: "Linear System Stability Lab",
-    Component: GeneratedSim29SutdSmtLinearSystemStabilityLinearSystemStability,
+    Component: GeneratedSim30SutdSmtLinearSystemStabilityLinearSystemStability,
   },
   "sutd/smt/ode-phase-portrait/ode-phase-portrait": {
     id: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
     title: "ODE Phase Portrait Explorer",
-    Component: GeneratedSim30SutdSmtOdePhasePortraitOdePhasePortrait,
+    Component: GeneratedSim31SutdSmtOdePhasePortraitOdePhasePortrait,
   },
   "shared/cs/gradient-descent-landscape/loss-surface-stepper": {
     id: "shared/cs/gradient-descent-landscape/loss-surface-stepper",
     title: "Loss Surface Stepper",
-    Component: GeneratedSim31SharedCsGradientDescentLandscapeLossSurfaceStepper,
+    Component: GeneratedSim32SharedCsGradientDescentLandscapeLossSurfaceStepper,
   },
   "shared/math/bayes-updating/bayes-updating": {
     id: "shared/math/bayes-updating/bayes-updating",
     title: "Bayes Updating Explorer",
-    Component: GeneratedSim32SharedMathBayesUpdatingBayesUpdating,
+    Component: GeneratedSim33SharedMathBayesUpdatingBayesUpdating,
   },
   "shared/math/central-limit-theorem/clt-sampler": {
     id: "shared/math/central-limit-theorem/clt-sampler",
     title: "Central Limit Theorem Sampler",
-    Component: GeneratedSim33SharedMathCentralLimitTheoremCltSampler,
+    Component: GeneratedSim34SharedMathCentralLimitTheoremCltSampler,
   },
   "shared/math/eigenvector-transformations/eigenvector-transformations": {
     id: "shared/math/eigenvector-transformations/eigenvector-transformations",
     title: "Eigenvector Direction Lab",
-    Component: GeneratedSim34SharedMathEigenvectorTransformationsEigenvectorTransformations,
+    Component: GeneratedSim35SharedMathEigenvectorTransformationsEigenvectorTransformations,
   },
   "shared/math/ode-phase-portrait/ode-phase-portrait": {
     id: "shared/math/ode-phase-portrait/ode-phase-portrait",
     title: "ODE Phase Portrait Explorer",
-    Component: GeneratedSim35SharedMathOdePhasePortraitOdePhasePortrait,
+    Component: GeneratedSim36SharedMathOdePhasePortraitOdePhasePortrait,
   },
   "shared/physics/circuit-phasor-reasoning/circuit-phasor-lab": {
     id: "shared/physics/circuit-phasor-reasoning/circuit-phasor-lab",
     title: "Circuit Phasor Lab",
-    Component: GeneratedSim36SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab,
+    Component: GeneratedSim37SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab,
   },
   "shared/physics/free-body-diagram-mechanics/force-balance": {
     id: "shared/physics/free-body-diagram-mechanics/force-balance",
     title: "Force Balance Explorer",
-    Component: GeneratedSim37SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
+    Component: GeneratedSim38SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
   }
 } satisfies Record<string, SimHarnessEntry>;
 

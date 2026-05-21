@@ -1,0 +1,36 @@
+controls:
+  - id: target-shape
+    label: "Target shape"
+    type: selector
+    options:
+      - centre-pluck
+      - two-lobed
+      - edge-rich
+  - id: coefficient-one
+    label: "Mode 1 coefficient"
+    type: slider
+    min: -0.24
+    max: 0.24
+    step: 0.005
+    unit: m
+  - id: coefficient-two
+    label: "Mode 2 coefficient"
+    type: slider
+    min: -0.24
+    max: 0.24
+    step: 0.005
+    unit: m
+  - id: coefficient-three
+    label: "Mode 3 coefficient"
+    type: slider
+    min: -0.24
+    max: 0.24
+    step: 0.005
+    unit: m
+  - id: coefficient-four
+    label: "Mode 4 coefficient"
+    type: slider
+    min: -0.24
+    max: 0.24
+    step: 0.005
+    unit: m

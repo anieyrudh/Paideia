@@ -1,0 +1,66 @@
+schema_version: "1.0.0"
+concept_id: fourier-mode-superposition
+title: "Fourier Mode Superposition Concept Map"
+nodes:
+  - id: linear-system-stability
+    label: "Linear system stability"
+    kind: prerequisite
+    relationship: "Modes become independent state directions in many linear models."
+  - id: oscillations
+    label: "Oscillations"
+    kind: prerequisite
+    relationship: "Standing-wave modes are repeated spatial oscillations."
+  - id: eigenvectors
+    label: "Eigenvectors"
+    kind: prerequisite
+    relationship: "Each mode acts like a basis direction with its own coefficient."
+  - id: sine-basis
+    label: "Sine basis modes"
+    kind: core
+    relationship: "sin(n pi x / L) supplies the fixed-end mode shapes."
+  - id: projection-coefficient
+    label: "Projection coefficient"
+    kind: core
+    relationship: "The integral measures the signed amount of a mode in the target."
+  - id: superposition
+    label: "Superposition"
+    kind: core
+    relationship: "The reconstruction is the sum of selected modal contributions."
+  - id: reconstruction-error
+    label: "Reconstruction error"
+    kind: outcome
+    relationship: "Residual error compares the target and the truncated mode sum."
+  - id: signal-processing
+    label: "Signal processing"
+    kind: downstream
+    relationship: "Frequency-like coefficients help filter and compress signals."
+  - id: partial-differential-equations
+    label: "Partial differential equations"
+    kind: downstream
+    relationship: "Heat and wave equations often evolve each mode separately."
+edges:
+  - from: linear-system-stability
+    to: superposition
+  - from: oscillations
+    to: sine-basis
+  - from: eigenvectors
+    to: projection-coefficient
+  - from: sine-basis
+    to: projection-coefficient
+  - from: projection-coefficient
+    to: superposition
+  - from: superposition
+    to: reconstruction-error
+  - from: reconstruction-error
+    to: signal-processing
+  - from: reconstruction-error
+    to: partial-differential-equations
+misconceptions:
+  - id: one-mode-explains-shape
+    statement: "One mode must explain every shape."
+    correction: "A truncated sum improves by adding independent basis modes; one mode is only a first approximation."
+    surfaced_in: predict
+  - id: arbitrary-coefficients
+    statement: "Coefficients are arbitrary visual sliders."
+    correction: "A coefficient is a signed projection integral with displacement units."
+    surfaced_in: observe

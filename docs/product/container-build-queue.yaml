@@ -2599,7 +2599,7 @@ entries:
   - id: sutd.smt.fourier-mode-superposition
     title: "Fourier Mode Superposition"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: SMT mathematical modelling
     discipline: science
     reuse_status: curriculum-wrapper
