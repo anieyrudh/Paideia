@@ -1,0 +1,75 @@
+schema_version: "1.0.0"
+concept_id: dynamic-programming-state-recursion
+title: "Dynamic Programming State Recursion"
+nodes:
+  - id: recursion
+    label: "Recursion"
+    kind: prerequisite
+  - id: arrays
+    label: "Arrays and tables"
+    kind: prerequisite
+  - id: graph-search-and-shortest-paths
+    label: "Graph search and shortest paths"
+    kind: prerequisite
+  - id: state-definition
+    label: "State definition"
+    kind: core
+  - id: recurrence
+    label: "Recurrence relation"
+    kind: core
+  - id: memo-table
+    label: "Memoisation table"
+    kind: core
+  - id: repeated-work
+    label: "Repeated subproblems"
+    kind: core
+  - id: shortest-path-dp
+    label: "Shortest-path dynamic programming"
+    kind: downstream
+  - id: reinforcement-learning
+    label: "Reinforcement learning"
+    kind: downstream
+  - id: misconception-any-loop
+    label: "Misconception: any loop is DP"
+    kind: misconception
+  - id: misconception-changes-result
+    label: "Misconception: memoisation changes result"
+    kind: misconception
+edges:
+  - from: recursion
+    to: recurrence
+    relation: prerequisite-for
+  - from: arrays
+    to: memo-table
+    relation: prerequisite-for
+  - from: graph-search-and-shortest-paths
+    to: shortest-path-dp
+    relation: prepares
+  - from: state-definition
+    to: recurrence
+    relation: determines
+  - from: recurrence
+    to: memo-table
+    relation: fills
+  - from: repeated-work
+    to: memo-table
+    relation: motivates
+  - from: recurrence
+    to: shortest-path-dp
+    relation: transfers-to
+  - from: memo-table
+    to: reinforcement-learning
+    relation: prepares
+  - from: misconception-any-loop
+    to: state-definition
+    relation: corrected-by
+  - from: misconception-changes-result
+    to: memo-table
+    relation: corrected-by
+misconceptions:
+  - id: misconception-any-loop
+    claim: "Dynamic programming means any loop."
+    correction: "A DP solution needs a state, recurrence, base cases, and reused overlapping subproblems."
+  - id: misconception-changes-result
+    claim: "Memoisation changes the recurrence result."
+    correction: "Memoisation stores already computed state values; it changes work done, not the recurrence value."

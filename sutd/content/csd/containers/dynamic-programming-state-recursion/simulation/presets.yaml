@@ -1,0 +1,10 @@
+presets:
+  - id: compact-five
+    label: "n = 5 compact trace"
+    state: { targetStep: 5, strategy: memoized }
+  - id: repeated-work-seven
+    label: "n = 7 repeated work"
+    state: { targetStep: 7, strategy: plain }
+  - id: larger-eight
+    label: "n = 8 larger table"
+    state: { targetStep: 8, strategy: memoized }

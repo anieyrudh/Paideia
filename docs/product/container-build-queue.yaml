@@ -1254,7 +1254,7 @@ entries:
   - id: sutd.csd.dynamic-programming-state-recursion
     title: "Dynamic Programming State Recursion"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: CSD algorithms
     discipline: cs
     reuse_status: curriculum-wrapper
@@ -1283,7 +1283,6 @@ entries:
         - memoisation changes the recurrence result
     kernel_dependencies:
       - core/sim-runtime
-      - core/algorithm-trace
       - core/graph-layout
       - core/prediction-gate
       - core/ui-sim
