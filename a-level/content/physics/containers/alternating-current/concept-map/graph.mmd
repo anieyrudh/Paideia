@@ -1,0 +1,10 @@
+graph TD
+  Circuits["Circuits"] --> AC["Alternating current"]
+  Oscillations["Oscillations"] --> AC
+  Waves["Waves"] --> AC
+  Capacitance["Capacitance"] -. capacitive reactance .- AC
+  AC --> Induction["Electromagnetic induction"]
+  AC --> Transformers["Transformers"]
+  RMSAverage["RMS is arithmetic average"] --> FrequencyRMS["Frequency changes rms directly"]
+  ResistanceOnly["Resistance alone sets AC current"] --> PhaseSign["Phase sign ignored"]
+  FrequencyRMS --> ResistanceOnly

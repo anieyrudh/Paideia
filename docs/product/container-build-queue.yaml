@@ -2188,7 +2188,7 @@ entries:
   - id: alevel.physics.alternating-current
     title: "Alternating Current"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level circuits
     discipline: physics
     reuse_status: curriculum-wrapper

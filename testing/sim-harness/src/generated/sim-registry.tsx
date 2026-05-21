@@ -3,43 +3,44 @@ import type { ComponentType } from "react";
 import GeneratedSim0ALevelMathematicsHypothesisTestingTestStatisticDecisionLab from "@paideia/a-level-math-sims/hypothesis-testing";
 import GeneratedSim1ALevelMathematicsNormalDistributionNormalAreaStandardisationLab from "@paideia/a-level-math-sims/normal-distribution";
 import GeneratedSim2ALevelMathematicsProbabilityStatisticsProbabilityStatisticsLab from "@paideia/a-level-math-sims/probability-statistics";
-import GeneratedSim3ALevelPhysicsCircuitsSeriesParallelCircuitLab from "@paideia/a-level-physics-sims/circuits";
-import GeneratedSim4ALevelPhysicsCircularMotionCentripetalForceVectorLab from "@paideia/a-level-physics-sims/circular-motion";
-import GeneratedSim5ALevelPhysicsElectricFieldsChargeFieldVectorLab from "@paideia/a-level-physics-sims/electric-fields";
-import GeneratedSim6ALevelPhysicsForcesAndEquilibriumForceBalance from "@paideia/a-level-physics-sims/forces-and-equilibrium";
-import GeneratedSim7ALevelPhysicsGravitationalFieldsInverseSquareFieldLab from "@paideia/a-level-physics-sims/gravitational-fields";
-import GeneratedSim8ALevelPhysicsKinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
-import GeneratedSim9ALevelPhysicsMomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
-import GeneratedSim10ALevelPhysicsOscillationsSimpleHarmonicMotionLab from "@paideia/a-level-physics-sims/oscillations";
-import GeneratedSim11ALevelPhysicsPhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
-import GeneratedSim12ALevelPhysicsResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
-import GeneratedSim13ALevelPhysicsScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
-import GeneratedSim14ALevelPhysicsThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
-import GeneratedSim15ALevelPhysicsWavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
-import GeneratedSim16ALevelPhysicsWorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
-import GeneratedSim17SutdAsdLoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
-import GeneratedSim18SutdAsdShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
-import GeneratedSim19SutdCsdDynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
-import GeneratedSim20SutdCsdGraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim21SutdDaiConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
-import GeneratedSim22SutdDaiTrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim23SutdEpdBodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim24SutdEpdPidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim25SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim26SutdEsdMarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
-import GeneratedSim27SutdEsdNewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim28SutdFreshmoreBayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim29SutdFreshmoreEigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim30SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim31SutdSmtLinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim32SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
-import GeneratedSim33SharedCsGradientDescentLandscapeLossSurfaceStepper from "@paideia/shared-sims/gradient-descent-landscape";
-import GeneratedSim34SharedMathBayesUpdatingBayesUpdating from "@paideia/shared-sims/bayes-updating";
-import GeneratedSim35SharedMathCentralLimitTheoremCltSampler from "@paideia/shared-sims/central-limit-theorem";
-import GeneratedSim36SharedMathEigenvectorTransformationsEigenvectorTransformations from "@paideia/shared-sims/eigenvector-transformations";
-import GeneratedSim37SharedMathOdePhasePortraitOdePhasePortrait from "@paideia/shared-sims/ode-phase-portrait";
-import GeneratedSim38SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab from "@paideia/shared-sims/circuit-phasor-reasoning";
-import GeneratedSim39SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
+import GeneratedSim3ALevelPhysicsAlternatingCurrentAcRmsPhaseLab from "@paideia/a-level-physics-sims/alternating-current";
+import GeneratedSim4ALevelPhysicsCircuitsSeriesParallelCircuitLab from "@paideia/a-level-physics-sims/circuits";
+import GeneratedSim5ALevelPhysicsCircularMotionCentripetalForceVectorLab from "@paideia/a-level-physics-sims/circular-motion";
+import GeneratedSim6ALevelPhysicsElectricFieldsChargeFieldVectorLab from "@paideia/a-level-physics-sims/electric-fields";
+import GeneratedSim7ALevelPhysicsForcesAndEquilibriumForceBalance from "@paideia/a-level-physics-sims/forces-and-equilibrium";
+import GeneratedSim8ALevelPhysicsGravitationalFieldsInverseSquareFieldLab from "@paideia/a-level-physics-sims/gravitational-fields";
+import GeneratedSim9ALevelPhysicsKinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
+import GeneratedSim10ALevelPhysicsMomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
+import GeneratedSim11ALevelPhysicsOscillationsSimpleHarmonicMotionLab from "@paideia/a-level-physics-sims/oscillations";
+import GeneratedSim12ALevelPhysicsPhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
+import GeneratedSim13ALevelPhysicsResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
+import GeneratedSim14ALevelPhysicsScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
+import GeneratedSim15ALevelPhysicsThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
+import GeneratedSim16ALevelPhysicsWavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
+import GeneratedSim17ALevelPhysicsWorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
+import GeneratedSim18SutdAsdLoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
+import GeneratedSim19SutdAsdShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
+import GeneratedSim20SutdCsdDynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
+import GeneratedSim21SutdCsdGraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
+import GeneratedSim22SutdDaiConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
+import GeneratedSim23SutdDaiTrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim24SutdEpdBodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim25SutdEpdPidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim26SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim27SutdEsdMarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
+import GeneratedSim28SutdEsdNewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim29SutdFreshmoreBayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim30SutdFreshmoreEigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim31SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim32SutdSmtLinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim33SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim34SharedCsGradientDescentLandscapeLossSurfaceStepper from "@paideia/shared-sims/gradient-descent-landscape";
+import GeneratedSim35SharedMathBayesUpdatingBayesUpdating from "@paideia/shared-sims/bayes-updating";
+import GeneratedSim36SharedMathCentralLimitTheoremCltSampler from "@paideia/shared-sims/central-limit-theorem";
+import GeneratedSim37SharedMathEigenvectorTransformationsEigenvectorTransformations from "@paideia/shared-sims/eigenvector-transformations";
+import GeneratedSim38SharedMathOdePhasePortraitOdePhasePortrait from "@paideia/shared-sims/ode-phase-portrait";
+import GeneratedSim39SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab from "@paideia/shared-sims/circuit-phasor-reasoning";
+import GeneratedSim40SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -63,190 +64,195 @@ export const simRegistry = {
     title: "Distribution and Decision Lab",
     Component: GeneratedSim2ALevelMathematicsProbabilityStatisticsProbabilityStatisticsLab,
   },
+  "a-level/physics/alternating-current/ac-rms-phase-lab": {
+    id: "a-level/physics/alternating-current/ac-rms-phase-lab",
+    title: "AC RMS and Phase Lab",
+    Component: GeneratedSim3ALevelPhysicsAlternatingCurrentAcRmsPhaseLab,
+  },
   "a-level/physics/circuits/series-parallel-circuit-lab": {
     id: "a-level/physics/circuits/series-parallel-circuit-lab",
     title: "Series-Parallel Circuit Lab",
-    Component: GeneratedSim3ALevelPhysicsCircuitsSeriesParallelCircuitLab,
+    Component: GeneratedSim4ALevelPhysicsCircuitsSeriesParallelCircuitLab,
   },
   "a-level/physics/circular-motion/centripetal-force-vector-lab": {
     id: "a-level/physics/circular-motion/centripetal-force-vector-lab",
     title: "Centripetal Force Vector Lab",
-    Component: GeneratedSim4ALevelPhysicsCircularMotionCentripetalForceVectorLab,
+    Component: GeneratedSim5ALevelPhysicsCircularMotionCentripetalForceVectorLab,
   },
   "a-level/physics/electric-fields/charge-field-vector-lab": {
     id: "a-level/physics/electric-fields/charge-field-vector-lab",
     title: "Charge Field Vector Lab",
-    Component: GeneratedSim5ALevelPhysicsElectricFieldsChargeFieldVectorLab,
+    Component: GeneratedSim6ALevelPhysicsElectricFieldsChargeFieldVectorLab,
   },
   "a-level/physics/forces-and-equilibrium/force-balance": {
     id: "a-level/physics/forces-and-equilibrium/force-balance",
     title: "Force Balance Explorer",
-    Component: GeneratedSim6ALevelPhysicsForcesAndEquilibriumForceBalance,
+    Component: GeneratedSim7ALevelPhysicsForcesAndEquilibriumForceBalance,
   },
   "a-level/physics/gravitational-fields/inverse-square-field-lab": {
     id: "a-level/physics/gravitational-fields/inverse-square-field-lab",
     title: "Inverse-Square Field Lab",
-    Component: GeneratedSim7ALevelPhysicsGravitationalFieldsInverseSquareFieldLab,
+    Component: GeneratedSim8ALevelPhysicsGravitationalFieldsInverseSquareFieldLab,
   },
   "a-level/physics/kinematics-in-one-dimension/motion-equations-lab": {
     id: "a-level/physics/kinematics-in-one-dimension/motion-equations-lab",
     title: "Motion Equations Lab",
-    Component: GeneratedSim8ALevelPhysicsKinematicsInOneDimensionMotionEquationsLab,
+    Component: GeneratedSim9ALevelPhysicsKinematicsInOneDimensionMotionEquationsLab,
   },
   "a-level/physics/momentum/momentum-collision-lab": {
     id: "a-level/physics/momentum/momentum-collision-lab",
     title: "Collision and Impulse Lab",
-    Component: GeneratedSim9ALevelPhysicsMomentumMomentumCollisionLab,
+    Component: GeneratedSim10ALevelPhysicsMomentumMomentumCollisionLab,
   },
   "a-level/physics/oscillations/simple-harmonic-motion-lab": {
     id: "a-level/physics/oscillations/simple-harmonic-motion-lab",
     title: "Simple Harmonic Motion Lab",
-    Component: GeneratedSim10ALevelPhysicsOscillationsSimpleHarmonicMotionLab,
+    Component: GeneratedSim11ALevelPhysicsOscillationsSimpleHarmonicMotionLab,
   },
   "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab": {
     id: "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab",
     title: "Measurement and Uncertainty Lab",
-    Component: GeneratedSim11ALevelPhysicsPhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
+    Component: GeneratedSim12ALevelPhysicsPhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
   },
   "a-level/physics/resolving-vectors/component-resolution": {
     id: "a-level/physics/resolving-vectors/component-resolution",
     title: "Component Resolution Explorer",
-    Component: GeneratedSim12ALevelPhysicsResolvingVectorsComponentResolution,
+    Component: GeneratedSim13ALevelPhysicsResolvingVectorsComponentResolution,
   },
   "a-level/physics/scalars-and-vectors/resultant-magnitude": {
     id: "a-level/physics/scalars-and-vectors/resultant-magnitude",
     title: "Resultant Magnitude Explorer",
-    Component: GeneratedSim13ALevelPhysicsScalarsAndVectorsResultantMagnitude,
+    Component: GeneratedSim14ALevelPhysicsScalarsAndVectorsResultantMagnitude,
   },
   "a-level/physics/thermal-physics/gas-law-energy-transfer-lab": {
     id: "a-level/physics/thermal-physics/gas-law-energy-transfer-lab",
     title: "Gas Law and Energy Transfer Lab",
-    Component: GeneratedSim14ALevelPhysicsThermalPhysicsGasLawEnergyTransferLab,
+    Component: GeneratedSim15ALevelPhysicsThermalPhysicsGasLawEnergyTransferLab,
   },
   "a-level/physics/waves/wave-superposition-lab": {
     id: "a-level/physics/waves/wave-superposition-lab",
     title: "Wave Superposition Lab",
-    Component: GeneratedSim15ALevelPhysicsWavesWaveSuperpositionLab,
+    Component: GeneratedSim16ALevelPhysicsWavesWaveSuperpositionLab,
   },
   "a-level/physics/work-energy-power/energy-transfer-lab": {
     id: "a-level/physics/work-energy-power/energy-transfer-lab",
     title: "Energy Transfer Lab",
-    Component: GeneratedSim16ALevelPhysicsWorkEnergyPowerEnergyTransferLab,
+    Component: GeneratedSim17ALevelPhysicsWorkEnergyPowerEnergyTransferLab,
   },
   "sutd/asd/load-path-and-daylight-tradeoff/load-path-and-daylight-tradeoff": {
     id: "sutd/asd/load-path-and-daylight-tradeoff/load-path-and-daylight-tradeoff",
     title: "Load Path and Daylight Tradeoff Explorer",
-    Component: GeneratedSim17SutdAsdLoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
+    Component: GeneratedSim18SutdAsdLoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
   },
   "sutd/asd/shading-daylight-heat-gain/shading-daylight-heat-gain": {
     id: "sutd/asd/shading-daylight-heat-gain/shading-daylight-heat-gain",
     title: "Shading, Daylight, and Heat Gain",
-    Component: GeneratedSim18SutdAsdShadingDaylightHeatGainShadingDaylightHeatGain,
+    Component: GeneratedSim19SutdAsdShadingDaylightHeatGainShadingDaylightHeatGain,
   },
   "sutd/csd/dynamic-programming-state-recursion/dynamic-programming-state-recursion": {
     id: "sutd/csd/dynamic-programming-state-recursion/dynamic-programming-state-recursion",
     title: "Dynamic Programming State Recursion",
-    Component: GeneratedSim19SutdCsdDynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
+    Component: GeneratedSim20SutdCsdDynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
   },
   "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths": {
     id: "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths",
     title: "Graph Search and Shortest Paths",
-    Component: GeneratedSim20SutdCsdGraphSearchAndShortestPathsGraphSearchAndShortestPaths,
+    Component: GeneratedSim21SutdCsdGraphSearchAndShortestPathsGraphSearchAndShortestPaths,
   },
   "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds": {
     id: "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds",
     title: "Confusion Matrix Threshold Explorer",
-    Component: GeneratedSim21SutdDaiConfusionMatrixThresholdsConfusionMatrixThresholds,
+    Component: GeneratedSim22SutdDaiConfusionMatrixThresholdsConfusionMatrixThresholds,
   },
   "sutd/dai/trust-calibration/trust-calibration": {
     id: "sutd/dai/trust-calibration/trust-calibration",
     title: "Trust Calibration Explorer",
-    Component: GeneratedSim22SutdDaiTrustCalibrationTrustCalibration,
+    Component: GeneratedSim23SutdDaiTrustCalibrationTrustCalibration,
   },
   "sutd/epd/bode-stability-margin/bode-stability-margin": {
     id: "sutd/epd/bode-stability-margin/bode-stability-margin",
     title: "Bode Margin Reader",
-    Component: GeneratedSim23SutdEpdBodeStabilityMarginBodeStabilityMargin,
+    Component: GeneratedSim24SutdEpdBodeStabilityMarginBodeStabilityMargin,
   },
   "sutd/epd/pid-step-response/pid-step-response": {
     id: "sutd/epd/pid-step-response/pid-step-response",
     title: "PID Step Response Explorer",
-    Component: GeneratedSim24SutdEpdPidStepResponsePidStepResponse,
+    Component: GeneratedSim25SutdEpdPidStepResponsePidStepResponse,
   },
   "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region": {
     id: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
     title: "Linear Programming Feasible Region Explorer",
-    Component: GeneratedSim25SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+    Component: GeneratedSim26SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
   },
   "sutd/esd/markov-chain-steady-state/markov-chain-steady-state": {
     id: "sutd/esd/markov-chain-steady-state/markov-chain-steady-state",
     title: "Markov Chain Steady-State Lab",
-    Component: GeneratedSim26SutdEsdMarkovChainSteadyStateMarkovChainSteadyState,
+    Component: GeneratedSim27SutdEsdMarkovChainSteadyStateMarkovChainSteadyState,
   },
   "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile": {
     id: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
     title: "Newsvendor Critical Fractile Explorer",
-    Component: GeneratedSim27SutdEsdNewsvendorCriticalFractileNewsvendorCriticalFractile,
+    Component: GeneratedSim28SutdEsdNewsvendorCriticalFractileNewsvendorCriticalFractile,
   },
   "sutd/freshmore/bayes-updating/bayes-updating": {
     id: "sutd/freshmore/bayes-updating/bayes-updating",
     title: "Bayes Updating Explorer",
-    Component: GeneratedSim28SutdFreshmoreBayesUpdatingBayesUpdating,
+    Component: GeneratedSim29SutdFreshmoreBayesUpdatingBayesUpdating,
   },
   "sutd/freshmore/eigenvector-transformations/eigenvector-transformations": {
     id: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
     title: "Eigenvector Direction Lab",
-    Component: GeneratedSim29SutdFreshmoreEigenvectorTransformationsEigenvectorTransformations,
+    Component: GeneratedSim30SutdFreshmoreEigenvectorTransformationsEigenvectorTransformations,
   },
   "sutd/freshmore/vector-transformations/vector-transformations": {
     id: "sutd/freshmore/vector-transformations/vector-transformations",
     title: "2D Matrix-Vector Transformation Explorer",
-    Component: GeneratedSim30SutdFreshmoreVectorTransformationsVectorTransformations,
+    Component: GeneratedSim31SutdFreshmoreVectorTransformationsVectorTransformations,
   },
   "sutd/smt/linear-system-stability/linear-system-stability": {
     id: "sutd/smt/linear-system-stability/linear-system-stability",
     title: "Linear System Stability Lab",
-    Component: GeneratedSim31SutdSmtLinearSystemStabilityLinearSystemStability,
+    Component: GeneratedSim32SutdSmtLinearSystemStabilityLinearSystemStability,
   },
   "sutd/smt/ode-phase-portrait/ode-phase-portrait": {
     id: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
     title: "ODE Phase Portrait Explorer",
-    Component: GeneratedSim32SutdSmtOdePhasePortraitOdePhasePortrait,
+    Component: GeneratedSim33SutdSmtOdePhasePortraitOdePhasePortrait,
   },
   "shared/cs/gradient-descent-landscape/loss-surface-stepper": {
     id: "shared/cs/gradient-descent-landscape/loss-surface-stepper",
     title: "Loss Surface Stepper",
-    Component: GeneratedSim33SharedCsGradientDescentLandscapeLossSurfaceStepper,
+    Component: GeneratedSim34SharedCsGradientDescentLandscapeLossSurfaceStepper,
   },
   "shared/math/bayes-updating/bayes-updating": {
     id: "shared/math/bayes-updating/bayes-updating",
     title: "Bayes Updating Explorer",
-    Component: GeneratedSim34SharedMathBayesUpdatingBayesUpdating,
+    Component: GeneratedSim35SharedMathBayesUpdatingBayesUpdating,
   },
   "shared/math/central-limit-theorem/clt-sampler": {
     id: "shared/math/central-limit-theorem/clt-sampler",
     title: "Central Limit Theorem Sampler",
-    Component: GeneratedSim35SharedMathCentralLimitTheoremCltSampler,
+    Component: GeneratedSim36SharedMathCentralLimitTheoremCltSampler,
   },
   "shared/math/eigenvector-transformations/eigenvector-transformations": {
     id: "shared/math/eigenvector-transformations/eigenvector-transformations",
     title: "Eigenvector Direction Lab",
-    Component: GeneratedSim36SharedMathEigenvectorTransformationsEigenvectorTransformations,
+    Component: GeneratedSim37SharedMathEigenvectorTransformationsEigenvectorTransformations,
   },
   "shared/math/ode-phase-portrait/ode-phase-portrait": {
     id: "shared/math/ode-phase-portrait/ode-phase-portrait",
     title: "ODE Phase Portrait Explorer",
-    Component: GeneratedSim37SharedMathOdePhasePortraitOdePhasePortrait,
+    Component: GeneratedSim38SharedMathOdePhasePortraitOdePhasePortrait,
   },
   "shared/physics/circuit-phasor-reasoning/circuit-phasor-lab": {
     id: "shared/physics/circuit-phasor-reasoning/circuit-phasor-lab",
     title: "Circuit Phasor Lab",
-    Component: GeneratedSim38SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab,
+    Component: GeneratedSim39SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab,
   },
   "shared/physics/free-body-diagram-mechanics/force-balance": {
     id: "shared/physics/free-body-diagram-mechanics/force-balance",
     title: "Force Balance Explorer",
-    Component: GeneratedSim39SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
+    Component: GeneratedSim40SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
   }
 } satisfies Record<string, SimHarnessEntry>;
 

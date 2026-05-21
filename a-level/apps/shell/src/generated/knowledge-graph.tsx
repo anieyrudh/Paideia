@@ -3,20 +3,21 @@ import type { ComponentType } from "react";
 import GeneratedSim0HypothesisTestingTestStatisticDecisionLab from "@paideia/a-level-math-sims/hypothesis-testing";
 import GeneratedSim1NormalDistributionNormalAreaStandardisationLab from "@paideia/a-level-math-sims/normal-distribution";
 import GeneratedSim2ProbabilityStatisticsProbabilityStatisticsLab from "@paideia/a-level-math-sims/probability-statistics";
-import GeneratedSim3CircuitsSeriesParallelCircuitLab from "@paideia/a-level-physics-sims/circuits";
-import GeneratedSim4CircularMotionCentripetalForceVectorLab from "@paideia/a-level-physics-sims/circular-motion";
-import GeneratedSim5ElectricFieldsChargeFieldVectorLab from "@paideia/a-level-physics-sims/electric-fields";
-import GeneratedSim6ForcesAndEquilibriumForceBalance from "@paideia/a-level-physics-sims/forces-and-equilibrium";
-import GeneratedSim7GravitationalFieldsInverseSquareFieldLab from "@paideia/a-level-physics-sims/gravitational-fields";
-import GeneratedSim8KinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
-import GeneratedSim9MomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
-import GeneratedSim10OscillationsSimpleHarmonicMotionLab from "@paideia/a-level-physics-sims/oscillations";
-import GeneratedSim11PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
-import GeneratedSim12ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
-import GeneratedSim13ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
-import GeneratedSim14ThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
-import GeneratedSim15WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
-import GeneratedSim16WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
+import GeneratedSim3AlternatingCurrentAcRmsPhaseLab from "@paideia/a-level-physics-sims/alternating-current";
+import GeneratedSim4CircuitsSeriesParallelCircuitLab from "@paideia/a-level-physics-sims/circuits";
+import GeneratedSim5CircularMotionCentripetalForceVectorLab from "@paideia/a-level-physics-sims/circular-motion";
+import GeneratedSim6ElectricFieldsChargeFieldVectorLab from "@paideia/a-level-physics-sims/electric-fields";
+import GeneratedSim7ForcesAndEquilibriumForceBalance from "@paideia/a-level-physics-sims/forces-and-equilibrium";
+import GeneratedSim8GravitationalFieldsInverseSquareFieldLab from "@paideia/a-level-physics-sims/gravitational-fields";
+import GeneratedSim9KinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
+import GeneratedSim10MomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
+import GeneratedSim11OscillationsSimpleHarmonicMotionLab from "@paideia/a-level-physics-sims/oscillations";
+import GeneratedSim12PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
+import GeneratedSim13ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
+import GeneratedSim14ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
+import GeneratedSim15ThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
+import GeneratedSim16WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
+import GeneratedSim17WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -97,6 +98,15 @@ export const knowledgeGraph = {
     subject: "mathematics",
     level: "H2",
     module: "Probability and Statistics",
+    status: "reviewed",
+  },
+  {
+    id: "a-level/physics/alternating-current",
+    conceptId: "alternating-current",
+    title: "Alternating Current",
+    subject: "physics",
+    level: "H2",
+    module: "Electricity and Magnetism",
     status: "reviewed",
   },
   {
@@ -243,6 +253,13 @@ export const knowledgeGraph = {
   { from: "a-level/mathematics/probability-statistics", to: "a-level/mathematics/inference", kind: "downstream" },
   { from: "a-level/mathematics/probability-statistics", to: "a-level/mathematics/modelling", kind: "downstream" },
   { from: "a-level/mathematics/probability-statistics", to: "a-level/mathematics/binomial-distribution", kind: "sibling" },
+  { from: "a-level/physics/circuits", to: "a-level/physics/alternating-current", kind: "prerequisite" },
+  { from: "a-level/physics/oscillations", to: "a-level/physics/alternating-current", kind: "prerequisite" },
+  { from: "a-level/physics/waves", to: "a-level/physics/alternating-current", kind: "prerequisite" },
+  { from: "a-level/physics/alternating-current", to: "a-level/physics/electromagnetic-induction", kind: "downstream" },
+  { from: "a-level/physics/alternating-current", to: "a-level/physics/transformers", kind: "downstream" },
+  { from: "a-level/physics/alternating-current", to: "a-level/physics/capacitance", kind: "sibling" },
+  { from: "a-level/physics/alternating-current", to: "a-level/physics/magnetic-fields", kind: "sibling" },
   { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/circuits", kind: "prerequisite" },
   { from: "a-level/physics/circuits", to: "a-level/physics/alternating-current", kind: "downstream" },
   { from: "a-level/physics/circuits", to: "a-level/physics/electromagnetism", kind: "downstream" },
@@ -492,6 +509,76 @@ export const containers = [
     ],
   },
   {
+    id: "a-level/physics/alternating-current",
+    branch: "a-level",
+    subject: "Physics",
+    level: "H2",
+    module: "Electricity and Magnetism",
+    title: "Alternating Current",
+    summary: "Connect sinusoidal supplies, rms values, impedance, phase, and power in AC circuits.",
+    syllabusRef: "9478 / Section V / Electricity and Magnetism",
+    status: "reviewed",
+    packageId: "alternating-current",
+    simId: "ac-rms-phase-lab",
+    predictPrompt: "A sinusoidal supply has the same peak voltage but its frequency is doubled. Before revealing the lab, what happens to the rms voltage of the supply?",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "RMS is an arithmetic average voltage",
+      "Higher frequency always means higher rms value",
+      "Resistance alone sets current in every AC circuit",
+      "Leading and lagging phase are interchangeable",
+    ],
+    transferProblem: "A laptop adapter is connected to a 12 V rms sinusoidal supply at 50 Hz. Its equivalent series load is R = 40 ohm, L = 0.18 H, and C = 120 microF. Calculate the rms current, decide whether current leads or lags the voltage, and find the real power transferred.",
+    firstPrinciples: "An alternating current reverses direction periodically because the supply potential difference is sinusoidal. The instantaneous voltage may be positive, zero, or negative, but the circuit can still transfer energy because power depends on the product of voltage and current. RMS values package the heating effect of a sinusoid into the equivalent steady DC value: for a sine wave, V_rms = V_peak / sqrt(2) and I_rms = I_peak / sqrt(2).",
+    keyDefinitions: [
+      "Instantaneous value: the value of voltage or current at one moment, such as v = V_peak sin(omega t).",
+      "Peak value: the maximum magnitude reached by a sinusoidal voltage or current.",
+      "RMS value: the root-mean-square value; the DC value that gives the same mean power in a resistor.",
+      "Frequency: cycles per second, measured in hertz; it controls how fast the waveform repeats.",
+      "Reactance: opposition from an inductor or capacitor in AC, measured in ohms.",
+    ],
+    canonicalExamples: [
+      "A 12 V rms sinusoidal supply has peak voltage 12 sqrt(2) V, independent of frequency when peak voltage is fixed.",
+      "In a series RLC circuit, raising frequency increases X_L = 2 pi f L and decreases X_C = 1 / (2 pi f C).",
+      "An inductive load has positive net reactance, so current lags voltage; a capacitive load has negative net reactance, so current leads voltage.",
+    ],
+    problemSolvingSteps: [
+      "Are the voltage and current values peak, instantaneous, or rms?",
+      "Are L, C, and f in SI units?",
+      "What are the inductive and capacitive reactances?",
+      "What is the net impedance magnitude?",
+      "What rms current flows through the series load?",
+      "Does the current lead or lag the voltage?",
+      "What real power is transferred?",
+    ],
+    prerequisites: [
+      "Circuits",
+      "Oscillations",
+      "Waves",
+    ],
+    downstream: [
+      "Electromagnetic Induction",
+      "Transformers",
+    ],
+    siblings: [
+      "Capacitance",
+      "Magnetic Fields",
+    ],
+    sims: [
+      {
+        id: "ac-rms-phase-lab",
+        harnessId: "a-level/physics/alternating-current/ac-rms-phase-lab",
+        title: "AC RMS and Phase Lab",
+        interactionType: "diagram-builder",
+        component: GeneratedSim3AlternatingCurrentAcRmsPhaseLab,
+      },
+    ],
+  },
+  {
     id: "a-level/physics/circuits",
     branch: "a-level",
     subject: "Physics",
@@ -552,7 +639,7 @@ export const containers = [
         harnessId: "a-level/physics/circuits/series-parallel-circuit-lab",
         title: "Series-Parallel Circuit Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim3CircuitsSeriesParallelCircuitLab,
+        component: GeneratedSim4CircuitsSeriesParallelCircuitLab,
       },
     ],
   },
@@ -602,7 +689,7 @@ export const containers = [
         harnessId: "a-level/physics/circular-motion/centripetal-force-vector-lab",
         title: "Centripetal Force Vector Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim4CircularMotionCentripetalForceVectorLab,
+        component: GeneratedSim5CircularMotionCentripetalForceVectorLab,
       },
     ],
   },
@@ -670,7 +757,7 @@ export const containers = [
         harnessId: "a-level/physics/electric-fields/charge-field-vector-lab",
         title: "Charge Field Vector Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim5ElectricFieldsChargeFieldVectorLab,
+        component: GeneratedSim6ElectricFieldsChargeFieldVectorLab,
       },
     ],
   },
@@ -723,7 +810,7 @@ export const containers = [
         harnessId: "a-level/physics/forces-and-equilibrium/force-balance",
         title: "Force Balance Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim6ForcesAndEquilibriumForceBalance,
+        component: GeneratedSim7ForcesAndEquilibriumForceBalance,
       },
     ],
   },
@@ -779,7 +866,7 @@ export const containers = [
         harnessId: "a-level/physics/gravitational-fields/inverse-square-field-lab",
         title: "Inverse-Square Field Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim7GravitationalFieldsInverseSquareFieldLab,
+        component: GeneratedSim8GravitationalFieldsInverseSquareFieldLab,
       },
     ],
   },
@@ -847,7 +934,7 @@ export const containers = [
         harnessId: "a-level/physics/kinematics-in-one-dimension/motion-equations-lab",
         title: "Motion Equations Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim8KinematicsInOneDimensionMotionEquationsLab,
+        component: GeneratedSim9KinematicsInOneDimensionMotionEquationsLab,
       },
     ],
   },
@@ -912,7 +999,7 @@ export const containers = [
         harnessId: "a-level/physics/momentum/momentum-collision-lab",
         title: "Collision and Impulse Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim9MomentumMomentumCollisionLab,
+        component: GeneratedSim10MomentumMomentumCollisionLab,
       },
     ],
   },
@@ -980,7 +1067,7 @@ export const containers = [
         harnessId: "a-level/physics/oscillations/simple-harmonic-motion-lab",
         title: "Simple Harmonic Motion Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim10OscillationsSimpleHarmonicMotionLab,
+        component: GeneratedSim11OscillationsSimpleHarmonicMotionLab,
       },
     ],
   },
@@ -1045,7 +1132,7 @@ export const containers = [
         harnessId: "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab",
         title: "Measurement and Uncertainty Lab",
         interactionType: "decision-matrix",
-        component: GeneratedSim11PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
+        component: GeneratedSim12PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
       },
     ],
   },
@@ -1108,7 +1195,7 @@ export const containers = [
         harnessId: "a-level/physics/resolving-vectors/component-resolution",
         title: "Component Resolution Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim12ResolvingVectorsComponentResolution,
+        component: GeneratedSim13ResolvingVectorsComponentResolution,
       },
     ],
   },
@@ -1170,7 +1257,7 @@ export const containers = [
         harnessId: "a-level/physics/scalars-and-vectors/resultant-magnitude",
         title: "Resultant Magnitude Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim13ScalarsAndVectorsResultantMagnitude,
+        component: GeneratedSim14ScalarsAndVectorsResultantMagnitude,
       },
     ],
   },
@@ -1238,7 +1325,7 @@ export const containers = [
         harnessId: "a-level/physics/thermal-physics/gas-law-energy-transfer-lab",
         title: "Gas Law and Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim14ThermalPhysicsGasLawEnergyTransferLab,
+        component: GeneratedSim15ThermalPhysicsGasLawEnergyTransferLab,
       },
     ],
   },
@@ -1302,7 +1389,7 @@ export const containers = [
         harnessId: "a-level/physics/waves/wave-superposition-lab",
         title: "Wave Superposition Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim15WavesWaveSuperpositionLab,
+        component: GeneratedSim16WavesWaveSuperpositionLab,
       },
     ],
   },
@@ -1367,7 +1454,7 @@ export const containers = [
         harnessId: "a-level/physics/work-energy-power/energy-transfer-lab",
         title: "Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim16WorkEnergyPowerEnergyTransferLab,
+        component: GeneratedSim17WorkEnergyPowerEnergyTransferLab,
       },
     ],
   }
