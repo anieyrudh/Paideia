@@ -1208,7 +1208,7 @@ entries:
   - id: sutd.esd.newsvendor-critical-fractile
     title: "Newsvendor Critical Fractile"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: ESD stochastic optimisation
     discipline: systems
     reuse_status: curriculum-wrapper

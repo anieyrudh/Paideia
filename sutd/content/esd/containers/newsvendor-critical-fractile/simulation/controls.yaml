@@ -1,0 +1,36 @@
+controls:
+  - id: demand-setting
+    label: "Demand setting"
+    kind: selector
+    default: "steady"
+    options:
+      - value: "steady"
+        label: "Stable campus cafe"
+      - value: "launch"
+        label: "Product launch"
+      - value: "volatile"
+        label: "Festival weather risk"
+  - id: order-quantity
+    label: "Trial order quantity"
+    kind: slider
+    default: 90
+    min: 40
+    max: 150
+    step: 5
+    unit: "units"
+  - id: underage-cost
+    label: "Shortage cost per unit"
+    kind: slider
+    default: 18
+    min: 2
+    max: 30
+    step: 1
+    unit: "SGD/unit"
+  - id: overage-cost
+    label: "Leftover cost per unit"
+    kind: slider
+    default: 6
+    min: 2
+    max: 30
+    step: 1
+    unit: "SGD/unit"

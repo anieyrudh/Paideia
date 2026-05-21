@@ -1,0 +1,22 @@
+presets:
+  - id: balanced-cafe
+    label: "balanced cafe"
+    state:
+      scenario: "steady"
+      orderQuantity: 90
+      underageCost: 18
+      overageCost: 6
+  - id: launch-stockout-risk
+    label: "launch stockout risk"
+    state:
+      scenario: "launch"
+      orderQuantity: 120
+      underageCost: 26
+      overageCost: 5
+  - id: leftover-sensitive-festival
+    label: "leftover-sensitive festival"
+    state:
+      scenario: "volatile"
+      orderQuantity: 80
+      underageCost: 7
+      overageCost: 22

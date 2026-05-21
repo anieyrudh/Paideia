@@ -9,11 +9,12 @@ import GeneratedSim5TrustCalibrationTrustCalibration from "@paideia/sutd-sims/tr
 import GeneratedSim6BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
 import GeneratedSim7PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
 import GeneratedSim8LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim9BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim10EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim11VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim12LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim13OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim9NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim10BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim11EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim12VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim13LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim14OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -151,6 +152,15 @@ export const knowledgeGraph = {
     status: "draft",
   },
   {
+    id: "sutd/esd/newsvendor-critical-fractile",
+    conceptId: "newsvendor-critical-fractile",
+    title: "Newsvendor Critical Fractile",
+    subject: "esd",
+    level: "SUTD ESD",
+    module: "Stochastic Optimisation and Supply Chain Decisions",
+    status: "reviewed",
+  },
+  {
     id: "sutd/freshmore/bayes-updating",
     conceptId: "bayes-updating",
     title: "Bayes Updating",
@@ -226,6 +236,13 @@ export const knowledgeGraph = {
   { from: "sutd/epd/feedback-control", to: "sutd/epd/pid-step-response", kind: "prerequisite" },
   { from: "sutd/epd/pid-step-response", to: "sutd/epd/bode-plots", kind: "downstream" },
   { from: "sutd/epd/pid-step-response", to: "sutd/epd/state-space-control", kind: "downstream" },
+  { from: "sutd/esd/probability-distributions", to: "sutd/esd/newsvendor-critical-fractile", kind: "prerequisite" },
+  { from: "sutd/esd/expected-value", to: "sutd/esd/newsvendor-critical-fractile", kind: "prerequisite" },
+  { from: "sutd/esd/linear-programming-feasible-region", to: "sutd/esd/newsvendor-critical-fractile", kind: "prerequisite" },
+  { from: "sutd/esd/newsvendor-critical-fractile", to: "sutd/esd/inventory-policy", kind: "downstream" },
+  { from: "sutd/esd/newsvendor-critical-fractile", to: "sutd/esd/supply-chain-risk", kind: "downstream" },
+  { from: "sutd/esd/newsvendor-critical-fractile", to: "sutd/esd/bayes-updating", kind: "sibling" },
+  { from: "sutd/esd/newsvendor-critical-fractile", to: "sutd/esd/linear-programming-feasible-region", kind: "sibling" },
   { from: "sutd/freshmore/basic-probability", to: "sutd/freshmore/bayes-updating", kind: "prerequisite" },
   { from: "sutd/freshmore/conditional-probability", to: "sutd/freshmore/bayes-updating", kind: "prerequisite" },
   { from: "sutd/freshmore/bayes-updating", to: "sutd/freshmore/bayesian-inference", kind: "downstream" },
@@ -748,6 +765,72 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/esd/newsvendor-critical-fractile",
+    branch: "sutd",
+    subject: "Esd",
+    level: "SUTD ESD",
+    module: "Stochastic Optimisation and Supply Chain Decisions",
+    title: "Newsvendor Critical Fractile",
+    summary: "Balance shortage and leftover costs to choose the demand fractile for a one-period stocking decision.",
+    syllabusRef: "SUTD ESD stochastic optimisation / supply-chain inventory modelling",
+    status: "reviewed",
+    packageId: "newsvendor-critical-fractile",
+    simId: "newsvendor-critical-fractile",
+    predictPrompt: "If one missed sale costs far more than one leftover unit, where should the stocking target move?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "The optimal stock is always mean demand",
+      "A higher service level is always cheaper",
+    ],
+    transferProblem: "A one-day lab-kit pop-up faces uncertain demand at 50, 70, 90, 110, and 130 kits. A missed kit costs 24 SGD and a leftover kit costs 8 SGD. Compute the critical fractile, choose the smallest demand point whose cumulative probability reaches it, and explain whether the answer should be above or below mean demand.",
+    firstPrinciples: "A one-period seller has to choose stock before demand is known. Ordering too little creates shortage cost; ordering too much creates leftover cost. The critical fractile converts those two unit costs into a target cumulative probability, then chooses the smallest order quantity whose demand CDF reaches that target.",
+    keyDefinitions: [
+      "Underage cost: the cost of being short by one unit, such as lost margin or penalty.",
+      "Overage cost: the cost of having one leftover unit, such as holding, disposal, or markdown loss.",
+      "Critical fractile: the target service level C_under / (C_under + C_over).",
+      "Service level: the probability demand is no more than the chosen stock level, written as F(Q).",
+      "Expected mismatch cost: the probability-weighted shortage and leftover cost for a trial order quantity.",
+    ],
+    canonicalExamples: [
+      "A campus cafe chooses how many boxed lunches to prepare for a one-day event.",
+      "A launch retailer chooses stock before demand is known and cannot reorder within the selling window.",
+      "A festival vendor compares missed-sales cost with unsold-perishable cost.",
+    ],
+    problemSolvingSteps: [
+      "What is the shortage cost and what is the leftover cost?",
+      "What target probability does the cost balance imply?",
+      "Where does the demand CDF first reach that target?",
+      "Is this quantity above, near, or below mean demand, and why?",
+      "What does the chosen service level mean in plain language?",
+    ],
+    prerequisites: [
+      "Probability Distributions",
+      "Expected Value",
+      "Linear Programming Feasible Region",
+    ],
+    downstream: [
+      "Inventory Policy",
+      "Supply-chain Risk",
+    ],
+    siblings: [
+      "Bayes Updating",
+      "Linear Programming Feasible Region",
+    ],
+    sims: [
+      {
+        id: "newsvendor-critical-fractile",
+        harnessId: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
+        title: "Newsvendor Critical Fractile Explorer",
+        interactionType: "decision-matrix",
+        component: GeneratedSim9NewsvendorCriticalFractileNewsvendorCriticalFractile,
+      },
+    ],
+  },
+  {
     id: "sutd/freshmore/bayes-updating",
     branch: "sutd",
     subject: "Freshmore",
@@ -806,7 +889,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim9BayesUpdatingBayesUpdating,
+        component: GeneratedSim10BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -860,7 +943,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim10EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim11EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -912,7 +995,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim11VectorTransformationsVectorTransformations,
+        component: GeneratedSim12VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -969,7 +1052,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim12LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim13LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -1035,7 +1118,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim13OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim14OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

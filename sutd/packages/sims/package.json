@@ -20,6 +20,7 @@
     "./vector-transformations": "./src/vector-transformations.tsx",
     "./bayes-updating": "./src/bayes-updating.tsx",
     "./eigenvector-transformations": "./src/eigenvector-transformations.tsx",
+    "./newsvendor-critical-fractile": "./src/newsvendor-critical-fractile.tsx",
     "./confusion-matrix-thresholds": "./src/confusion-matrix-thresholds.tsx"
   },
   "scripts": {
