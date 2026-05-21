@@ -61,6 +61,7 @@ export const createContainerEmbed = (): HypothesisTestingEmbedApi => {
   return {
     async load(target: Element): Promise<void> {
       targetElement?.removeAttribute("data-paideia-theme");
+      targetElement?.removeAttribute("data-paideia-accent");
       targetElement = target;
     },
     saveState(): HypothesisTestingEmbedState {

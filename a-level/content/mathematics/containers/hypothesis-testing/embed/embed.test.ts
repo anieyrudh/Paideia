@@ -16,6 +16,7 @@ describe("hypothesis testing embed contract", () => {
 
     await embed.load(secondTarget);
     expect(firstTarget.hasAttribute("data-paideia-theme")).toBe(false);
+    expect(firstTarget.hasAttribute("data-paideia-accent")).toBe(false);
 
     const resumedState = {
       alpha: 0.01,

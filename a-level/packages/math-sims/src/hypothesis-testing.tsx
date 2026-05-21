@@ -2,9 +2,12 @@ import { useMemo } from "react";
 import { LineChart } from "@paideia/charting";
 import type { TSimulationSpec } from "@paideia/content-schema";
 import type { PredictionEvent } from "@paideia/prediction-gate";
-import { zScore } from "@paideia/probability-stats";
 import {
-  err,
+  normalMeanHypothesisTest,
+  type NormalMeanHypothesisTestAlpha,
+  type NormalMeanHypothesisTestAlternative,
+} from "@paideia/probability-stats";
+import {
   ok,
   type ConceptPackageId,
   type KernelResult,
@@ -16,14 +19,14 @@ export const hypothesisTestingPackageId = "hypothesis-testing" as ConceptPackage
 export const hypothesisTestingSimId = "test-statistic-decision-lab";
 export type HypothesisTestingPredictionEvent = PredictionEvent;
 
-export type HypothesisTail = "greater" | "less" | "two-sided";
+export type HypothesisTail = NormalMeanHypothesisTestAlternative;
 
 export interface HypothesisTestingState {
   readonly nullMean: number;
   readonly observedMean: number;
   readonly populationStandardDeviation: number;
   readonly sampleSize: number;
-  readonly alpha: number;
+  readonly alpha: NormalMeanHypothesisTestAlpha;
   readonly tail: HypothesisTail;
 }
 
@@ -32,7 +35,7 @@ export interface HypothesisTestingDecision {
   readonly observedMean: number;
   readonly standardError: number;
   readonly z: number;
-  readonly alpha: number;
+  readonly alpha: NormalMeanHypothesisTestAlpha;
   readonly criticalBoundary: number;
   readonly rejectNull: boolean;
   readonly pValueComparison: string;
@@ -188,32 +191,19 @@ const tailOptions: readonly { readonly value: HypothesisTail; readonly label: st
   { value: "two-sided", label: "H1: mean is different" },
 ];
 
-const criticalTable = {
-  greater: {
-    0.1: 1.282,
-    0.05: 1.645,
-    0.01: 2.326,
-  },
-  less: {
-    0.1: 1.282,
-    0.05: 1.645,
-    0.01: 2.326,
-  },
-  "two-sided": {
-    0.1: 1.645,
-    0.05: 1.96,
-    0.01: 2.576,
-  },
-} as const satisfies Record<HypothesisTail, Record<number, number>>;
-
 const clamp = (value: number, min: number, max: number): number =>
   Math.min(max, Math.max(min, value));
 
 const integer = (value: number): number => Math.round(value);
 
-const supportedAlpha = (value: number): 0.1 | 0.05 | 0.01 => {
+const supportedAlpha = (value: number): NormalMeanHypothesisTestAlpha => {
   if (value === 0.1 || value === 0.05 || value === 0.01) return value;
   return 0.05;
+};
+
+const supportedTail = (value: unknown): HypothesisTail => {
+  if (value === "greater" || value === "less" || value === "two-sided") return value;
+  return defaultState.tail;
 };
 
 const currentState = (state: Partial<HypothesisTestingState>): HypothesisTestingState => ({
@@ -226,7 +216,7 @@ const currentState = (state: Partial<HypothesisTestingState>): HypothesisTesting
   ),
   sampleSize: integer(clamp(state.sampleSize ?? defaultState.sampleSize, 16, 100)),
   alpha: supportedAlpha(state.alpha ?? defaultState.alpha),
-  tail: state.tail ?? defaultState.tail,
+  tail: supportedTail(state.tail),
 });
 
 const roundTo = (value: number, places: number): number => {
@@ -249,40 +239,35 @@ const criticalRegion = (tail: HypothesisTail, boundary: number): string => {
   return `|z| >= ${formatNumber(boundary, 3)}`;
 };
 
-const inCriticalRegion = (tail: HypothesisTail, z: number, boundary: number): boolean => {
-  if (tail === "greater") return z >= boundary;
-  if (tail === "less") return z <= -boundary;
-  return Math.abs(z) >= boundary;
-};
-
 export const hypothesisTestingModel = (
   state: HypothesisTestingState,
 ): KernelResult<HypothesisTestingModel> => {
-  const standardError = state.populationStandardDeviation / Math.sqrt(state.sampleSize);
-  if (!Number.isFinite(standardError) || standardError <= 0) {
-    return err("numerical-instability", "Standard error must be positive and finite");
-  }
-
-  const z = zScore(state.observedMean, state.nullMean, standardError);
-  if (!z.ok) return z;
-
-  const alpha = supportedAlpha(state.alpha);
-  const criticalBoundary = criticalTable[state.tail][alpha];
-  const rejectNull = inCriticalRegion(state.tail, z.value, criticalBoundary);
-  const pValueComparison = rejectNull ? `p < ${formatAlpha(alpha)}` : `p >= ${formatAlpha(alpha)}`;
+  const decision = normalMeanHypothesisTest({
+    nullMean: state.nullMean,
+    observedMean: state.observedMean,
+    populationStandardDeviation: state.populationStandardDeviation,
+    sampleSize: state.sampleSize,
+    alpha: state.alpha,
+    alternative: state.tail,
+  });
+  if (!decision.ok) return decision;
+  const pValueComparison =
+    decision.value.pValueRelation === "less-than-alpha"
+      ? `p < ${formatAlpha(decision.value.alpha)}`
+      : `p >= ${formatAlpha(decision.value.alpha)}`;
 
   return ok({
     state,
     decision: {
-      nullMean: state.nullMean,
-      observedMean: state.observedMean,
-      standardError,
-      z: z.value,
-      alpha,
-      criticalBoundary,
-      rejectNull,
+      nullMean: decision.value.nullMean,
+      observedMean: decision.value.observedMean,
+      standardError: decision.value.standardError,
+      z: decision.value.z,
+      alpha: decision.value.alpha,
+      criticalBoundary: decision.value.criticalBoundary,
+      rejectNull: decision.value.rejectNull,
       pValueComparison,
-      criticalRegion: criticalRegion(state.tail, criticalBoundary),
+      criticalRegion: criticalRegion(decision.value.alternative, decision.value.criticalBoundary),
     },
   });
 };
