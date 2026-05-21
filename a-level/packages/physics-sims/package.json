@@ -17,11 +17,12 @@
     "./kinematics-one-dimension": "./src/kinematics-one-dimension.tsx",
     "./work-energy-power": "./src/work-energy-power.tsx",
     "./momentum": "./src/momentum.tsx",
-    "./waves": "./src/waves.tsx"
+    "./waves": "./src/waves.tsx",
+    "./thermal-physics": "./src/thermal-physics.tsx"
   },
   "scripts": {
     "build": "tsc -b",
-    "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts src/measurement-uncertainty.test.ts src/kinematics-one-dimension.test.ts src/forces-and-equilibrium.test.ts src/work-energy-power.test.ts src/momentum.test.ts src/waves.test.ts src/circuits.test.ts src/gravitational-fields.test.ts src/circular-motion.test.ts",
+    "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts src/measurement-uncertainty.test.ts src/kinematics-one-dimension.test.ts src/forces-and-equilibrium.test.ts src/work-energy-power.test.ts src/momentum.test.ts src/waves.test.ts src/thermal-physics.test.ts src/circuits.test.ts src/gravitational-fields.test.ts src/circular-motion.test.ts",
     "lint": "tsc -b --pretty false",
     "typecheck": "tsc -b --pretty false"
   },
@@ -32,6 +33,7 @@
     "@paideia/function-eval": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/mechanics": "workspace:*",
+    "@paideia/numerical-math": "workspace:*",
     "@paideia/plotting": "workspace:*",
     "@paideia/prediction-gate": "workspace:*",
     "@paideia/shared": "workspace:*",

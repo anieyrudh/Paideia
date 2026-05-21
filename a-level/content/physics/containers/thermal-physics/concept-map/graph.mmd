@@ -1,0 +1,12 @@
+graph TD
+  units["Physical quantities and units"] --> thermal["Thermal Physics"]
+  energy["Work, energy, power"] --> thermal
+  thermal --> gas["Ideal gases"]
+  thermal --> internal["Internal energy"]
+  thermal --> balloon["Weather balloon transfer problem"]
+
+  celsiusTrap["Celsius in gas law"] --> kelvin["Convert to kelvin"]
+  kelvin --> gasLaw["pV = nRT"]
+  tempEnergy["Temperature equals energy"] --> heatTransfer["Q = mc Delta T"]
+  volumeTrap["More volume means more pressure"] --> controlledVars["Hold n and T fixed"]
+  controlledVars --> gasLaw

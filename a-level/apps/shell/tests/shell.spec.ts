@@ -92,6 +92,18 @@ test("reveals the work-energy-power route from generated catalogue data", async 
   await expect(page.getByLabel("Observation unlocked")).toContainText("+30.00 J");
 });
 
+test("keeps the active thermal container when topbar lab links scroll", async ({ page }) => {
+  await page.goto("/#a-level%2Fphysics%2Fthermal-physics");
+
+  await expect(page.getByRole("heading", { name: "Thermal Physics" })).toBeVisible();
+  await page.getByRole("link", { name: "Start lab" }).click();
+
+  await expect(page).toHaveURL(/#a-level%2Fphysics%2Fthermal-physics$/);
+  await expect(page.getByRole("heading", { name: "Thermal Physics" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Gas Law and Energy Transfer Lab" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Set up thermal lab" })).toBeVisible();
+});
+
 test("reveals the probability-statistics route from generated catalogue data", async ({ page }) => {
   await page.goto("/#a-level/mathematics/probability-statistics");
 

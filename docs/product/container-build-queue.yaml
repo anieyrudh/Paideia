@@ -1948,7 +1948,7 @@ entries:
   - id: alevel.physics.thermal-physics
     title: "Thermal Physics"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level thermal physics
     discipline: physics
     reuse_status: curriculum-wrapper
