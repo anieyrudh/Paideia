@@ -1,0 +1,21 @@
+steps:
+  - id: name-parameter
+    label: "Name the parameter"
+    learner_action: "Identify that the interval estimates the population mean and keep the measurement units visible."
+    success_check: "The answer names the population mean, not the sample mean, as the target parameter."
+  - id: compute-standard-error
+    label: "Compute standard error"
+    learner_action: "Substitute sigma and n into SE = sigma / sqrt(n)."
+    success_check: "The standard error is positive and has the same units as the sample mean."
+  - id: choose-multiplier
+    label: "Choose z-star"
+    learner_action: "Map the confidence level to the two-sided normal multiplier."
+    success_check: "90%, 95%, and 99% use 1.645, 1.960, and 2.576 respectively."
+  - id: build-interval
+    label: "Build interval"
+    learner_action: "Calculate xbar - z*SE and xbar + z*SE."
+    success_check: "The sample mean is the centre and the endpoints are reported in context units."
+  - id: interpret
+    label: "Interpret"
+    learner_action: "Use repeated-sampling confidence wording and avoid assigning probability to the fixed parameter."
+    success_check: "The interpretation says what the method captures in repeated samples and checks any claimed mean against the endpoints."

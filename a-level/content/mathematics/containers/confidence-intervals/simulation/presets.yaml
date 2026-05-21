@@ -1,0 +1,25 @@
+presets:
+  - id: exam-marks
+    label: "Exam marks"
+    state:
+      sampleMean: 68
+      populationStandardDeviation: 9
+      sampleSize: 36
+      confidenceLevel: 0.95
+      comparisonMean: 65
+  - id: high-confidence
+    label: "High confidence"
+    state:
+      sampleMean: 68
+      populationStandardDeviation: 9
+      sampleSize: 36
+      confidenceLevel: 0.99
+      comparisonMean: 65
+  - id: larger-sample
+    label: "Larger sample"
+    state:
+      sampleMean: 68
+      populationStandardDeviation: 9
+      sampleSize: 81
+      confidenceLevel: 0.95
+      comparisonMean: 65

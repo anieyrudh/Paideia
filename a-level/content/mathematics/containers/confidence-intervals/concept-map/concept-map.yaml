@@ -1,0 +1,49 @@
+schema_version: "1.0.0"
+concept_id: confidence-intervals
+prerequisites:
+  - id: probability-statistics
+    title: "Probability and Statistics"
+    relationship: "Expected value, variance, and sampling variability supply the language for sample means."
+    status: available
+  - id: normal-distribution
+    title: "Normal Distribution"
+    relationship: "Normal critical multipliers define the two-sided confidence interval."
+    status: planned
+  - id: hypothesis-testing
+    title: "Hypothesis Testing"
+    relationship: "Both use standard error and critical values, but confidence intervals estimate rather than test."
+    status: available
+downstream:
+  - id: model-criticism
+    title: "Model Criticism"
+    relationship: "Intervals support judging whether assumptions and data precision are enough for a claim."
+    status: planned
+  - id: sampling-distributions
+    title: "Sampling Distributions"
+    relationship: "Repeated-sampling interpretation becomes more formal through sampling distributions."
+    status: planned
+siblings:
+  - id: hypothesis-testing
+    title: "Hypothesis Testing"
+    relationship: "A two-sided test at alpha and a matching confidence interval answer related claim questions."
+    status: available
+  - id: normal-distribution
+    title: "Normal Distribution"
+    relationship: "Both depend on z-standardisation and normal multipliers."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: parameter-probability
+      label: "Parameter is treated as random after the interval is computed"
+    - id: higher-confidence-narrows
+      label: "Higher confidence is assumed to narrow the interval"
+    - id: margin-unitless
+      label: "Margin of error is reported without measurement units"
+  edges:
+    - from: parameter-probability
+      to: higher-confidence-narrows
+      label: "Both confuse method reliability with point certainty"
+    - from: higher-confidence-narrows
+      to: margin-unitless
+      label: "Both hide how z* and SE create the width"
+mermaid_source: graph.mmd

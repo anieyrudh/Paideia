@@ -1,4 +1,17 @@
 export {
+  ConfidenceIntervalsSim,
+  confidenceIntervalsModel,
+  confidenceIntervalsPackageId,
+  confidenceIntervalsSimId,
+  confidenceIntervalsSpec,
+} from "./confidence-intervals.js";
+export type {
+  ConfidenceIntervalsModel,
+  ConfidenceIntervalsPredictionEvent,
+  ConfidenceIntervalsState,
+  ConfidenceLevel,
+} from "./confidence-intervals.js";
+export {
   HypothesisTestingSim,
   hypothesisTestingModel,
   hypothesisTestingPackageId,
