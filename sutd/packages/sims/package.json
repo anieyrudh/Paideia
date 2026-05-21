@@ -13,6 +13,7 @@
     "./load-path-and-daylight-tradeoff": "./src/load-path-and-daylight-tradeoff.tsx",
     "./linear-system-stability": "./src/linear-system-stability.tsx",
     "./shading-daylight-heat-gain": "./src/shading-daylight-heat-gain.tsx",
+    "./structural-load-path-diagram": "./src/structural-load-path-diagram.tsx",
     "./ode-phase-portrait": "./src/ode-phase-portrait.tsx",
     "./pid-step-response": "./src/pid-step-response.tsx",
     "./bode-stability-margin": "./src/bode-stability-margin.tsx",

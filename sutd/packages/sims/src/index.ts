@@ -4,6 +4,7 @@ export { default as LinearProgrammingFeasibleRegion } from "./linear-programming
 export { default as LoadPathAndDaylightTradeoff } from "./load-path-and-daylight-tradeoff.js";
 export { default as LinearSystemStability } from "./linear-system-stability.js";
 export { default as ShadingDaylightHeatGain } from "./shading-daylight-heat-gain.js";
+export { default as StructuralLoadPathDiagram } from "./structural-load-path-diagram.js";
 export { default as OdePhasePortrait } from "./ode-phase-portrait.js";
 export { default as PidStepResponse } from "./pid-step-response.js";
 export { default as BodeStabilityMargin } from "./bode-stability-margin.js";

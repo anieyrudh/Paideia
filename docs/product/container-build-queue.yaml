@@ -2507,7 +2507,7 @@ entries:
   - id: sutd.asd.structural-load-path-diagram
     title: "Structural Load Path Diagram"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: ASD structural systems
     discipline: architecture
     reuse_status: curriculum-wrapper

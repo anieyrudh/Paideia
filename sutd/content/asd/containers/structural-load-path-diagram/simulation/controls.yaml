@@ -1,0 +1,44 @@
+controls:
+  - id: load-direction
+    label: "Load direction"
+    kind: selector
+    default: left-to-right
+    options:
+      - left-to-right
+      - right-to-left
+  - id: brace-size
+    label: "Brace size"
+    kind: selector
+    default: standard
+    options:
+      - light
+      - standard
+      - deep
+  - id: lateral-load
+    label: "Sideways load"
+    kind: slider
+    default: 24
+    min: 10
+    max: 54
+    step: 2
+  - id: roof-load
+    label: "Roof gravity load"
+    kind: slider
+    default: 84
+    min: 48
+    max: 132
+    step: 6
+  - id: bay-width
+    label: "Bay width"
+    kind: slider
+    default: 6
+    min: 4
+    max: 9
+    step: 0.5
+  - id: storey-height
+    label: "Storey height"
+    kind: slider
+    default: 4
+    min: 3
+    max: 6
+    step: 0.5

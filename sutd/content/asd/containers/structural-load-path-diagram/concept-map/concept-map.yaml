@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: structural-load-path-diagram
+prerequisites:
+  - id: load-path-and-daylight-tradeoff
+    title: "Load Path and Daylight Tradeoff"
+    relationship: "Earlier ASD bay reasoning with lateral loads and design tradeoffs"
+    status: available
+  - id: free-body-diagram-mechanics
+    title: "Free-Body Diagram Mechanics"
+    relationship: "Force and reaction bookkeeping for equilibrium"
+    status: available
+  - id: vector-resolution
+    title: "Vector Resolution"
+    relationship: "Resolve diagonal axial force into horizontal and vertical components"
+    status: planned
+downstream:
+  - id: structural-optimisation
+    title: "Structural Optimisation"
+    relationship: "Use load path evidence to compare member sizes and bay layouts"
+    status: planned
+  - id: facade-tradeoff-design
+    title: "Facade Tradeoff Design"
+    relationship: "Coordinate openings, braces, daylight, and structural clarity"
+    status: planned
+siblings:
+  - id: shading-daylight-heat-gain
+    title: "Shading, Daylight, and Heat Gain"
+    relationship: "Parallel ASD performance diagram with formula-backed design tradeoffs"
+    status: available
+misconception_graph:
+  nodes:
+    - id: supports-erase-loads
+      label: "Loads disappear at supports"
+    - id: equal-member-force
+      label: "All members carry equal force"
+    - id: missing-equilibrium
+      label: "External reactions are not checked"
+  edges:
+    - from: supports-erase-loads
+      to: missing-equilibrium
+      label: "hides reaction forces"
+    - from: equal-member-force
+      to: missing-equilibrium
+      label: "replaces vector resolution"
+mermaid_source: graph.mmd

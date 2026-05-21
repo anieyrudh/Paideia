@@ -2,19 +2,20 @@
 import type { ComponentType } from "react";
 import GeneratedSim0LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
 import GeneratedSim1ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
-import GeneratedSim2DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
-import GeneratedSim3GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim4ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
-import GeneratedSim5TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim6BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim7PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim8LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim9NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim10BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim11EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim12VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim13LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim14OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim2StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
+import GeneratedSim3DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
+import GeneratedSim4GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
+import GeneratedSim5ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
+import GeneratedSim6TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim7BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim8PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim9LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim10NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim11BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim12EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim13VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim14LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim15OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -86,6 +87,15 @@ export const knowledgeGraph = {
     subject: "asd",
     level: "Undergraduate core",
     module: "ASD environmental systems",
+    status: "reviewed",
+  },
+  {
+    id: "sutd/asd/structural-load-path-diagram",
+    conceptId: "structural-load-path-diagram",
+    title: "Structural Load Path Diagram",
+    subject: "asd",
+    level: "Undergraduate",
+    module: "ASD structural systems",
     status: "reviewed",
   },
   {
@@ -219,6 +229,12 @@ export const knowledgeGraph = {
   { from: "sutd/asd/shading-daylight-heat-gain", to: "sutd/asd/passive-design", kind: "downstream" },
   { from: "sutd/asd/shading-daylight-heat-gain", to: "sutd/asd/building-performance-optimisation", kind: "downstream" },
   { from: "sutd/asd/shading-daylight-heat-gain", to: "sutd/asd/load-path-and-daylight-tradeoff", kind: "sibling" },
+  { from: "sutd/asd/load-path-and-daylight-tradeoff", to: "sutd/asd/structural-load-path-diagram", kind: "prerequisite" },
+  { from: "sutd/asd/free-body-diagram-mechanics", to: "sutd/asd/structural-load-path-diagram", kind: "prerequisite" },
+  { from: "sutd/asd/vector-resolution", to: "sutd/asd/structural-load-path-diagram", kind: "prerequisite" },
+  { from: "sutd/asd/structural-load-path-diagram", to: "sutd/asd/structural-optimisation", kind: "downstream" },
+  { from: "sutd/asd/structural-load-path-diagram", to: "sutd/asd/facade-tradeoff-design", kind: "downstream" },
+  { from: "sutd/asd/structural-load-path-diagram", to: "sutd/asd/shading-daylight-heat-gain", kind: "sibling" },
   { from: "sutd/dai/trust-calibration", to: "sutd/dai/confusion-matrix-thresholds", kind: "prerequisite" },
   { from: "sutd/dai/probability", to: "sutd/dai/confusion-matrix-thresholds", kind: "prerequisite" },
   { from: "sutd/dai/classification", to: "sutd/dai/confusion-matrix-thresholds", kind: "prerequisite" },
@@ -387,6 +403,73 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/asd/structural-load-path-diagram",
+    branch: "sutd",
+    subject: "Asd",
+    level: "Undergraduate",
+    module: "ASD structural systems",
+    title: "Structural Load Path Diagram",
+    summary: "Trace lateral and gravity loads through a braced bay, calculate support reactions, and label member force demand.",
+    syllabusRef: "SUTD ASD / Structural systems / Load paths and bracing",
+    status: "reviewed",
+    packageId: "structural-load-path-diagram",
+    simId: "structural-load-path-diagram",
+    predictPrompt: "A braced bay takes a strong sideways load. Before calculating, which part is most likely to govern the load path?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Loads disappear at supports",
+      "All members carry equal force",
+    ],
+    transferProblem: "A lightweight canopy has a braced rectangular bay, a 16 kN sideways wind load, a 30 kN roof load, a 5 m bay width, and a 3 m storey height. Trace the load path, calculate the diagonal brace force and support reactions, and explain whether the windward base risks uplift.",
+    firstPrinciples: "A structural load path is the connected route by which an applied load becomes member forces and then support reactions. A diagram is complete only when every applied load has a named path to ground and the external reactions close equilibrium.",
+    keyDefinitions: [
+      "Load path: the sequence of members and joints that carries a load to supports.",
+      "Free-body diagram: an isolated body with all external loads and reactions shown.",
+      "Axial force: tension or compression along a member's centreline.",
+      "Support reaction: the force supplied by a support to close equilibrium.",
+      "Overturning: the moment from a lateral load that shifts vertical reactions between supports.",
+    ],
+    canonicalExamples: [
+      "A wind load on a braced studio bay enters the roof beam, resolves into a diagonal brace, and changes the two base reactions.",
+      "A canopy under side wind can have a small gravity load but a large overturning shift, creating uplift at the windward base.",
+      "A facade frame with a missing brace forces lateral load through bending and can overstress columns even when gravity loads are modest.",
+    ],
+    problemSolvingSteps: [
+      "Isolate the bay",
+      "Trace load entry",
+      "Resolve the diagonal force",
+      "Calculate support reactions",
+      "Label member demand",
+      "Interpret the diagram",
+      "Transfer to a new frame",
+    ],
+    prerequisites: [
+      "Load Path and Daylight Tradeoff",
+      "Free-Body Diagram Mechanics",
+      "Vector Resolution",
+    ],
+    downstream: [
+      "Structural Optimisation",
+      "Facade Tradeoff Design",
+    ],
+    siblings: [
+      "Shading, Daylight, and Heat Gain",
+    ],
+    sims: [
+      {
+        id: "structural-load-path-diagram",
+        harnessId: "sutd/asd/structural-load-path-diagram/structural-load-path-diagram",
+        title: "Structural Load Path Diagram",
+        interactionType: "diagram-builder",
+        component: GeneratedSim2StructuralLoadPathDiagramStructuralLoadPathDiagram,
+      },
+    ],
+  },
+  {
     id: "sutd/csd/dynamic-programming-state-recursion",
     branch: "sutd",
     subject: "Csd",
@@ -428,7 +511,7 @@ export const containers = [
         harnessId: "sutd/csd/dynamic-programming-state-recursion/dynamic-programming-state-recursion",
         title: "Dynamic Programming State Recursion",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim2DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
+        component: GeneratedSim3DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
       },
     ],
   },
@@ -478,7 +561,7 @@ export const containers = [
         harnessId: "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths",
         title: "Graph Search and Shortest Paths",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim3GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
+        component: GeneratedSim4GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
       },
     ],
   },
@@ -543,7 +626,7 @@ export const containers = [
         harnessId: "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds",
         title: "Confusion Matrix Threshold Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim4ConfusionMatrixThresholdsConfusionMatrixThresholds,
+        component: GeneratedSim5ConfusionMatrixThresholdsConfusionMatrixThresholds,
       },
     ],
   },
@@ -596,7 +679,7 @@ export const containers = [
         harnessId: "sutd/dai/trust-calibration/trust-calibration",
         title: "Trust Calibration Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim5TrustCalibrationTrustCalibration,
+        component: GeneratedSim6TrustCalibrationTrustCalibration,
       },
     ],
   },
@@ -662,7 +745,7 @@ export const containers = [
         harnessId: "sutd/epd/bode-stability-margin/bode-stability-margin",
         title: "Bode Margin Reader",
         interactionType: "comparative-matrix",
-        component: GeneratedSim6BodeStabilityMarginBodeStabilityMargin,
+        component: GeneratedSim7BodeStabilityMarginBodeStabilityMargin,
       },
     ],
   },
@@ -716,7 +799,7 @@ export const containers = [
         harnessId: "sutd/epd/pid-step-response/pid-step-response",
         title: "PID Step Response Explorer",
         interactionType: "comparative-matrix",
-        component: GeneratedSim7PidStepResponsePidStepResponse,
+        component: GeneratedSim8PidStepResponsePidStepResponse,
       },
     ],
   },
@@ -760,7 +843,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim8LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim9LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -826,7 +909,7 @@ export const containers = [
         harnessId: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
         title: "Newsvendor Critical Fractile Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim9NewsvendorCriticalFractileNewsvendorCriticalFractile,
+        component: GeneratedSim10NewsvendorCriticalFractileNewsvendorCriticalFractile,
       },
     ],
   },
@@ -889,7 +972,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim10BayesUpdatingBayesUpdating,
+        component: GeneratedSim11BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -943,7 +1026,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim11EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim12EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -995,7 +1078,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim12VectorTransformationsVectorTransformations,
+        component: GeneratedSim13VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -1052,7 +1135,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim13LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim14LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -1118,7 +1201,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim14OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim15OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

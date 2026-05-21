@@ -1,0 +1,123 @@
+schema_version: "1.0.0"
+id: structural-load-path-diagram
+aliases:
+  - structural load path
+  - braced bay force path
+  - reaction force diagram
+branch: sutd
+subject: asd
+level: "Undergraduate"
+module: "ASD structural systems"
+title: "Structural Load Path Diagram"
+one_line_summary: "Trace lateral and gravity loads through a braced bay, calculate support reactions, and label member force demand."
+syllabus_ref: "SUTD ASD / Structural systems / Load paths and bracing"
+prerequisites:
+  - load-path-and-daylight-tradeoff
+  - free-body-diagram-mechanics
+  - vector-resolution
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: both
+package_predict:
+  prompt: |
+    A braced bay takes a strong sideways load. Before calculating, which part is most likely to govern the load path?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The diagonal brace force, because it resolves the sideways load."
+      - "The roof load, because all members carry the same force."
+      - "The supports, because loads disappear when they reach the ground."
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: canopy-wind-load-check
+    prompt: |
+      A lightweight canopy has a braced rectangular bay, a 16 kN sideways wind load, a 30 kN roof load, a 5 m bay width, and a 3 m storey height. Trace the load path, calculate the diagonal brace force and support reactions, and explain whether the windward base risks uplift.
+    surface_form: "canopy wind-load check"
+    same_concept_check: "Same concept: the learner must resolve a sideways load through a diagonal member and use overturning equilibrium to check support reactions."
+    rubric_path: problem-solving/canopy-wind-load-check.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-21"
+      author: "Codex"
+      summary: "Built SUTD ASD structural load path diagram product slice."
+authors:
+  - "Codex"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-21"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-21"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Loads disappear at supports"
+    description: "Learners may stop tracing force once it reaches a base support, instead of checking equal and opposite reactions and overturning effects."
+    evidence_source: "Introductory statics texts require support reactions in every complete free-body diagram."
+    surface_in_predict: true
+  - name: "All members carry equal force"
+    description: "Learners may distribute load evenly across every visible member and miss that member force depends on geometry, direction, and connectivity."
+    evidence_source: "Structural analysis teaching distinguishes load path topology from equal load sharing."
+    surface_in_predict: true
+sources:
+  - citation: "OpenStax. University Physics Volume 1, Static Equilibrium and Elasticity. OpenStax, 2016."
+    url: "https://openstax.org/details/books/university-physics-volume-1"
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "Allen, Edward, and Waclaw Zalewski. Form and Forces: Designing Efficient, Expressive Structures. Wiley, 2010."
+    publication_year: 2010
+    license: "Copyright Wiley"
+    seab_alignment: n/a
+  - citation: "Ching, Francis D. K., Barry S. Onouye, and Douglas Zuberbuhler. Building Structures Illustrated: Patterns, Systems, and Design. Wiley, 2014."
+    publication_year: 2014
+    license: "Copyright Wiley"
+    seab_alignment: n/a
+language: en
