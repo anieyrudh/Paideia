@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Capacitance fallback visual</title>
+  <desc id="desc">Static formula and diagram for a charged capacitor.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <rect x="96" y="58" width="448" height="244" rx="24" fill="#f8fbff" stroke="#cbd5e1" stroke-width="4"/>
+  <line x1="282" x2="282" y1="100" y2="238" stroke="#475569" stroke-width="12"/>
+  <line x1="358" x2="358" y1="100" y2="238" stroke="#475569" stroke-width="12"/>
+  <text x="238" y="136" fill="#dc2626" font-family="Arial, sans-serif" font-size="30" font-weight="800">+</text>
+  <text x="238" y="180" fill="#dc2626" font-family="Arial, sans-serif" font-size="30" font-weight="800">+</text>
+  <text x="238" y="224" fill="#dc2626" font-family="Arial, sans-serif" font-size="30" font-weight="800">+</text>
+  <text x="392" y="136" fill="#2563eb" font-family="Arial, sans-serif" font-size="32" font-weight="800">-</text>
+  <text x="392" y="180" fill="#2563eb" font-family="Arial, sans-serif" font-size="32" font-weight="800">-</text>
+  <text x="392" y="224" fill="#2563eb" font-family="Arial, sans-serif" font-size="32" font-weight="800">-</text>
+  <text x="126" y="94" fill="#10201a" font-family="Arial, sans-serif" font-size="25" font-weight="800">Capacitance</text>
+  <text x="126" y="276" fill="#10201a" font-family="Arial, sans-serif" font-size="22" font-weight="700">Q = CV, U = 1/2 CV^2, tau = RC</text>
+</svg>

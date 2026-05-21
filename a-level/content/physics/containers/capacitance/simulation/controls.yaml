@@ -1,0 +1,37 @@
+controls:
+  - id: capacitance
+    label: Capacitance
+    unit: microF
+    kind: slider
+    min: 100
+    max: 1000
+    step: 50
+    default: 470
+    color: red
+  - id: supply-voltage
+    label: Supply voltage
+    unit: V
+    kind: slider
+    min: 2
+    max: 12
+    step: 0.5
+    default: 6
+    color: blue
+  - id: discharge-resistance
+    label: Discharge resistance
+    unit: kOhm
+    kind: slider
+    min: 1
+    max: 20
+    step: 0.5
+    default: 5
+    color: orange
+  - id: sample-time
+    label: Sample time
+    unit: ms
+    kind: slider
+    min: 0
+    max: 5000
+    step: 100
+    default: 1500
+    color: green

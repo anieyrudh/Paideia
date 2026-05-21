@@ -1,0 +1,63 @@
+id: capacitor-charge-energy-lab
+title: "Capacitor Charge and Energy Lab"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/electromagnetism
+  - core/charting
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A capacitor is connected to a fixed 6.0 V supply. Before revealing the lab, what happens if the capacitance is doubled while the voltage is kept the same?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Both stored charge and stored energy double because Q = CV and E = 1/2 CV^2 at fixed V."
+      - "Stored charge doubles, but stored energy stays the same because energy depends only on voltage."
+      - "Stored charge stays the same because capacitance is only a container size."
+      - "Stored charge and energy both halve because the same voltage is spread over more capacitance."
+    correct_index: 0
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: capacitance
+      label: "Capacitance"
+      kind: slider
+      kernel_binding: state.capacitanceMicrofarads
+      bounds: { min: 100, max: 1000, step: 50 }
+    - id: supply-voltage
+      label: "Supply voltage"
+      kind: slider
+      kernel_binding: state.supplyVoltageVolts
+      bounds: { min: 2, max: 12, step: 0.5 }
+    - id: discharge-resistance
+      label: "Discharge resistance"
+      kind: slider
+      kernel_binding: state.dischargeResistanceKilohms
+      bounds: { min: 1, max: 20, step: 0.5 }
+    - id: sample-time
+      label: "Sample time"
+      kind: slider
+      kernel_binding: state.sampleTimeMilliseconds
+      bounds: { min: 0, max: 5000, step: 100 }
+
+observe:
+  renderers:
+    - id: capacitor-charge-energy-lab
+      module: "@paideia/a-level-physics-sims/capacitance"
+      symbol: CapacitanceSim
+      props_binding: |
+        Show capacitor plates, stored charge, stored energy, time constant, discharge curve, formula substitution, units, legend, and interpretation.
+
+explain:
+  prompt: |
+    Why does capacitance tell you how much charge is separated per volt, rather than how much charge the capacitor creates?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Capacitance depends on stored charge alone"
+    - "Capacitors create charge rather than separate charge"
+    - "The discharge curve is linear because current is used up steadily"
