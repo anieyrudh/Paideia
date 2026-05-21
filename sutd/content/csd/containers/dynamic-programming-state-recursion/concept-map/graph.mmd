@@ -1,0 +1,10 @@
+flowchart LR
+  recursion["Recursion"] --> recurrence["Recurrence relation"]
+  arrays["Arrays and tables"] --> table["Memoisation table"]
+  state["State definition"] --> recurrence
+  recurrence --> table
+  repeated["Repeated subproblems"] --> table
+  table --> spdp["Shortest-path dynamic programming"]
+  table --> rl["Reinforcement learning value tables"]
+  loopMis["Misconception: any loop is DP"] -. corrected by .-> state
+  memoMis["Misconception: memoisation changes result"] -. corrected by .-> table

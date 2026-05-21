@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { traceSearch, traceSort, traceTraversal, type Graph } from "./index.js";
+import { traceLinearRecurrence, traceSearch, traceSort, traceTraversal, type Graph } from "./index.js";
 import { adjacency } from "./graph.js";
 import { replayTrace } from "./replay.js";
 
@@ -64,6 +64,25 @@ describe("@paideia/algorithm-trace sorting", () => {
     );
 
     expect(result).toEqual([1, 2]);
+  });
+});
+
+describe("@paideia/algorithm-trace dynamic programming", () => {
+  it("traces a memoised linear recurrence without changing the value", () => {
+    const result = traceLinearRecurrence(5, [1, 1], [1, 2]);
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) return;
+    expect(result.value.rows.map((row) => row.value)).toEqual([1, 1, 2, 3, 5, 8]);
+    expect(result.value.rows[5]?.dependencies).toEqual([4, 3]);
+    expect(result.value.plainCallCount).toBeGreaterThan(result.value.memoizedEvaluations);
+    expect(result.value.steps.some((step) => step.kind === "annotate")).toBe(true);
+  });
+
+  it("rejects invalid recurrence inputs", () => {
+    expect(traceLinearRecurrence(1.5, [1], [1]).ok).toBe(false);
+    expect(traceLinearRecurrence(3, [], [1]).ok).toBe(false);
+    expect(traceLinearRecurrence(3, [1], [0]).ok).toBe(false);
   });
 });
 
