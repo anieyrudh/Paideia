@@ -826,6 +826,9 @@ importers:
       '@paideia/charting':
         specifier: workspace:*
         version: link:../../../core/charting
+      '@paideia/circuits':
+        specifier: workspace:*
+        version: link:../../../core/circuits
       '@paideia/content-schema':
         specifier: workspace:*
         version: link:../../../core/content-schema

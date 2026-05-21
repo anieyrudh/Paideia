@@ -10,14 +10,15 @@ import GeneratedSim6ConfusionMatrixThresholdsConfusionMatrixThresholds from "@pa
 import GeneratedSim7TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
 import GeneratedSim8BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
 import GeneratedSim9PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim10LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim11MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
-import GeneratedSim12NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim13BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim14EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim15VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim16LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim17OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim10SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
+import GeneratedSim11LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim12MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
+import GeneratedSim13NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim14BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim15EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim16VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim17LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim18OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -164,6 +165,15 @@ export const knowledgeGraph = {
     status: "draft",
   },
   {
+    id: "sutd/epd/signal-filter-frequency-response",
+    conceptId: "signal-filter-frequency-response",
+    title: "Signal Filter Frequency Response",
+    subject: "epd",
+    level: "Undergraduate",
+    module: "EPD Control Systems",
+    status: "reviewed",
+  },
+  {
     id: "sutd/esd/linear-programming-feasible-region",
     conceptId: "linear-programming-feasible-region",
     title: "Linear Programming Feasible Region",
@@ -279,6 +289,13 @@ export const knowledgeGraph = {
   { from: "sutd/epd/feedback-control", to: "sutd/epd/pid-step-response", kind: "prerequisite" },
   { from: "sutd/epd/pid-step-response", to: "sutd/epd/bode-plots", kind: "downstream" },
   { from: "sutd/epd/pid-step-response", to: "sutd/epd/state-space-control", kind: "downstream" },
+  { from: "sutd/epd/bode-stability-margin", to: "sutd/epd/signal-filter-frequency-response", kind: "prerequisite" },
+  { from: "sutd/epd/circuit-phasor-reasoning", to: "sutd/epd/signal-filter-frequency-response", kind: "prerequisite" },
+  { from: "sutd/epd/oscillations", to: "sutd/epd/signal-filter-frequency-response", kind: "prerequisite" },
+  { from: "sutd/epd/signal-filter-frequency-response", to: "sutd/epd/control-stability", kind: "downstream" },
+  { from: "sutd/epd/signal-filter-frequency-response", to: "sutd/epd/signal-processing", kind: "downstream" },
+  { from: "sutd/epd/signal-filter-frequency-response", to: "sutd/epd/pid-step-response", kind: "sibling" },
+  { from: "sutd/epd/signal-filter-frequency-response", to: "sutd/epd/bode-stability-margin", kind: "sibling" },
   { from: "sutd/esd/probability-distributions", to: "sutd/esd/markov-chain-steady-state", kind: "prerequisite" },
   { from: "sutd/esd/matrix-multiplication", to: "sutd/esd/markov-chain-steady-state", kind: "prerequisite" },
   { from: "sutd/esd/eigenvectors", to: "sutd/esd/markov-chain-steady-state", kind: "prerequisite" },
@@ -889,6 +906,64 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/epd/signal-filter-frequency-response",
+    branch: "sutd",
+    subject: "Epd",
+    level: "Undergraduate",
+    module: "EPD Control Systems",
+    title: "Signal Filter Frequency Response",
+    summary: "Tune a one-pole RC filter and read cutoff, magnitude, phase, and circuit phasor evidence from the same frequency-response model.",
+    syllabusRef: "SUTD EPD / Signals and Systems / Control and Engineering Systems / frequency response of first-order filters",
+    status: "reviewed",
+    packageId: "signal-filter-frequency-response",
+    simId: "signal-filter-frequency-response",
+    predictPrompt: "For a one-pole RC low-pass filter, what happens to the output at exactly the cutoff frequency?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Cutoff is an on-off boundary",
+      "Phase is optional decoration",
+    ],
+    transferProblem: "A control sensor is sampled at 8 kHz. It must preserve a 400 Hz signal used by the controller while reducing 4 kHz noise before sampling. Choose a one-pole RC low-pass filter and justify the resistor-capacitor pair with cutoff frequency, magnitude at both frequencies, phase at 400 Hz, and the circuit impedance check.",
+    firstPrinciples: "For a resistor R in series with a capacitor C, the time constant is:",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "Decide whether the output is across the capacitor or resistor.",
+      "Convert kOhm to Ohm and uF to F before calculating cutoff.",
+      "Compute tau, omega_c, and f_c.",
+      "Use the transfer function for the selected output.",
+      "Evaluate H(j 2 pi f) at each required frequency.",
+      "Use X_C, |Z|, and RMS current to connect the response to the circuit.",
+      "Explain whether the filter preserves, attenuates, or delays each signal.",
+    ],
+    prerequisites: [
+      "Bode Stability Margin",
+      "Circuit Phasor Reasoning",
+      "Oscillations",
+    ],
+    downstream: [
+      "Control Stability",
+      "Signal Processing",
+    ],
+    siblings: [
+      "PID Step Response",
+      "Bode Stability Margin",
+    ],
+    sims: [
+      {
+        id: "signal-filter-frequency-response",
+        harnessId: "sutd/epd/signal-filter-frequency-response/signal-filter-frequency-response",
+        title: "RC Filter Frequency Response Lab",
+        interactionType: "comparative-matrix",
+        component: GeneratedSim10SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
+      },
+    ],
+  },
+  {
     id: "sutd/esd/linear-programming-feasible-region",
     branch: "sutd",
     subject: "Esd",
@@ -928,7 +1003,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim10LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim11LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -990,7 +1065,7 @@ export const containers = [
         harnessId: "sutd/esd/markov-chain-steady-state/markov-chain-steady-state",
         title: "Markov Chain Steady-State Lab",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim11MarkovChainSteadyStateMarkovChainSteadyState,
+        component: GeneratedSim12MarkovChainSteadyStateMarkovChainSteadyState,
       },
     ],
   },
@@ -1056,7 +1131,7 @@ export const containers = [
         harnessId: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
         title: "Newsvendor Critical Fractile Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim12NewsvendorCriticalFractileNewsvendorCriticalFractile,
+        component: GeneratedSim13NewsvendorCriticalFractileNewsvendorCriticalFractile,
       },
     ],
   },
@@ -1119,7 +1194,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim13BayesUpdatingBayesUpdating,
+        component: GeneratedSim14BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -1173,7 +1248,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim14EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim15EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -1225,7 +1300,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim15VectorTransformationsVectorTransformations,
+        component: GeneratedSim16VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -1282,7 +1357,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim16LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim17LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -1348,7 +1423,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim17OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim18OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

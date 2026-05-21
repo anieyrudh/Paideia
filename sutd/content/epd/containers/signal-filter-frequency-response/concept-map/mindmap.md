@@ -1,0 +1,23 @@
+# Signal Filter Frequency Response Mindmap
+
+- First-order RC filter
+  - Low-pass output across capacitor
+  - High-pass output across resistor
+  - Time constant: `tau = RC`
+- Cutoff frequency
+  - `omega_c = 1 / RC`
+  - `f_c = 1 / (2 pi RC)`
+  - Magnitude at cutoff is `1 / sqrt(2)` of input
+  - Decibel value is about `-3 dB`
+- Frequency response
+  - Magnitude says how much of a sinusoid remains
+  - Phase says how the output shifts in time
+  - One-pole roll-off is gradual, not an instant wall
+- Circuit interpretation
+  - Capacitor reactance changes with frequency
+  - Series impedance controls RMS current
+  - Voltage division across R or C selects high-pass or low-pass behavior
+- Transfer
+  - Sensor anti-aliasing
+  - AC coupling
+  - Noise filtering before control or measurement

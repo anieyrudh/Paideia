@@ -1,0 +1,18 @@
+state_labels:
+  mode:
+    label: Filter mode
+    values:
+      low-pass: "low-pass output across capacitor"
+      high-pass: "high-pass output across resistor"
+  resistanceKiloOhms:
+    label: Resistance
+    unit: kOhm
+    description: "Series resistance R used in tau = RC."
+  capacitanceMicroFarads:
+    label: Capacitance
+    unit: uF
+    description: "Series capacitance C used in tau = RC."
+  probeFrequencyHertz:
+    label: Probe frequency
+    unit: Hz
+    description: "Frequency where the learner reads magnitude, phase, impedance, and current."

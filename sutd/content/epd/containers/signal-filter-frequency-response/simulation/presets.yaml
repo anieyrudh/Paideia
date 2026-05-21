@@ -1,0 +1,25 @@
+presets:
+  - id: audio-low-pass-knee
+    label: "Audio low-pass near cutoff"
+    state:
+      mode: low-pass
+      resistanceKiloOhms: 10
+      capacitanceMicroFarads: 0.01
+      probeFrequencyHertz: 1600
+    takeaway: "At cutoff the output is about 0.707 of input and phase is already -45 deg."
+  - id: attenuated-high-frequency-noise
+    label: "High-frequency attenuation"
+    state:
+      mode: low-pass
+      resistanceKiloOhms: 10
+      capacitanceMicroFarads: 0.01
+      probeFrequencyHertz: 16000
+    takeaway: "One decade above cutoff is strongly attenuated but not deleted."
+  - id: ac-coupled-high-pass
+    label: "AC-coupled high-pass"
+    state:
+      mode: high-pass
+      resistanceKiloOhms: 10
+      capacitanceMicroFarads: 0.047
+      probeFrequencyHertz: 400
+    takeaway: "A high-pass filter preserves faster changes while suppressing slow drift."

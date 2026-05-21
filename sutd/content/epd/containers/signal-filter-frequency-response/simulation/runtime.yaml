@@ -1,0 +1,22 @@
+runtime:
+  package: "@paideia/sutd-sims"
+  module: "@paideia/sutd-sims/signal-filter-frequency-response"
+  export: SignalFilterFrequencyResponse
+  package_id: "sutd/epd/signal-filter-frequency-response"
+  sim_id: signal-filter-frequency-response
+  stages:
+    - predict
+    - manipulate
+    - observe
+    - explain
+  prediction_gate:
+    required: true
+    storage_scope: "sutd/epd/signal-filter-frequency-response/signal-filter-frequency-response"
+  deterministic: true
+  units:
+    resistance: kOhm
+    capacitance: uF
+    frequency: Hz
+    angular_frequency: rad/s
+    magnitude: dB
+    phase: deg

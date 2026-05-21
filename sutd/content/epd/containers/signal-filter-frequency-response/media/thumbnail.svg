@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">RC filter frequency response thumbnail</title>
+  <desc id="desc">A Bode magnitude and phase sketch beside a simple RC filter circuit.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <rect x="36" y="36" width="568" height="288" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M82 104h54m0 0 12-20 24 40 24-40 24 40 24-40 24 40 12-20h48" stroke="#334155" stroke-width="5"/>
+    <path d="M328 104h42m0-32v64m20-64v64m0-32h52" stroke="#334155" stroke-width="5"/>
+    <path d="M82 104v126h360V104" stroke="#334155" stroke-width="4"/>
+    <circle cx="82" cy="104" r="8" fill="#2563eb" stroke="#1e3a8a" stroke-width="3"/>
+    <circle cx="442" cy="104" r="8" fill="#dc2626" stroke="#7f1d1d" stroke-width="3"/>
+  </g>
+  <g transform="translate(86 188)">
+    <line x1="0" x2="460" y1="94" y2="94" stroke="#64748b" stroke-width="2"/>
+    <line x1="0" x2="0" y1="0" y2="94" stroke="#64748b" stroke-width="2"/>
+    <path d="M0 12 C96 14 150 24 210 50 S330 86 460 88" fill="none" stroke="#2563eb" stroke-width="5"/>
+    <path d="M0 76 C116 74 178 64 230 46 S338 16 460 12" fill="none" stroke="#dc2626" stroke-width="4" opacity="0.88"/>
+    <line x1="210" x2="210" y1="4" y2="94" stroke="#7c3aed" stroke-dasharray="8 8" stroke-width="3"/>
+    <text x="216" y="18" fill="#7c3aed" font-family="Inter, Arial, sans-serif" font-size="18">f_c</text>
+    <text x="6" y="-10" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="18">magnitude / phase</text>
+  </g>
+</svg>
