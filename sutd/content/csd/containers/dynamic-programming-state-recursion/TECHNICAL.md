@@ -18,7 +18,6 @@
 | Sim | Module | Symbols / role |
 |---|---|---|
 | dynamic-programming-state-recursion | `core/sim-runtime` | Declared in `simulation/simulation.yaml` |
-| dynamic-programming-state-recursion | `core/algorithm-trace` | Declared in `simulation/simulation.yaml` |
 | dynamic-programming-state-recursion | `core/graph-layout` | Declared in `simulation/simulation.yaml` |
 | dynamic-programming-state-recursion | `core/prediction-gate` | Declared in `simulation/simulation.yaml` |
 | dynamic-programming-state-recursion | `core/ui-sim` | Declared in `simulation/simulation.yaml` |
@@ -33,7 +32,6 @@ title: Dynamic Programming State Recursion
 interaction_type: algorithm-state-visualisation
 kernel_deps:
   - core/sim-runtime
-  - core/algorithm-trace
   - core/graph-layout
   - core/prediction-gate
   - core/ui-sim
@@ -107,7 +105,7 @@ pnpm graph:generate
 ## Latest Validation
 
 - Axe summary: `simulation/simulation.test.ts` includes the revealed-state check "has no serious or critical accessibility violations after reveal"; it passed in the escalated full `pnpm test` run on 2026-05-21.
-- Kernel boundary note: recurrence table values, repeated-call counts, memo hits, and trace steps are delegated to `core/algorithm-trace` through `traceLinearRecurrence`; the SUTD sim composes labels, graph layout, formula presentation, and PMOE-T flow.
+- Kernel boundary note: recurrence table values, repeated-call counts, and memo hits are package-local because `core/algorithm-trace` explicitly excludes advanced dynamic programming until a future ADR. The SUTD sim consumes shared runtime, graph layout, prediction gate, and UI controls without widening any core public API.
 
 ## Anieyrudh Filter pass
 
@@ -116,7 +114,7 @@ Filter version: aniegpt v1.0
 
 ### P0 issues
 
-- None open. The container is scoped to one queue item, uses the declared package path, and keeps observation behind the prediction gate.
+- Resolved: the first review draft widened `core/algorithm-trace` with dynamic-programming exports even though that kernel contract excludes advanced algorithms pending ADR. The recurrence trace now lives in the SUTD sim package and no core API is changed.
 
 ### P1 issues
 
@@ -124,7 +122,7 @@ Filter version: aniegpt v1.0
 
 ### High-bandwidth questions surfaced
 
-- The package intentionally uses a compact stair-count recurrence because no reusable DP kernel exists in the declared kernel set; the reusable boundaries are the runtime, trace contract, graph layout, prediction gate, and UI controls.
+- The package intentionally uses a compact stair-count recurrence because no reusable DP kernel exists in the declared kernel set; the reusable boundaries are the runtime, graph layout, prediction gate, and UI controls.
 
 ## Iteration log
 

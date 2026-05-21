@@ -3,7 +3,6 @@ title: "Dynamic Programming State Recursion"
 interaction_type: algorithm-state-visualisation
 kernel_deps:
   - core/sim-runtime
-  - core/algorithm-trace
   - core/graph-layout
   - core/prediction-gate
   - core/ui-sim

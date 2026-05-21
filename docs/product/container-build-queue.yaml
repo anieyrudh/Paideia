@@ -1283,7 +1283,6 @@ entries:
         - memoisation changes the recurrence result
     kernel_dependencies:
       - core/sim-runtime
-      - core/algorithm-trace
       - core/graph-layout
       - core/prediction-gate
       - core/ui-sim
