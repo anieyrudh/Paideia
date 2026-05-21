@@ -4,7 +4,8 @@
 The deterministic Newtonian mechanics kernel for Paideia simulations. It owns
 constant-acceleration kinematics, projectile samples, force aggregation,
 Newton's second law, work/energy/momentum helpers, one-dimensional elastic
-collisions, and simple harmonic motion. It is pure TypeScript and returns
+collisions, simple harmonic motion, and inverse-square gravitational field
+quantities. It is pure TypeScript and returns
 `KernelResult` values for expected invalid inputs.
 
 ## Public interface
@@ -29,6 +30,15 @@ Exports from `@paideia/mechanics`:
 - `kineticEnergy(massKilograms: Kilograms, speedMetresPerSecond: MetresPerSecond): KernelResult<Joules>`
 - `workEnergyTransfer(initialKineticEnergyJoules: Joules, workJoules: Joules): KernelResult<WorkEnergyTransferResult>`
 - `averagePower(workJoules: Joules, elapsedSeconds: Seconds): KernelResult<Watts>`
+- `gravitationalFieldStrength(input: GravitationalFieldInput): KernelResult<NewtonsPerKilogram>`
+- `gravitationalForce(input: GravitationalInteractionInput): KernelResult<Newtons>`
+- `gravitationalPotential(input: GravitationalFieldInput): KernelResult<JoulesPerKilogram>`
+- `gravitationalPotentialEnergy(input: GravitationalInteractionInput): KernelResult<Joules>`
+- `circularOrbitSpeed(input: GravitationalFieldInput): KernelResult<MetresPerSecond>`
+- `gravitationalAccelerationFromForce(input: GravitationalInteractionInput): KernelResult<number>`
+- `gravitationalFieldStrengthRatio(input: GravitationalComparisonInput): KernelResult<number>`
+- `gravitationalInverseSquareScale(radiusMetres: Metres): KernelResult<number>`
+- `gravitationalFieldVector2D(input: GravitationalFieldSample2DInput): KernelResult<Vector2>`
 - `momentum1D(massKilograms: Kilograms, velocityMetresPerSecond: number): KernelResult<number>`
 - `elasticCollision1D(input: ElasticCollision1DInput): KernelResult<ElasticCollision1DResult>`
 - `simpleHarmonicMotion(input: SimpleHarmonicMotionInput, elapsedSeconds: Seconds): KernelResult<SimpleHarmonicMotionSample>`

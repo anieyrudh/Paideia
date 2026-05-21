@@ -1,0 +1,25 @@
+state_labels:
+  sourceMassEarthMasses:
+    label: "Source mass"
+    meaning: "Mass creating the gravitational field, measured in Earth masses."
+  radiusEarthRadii:
+    label: "Field point radius"
+    meaning: "Distance from the source centre to the field point, measured in Earth radii."
+  testMassKilograms:
+    label: "Probe mass"
+    meaning: "Mass placed in the field to experience a force."
+  comparisonRadiusEarthRadii:
+    label: "Comparison radius"
+    meaning: "Second radius used to test the inverse-square change."
+  fieldStrengthNewtonsPerKilogram:
+    label: "Field strength"
+    meaning: "Force per unit mass at the field point."
+  forceNewtons:
+    label: "Force on probe"
+    meaning: "Gravitational force experienced by the selected probe mass."
+  potentialJoulesPerKilogram:
+    label: "Gravitational potential"
+    meaning: "Potential energy per unit mass with zero at infinity."
+  orbitSpeedMetresPerSecond:
+    label: "Circular orbit speed"
+    meaning: "Speed for a circular orbit at the chosen radius."

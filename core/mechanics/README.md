@@ -26,7 +26,9 @@ if (state.ok) {
 
 All public inputs and outputs use SI units. Shared branded units are used where
 the quantity crosses the kernel boundary; composite vector units are named in
-fields such as `velocityMetresPerSecond`. Expected invalid inputs return
+fields such as `velocityMetresPerSecond`. The inverse-square gravitational
+helpers expose branded field strength in `N kg^-1`, branded gravitational
+potential in `J kg^-1`, and potential energy in joules using SI inputs. Expected invalid inputs return
 `KernelResult.err(...)`; the kernel does not throw for ordinary domain errors.
 
 Work-energy helpers own the shared calculations for final kinetic store and
