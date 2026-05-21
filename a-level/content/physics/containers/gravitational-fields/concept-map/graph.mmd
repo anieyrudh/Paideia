@@ -1,0 +1,11 @@
+flowchart TD
+  F["Force on test mass"] --> G["Field strength g = F / m"]
+  M["Source mass M"] --> G
+  R["Radius r from centre"] --> G
+  G --> IS["Inverse-square comparison"]
+  G --> O["Circular orbit speed"]
+  R --> P["Potential phi = -GM / r"]
+  P --> EP["Potential energy E_p = m phi"]
+  C1["Misconception: constant field everywhere"] --> IS
+  C2["Misconception: potential energy must be positive"] --> P
+  C3["Misconception: heavier probe changes g"] --> F

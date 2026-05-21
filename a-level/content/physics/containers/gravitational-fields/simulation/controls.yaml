@@ -1,0 +1,33 @@
+controls:
+  - id: source-mass
+    label: "Source mass"
+    kind: slider
+    unit: "Earth masses"
+    default: 1
+    min: 0.5
+    max: 8
+    step: 0.5
+  - id: radius
+    label: "Field point radius"
+    kind: slider
+    unit: "Earth radii"
+    default: 1
+    min: 1
+    max: 8
+    step: 0.25
+  - id: test-mass
+    label: "Probe mass"
+    kind: slider
+    unit: kg
+    default: 1000
+    min: 100
+    max: 5000
+    step: 100
+  - id: comparison-radius
+    label: "Comparison radius"
+    kind: slider
+    unit: "Earth radii"
+    default: 2
+    min: 1
+    max: 8
+    step: 0.25

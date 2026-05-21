@@ -1991,7 +1991,7 @@ entries:
   - id: alevel.physics.gravitational-fields
     title: "Gravitational Fields"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level fields
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -2018,10 +2018,11 @@ entries:
         - potential energy must be positive
     kernel_dependencies:
       - core/sim-runtime
+      - core/content-schema
       - core/mechanics
-      - core/function-eval
       - core/plotting
       - core/prediction-gate
+      - core/shared
       - core/ui-sim
     repo_package_name: alevel-sim-gravitational-fields
     estimated_effort: H

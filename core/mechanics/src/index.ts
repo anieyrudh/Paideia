@@ -1,7 +1,11 @@
 import {
   err,
   joules,
+  joulesPerKilogram,
   metres,
+  metresPerSecond,
+  newtons,
+  newtonsPerKilogram,
   ok,
   radians,
   watts,
@@ -11,6 +15,8 @@ import {
   type Metres,
   type MetresPerSecond,
   type Newtons,
+  type NewtonsPerKilogram,
+  type JoulesPerKilogram,
   type Radians,
   type Seconds,
   type Watts,
@@ -89,6 +95,29 @@ export interface ElasticCollision1DResult {
 export interface WorkEnergyTransferResult {
   readonly finalKineticEnergyJoules: Joules;
   readonly kineticEnergyChangeJoules: Joules;
+}
+
+export const universalGravitationalConstant = 6.67430e-11;
+
+export interface GravitationalFieldInput {
+  readonly sourceMassKilograms: Kilograms;
+  readonly radiusMetres: Metres;
+}
+
+export interface GravitationalInteractionInput extends GravitationalFieldInput {
+  readonly testMassKilograms: Kilograms;
+}
+
+export interface GravitationalComparisonInput {
+  readonly sourceMassKilograms: Kilograms;
+  readonly radiusMetres: Metres;
+  readonly comparisonRadiusMetres: Metres;
+}
+
+export interface GravitationalFieldSample2DInput {
+  readonly sourceMassKilograms: Kilograms;
+  readonly xMetres: Metres;
+  readonly yMetres: Metres;
 }
 
 const finite = (value: number, label: string): KernelResult<void> =>
@@ -316,6 +345,144 @@ export const averagePower = (workJoules: Joules, elapsedSeconds: Seconds): Kerne
   const computedPower = finiteDerived(powerWatts, "averagePowerWatts");
   if (!computedPower.ok) return computedPower;
   return ok(watts(powerWatts));
+};
+
+export const gravitationalFieldStrength = ({
+  sourceMassKilograms,
+  radiusMetres,
+}: GravitationalFieldInput): KernelResult<NewtonsPerKilogram> => {
+  const mass = positive(sourceMassKilograms, "sourceMassKilograms");
+  if (!mass.ok) return mass;
+  const radius = positive(radiusMetres, "radiusMetres");
+  if (!radius.ok) return radius;
+
+  const fieldStrength =
+    (universalGravitationalConstant * sourceMassKilograms) / (radiusMetres * radiusMetres);
+  const computed = finiteDerived(fieldStrength, "fieldStrengthNewtonsPerKilogram");
+  return computed.ok ? ok(newtonsPerKilogram(fieldStrength)) : computed;
+};
+
+export const gravitationalForce = ({
+  sourceMassKilograms,
+  testMassKilograms,
+  radiusMetres,
+}: GravitationalInteractionInput): KernelResult<Newtons> => {
+  const testMass = positive(testMassKilograms, "testMassKilograms");
+  if (!testMass.ok) return testMass;
+  const field = gravitationalFieldStrength({ sourceMassKilograms, radiusMetres });
+  if (!field.ok) return field;
+
+  const force = testMassKilograms * field.value;
+  const computed = finiteDerived(force, "gravitationalForceNewtons");
+  return computed.ok ? ok(newtons(force)) : computed;
+};
+
+export const gravitationalPotential = ({
+  sourceMassKilograms,
+  radiusMetres,
+}: GravitationalFieldInput): KernelResult<JoulesPerKilogram> => {
+  const mass = positive(sourceMassKilograms, "sourceMassKilograms");
+  if (!mass.ok) return mass;
+  const radius = positive(radiusMetres, "radiusMetres");
+  if (!radius.ok) return radius;
+
+  const potential = -(universalGravitationalConstant * sourceMassKilograms) / radiusMetres;
+  const computed = finiteDerived(potential, "gravitationalPotentialJoulesPerKilogram");
+  return computed.ok ? ok(joulesPerKilogram(potential)) : computed;
+};
+
+export const gravitationalPotentialEnergy = ({
+  sourceMassKilograms,
+  testMassKilograms,
+  radiusMetres,
+}: GravitationalInteractionInput): KernelResult<Joules> => {
+  const testMass = positive(testMassKilograms, "testMassKilograms");
+  if (!testMass.ok) return testMass;
+  const potential = gravitationalPotential({ sourceMassKilograms, radiusMetres });
+  if (!potential.ok) return potential;
+
+  const energy = testMassKilograms * potential.value;
+  const computed = finiteDerived(energy, "gravitationalPotentialEnergyJoules");
+  return computed.ok ? ok(joules(energy)) : computed;
+};
+
+export const circularOrbitSpeed = ({
+  sourceMassKilograms,
+  radiusMetres,
+}: GravitationalFieldInput): KernelResult<MetresPerSecond> => {
+  const mass = positive(sourceMassKilograms, "sourceMassKilograms");
+  if (!mass.ok) return mass;
+  const radius = positive(radiusMetres, "radiusMetres");
+  if (!radius.ok) return radius;
+
+  const speed = Math.sqrt((universalGravitationalConstant * sourceMassKilograms) / radiusMetres);
+  const computed = finiteDerived(speed, "circularOrbitSpeedMetresPerSecond");
+  return computed.ok ? ok(metresPerSecond(speed)) : computed;
+};
+
+export const gravitationalAccelerationFromForce = ({
+  sourceMassKilograms,
+  testMassKilograms,
+  radiusMetres,
+}: GravitationalInteractionInput): KernelResult<number> => {
+  const force = gravitationalForce({ sourceMassKilograms, testMassKilograms, radiusMetres });
+  if (!force.ok) return force;
+  const mass = positive(testMassKilograms, "testMassKilograms");
+  if (!mass.ok) return mass;
+  const acceleration = force.value / testMassKilograms;
+  const computed = finiteDerived(acceleration, "gravitationalAccelerationMetresPerSecondSquared");
+  return computed.ok ? ok(acceleration) : computed;
+};
+
+export const gravitationalFieldStrengthRatio = ({
+  sourceMassKilograms,
+  radiusMetres,
+  comparisonRadiusMetres,
+}: GravitationalComparisonInput): KernelResult<number> => {
+  const current = gravitationalFieldStrength({ sourceMassKilograms, radiusMetres });
+  if (!current.ok) return current;
+  const comparison = gravitationalFieldStrength({
+    sourceMassKilograms,
+    radiusMetres: comparisonRadiusMetres,
+  });
+  if (!comparison.ok) return comparison;
+  const ratio = comparison.value / current.value;
+  const computed = finiteDerived(ratio, "gravitationalFieldStrengthRatio");
+  return computed.ok ? ok(ratio) : computed;
+};
+
+export const gravitationalInverseSquareScale = (radiusMetres: Metres): KernelResult<number> => {
+  const radius = positive(radiusMetres, "radiusMetres");
+  if (!radius.ok) return radius;
+  const scale = 1 / (radiusMetres * radiusMetres);
+  const computed = finiteDerived(scale, "gravitationalInverseSquareScale");
+  return computed.ok ? ok(scale) : computed;
+};
+
+export const gravitationalFieldVector2D = ({
+  sourceMassKilograms,
+  xMetres,
+  yMetres,
+}: GravitationalFieldSample2DInput): KernelResult<Vector2> => {
+  const x = finite(xMetres, "xMetres");
+  if (!x.ok) return x;
+  const y = finite(yMetres, "yMetres");
+  if (!y.ok) return y;
+  const radiusValue = Math.hypot(xMetres, yMetres);
+  if (radiusValue === 0) {
+    return err("undefined-at-point", "Gravitational field is undefined at the source centre");
+  }
+  const field = gravitationalFieldStrength({
+    sourceMassKilograms,
+    radiusMetres: metres(radiusValue),
+  });
+  if (!field.ok) return field;
+  const vector = {
+    x: -(xMetres / radiusValue) * field.value,
+    y: -(yMetres / radiusValue) * field.value,
+  };
+  const computed = finiteDerivedVector(vector, "gravitationalFieldVector");
+  return computed.ok ? ok(vector) : computed;
 };
 
 export const momentum1D = (

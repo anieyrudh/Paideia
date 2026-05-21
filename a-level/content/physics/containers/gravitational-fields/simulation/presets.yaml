@@ -1,0 +1,29 @@
+presets:
+  - id: earth-surface
+    label: "Earth surface"
+    state:
+      sourceMassEarthMasses: 1
+      radiusEarthRadii: 1
+      testMassKilograms: 1000
+      comparisonRadiusEarthRadii: 2
+  - id: double-distance
+    label: "Double distance"
+    state:
+      sourceMassEarthMasses: 1
+      radiusEarthRadii: 2
+      testMassKilograms: 1000
+      comparisonRadiusEarthRadii: 1
+  - id: massive-planet
+    label: "Massive planet"
+    state:
+      sourceMassEarthMasses: 4
+      radiusEarthRadii: 2
+      testMassKilograms: 1000
+      comparisonRadiusEarthRadii: 4
+  - id: heavy-probe
+    label: "Heavy probe"
+    state:
+      sourceMassEarthMasses: 1
+      radiusEarthRadii: 1
+      testMassKilograms: 4000
+      comparisonRadiusEarthRadii: 2
