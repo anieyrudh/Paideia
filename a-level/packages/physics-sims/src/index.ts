@@ -99,6 +99,20 @@ export type {
 } from "./gravitational-fields.js";
 
 export {
+  MagneticFieldDiagram,
+  MagneticFieldsSim,
+  magneticFieldsModel,
+  magneticFieldsPackageId,
+  magneticFieldsSimId,
+  magneticFieldsSpec,
+} from "./magnetic-fields.js";
+export type {
+  MagneticFieldsModel,
+  MagneticFieldsPredictionEvent,
+  MagneticFieldsState,
+} from "./magnetic-fields.js";
+
+export {
   MomentumCollisionDiagram,
   MomentumSim,
   momentumModel,

@@ -1,0 +1,29 @@
+state_labels:
+  fieldMilliTesla:
+    label: Magnetic field strength
+    unit: mT
+    description: Magnetic flux density in the uniform field region.
+  currentAmperes:
+    label: Current
+    unit: A
+    description: Conventional current in the wire.
+  activeLengthCm:
+    label: Active wire length
+    unit: cm
+    description: Length of conductor inside the magnetic field.
+  angleDegrees:
+    label: Angle to field
+    unit: deg
+    description: Angle between current or velocity and the magnetic field.
+  particleChargeMicroC:
+    label: Particle charge
+    unit: microC
+    description: Sign and size of the moving particle charge.
+  particleSpeedKmPerSecond:
+    label: Particle speed
+    unit: km s^-1
+    description: Speed of the particle entering the field.
+  particleMassMilligrams:
+    label: Particle mass
+    unit: mg
+    description: Particle mass used for the circular-path check.

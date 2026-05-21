@@ -8,14 +8,15 @@ import GeneratedSim4ElectricFieldsChargeFieldVectorLab from "@paideia/a-level-ph
 import GeneratedSim5ForcesAndEquilibriumForceBalance from "@paideia/a-level-physics-sims/forces-and-equilibrium";
 import GeneratedSim6GravitationalFieldsInverseSquareFieldLab from "@paideia/a-level-physics-sims/gravitational-fields";
 import GeneratedSim7KinematicsInOneDimensionMotionEquationsLab from "@paideia/a-level-physics-sims/kinematics-one-dimension";
-import GeneratedSim8MomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
-import GeneratedSim9OscillationsSimpleHarmonicMotionLab from "@paideia/a-level-physics-sims/oscillations";
-import GeneratedSim10PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
-import GeneratedSim11ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
-import GeneratedSim12ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
-import GeneratedSim13ThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
-import GeneratedSim14WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
-import GeneratedSim15WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
+import GeneratedSim8MagneticFieldsMagneticForceDirectionLab from "@paideia/a-level-physics-sims/magnetic-fields";
+import GeneratedSim9MomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
+import GeneratedSim10OscillationsSimpleHarmonicMotionLab from "@paideia/a-level-physics-sims/oscillations";
+import GeneratedSim11PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
+import GeneratedSim12ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
+import GeneratedSim13ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
+import GeneratedSim14ThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
+import GeneratedSim15WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
+import GeneratedSim16WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -144,6 +145,15 @@ export const knowledgeGraph = {
     status: "reviewed",
   },
   {
+    id: "a-level/physics/magnetic-fields",
+    conceptId: "magnetic-fields",
+    title: "Magnetic Fields",
+    subject: "physics",
+    level: "H2",
+    module: "Electricity and Magnetism",
+    status: "reviewed",
+  },
+  {
     id: "a-level/physics/momentum",
     conceptId: "momentum",
     title: "Momentum and Impulse",
@@ -255,6 +265,13 @@ export const knowledgeGraph = {
   { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/forces-and-newtons-laws", kind: "downstream" },
   { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/momentum", kind: "downstream" },
   { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/motion-graphs", kind: "sibling" },
+  { from: "a-level/physics/electric-fields", to: "a-level/physics/magnetic-fields", kind: "prerequisite" },
+  { from: "a-level/physics/circular-motion", to: "a-level/physics/magnetic-fields", kind: "prerequisite" },
+  { from: "a-level/physics/resolving-vectors", to: "a-level/physics/magnetic-fields", kind: "prerequisite" },
+  { from: "a-level/physics/magnetic-fields", to: "a-level/physics/electromagnetic-induction", kind: "downstream" },
+  { from: "a-level/physics/magnetic-fields", to: "a-level/physics/charged-particle-motion", kind: "downstream" },
+  { from: "a-level/physics/magnetic-fields", to: "a-level/physics/electric-fields", kind: "sibling" },
+  { from: "a-level/physics/magnetic-fields", to: "a-level/physics/capacitance", kind: "sibling" },
   { from: "a-level/physics/forces-and-equilibrium", to: "a-level/physics/momentum", kind: "prerequisite" },
   { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/momentum", kind: "prerequisite" },
   { from: "a-level/physics/momentum", to: "a-level/physics/momentum", kind: "downstream" },
@@ -780,6 +797,76 @@ export const containers = [
     ],
   },
   {
+    id: "a-level/physics/magnetic-fields",
+    branch: "a-level",
+    subject: "Physics",
+    level: "H2",
+    module: "Electricity and Magnetism",
+    title: "Magnetic Fields",
+    summary: "Use Fleming's left-hand rule and magnetic-force formulae to connect field direction, current, moving charges, and circular paths.",
+    syllabusRef: "9478 / Section V / Electricity and Magnetism",
+    status: "reviewed",
+    packageId: "magnetic-fields",
+    simId: "magnetic-force-direction-lab",
+    predictPrompt: "A wire carries conventional current to the right while a magnetic field goes into the page. Before revealing the result, which way is the force on the wire?",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "Magnetic force acts along the field line",
+      "Stationary charges feel magnetic force",
+      "Negative charges curve the same way as positive charges",
+    ],
+    transferProblem: "A positive ion enters a region where a uniform magnetic field is directed into the page. It moves to the right at 2.5 x 10^3 m s^-1 with charge 3.0 microC. Find the magnetic force magnitude when B = 0.060 T, state the force direction, and explain what changes for a negative ion.",
+    firstPrinciples: "A magnetic field describes a region where moving charge can experience a force. The force is not along the magnetic field line. For a current-carrying wire or a moving positive charge, the force is perpendicular to both the direction of motion or conventional current and the magnetic field direction.",
+    keyDefinitions: [
+      "Magnetic flux density \\(B\\): field strength measured in tesla, where one tesla gives one newton per ampere metre for a perpendicular wire.",
+      "Motor effect: force on a current-carrying conductor in a magnetic field.",
+      "Active length \\(L\\): length of conductor that lies inside the magnetic-field region.",
+      "Fleming's left-hand rule: first finger field, second finger conventional current, thumb force.",
+      "Moving-charge force: \\(F = |q|vB\\sin\\theta\\), with direction reversed for a negative charge.",
+    ],
+    canonicalExamples: [
+      "A horizontal wire carrying conventional current to the right in a field into the page feels a force up the page.",
+      "A positive particle moving to the right in a field into the page curves upward; a negative particle with the same velocity curves downward.",
+      "A stationary charged particle in a magnetic field has no magnetic force because \\(v = 0\\).",
+      "A conductor parallel to the magnetic field has no motor-effect force because \\(\\sin 0^\\circ = 0\\).",
+    ],
+    problemSolvingSteps: [
+      "Classify the system",
+      "Convert to SI units",
+      "Choose the magnetic-force formula",
+      "Substitute with units",
+      "Apply Fleming's left-hand rule",
+      "Check circular path",
+      "Interpret the result",
+    ],
+    prerequisites: [
+      "Electric Fields",
+      "Circular Motion",
+      "Resolving Vectors",
+    ],
+    downstream: [
+      "Electromagnetic Induction",
+      "Charged Particle Motion",
+    ],
+    siblings: [
+      "Electric Fields",
+      "Capacitance",
+    ],
+    sims: [
+      {
+        id: "magnetic-force-direction-lab",
+        harnessId: "a-level/physics/magnetic-fields/magnetic-force-direction-lab",
+        title: "Magnetic Force Direction Lab",
+        interactionType: "diagram-builder",
+        component: GeneratedSim8MagneticFieldsMagneticForceDirectionLab,
+      },
+    ],
+  },
+  {
     id: "a-level/physics/momentum",
     branch: "a-level",
     subject: "Physics",
@@ -840,7 +927,7 @@ export const containers = [
         harnessId: "a-level/physics/momentum/momentum-collision-lab",
         title: "Collision and Impulse Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim8MomentumMomentumCollisionLab,
+        component: GeneratedSim9MomentumMomentumCollisionLab,
       },
     ],
   },
@@ -908,7 +995,7 @@ export const containers = [
         harnessId: "a-level/physics/oscillations/simple-harmonic-motion-lab",
         title: "Simple Harmonic Motion Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim9OscillationsSimpleHarmonicMotionLab,
+        component: GeneratedSim10OscillationsSimpleHarmonicMotionLab,
       },
     ],
   },
@@ -973,7 +1060,7 @@ export const containers = [
         harnessId: "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab",
         title: "Measurement and Uncertainty Lab",
         interactionType: "decision-matrix",
-        component: GeneratedSim10PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
+        component: GeneratedSim11PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab,
       },
     ],
   },
@@ -1036,7 +1123,7 @@ export const containers = [
         harnessId: "a-level/physics/resolving-vectors/component-resolution",
         title: "Component Resolution Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim11ResolvingVectorsComponentResolution,
+        component: GeneratedSim12ResolvingVectorsComponentResolution,
       },
     ],
   },
@@ -1098,7 +1185,7 @@ export const containers = [
         harnessId: "a-level/physics/scalars-and-vectors/resultant-magnitude",
         title: "Resultant Magnitude Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim12ScalarsAndVectorsResultantMagnitude,
+        component: GeneratedSim13ScalarsAndVectorsResultantMagnitude,
       },
     ],
   },
@@ -1166,7 +1253,7 @@ export const containers = [
         harnessId: "a-level/physics/thermal-physics/gas-law-energy-transfer-lab",
         title: "Gas Law and Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim13ThermalPhysicsGasLawEnergyTransferLab,
+        component: GeneratedSim14ThermalPhysicsGasLawEnergyTransferLab,
       },
     ],
   },
@@ -1230,7 +1317,7 @@ export const containers = [
         harnessId: "a-level/physics/waves/wave-superposition-lab",
         title: "Wave Superposition Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim14WavesWaveSuperpositionLab,
+        component: GeneratedSim15WavesWaveSuperpositionLab,
       },
     ],
   },
@@ -1295,7 +1382,7 @@ export const containers = [
         harnessId: "a-level/physics/work-energy-power/energy-transfer-lab",
         title: "Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim15WorkEnergyPowerEnergyTransferLab,
+        component: GeneratedSim16WorkEnergyPowerEnergyTransferLab,
       },
     ],
   }
