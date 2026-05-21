@@ -22,6 +22,11 @@ Exports from `@paideia/mechanics`:
 - `type ElasticCollision1DInput`
 - `type ElasticCollision1DResult`
 - `type WorkEnergyTransferResult`
+- `type GravitationalFieldInput`
+- `type GravitationalInteractionInput`
+- `type GravitationalComparisonInput`
+- `type GravitationalFieldSample2DInput`
+- `universalGravitationalConstant: number`
 - `kinematics1D(input: Kinematics1DInput): KernelResult<Kinematics1DState>`
 - `projectileAt(input: ProjectileInput, elapsedSeconds: Seconds): KernelResult<ProjectileSample>`
 - `netForce(forces: readonly Vector2[]): KernelResult<Vector2>`
@@ -67,7 +72,8 @@ Exports from `@paideia/mechanics`:
 Use `core/mechanics` when a simulation needs shared calculations for
 kinematics, forces, energy, momentum, collisions, projectile motion, or simple
 harmonic motion. If a sim is about to inline SUVAT, `F = ma`, `KE = 1/2 mv^2`,
-or one-dimensional elastic collision formulae, use this module instead.
+one-dimensional elastic collision formulae, or `GM/r^2` gravitational field
+formulae, use this module instead.
 
 ## Extension protocol
 1. Open a `core-change-proposal` issue naming every consuming mechanics sim.

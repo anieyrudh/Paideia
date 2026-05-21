@@ -1,0 +1,16 @@
+state_labels:
+  overhangDepthM:
+    label: "Overhang depth"
+    unit: "m"
+    student_hint: "A deeper horizontal shade casts a longer shadow on the glass."
+  glazingRatio:
+    label: "Glazing ratio"
+    unit: "share of facade"
+    student_hint: "More glass can admit more daylight but also increases exposed glass area."
+  solarAltitudeDeg:
+    label: "Solar altitude"
+    unit: "degrees"
+    student_hint: "Higher sun angles make the overhang shadow reach farther down the window."
+  facadeOrientation:
+    label: "Facade orientation"
+    student_hint: "Orientation changes how strongly direct sun reaches the facade."

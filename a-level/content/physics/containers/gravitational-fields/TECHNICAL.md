@@ -104,7 +104,7 @@ explain:
 
 ## Kernel extensions
 
-Declared runtime kernel dependencies are listed above. Any additive or breaking core API change must be linked in the preserved review section below.
+Declared runtime kernel dependencies are listed above. Additive mechanics/shared API change is tracked in core-change-proposal issue #126.
 
 ## Accessibility
 
@@ -139,7 +139,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer, test
 - [pedagogy-reviewer] Misconception coverage lacked evidence and prediction-surface fields — resolution: added explicit evidence and `Surface in predict?` notes in `concept-map/misconceptions.md`.
 - [pedagogy-reviewer] Transfer problem repeated the same gravitational radius task — resolution: replaced with an electric-field analogy transfer problem.
 - [sim-architect] Undeclared core imports — resolution: declared `core/content-schema` and `core/shared`; removed unused `core/function-eval` from this container after the queue dependency list proved broader than the actual implementation.
-- [sim-architect] Reusable gravitational calculations lived in the sim — resolution: moved ratio, acceleration, inverse-square scale, and vector sampling helpers into `core/mechanics`.
+- [sim-architect] Reusable gravitational calculations lived in the sim — resolution: moved ratio, acceleration, inverse-square scale, and vector sampling helpers into `core/mechanics`; additive public API is tracked in core-change-proposal issue #126 and mirrored in `core/mechanics/AGENTS.md`.
 - [sim-architect] Embed `load` accepted a host DOM boundary without validation — resolution: added Zod DOM-element validation at the embed boundary.
 
 ### P1 addressed or deferred
@@ -148,7 +148,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer, test
 - [pedagogy-reviewer] Probe-mass misconception was overclaimed as surfaced in predict — addressed by marking it as surfaced through manipulation, not prediction.
 - [pedagogy-reviewer] Formula legend omitted `phi`, `E_p`, and `v` — addressed by adding the purple legend row.
 - [pedagogy-reviewer] Orbit-speed readout lacked formula/substitution — addressed by adding `v = sqrt(GM / r)` and substituted values.
-- [sim-architect] Bare numeric field and potential return types — addressed by adding branded `NewtonsPerKilogram` and `JoulesPerKilogram` types in `core/shared`.
+- [sim-architect] Bare numeric field and potential return types — addressed by adding branded `NewtonsPerKilogram` and `JoulesPerKilogram` types in `core/shared`, with the shared contract updated and tracked by issue #126.
 - [sim-architect] Embed completion state was hidden from the prediction gate — addressed by wiring embed completion scoring to `@paideia/prediction-gate` state.
 
 ### P2 noted

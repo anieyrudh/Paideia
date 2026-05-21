@@ -1,0 +1,22 @@
+steps:
+  - id: define-facade
+    prompt: "Which facade orientation, glazing ratio, overhang depth, and sun altitude are being tested?"
+    expected_action: "Write the four inputs before calculating either daylight or heat gain."
+  - id: calculate-glass-area
+    prompt: "How much glass is exposed?"
+    expected_action: "Multiply facade area by glazing ratio and keep square-metre units."
+  - id: calculate-shaded-fraction
+    prompt: "How much of the window is shaded by the overhang?"
+    expected_action: "Compute overhang depth times tangent of solar altitude, then divide by window height."
+  - id: estimate-daylight
+    prompt: "How much useful daylight remains after shading?"
+    expected_action: "Apply the daylight proxy and compare it with the target score."
+  - id: estimate-heat-gain
+    prompt: "How much direct solar heat gain remains after shading?"
+    expected_action: "Apply the heat-gain proxy with area, irradiance, SHGC, exposure, and shaded fraction."
+  - id: interpret-tradeoff
+    prompt: "Which output is limiting the design?"
+    expected_action: "Explain whether the facade is balanced, too hot, or too dim."
+  - id: transfer
+    prompt: "What design move improves the limiting output without breaking the other one?"
+    expected_action: "Choose shade depth, glazing reduction, or a combined change and justify the tradeoff."
