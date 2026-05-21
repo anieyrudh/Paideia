@@ -5,6 +5,7 @@ import {
   binaryConfusionCounts,
   expectedValue,
   histogram,
+  normalMeanHypothesisTest,
   normalizeDistribution,
   probabilityStatsTolerance,
   quantile,
@@ -335,6 +336,81 @@ describe("@paideia/probability-stats", () => {
     const overflowing = zScore(Number.MAX_VALUE, -Number.MAX_VALUE, Number.MIN_VALUE);
     expect(overflowing.ok).toBe(false);
     if (!overflowing.ok) expect(overflowing.error.code).toBe("numerical-instability");
+  });
+
+  it("computes a normal mean hypothesis-test decision", () => {
+    const result = normalMeanHypothesisTest({
+      nullMean: 64,
+      observedMean: 67.2,
+      populationStandardDeviation: 8,
+      sampleSize: 36,
+      alpha: 0.05,
+      alternative: "greater",
+    });
+
+    expect(result.ok).toBe(true);
+    if (result.ok) {
+      expect(approxEqual(result.value.standardError, 8 / 6, probabilityStatsTolerance.tight)).toBe(true);
+      expect(approxEqual(result.value.z, 2.4, probabilityStatsTolerance.tight)).toBe(true);
+      expect(result.value.criticalBoundary).toBe(1.645);
+      expect(result.value.rejectNull).toBe(true);
+      expect(result.value.pValueRelation).toBe("less-than-alpha");
+    }
+  });
+
+  it("handles two-sided and lower-tail normal mean hypothesis-test decisions", () => {
+    const twoSided = normalMeanHypothesisTest({
+      nullMean: 70,
+      observedMean: 66.7,
+      populationStandardDeviation: 9,
+      sampleSize: 49,
+      alpha: 0.05,
+      alternative: "two-sided",
+    });
+    expect(twoSided.ok).toBe(true);
+    if (twoSided.ok) {
+      expect(twoSided.value.criticalBoundary).toBe(1.96);
+      expect(twoSided.value.rejectNull).toBe(true);
+    }
+
+    const lowerTail = normalMeanHypothesisTest({
+      nullMean: 70,
+      observedMean: 68,
+      populationStandardDeviation: 10,
+      sampleSize: 25,
+      alpha: 0.01,
+      alternative: "less",
+    });
+    expect(lowerTail.ok).toBe(true);
+    if (lowerTail.ok) {
+      expect(lowerTail.value.criticalBoundary).toBe(2.326);
+      expect(lowerTail.value.rejectNull).toBe(false);
+      expect(lowerTail.value.pValueRelation).toBe("at-least-alpha");
+    }
+  });
+
+  it("rejects invalid normal mean hypothesis-test inputs", () => {
+    const invalidSpread = normalMeanHypothesisTest({
+      nullMean: 64,
+      observedMean: 67.2,
+      populationStandardDeviation: 0,
+      sampleSize: 36,
+      alpha: 0.05,
+      alternative: "greater",
+    });
+    expect(invalidSpread.ok).toBe(false);
+    if (!invalidSpread.ok) expect(invalidSpread.error.code).toBe("out-of-domain");
+
+    const invalidSample = normalMeanHypothesisTest({
+      nullMean: 64,
+      observedMean: 67.2,
+      populationStandardDeviation: 8,
+      sampleSize: 36.5,
+      alpha: 0.05,
+      alternative: "greater",
+    });
+    expect(invalidSample.ok).toBe(false);
+    if (!invalidSample.ok) expect(invalidSample.error.code).toBe("precondition-violated");
   });
 
   it("bins histograms and preserves density mass", () => {

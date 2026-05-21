@@ -32,7 +32,11 @@ test("navigates the generated mini knowledge graph", async ({ page }) => {
   await expect(page.getByText(/\d+ concepts ready/)).toBeVisible();
   await expect(page.getByRole("heading", { name: "First principles" })).toBeVisible();
   await expect(page.getByRole("navigation", { name: "Concept containers" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "Set up distribution" })).toBeVisible();
+  await expect(
+    page
+      .getByRole("navigation", { name: "Concept containers" })
+      .getByRole("link", { name: /^Probability and Statistics Probability and Statistics \/ H2$/ }),
+  ).toBeVisible();
 
   await page
     .getByRole("navigation", { name: "Concept containers" })

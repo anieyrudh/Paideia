@@ -1,0 +1,19 @@
+state_labels:
+  nullMean:
+    label: "Null mean"
+    meaning: "Population mean stated in H0, measured in marks."
+  observedMean:
+    label: "Observed sample mean"
+    meaning: "Mean of the sample being tested against H0, measured in marks."
+  populationStandardDeviation:
+    label: "Population standard deviation"
+    meaning: "Known population standard deviation used to compute the sample-mean standard error."
+  sampleSize:
+    label: "Sample size"
+    meaning: "Number of independent observations in the sample mean."
+  alpha:
+    label: "Significance level"
+    meaning: "Pre-agreed tail probability boundary for rejecting H0."
+  tail:
+    label: "Alternative hypothesis"
+    meaning: "Direction of evidence requested by H1: greater, less, or different."

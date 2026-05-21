@@ -73,6 +73,30 @@ export interface BayesPositiveEvidence {
   readonly routes: DiscreteDistribution<"true-positive" | "false-positive">;
 }
 
+export type NormalMeanHypothesisTestAlternative = "greater" | "less" | "two-sided";
+export type NormalMeanHypothesisTestAlpha = 0.1 | 0.05 | 0.01;
+
+export interface NormalMeanHypothesisTestInput {
+  readonly nullMean: number;
+  readonly observedMean: number;
+  readonly populationStandardDeviation: number;
+  readonly sampleSize: number;
+  readonly alpha: NormalMeanHypothesisTestAlpha;
+  readonly alternative: NormalMeanHypothesisTestAlternative;
+}
+
+export interface NormalMeanHypothesisTestDecision {
+  readonly nullMean: number;
+  readonly observedMean: number;
+  readonly standardError: number;
+  readonly z: number;
+  readonly alpha: NormalMeanHypothesisTestAlpha;
+  readonly alternative: NormalMeanHypothesisTestAlternative;
+  readonly criticalBoundary: number;
+  readonly rejectNull: boolean;
+  readonly pValueRelation: "less-than-alpha" | "at-least-alpha";
+}
+
 export type BinaryClassLabel = "actual-positive" | "actual-negative";
 
 export interface ThresholdClassifierCase<TId extends string = string> {
@@ -150,6 +174,14 @@ const finiteOutput = (value: number, label: string): KernelResult<number> =>
   Number.isFinite(value)
     ? ok(value)
     : err("numerical-instability", `${label} overflowed to a non-finite value`);
+
+const positive = (value: number, label: string): KernelResult<number> => {
+  const valid = finite(value, label);
+  if (!valid.ok) return valid;
+  return value > 0
+    ? ok(value)
+    : err("out-of-domain", `${label} must be positive; got ${value}`);
+};
 
 const validateValues = (
   values: readonly number[],
@@ -695,6 +727,87 @@ export const zScore = (
   return Number.isFinite(z)
     ? ok(z)
     : err("numerical-instability", "z-score must be finite");
+};
+
+const criticalTable = {
+  greater: {
+    0.1: 1.282,
+    0.05: 1.645,
+    0.01: 2.326,
+  },
+  less: {
+    0.1: 1.282,
+    0.05: 1.645,
+    0.01: 2.326,
+  },
+  "two-sided": {
+    0.1: 1.645,
+    0.05: 1.96,
+    0.01: 2.576,
+  },
+} as const satisfies Record<
+  NormalMeanHypothesisTestAlternative,
+  Record<NormalMeanHypothesisTestAlpha, number>
+>;
+
+const isSupportedAlpha = (alpha: number): alpha is NormalMeanHypothesisTestAlpha =>
+  alpha === 0.1 || alpha === 0.05 || alpha === 0.01;
+
+const inCriticalRegion = (
+  alternative: NormalMeanHypothesisTestAlternative,
+  z: number,
+  boundary: number,
+): boolean => {
+  if (alternative === "greater") return z >= boundary;
+  if (alternative === "less") return z <= -boundary;
+  return Math.abs(z) >= boundary;
+};
+
+export const normalMeanHypothesisTest = (
+  input: NormalMeanHypothesisTestInput,
+): KernelResult<NormalMeanHypothesisTestDecision> => {
+  const nullMean = finite(input.nullMean, "nullMean");
+  if (!nullMean.ok) return nullMean;
+  const observedMean = finite(input.observedMean, "observedMean");
+  if (!observedMean.ok) return observedMean;
+  const populationStandardDeviation = positive(
+    input.populationStandardDeviation,
+    "populationStandardDeviation",
+  );
+  if (!populationStandardDeviation.ok) return populationStandardDeviation;
+  const sampleSize = positive(input.sampleSize, "sampleSize");
+  if (!sampleSize.ok) return sampleSize;
+  if (!Number.isInteger(input.sampleSize)) {
+    return err("precondition-violated", `sampleSize must be an integer; got ${input.sampleSize}`);
+  }
+  if (!isSupportedAlpha(input.alpha)) {
+    return err("out-of-domain", `alpha must be one of 0.1, 0.05, or 0.01; got ${input.alpha}`);
+  }
+
+  const standardError = input.populationStandardDeviation / Math.sqrt(input.sampleSize);
+  const validStandardError = finiteOutput(standardError, "standardError");
+  if (!validStandardError.ok) return validStandardError;
+  if (standardError <= 0) {
+    return err("numerical-instability", "standardError must be positive");
+  }
+
+  const z = zScore(input.observedMean, input.nullMean, standardError);
+  if (!z.ok) return z;
+
+  const criticalBoundary = criticalTable[input.alternative][input.alpha];
+  const rejectNull = inCriticalRegion(input.alternative, z.value, criticalBoundary);
+
+  return ok({
+    nullMean: input.nullMean,
+    observedMean: input.observedMean,
+    standardError,
+    z: z.value,
+    alpha: input.alpha,
+    alternative: input.alternative,
+    criticalBoundary,
+    rejectNull,
+    pValueRelation: rejectNull ? "less-than-alpha" : "at-least-alpha",
+  });
 };
 
 const validateHistogramDomain = (
