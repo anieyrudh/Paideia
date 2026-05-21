@@ -1,0 +1,25 @@
+steps:
+  - id: classify-values
+    prompt: "Are the voltage and current values peak, instantaneous, or rms?"
+    expected_action: "Label each value and convert sinusoidal peak/rms values only when needed."
+  - id: convert-units
+    prompt: "Are L, C, and f in SI units?"
+    expected_action: "Convert millihenrys to henrys and microfarads to farads before using reactance formulae."
+  - id: calculate-reactance
+    prompt: "What are the inductive and capacitive reactances?"
+    expected_action: "Compute X_L = 2 pi f L and X_C = 1 / (2 pi f C), both in ohms."
+  - id: build-impedance
+    prompt: "What is the net impedance magnitude?"
+    expected_action: "Use X = X_L - X_C and |Z| = sqrt(R^2 + X^2), keeping ohm units."
+  - id: solve-current
+    prompt: "What rms current flows through the series load?"
+    expected_action: "Use I_rms = V_rms / |Z| and state amperes."
+  - id: decide-phase
+    prompt: "Does the current lead or lag the voltage?"
+    expected_action: "Use the sign of X or phi_I = -atan2(X, R), then write lead or lag."
+  - id: calculate-power
+    prompt: "What real power is transferred?"
+    expected_action: "Use P = V_rms I_rms cos(phi), include watts, and interpret the result."
+  - id: check
+    prompt: "Does the answer match the circuit character?"
+    expected_action: "Check that inductive loads lag, capacitive loads lead, and rms conversion is separate from frequency."

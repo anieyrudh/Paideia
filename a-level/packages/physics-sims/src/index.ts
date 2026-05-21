@@ -1,4 +1,19 @@
 export {
+  AlternatingCurrentDiagram,
+  AlternatingCurrentSim,
+  alternatingCurrentModel,
+  alternatingCurrentPackageId,
+  alternatingCurrentSimId,
+  alternatingCurrentSpec,
+} from "./alternating-current.js";
+export type {
+  AlternatingCurrentModel,
+  AlternatingCurrentPredictionEvent,
+  AlternatingCurrentState,
+  AlternatingCurrentWavePoint,
+} from "./alternating-current.js";
+
+export {
   CircuitsDiagram,
   CircuitsSim,
   circuitsModel,

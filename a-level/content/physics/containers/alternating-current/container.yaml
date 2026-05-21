@@ -1,0 +1,133 @@
+schema_version: "1.0.0"
+id: alternating-current
+aliases:
+  - AC circuits
+  - sinusoidal current
+  - rms and phase
+branch: a-level
+subject: physics
+level: "H2"
+module: "Electricity and Magnetism"
+title: "Alternating Current"
+one_line_summary: "Connect sinusoidal supplies, rms values, impedance, phase, and power in AC circuits."
+syllabus_ref: "9478 / Section V / Electricity and Magnetism"
+prerequisites:
+  - circuits
+  - oscillations
+  - waves
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A sinusoidal supply has the same peak voltage but its frequency is doubled. Before revealing the lab, what happens to the rms voltage of the supply?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The rms voltage doubles because the wave oscillates twice as often."
+      - "The rms voltage stays the same because rms depends on amplitude, not frequency."
+      - "The rms voltage halves because each cycle takes less time."
+      - "The rms voltage becomes zero because positive and negative halves cancel."
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: adapter-power-factor
+    prompt: |
+      A laptop adapter is connected to a 12 V rms sinusoidal supply at 50 Hz. Its equivalent series load is R = 40 ohm, L = 0.18 H, and C = 120 microF. Calculate the rms current, decide whether current leads or lags the voltage, and find the real power transferred.
+    surface_form: "laptop adapter power-factor check"
+    same_concept_check: "Same concept: convert rms and peak only for the sinusoidal supply, use series RLC impedance for current and phase, then use power factor for real power."
+    rubric_path: problem-solving/adapter-power-factor.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-21"
+      author: "Codex"
+      summary: "Built A-Level alternating current product slice using core/circuits, charting, sim-runtime, prediction-gate, shared, and ui-sim."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-21"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-21"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "RMS is an arithmetic average voltage"
+    description: "Learners may average the positive and negative halves of an AC waveform and conclude that useful AC voltage is zero, instead of using root-mean-square value for equivalent heating effect."
+    evidence_source: "OpenStax College Physics 2e, Chapter 23 Electromagnetic Induction, AC Circuits, and Electrical Technologies."
+    surface_in_predict: true
+  - name: "Higher frequency always means higher rms value"
+    description: "Learners may confuse how often a sinusoid repeats with its amplitude-derived rms value; frequency changes reactance in a load but not the source rms conversion for fixed peak voltage."
+    evidence_source: "Singapore-Cambridge H2 A Level Physics syllabus 9478, alternating current learning outcomes."
+    surface_in_predict: true
+  - name: "Resistance alone sets current in every AC circuit"
+    description: "Learners may apply I = V/R directly to RLC loads and miss that in AC the current is set by impedance magnitude, including inductive and capacitive reactance."
+    evidence_source: "OpenStax College Physics 2e, Chapter 23 Electromagnetic Induction, AC Circuits, and Electrical Technologies."
+    surface_in_predict: false
+  - name: "Leading and lagging phase are interchangeable"
+    description: "Learners may identify a phase difference but not connect its sign to inductive or capacitive behaviour, so they cannot decide whether current leads or lags voltage."
+    evidence_source: "OpenStax College Physics 2e, Chapter 23 Electromagnetic Induction, AC Circuits, and Electrical Technologies."
+    surface_in_predict: false
+sources:
+  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
+    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf"
+    publication_year: 2025
+    license: "Copyright MOE & Cambridge University Press & Assessment"
+    seab_alignment: matches
+  - citation: "OpenStax. College Physics 2e, Chapter 23 Electromagnetic Induction, AC Circuits, and Electrical Technologies. OpenStax, 2022."
+    url: "https://openstax.org/books/college-physics-2e/pages/23-introduction-to-electromagnetic-induction-ac-circuits-and-electrical-technologies"
+    publication_year: 2022
+    license: "CC BY 4.0"
+    seab_alignment: matches
+  - citation: "OpenStax. University Physics Volume 2, Chapter 15 Alternating-Current Circuits. OpenStax, 2016."
+    url: "https://openstax.org/books/university-physics-volume-2/pages/15-introduction"
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: matches
+language: en

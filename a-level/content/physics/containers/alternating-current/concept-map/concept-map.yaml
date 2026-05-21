@@ -1,0 +1,54 @@
+schema_version: "1.0.0"
+concept_id: alternating-current
+prerequisites:
+  - id: circuits
+    title: "Circuits"
+    relationship: "AC current and power still rely on voltage, current, resistance, and power relations."
+    status: available
+  - id: oscillations
+    title: "Oscillations"
+    relationship: "Sinusoidal variation, phase, period, and frequency carry over from oscillatory motion."
+    status: available
+  - id: waves
+    title: "Waves"
+    relationship: "Wave phase and frequency language supports voltage-current waveform comparison."
+    status: available
+downstream:
+  - id: electromagnetic-induction
+    title: "Electromagnetic Induction"
+    relationship: "AC generation and transformers depend on changing magnetic flux and sinusoidal emf."
+    status: planned
+  - id: transformers
+    title: "Transformers"
+    relationship: "Transformer ratios use rms voltages and currents for AC power transfer."
+    status: planned
+siblings:
+  - id: capacitance
+    title: "Capacitance"
+    relationship: "Capacitors store charge and introduce frequency-dependent reactance in AC."
+    status: available
+  - id: magnetic-fields
+    title: "Magnetic Fields"
+    relationship: "AC machines and inductors connect alternating current to magnetic effects."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: rms-average-confusion
+      label: "RMS is an arithmetic average voltage"
+    - id: frequency-rms-confusion
+      label: "Higher frequency always means higher rms value"
+    - id: resistance-only-current
+      label: "Resistance alone sets current in every AC circuit"
+    - id: phase-sign-confusion
+      label: "Leading and lagging phase are interchangeable"
+  edges:
+    - from: rms-average-confusion
+      to: frequency-rms-confusion
+      label: "both confuse waveform timing with effective magnitude"
+    - from: resistance-only-current
+      to: phase-sign-confusion
+      label: "both ignore the vector nature of impedance"
+    - from: frequency-rms-confusion
+      to: resistance-only-current
+      label: "frequency affects reactance before it affects current"
+mermaid_source: graph.mmd
