@@ -1,0 +1,24 @@
+# Markov Chain Steady State mindmap
+
+- Core definition
+  - A probability vector that remains unchanged after one transition update
+  - pi = P pi with probabilities summing to 1
+- Representations
+  - Transition matrix
+  - State vector trajectory
+  - Eigenvector for eigenvalue 1
+  - Long-run line chart
+- PMOE-T simulation hooks
+  - Predict whether congestion dominates long-run behavior
+  - Manipulate stay, recovery, and initial probabilities
+  - Observe repeated updates and the steady-state formula
+  - Explain balanced inflow and outflow
+  - Transfer to service backlog planning
+- Misconceptions
+  - Steady state means no individual transitions happen
+  - The largest immediate transition always dominates
+  - Initial mix determines the final mix
+- Downstream
+  - Queueing systems
+  - Inventory policy
+  - Reliability modelling

@@ -1,0 +1,53 @@
+schema_version: "1.0.0"
+concept_id: markov-chain-steady-state
+prerequisites:
+  - id: probability-distributions
+    title: "Probability Distributions"
+    relationship: "State vectors are probability distributions over mutually exclusive states."
+    status: available
+  - id: matrix-multiplication
+    title: "Matrix Multiplication"
+    relationship: "Transition updates multiply a matrix by a state vector."
+    status: planned
+  - id: eigenvectors
+    title: "Eigenvectors"
+    relationship: "A steady state is an eigenvector of the transition matrix at eigenvalue 1."
+    status: available
+downstream:
+  - id: queueing-systems
+    title: "Queueing Systems"
+    relationship: "Long-run state mixes become service-level and capacity assumptions."
+    status: planned
+  - id: inventory-policy
+    title: "Inventory Policy"
+    relationship: "Stockout and replenishment regimes can be modelled as transition states."
+    status: available
+  - id: reliability-modelling
+    title: "Reliability Modelling"
+    relationship: "Up/down Markov chains support availability estimates."
+    status: planned
+siblings:
+  - id: newsvendor-critical-fractile
+    title: "Newsvendor Critical Fractile"
+    relationship: "Both translate probabilistic system descriptions into operational decisions."
+    status: available
+  - id: eigenvector-transformations
+    title: "Eigenvector Transformations"
+    relationship: "Both use invariant directions; steady state is the probability-normalised invariant vector."
+    status: available
+misconception_graph:
+  nodes:
+    - id: steady-means-frozen
+      label: "Steady state means no individual transitions happen"
+    - id: largest-arrow-dominates
+      label: "The largest immediate transition always dominates long-run state"
+    - id: initial-mix-final
+      label: "The initial mix determines the final mix"
+  edges:
+    - from: steady-means-frozen
+      to: largest-arrow-dominates
+      label: "both confuse one-step movement with aggregate balance"
+    - from: initial-mix-final
+      to: steady-means-frozen
+      label: "both miss repeated transition updates"
+mermaid_source: graph.mmd

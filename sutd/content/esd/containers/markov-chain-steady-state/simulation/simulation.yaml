@@ -1,0 +1,59 @@
+id: markov-chain-steady-state
+title: "Markov Chain Steady-State Lab"
+interaction_type: systems-flow-diagram
+kernel_deps:
+  - core/sim-runtime
+  - core/probability-stats
+  - core/linear-algebra
+  - core/charting
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+predict:
+  prompt: |
+    A system is more likely to stay smooth than to recover once it becomes congested. Before reveal, where should the long-run mix move?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Toward more smooth weeks"
+      - "Toward more congested weeks"
+      - "Exactly to the initial week mix"
+      - "To whichever state has the larger one-step arrow"
+    correct_index: 1
+  rationale_required: true
+manipulate:
+  controls:
+    - id: smooth-stays-smooth
+      label: "Smooth week stays smooth"
+      kind: slider
+      kernel_binding: state.smoothStaysSmooth
+      bounds: { min: 0.55, max: 0.95, step: 0.01 }
+    - id: congested-recovers
+      label: "Congested week recovers"
+      kind: slider
+      kernel_binding: state.congestedRecovers
+      bounds: { min: 0.05, max: 0.65, step: 0.01 }
+    - id: initial-smooth
+      label: "Initial smooth probability"
+      kind: slider
+      kernel_binding: state.initialSmooth
+      bounds: { min: 0.05, max: 0.95, step: 0.01 }
+    - id: weeks
+      label: "Forecast horizon"
+      kind: slider
+      kernel_binding: state.weeks
+      bounds: { min: 2, max: 20, step: 1 }
+observe:
+  renderers:
+    - id: steady-state-readout
+      module: "@paideia/sutd-sims/markov-chain-steady-state"
+      symbol: "MarkovChainSteadyState"
+      props_binding: |
+        Render transition matrix, repeated-state update, steady-state formula with substitution, probability legend, convergence chart, and long-run interpretation.
+explain:
+  prompt: |
+    Explain why a steady-state distribution can stay fixed while individual weeks still transition between states.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Steady state means no individual transitions happen"
+    - "The largest immediate transition always dominates long-run state"

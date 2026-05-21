@@ -1,0 +1,9 @@
+runtime:
+  pmoe_t:
+    stages: [predict, manipulate, observe, explain]
+    prediction_gate: required
+  default_state:
+    smoothStaysSmooth: 0.84
+    congestedRecovers: 0.38
+    initialSmooth: 0.72
+    weeks: 10

@@ -1,0 +1,22 @@
+presets:
+  - id: default
+    label: "balanced operations"
+    state:
+      smoothStaysSmooth: 0.84
+      congestedRecovers: 0.38
+      initialSmooth: 0.72
+      weeks: 10
+  - id: sticky-congestion
+    label: "sticky congestion"
+    state:
+      smoothStaysSmooth: 0.78
+      congestedRecovers: 0.18
+      initialSmooth: 0.65
+      weeks: 12
+  - id: fast-recovery
+    label: "fast recovery"
+    state:
+      smoothStaysSmooth: 0.88
+      congestedRecovers: 0.58
+      initialSmooth: 0.4
+      weeks: 8

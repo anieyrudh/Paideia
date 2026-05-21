@@ -9,12 +9,13 @@ import GeneratedSim5TrustCalibrationTrustCalibration from "@paideia/sutd-sims/tr
 import GeneratedSim6BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
 import GeneratedSim7PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
 import GeneratedSim8LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim9NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim10BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim11EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim12VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim13LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim14OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim9MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
+import GeneratedSim10NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim11BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim12EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim13VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim14LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim15OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -152,6 +153,15 @@ export const knowledgeGraph = {
     status: "draft",
   },
   {
+    id: "sutd/esd/markov-chain-steady-state",
+    conceptId: "markov-chain-steady-state",
+    title: "Markov Chain Steady State",
+    subject: "esd",
+    level: "SUTD ESD",
+    module: "Stochastic Modelling and Engineering Systems",
+    status: "reviewed",
+  },
+  {
     id: "sutd/esd/newsvendor-critical-fractile",
     conceptId: "newsvendor-critical-fractile",
     title: "Newsvendor Critical Fractile",
@@ -236,6 +246,14 @@ export const knowledgeGraph = {
   { from: "sutd/epd/feedback-control", to: "sutd/epd/pid-step-response", kind: "prerequisite" },
   { from: "sutd/epd/pid-step-response", to: "sutd/epd/bode-plots", kind: "downstream" },
   { from: "sutd/epd/pid-step-response", to: "sutd/epd/state-space-control", kind: "downstream" },
+  { from: "sutd/esd/probability-distributions", to: "sutd/esd/markov-chain-steady-state", kind: "prerequisite" },
+  { from: "sutd/esd/matrix-multiplication", to: "sutd/esd/markov-chain-steady-state", kind: "prerequisite" },
+  { from: "sutd/esd/eigenvectors", to: "sutd/esd/markov-chain-steady-state", kind: "prerequisite" },
+  { from: "sutd/esd/markov-chain-steady-state", to: "sutd/esd/queueing-systems", kind: "downstream" },
+  { from: "sutd/esd/markov-chain-steady-state", to: "sutd/esd/inventory-policy", kind: "downstream" },
+  { from: "sutd/esd/markov-chain-steady-state", to: "sutd/esd/reliability-modelling", kind: "downstream" },
+  { from: "sutd/esd/markov-chain-steady-state", to: "sutd/esd/newsvendor-critical-fractile", kind: "sibling" },
+  { from: "sutd/esd/markov-chain-steady-state", to: "sutd/esd/eigenvector-transformations", kind: "sibling" },
   { from: "sutd/esd/probability-distributions", to: "sutd/esd/newsvendor-critical-fractile", kind: "prerequisite" },
   { from: "sutd/esd/expected-value", to: "sutd/esd/newsvendor-critical-fractile", kind: "prerequisite" },
   { from: "sutd/esd/linear-programming-feasible-region", to: "sutd/esd/newsvendor-critical-fractile", kind: "prerequisite" },
@@ -765,6 +783,68 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/esd/markov-chain-steady-state",
+    branch: "sutd",
+    subject: "Esd",
+    level: "SUTD ESD",
+    module: "Stochastic Modelling and Engineering Systems",
+    title: "Markov Chain Steady State",
+    summary: "Find the long-run state mix of a two-state stochastic system from its transition matrix.",
+    syllabusRef: "SUTD ESD stochastic modelling / Markov chains and steady-state analysis",
+    status: "reviewed",
+    packageId: "markov-chain-steady-state",
+    simId: "markov-chain-steady-state",
+    predictPrompt: "A system is more likely to stay smooth than to recover once it becomes congested. Before reveal, where should the long-run mix move?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Steady state means no individual transitions happen",
+      "The largest immediate transition always dominates long-run state",
+    ],
+    transferProblem: "A weekly service desk has state S = stable backlog and B = backed-up. From S, 78% of weeks remain stable. From B, 35% recover to stable. Starting from 60% stable, compute the next two weekly mixes and the steady-state distribution. Explain why the long-run mix is not the same thing as no tickets moving.",
+    firstPrinciples: "A Markov chain describes a system whose next state depends on its current state and a transition rule. In ESD, that rule can describe a queue that is smooth or congested, a machine that is up or down, or a customer who is active or dormant. The steady state answers a long-run planning question: if the same transition pattern keeps repeating, what fraction of time should the system spend in each state?",
+    keyDefinitions: [
+      "State vector: a probability distribution over the possible states at one time step.",
+      "Transition matrix: a table of conditional probabilities that maps the current state mix to the next state mix.",
+      "Steady state: a state vector pi where one more transition leaves the vector unchanged, so pi = P pi.",
+      "Regular chain: a Markov chain that eventually mixes toward one long-run distribution from any starting mix.",
+    ],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "What are the states and which matrix direction is being used?",
+      "What does one transition do to the current mix?",
+      "Which vector stays fixed under one more transition?",
+      "What does the steady state mean operationally?",
+      "Does the answer move in the expected direction?",
+    ],
+    prerequisites: [
+      "Probability Distributions",
+      "Matrix Multiplication",
+      "Eigenvectors",
+    ],
+    downstream: [
+      "Queueing Systems",
+      "Inventory Policy",
+      "Reliability Modelling",
+    ],
+    siblings: [
+      "Newsvendor Critical Fractile",
+      "Eigenvector Transformations",
+    ],
+    sims: [
+      {
+        id: "markov-chain-steady-state",
+        harnessId: "sutd/esd/markov-chain-steady-state/markov-chain-steady-state",
+        title: "Markov Chain Steady-State Lab",
+        interactionType: "systems-flow-diagram",
+        component: GeneratedSim9MarkovChainSteadyStateMarkovChainSteadyState,
+      },
+    ],
+  },
+  {
     id: "sutd/esd/newsvendor-critical-fractile",
     branch: "sutd",
     subject: "Esd",
@@ -826,7 +906,7 @@ export const containers = [
         harnessId: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
         title: "Newsvendor Critical Fractile Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim9NewsvendorCriticalFractileNewsvendorCriticalFractile,
+        component: GeneratedSim10NewsvendorCriticalFractileNewsvendorCriticalFractile,
       },
     ],
   },
@@ -889,7 +969,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim10BayesUpdatingBayesUpdating,
+        component: GeneratedSim11BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -943,7 +1023,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim11EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim12EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -995,7 +1075,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim12VectorTransformationsVectorTransformations,
+        component: GeneratedSim13VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -1052,7 +1132,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim13LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim14LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -1118,7 +1198,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim14OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim15OdePhasePortraitOdePhasePortrait,
       },
     ],
   }
