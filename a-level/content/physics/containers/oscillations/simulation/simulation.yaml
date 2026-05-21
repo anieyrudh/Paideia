@@ -1,0 +1,69 @@
+id: simple-harmonic-motion-lab
+title: "Simple Harmonic Motion Lab"
+interaction_type: animation-playback
+kernel_deps:
+  - core/sim-runtime
+  - core/content-schema
+  - core/mechanics
+  - core/charting
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A spring oscillator has the same mass and spring constant, but the amplitude is doubled. Before revealing the lab, what happens to the period?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The period doubles"
+      - "The period stays the same"
+      - "The period halves"
+      - "The period becomes zero at equilibrium"
+    correct_index: 1
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: mass
+      label: "Mass"
+      kind: slider
+      kernel_binding: state.massKilograms
+      bounds: { min: 0.5, max: 5, step: 0.1 }
+    - id: spring-constant
+      label: "Spring stiffness"
+      kind: slider
+      kernel_binding: state.springConstantNewtonsPerMetre
+      bounds: { min: 4, max: 80, step: 1 }
+    - id: amplitude
+      label: "Amplitude"
+      kind: slider
+      kernel_binding: state.amplitudeMetres
+      bounds: { min: 0.1, max: 2, step: 0.05 }
+    - id: phase
+      label: "Starting phase"
+      kind: slider
+      kernel_binding: state.phaseRadians
+      bounds: { min: 0, max: 6.28, step: 0.1 }
+    - id: time
+      label: "Time marker"
+      kind: slider
+      kernel_binding: state.timeSeconds
+      bounds: { min: 0, max: 8, step: 0.05 }
+
+observe:
+  renderers:
+    - id: simple-harmonic-motion-lab
+      module: "@paideia/a-level-physics-sims/oscillations"
+      symbol: OscillationsSim
+      props_binding: |
+        Show mass-spring displacement, velocity and acceleration signs, energy exchange, formula substitution, and period-frequency readouts.
+
+explain:
+  prompt: |
+    Which quantity controls the period, which evidence shows the restoring acceleration, and what changes when amplitude is larger?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Amplitude changes the period for every oscillator"
+    - "Acceleration is greatest at equilibrium"
+    - "Zero displacement means zero speed and zero energy"

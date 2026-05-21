@@ -1,0 +1,54 @@
+controls:
+  - id: null-mean
+    label: "Null mean"
+    kind: slider
+    default: 64
+    min: 50
+    max: 80
+    step: 0.5
+    unit: marks
+  - id: observed-mean
+    label: "Observed sample mean"
+    kind: slider
+    default: 67.2
+    min: 50
+    max: 80
+    step: 0.1
+    unit: marks
+  - id: population-standard-deviation
+    label: "Population standard deviation"
+    kind: slider
+    default: 8
+    min: 4
+    max: 16
+    step: 0.5
+    unit: marks
+  - id: sample-size
+    label: "Sample size"
+    kind: slider
+    default: 36
+    min: 16
+    max: 100
+    step: 1
+  - id: significance-level
+    label: "Significance level"
+    kind: selector
+    default: 0.05
+    options:
+      - label: "10%"
+        value: 0.1
+      - label: "5%"
+        value: 0.05
+      - label: "1%"
+        value: 0.01
+  - id: alternative
+    label: "Alternative hypothesis"
+    kind: selector
+    default: greater
+    options:
+      - label: "H1: mean is greater"
+        value: greater
+      - label: "H1: mean is less"
+        value: less
+      - label: "H1: mean is different"
+        value: two-sided

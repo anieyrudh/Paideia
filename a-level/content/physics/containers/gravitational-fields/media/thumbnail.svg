@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Gravitational fields thumbnail</title>
+  <desc id="desc">A planet with inward field arrows and an orbiting probe.</desc>
+  <rect width="640" height="360" fill="#f8fbff"/>
+  <circle cx="250" cy="180" r="46" fill="#f0b429"/>
+  <circle cx="250" cy="180" r="118" fill="none" stroke="#94a3b8" stroke-width="5" stroke-dasharray="14 12"/>
+  <circle cx="368" cy="180" r="18" fill="#1f5f8b"/>
+  <g stroke="#1f5f8b" stroke-linecap="round" stroke-width="8">
+    <line x1="368" x2="320" y1="180" y2="180"/>
+    <line x1="342" x2="306" y1="112" y2="134"/>
+    <line x1="342" x2="306" y1="248" y2="226"/>
+  </g>
+  <g fill="#10201a" font-family="Arial, sans-serif" font-weight="700">
+    <text x="72" y="76" font-size="30">g = GM / r²</text>
+    <text x="72" y="116" font-size="20">field strength falls with distance squared</text>
+  </g>
+</svg>

@@ -1,0 +1,121 @@
+schema_version: "1.0.0"
+id: confusion-matrix-thresholds
+aliases: []
+branch: sutd
+subject: dai
+level: "Freshmore"
+module: "Design and Artificial Intelligence"
+title: "Confusion Matrix Thresholds"
+one_line_summary: "Tune a classifier threshold and explain how false positives, false negatives, precision, recall, and stakeholder cost move together."
+syllabus_ref: "SUTD DAI / Human-centred AI decision thresholds"
+prerequisites:
+  - trust-calibration
+  - probability
+  - classification
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    Before revealing the counts, predict what happens if the threshold is raised from 65% to 80% while false negatives are costly.
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Precision and recall both increase because the model becomes stricter"
+      - "Recall falls, so missed-positive cost can rise even if precision improves"
+      - "Accuracy is unchanged because the underlying scores do not change"
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: transfer-loan-review-threshold
+    prompt: |
+      A loan-review model flags applications for manual review. False positives slow down eligible applicants; false negatives approve risky applications. Choose a threshold, compute the confusion matrix, and justify the policy using precision, recall, and cost units.
+    surface_form: "loan-review threshold policy"
+    same_concept_check: "The learner still updates TP, FP, TN, and FN from a threshold, then interprets precision, recall, and asymmetric stakeholder cost."
+    rubric_path: problem-solving/transfer-loan-review-threshold.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Paideia"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-21"
+      author: "Codex"
+      summary: "Built the SUTD DAI product slice for confusion matrix thresholds and stakeholder-cost interpretation."
+authors: ["Codex"]
+advisor_signoffs: []
+review:
+  anieyrudh_filter:
+    required_for_status: published
+    last_run: "2026-05-21"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Accuracy is enough for every deployment"
+    description: |
+      Learners may optimize the single accuracy number and miss that false positives and false negatives have different consequences for different stakeholders.
+    evidence_source: "Google Machine Learning Crash Course thresholding guide; Suresh and Guttag 2021."
+    surface_in_predict: true
+  - name: "A single threshold is neutral for all groups"
+    description: |
+      Learners may treat one global threshold as inherently fair even when base rates, score calibration, or error costs differ across groups.
+    evidence_source: "Hardt et al. 2016; Suresh and Guttag 2021."
+    surface_in_predict: true
+sources:
+  - citation: "Google Machine Learning Crash Course: Classification thresholds and the confusion matrix."
+    url: "https://developers.google.com/machine-learning/crash-course/classification/thresholding"
+    publication_year: 2024
+    license: "Google Developers Site Terms"
+    seab_alignment: n/a
+  - citation: "Scikit-learn User Guide: Classification metrics and confusion matrix."
+    url: "https://scikit-learn.org/stable/modules/model_evaluation.html#confusion-matrix"
+    publication_year: 2025
+    license: "BSD-3-Clause"
+    seab_alignment: n/a
+  - citation: "Suresh, H. and Guttag, J. A Framework for Understanding Sources of Harm throughout the Machine Learning Life Cycle. EAAMO, 2021."
+    url: "https://arxiv.org/abs/1901.10002"
+    publication_year: 2021
+    license: "arXiv"
+    seab_alignment: n/a
+  - citation: "Hardt, M., Price, E., and Srebro, N. Equality of Opportunity in Supervised Learning. NeurIPS, 2016."
+    url: "https://papers.nips.cc/paper_files/paper/2016/hash/9d2682367c3935defcb1f9e247a97c0d-Abstract.html"
+    publication_year: 2016
+    license: "NeurIPS proceedings"
+    seab_alignment: n/a
+language: en

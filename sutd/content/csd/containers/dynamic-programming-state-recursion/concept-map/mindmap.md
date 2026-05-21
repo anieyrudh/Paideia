@@ -1,0 +1,21 @@
+# Mindmap
+
+- Dynamic Programming State Recursion
+  - State definition
+    - What does one table entry mean?
+    - What units does the value have?
+  - Recurrence
+    - Smaller states
+    - Base cases
+    - Substituted values
+  - Memoisation table
+    - Stored values
+    - Reused states
+    - Fewer repeated calls
+  - Misconceptions
+    - Dynamic programming means any loop
+    - Memoisation changes the recurrence result
+  - Transfer
+    - Shortest-path dynamic programming
+    - Resource allocation
+    - Reinforcement learning value tables

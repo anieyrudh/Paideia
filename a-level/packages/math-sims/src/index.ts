@@ -1,4 +1,17 @@
 export {
+  HypothesisTestingSim,
+  hypothesisTestingModel,
+  hypothesisTestingPackageId,
+  hypothesisTestingSimId,
+  hypothesisTestingSpec,
+} from "./hypothesis-testing.js";
+export type {
+  HypothesisTestingDecision,
+  HypothesisTestingModel,
+  HypothesisTestingState,
+  HypothesisTail,
+} from "./hypothesis-testing.js";
+export {
   ProbabilityStatisticsSim,
   probabilityStatisticsModel,
   probabilityStatisticsPackageId,

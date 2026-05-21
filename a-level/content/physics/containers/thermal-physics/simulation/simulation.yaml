@@ -1,0 +1,74 @@
+id: gas-law-energy-transfer-lab
+title: "Gas Law and Energy Transfer Lab"
+interaction_type: animation-playback
+kernel_deps:
+  - core/sim-runtime
+  - core/content-schema
+  - core/numerical-math
+  - core/charting
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A 0.040 mol gas sample occupies 1.0 L at 27 deg C. Before revealing the lab, which pressure is closest when the ideal-gas law is used correctly?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "9.0 kPa"
+      - "100 kPa"
+      - "270 kPa"
+      - "830 kPa"
+    correct_index: 1
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: volume
+      label: "Gas volume"
+      kind: slider
+      kernel_binding: state.volumeLitres
+      bounds: { min: 0.5, max: 5, step: 0.1 }
+    - id: gas-temperature
+      label: "Gas temperature"
+      kind: slider
+      kernel_binding: state.gasTemperatureCelsius
+      bounds: { min: -20, max: 120, step: 1 }
+    - id: amount
+      label: "Amount of gas"
+      kind: slider
+      kernel_binding: state.amountMoles
+      bounds: { min: 0.01, max: 0.12, step: 0.005 }
+    - id: heated-mass
+      label: "Mass heated"
+      kind: slider
+      kernel_binding: state.heatingMassKilograms
+      bounds: { min: 0.05, max: 1.2, step: 0.05 }
+    - id: initial-temperature
+      label: "Initial temperature"
+      kind: slider
+      kernel_binding: state.initialTemperatureCelsius
+      bounds: { min: 0, max: 80, step: 1 }
+    - id: final-temperature
+      label: "Final temperature"
+      kind: slider
+      kernel_binding: state.finalTemperatureCelsius
+      bounds: { min: 0, max: 100, step: 1 }
+
+observe:
+  renderers:
+    - id: gas-law-energy-transfer-lab
+      module: "@paideia/a-level-physics-sims/thermal-physics"
+      symbol: ThermalPhysicsSim
+      props_binding: |
+        Show Kelvin conversion, ideal-gas pressure, Celsius-substitution trap, heat-transfer calculation, formula substitution, and pressure against inverse-volume trend.
+
+explain:
+  prompt: |
+    Why must gas-law temperature be in kelvin, and why can two samples at the same temperature require different energy transfers?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Temperature is the same as thermal energy"
+    - "Celsius can be substituted directly into gas laws"
+    - "Increasing volume always increases gas pressure"

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Oscillations thumbnail</title>
+  <desc id="desc">A mass on a spring oscillating around equilibrium with a displacement trace.</desc>
+  <rect width="640" height="360" fill="#f8fbff"/>
+  <line x1="320" x2="320" y1="56" y2="264" stroke="#94a3b8" stroke-dasharray="8 8" stroke-width="4"/>
+  <path d="M80 168 C110 118, 140 218, 170 168 S230 118, 260 168 S320 218, 350 168 S410 118, 440 168" fill="none" stroke="#2563eb" stroke-width="10" stroke-linecap="round"/>
+  <rect x="440" y="122" width="108" height="92" rx="18" fill="#f0b429"/>
+  <line x1="72" x2="568" y1="248" y2="248" stroke="#64748b" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="468" cy="254" r="13" fill="#10201a"/>
+  <circle cx="520" cy="254" r="13" fill="#10201a"/>
+  <path d="M88 300 C150 250, 220 250, 284 300 S420 350, 560 300" fill="none" stroke="#027a48" stroke-width="8" stroke-linecap="round"/>
+  <text x="54" y="68" fill="#10201a" font-family="Arial, sans-serif" font-size="32" font-weight="700">Simple harmonic motion</text>
+  <text x="54" y="108" fill="#475569" font-family="Arial, sans-serif" font-size="22">period, acceleration, energy exchange</text>
+</svg>

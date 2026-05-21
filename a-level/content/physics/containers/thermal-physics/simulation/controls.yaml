@@ -1,0 +1,49 @@
+controls:
+  - id: volume
+    label: "Gas volume"
+    kind: slider
+    unit: L
+    default: 1
+    min: 0.5
+    max: 5
+    step: 0.1
+  - id: gas-temperature
+    label: "Gas temperature"
+    kind: slider
+    unit: "deg C"
+    default: 27
+    min: -20
+    max: 120
+    step: 1
+  - id: amount
+    label: "Amount of gas"
+    kind: slider
+    unit: mol
+    default: 0.04
+    min: 0.01
+    max: 0.12
+    step: 0.005
+  - id: heated-mass
+    label: "Mass heated"
+    kind: slider
+    unit: kg
+    default: 0.25
+    min: 0.05
+    max: 1.2
+    step: 0.05
+  - id: initial-temperature
+    label: "Initial temperature"
+    kind: slider
+    unit: "deg C"
+    default: 20
+    min: 0
+    max: 80
+    step: 1
+  - id: final-temperature
+    label: "Final temperature"
+    kind: slider
+    unit: "deg C"
+    default: 60
+    min: 0
+    max: 100
+    step: 1

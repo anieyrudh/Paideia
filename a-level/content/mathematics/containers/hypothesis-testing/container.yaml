@@ -1,0 +1,124 @@
+schema_version: "1.0.0"
+id: hypothesis-testing
+aliases:
+  - significance testing
+  - p-value
+  - critical region
+  - test statistic
+branch: a-level
+subject: mathematics
+level: "H2"
+module: "Probability and Statistics"
+title: "Hypothesis Testing"
+one_line_summary: "Formulate H0 and H1, standardise a sample mean, compare with a critical region, and interpret the p-value decision safely."
+syllabus_ref: "9758 / Probability and Statistics / 6.5 Hypothesis testing"
+prerequisites:
+  - probability-statistics
+  - normal-distribution
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A sample mean is above the null mean. Before revealing the lab, predict what happens to the strength of evidence when the sample size grows but the observed mean stays fixed.
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The evidence weakens because more observations make the average less surprising."
+      - "The evidence strengthens because the standard error becomes smaller."
+      - "The p-value is the probability that H0 is true."
+      - "Any non-zero difference proves the alternative hypothesis."
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: clinic-waiting-time
+    prompt: |
+      A clinic claims its mean waiting time is 18 minutes. A sample of 49 visits has mean 16.1 minutes. The population standard deviation is known to be 5.6 minutes. At the 5% significance level, decide whether there is evidence that the mean waiting time is less than 18 minutes.
+    surface_form: "clinic waiting-time claim"
+    same_concept_check: "Same concept: state H0 and H1, compute the sample-mean standard error, standardise the observed mean, compare with the critical region, and interpret the p-value decision in context."
+    rubric_path: problem-solving/clinic-waiting-time.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-21"
+      author: "Codex"
+      summary: "Built A-Level hypothesis testing product slice using core/probability-stats, charting, sim-runtime, prediction-gate, and ui-sim."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-21"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-21"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "p-value is the probability the null hypothesis is true"
+    description: "Learners may read a small p-value as a direct posterior probability for H0, rather than as the probability of a result at least this extreme if H0 were true."
+    evidence_source: "Singapore-Cambridge H2 Mathematics 9758 syllabus, Hypothesis testing; OpenStax Introductory Statistics, Hypothesis Testing with One Sample."
+    surface_in_predict: true
+  - name: "rejecting the null proves the alternative is true"
+    description: "Learners may treat rejection as proof, instead of a decision against the null model at a stated significance level with assumptions still attached."
+    evidence_source: "OpenStax Introductory Statistics, Chapter 9 Hypothesis Testing with One Sample."
+    surface_in_predict: true
+  - name: "only the observed difference matters"
+    description: "Learners may ignore sample size and standard deviation, treating a fixed difference between sample mean and null mean as equally strong evidence in every setting."
+    evidence_source: "OpenStax Introductory Statistics, Chapter 9 Hypothesis Testing with One Sample."
+    surface_in_predict: true
+sources:
+  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 Mathematics 9758 syllabus for examination in 2027. 2025."
+    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9758_y27_sy.pdf"
+    publication_year: 2025
+    license: "Copyright MOE & Cambridge University Press & Assessment"
+    seab_alignment: matches
+  - citation: "Illowsky, B., Dean, S., et al. Introductory Statistics, Chapter 9: Hypothesis Testing with One Sample. OpenStax, 2013."
+    url: "https://openstax.org/details/books/introductory-statistics"
+    publication_year: 2013
+    license: "CC BY 4.0"
+    seab_alignment: matches
+language: en

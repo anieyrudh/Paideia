@@ -1,0 +1,45 @@
+presets:
+  - id: damped-oscillator
+    label: "Damped oscillator"
+    description: "Complex pair with negative real part: rotation loses amplitude."
+    state:
+      preset: damped-oscillator
+      aPerTimeUnit: 0
+      bPerTimeUnit: 1
+      cPerTimeUnit: -1.2
+      dPerTimeUnit: -0.6
+      initialXStateUnits: 1.35
+      initialYStateUnits: 0.1
+  - id: fast-settling-node
+    label: "Fast settling node"
+    description: "Two negative real eigenvalues: return without rotation."
+    state:
+      preset: fast-settling-node
+      aPerTimeUnit: -1.2
+      bPerTimeUnit: 0.25
+      cPerTimeUnit: 0
+      dPerTimeUnit: -0.45
+      initialXStateUnits: 1.2
+      initialYStateUnits: -0.6
+  - id: saddle-split
+    label: "Saddle split"
+    description: "One positive and one negative eigenvalue: one direction escapes."
+    state:
+      preset: saddle-split
+      aPerTimeUnit: 0.25
+      bPerTimeUnit: 1
+      cPerTimeUnit: 1.1
+      dPerTimeUnit: -0.35
+      initialXStateUnits: 0.05
+      initialYStateUnits: 0.04
+  - id: growing-spiral
+    label: "Growing spiral"
+    description: "Complex pair with positive real part: rotation grows outward."
+    state:
+      preset: growing-spiral
+      aPerTimeUnit: 0.3
+      bPerTimeUnit: 1
+      cPerTimeUnit: -1.4
+      dPerTimeUnit: 0.3
+      initialXStateUnits: 0.35
+      initialYStateUnits: 0.2

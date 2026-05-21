@@ -1,0 +1,6 @@
+# Sources
+
+- Singapore Examinations and Assessment Board. *Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027*. 2025. https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf
+- Moebs, W., Ling, S. J., and Sanny, J. *University Physics Volume 1*, Chapter 13 Gravitation. OpenStax, 2016. CC BY 4.0. https://openstax.org/books/university-physics-volume-1/pages/13-introduction
+
+The SEAB syllabus is used for A-Level alignment: field concept, gravitational field strength as force per unit mass, inverse-square gravitational fields, and gravitational potential. OpenStax supports the clean-room explanatory treatment of gravitational potential energy, zero at infinity, and circular orbit energy relationships.

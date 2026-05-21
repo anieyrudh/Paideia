@@ -1,0 +1,22 @@
+steps:
+  - id: define-equilibrium
+    label: "Define equilibrium and sign"
+    check: "The solution states where x = 0 and which displacement direction is positive."
+  - id: apply-restoring-rule
+    label: "Apply the restoring rule"
+    check: "Acceleration is written as proportional to negative displacement."
+    formula: "a = -omega^2 x"
+  - id: convert-period-frequency
+    label: "Convert timing quantities"
+    check: "The answer correctly connects T, f, and omega."
+    formula: "omega = 2 pi f; T = 1 / f"
+  - id: evaluate-displacement
+    label: "Evaluate displacement at the time"
+    check: "The displacement expression uses amplitude, angular frequency, time, and phase consistently."
+    formula: "x(t) = A cos(omega t + phi)"
+  - id: interpret-energy
+    label: "Interpret energy exchange"
+    check: "The explanation distinguishes total energy from kinetic and potential energy stores."
+  - id: address-misconception
+    label: "Address the misconception"
+    check: "The final statement explicitly separates amplitude, period, speed, and acceleration."

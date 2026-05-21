@@ -30,6 +30,12 @@
       "path": "../../../core/mechanics"
     },
     {
+      "path": "../../../core/numerical-math"
+    },
+    {
+      "path": "../../../core/plotting"
+    },
+    {
       "path": "../../../core/prediction-gate"
     },
     {

@@ -1,0 +1,10 @@
+runtime:
+  package_entry: "@paideia/a-level-physics-sims/oscillations"
+  component: OscillationsSim
+  prediction_gate: required
+  pmote:
+    predict: "Commit the amplitude-period prediction."
+    manipulate: "Adjust mass, spring stiffness, amplitude, phase, and time marker."
+    observe: "Read displacement, velocity, acceleration, period, frequency, and energy exchange."
+    explain: "Connect acceleration direction, timing, and energy-store changes."
+    transfer: "Apply the same model to car suspension after a bump."

@@ -1,0 +1,52 @@
+schema_version: "1.0.0"
+concept_id: thermal-physics
+prerequisites:
+  - id: physical-quantities-and-units
+    title: "Physical Quantities and Units"
+    relationship: "Unit conversion, SI quantities, and dimensional checking."
+    status: available
+  - id: work-energy-power
+    title: "Work, Energy, Power"
+    relationship: "Energy transfer language before heat transfer and internal energy."
+    status: available
+downstream:
+  - id: ideal-gases
+    title: "Ideal Gases"
+    relationship: "More detailed kinetic-theory treatment of gas pressure and molecular speed."
+    status: planned
+  - id: internal-energy
+    title: "Internal Energy"
+    relationship: "Microscopic energy model and first-law reasoning."
+    status: planned
+siblings:
+  - id: waves
+    title: "Waves"
+    relationship: "Separates energy transfer from observable oscillation variables."
+    status: available
+  - id: circuits
+    title: "Circuits"
+    relationship: "Another domain where state variables and energy transfer must be separated."
+    status: available
+misconception_graph:
+  nodes:
+    - id: temperature-equals-energy
+      label: "Temperature equals thermal energy"
+    - id: celsius-in-gas-law
+      label: "Celsius can be used directly in pV = nRT"
+    - id: volume-raises-pressure
+      label: "More volume always means more pressure"
+    - id: unit-conversion
+      label: "Unit conversion controls the model"
+    - id: state-variable
+      label: "Gas state depends on p, V, n, and T_K"
+  edges:
+    - from: celsius-in-gas-law
+      to: unit-conversion
+      label: "resolved by kelvin conversion"
+    - from: volume-raises-pressure
+      to: state-variable
+      label: "resolved by holding n and T fixed"
+    - from: temperature-equals-energy
+      to: state-variable
+      label: "resolved by separating temperature from energy transfer"
+mermaid_source: graph.mmd

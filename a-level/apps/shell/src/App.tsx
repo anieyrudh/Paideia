@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { type MouseEvent, useEffect, useMemo, useState } from "react";
 import { clearPrediction } from "@paideia/prediction-gate";
 import { z } from "zod";
 import {
@@ -368,6 +368,13 @@ export const App = () => {
     });
   };
 
+  const scrollWithinActiveContainer =
+    (targetId: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault();
+      globalThis.document?.getElementById(targetId)?.scrollIntoView({ block: "start" });
+      globalThis.history?.replaceState(null, "", `#${encodeURIComponent(active.id)}`);
+    };
+
   return (
     <div className="app-shell">
       <header className="topbar">
@@ -379,8 +386,12 @@ export const App = () => {
           </span>
         </a>
         <div className="topbar-actions">
-          <a href="#lab">Start lab</a>
-          <a href="#transfer">Challenge</a>
+          <a href={`#${encodeURIComponent(active.id)}`} onClick={scrollWithinActiveContainer("lab")}>
+            Start lab
+          </a>
+          <a href={`#${encodeURIComponent(active.id)}`} onClick={scrollWithinActiveContainer("transfer")}>
+            Challenge
+          </a>
         </div>
       </header>
 

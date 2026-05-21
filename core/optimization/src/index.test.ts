@@ -1,8 +1,14 @@
 import { describe, expect, it } from "vitest";
+import fc from "fast-check";
+import { approxEqual, probability } from "@paideia/shared";
+import { normalizeDistribution } from "@paideia/probability-stats";
 import {
+  costSgdPerUnit,
   gradientDescent,
   linearFeasibleRegion,
+  newsvendorCriticalFractile,
   optimizationTolerance,
+  orderQuantityUnits,
   optimizeLinearObjective,
   type LinearConstraint,
   type Point2,
@@ -16,10 +22,100 @@ const unitSquare = {
 const distance = (left: Point2, right: Point2): number =>
   Math.hypot(left[0] - right[0], left[1] - right[1]);
 
-const approxEqual = (left: number, right: number, tolerance: number): boolean =>
-  Number.isFinite(left) && Number.isFinite(right) && Math.abs(left - right) <= tolerance;
+const p = (value: number) => {
+  const result = probability(value);
+  if (!result.ok) throw new Error(result.error.message);
+  return result.value;
+};
 
 describe("@paideia/optimization", () => {
+  it("property: newsvendor critical fractile selects the first CDF crossing", () => {
+    fc.assert(
+      fc.property(
+        fc.integer({ min: 20, max: 80 }),
+        fc.array(fc.integer({ min: 5, max: 30 }), { minLength: 4, maxLength: 4 }),
+        fc.array(fc.integer({ min: 1, max: 80 }), { minLength: 5, maxLength: 5 }),
+        fc.integer({ min: 1, max: 40 }),
+        fc.integer({ min: 1, max: 40 }),
+        (baseDemand, increments, weights, underageCost, overageCost) => {
+          const demands = increments.reduce<number[]>(
+            (values, increment) => {
+              const previous = values.at(-1);
+              if (previous === undefined) return values;
+              values.push(previous + increment);
+              return values;
+            },
+            [baseDemand],
+          );
+          const distribution = normalizeDistribution(
+            demands.map((value, index) => ({
+              id: `d${index}`,
+              value,
+              weight: weights[index] ?? 1,
+            })),
+          );
+          expect(distribution.ok).toBe(true);
+          if (!distribution.ok) return;
+
+          const selectedDemand = demands[Math.floor(demands.length / 2)];
+          expect(selectedDemand).toBeDefined();
+          if (selectedDemand === undefined) return;
+
+          const analysis = newsvendorCriticalFractile({
+            distribution: distribution.value,
+            orderQuantity: orderQuantityUnits(selectedDemand),
+            underageCost: costSgdPerUnit(underageCost),
+            overageCost: costSgdPerUnit(overageCost),
+            quantityStep: orderQuantityUnits(5),
+          });
+
+          expect(analysis.ok).toBe(true);
+          if (!analysis.ok) return;
+
+          const expectedFractile = underageCost / (underageCost + overageCost);
+          expect(
+            approxEqual(Number(analysis.value.criticalFractile), expectedFractile, 1e-10),
+          ).toBe(true);
+          const firstCrossing = analysis.value.cdf.find(
+            (point) => Number(point.cumulativeProbability) >= expectedFractile,
+          );
+          expect(firstCrossing).toBeDefined();
+          if (firstCrossing === undefined) return;
+
+          expect(Number(analysis.value.recommendedQuantity)).toBe(Number(firstCrossing.quantity));
+          expect(
+            approxEqual(
+              Number(analysis.value.recommendedServiceLevel),
+              Number(firstCrossing.cumulativeProbability),
+              1e-10,
+            ),
+          ).toBe(true);
+          expect(analysis.value.dominantPenalty).toBe(
+            underageCost >= overageCost ? "shortage" : "surplus",
+          );
+          expect(analysis.value.costCurve.length).toBeGreaterThan(0);
+        },
+      ),
+      { seed: 123, numRuns: 50 },
+    );
+  });
+
+  it("rejects pathological newsvendor cost-curve step counts", () => {
+    const analysis = newsvendorCriticalFractile({
+      distribution: [
+        { id: "d0", value: 0, probability: p(0.5) },
+        { id: "d1", value: 1_000_000, probability: p(0.5) },
+      ],
+      orderQuantity: orderQuantityUnits(10),
+      underageCost: costSgdPerUnit(10),
+      overageCost: costSgdPerUnit(5),
+      quantityStep: orderQuantityUnits(0.001),
+    });
+
+    expect(analysis.ok).toBe(false);
+    if (!analysis.ok) expect(analysis.error.code).toBe("precondition-violated");
+  });
+
   it("traces gradient descent toward a convex quadratic minimizer", () => {
     const result = gradientDescent(
       (x, y) => (x - 2) ** 2 + (y + 1) ** 2,

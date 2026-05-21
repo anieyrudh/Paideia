@@ -1,0 +1,67 @@
+id: test-statistic-decision-lab
+title: "Test Statistic Decision Lab"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/sim-runtime
+  - core/content-schema
+  - core/probability-stats
+  - core/charting
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+predict:
+  prompt: |
+    A sample mean is 3.2 marks above the null mean. Before seeing the decision, predict what happens when the sample size grows but the observed mean stays fixed.
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The evidence weakens because the sample has more values to average."
+      - "The evidence strengthens because the standard error becomes smaller."
+      - "The p-value is the probability that the null hypothesis is true."
+      - "The null hypothesis is proved false whenever the sample mean is different."
+    correct_index: 1
+  rationale_required: true
+manipulate:
+  controls:
+    - id: null-mean
+      label: "Null mean"
+      kind: slider
+      kernel_binding: state.nullMean
+      bounds: { min: 50, max: 80, step: 0.5 }
+    - id: observed-mean
+      label: "Observed sample mean"
+      kind: slider
+      kernel_binding: state.observedMean
+      bounds: { min: 50, max: 80, step: 0.1 }
+    - id: population-standard-deviation
+      label: "Population standard deviation"
+      kind: slider
+      kernel_binding: state.populationStandardDeviation
+      bounds: { min: 4, max: 16, step: 0.5 }
+    - id: sample-size
+      label: "Sample size"
+      kind: slider
+      kernel_binding: state.sampleSize
+      bounds: { min: 16, max: 100, step: 1 }
+    - id: significance-level
+      label: "Significance level"
+      kind: selector
+      kernel_binding: state.alpha
+    - id: alternative
+      label: "Alternative hypothesis"
+      kind: selector
+      kernel_binding: state.tail
+observe:
+  renderers:
+    - id: test-statistic-decision-lab
+      module: "@paideia/a-level-math-sims/hypothesis-testing"
+      symbol: HypothesisTestingSim
+      props_binding: |
+        Show null and alternative hypotheses, z-score, critical-region comparison, p-value decision explanation, formula substitution, units, and interpretation.
+explain:
+  prompt: |
+    Which sentence is safer: the sample result would be rare if H0 were true, or H0 is probably false? Use the p-value comparison to justify the wording.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "p-value is the probability the null hypothesis is true"
+    - "rejecting the null proves the alternative is true"

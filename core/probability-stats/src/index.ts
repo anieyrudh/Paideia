@@ -73,6 +73,92 @@ export interface BayesPositiveEvidence {
   readonly routes: DiscreteDistribution<"true-positive" | "false-positive">;
 }
 
+export type NormalMeanHypothesisTestAlternative = "greater" | "less" | "two-sided";
+export type NormalMeanHypothesisTestAlpha = 0.1 | 0.05 | 0.01;
+
+export interface NormalMeanHypothesisTestInput {
+  readonly nullMean: number;
+  readonly observedMean: number;
+  readonly populationStandardDeviation: number;
+  readonly sampleSize: number;
+  readonly alpha: NormalMeanHypothesisTestAlpha;
+  readonly alternative: NormalMeanHypothesisTestAlternative;
+}
+
+export interface NormalMeanHypothesisTestDecision {
+  readonly nullMean: number;
+  readonly observedMean: number;
+  readonly standardError: number;
+  readonly z: number;
+  readonly alpha: NormalMeanHypothesisTestAlpha;
+  readonly alternative: NormalMeanHypothesisTestAlternative;
+  readonly criticalBoundary: number;
+  readonly rejectNull: boolean;
+  readonly pValueRelation: "less-than-alpha" | "at-least-alpha";
+}
+
+export type BinaryClassLabel = "actual-positive" | "actual-negative";
+
+export interface ThresholdClassifierCase<TId extends string = string> {
+  readonly id: TId;
+  readonly score: number;
+  readonly actual: BinaryClassLabel;
+}
+
+export interface BinaryConfusionCounts {
+  readonly truePositive: number;
+  readonly falsePositive: number;
+  readonly trueNegative: number;
+  readonly falseNegative: number;
+}
+
+export type BinaryConfusionCell =
+  | "true-positive"
+  | "false-positive"
+  | "true-negative"
+  | "false-negative";
+
+export interface ThresholdCaseOutcome<TId extends string = string> {
+  readonly id: TId;
+  readonly score: number;
+  readonly actual: BinaryClassLabel;
+  readonly predictedPositive: boolean;
+  readonly cell: BinaryConfusionCell;
+}
+
+export interface ThresholdCurvePoint {
+  readonly thresholdPercent: number;
+  readonly precision: number;
+  readonly recall: number;
+  readonly accuracy: number;
+  readonly falsePositiveCostTotal: number;
+  readonly falseNegativeCostTotal: number;
+  readonly totalCost: number;
+}
+
+export interface ThresholdClassificationInput<TId extends string = string> {
+  readonly cases: readonly ThresholdClassifierCase<TId>[];
+  readonly threshold: number;
+  readonly falsePositiveCost: number;
+  readonly falseNegativeCost: number;
+  readonly curveThresholds?: readonly number[];
+}
+
+export interface ThresholdClassificationEvidence {
+  readonly threshold: Probability;
+  readonly counts: BinaryConfusionCounts;
+  readonly precision: Probability;
+  readonly recall: Probability;
+  readonly accuracy: Probability;
+  readonly baseRate: Probability;
+  readonly falsePositiveCost: number;
+  readonly falseNegativeCost: number;
+  readonly falsePositiveCostTotal: number;
+  readonly falseNegativeCostTotal: number;
+  readonly totalCost: number;
+  readonly curve: readonly ThresholdCurvePoint[];
+}
+
 export const probabilityStatsTolerance = {
   default: 1e-10,
   tight: 1e-12,
@@ -88,6 +174,14 @@ const finiteOutput = (value: number, label: string): KernelResult<number> =>
   Number.isFinite(value)
     ? ok(value)
     : err("numerical-instability", `${label} overflowed to a non-finite value`);
+
+const positive = (value: number, label: string): KernelResult<number> => {
+  const valid = finite(value, label);
+  if (!valid.ok) return valid;
+  return value > 0
+    ? ok(value)
+    : err("out-of-domain", `${label} must be positive; got ${value}`);
+};
 
 const validateValues = (
   values: readonly number[],
@@ -219,6 +313,191 @@ export const bayesPositiveEvidence = (
     posterior: truePositive.probability,
     routes: routes.value,
   });
+};
+
+const validateNonNegativeCost = (value: number, label: string): KernelResult<number> => {
+  const finiteValue = finite(value, label);
+  if (!finiteValue.ok) return finiteValue;
+  if (value < 0) {
+    return err("out-of-domain", `${label} must be non-negative`);
+  }
+  return ok(value);
+};
+
+const ratioProbability = (numerator: number, denominator: number): KernelResult<Probability> =>
+  probability(denominator <= 0 ? 0 : numerator / denominator);
+
+const validateThresholdCases = <TId extends string>(
+  cases: readonly ThresholdClassifierCase<TId>[],
+): KernelResult<readonly ThresholdClassifierCase<TId>[]> => {
+  if (cases.length === 0) {
+    return err("precondition-violated", "Threshold classification requires at least one case");
+  }
+
+  for (const entry of cases) {
+    const score = probability(Number(entry.score));
+    if (!score.ok) return score;
+    if (entry.actual !== "actual-positive" && entry.actual !== "actual-negative") {
+      return err(
+        "precondition-violated",
+        `Case ${entry.id} actual label must be actual-positive or actual-negative`,
+      );
+    }
+  }
+
+  return ok(cases);
+};
+
+export const thresholdCaseOutcomes = <TId extends string>(
+  cases: readonly ThresholdClassifierCase<TId>[],
+  threshold: number,
+): KernelResult<readonly ThresholdCaseOutcome<TId>[]> => {
+  const validCases = validateThresholdCases(cases);
+  if (!validCases.ok) return validCases;
+  const validThreshold = probability(Number(threshold));
+  if (!validThreshold.ok) return validThreshold;
+
+  const outcomes = validCases.value.map((entry) => {
+    const predictedPositive = Number(entry.score) >= Number(validThreshold.value);
+    const cell: BinaryConfusionCell =
+      predictedPositive && entry.actual === "actual-positive"
+        ? "true-positive"
+        : predictedPositive
+          ? "false-positive"
+          : entry.actual === "actual-negative"
+            ? "true-negative"
+            : "false-negative";
+    return { ...entry, predictedPositive, cell };
+  });
+
+  return ok(outcomes);
+};
+
+export const binaryConfusionCounts = <TId extends string>(
+  cases: readonly ThresholdClassifierCase<TId>[],
+  threshold: number,
+): KernelResult<BinaryConfusionCounts> => {
+  const outcomes = thresholdCaseOutcomes(cases, threshold);
+  if (!outcomes.ok) return outcomes;
+
+  let truePositive = 0;
+  let falsePositive = 0;
+  let trueNegative = 0;
+  let falseNegative = 0;
+
+  for (const entry of outcomes.value) {
+    if (entry.cell === "true-positive") truePositive += 1;
+    if (entry.cell === "false-positive") falsePositive += 1;
+    if (entry.cell === "true-negative") trueNegative += 1;
+    if (entry.cell === "false-negative") falseNegative += 1;
+  }
+
+  return ok({ truePositive, falsePositive, trueNegative, falseNegative });
+};
+
+const thresholdClassificationPoint = <TId extends string>(
+  cases: readonly ThresholdClassifierCase<TId>[],
+  threshold: Probability,
+  falsePositiveCost: number,
+  falseNegativeCost: number,
+): KernelResult<Omit<ThresholdClassificationEvidence, "curve">> => {
+  const counts = binaryConfusionCounts(cases, threshold);
+  if (!counts.ok) return counts;
+
+  const precision = ratioProbability(
+    counts.value.truePositive,
+    counts.value.truePositive + counts.value.falsePositive,
+  );
+  if (!precision.ok) return precision;
+  const recall = ratioProbability(
+    counts.value.truePositive,
+    counts.value.truePositive + counts.value.falseNegative,
+  );
+  if (!recall.ok) return recall;
+  const accuracy = ratioProbability(
+    counts.value.truePositive + counts.value.trueNegative,
+    cases.length,
+  );
+  if (!accuracy.ok) return accuracy;
+
+  const positiveCount = cases.filter((entry) => entry.actual === "actual-positive").length;
+  const baseRate = ratioProbability(positiveCount, cases.length);
+  if (!baseRate.ok) return baseRate;
+
+  const falsePositiveCostTotal = counts.value.falsePositive * falsePositiveCost;
+  const falseNegativeCostTotal = counts.value.falseNegative * falseNegativeCost;
+  const totalCost = falsePositiveCostTotal + falseNegativeCostTotal;
+  const validFalsePositiveCostTotal = finiteOutput(
+    falsePositiveCostTotal,
+    "False-positive cost total",
+  );
+  if (!validFalsePositiveCostTotal.ok) return validFalsePositiveCostTotal;
+  const validFalseNegativeCostTotal = finiteOutput(
+    falseNegativeCostTotal,
+    "False-negative cost total",
+  );
+  if (!validFalseNegativeCostTotal.ok) return validFalseNegativeCostTotal;
+  const validTotalCost = finiteOutput(totalCost, "Total classification cost");
+  if (!validTotalCost.ok) return validTotalCost;
+
+  return ok({
+    threshold,
+    counts: counts.value,
+    precision: precision.value,
+    recall: recall.value,
+    accuracy: accuracy.value,
+    baseRate: baseRate.value,
+    falsePositiveCost,
+    falseNegativeCost,
+    falsePositiveCostTotal,
+    falseNegativeCostTotal,
+    totalCost,
+  });
+};
+
+export const thresholdClassificationEvidence = <TId extends string>(
+  input: ThresholdClassificationInput<TId>,
+): KernelResult<ThresholdClassificationEvidence> => {
+  const validCases = validateThresholdCases(input.cases);
+  if (!validCases.ok) return validCases;
+  const threshold = probability(Number(input.threshold));
+  if (!threshold.ok) return threshold;
+  const falsePositiveCost = validateNonNegativeCost(input.falsePositiveCost, "False-positive cost");
+  if (!falsePositiveCost.ok) return falsePositiveCost;
+  const falseNegativeCost = validateNonNegativeCost(input.falseNegativeCost, "False-negative cost");
+  if (!falseNegativeCost.ok) return falseNegativeCost;
+
+  const base = thresholdClassificationPoint(
+    validCases.value,
+    threshold.value,
+    falsePositiveCost.value,
+    falseNegativeCost.value,
+  );
+  if (!base.ok) return base;
+
+  const curve: ThresholdCurvePoint[] = [];
+  for (const candidate of input.curveThresholds ?? []) {
+    const validCandidate = probability(Number(candidate));
+    if (!validCandidate.ok) return validCandidate;
+    const point = thresholdClassificationPoint(
+      validCases.value,
+      validCandidate.value,
+      falsePositiveCost.value,
+      falseNegativeCost.value,
+    );
+    if (!point.ok) return point;
+    curve.push({
+      thresholdPercent: Number(validCandidate.value) * 100,
+      precision: Number(point.value.precision),
+      recall: Number(point.value.recall),
+      accuracy: Number(point.value.accuracy),
+      falsePositiveCostTotal: point.value.falsePositiveCostTotal,
+      falseNegativeCostTotal: point.value.falseNegativeCostTotal,
+      totalCost: point.value.totalCost,
+    });
+  }
+
+  return ok({ ...base.value, curve });
 };
 
 export const expectedValue = (
@@ -448,6 +727,87 @@ export const zScore = (
   return Number.isFinite(z)
     ? ok(z)
     : err("numerical-instability", "z-score must be finite");
+};
+
+const criticalTable = {
+  greater: {
+    0.1: 1.282,
+    0.05: 1.645,
+    0.01: 2.326,
+  },
+  less: {
+    0.1: 1.282,
+    0.05: 1.645,
+    0.01: 2.326,
+  },
+  "two-sided": {
+    0.1: 1.645,
+    0.05: 1.96,
+    0.01: 2.576,
+  },
+} as const satisfies Record<
+  NormalMeanHypothesisTestAlternative,
+  Record<NormalMeanHypothesisTestAlpha, number>
+>;
+
+const isSupportedAlpha = (alpha: number): alpha is NormalMeanHypothesisTestAlpha =>
+  alpha === 0.1 || alpha === 0.05 || alpha === 0.01;
+
+const inCriticalRegion = (
+  alternative: NormalMeanHypothesisTestAlternative,
+  z: number,
+  boundary: number,
+): boolean => {
+  if (alternative === "greater") return z >= boundary;
+  if (alternative === "less") return z <= -boundary;
+  return Math.abs(z) >= boundary;
+};
+
+export const normalMeanHypothesisTest = (
+  input: NormalMeanHypothesisTestInput,
+): KernelResult<NormalMeanHypothesisTestDecision> => {
+  const nullMean = finite(input.nullMean, "nullMean");
+  if (!nullMean.ok) return nullMean;
+  const observedMean = finite(input.observedMean, "observedMean");
+  if (!observedMean.ok) return observedMean;
+  const populationStandardDeviation = positive(
+    input.populationStandardDeviation,
+    "populationStandardDeviation",
+  );
+  if (!populationStandardDeviation.ok) return populationStandardDeviation;
+  const sampleSize = positive(input.sampleSize, "sampleSize");
+  if (!sampleSize.ok) return sampleSize;
+  if (!Number.isInteger(input.sampleSize)) {
+    return err("precondition-violated", `sampleSize must be an integer; got ${input.sampleSize}`);
+  }
+  if (!isSupportedAlpha(input.alpha)) {
+    return err("out-of-domain", `alpha must be one of 0.1, 0.05, or 0.01; got ${input.alpha}`);
+  }
+
+  const standardError = input.populationStandardDeviation / Math.sqrt(input.sampleSize);
+  const validStandardError = finiteOutput(standardError, "standardError");
+  if (!validStandardError.ok) return validStandardError;
+  if (standardError <= 0) {
+    return err("numerical-instability", "standardError must be positive");
+  }
+
+  const z = zScore(input.observedMean, input.nullMean, standardError);
+  if (!z.ok) return z;
+
+  const criticalBoundary = criticalTable[input.alternative][input.alpha];
+  const rejectNull = inCriticalRegion(input.alternative, z.value, criticalBoundary);
+
+  return ok({
+    nullMean: input.nullMean,
+    observedMean: input.observedMean,
+    standardError,
+    z: z.value,
+    alpha: input.alpha,
+    alternative: input.alternative,
+    criticalBoundary,
+    rejectNull,
+    pValueRelation: rejectNull ? "less-than-alpha" : "at-least-alpha",
+  });
 };
 
 const validateHistogramDomain = (

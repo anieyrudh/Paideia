@@ -1,0 +1,30 @@
+controls:
+  - id: overhang-depth
+    label: "Overhang depth"
+    kind: slider
+    default: 0.8
+    min: 0.2
+    max: 1.8
+    step: 0.1
+  - id: glazing-ratio
+    label: "Glazing ratio"
+    kind: slider
+    default: 0.6
+    min: 0.3
+    max: 0.9
+    step: 0.05
+  - id: solar-altitude
+    label: "Solar altitude"
+    kind: slider
+    default: 45
+    min: 20
+    max: 75
+    step: 5
+  - id: facade-orientation
+    label: "Facade orientation"
+    kind: selector
+    default: south
+    options:
+      - east
+      - south
+      - west

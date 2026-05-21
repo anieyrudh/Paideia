@@ -1,0 +1,19 @@
+steps:
+  - id: classify
+    label: "Classify the unknown"
+    prompt: "Is the question asking for a gas state variable or for energy transferred by heating?"
+  - id: convert-temperature
+    label: "Convert absolute temperature"
+    prompt: "Convert Celsius to kelvin before using a gas law."
+  - id: choose-formula
+    label: "Choose the model"
+    prompt: "Use pV = nRT for gas state and Q = mc Delta T for energy transfer."
+  - id: isolate
+    label: "Isolate the unknown"
+    prompt: "Rearrange symbolically before substituting numbers and units."
+  - id: substitute
+    label: "Substitute with units"
+    prompt: "Use kPa L with R = 8.314 kPa L mol^-1 K^-1, or SI units throughout."
+  - id: interpret
+    label: "Interpret the result"
+    prompt: "Connect the answer to controlled variables and the misconception being tested."

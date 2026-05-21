@@ -1,0 +1,12 @@
+graph TD
+  P["Probability and Statistics"] --> H["Hypothesis Testing"]
+  N["Normal Distribution"] --> H
+  H --> C["Confidence Intervals"]
+  H --> M["Model Criticism"]
+  H --> SE["Standard Error"]
+  SE --> Z["z-statistic"]
+  Z --> CR["Critical Region"]
+  CR --> D["Decision in Context"]
+  PV["p-value is P(H0 true)"] --> SE
+  RJ["Rejecting H0 proves H1"] --> D
+  DF["Only the observed difference matters"] --> SE

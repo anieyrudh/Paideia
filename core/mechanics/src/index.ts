@@ -1,17 +1,31 @@
 import {
   err,
+  hertz,
   joules,
+  joulesPerKilogram,
   metres,
+  metresPerSecond,
+  metresPerSecondSquared,
+  newtons,
+  newtonsPerKilogram,
   ok,
   radians,
+  radiansPerSecond,
+  seconds,
   watts,
+  type Hertz,
   type Joules,
   type KernelResult,
   type Kilograms,
   type Metres,
   type MetresPerSecond,
+  type MetresPerSecondSquared,
   type Newtons,
+  type NewtonsPerMetre,
+  type NewtonsPerKilogram,
+  type JoulesPerKilogram,
   type Radians,
+  type RadiansPerSecond,
   type Seconds,
   type Watts,
 } from "@paideia/shared";
@@ -58,16 +72,45 @@ export interface ProjectileSample {
 export interface SimpleHarmonicMotionInput {
   readonly equilibriumMetres: Metres;
   readonly amplitudeMetres: Metres;
-  readonly angularFrequencyRadiansPerSecond: number;
+  readonly angularFrequencyRadiansPerSecond: RadiansPerSecond;
   readonly phaseRadians: Radians;
 }
 
 export interface SimpleHarmonicMotionSample {
   readonly positionMetres: Metres;
   readonly displacementFromEquilibriumMetres: Metres;
-  readonly velocityMetresPerSecond: number;
-  readonly accelerationMetresPerSecondSquared: number;
+  readonly velocityMetresPerSecond: MetresPerSecond;
+  readonly accelerationMetresPerSecondSquared: MetresPerSecondSquared;
   readonly elapsedSeconds: Seconds;
+}
+
+export interface SpringOscillatorInput {
+  readonly massKilograms: Kilograms;
+  readonly springConstantNewtonsPerMetre: NewtonsPerMetre;
+  readonly amplitudeMetres: Metres;
+  readonly phaseRadians: Radians;
+}
+
+export interface SpringOscillatorTracePoint {
+  readonly timeSeconds: Seconds;
+  readonly displacementMetres: Metres;
+  readonly velocityMetresPerSecond: MetresPerSecond;
+  readonly accelerationMetresPerSecondSquared: MetresPerSecondSquared;
+  readonly kineticEnergyJoules: Joules;
+  readonly potentialEnergyJoules: Joules;
+}
+
+export interface SpringOscillatorModel {
+  readonly angularFrequencyRadiansPerSecond: RadiansPerSecond;
+  readonly periodSeconds: Seconds;
+  readonly frequencyHertz: Hertz;
+  readonly displacementMetres: Metres;
+  readonly velocityMetresPerSecond: MetresPerSecond;
+  readonly accelerationMetresPerSecondSquared: MetresPerSecondSquared;
+  readonly totalEnergyJoules: Joules;
+  readonly kineticEnergyJoules: Joules;
+  readonly potentialEnergyJoules: Joules;
+  readonly trace: readonly SpringOscillatorTracePoint[];
 }
 
 export interface ElasticCollision1DInput {
@@ -89,6 +132,42 @@ export interface ElasticCollision1DResult {
 export interface WorkEnergyTransferResult {
   readonly finalKineticEnergyJoules: Joules;
   readonly kineticEnergyChangeJoules: Joules;
+}
+
+export interface UniformCircularMotionInput {
+  readonly massKilograms: Kilograms;
+  readonly speedMetresPerSecond: MetresPerSecond;
+  readonly radiusMetres: Metres;
+}
+
+export interface UniformCircularMotionResult {
+  readonly centripetalAccelerationMetresPerSecondSquared: MetresPerSecondSquared;
+  readonly centripetalForceNewtons: Newtons;
+  readonly angularSpeedRadiansPerSecond: RadiansPerSecond;
+  readonly periodSeconds: Seconds;
+}
+
+export const universalGravitationalConstant = 6.67430e-11;
+
+export interface GravitationalFieldInput {
+  readonly sourceMassKilograms: Kilograms;
+  readonly radiusMetres: Metres;
+}
+
+export interface GravitationalInteractionInput extends GravitationalFieldInput {
+  readonly testMassKilograms: Kilograms;
+}
+
+export interface GravitationalComparisonInput {
+  readonly sourceMassKilograms: Kilograms;
+  readonly radiusMetres: Metres;
+  readonly comparisonRadiusMetres: Metres;
+}
+
+export interface GravitationalFieldSample2DInput {
+  readonly sourceMassKilograms: Kilograms;
+  readonly xMetres: Metres;
+  readonly yMetres: Metres;
 }
 
 const finite = (value: number, label: string): KernelResult<void> =>
@@ -318,6 +397,144 @@ export const averagePower = (workJoules: Joules, elapsedSeconds: Seconds): Kerne
   return ok(watts(powerWatts));
 };
 
+export const gravitationalFieldStrength = ({
+  sourceMassKilograms,
+  radiusMetres,
+}: GravitationalFieldInput): KernelResult<NewtonsPerKilogram> => {
+  const mass = positive(sourceMassKilograms, "sourceMassKilograms");
+  if (!mass.ok) return mass;
+  const radius = positive(radiusMetres, "radiusMetres");
+  if (!radius.ok) return radius;
+
+  const fieldStrength =
+    (universalGravitationalConstant * sourceMassKilograms) / (radiusMetres * radiusMetres);
+  const computed = finiteDerived(fieldStrength, "fieldStrengthNewtonsPerKilogram");
+  return computed.ok ? ok(newtonsPerKilogram(fieldStrength)) : computed;
+};
+
+export const gravitationalForce = ({
+  sourceMassKilograms,
+  testMassKilograms,
+  radiusMetres,
+}: GravitationalInteractionInput): KernelResult<Newtons> => {
+  const testMass = positive(testMassKilograms, "testMassKilograms");
+  if (!testMass.ok) return testMass;
+  const field = gravitationalFieldStrength({ sourceMassKilograms, radiusMetres });
+  if (!field.ok) return field;
+
+  const force = testMassKilograms * field.value;
+  const computed = finiteDerived(force, "gravitationalForceNewtons");
+  return computed.ok ? ok(newtons(force)) : computed;
+};
+
+export const gravitationalPotential = ({
+  sourceMassKilograms,
+  radiusMetres,
+}: GravitationalFieldInput): KernelResult<JoulesPerKilogram> => {
+  const mass = positive(sourceMassKilograms, "sourceMassKilograms");
+  if (!mass.ok) return mass;
+  const radius = positive(radiusMetres, "radiusMetres");
+  if (!radius.ok) return radius;
+
+  const potential = -(universalGravitationalConstant * sourceMassKilograms) / radiusMetres;
+  const computed = finiteDerived(potential, "gravitationalPotentialJoulesPerKilogram");
+  return computed.ok ? ok(joulesPerKilogram(potential)) : computed;
+};
+
+export const gravitationalPotentialEnergy = ({
+  sourceMassKilograms,
+  testMassKilograms,
+  radiusMetres,
+}: GravitationalInteractionInput): KernelResult<Joules> => {
+  const testMass = positive(testMassKilograms, "testMassKilograms");
+  if (!testMass.ok) return testMass;
+  const potential = gravitationalPotential({ sourceMassKilograms, radiusMetres });
+  if (!potential.ok) return potential;
+
+  const energy = testMassKilograms * potential.value;
+  const computed = finiteDerived(energy, "gravitationalPotentialEnergyJoules");
+  return computed.ok ? ok(joules(energy)) : computed;
+};
+
+export const circularOrbitSpeed = ({
+  sourceMassKilograms,
+  radiusMetres,
+}: GravitationalFieldInput): KernelResult<MetresPerSecond> => {
+  const mass = positive(sourceMassKilograms, "sourceMassKilograms");
+  if (!mass.ok) return mass;
+  const radius = positive(radiusMetres, "radiusMetres");
+  if (!radius.ok) return radius;
+
+  const speed = Math.sqrt((universalGravitationalConstant * sourceMassKilograms) / radiusMetres);
+  const computed = finiteDerived(speed, "circularOrbitSpeedMetresPerSecond");
+  return computed.ok ? ok(metresPerSecond(speed)) : computed;
+};
+
+export const gravitationalAccelerationFromForce = ({
+  sourceMassKilograms,
+  testMassKilograms,
+  radiusMetres,
+}: GravitationalInteractionInput): KernelResult<number> => {
+  const force = gravitationalForce({ sourceMassKilograms, testMassKilograms, radiusMetres });
+  if (!force.ok) return force;
+  const mass = positive(testMassKilograms, "testMassKilograms");
+  if (!mass.ok) return mass;
+  const acceleration = force.value / testMassKilograms;
+  const computed = finiteDerived(acceleration, "gravitationalAccelerationMetresPerSecondSquared");
+  return computed.ok ? ok(acceleration) : computed;
+};
+
+export const gravitationalFieldStrengthRatio = ({
+  sourceMassKilograms,
+  radiusMetres,
+  comparisonRadiusMetres,
+}: GravitationalComparisonInput): KernelResult<number> => {
+  const current = gravitationalFieldStrength({ sourceMassKilograms, radiusMetres });
+  if (!current.ok) return current;
+  const comparison = gravitationalFieldStrength({
+    sourceMassKilograms,
+    radiusMetres: comparisonRadiusMetres,
+  });
+  if (!comparison.ok) return comparison;
+  const ratio = comparison.value / current.value;
+  const computed = finiteDerived(ratio, "gravitationalFieldStrengthRatio");
+  return computed.ok ? ok(ratio) : computed;
+};
+
+export const gravitationalInverseSquareScale = (radiusMetres: Metres): KernelResult<number> => {
+  const radius = positive(radiusMetres, "radiusMetres");
+  if (!radius.ok) return radius;
+  const scale = 1 / (radiusMetres * radiusMetres);
+  const computed = finiteDerived(scale, "gravitationalInverseSquareScale");
+  return computed.ok ? ok(scale) : computed;
+};
+
+export const gravitationalFieldVector2D = ({
+  sourceMassKilograms,
+  xMetres,
+  yMetres,
+}: GravitationalFieldSample2DInput): KernelResult<Vector2> => {
+  const x = finite(xMetres, "xMetres");
+  if (!x.ok) return x;
+  const y = finite(yMetres, "yMetres");
+  if (!y.ok) return y;
+  const radiusValue = Math.hypot(xMetres, yMetres);
+  if (radiusValue === 0) {
+    return err("undefined-at-point", "Gravitational field is undefined at the source centre");
+  }
+  const field = gravitationalFieldStrength({
+    sourceMassKilograms,
+    radiusMetres: metres(radiusValue),
+  });
+  if (!field.ok) return field;
+  const vector = {
+    x: -(xMetres / radiusValue) * field.value,
+    y: -(yMetres / radiusValue) * field.value,
+  };
+  const computed = finiteDerivedVector(vector, "gravitationalFieldVector");
+  return computed.ok ? ok(vector) : computed;
+};
+
 export const momentum1D = (
   massKilograms: Kilograms,
   velocityMetresPerSecond: number,
@@ -331,6 +548,42 @@ export const momentum1D = (
   const computedMomentum = finiteDerived(momentum, "momentumKilogramMetresPerSecond");
   if (!computedMomentum.ok) return computedMomentum;
   return ok(momentum);
+};
+
+export const uniformCircularMotion = (
+  input: UniformCircularMotionInput,
+): KernelResult<UniformCircularMotionResult> => {
+  const mass = positive(input.massKilograms, "massKilograms");
+  if (!mass.ok) return mass;
+  const speed = positive(input.speedMetresPerSecond, "speedMetresPerSecond");
+  if (!speed.ok) return speed;
+  const radius = positive(input.radiusMetres, "radiusMetres");
+  if (!radius.ok) return radius;
+
+  const centripetalAcceleration =
+    (input.speedMetresPerSecond * input.speedMetresPerSecond) / input.radiusMetres;
+  const centripetalForce = input.massKilograms * centripetalAcceleration;
+  const angularSpeed = input.speedMetresPerSecond / input.radiusMetres;
+  const period = (2 * Math.PI * input.radiusMetres) / input.speedMetresPerSecond;
+
+  const computedAcceleration = finiteDerived(
+    centripetalAcceleration,
+    "centripetalAccelerationMetresPerSecondSquared",
+  );
+  if (!computedAcceleration.ok) return computedAcceleration;
+  const computedForce = finiteDerived(centripetalForce, "centripetalForceNewtons");
+  if (!computedForce.ok) return computedForce;
+  const computedAngularSpeed = finiteDerived(angularSpeed, "angularSpeedRadiansPerSecond");
+  if (!computedAngularSpeed.ok) return computedAngularSpeed;
+  const computedPeriod = finiteDerived(period, "periodSeconds");
+  if (!computedPeriod.ok) return computedPeriod;
+
+  return ok({
+    centripetalAccelerationMetresPerSecondSquared: metresPerSecondSquared(centripetalAcceleration),
+    centripetalForceNewtons: newtons(centripetalForce),
+    angularSpeedRadiansPerSecond: radiansPerSecond(angularSpeed),
+    periodSeconds: seconds(period),
+  });
 };
 
 export const elasticCollision1D = (
@@ -442,8 +695,116 @@ export const simpleHarmonicMotion = (
   return ok({
     positionMetres: metres(position),
     displacementFromEquilibriumMetres: metres(displacement),
-    velocityMetresPerSecond,
-    accelerationMetresPerSecondSquared,
+    velocityMetresPerSecond: metresPerSecond(velocityMetresPerSecond),
+    accelerationMetresPerSecondSquared: metresPerSecondSquared(accelerationMetresPerSecondSquared),
     elapsedSeconds,
+  });
+};
+
+export const springOscillator = (
+  input: SpringOscillatorInput,
+  elapsedSeconds: Seconds,
+  sampleCount = 48,
+): KernelResult<SpringOscillatorModel> => {
+  const mass = positive(input.massKilograms, "massKilograms");
+  if (!mass.ok) return mass;
+  const stiffness = positive(input.springConstantNewtonsPerMetre, "springConstantNewtonsPerMetre");
+  if (!stiffness.ok) return stiffness;
+  const amplitude = nonNegative(input.amplitudeMetres, "amplitudeMetres");
+  if (!amplitude.ok) return amplitude;
+  const phase = finite(input.phaseRadians, "phaseRadians");
+  if (!phase.ok) return phase;
+  const samples = positive(sampleCount, "sampleCount");
+  if (!samples.ok) return samples;
+
+  const omegaValue = Math.sqrt(input.springConstantNewtonsPerMetre / input.massKilograms);
+  const computedOmega = finiteDerived(omegaValue, "angularFrequencyRadiansPerSecond");
+  if (!computedOmega.ok) return computedOmega;
+  const periodValue = (2 * Math.PI) / omegaValue;
+  const computedPeriod = finiteDerived(periodValue, "periodSeconds");
+  if (!computedPeriod.ok) return computedPeriod;
+  const frequencyValue = 1 / periodValue;
+  const computedFrequency = finiteDerived(frequencyValue, "frequencyHertz");
+  if (!computedFrequency.ok) return computedFrequency;
+
+  const omega = radiansPerSecond(omegaValue);
+  const period = seconds(periodValue);
+  const current = simpleHarmonicMotion(
+    {
+      equilibriumMetres: metres(0),
+      amplitudeMetres: input.amplitudeMetres,
+      angularFrequencyRadiansPerSecond: omega,
+      phaseRadians: input.phaseRadians,
+    },
+    elapsedSeconds,
+  );
+  if (!current.ok) return current;
+
+  const totalEnergyValue = 0.5 * input.springConstantNewtonsPerMetre * input.amplitudeMetres ** 2;
+  const potentialEnergyValue =
+    0.5 *
+    input.springConstantNewtonsPerMetre *
+    current.value.displacementFromEquilibriumMetres ** 2;
+  const computedTotalEnergy = finiteDerived(totalEnergyValue, "totalEnergyJoules");
+  if (!computedTotalEnergy.ok) return computedTotalEnergy;
+  const computedPotentialEnergy = finiteDerived(potentialEnergyValue, "potentialEnergyJoules");
+  if (!computedPotentialEnergy.ok) return computedPotentialEnergy;
+  const kinetic = kineticEnergy(
+    input.massKilograms,
+    metresPerSecond(Math.abs(current.value.velocityMetresPerSecond)),
+  );
+  if (!kinetic.ok) return kinetic;
+
+  const count = Math.max(1, Math.floor(sampleCount));
+  const traceDuration = Math.min(8, periodValue * 2);
+  const trace: SpringOscillatorTracePoint[] = [];
+  for (let index = 0; index <= count; index += 1) {
+    const time = seconds((index / count) * traceDuration);
+    const sample = simpleHarmonicMotion(
+      {
+        equilibriumMetres: metres(0),
+        amplitudeMetres: input.amplitudeMetres,
+        angularFrequencyRadiansPerSecond: omega,
+        phaseRadians: input.phaseRadians,
+      },
+      time,
+    );
+    if (!sample.ok) return sample;
+    const potentialValue =
+      0.5 *
+      input.springConstantNewtonsPerMetre *
+      sample.value.displacementFromEquilibriumMetres ** 2;
+    const computedPotential = finiteDerived(potentialValue, "tracePotentialEnergyJoules");
+    if (!computedPotential.ok) return computedPotential;
+    const kineticSample = kineticEnergy(
+      input.massKilograms,
+      metresPerSecond(Math.abs(sample.value.velocityMetresPerSecond)),
+    );
+    if (!kineticSample.ok) return kineticSample;
+    trace.push({
+      timeSeconds: time,
+      displacementMetres: sample.value.displacementFromEquilibriumMetres,
+      velocityMetresPerSecond: metresPerSecond(sample.value.velocityMetresPerSecond),
+      accelerationMetresPerSecondSquared: metresPerSecondSquared(
+        sample.value.accelerationMetresPerSecondSquared,
+      ),
+      kineticEnergyJoules: kineticSample.value,
+      potentialEnergyJoules: joules(Math.max(0, potentialValue)),
+    });
+  }
+
+  return ok({
+    angularFrequencyRadiansPerSecond: omega,
+    periodSeconds: period,
+    frequencyHertz: hertz(frequencyValue),
+    displacementMetres: current.value.displacementFromEquilibriumMetres,
+    velocityMetresPerSecond: metresPerSecond(current.value.velocityMetresPerSecond),
+    accelerationMetresPerSecondSquared: metresPerSecondSquared(
+      current.value.accelerationMetresPerSecondSquared,
+    ),
+    totalEnergyJoules: joules(Math.max(0, totalEnergyValue)),
+    kineticEnergyJoules: kinetic.value,
+    potentialEnergyJoules: joules(Math.max(0, potentialEnergyValue)),
+    trace,
   });
 };

@@ -7,11 +7,12 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
+    "./hypothesis-testing": "./src/hypothesis-testing.tsx",
     "./probability-statistics": "./src/probability-statistics.tsx"
   },
   "scripts": {
     "build": "tsc -b",
-    "test": "vitest run src/probability-statistics.test.ts",
+    "test": "vitest run src/*.test.ts",
     "lint": "tsc -b --pretty false",
     "typecheck": "tsc -b --pretty false"
   },

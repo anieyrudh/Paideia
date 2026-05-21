@@ -1,0 +1,21 @@
+# Newsvendor Critical Fractile
+
+- Inputs
+  - Discrete demand distribution
+  - Shortage cost per unmet unit
+  - Leftover cost per unsold unit
+- Rule
+  - Critical fractile = shortage cost / (shortage cost + leftover cost)
+  - Choose the smallest order quantity where cumulative demand probability reaches the fractile
+- Readouts
+  - Target service level
+  - Expected mismatch cost
+  - Difference from mean-demand ordering
+- Misconceptions
+  - Optimal stock is always mean demand
+  - Higher service level is always cheaper
+  - Leftovers do not affect the optimum
+- Transfer
+  - Event stock planning
+  - Spare-kit ordering
+  - Supply-chain risk buffers
