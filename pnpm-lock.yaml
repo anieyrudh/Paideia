@@ -136,6 +136,9 @@ importers:
       '@paideia/mechanics':
         specifier: workspace:*
         version: link:../../../core/mechanics
+      '@paideia/plotting':
+        specifier: workspace:*
+        version: link:../../../core/plotting
       '@paideia/prediction-gate':
         specifier: workspace:*
         version: link:../../../core/prediction-gate

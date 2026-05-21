@@ -10,7 +10,6 @@ import {
 } from "@paideia/dynamical-systems";
 import { checkEigenvector2, eigenvectors2, type Eigenpair2 } from "@paideia/linear-algebra";
 import { PlotFrame, VectorFieldPlot } from "@paideia/plotting";
-import { PredictionGate } from "@paideia/prediction-gate";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
 import { ok, type Brand, type ConceptPackageId, type KernelResult, type Rect } from "@paideia/shared";
 import { ControlGroup, Selector, Slider } from "@paideia/ui-sim";
@@ -643,8 +642,6 @@ const StageSurface = () => {
 };
 
 export default function LinearSystemStability() {
-  void PredictionGate;
-
   return (
     <SimRuntime spec={linearSystemStabilitySpec} packageId={linearSystemStabilityPackageId}>
       <StageSurface />

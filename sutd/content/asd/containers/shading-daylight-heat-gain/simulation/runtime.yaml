@@ -1,0 +1,6 @@
+runtime:
+  package: "@paideia/sutd-sims/shading-daylight-heat-gain"
+  component: ShadingDaylightHeatGain
+  persistence: local
+  prediction_gate: required
+  responsive: true

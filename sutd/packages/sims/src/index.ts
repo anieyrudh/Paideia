@@ -1,7 +1,9 @@
+export { default as DynamicProgrammingStateRecursion } from "./dynamic-programming-state-recursion.js";
 export { default as GraphSearchAndShortestPaths } from "./graph-search-and-shortest-paths.js";
 export { default as LinearProgrammingFeasibleRegion } from "./linear-programming-feasible-region.js";
 export { default as LoadPathAndDaylightTradeoff } from "./load-path-and-daylight-tradeoff.js";
 export { default as LinearSystemStability } from "./linear-system-stability.js";
+export { default as ShadingDaylightHeatGain } from "./shading-daylight-heat-gain.js";
 export { default as OdePhasePortrait } from "./ode-phase-portrait.js";
 export { default as PidStepResponse } from "./pid-step-response.js";
 export { default as BodeStabilityMargin } from "./bode-stability-margin.js";
