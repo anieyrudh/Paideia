@@ -336,19 +336,19 @@ const GroupPanel = ({ audit }: { readonly audit: GroupAudit }) => {
         style={{ display: "grid", gap: "0.5rem", gridTemplateColumns: "repeat(4, minmax(4rem, 1fr))" }}
       >
         <div>
-          <dt>TP</dt>
+          <dt>True positives (TP)</dt>
           <dd>{counts.truePositive}</dd>
         </div>
         <div>
-          <dt>FP</dt>
+          <dt>False positives (FP)</dt>
           <dd>{counts.falsePositive}</dd>
         </div>
         <div>
-          <dt>TN</dt>
+          <dt>True negatives (TN)</dt>
           <dd>{counts.trueNegative}</dd>
         </div>
         <div>
-          <dt>FN</dt>
+          <dt>False negatives (FN)</dt>
           <dd>{counts.falseNegative}</dd>
         </div>
       </dl>
@@ -365,14 +365,14 @@ const FormulaPanel = ({ audit }: { readonly audit: FairnessAuditEvidence }) => {
     <section aria-label="Formula and substitution" style={{ borderTop: "1px solid #d0d5dd", paddingTop: "1rem" }}>
       <h3>Formula used</h3>
       <pre aria-label="Formula block" style={{ overflowX: "auto", whiteSpace: "pre-wrap" }}>
-        <code>{String.raw`\color{#2563eb}{Recall_g} = TP_g / (TP_g + FN_g)
-\color{#7c3aed}{Cost_g} = FP_g \times C_FP + FN_g \times C_FN
-\color{#d97706}{RecallGap} = |Recall_A - Recall_B|`}</code>
+        <code>{`Recall_g = TP_g / (TP_g + FN_g)
+Cost_g = FP_g x C_FP + FN_g x C_FN
+Recall gap = |Recall_A - Recall_B|`}</code>
       </pre>
       <dl aria-label="Formula legend" style={{ display: "grid", gap: "0.5rem" }}>
         <div>
           <dt><span style={swatchStyle("#2563eb")} />Recall_g</dt>
-          <dd>share of actually positive cases in group g that receive support; unitless percentage.</dd>
+          <dd>share of actually positive cases in group g that receive support, reported as a percentage.</dd>
         </div>
         <div>
           <dt><span style={swatchStyle("#7c3aed")} />Cost_g</dt>

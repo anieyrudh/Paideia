@@ -57,7 +57,7 @@ test.describe("Fairness Threshold Audit", () => {
     await page.getByRole("button", { name: "Commit prediction" }).click();
 
     await expect(page.getByRole("region", { name: "Formula and substitution" })).toContainText(
-      "Recall_g} = TP_g / (TP_g + FN_g)",
+      "Recall_g = TP_g / (TP_g + FN_g)",
     );
     await expect(page.getByRole("region", { name: "Formula and substitution" })).toContainText(
       "cost units",
