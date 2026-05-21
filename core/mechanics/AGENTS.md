@@ -4,7 +4,7 @@
 The deterministic Newtonian mechanics kernel for Paideia simulations. It owns
 constant-acceleration kinematics, projectile samples, force aggregation,
 Newton's second law, work/energy/momentum helpers, one-dimensional elastic
-collisions, and simple harmonic motion. It is pure TypeScript and returns
+collisions, uniform circular motion, and simple harmonic motion. It is pure TypeScript and returns
 `KernelResult` values for expected invalid inputs.
 
 ## Public interface
@@ -21,6 +21,8 @@ Exports from `@paideia/mechanics`:
 - `type ElasticCollision1DInput`
 - `type ElasticCollision1DResult`
 - `type WorkEnergyTransferResult`
+- `type UniformCircularMotionInput`
+- `type UniformCircularMotionResult`
 - `kinematics1D(input: Kinematics1DInput): KernelResult<Kinematics1DState>`
 - `projectileAt(input: ProjectileInput, elapsedSeconds: Seconds): KernelResult<ProjectileSample>`
 - `netForce(forces: readonly Vector2[]): KernelResult<Vector2>`
@@ -30,6 +32,7 @@ Exports from `@paideia/mechanics`:
 - `workEnergyTransfer(initialKineticEnergyJoules: Joules, workJoules: Joules): KernelResult<WorkEnergyTransferResult>`
 - `averagePower(workJoules: Joules, elapsedSeconds: Seconds): KernelResult<Watts>`
 - `momentum1D(massKilograms: Kilograms, velocityMetresPerSecond: number): KernelResult<number>`
+- `uniformCircularMotion(input: UniformCircularMotionInput): KernelResult<UniformCircularMotionResult>`
 - `elasticCollision1D(input: ElasticCollision1DInput): KernelResult<ElasticCollision1DResult>`
 - `simpleHarmonicMotion(input: SimpleHarmonicMotionInput, elapsedSeconds: Seconds): KernelResult<SimpleHarmonicMotionSample>`
 
@@ -44,6 +47,7 @@ Exports from `@paideia/mechanics`:
 - Projectile motion assumes constant acceleration over the sample interval.
 - Simple harmonic motion assumes an undamped oscillator with fixed angular
   frequency.
+- Uniform circular motion assumes constant speed and positive radius.
 
 ## What this module does NOT do
 - Does **not** model drag, rolling friction, variable mass, or relativistic
@@ -57,7 +61,8 @@ Exports from `@paideia/mechanics`:
 Use `core/mechanics` when a simulation needs shared calculations for
 kinematics, forces, energy, momentum, collisions, projectile motion, or simple
 harmonic motion. If a sim is about to inline SUVAT, `F = ma`, `KE = 1/2 mv^2`,
-or one-dimensional elastic collision formulae, use this module instead.
+`a_c = v^2 / r`, or one-dimensional elastic collision formulae, use this module
+instead.
 
 ## Extension protocol
 1. Open a `core-change-proposal` issue naming every consuming mechanics sim.

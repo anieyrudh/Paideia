@@ -1860,7 +1860,7 @@ entries:
   - id: alevel.physics.circular-motion
     title: "Circular Motion"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level mechanics
     discipline: physics
     reuse_status: curriculum-wrapper

@@ -2,7 +2,8 @@
 
 Deterministic Newtonian mechanics helpers for Paideia simulations. The package
 owns shared closed-form calculations for constant acceleration, projectiles,
-forces, work, energy, momentum, elastic collisions, and simple harmonic motion.
+forces, work, energy, momentum, uniform circular motion, elastic collisions, and
+simple harmonic motion.
 
 ## Usage
 
@@ -31,6 +32,8 @@ fields such as `velocityMetresPerSecond`. Expected invalid inputs return
 
 Work-energy helpers own the shared calculations for final kinetic store and
 average power so simulations do not reimplement those formulas locally.
+Uniform circular motion owns the shared `a_c = v^2 / r`, `F_c = ma_c`, angular
+speed, and period calculations for constant-speed circular paths.
 
 The package does not render mechanics visuals, run animation loops, solve
 arbitrary ODEs, or choose branch-specific teaching constants.

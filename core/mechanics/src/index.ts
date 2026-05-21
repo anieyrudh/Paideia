@@ -2,16 +2,22 @@ import {
   err,
   joules,
   metres,
+  metresPerSecondSquared,
+  newtons,
   ok,
   radians,
+  radiansPerSecond,
+  seconds,
   watts,
   type Joules,
   type KernelResult,
   type Kilograms,
   type Metres,
   type MetresPerSecond,
+  type MetresPerSecondSquared,
   type Newtons,
   type Radians,
+  type RadiansPerSecond,
   type Seconds,
   type Watts,
 } from "@paideia/shared";
@@ -89,6 +95,19 @@ export interface ElasticCollision1DResult {
 export interface WorkEnergyTransferResult {
   readonly finalKineticEnergyJoules: Joules;
   readonly kineticEnergyChangeJoules: Joules;
+}
+
+export interface UniformCircularMotionInput {
+  readonly massKilograms: Kilograms;
+  readonly speedMetresPerSecond: MetresPerSecond;
+  readonly radiusMetres: Metres;
+}
+
+export interface UniformCircularMotionResult {
+  readonly centripetalAccelerationMetresPerSecondSquared: MetresPerSecondSquared;
+  readonly centripetalForceNewtons: Newtons;
+  readonly angularSpeedRadiansPerSecond: RadiansPerSecond;
+  readonly periodSeconds: Seconds;
 }
 
 const finite = (value: number, label: string): KernelResult<void> =>
@@ -331,6 +350,42 @@ export const momentum1D = (
   const computedMomentum = finiteDerived(momentum, "momentumKilogramMetresPerSecond");
   if (!computedMomentum.ok) return computedMomentum;
   return ok(momentum);
+};
+
+export const uniformCircularMotion = (
+  input: UniformCircularMotionInput,
+): KernelResult<UniformCircularMotionResult> => {
+  const mass = positive(input.massKilograms, "massKilograms");
+  if (!mass.ok) return mass;
+  const speed = positive(input.speedMetresPerSecond, "speedMetresPerSecond");
+  if (!speed.ok) return speed;
+  const radius = positive(input.radiusMetres, "radiusMetres");
+  if (!radius.ok) return radius;
+
+  const centripetalAcceleration =
+    (input.speedMetresPerSecond * input.speedMetresPerSecond) / input.radiusMetres;
+  const centripetalForce = input.massKilograms * centripetalAcceleration;
+  const angularSpeed = input.speedMetresPerSecond / input.radiusMetres;
+  const period = (2 * Math.PI * input.radiusMetres) / input.speedMetresPerSecond;
+
+  const computedAcceleration = finiteDerived(
+    centripetalAcceleration,
+    "centripetalAccelerationMetresPerSecondSquared",
+  );
+  if (!computedAcceleration.ok) return computedAcceleration;
+  const computedForce = finiteDerived(centripetalForce, "centripetalForceNewtons");
+  if (!computedForce.ok) return computedForce;
+  const computedAngularSpeed = finiteDerived(angularSpeed, "angularSpeedRadiansPerSecond");
+  if (!computedAngularSpeed.ok) return computedAngularSpeed;
+  const computedPeriod = finiteDerived(period, "periodSeconds");
+  if (!computedPeriod.ok) return computedPeriod;
+
+  return ok({
+    centripetalAccelerationMetresPerSecondSquared: metresPerSecondSquared(centripetalAcceleration),
+    centripetalForceNewtons: newtons(centripetalForce),
+    angularSpeedRadiansPerSecond: radiansPerSecond(angularSpeed),
+    periodSeconds: seconds(period),
+  });
 };
 
 export const elasticCollision1D = (

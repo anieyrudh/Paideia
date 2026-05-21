@@ -1,4 +1,19 @@
 export {
+  CircularMotionDiagram,
+  CircularMotionSim,
+  circularMotionModel,
+  circularMotionPackageId,
+  circularMotionSimId,
+  circularMotionSpec,
+} from "./circular-motion.js";
+export type {
+  CircularMotionModel,
+  CircularMotionPredictionEvent,
+  CircularMotionState,
+  CircularMotionTracePoint,
+} from "./circular-motion.js";
+
+export {
   CircuitsDiagram,
   CircuitsSim,
   circuitsModel,

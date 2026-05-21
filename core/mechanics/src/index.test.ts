@@ -20,6 +20,7 @@ import {
   netForce,
   projectileAt,
   simpleHarmonicMotion,
+  uniformCircularMotion,
   workDone,
   workEnergyTransfer,
   type Vector2,
@@ -120,6 +121,22 @@ describe("@paideia/mechanics", () => {
     if (momentum.ok) expect(momentum.value).toBe(-24);
   });
 
+  it("computes uniform circular motion requirements", () => {
+    const motion = uniformCircularMotion({
+      massKilograms: kilograms(2),
+      speedMetresPerSecond: metresPerSecond(6),
+      radiusMetres: metres(3),
+    });
+
+    expect(motion.ok).toBe(true);
+    if (motion.ok) {
+      expect(motion.value.centripetalAccelerationMetresPerSecondSquared).toBe(12);
+      expect(motion.value.centripetalForceNewtons).toBe(24);
+      expect(motion.value.angularSpeedRadiansPerSecond).toBe(2);
+      expect(approxEqual(motion.value.periodSeconds, Math.PI, mechanicsTolerance.default)).toBe(true);
+    }
+  });
+
   it("computes work-energy transfer and average power helpers", () => {
     const transfer = workEnergyTransfer(joules(2), joules(30));
     expect(transfer.ok).toBe(true);
@@ -200,6 +217,14 @@ describe("@paideia/mechanics", () => {
     const zeroMass = accelerationFromForce({ x: 1, y: 1 }, kilograms(0));
     expect(zeroMass.ok).toBe(false);
     if (!zeroMass.ok) expect(zeroMass.error.code).toBe("precondition-violated");
+
+    const zeroRadius = uniformCircularMotion({
+      massKilograms: kilograms(1),
+      speedMetresPerSecond: metresPerSecond(2),
+      radiusMetres: metres(0),
+    });
+    expect(zeroRadius.ok).toBe(false);
+    if (!zeroRadius.ok) expect(zeroRadius.error.code).toBe("precondition-violated");
 
     const invalidForce = netForce([{ x: Number.NaN, y: 0 }]);
     expect(invalidForce.ok).toBe(false);
