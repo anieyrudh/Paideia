@@ -9,8 +9,10 @@ const defaultState: ContainerEmbedState = {
   predictionCommitted: false,
 };
 
+const copyState = (state: ContainerEmbedState): ContainerEmbedState => ({ ...state });
+
 export const createContainerEmbed = (): ContainerEmbedApi => {
-  let state = defaultState;
+  let state = copyState(defaultState);
   let targetElement: Element | null = null;
 
   return {
@@ -18,7 +20,7 @@ export const createContainerEmbed = (): ContainerEmbedApi => {
       targetElement = target;
     },
     saveState(): ContainerEmbedState {
-      return state;
+      return copyState(state);
     },
     score(): ContainerEmbedScore {
       return {
@@ -28,15 +30,19 @@ export const createContainerEmbed = (): ContainerEmbedApi => {
       };
     },
     resume(nextState: ContainerEmbedState): void {
-      state = nextState;
+      state = copyState(nextState);
     },
-    syncTheme(theme: ContainerEmbedTheme): void {
+    syncTheme(theme: ContainerEmbedTheme | null | undefined): void {
+      if (theme === null || theme === undefined) {
+        targetElement?.removeAttribute("data-paideia-theme");
+        return;
+      }
       targetElement?.setAttribute("data-paideia-theme", theme.colorScheme);
     },
     destroy(): void {
       targetElement?.removeAttribute("data-paideia-theme");
       targetElement = null;
-      state = defaultState;
+      state = copyState(defaultState);
     },
   };
 };

@@ -127,6 +127,7 @@ Filter version: aniegpt v1.0
 - Prediction-gate enforcement was required for reveal. Resolved with package unit coverage of the gate and route-level Playwright coverage proving the matrix is hidden before prediction commit.
 - Declared kernel dependencies had to be consumed rather than named only. Resolved by using sim-runtime, probability-stats, charting, annotation, prediction-gate, and ui-sim in the package surface.
 - Sim-architect review found local threshold/count metric math in the React sim surface. Resolved by moving the count update, metric, base-rate, curve, per-case outcome, and weighted-cost logic into `core/probability-stats`.
+- Probability-stats public API changes needed explicit contract tracking. Resolved by updating `core/probability-stats/AGENTS.md` and opening core-change proposal https://github.com/anieyrudh/Paideia/issues/127.
 - Sim-architect review found undeclared runtime imports from `core/content-schema` and `core/shared`. Resolved by deriving the spec/package-id types from `SimRuntime` and removing direct runtime imports from those packages.
 
 ### P1 issues

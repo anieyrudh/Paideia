@@ -125,6 +125,29 @@ describe("@paideia/probability-stats", () => {
     if (!negativeCost.ok) expect(negativeCost.error.code).toBe("out-of-domain");
   });
 
+  it("rejects malformed binary labels and overflowing threshold costs", () => {
+    const malformed = thresholdClassificationEvidence({
+      cases: [{ id: "bad", score: p(0.9), actual: "maybe-positive" as never }],
+      threshold: p(0.5),
+      falsePositiveCost: 1,
+      falseNegativeCost: 1,
+    });
+    expect(malformed.ok).toBe(false);
+    if (!malformed.ok) expect(malformed.error.code).toBe("precondition-violated");
+
+    const overflow = thresholdClassificationEvidence({
+      cases: [
+        { id: "fp-a", score: p(0.9), actual: "actual-negative" },
+        { id: "fp-b", score: p(0.8), actual: "actual-negative" },
+      ],
+      threshold: p(0.5),
+      falsePositiveCost: Number.MAX_VALUE,
+      falseNegativeCost: Number.MAX_VALUE,
+    });
+    expect(overflow.ok).toBe(false);
+    if (!overflow.ok) expect(overflow.error.code).toBe("numerical-instability");
+  });
+
   it("normalizes finite non-negative weights without mutating inputs", () => {
     const outcomes = [
       { id: "a", weight: 2, value: 1 },

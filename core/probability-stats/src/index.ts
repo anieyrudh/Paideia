@@ -305,6 +305,12 @@ const validateThresholdCases = <TId extends string>(
   for (const entry of cases) {
     const score = probability(Number(entry.score));
     if (!score.ok) return score;
+    if (entry.actual !== "actual-positive" && entry.actual !== "actual-negative") {
+      return err(
+        "precondition-violated",
+        `Case ${entry.id} actual label must be actual-positive or actual-negative`,
+      );
+    }
   }
 
   return ok(cases);
@@ -388,6 +394,19 @@ const thresholdClassificationPoint = <TId extends string>(
 
   const falsePositiveCostTotal = counts.value.falsePositive * falsePositiveCost;
   const falseNegativeCostTotal = counts.value.falseNegative * falseNegativeCost;
+  const totalCost = falsePositiveCostTotal + falseNegativeCostTotal;
+  const validFalsePositiveCostTotal = finiteOutput(
+    falsePositiveCostTotal,
+    "False-positive cost total",
+  );
+  if (!validFalsePositiveCostTotal.ok) return validFalsePositiveCostTotal;
+  const validFalseNegativeCostTotal = finiteOutput(
+    falseNegativeCostTotal,
+    "False-negative cost total",
+  );
+  if (!validFalseNegativeCostTotal.ok) return validFalseNegativeCostTotal;
+  const validTotalCost = finiteOutput(totalCost, "Total classification cost");
+  if (!validTotalCost.ok) return validTotalCost;
 
   return ok({
     threshold,
@@ -400,7 +419,7 @@ const thresholdClassificationPoint = <TId extends string>(
     falseNegativeCost,
     falsePositiveCostTotal,
     falseNegativeCostTotal,
-    totalCost: falsePositiveCostTotal + falseNegativeCostTotal,
+    totalCost,
   });
 };
 

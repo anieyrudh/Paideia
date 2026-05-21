@@ -1,4 +1,5 @@
 import { clearPrediction, commitPrediction, isRevealed } from "@paideia/prediction-gate";
+import { approxEqual } from "@paideia/shared";
 import { describe, expect, it } from "vitest";
 import {
   confusionMatrixThresholdEvidence,
@@ -67,8 +68,8 @@ describe("confusion matrix threshold evidence", () => {
         trueNegative: 6,
         falseNegative: 4,
       });
-      expect(evidence.value.precision).toBeCloseTo(4 / 6);
-      expect(evidence.value.recall).toBeCloseTo(4 / 8);
+      expect(approxEqual(evidence.value.precision, 4 / 6)).toBe(true);
+      expect(approxEqual(evidence.value.recall, 4 / 8)).toBe(true);
       expect(evidence.value.totalCost).toBe(112);
     }
   });

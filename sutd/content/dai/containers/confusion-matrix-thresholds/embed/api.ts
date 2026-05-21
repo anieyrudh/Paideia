@@ -18,6 +18,6 @@ export interface ContainerEmbedApi {
   saveState(): ContainerEmbedState;
   score(): ContainerEmbedScore;
   resume(state: ContainerEmbedState): void;
-  syncTheme(theme: ContainerEmbedTheme): void;
+  syncTheme(theme: ContainerEmbedTheme | null | undefined): void;
   destroy(): void;
 }
