@@ -155,6 +155,17 @@ Latest slice notes:
   `probability-statistics` are now reviewed. The next A-Level work should pick
   from the queue rather than rebuilding these landed slices.
 
+Next ready-for-build A-Level wave:
+
+| Subject | Queue ID | Why next |
+| --- | --- | --- |
+| Physics | `alevel.physics.circular-motion` | Extends vectors, kinematics, and force balance into radial acceleration. |
+| Physics | `alevel.physics.oscillations` | Bridges mechanics, waves, and energy-transfer reasoning. |
+| Physics | `alevel.physics.thermal-physics` | Opens the thermal/gas-law path using existing numerical and charting kernels. |
+| Physics | `alevel.physics.gravitational-fields` | Extends mechanics into inverse-square field reasoning. |
+| Physics | `alevel.physics.electric-fields` | Connects circuits, vector direction, and field-force reasoning. |
+| Mathematics | `alevel.math.hypothesis-testing` | Continues probability and statistics into decision-making and p-value misconceptions. |
+
 ### SUTD First Pillar Slices
 
 Status: ten SUTD product slices have landed on `main` and are
@@ -320,6 +331,12 @@ First useful A-Level sequence:
 8. Waves. Status: reviewed product slice.
 9. Circuits. Status: reviewed product slice.
 10. Probability and statistics. Status: reviewed product slice.
+11. Circular motion. Status: ready for build.
+12. Oscillations. Status: ready for build.
+13. Thermal physics. Status: ready for build.
+14. Gravitational fields. Status: ready for build.
+15. Electric fields. Status: ready for build.
+16. Hypothesis testing. Status: ready for build.
 
 ### IB
 

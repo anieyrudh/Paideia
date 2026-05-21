@@ -50,6 +50,13 @@ roadmap_coverage:
     - alevel.physics.waves
     - alevel.physics.circuits
     - alevel.math.probability-statistics
+  alevel_next_wave:
+    - alevel.physics.circular-motion
+    - alevel.physics.oscillations
+    - alevel.physics.thermal-physics
+    - alevel.physics.gravitational-fields
+    - alevel.physics.electric-fields
+    - alevel.math.hypothesis-testing
   sutd_initial_pillar_slices:
     - sutd.freshmore.vector-transformations
     - sutd.epd.pid-step-response
@@ -363,7 +370,7 @@ entries:
   - id: shared.dynamical-systems.ode-phase-portrait
     title: "ODE Phase Portrait Lab"
     priority: P0
-    status: in-build
+    status: reviewed
     cluster: Dynamical systems
     discipline: math
     reuse_status: shared-core
@@ -573,7 +580,7 @@ entries:
   - id: shared.circuits.circuit-phasor-reasoning
     title: "Circuit & Phasor Lab"
     priority: P0
-    status: in-build
+    status: reviewed
     cluster: Signals / circuits
     discipline: physics
     reuse_status: shared-core
@@ -1845,6 +1852,270 @@ entries:
       - core/ui-sim
     repo_package_name: alevel-sim-probability-statistics
     estimated_effort: H
+    assignment:
+      workstream: alevel-math
+      concept_cluster: A-Level probability and statistics
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.circular-motion
+    title: "Circular Motion"
+    priority: P0
+    status: ready-for-build
+    cluster: A-Level mechanics
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+    simulation_type: centripetal-force-vector-lab
+    problem_solving_elements:
+      - radial direction selection
+      - speed-radius-acceleration comparison
+      - centripetal force calculation
+    concept_map_needs:
+      prerequisites:
+        - resolving vectors
+        - kinematics
+        - forces and equilibrium
+      downstream:
+        - gravitational fields
+        - oscillations
+      misconceptions:
+        - centripetal force is an extra new force
+        - constant speed means zero acceleration
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: alevel-sim-circular-motion
+    estimated_effort: M
+    repo:
+      container_path: a-level/content/physics/containers/circular-motion
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level mechanics
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.oscillations
+    title: "Oscillations"
+    priority: P0
+    status: ready-for-build
+    cluster: A-Level oscillations
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+    simulation_type: simple-harmonic-motion-lab
+    problem_solving_elements:
+      - equilibrium and displacement sign
+      - period-frequency-angular-frequency conversion
+      - energy exchange interpretation
+    concept_map_needs:
+      prerequisites:
+        - kinematics
+        - work energy power
+        - waves
+      downstream:
+        - resonance
+        - alternating current
+      misconceptions:
+        - amplitude changes the period for every oscillator
+        - acceleration is greatest at equilibrium
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/mechanics
+      - core/function-eval
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: alevel-sim-oscillations
+    estimated_effort: M
+    repo:
+      container_path: a-level/content/physics/containers/oscillations
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level oscillations
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.thermal-physics
+    title: "Thermal Physics"
+    priority: P0
+    status: ready-for-build
+    cluster: A-Level thermal physics
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+    simulation_type: gas-law-and-energy-transfer-lab
+    problem_solving_elements:
+      - temperature scale conversion
+      - gas-law variable isolation
+      - thermal energy transfer calculation
+    concept_map_needs:
+      prerequisites:
+        - physical quantities and units
+        - work energy power
+      downstream:
+        - ideal gases
+        - internal energy
+      misconceptions:
+        - temperature is the same as thermal energy
+        - Celsius can be substituted directly into gas laws
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/numerical-math
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: alevel-sim-thermal-physics
+    estimated_effort: M
+    repo:
+      container_path: a-level/content/physics/containers/thermal-physics
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level thermal physics
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.gravitational-fields
+    title: "Gravitational Fields"
+    priority: P0
+    status: ready-for-build
+    cluster: A-Level fields
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+    simulation_type: inverse-square-field-lab
+    problem_solving_elements:
+      - field direction selection
+      - inverse-square comparison
+      - potential-energy-sign interpretation
+    concept_map_needs:
+      prerequisites:
+        - circular motion
+        - forces and equilibrium
+      downstream:
+        - orbital motion
+        - electric fields
+      misconceptions:
+        - field strength is constant near every mass
+        - potential energy must be positive
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/mechanics
+      - core/function-eval
+      - core/plotting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: alevel-sim-gravitational-fields
+    estimated_effort: H
+    repo:
+      container_path: a-level/content/physics/containers/gravitational-fields
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level fields
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.physics.electric-fields
+    title: "Electric Fields"
+    priority: P0
+    status: ready-for-build
+    cluster: A-Level fields
+    discipline: physics
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Physics
+    simulation_type: charge-field-vector-lab
+    problem_solving_elements:
+      - field direction from charge sign
+      - force-on-charge calculation
+      - potential-difference energy link
+    concept_map_needs:
+      prerequisites:
+        - circuits
+        - resolving vectors
+        - gravitational fields
+      downstream:
+        - capacitance
+        - electromagnetism
+      misconceptions:
+        - positive and negative charges feel force in the same field direction
+        - voltage is the same thing as field strength
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/linear-algebra
+      - core/function-eval
+      - core/plotting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: alevel-sim-electric-fields
+    estimated_effort: H
+    repo:
+      container_path: a-level/content/physics/containers/electric-fields
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level fields
+      target_container_kind: curriculum-wrapper
+
+  - id: alevel.math.hypothesis-testing
+    title: "Hypothesis Testing"
+    priority: P0
+    status: ready-for-build
+    cluster: A-Level probability and statistics
+    discipline: math
+    reuse_status: curriculum-wrapper
+    curricula:
+      - alevel
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects:
+          - Mathematics
+    simulation_type: test-statistic-decision-lab
+    problem_solving_elements:
+      - null and alternative statement
+      - critical-region comparison
+      - p-value decision explanation
+    concept_map_needs:
+      prerequisites:
+        - probability and statistics
+        - normal distribution
+      downstream:
+        - confidence intervals
+        - model criticism
+      misconceptions:
+        - p-value is the probability the null hypothesis is true
+        - rejecting the null proves the alternative is true
+    kernel_dependencies:
+      - core/sim-runtime
+      - core/probability-stats
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: alevel-sim-hypothesis-testing
+    estimated_effort: M
+    repo:
+      container_path: a-level/content/mathematics/containers/hypothesis-testing
     assignment:
       workstream: alevel-math
       concept_cluster: A-Level probability and statistics
