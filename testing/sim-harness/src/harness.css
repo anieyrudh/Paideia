@@ -1,0 +1,15 @@
+@import "../../../a-level/apps/shell/src/styles.css";
+
+.sutd-formula-card .formula-legend div {
+  background: transparent;
+  border-color: rgba(15, 23, 42, 0.16);
+}
+
+.sutd-formula-card .formula-legend dt {
+  color: #0f172a;
+}
+
+.sutd-formula-card .formula-legend dd,
+.sutd-formula-card .formula-note {
+  color: #475569;
+}

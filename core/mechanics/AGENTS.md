@@ -18,6 +18,9 @@ Exports from `@paideia/mechanics`:
 - `type ProjectileSample`
 - `type SimpleHarmonicMotionInput`
 - `type SimpleHarmonicMotionSample`
+- `type SpringOscillatorInput`
+- `type SpringOscillatorTracePoint`
+- `type SpringOscillatorModel`
 - `type ElasticCollision1DInput`
 - `type ElasticCollision1DResult`
 - `type WorkEnergyTransferResult`
@@ -32,6 +35,7 @@ Exports from `@paideia/mechanics`:
 - `momentum1D(massKilograms: Kilograms, velocityMetresPerSecond: number): KernelResult<number>`
 - `elasticCollision1D(input: ElasticCollision1DInput): KernelResult<ElasticCollision1DResult>`
 - `simpleHarmonicMotion(input: SimpleHarmonicMotionInput, elapsedSeconds: Seconds): KernelResult<SimpleHarmonicMotionSample>`
+- `springOscillator(input: SpringOscillatorInput, elapsedSeconds: Seconds, sampleCount?: number): KernelResult<SpringOscillatorModel>`
 
 ## Invariants the caller must preserve
 - All numeric inputs are SI values. Composite units are expressed in field
@@ -44,6 +48,8 @@ Exports from `@paideia/mechanics`:
 - Projectile motion assumes constant acceleration over the sample interval.
 - Simple harmonic motion assumes an undamped oscillator with fixed angular
   frequency.
+- `springOscillator` assumes an ideal undamped mass-spring oscillator using SI
+  mass, spring stiffness, displacement, velocity, acceleration, and energy.
 
 ## What this module does NOT do
 - Does **not** model drag, rolling friction, variable mass, or relativistic
@@ -57,7 +63,8 @@ Exports from `@paideia/mechanics`:
 Use `core/mechanics` when a simulation needs shared calculations for
 kinematics, forces, energy, momentum, collisions, projectile motion, or simple
 harmonic motion. If a sim is about to inline SUVAT, `F = ma`, `KE = 1/2 mv^2`,
-or one-dimensional elastic collision formulae, use this module instead.
+spring period/energy formulae, or one-dimensional elastic collision formulae,
+use this module instead.
 
 ## Extension protocol
 1. Open a `core-change-proposal` issue naming every consuming mechanics sim.

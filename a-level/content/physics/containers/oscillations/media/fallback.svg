@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Oscillation fallback visual</title>
+  <desc id="desc">A spring, a mass, and an equilibrium marker for simple harmonic motion.</desc>
+  <rect width="640" height="360" fill="#fff7ed"/>
+  <line x1="320" x2="320" y1="62" y2="264" stroke="#9a3412" stroke-dasharray="8 8" stroke-width="4"/>
+  <path d="M86 176 C118 126, 150 226, 182 176 S246 126, 278 176 S342 226, 374 176 S438 126, 470 176" fill="none" stroke="#1f5f8b" stroke-width="10" stroke-linecap="round"/>
+  <rect x="470" y="130" width="104" height="90" rx="16" fill="#f0b429"/>
+  <text x="48" y="64" fill="#13251e" font-family="Arial, sans-serif" font-size="30" font-weight="700">Oscillations</text>
+  <text x="48" y="312" fill="#13251e" font-family="Arial, sans-serif" font-size="24">a = -omega^2 x, T = 2pi / omega</text>
+</svg>

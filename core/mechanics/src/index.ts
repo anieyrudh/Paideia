@@ -1,17 +1,26 @@
 import {
   err,
+  hertz,
   joules,
   metres,
+  metresPerSecond,
+  metresPerSecondSquared,
   ok,
   radians,
+  radiansPerSecond,
+  seconds,
   watts,
+  type Hertz,
   type Joules,
   type KernelResult,
   type Kilograms,
   type Metres,
   type MetresPerSecond,
+  type MetresPerSecondSquared,
   type Newtons,
+  type NewtonsPerMetre,
   type Radians,
+  type RadiansPerSecond,
   type Seconds,
   type Watts,
 } from "@paideia/shared";
@@ -58,16 +67,45 @@ export interface ProjectileSample {
 export interface SimpleHarmonicMotionInput {
   readonly equilibriumMetres: Metres;
   readonly amplitudeMetres: Metres;
-  readonly angularFrequencyRadiansPerSecond: number;
+  readonly angularFrequencyRadiansPerSecond: RadiansPerSecond;
   readonly phaseRadians: Radians;
 }
 
 export interface SimpleHarmonicMotionSample {
   readonly positionMetres: Metres;
   readonly displacementFromEquilibriumMetres: Metres;
-  readonly velocityMetresPerSecond: number;
-  readonly accelerationMetresPerSecondSquared: number;
+  readonly velocityMetresPerSecond: MetresPerSecond;
+  readonly accelerationMetresPerSecondSquared: MetresPerSecondSquared;
   readonly elapsedSeconds: Seconds;
+}
+
+export interface SpringOscillatorInput {
+  readonly massKilograms: Kilograms;
+  readonly springConstantNewtonsPerMetre: NewtonsPerMetre;
+  readonly amplitudeMetres: Metres;
+  readonly phaseRadians: Radians;
+}
+
+export interface SpringOscillatorTracePoint {
+  readonly timeSeconds: Seconds;
+  readonly displacementMetres: Metres;
+  readonly velocityMetresPerSecond: MetresPerSecond;
+  readonly accelerationMetresPerSecondSquared: MetresPerSecondSquared;
+  readonly kineticEnergyJoules: Joules;
+  readonly potentialEnergyJoules: Joules;
+}
+
+export interface SpringOscillatorModel {
+  readonly angularFrequencyRadiansPerSecond: RadiansPerSecond;
+  readonly periodSeconds: Seconds;
+  readonly frequencyHertz: Hertz;
+  readonly displacementMetres: Metres;
+  readonly velocityMetresPerSecond: MetresPerSecond;
+  readonly accelerationMetresPerSecondSquared: MetresPerSecondSquared;
+  readonly totalEnergyJoules: Joules;
+  readonly kineticEnergyJoules: Joules;
+  readonly potentialEnergyJoules: Joules;
+  readonly trace: readonly SpringOscillatorTracePoint[];
 }
 
 export interface ElasticCollision1DInput {
@@ -442,8 +480,116 @@ export const simpleHarmonicMotion = (
   return ok({
     positionMetres: metres(position),
     displacementFromEquilibriumMetres: metres(displacement),
-    velocityMetresPerSecond,
-    accelerationMetresPerSecondSquared,
+    velocityMetresPerSecond: metresPerSecond(velocityMetresPerSecond),
+    accelerationMetresPerSecondSquared: metresPerSecondSquared(accelerationMetresPerSecondSquared),
     elapsedSeconds,
+  });
+};
+
+export const springOscillator = (
+  input: SpringOscillatorInput,
+  elapsedSeconds: Seconds,
+  sampleCount = 48,
+): KernelResult<SpringOscillatorModel> => {
+  const mass = positive(input.massKilograms, "massKilograms");
+  if (!mass.ok) return mass;
+  const stiffness = positive(input.springConstantNewtonsPerMetre, "springConstantNewtonsPerMetre");
+  if (!stiffness.ok) return stiffness;
+  const amplitude = nonNegative(input.amplitudeMetres, "amplitudeMetres");
+  if (!amplitude.ok) return amplitude;
+  const phase = finite(input.phaseRadians, "phaseRadians");
+  if (!phase.ok) return phase;
+  const samples = positive(sampleCount, "sampleCount");
+  if (!samples.ok) return samples;
+
+  const omegaValue = Math.sqrt(input.springConstantNewtonsPerMetre / input.massKilograms);
+  const computedOmega = finiteDerived(omegaValue, "angularFrequencyRadiansPerSecond");
+  if (!computedOmega.ok) return computedOmega;
+  const periodValue = (2 * Math.PI) / omegaValue;
+  const computedPeriod = finiteDerived(periodValue, "periodSeconds");
+  if (!computedPeriod.ok) return computedPeriod;
+  const frequencyValue = 1 / periodValue;
+  const computedFrequency = finiteDerived(frequencyValue, "frequencyHertz");
+  if (!computedFrequency.ok) return computedFrequency;
+
+  const omega = radiansPerSecond(omegaValue);
+  const period = seconds(periodValue);
+  const current = simpleHarmonicMotion(
+    {
+      equilibriumMetres: metres(0),
+      amplitudeMetres: input.amplitudeMetres,
+      angularFrequencyRadiansPerSecond: omega,
+      phaseRadians: input.phaseRadians,
+    },
+    elapsedSeconds,
+  );
+  if (!current.ok) return current;
+
+  const totalEnergyValue = 0.5 * input.springConstantNewtonsPerMetre * input.amplitudeMetres ** 2;
+  const potentialEnergyValue =
+    0.5 *
+    input.springConstantNewtonsPerMetre *
+    current.value.displacementFromEquilibriumMetres ** 2;
+  const computedTotalEnergy = finiteDerived(totalEnergyValue, "totalEnergyJoules");
+  if (!computedTotalEnergy.ok) return computedTotalEnergy;
+  const computedPotentialEnergy = finiteDerived(potentialEnergyValue, "potentialEnergyJoules");
+  if (!computedPotentialEnergy.ok) return computedPotentialEnergy;
+  const kinetic = kineticEnergy(
+    input.massKilograms,
+    metresPerSecond(Math.abs(current.value.velocityMetresPerSecond)),
+  );
+  if (!kinetic.ok) return kinetic;
+
+  const count = Math.max(1, Math.floor(sampleCount));
+  const traceDuration = Math.min(8, periodValue * 2);
+  const trace: SpringOscillatorTracePoint[] = [];
+  for (let index = 0; index <= count; index += 1) {
+    const time = seconds((index / count) * traceDuration);
+    const sample = simpleHarmonicMotion(
+      {
+        equilibriumMetres: metres(0),
+        amplitudeMetres: input.amplitudeMetres,
+        angularFrequencyRadiansPerSecond: omega,
+        phaseRadians: input.phaseRadians,
+      },
+      time,
+    );
+    if (!sample.ok) return sample;
+    const potentialValue =
+      0.5 *
+      input.springConstantNewtonsPerMetre *
+      sample.value.displacementFromEquilibriumMetres ** 2;
+    const computedPotential = finiteDerived(potentialValue, "tracePotentialEnergyJoules");
+    if (!computedPotential.ok) return computedPotential;
+    const kineticSample = kineticEnergy(
+      input.massKilograms,
+      metresPerSecond(Math.abs(sample.value.velocityMetresPerSecond)),
+    );
+    if (!kineticSample.ok) return kineticSample;
+    trace.push({
+      timeSeconds: time,
+      displacementMetres: sample.value.displacementFromEquilibriumMetres,
+      velocityMetresPerSecond: metresPerSecond(sample.value.velocityMetresPerSecond),
+      accelerationMetresPerSecondSquared: metresPerSecondSquared(
+        sample.value.accelerationMetresPerSecondSquared,
+      ),
+      kineticEnergyJoules: kineticSample.value,
+      potentialEnergyJoules: joules(Math.max(0, potentialValue)),
+    });
+  }
+
+  return ok({
+    angularFrequencyRadiansPerSecond: omega,
+    periodSeconds: period,
+    frequencyHertz: hertz(frequencyValue),
+    displacementMetres: current.value.displacementFromEquilibriumMetres,
+    velocityMetresPerSecond: metresPerSecond(current.value.velocityMetresPerSecond),
+    accelerationMetresPerSecondSquared: metresPerSecondSquared(
+      current.value.accelerationMetresPerSecondSquared,
+    ),
+    totalEnergyJoules: joules(Math.max(0, totalEnergyValue)),
+    kineticEnergyJoules: kinetic.value,
+    potentialEnergyJoules: joules(Math.max(0, potentialEnergyValue)),
+    trace,
   });
 };

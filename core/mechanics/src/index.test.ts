@@ -6,7 +6,9 @@ import {
   metres,
   metresPerSecond,
   newtons,
+  newtonsPerMetre,
   radians,
+  radiansPerSecond,
   seconds,
 } from "@paideia/shared";
 import {
@@ -20,6 +22,7 @@ import {
   netForce,
   projectileAt,
   simpleHarmonicMotion,
+  springOscillator,
   workDone,
   workEnergyTransfer,
   type Vector2,
@@ -170,7 +173,7 @@ describe("@paideia/mechanics", () => {
       {
         equilibriumMetres: metres(1),
         amplitudeMetres: metres(2),
-        angularFrequencyRadiansPerSecond: 3,
+        angularFrequencyRadiansPerSecond: radiansPerSecond(3),
         phaseRadians: radians(0),
       },
       seconds(Math.PI / 6),
@@ -182,6 +185,39 @@ describe("@paideia/mechanics", () => {
       expect(approxEqual(sample.value.displacementFromEquilibriumMetres, 0, mechanicsTolerance.default)).toBe(true);
       expect(approxEqual(sample.value.velocityMetresPerSecond, -6, mechanicsTolerance.default)).toBe(true);
       expect(approxEqual(sample.value.accelerationMetresPerSecondSquared, 0, mechanicsTolerance.loose)).toBe(true);
+    }
+  });
+
+  it("models a mass-spring oscillator without amplitude changing ideal period", () => {
+    const first = springOscillator(
+      {
+        massKilograms: kilograms(2),
+        springConstantNewtonsPerMetre: newtonsPerMetre(32),
+        amplitudeMetres: metres(0.8),
+        phaseRadians: radians(0),
+      },
+      seconds(0),
+    );
+    const largerAmplitude = springOscillator(
+      {
+        massKilograms: kilograms(2),
+        springConstantNewtonsPerMetre: newtonsPerMetre(32),
+        amplitudeMetres: metres(1.6),
+        phaseRadians: radians(0),
+      },
+      seconds(0),
+    );
+
+    expect(first.ok).toBe(true);
+    expect(largerAmplitude.ok).toBe(true);
+    if (first.ok && largerAmplitude.ok) {
+      expect(approxEqual(first.value.angularFrequencyRadiansPerSecond, 4)).toBe(true);
+      expect(approxEqual(first.value.periodSeconds, Math.PI / 2)).toBe(true);
+      expect(approxEqual(first.value.frequencyHertz, 2 / Math.PI)).toBe(true);
+      expect(approxEqual(first.value.accelerationMetresPerSecondSquared, -12.8)).toBe(true);
+      expect(approxEqual(first.value.totalEnergyJoules, 10.24)).toBe(true);
+      expect(approxEqual(first.value.periodSeconds, largerAmplitude.value.periodSeconds)).toBe(true);
+      expect(approxEqual(largerAmplitude.value.totalEnergyJoules, first.value.totalEnergyJoules * 4)).toBe(true);
     }
   });
 

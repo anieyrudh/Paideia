@@ -31,6 +31,9 @@ fields such as `velocityMetresPerSecond`. Expected invalid inputs return
 
 Work-energy helpers own the shared calculations for final kinetic store and
 average power so simulations do not reimplement those formulas locally.
+`springOscillator` owns the ideal mass-spring timing, SHM sample, and kinetic
+plus elastic potential energy trace for containers that need a product-facing
+spring oscillator without duplicating oscillator formulae.
 
 The package does not render mechanics visuals, run animation loops, solve
 arbitrary ODEs, or choose branch-specific teaching constants.

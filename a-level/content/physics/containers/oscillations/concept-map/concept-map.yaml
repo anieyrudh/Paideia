@@ -1,0 +1,49 @@
+schema_version: "1.0.0"
+concept_id: oscillations
+prerequisites:
+  - id: kinematics-in-one-dimension
+    title: "Kinematics in One Dimension"
+    relationship: "Oscillation uses displacement, velocity, acceleration, and time with a changing sign convention."
+    status: available
+  - id: work-energy-power
+    title: "Work, Energy, Power"
+    relationship: "Energy in oscillations shifts between kinetic and potential stores."
+    status: available
+  - id: waves
+    title: "Waves"
+    relationship: "Period, frequency, phase, and amplitude vocabulary carries across waves and oscillations."
+    status: available
+downstream:
+  - id: resonance
+    title: "Resonance"
+    relationship: "Driven oscillations build on natural frequency and energy transfer."
+    status: planned
+  - id: alternating-current
+    title: "Alternating Current"
+    relationship: "Sinusoidal voltage and current reuse phase and frequency reasoning."
+    status: planned
+siblings:
+  - id: circular-motion
+    title: "Circular Motion"
+    relationship: "Uniform circular motion projects to sinusoidal displacement in simple harmonic motion."
+    status: planned
+  - id: waves
+    title: "Waves"
+    relationship: "Oscillators can generate waves and share period-frequency language."
+    status: available
+misconception_graph:
+  nodes:
+    - id: amplitude-period-confusion
+      label: "Amplitude changes ideal period"
+    - id: equilibrium-acceleration-confusion
+      label: "Acceleration greatest at equilibrium"
+    - id: zero-displacement-zero-energy
+      label: "Zero displacement means zero energy"
+  edges:
+    - from: amplitude-period-confusion
+      to: zero-displacement-zero-energy
+      label: "both confuse size of motion with timing or total energy"
+    - from: equilibrium-acceleration-confusion
+      to: zero-displacement-zero-energy
+      label: "both confuse speed, acceleration, and energy at equilibrium"
+mermaid_source: graph.mmd

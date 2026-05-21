@@ -98,3 +98,18 @@ export type {
   WavesPredictionEvent,
   WavesState,
 } from "./waves.js";
+
+export {
+  OscillationDiagram,
+  OscillationsSim,
+  oscillationsModel,
+  oscillationsPackageId,
+  oscillationsSimId,
+  oscillationsSpec,
+} from "./oscillations.js";
+export type {
+  OscillationTracePoint,
+  OscillationsModel,
+  OscillationsPredictionEvent,
+  OscillationsState,
+} from "./oscillations.js";
