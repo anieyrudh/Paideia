@@ -13,6 +13,21 @@ export type {
 } from "./circuits.js";
 
 export {
+  ElectricFieldDiagram,
+  ElectricFieldsSim,
+  electricFieldsModel,
+  electricFieldsPackageId,
+  electricFieldsSimId,
+  electricFieldsSpec,
+  electricFieldVectorAt,
+} from "./electric-fields.js";
+export type {
+  ElectricFieldsModel,
+  ElectricFieldsPredictionEvent,
+  ElectricFieldsState,
+} from "./electric-fields.js";
+
+export {
   ForcesAndEquilibriumSim,
   ForceBalanceDiagram,
   forceBalanceModel,

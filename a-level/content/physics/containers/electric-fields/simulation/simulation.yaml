@@ -1,0 +1,64 @@
+id: charge-field-vector-lab
+title: "Charge Field Vector Lab"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/linear-algebra
+  - core/function-eval
+  - core/plotting
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A negative test charge is placed to the right of a positive source charge. Before revealing the vectors, which way does the force on the test charge point?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "To the right, because the electric field points away from a positive source."
+      - "To the left, because a negative test charge feels force opposite to the electric field."
+      - "Upwards, because field lines curve around the source."
+      - "There is no force because electric field and voltage are the same thing."
+    correct_index: 1
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: source-charge
+      label: "Source charge"
+      kind: slider
+      kernel_binding: state.sourceChargeMicroC
+      bounds: { min: -1, max: 1, step: 0.1 }
+    - id: test-charge
+      label: "Test charge"
+      kind: slider
+      kernel_binding: state.testChargeNanoC
+      bounds: { min: -30, max: 30, step: 5 }
+    - id: separation
+      label: "Separation"
+      kind: slider
+      kernel_binding: state.separationCm
+      bounds: { min: 5, max: 25, step: 1 }
+    - id: angle
+      label: "Position angle"
+      kind: slider
+      kernel_binding: state.angleDegrees
+      bounds: { min: 0, max: 180, step: 5 }
+
+observe:
+  renderers:
+    - id: charge-field-vector-lab
+      module: "@paideia/a-level-physics-sims/electric-fields"
+      symbol: ElectricFieldsSim
+      props_binding: |
+        Show point-charge field direction, force on the test charge, formula substitution, units, legend, and potential-energy link.
+
+explain:
+  prompt: |
+    How can the electric field direction be fixed by the source charge while the force direction still depends on the sign of the test charge?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Positive and negative charges feel force in the same field direction"
+    - "Voltage is the same thing as field strength"
+    - "Field strength depends on the test charge"

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Electric field thumbnail" viewBox="0 0 640 360">
+  <rect width="640" height="360" rx="28" fill="#f8fbff"/>
+  <g stroke="#d0d7e2" stroke-width="1">
+    <path d="M80 60h480M80 120h480M80 180h480M80 240h480M80 300h480"/>
+    <path d="M120 40v280M200 40v280M280 40v280M360 40v280M440 40v280M520 40v280"/>
+  </g>
+  <circle cx="245" cy="180" r="42" fill="#dc2626"/>
+  <text x="245" y="194" text-anchor="middle" font-family="Arial, sans-serif" font-size="44" font-weight="700" fill="#fff">+</text>
+  <g stroke="#059669" stroke-linecap="round" stroke-width="8" marker-end="url(#arrow)">
+    <path d="M302 180h94"/>
+    <path d="M290 135l74 -48"/>
+    <path d="M290 225l74 48"/>
+    <path d="M188 180H94"/>
+    <path d="M200 135l-74 -48"/>
+    <path d="M200 225l-74 48"/>
+  </g>
+  <circle cx="430" cy="180" r="28" fill="#2563eb"/>
+  <text x="430" y="190" text-anchor="middle" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#fff">-</text>
+  <path d="M430 180h-86" stroke="#d97706" stroke-linecap="round" stroke-width="8" marker-end="url(#force)"/>
+  <text x="62" y="335" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#10201a">Electric fields</text>
+  <defs>
+    <marker id="arrow" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="4">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#059669"/>
+    </marker>
+    <marker id="force" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="4">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#d97706"/>
+    </marker>
+  </defs>
+</svg>

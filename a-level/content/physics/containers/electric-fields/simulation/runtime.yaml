@@ -1,0 +1,14 @@
+runtime:
+  initial_stage: predict
+  prediction_gate: required
+  reveal_policy: commit-before-observe
+  state_owner: "@paideia/sim-runtime"
+  renderer: "@paideia/a-level-physics-sims/electric-fields"
+  a11y:
+    keyboard_controls: true
+    reduced_motion_safe: true
+    required_readouts:
+      - Electric field strength
+      - Force on test charge
+      - Electric potential
+      - Potential energy

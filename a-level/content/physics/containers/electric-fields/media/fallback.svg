@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Electric field fallback diagram" viewBox="0 0 720 420">
+  <rect width="720" height="420" fill="#ffffff"/>
+  <circle cx="260" cy="210" r="38" fill="#dc2626"/>
+  <text x="260" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#fff">+</text>
+  <circle cx="480" cy="210" r="30" fill="#2563eb"/>
+  <text x="480" y="221" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" font-weight="700" fill="#fff">-</text>
+  <line x1="304" y1="210" x2="430" y2="210" stroke="#059669" stroke-width="7" stroke-linecap="round" marker-end="url(#field)"/>
+  <line x1="480" y1="238" x2="354" y2="238" stroke="#d97706" stroke-width="7" stroke-linecap="round" marker-end="url(#force)"/>
+  <text x="334" y="190" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#065f46">E points away from +Q</text>
+  <text x="350" y="276" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#92400e">F on negative q is opposite E</text>
+  <text x="70" y="70" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#10201a">E = kQ/r^2</text>
+  <text x="70" y="110" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#10201a">F = qE</text>
+  <text x="70" y="150" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#10201a">Delta U = q Delta V</text>
+  <defs>
+    <marker id="field" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="4">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#059669"/>
+    </marker>
+    <marker id="force" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="4">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#d97706"/>
+    </marker>
+  </defs>
+</svg>

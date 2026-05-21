@@ -1,0 +1,34 @@
+steps:
+  - id: identify-source-test
+    label: Identify source and test charge
+    prompt: "Which charge creates the field, and which charge experiences force or energy change?"
+    checks:
+      - Source charge Q creates E.
+      - Test charge q appears in F = qE and Delta U = q Delta V.
+  - id: choose-relationship
+    label: Choose field, force, or energy relationship
+    prompt: "Is the question asking for E, F, V, or Delta U?"
+    checks:
+      - E uses source and distance.
+      - F uses test charge after E is known.
+      - Delta U uses charge and potential difference.
+  - id: draw-direction
+    label: Draw the direction before calculating
+    prompt: "Does the source make the field point away or towards, and does the test charge reverse the force?"
+    checks:
+      - Positive source gives outward E.
+      - Negative source gives inward E.
+      - Negative q reverses force relative to E.
+  - id: substitute-units
+    label: Substitute SI values
+    prompt: "Convert microcoulombs, nanocoulombs, centimetres, and volts before substitution."
+    checks:
+      - Charge in C.
+      - Distance in m.
+      - Field in N/C.
+  - id: interpret
+    label: Interpret the sign and unit
+    prompt: "Explain whether the sign describes direction or energy change, not just a calculator result."
+    checks:
+      - Direction stated in words.
+      - Energy increase or decrease stated when Delta U is used.

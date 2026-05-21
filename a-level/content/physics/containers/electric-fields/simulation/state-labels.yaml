@@ -1,0 +1,33 @@
+state_labels:
+  sourceChargeMicroC:
+    label: Source charge
+    unit: microC
+    meaning: Charge creating the electric field.
+  testChargeNanoC:
+    label: Test charge
+    unit: nC
+    meaning: Charge placed in the field to calculate force and potential energy.
+  separationCm:
+    label: Separation
+    unit: cm
+    meaning: Distance from the source charge to the test point.
+  angleDegrees:
+    label: Position angle
+    unit: deg
+    meaning: Direction of the test point from the source charge.
+  electricFieldStrengthNPerC:
+    label: Electric field strength
+    unit: N/C
+    meaning: Force per unit positive test charge at the point.
+  forceMagnitudeNewtons:
+    label: Force on test charge
+    unit: N
+    meaning: Magnitude of F = qE for the chosen test charge.
+  potentialVolts:
+    label: Electric potential
+    unit: V
+    meaning: Energy per unit charge at the chosen point.
+  potentialEnergyJoules:
+    label: Potential energy
+    unit: J
+    meaning: Electric potential energy of the chosen test charge at the point.
