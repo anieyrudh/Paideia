@@ -98,3 +98,28 @@ export type {
   WavesPredictionEvent,
   WavesState,
 } from "./waves.js";
+
+export {
+  ThermalPhysicsSim,
+  ThermalPistonDiagram,
+  celsius,
+  joulesPerKilogramKelvin,
+  kilopascals,
+  litres,
+  moles,
+  thermalPhysicsModel,
+  thermalPhysicsPackageId,
+  thermalPhysicsSimId,
+  thermalPhysicsSpec,
+} from "./thermal-physics.js";
+export type {
+  Celsius,
+  GasLawTracePoint,
+  JoulesPerKilogramKelvin,
+  Kilopascals,
+  Litres,
+  Moles,
+  ThermalPhysicsModel,
+  ThermalPhysicsPredictionEvent,
+  ThermalPhysicsState,
+} from "./thermal-physics.js";

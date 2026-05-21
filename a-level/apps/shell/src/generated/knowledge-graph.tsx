@@ -8,8 +8,9 @@ import GeneratedSim4MomentumMomentumCollisionLab from "@paideia/a-level-physics-
 import GeneratedSim5PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
 import GeneratedSim6ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
 import GeneratedSim7ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
-import GeneratedSim8WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
-import GeneratedSim9WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
+import GeneratedSim8ThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
+import GeneratedSim9WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
+import GeneratedSim10WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -138,6 +139,15 @@ export const knowledgeGraph = {
     status: "reviewed",
   },
   {
+    id: "a-level/physics/thermal-physics",
+    conceptId: "thermal-physics",
+    title: "Thermal Physics",
+    subject: "physics",
+    level: "H2",
+    module: "Thermal Physics",
+    status: "reviewed",
+  },
+  {
     id: "a-level/physics/waves",
     conceptId: "waves",
     title: "Waves",
@@ -188,6 +198,12 @@ export const knowledgeGraph = {
   { from: "a-level/physics/scalars-and-vectors", to: "a-level/physics/kinematics-in-one-dimension", kind: "downstream" },
   { from: "a-level/physics/scalars-and-vectors", to: "a-level/physics/forces-and-newtons-laws", kind: "downstream" },
   { from: "a-level/physics/scalars-and-vectors", to: "a-level/physics/resolving-vectors", kind: "sibling" },
+  { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/thermal-physics", kind: "prerequisite" },
+  { from: "a-level/physics/work-energy-power", to: "a-level/physics/thermal-physics", kind: "prerequisite" },
+  { from: "a-level/physics/thermal-physics", to: "a-level/physics/ideal-gases", kind: "downstream" },
+  { from: "a-level/physics/thermal-physics", to: "a-level/physics/internal-energy", kind: "downstream" },
+  { from: "a-level/physics/thermal-physics", to: "a-level/physics/waves", kind: "sibling" },
+  { from: "a-level/physics/thermal-physics", to: "a-level/physics/circuits", kind: "sibling" },
   { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/waves", kind: "prerequisite" },
   { from: "a-level/physics/waves", to: "a-level/physics/oscillations", kind: "downstream" },
   { from: "a-level/physics/waves", to: "a-level/physics/stationary-waves", kind: "downstream" },
@@ -709,6 +725,74 @@ export const containers = [
     ],
   },
   {
+    id: "a-level/physics/thermal-physics",
+    branch: "a-level",
+    subject: "Physics",
+    level: "H2",
+    module: "Thermal Physics",
+    title: "Thermal Physics",
+    summary: "Connect temperature, kelvin conversion, ideal-gas pressure, and thermal energy transfer.",
+    syllabusRef: "9478 / Section III / Thermal Physics",
+    status: "reviewed",
+    packageId: "thermal-physics",
+    simId: "gas-law-energy-transfer-lab",
+    predictPrompt: "A 0.040 mol gas sample occupies 1.0 L at 27 deg C. Before revealing the lab, which pressure is closest when the ideal-gas law is used correctly?",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "Temperature is the same as thermal energy",
+      "Celsius can be substituted directly into gas laws",
+      "Increasing volume always increases gas pressure",
+    ],
+    transferProblem: "A weather balloon contains a fixed amount of gas. It rises into colder air where the outside pressure is lower. Explain why the balloon volume changes, and calculate the new volume for a simplified case using pV = nRT.",
+    firstPrinciples: "Temperature is a state variable that tells the direction of net energy transfer by heating. Two bodies at the same temperature are in thermal equilibrium: no net thermal energy flows between them. Thermal energy transfer is not the same quantity as temperature; the energy needed to change a body's temperature also depends on its mass and material.",
+    keyDefinitions: [
+      "Thermal equilibrium: condition where bodies in contact have no net energy transfer by heating.",
+      "Thermodynamic temperature: absolute temperature measured in kelvin.",
+      "Internal energy: total microscopic kinetic and potential energy of the particles in a system.",
+      "Specific heat capacity: energy needed per kilogram per kelvin temperature change.",
+      "Ideal gas: model gas obeying pV = nRT, with negligible molecular volume and no intermolecular forces except during collisions.",
+    ],
+    canonicalExamples: [
+      "Convert 27 deg C to 300.15 K before using pV = nRT.",
+      "At fixed amount and temperature, halving the gas volume doubles the pressure.",
+      "Heating 0.25 kg of water from 20 deg C to 60 deg C needs much more energy than heating a smaller sample through the same temperature rise.",
+      "A weather balloon expands as external pressure falls, while gas temperature and amount also affect the volume.",
+    ],
+    problemSolvingSteps: [
+      "Classify the unknown",
+      "Convert absolute temperature",
+      "Choose the model",
+      "Isolate the unknown",
+      "Substitute with units",
+      "Interpret the result",
+    ],
+    prerequisites: [
+      "Physical Quantities and Units",
+      "Work, Energy, Power",
+    ],
+    downstream: [
+      "Ideal Gases",
+      "Internal Energy",
+    ],
+    siblings: [
+      "Waves",
+      "Circuits",
+    ],
+    sims: [
+      {
+        id: "gas-law-energy-transfer-lab",
+        harnessId: "a-level/physics/thermal-physics/gas-law-energy-transfer-lab",
+        title: "Gas Law and Energy Transfer Lab",
+        interactionType: "animation-playback",
+        component: GeneratedSim8ThermalPhysicsGasLawEnergyTransferLab,
+      },
+    ],
+  },
+  {
     id: "a-level/physics/waves",
     branch: "a-level",
     subject: "Physics",
@@ -768,7 +852,7 @@ export const containers = [
         harnessId: "a-level/physics/waves/wave-superposition-lab",
         title: "Wave Superposition Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim8WavesWaveSuperpositionLab,
+        component: GeneratedSim9WavesWaveSuperpositionLab,
       },
     ],
   },
@@ -833,7 +917,7 @@ export const containers = [
         harnessId: "a-level/physics/work-energy-power/energy-transfer-lab",
         title: "Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim9WorkEnergyPowerEnergyTransferLab,
+        component: GeneratedSim10WorkEnergyPowerEnergyTransferLab,
       },
     ],
   }
