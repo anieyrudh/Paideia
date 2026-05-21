@@ -1,0 +1,16 @@
+steps:
+  - id: read-states
+    prompt: "What are the states and which matrix direction is being used?"
+    expected_action: "Name the two states, write the state vector, and confirm that each transition-matrix column sums to 1."
+  - id: update-state
+    prompt: "What does one transition do to the current mix?"
+    expected_action: "Compute x_(t+1) = P x_t with substituted probabilities."
+  - id: solve-steady-state
+    prompt: "Which vector stays fixed under one more transition?"
+    expected_action: "Solve pi = P pi with pi_S + pi_C = 1, or use the two-state closed form."
+  - id: interpret-balance
+    prompt: "What does the steady state mean operationally?"
+    expected_action: "State the long-run probability mix with units and explain balanced aggregate flow rather than no movement."
+  - id: check-direction
+    prompt: "Does the answer move in the expected direction?"
+    expected_action: "Compare recovery and deterioration probabilities to confirm whether smooth or congested should dominate."

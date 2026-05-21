@@ -1,0 +1,7 @@
+labels:
+  smoothStaysSmooth: "P(S next | S now)"
+  congestedRecovers: "P(S next | C now)"
+  initialSmooth: "Initial P(S)"
+  weeks: "Forecast weeks"
+  steadySmooth: "Steady-state P(S)"
+  steadyCongested: "Steady-state P(C)"

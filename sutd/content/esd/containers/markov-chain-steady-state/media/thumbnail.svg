@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Markov chain steady-state thumbnail</title>
+  <desc id="desc">Two probabilistic states connected by transition arrows and a convergence chart.</desc>
+  <rect width="640" height="360" fill="#f7fbf8"/>
+  <rect x="46" y="42" width="548" height="276" rx="8" fill="#ffffff" stroke="#bdd0c6" stroke-width="2"/>
+  <circle cx="190" cy="150" r="58" fill="#e6f4ea" stroke="#177245" stroke-width="4"/>
+  <circle cx="450" cy="150" r="58" fill="#fff0e5" stroke="#b54708" stroke-width="4"/>
+  <text x="190" y="145" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="#14532d">Smooth</text>
+  <text x="190" y="174" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="#14532d">70%</text>
+  <text x="450" y="145" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" fill="#7c2d12">Congested</text>
+  <text x="450" y="174" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="16" fill="#7c2d12">30%</text>
+  <path d="M245 132 C300 96 340 96 395 132" fill="none" stroke="#2f6f73" stroke-width="6" marker-end="url(#arrow)"/>
+  <path d="M395 174 C340 218 300 218 245 174" fill="none" stroke="#b54708" stroke-width="6" marker-end="url(#arrowOrange)"/>
+  <path d="M94 284 L170 250 L246 238 L322 232 L398 230 L474 229 L548 229" fill="none" stroke="#177245" stroke-width="5"/>
+  <path d="M94 250 L170 284 L246 296 L322 302 L398 304 L474 305 L548 305" fill="none" stroke="#b54708" stroke-width="5"/>
+  <line x1="94" x2="548" y1="305" y2="305" stroke="#667085" stroke-width="2"/>
+  <line x1="94" x2="94" y1="226" y2="305" stroke="#667085" stroke-width="2"/>
+  <defs>
+    <marker id="arrow" markerHeight="10" markerWidth="10" orient="auto" refX="8" refY="5">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2f6f73"/>
+    </marker>
+    <marker id="arrowOrange" markerHeight="10" markerWidth="10" orient="auto" refX="8" refY="5">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#b54708"/>
+    </marker>
+  </defs>
+</svg>

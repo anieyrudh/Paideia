@@ -2367,7 +2367,7 @@ entries:
   - id: sutd.esd.markov-chain-steady-state
     title: "Markov Chain Steady State"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: ESD stochastic systems
     discipline: systems
     reuse_status: curriculum-wrapper

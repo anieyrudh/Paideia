@@ -1,0 +1,125 @@
+schema_version: "1.0.0"
+id: markov-chain-steady-state
+aliases:
+  - stationary distribution
+  - long-run Markov chain mix
+  - transition matrix equilibrium
+branch: sutd
+subject: esd
+level: "SUTD ESD"
+module: "Stochastic Modelling and Engineering Systems"
+title: "Markov Chain Steady State"
+one_line_summary: "Find the long-run state mix of a two-state stochastic system from its transition matrix."
+syllabus_ref: "SUTD ESD stochastic modelling / Markov chains and steady-state analysis"
+prerequisites:
+  - probability-distributions
+  - matrix-multiplication
+  - eigenvectors
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A system is more likely to stay smooth than to recover once it becomes congested. Before reveal, where should the long-run mix move?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Toward more smooth weeks"
+      - "Toward more congested weeks"
+      - "Exactly to the initial week mix"
+      - "To whichever state has the larger one-step arrow"
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: service-ticket-backlog
+    prompt: |
+      A weekly service desk has state S = stable backlog and B = backed-up. From S, 78% of weeks remain stable. From B, 35% recover to stable. Starting from 60% stable, compute the next two weekly mixes and the steady-state distribution. Explain why the long-run mix is not the same thing as no tickets moving.
+    surface_form: "two-state service operations Markov chain"
+    same_concept_check: "Same concept: multiply the state vector by the transition matrix, then solve the stationary distribution pi = P pi."
+    rubric_path: problem-solving/steps.yaml
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-21"
+      author: "Codex"
+      summary: "Built SUTD ESD Markov chain steady-state container and simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-21"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-21"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Steady state means no individual transitions happen"
+    description: "Learners may read a stable distribution as a frozen system rather than equal aggregate inflow and outflow."
+    evidence_source: "Queue entry misconception map and standard Markov-chain steady-state interpretation."
+    surface_in_predict: true
+  - name: "The largest immediate transition always dominates long-run state"
+    description: "Learners may choose the state with the strongest one-step arrow without accounting for both inflow and outflow."
+    evidence_source: "Queue entry misconception map and transition-matrix analysis."
+    surface_in_predict: true
+sources:
+  - citation: "MIT OpenCourseWare 6.041SC Probabilistic Systems Analysis and Applied Probability includes Markov chains, state probabilities, and steady-state behavior."
+    url: "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/"
+    publication_year: 2013
+    license: "CC BY-NC-SA"
+    seab_alignment: n/a
+  - citation: "OpenStax Introductory Business Statistics explains transition matrices and long-run state probabilities for Markov chains."
+    url: "https://openstax.org/details/books/introductory-business-statistics"
+    publication_year: 2017
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "SUTD Engineering Systems and Design curriculum emphasizes probabilistic modelling, systems thinking, and operations decisions."
+    url: "https://www.sutd.edu.sg/esd/"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+language: en
