@@ -1,11 +1,21 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { containers, knowledgeGraph, type ShellContainer } from "./generated/knowledge-graph.js";
-import { sutdPillars, type SutdPillar } from "./curriculum-map.js";
+import { sutdPillars, type SutdPillar, type SutdPillarId } from "./curriculum-map.js";
 
 const containerById = new Map<string, ShellContainer>(
   containers.map((container) => [container.id, container]),
 );
 const pillarById = new Map<string, SutdPillar>(sutdPillars.map((pillar) => [pillar.id, pillar]));
+const pillarIdByContainerSegment = new Map<string, SutdPillarId>([
+  ["asd", "asd"],
+  ["csd", "istd-csd"],
+  ["dai", "dai"],
+  ["epd", "epd"],
+  ["esd", "esd"],
+  ["freshmore", "freshmore"],
+  ["istd", "istd-csd"],
+  ["smt", "smt"],
+]);
 
 type HashRoute =
   | { readonly kind: "container"; readonly id: string }
@@ -17,12 +27,6 @@ const parseHashRoute = (): HashRoute => {
   if (hash.length === 0) return { kind: "empty", id: "" };
   if (hash.startsWith("pillar/")) return { kind: "pillar", id: hash.slice("pillar/".length) };
   return { kind: "container", id: hash };
-};
-
-const readContainerFromHash = (): ShellContainer | null => {
-  const route = parseHashRoute();
-  const containerId = route.kind === "container" ? route.id : "";
-  return containerById.get(containerId) ?? null;
 };
 
 const readPillarFromHash = (): SutdPillar => {
@@ -53,6 +57,20 @@ const firstContainerForPillar = (pillar: SutdPillar): ShellContainer | null => {
   }
 
   return null;
+};
+
+const pillarForContainer = (container: ShellContainer): SutdPillar => {
+  const explicitPillar = sutdPillars.find((pillar) =>
+    pillar.clusters.some((cluster) =>
+      cluster.plannedContainerIds.some((plannedId) => plannedIdToContainerId(plannedId) === container.id),
+    ),
+  );
+  if (explicitPillar !== undefined) return explicitPillar;
+
+  const [, segment] = container.id.split("/");
+  const inferredPillarId =
+    segment === undefined ? undefined : pillarIdByContainerSegment.get(segment);
+  return (inferredPillarId === undefined ? undefined : pillarById.get(inferredPillarId)) ?? sutdPillars[0];
 };
 
 const ClusterCard = ({
@@ -98,14 +116,29 @@ const ContainerPreview = ({
 );
 
 export const App = () => {
-  const [activePillar, setActivePillar] = useState<SutdPillar>(() => readPillarFromHash());
+  const [route, setRoute] = useState<HashRoute>(() => parseHashRoute());
+  const routeContainer = useMemo(
+    () => (route.kind === "container" ? containerById.get(route.id) ?? null : null),
+    [route],
+  );
+  const activePillar = useMemo(() => {
+    if (route.kind === "pillar") return pillarById.get(route.id) ?? sutdPillars[0];
+    if (routeContainer !== null) return pillarForContainer(routeContainer);
+    return readPillarFromHash();
+  }, [route, routeContainer]);
   const activeContainer = useMemo(
-    () => readContainerFromHash() ?? firstContainerForPillar(activePillar),
-    [activePillar],
+    () => routeContainer ?? firstContainerForPillar(activePillar),
+    [activePillar, routeContainer],
   );
 
+  useEffect(() => {
+    const onHashChange = () => setRoute(parseHashRoute());
+    globalThis.addEventListener("hashchange", onHashChange);
+    return () => globalThis.removeEventListener("hashchange", onHashChange);
+  }, []);
+
   const selectPillar = (pillar: SutdPillar) => {
-    setActivePillar(pillar);
+    setRoute({ kind: "pillar", id: pillar.id });
     globalThis.history?.replaceState(null, "", `#pillar/${pillar.id}`);
   };
 
