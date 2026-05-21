@@ -1,0 +1,28 @@
+presets:
+  - id: exam-claim
+    label: "Exam claim"
+    state:
+      nullMean: 64
+      observedMean: 67.2
+      populationStandardDeviation: 8
+      sampleSize: 36
+      alpha: 0.05
+      tail: greater
+  - id: small-class
+    label: "Small class"
+    state:
+      nullMean: 64
+      observedMean: 67.2
+      populationStandardDeviation: 8
+      sampleSize: 16
+      alpha: 0.05
+      tail: greater
+  - id: two-sided-check
+    label: "Two-sided check"
+    state:
+      nullMean: 70
+      observedMean: 66.7
+      populationStandardDeviation: 9
+      sampleSize: 49
+      alpha: 0.05
+      tail: two-sided

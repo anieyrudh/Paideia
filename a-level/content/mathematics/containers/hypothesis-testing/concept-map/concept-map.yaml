@@ -1,0 +1,46 @@
+schema_version: "1.0.0"
+concept_id: hypothesis-testing
+prerequisites:
+  - id: probability-statistics
+    title: "Probability and Statistics"
+    relationship: "Random variables, expectation, variance, and sampling ideas provide the language for test statistics."
+    status: available
+  - id: normal-distribution
+    title: "Normal Distribution"
+    relationship: "Critical values and standardised z-statistics rely on normal approximation or a known normal model."
+    status: planned
+downstream:
+  - id: confidence-intervals
+    title: "Confidence Intervals"
+    relationship: "Interval decisions reuse standard error and sampling distribution reasoning."
+    status: planned
+  - id: model-criticism
+    title: "Model Criticism"
+    relationship: "After a test decision, assumptions and practical context must still be judged."
+    status: planned
+siblings:
+  - id: central-limit-theorem
+    title: "Central Limit Theorem Sampler"
+    relationship: "Explains why sample means can be standardised."
+    status: available
+misconception_graph:
+  nodes:
+    - id: p-value-is-h0-probability
+      label: "p-value is the probability H0 is true"
+    - id: rejection-proves-h1
+      label: "Rejecting H0 proves H1"
+    - id: difference-only
+      label: "Only the observed difference matters"
+    - id: standard-error
+      label: "Standard error controls evidence strength"
+  edges:
+    - from: difference-only
+      to: standard-error
+      label: "repaired by"
+    - from: p-value-is-h0-probability
+      to: standard-error
+      label: "requires conditioning on H0"
+    - from: rejection-proves-h1
+      to: p-value-is-h0-probability
+      label: "often follows from"
+mermaid_source: graph.mmd

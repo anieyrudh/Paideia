@@ -1,0 +1,19 @@
+steps:
+  - id: state-hypotheses
+    label: "State H0 and H1."
+    prompt: "Identify the population mean claim and choose the alternative direction from the question wording."
+  - id: compute-standard-error
+    label: "Compute the standard error."
+    prompt: "Use SE = sigma / sqrt(n), keeping the context units."
+  - id: standardise
+    label: "Compute the test statistic."
+    prompt: "Use z = (xbar - mu0) / SE."
+  - id: compare-critical-region
+    label: "Compare with the critical region."
+    prompt: "Use the tail and significance level to decide whether the z-statistic is extreme enough."
+  - id: interpret-p-value
+    label: "Interpret the p-value comparison."
+    prompt: "Explain rarity under H0 without saying the p-value is the probability that H0 is true."
+  - id: contextual-conclusion
+    label: "Write the conclusion in context."
+    prompt: "State reject or do not reject H0, then name the claim and units."

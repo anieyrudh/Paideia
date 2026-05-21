@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Static hypothesis test worked example</title>
+  <desc id="desc">Formula panel for standard error, z statistic, and decision.</desc>
+  <rect width="640" height="360" fill="#0f172a"/>
+  <rect x="60" y="56" width="520" height="248" rx="8" fill="#f8fafc"/>
+  <text x="92" y="108" fill="#0f172a" font-family="Arial, sans-serif" font-size="26" font-weight="700">H0: mu = 64 marks</text>
+  <text x="92" y="152" fill="#0f172a" font-family="Arial, sans-serif" font-size="24">SE = 8 / sqrt(36) = 1.33 marks</text>
+  <text x="92" y="196" fill="#0f172a" font-family="Arial, sans-serif" font-size="24">z = (67.2 - 64) / 1.33 = 2.40</text>
+  <text x="92" y="240" fill="#b91c1c" font-family="Arial, sans-serif" font-size="24" font-weight="700">Decision: reject H0 at 5%</text>
+  <text x="92" y="276" fill="#334155" font-family="Arial, sans-serif" font-size="18">Interpret rarity under H0, not probability that H0 is true.</text>
+</svg>
