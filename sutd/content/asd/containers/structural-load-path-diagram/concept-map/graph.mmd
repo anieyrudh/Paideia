@@ -1,0 +1,9 @@
+flowchart TD
+  fbd["Free-body diagram mechanics"] --> loadpath["Structural load path diagram"]
+  vectors["Vector resolution"] --> loadpath
+  daylight["Load path and daylight tradeoff"] --> loadpath
+  loadpath --> opt["Structural optimisation"]
+  loadpath --> facade["Facade tradeoff design"]
+  shading["Shading, daylight, and heat gain"] --- loadpath
+  misconceptionA["Loads disappear at supports"] --> missing["External reactions not checked"]
+  misconceptionB["All members carry equal force"] --> missing

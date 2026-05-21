@@ -1,0 +1,74 @@
+id: magnetic-force-direction-lab
+title: "Magnetic Force Direction Lab"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/electromagnetism
+  - core/mechanics
+  - core/linear-algebra
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A wire carries conventional current to the right while a magnetic field goes into the page. Before revealing the result, which way is the force on the wire?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Up the page."
+      - "Down the page."
+      - "Along the current, to the right."
+      - "There is no force because the field is perpendicular to the current."
+    correct_index: 0
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: field-strength
+      label: "Magnetic field strength"
+      kind: slider
+      kernel_binding: state.fieldMilliTesla
+      bounds: { min: 5, max: 120, step: 5 }
+    - id: current
+      label: "Current"
+      kind: slider
+      kernel_binding: state.currentAmperes
+      bounds: { min: 0, max: 12, step: 0.5 }
+    - id: active-length
+      label: "Active wire length"
+      kind: slider
+      kernel_binding: state.activeLengthCm
+      bounds: { min: 2, max: 20, step: 1 }
+    - id: angle
+      label: "Angle to field"
+      kind: slider
+      kernel_binding: state.angleDegrees
+      bounds: { min: 0, max: 90, step: 5 }
+    - id: particle-charge
+      label: "Particle charge"
+      kind: slider
+      kernel_binding: state.particleChargeMicroC
+      bounds: { min: -8, max: 8, step: 1 }
+    - id: particle-speed
+      label: "Particle speed"
+      kind: slider
+      kernel_binding: state.particleSpeedKmPerSecond
+      bounds: { min: 0.2, max: 5, step: 0.2 }
+
+observe:
+  renderers:
+    - id: magnetic-force-direction-lab
+      module: "@paideia/a-level-physics-sims/magnetic-fields"
+      symbol: MagneticFieldsSim
+      props_binding: |
+        Show Fleming left-hand rule direction, current-carrying wire force, moving-charge force, circular-path check, formula substitution, units, and legend.
+
+explain:
+  prompt: |
+    Why is the magnetic force perpendicular to both the current or velocity direction and the magnetic field direction?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Magnetic force acts along the field line"
+    - "Stationary charges feel magnetic force"
+    - "A negative charge curves the same way as a positive charge"

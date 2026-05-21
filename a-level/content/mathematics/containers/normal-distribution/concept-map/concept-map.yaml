@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: normal-distribution
+prerequisites:
+  - id: probability-statistics
+    title: "Probability and Statistics"
+    relationship: "Uses probability as area, expected value, and variance language."
+    status: available
+  - id: functions-and-graphs
+    title: "Functions and Graphs"
+    relationship: "Reads a curve as a function whose area over an interval represents probability."
+    status: planned
+downstream:
+  - id: hypothesis-testing
+    title: "Hypothesis Testing"
+    relationship: "Uses standard normal critical regions and z-test statistics."
+    status: available
+  - id: confidence-intervals
+    title: "Confidence Intervals"
+    relationship: "Uses normal critical values and standard errors."
+    status: planned
+siblings:
+  - id: binomial-distribution
+    title: "Binomial Distribution"
+    relationship: "Discrete distribution often approximated by a normal model under suitable conditions."
+    status: planned
+  - id: central-limit-theorem
+    title: "Central Limit Theorem"
+    relationship: "Explains why sample means often have approximately normal distributions."
+    status: available
+misconception_graph:
+  nodes:
+    - id: z-score-is-probability
+      label: "z-score is a probability"
+    - id: symmetry-overgeneralised
+      label: "symmetry makes all intervals equal"
+    - id: sigma-unitless
+      label: "standard deviation has no unit"
+  edges:
+    - from: z-score-is-probability
+      to: symmetry-overgeneralised
+      label: "both confuse location with area"
+    - from: sigma-unitless
+      to: z-score-is-probability
+      label: "unit cancellation explains why z is not a mark value"
+mermaid_source: graph.mmd

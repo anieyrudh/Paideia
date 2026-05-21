@@ -1,0 +1,33 @@
+labels:
+  mean:
+    short: "Mean"
+    long: "Normal distribution mean"
+    unit: marks
+  standardDeviation:
+    short: "Standard deviation"
+    long: "Normal distribution standard deviation"
+    unit: marks
+  lowerBound:
+    short: "Lower bound"
+    long: "Lower raw boundary"
+    unit: marks
+  upperBound:
+    short: "Upper bound"
+    long: "Upper raw boundary"
+    unit: marks
+  mode:
+    short: "Area mode"
+    long: "Interval or tail probability mode"
+derived:
+  zLower:
+    short: "Lower z"
+    long: "Standardised lower boundary"
+    unit: standard deviations
+  zUpper:
+    short: "Upper z"
+    long: "Standardised upper boundary"
+    unit: standard deviations
+  probability:
+    short: "Area"
+    long: "Normal probability area"
+    unit: probability

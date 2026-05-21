@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Static structural load path diagram</title>
+  <desc id="desc">A braced rectangular bay with sideways load, roof load, diagonal force, and support reactions.</desc>
+  <rect width="640" height="360" fill="#fbfaf7"/>
+  <line x1="150" y1="90" x2="150" y2="280" stroke="#5b6470" stroke-width="14"/>
+  <line x1="490" y1="90" x2="490" y2="280" stroke="#5b6470" stroke-width="14"/>
+  <line x1="130" y1="95" x2="510" y2="95" stroke="#5b6470" stroke-width="14"/>
+  <line x1="130" y1="280" x2="510" y2="280" stroke="#5b6470" stroke-width="14"/>
+  <line x1="150" y1="280" x2="490" y2="95" stroke="#1f6f8b" stroke-width="14" stroke-linecap="round"/>
+  <path d="M55 145h92" stroke="#b42318" stroke-width="10" stroke-linecap="round"/>
+  <path d="M147 145l-18-12v24z" fill="#b42318"/>
+  <path d="M320 32v60" stroke="#475467" stroke-width="10" stroke-linecap="round"/>
+  <path d="M320 92l-12-18h24z" fill="#475467"/>
+  <path d="M150 330v-45" stroke="#4f6f3a" stroke-width="10" stroke-linecap="round"/>
+  <path d="M150 285l-12 18h24z" fill="#4f6f3a"/>
+  <path d="M490 330v-45" stroke="#4f6f3a" stroke-width="10" stroke-linecap="round"/>
+  <path d="M490 285l-12 18h24z" fill="#4f6f3a"/>
+  <text x="70" y="132" font-family="Arial, sans-serif" font-size="20" fill="#1f2933">H</text>
+  <text x="332" y="58" font-family="Arial, sans-serif" font-size="20" fill="#1f2933">W</text>
+  <text x="245" y="188" font-family="Arial, sans-serif" font-size="20" fill="#1f2933">diagonal brace force</text>
+  <text x="96" y="348" font-family="Arial, sans-serif" font-size="18" fill="#1f2933">windward reaction</text>
+  <text x="430" y="348" font-family="Arial, sans-serif" font-size="18" fill="#1f2933">leeward reaction</text>
+</svg>

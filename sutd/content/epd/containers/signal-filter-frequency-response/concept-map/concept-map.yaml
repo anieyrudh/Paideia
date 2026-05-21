@@ -1,0 +1,54 @@
+schema_version: "1.0.0"
+concept_id: signal-filter-frequency-response
+prerequisites:
+  - id: bode-stability-margin
+    title: Bode Stability Margin
+    relationship: Bode axes, decibels, and phase are reused to read a filter response
+    status: available
+  - id: circuit-phasor-reasoning
+    title: Circuit Phasor Reasoning
+    relationship: RC impedance and voltage division explain the frequency response
+    status: available
+  - id: oscillations
+    title: Oscillations
+    relationship: Sinusoidal steady-state input defines frequency-by-frequency response
+    status: available
+downstream:
+  - id: control-stability
+    title: Control Stability
+    relationship: Sensor and actuator filters add phase lag that changes loop robustness
+    status: planned
+  - id: signal-processing
+    title: Signal Processing
+    relationship: Filter magnitude and phase are the first design language for shaping signals
+    status: planned
+siblings:
+  - id: pid-step-response
+    title: PID Step Response
+    relationship: Time-domain response complements frequency-domain filter behavior
+    status: available
+  - id: bode-stability-margin
+    title: Bode Stability Margin
+    relationship: Same Bode representation applied to feedback margins
+    status: available
+misconception_graph:
+  nodes:
+    - id: brick-wall-cutoff
+      label: Filters remove all frequencies above cutoff instantly
+    - id: phase-decoration
+      label: Phase shift is optional decoration
+    - id: cutoff-knee
+      label: Cutoff is the -3 dB knee
+    - id: phasor-division
+      label: RC impedance makes magnitude and phase change together
+  edges:
+    - from: brick-wall-cutoff
+      to: cutoff-knee
+      label: challenge with one-decade attenuation instead of zero output
+    - from: phase-decoration
+      to: phasor-division
+      label: connect voltage division to time alignment
+    - from: phasor-division
+      to: cutoff-knee
+      label: derive f_c from tau = RC
+mermaid_source: graph.mmd

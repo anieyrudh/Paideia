@@ -1,4 +1,19 @@
 export {
+  AlternatingCurrentDiagram,
+  AlternatingCurrentSim,
+  alternatingCurrentModel,
+  alternatingCurrentPackageId,
+  alternatingCurrentSimId,
+  alternatingCurrentSpec,
+} from "./alternating-current.js";
+export type {
+  AlternatingCurrentModel,
+  AlternatingCurrentPredictionEvent,
+  AlternatingCurrentState,
+  AlternatingCurrentWavePoint,
+} from "./alternating-current.js";
+
+export {
   CircuitsDiagram,
   CircuitsSim,
   circuitsModel,
@@ -11,6 +26,21 @@ export type {
   CircuitState,
   CircuitVoltageTracePoint,
 } from "./circuits.js";
+
+export {
+  CapacitorDiagram,
+  CapacitanceSim,
+  capacitanceModel,
+  capacitancePackageId,
+  capacitanceSimId,
+  capacitanceSpec,
+} from "./capacitance.js";
+export type {
+  CapacitanceModel,
+  CapacitancePredictionEvent,
+  CapacitanceState,
+  DischargeTracePoint,
+} from "./capacitance.js";
 
 export {
   ElectricFieldDiagram,
@@ -97,6 +127,20 @@ export type {
   GravitationalFieldsPredictionEvent,
   GravitationalFieldsState,
 } from "./gravitational-fields.js";
+
+export {
+  MagneticFieldDiagram,
+  MagneticFieldsSim,
+  magneticFieldsModel,
+  magneticFieldsPackageId,
+  magneticFieldsSimId,
+  magneticFieldsSpec,
+} from "./magnetic-fields.js";
+export type {
+  MagneticFieldsModel,
+  MagneticFieldsPredictionEvent,
+  MagneticFieldsState,
+} from "./magnetic-fields.js";
 
 export {
   MomentumCollisionDiagram,

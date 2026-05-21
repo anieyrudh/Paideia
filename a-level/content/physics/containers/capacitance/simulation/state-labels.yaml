@@ -1,0 +1,36 @@
+state_labels:
+  capacitanceMicrofarads:
+    label: Capacitance
+    unit: microF
+    symbol: C
+    description: Charge separated per volt.
+  supplyVoltageVolts:
+    label: Supply voltage
+    unit: V
+    symbol: V
+    description: Potential difference across the capacitor plates.
+  dischargeResistanceKilohms:
+    label: Discharge resistance
+    unit: kOhm
+    symbol: R
+    description: Resistance through which the capacitor discharges.
+  sampleTimeMilliseconds:
+    label: Sample time
+    unit: ms
+    symbol: t
+    description: Time after the discharge begins.
+  storedChargeCoulombs:
+    label: Stored charge
+    unit: C
+    symbol: Q
+    description: Magnitude of separated charge on either plate.
+  storedEnergyJoules:
+    label: Stored energy
+    unit: J
+    symbol: U
+    description: Energy stored in the electric field.
+  timeConstantSeconds:
+    label: Time constant
+    unit: s
+    symbol: tau
+    description: Product RC that sets exponential discharge rate.

@@ -7,11 +7,14 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
+    "./alternating-current": "./src/alternating-current.tsx",
     "./circular-motion": "./src/circular-motion.tsx",
     "./circuits": "./src/circuits.tsx",
+    "./capacitance": "./src/capacitance.tsx",
     "./electric-fields": "./src/electric-fields.tsx",
     "./forces-and-equilibrium": "./src/forces-and-equilibrium.tsx",
     "./gravitational-fields": "./src/gravitational-fields.tsx",
+    "./magnetic-fields": "./src/magnetic-fields.tsx",
     "./resultant-magnitude": "./src/resultant-magnitude.tsx",
     "./resolving-vectors": "./src/resolving-vectors.tsx",
     "./measurement-uncertainty": "./src/measurement-uncertainty.tsx",
@@ -24,7 +27,7 @@
   },
   "scripts": {
     "build": "tsc -b",
-    "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts src/measurement-uncertainty.test.ts src/kinematics-one-dimension.test.ts src/forces-and-equilibrium.test.ts src/work-energy-power.test.ts src/momentum.test.ts src/waves.test.ts src/thermal-physics.test.ts src/circuits.test.ts src/gravitational-fields.test.ts src/circular-motion.test.ts src/oscillations.test.ts src/electric-fields.test.ts",
+    "test": "vitest run src/resultant-magnitude.test.ts src/resolving-vectors.test.ts src/measurement-uncertainty.test.ts src/kinematics-one-dimension.test.ts src/forces-and-equilibrium.test.ts src/work-energy-power.test.ts src/momentum.test.ts src/waves.test.ts src/thermal-physics.test.ts src/circuits.test.ts src/gravitational-fields.test.ts src/circular-motion.test.ts src/oscillations.test.ts src/electric-fields.test.ts src/alternating-current.test.ts src/capacitance.test.ts src/magnetic-fields.test.ts",
     "lint": "tsc -b --pretty false",
     "typecheck": "tsc -b --pretty false"
   },

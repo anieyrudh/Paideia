@@ -1,0 +1,7 @@
+state_labels:
+  targetShape: "Target shape"
+  coefficient1Metres: "Mode 1 coefficient, metres"
+  coefficient2Metres: "Mode 2 coefficient, metres"
+  coefficient3Metres: "Mode 3 coefficient, metres"
+  coefficient4Metres: "Mode 4 coefficient, metres"
+  focusMode: "Focus mode"

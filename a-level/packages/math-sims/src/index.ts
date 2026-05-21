@@ -1,4 +1,17 @@
 export {
+  ConfidenceIntervalsSim,
+  confidenceIntervalsModel,
+  confidenceIntervalsPackageId,
+  confidenceIntervalsSimId,
+  confidenceIntervalsSpec,
+} from "./confidence-intervals.js";
+export type {
+  ConfidenceIntervalsModel,
+  ConfidenceIntervalsPredictionEvent,
+  ConfidenceIntervalsState,
+  ConfidenceLevel,
+} from "./confidence-intervals.js";
+export {
   HypothesisTestingSim,
   hypothesisTestingModel,
   hypothesisTestingPackageId,
@@ -11,6 +24,18 @@ export type {
   HypothesisTestingState,
   HypothesisTail,
 } from "./hypothesis-testing.js";
+export {
+  NormalDistributionSim,
+  normalDistributionModel,
+  normalDistributionPackageId,
+  normalDistributionSimId,
+  normalDistributionSpec,
+} from "./normal-distribution.js";
+export type {
+  NormalAreaMode,
+  NormalDistributionModel,
+  NormalDistributionState,
+} from "./normal-distribution.js";
 export {
   ProbabilityStatisticsSim,
   probabilityStatisticsModel,

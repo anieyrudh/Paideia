@@ -2143,7 +2143,7 @@ entries:
   - id: alevel.physics.capacitance
     title: "Capacitance"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level fields
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -2188,7 +2188,7 @@ entries:
   - id: alevel.physics.alternating-current
     title: "Alternating Current"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level circuits
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -2233,7 +2233,7 @@ entries:
   - id: alevel.physics.magnetic-fields
     title: "Magnetic Fields"
     priority: P0
-    status: ready-for-build
+    status: reviewed
     cluster: A-Level fields
     discipline: physics
     reuse_status: curriculum-wrapper
@@ -2279,7 +2279,7 @@ entries:
   - id: alevel.math.normal-distribution
     title: "Normal Distribution"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level probability and statistics
     discipline: math
     reuse_status: curriculum-wrapper
@@ -2323,7 +2323,7 @@ entries:
   - id: alevel.math.confidence-intervals
     title: "Confidence Intervals"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: A-Level inference
     discipline: math
     reuse_status: curriculum-wrapper
@@ -2414,7 +2414,7 @@ entries:
   - id: sutd.csd.recursion-tree-complexity
     title: "Recursion Tree Complexity"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: CSD algorithms
     discipline: cs
     reuse_status: curriculum-wrapper
@@ -2460,7 +2460,7 @@ entries:
   - id: sutd.epd.signal-filter-frequency-response
     title: "Signal Filter Frequency Response"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: EPD signals and control
     discipline: engineering
     reuse_status: curriculum-wrapper
@@ -2507,7 +2507,7 @@ entries:
   - id: sutd.asd.structural-load-path-diagram
     title: "Structural Load Path Diagram"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: ASD structural systems
     discipline: architecture
     reuse_status: curriculum-wrapper
@@ -2553,7 +2553,7 @@ entries:
   - id: sutd.dai.fairness-threshold-audit
     title: "Fairness Threshold Audit"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: DAI human-centred AI
     discipline: design-ai
     reuse_status: curriculum-wrapper
@@ -2599,7 +2599,7 @@ entries:
   - id: sutd.smt.fourier-mode-superposition
     title: "Fourier Mode Superposition"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: SMT mathematical modelling
     discipline: science
     reuse_status: curriculum-wrapper

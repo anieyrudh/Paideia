@@ -1,0 +1,49 @@
+schema_version: "1.0.0"
+concept_id: recursion-tree-complexity
+prerequisites:
+  - id: dynamic-programming-state-recursion
+    title: Dynamic Programming State Recursion
+    relationship: "Recurrences define state reuse before divide-and-conquer trees compare work by level."
+    status: available
+  - id: graph-search-and-shortest-paths
+    title: Graph Search and Shortest Paths
+    relationship: "Tree and graph traversal language helps learners read recursion-tree nodes, edges, and depth."
+    status: available
+  - id: asymptotic-notation
+    title: Asymptotic Notation
+    relationship: "Big-Theta language is required to interpret growth classes."
+    status: planned
+downstream:
+  - id: divide-and-conquer
+    title: Divide and Conquer
+    relationship: "Recursion trees explain why split-combine algorithms have their running times."
+    status: planned
+  - id: algorithm-analysis
+    title: Algorithm Analysis
+    relationship: "Level-cost comparison becomes one general tool among proof, substitution, and theorem methods."
+    status: planned
+siblings:
+  - id: master-theorem
+    title: Master Theorem
+    relationship: "A symbolic shortcut for the same level-cost comparison."
+    status: planned
+  - id: recurrence-substitution
+    title: Recurrence Substitution
+    relationship: "An algebraic proof technique for recurrence bounds."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: exponential-by-default
+      label: Recursive code always has exponential cost
+    - id: ignore-base-cases
+      label: Base cases do not affect total work
+    - id: level-cost-ratio
+      label: Level-cost ratio decides dominance
+  edges:
+    - from: exponential-by-default
+      to: level-cost-ratio
+      label: "Correct by comparing call growth with shrinking node cost"
+    - from: ignore-base-cases
+      to: level-cost-ratio
+      label: "Correct by using height and leaf count"
+mermaid_source: graph.mmd

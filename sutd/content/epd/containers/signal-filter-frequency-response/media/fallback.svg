@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Static RC filter cutoff diagram</title>
+  <desc id="desc">Static fallback showing cutoff frequency, gradual roll-off, and phase shift.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <text x="40" y="54" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Signal Filter Frequency Response</text>
+  <text x="40" y="88" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="18">Cutoff is -3 dB, not an on/off boundary.</text>
+  <g transform="translate(70 132)" fill="none">
+    <line x1="0" x2="500" y1="150" y2="150" stroke="#64748b" stroke-width="2"/>
+    <line x1="0" x2="0" y1="0" y2="150" stroke="#64748b" stroke-width="2"/>
+    <path d="M0 26 C110 28 164 42 230 82 S360 134 500 140" stroke="#2563eb" stroke-width="5"/>
+    <path d="M0 116 C110 114 172 98 238 70 S370 26 500 18" stroke="#dc2626" stroke-width="4"/>
+    <line x1="230" x2="230" y1="8" y2="150" stroke="#7c3aed" stroke-width="3" stroke-dasharray="9 7"/>
+    <circle cx="230" cy="82" r="7" fill="#7c3aed"/>
+  </g>
+  <text x="300" y="128" fill="#7c3aed" font-family="Inter, Arial, sans-serif" font-size="20">f_c = 1 / (2 pi RC)</text>
+  <text x="300" y="154" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="17">|H| = 0.707, phase already shifted</text>
+  <text x="80" y="314" fill="#2563eb" font-family="Inter, Arial, sans-serif" font-size="18">magnitude response</text>
+  <text x="284" y="314" fill="#dc2626" font-family="Inter, Arial, sans-serif" font-size="18">phase response</text>
+</svg>

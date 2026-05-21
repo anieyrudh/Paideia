@@ -1,0 +1,38 @@
+steps:
+  - id: identify-mode
+    label: Identify the capacitor state
+    prompt: "Is the capacitor being charged to a voltage, held at fixed voltage, or discharging through a resistor?"
+    checks:
+      - Fixed voltage points to Q = CV and U = 1/2 CV^2.
+      - Discharge requires tau = RC and an exponential factor.
+  - id: convert-si
+    label: Convert to SI units
+    prompt: "Convert microfarads, kilohms, and milliseconds before substituting."
+    checks:
+      - Capacitance in F.
+      - Resistance in Ohm.
+      - Time in s.
+  - id: calculate-charge
+    label: Calculate separated charge
+    prompt: "Use Q = CV and state that Q is the magnitude on either plate."
+    checks:
+      - Q in C.
+      - Equal and opposite plate charges stated.
+  - id: calculate-energy
+    label: Calculate stored energy
+    prompt: "Use U = 1/2 QV or U = 1/2 CV^2."
+    checks:
+      - Energy in J.
+      - Voltage-squared dependence recognised.
+  - id: calculate-discharge
+    label: Calculate discharge state
+    prompt: "Use tau = RC and multiply the initial value by e^(-t/tau)."
+    checks:
+      - Time constant in s.
+      - Remaining voltage or charge uses the same fraction.
+  - id: interpret
+    label: Interpret the physical meaning
+    prompt: "Explain what is stored, what remains, and why the curve is not linear."
+    checks:
+      - Energy stored in field.
+      - Exponential decay described as equal-fraction decay.

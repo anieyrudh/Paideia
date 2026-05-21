@@ -1,0 +1,24 @@
+# Structural Load Path Diagram Mindmap
+
+- Structural load path diagram
+  - Inputs
+    - Sideways load
+    - Roof gravity load
+    - Bay width
+    - Storey height
+    - Brace capacity
+  - Calculations
+    - Diagonal angle
+    - Brace axial force
+    - Overturning reaction shift
+    - Windward and leeward reactions
+  - Diagram checks
+    - Every load reaches support
+    - Tension/compression path is labelled
+    - Reactions close equilibrium
+  - Misconceptions
+    - Loads disappear at supports
+    - All members carry equal force
+  - Transfer
+    - Canopy wind-load check
+    - Facade bay bracing decision

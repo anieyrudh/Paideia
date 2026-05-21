@@ -1,0 +1,24 @@
+# Mindmap
+
+- Recursion tree complexity
+  - Inputs
+    - Branching factor `a`
+    - Shrink factor `b`
+    - Combine cost `c n^p`
+    - Base-case size
+  - Level model
+    - Nodes at level `k`: `a^k`
+    - Subproblem size: `n / b^k`
+    - Per-node work: `c(n / b^k)^p`
+    - Level work: `c n^p (a / b^p)^k`
+  - Dominance decision
+    - Ratio less than 1: root-heavy
+    - Ratio equal to 1: balanced levels
+    - Ratio greater than 1: leaf-heavy
+  - Misconceptions
+    - Recursive code is automatically exponential
+    - Base cases can be ignored
+  - Transfer
+    - Search-index build
+    - Divide-and-conquer preprocessing
+    - Merge-style aggregation

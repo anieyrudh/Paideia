@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 960 540">
+  <title id="title">Normal area fallback visual</title>
+  <desc id="desc">Static diagram showing z-standardisation from raw marks to standard normal area.</desc>
+  <rect width="960" height="540" fill="#f8fafc"/>
+  <rect x="84" y="72" width="792" height="336" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <line x1="150" x2="810" y1="330" y2="330" stroke="#64748b" stroke-width="3"/>
+  <line x1="480" x2="480" y1="104" y2="330" stroke="#94a3b8" stroke-dasharray="8 10" stroke-width="3"/>
+  <path d="M150 330 C246 330 274 308 326 240 C386 162 423 108 480 108 C537 108 574 162 634 240 C686 308 714 330 810 330" fill="none" stroke="#1f5f8b" stroke-width="7"/>
+  <path d="M326 330 C386 162 423 108 480 108 C537 108 574 162 634 330 Z" fill="#bfdbfe" opacity="0.75"/>
+  <line x1="326" x2="326" y1="186" y2="330" stroke="#b42318" stroke-width="5"/>
+  <line x1="634" x2="634" y1="186" y2="330" stroke="#027a48" stroke-width="5"/>
+  <text x="480" y="454" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="32" font-weight="700" text-anchor="middle">z = (x - mu) / sigma</text>
+  <text x="480" y="493" fill="#334155" font-family="Inter, Arial, sans-serif" font-size="22" text-anchor="middle">Area under the curve gives probability; z gives location.</text>
+  <text x="326" y="172" fill="#b42318" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle">lower z</text>
+  <text x="634" y="172" fill="#027a48" font-family="Inter, Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle">upper z</text>
+  <text x="480" y="94" fill="#475569" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700" text-anchor="middle">mean</text>
+</svg>

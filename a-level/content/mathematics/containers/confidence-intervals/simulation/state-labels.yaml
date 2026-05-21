@@ -1,0 +1,16 @@
+state_labels:
+  sampleMean:
+    label: "Sample mean"
+    meaning: "Mean of the observed sample, measured in context units such as marks."
+  populationStandardDeviation:
+    label: "Population standard deviation"
+    meaning: "Known population standard deviation used to compute the sample-mean standard error."
+  sampleSize:
+    label: "Sample size"
+    meaning: "Number of independent observations used to compute the sample mean."
+  confidenceLevel:
+    label: "Confidence level"
+    meaning: "Long-run capture rate of the interval-making method; mapped to the two-sided normal multiplier."
+  comparisonMean:
+    label: "Claimed population mean"
+    meaning: "A fixed mean claim checked against the computed interval endpoints."

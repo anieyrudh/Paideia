@@ -1,0 +1,26 @@
+# Alternating Current Mindmap
+
+- Alternating current
+  - Waveform quantities
+    - instantaneous value: `v = V_peak sin(omega t)`
+    - peak value: maximum magnitude
+    - rms value: equivalent DC heating value
+    - frequency and period: repetition rate and cycle time
+  - Circuit quantities
+    - resistance `R`
+    - inductive reactance `X_L = 2 pi f L`
+    - capacitive reactance `X_C = 1 / (2 pi f C)`
+    - impedance `Z = R + j(X_L - X_C)`
+  - Phase reasoning
+    - inductive load: current lags voltage
+    - capacitive load: current leads voltage
+    - nearly resistive load: current almost in phase
+  - Power reasoning
+    - apparent power `V_rms I_rms`
+    - real power `V_rms I_rms cos(phi)`
+    - reactive power tracks stored-field exchange
+  - Misconceptions
+    - signed average is not rms
+    - frequency is not source rms amplitude
+    - `I = V/R` is incomplete for RLC AC
+    - phase sign matters

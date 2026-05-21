@@ -826,6 +826,9 @@ importers:
       '@paideia/charting':
         specifier: workspace:*
         version: link:../../../core/charting
+      '@paideia/circuits':
+        specifier: workspace:*
+        version: link:../../../core/circuits
       '@paideia/content-schema':
         specifier: workspace:*
         version: link:../../../core/content-schema
@@ -847,6 +850,9 @@ importers:
       '@paideia/mechanics':
         specifier: workspace:*
         version: link:../../../core/mechanics
+      '@paideia/numerical-math':
+        specifier: workspace:*
+        version: link:../../../core/numerical-math
       '@paideia/optimization':
         specifier: workspace:*
         version: link:../../../core/optimization

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Fairness threshold audit thumbnail</title>
+  <desc id="desc">Two group threshold panels compared by recall and weighted harm.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <rect x="44" y="44" width="552" height="272" rx="18" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="74" y="92" fill="#0f172a" font-family="Arial, sans-serif" font-size="28" font-weight="700">Fairness Threshold Audit</text>
+  <line x1="92" y1="150" x2="548" y2="150" stroke="#334155" stroke-width="4"/>
+  <circle cx="374" cy="150" r="12" fill="#2563eb"/>
+  <text x="348" y="132" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="18">70%</text>
+  <g font-family="Arial, sans-serif" font-size="18">
+    <rect x="80" y="190" width="210" height="82" rx="12" fill="#dbeafe" stroke="#93c5fd"/>
+    <text x="104" y="224" fill="#172554" font-weight="700">Group A</text>
+    <text x="104" y="252" fill="#172554">Recall 60% · Cost 62</text>
+    <rect x="350" y="190" width="210" height="82" rx="12" fill="#fee2e2" stroke="#fca5a5"/>
+    <text x="374" y="224" fill="#7f1d1d" font-weight="700">Group B</text>
+    <text x="374" y="252" fill="#7f1d1d">Recall 20% · Cost 112</text>
+  </g>
+</svg>

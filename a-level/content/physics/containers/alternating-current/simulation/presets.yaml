@@ -1,0 +1,37 @@
+presets:
+  - id: balanced-mains-model
+    label: "balanced mains model"
+    values:
+      sourceVoltageRmsVolts: 12
+      frequencyHertz: 50
+      resistanceOhms: 40
+      inductanceMilliHenrys: 180
+      capacitanceMicroFarads: 120
+      sampleTimeMilliseconds: 5
+  - id: inductive-load
+    label: "inductive load"
+    values:
+      sourceVoltageRmsVolts: 12
+      frequencyHertz: 50
+      resistanceOhms: 40
+      inductanceMilliHenrys: 260
+      capacitanceMicroFarads: 220
+      sampleTimeMilliseconds: 5
+  - id: capacitive-load
+    label: "capacitive load"
+    values:
+      sourceVoltageRmsVolts: 12
+      frequencyHertz: 50
+      resistanceOhms: 40
+      inductanceMilliHenrys: 60
+      capacitanceMicroFarads: 120
+      sampleTimeMilliseconds: 5
+  - id: near-resonance
+    label: "near resonance"
+    values:
+      sourceVoltageRmsVolts: 12
+      frequencyHertz: 50
+      resistanceOhms: 35
+      inductanceMilliHenrys: 180
+      capacitanceMicroFarads: 56
+      sampleTimeMilliseconds: 5

@@ -1,0 +1,28 @@
+# Normal Distribution Mindmap
+
+- Model
+  - \(X \sim N(\mu,\sigma^2)\)
+  - mean \(\mu\) sets the centre
+  - standard deviation \(\sigma\) sets the spread
+- Probability as area
+  - interval probability
+  - left-tail probability
+  - right-tail probability
+  - area under the curve, not curve height
+- Standardisation
+  - subtract the mean
+  - divide by the standard deviation
+  - \(Z=(X-\mu)/\sigma\)
+  - read standard normal area
+- Interpretation
+  - state the raw unit
+  - report a probability or percentage
+  - describe the population or random draw
+- Misconceptions
+  - z-score is a probability
+  - symmetry makes every interval equal
+  - sigma has no unit
+- Downstream
+  - hypothesis testing
+  - confidence intervals
+  - normal approximations

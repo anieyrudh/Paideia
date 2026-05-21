@@ -1,0 +1,33 @@
+schema_version: "1.0.0"
+concept_id: fairness-threshold-audit
+steps:
+  - id: define-decision
+    label: "Define the decision"
+    action: "Name actual positive, predicted positive, and the groups being compared."
+    checks:
+      - "The same label definition is used for every group."
+  - id: count-confusion-matrices
+    label: "Count group confusion matrices"
+    action: "Compute TP, FP, TN, and FN for each group at the selected threshold."
+    checks:
+      - "Counts are not pooled before the group audit."
+  - id: compute-recall
+    label: "Compute recall"
+    action: "Use Recall_g = TP_g / (TP_g + FN_g) for each group."
+    checks:
+      - "Recall is reported as a percentage and compared in percentage points."
+  - id: compute-weighted-harm
+    label: "Compute weighted harm"
+    action: "Use Cost_g = FP_g x C_FP + FN_g x C_FN for each group."
+    checks:
+      - "The unit is cost units and the error-cost assumption is stated."
+  - id: compare-gaps
+    label: "Compare gaps"
+    action: "Compute recall gap and weighted harm gap."
+    checks:
+      - "The explanation names the group and error cell responsible for the gap."
+  - id: justify-policy
+    label: "Justify the policy"
+    action: "Choose a global threshold, adjusted threshold, or defer-deployment action."
+    checks:
+      - "The decision includes remaining harm and monitoring evidence."

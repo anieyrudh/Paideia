@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Static Fourier reconstruction</title>
+  <desc id="desc">A target curve and a four-mode reconstruction over a fixed interval.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <path d="M48 300H592M48 240H592M48 180H592M48 120H592M48 60H592" stroke="#e2e8f0"/>
+  <path d="M48 180C116 70 184 70 252 180S388 290 456 180 552 70 592 126" fill="none" stroke="#64748b" stroke-width="3" stroke-dasharray="8 8"/>
+  <path d="M48 180C104 92 160 114 216 178S328 262 384 180 496 86 592 176" fill="none" stroke="#0f766e" stroke-width="5"/>
+  <text x="48" y="42" font-family="Arial, sans-serif" font-size="22" fill="#0f172a">Target vs four-mode reconstruction</text>
+</svg>

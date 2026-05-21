@@ -1,0 +1,11 @@
+labels:
+  lateralLoadKn: "sideways load, kN"
+  roofLoadKn: "roof gravity load, kN"
+  bayWidthM: "bay width, m"
+  storeyHeightM: "storey height, m"
+  braceSize: "brace size"
+  loadDirection: "load direction"
+  braceAxialKn: "diagonal brace axial force, kN"
+  windwardReactionKn: "windward support reaction, kN"
+  leewardReactionKn: "leeward support reaction, kN"
+  residualMagnitudeKn: "equilibrium residual, kN"

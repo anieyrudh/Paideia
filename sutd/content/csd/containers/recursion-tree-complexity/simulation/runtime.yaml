@@ -1,0 +1,13 @@
+runtime:
+  stages: [predict, manipulate, observe, explain]
+  prediction_gate:
+    required: true
+    scope: per-sim
+  initial_state:
+    inputSize: 128
+    branchingFactor: 2
+    shrinkFactor: 2
+    combineExponent: 1
+  persistence:
+    local: true
+    server_sync: false

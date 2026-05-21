@@ -1,0 +1,140 @@
+schema_version: "1.0.0"
+id: capacitance
+aliases:
+  - capacitors
+  - charge storage
+  - capacitor discharge
+branch: a-level
+subject: physics
+level: "H2"
+module: "Electricity and Magnetism"
+title: "Capacitance"
+one_line_summary: "Predict stored charge and energy in a capacitor, then interpret exponential discharge through the time constant."
+syllabus_ref: "9478 / Section V / Electricity and Magnetism"
+prerequisites:
+  - electric-fields
+  - circuits
+  - exponential-change
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A capacitor is connected to a fixed 6.0 V supply. Before revealing the lab, what happens if the capacitance is doubled while the voltage is kept the same?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Both stored charge and stored energy double because Q = CV and E = 1/2 CV^2 at fixed V."
+      - "Stored charge doubles, but stored energy stays the same because energy depends only on voltage."
+      - "Stored charge stays the same because capacitance is only a container size."
+      - "Stored charge and energy both halve because the same voltage is spread over more capacitance."
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods:
+    - load
+    - saveState
+    - score
+    - resume
+    - syncTheme
+    - destroy
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: camera-flash-discharge
+    prompt: |
+      A 680 microF flash capacitor is charged to 9.0 V and then discharged through a 3.0 kOhm resistor. Find the initial stored charge, the stored energy, the time constant, and the voltage left after 4.0 s. Explain why the voltage does not fall linearly.
+    surface_form: "camera flash capacitor discharge"
+    same_concept_check: "Same concept: use Q = CV, U = 1/2 CV^2, tau = RC, and exponential discharge for a practical energy-storage capacitor."
+    rubric_path: problem-solving/camera-flash-discharge.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-21"
+      author: "Codex"
+      summary: "Built A-Level capacitance product slice with charge-energy calculations, discharge-curve interpretation, and prediction-gated tests."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-21"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-21"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Capacitance depends on stored charge alone"
+    description: "Learners may read C = Q/V as capacitance increasing whenever charge increases, instead of recognising capacitance is the ratio of charge separated per volt for a fixed physical capacitor."
+    evidence_source: "OpenStax College Physics 2e, Chapter 19 Electric Potential and Electric Field."
+    surface_in_predict: true
+  - name: "Capacitors create charge rather than separate charge"
+    description: "Learners may think a charged capacitor has gained net charge, rather than equal and opposite charge being separated onto the two plates by a supply."
+    evidence_source: "OpenStax University Physics Volume 2, Chapter 8 Capacitance."
+    surface_in_predict: true
+  - name: "Capacitor discharge is linear"
+    description: "Learners may expect voltage to fall by equal amounts in equal times, missing that a resistor-capacitor discharge removes equal fractions per time constant."
+    evidence_source: "OpenStax University Physics Volume 2, Chapter 10 Direct-Current Circuits."
+    surface_in_predict: false
+sources:
+  - citation: "Singapore Examinations and Assessment Board. Singapore-Cambridge H2 A Level 9478 Physics syllabus for examination in 2027. 2025."
+    url: "https://www.seab.gov.sg/files/A%20Level%20Syllabus%20Sch%20Cddts/2027/9478_y27_sy.pdf"
+    publication_year: 2025
+    license: "Copyright MOE & Cambridge University Press & Assessment"
+    seab_alignment: matches
+  - citation: "OpenStax. College Physics 2e, Chapter 19 Electric Potential and Electric Field. OpenStax, 2022."
+    url: "https://openstax.org/books/college-physics-2e/pages/19-introduction-to-electric-potential-and-electric-field"
+    publication_year: 2022
+    license: "CC BY 4.0"
+    seab_alignment: matches
+  - citation: "OpenStax. University Physics Volume 2, Chapter 8 Capacitance. OpenStax, 2016."
+    url: "https://openstax.org/books/university-physics-volume-2/pages/8-introduction"
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: matches
+  - citation: "OpenStax. University Physics Volume 2, Chapter 10 Direct-Current Circuits. OpenStax, 2016."
+    url: "https://openstax.org/books/university-physics-volume-2/pages/10-introduction"
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: matches
+language: en

@@ -1,0 +1,41 @@
+state_labels:
+  sourceVoltageRmsVolts:
+    label: "supply rms voltage"
+    unit: "V rms"
+    meaning: "The effective voltage of the sinusoidal supply, equivalent to a DC voltage for resistor heating."
+  frequencyHertz:
+    label: "frequency"
+    unit: Hz
+    meaning: "Cycles per second; changes reactance in the load but not rms conversion for fixed peak voltage."
+  resistanceOhms:
+    label: "resistance"
+    unit: ohm
+    meaning: "The real part of the series impedance."
+  inductanceMilliHenrys:
+    label: "inductance"
+    unit: mH
+    meaning: "The inductor value; raises inductive reactance as frequency increases."
+  capacitanceMicroFarads:
+    label: "capacitance"
+    unit: microF
+    meaning: "The capacitor value; lowers capacitive reactance as capacitance or frequency increases."
+  sampleTimeMilliseconds:
+    label: "time marker"
+    unit: ms
+    meaning: "The instant sampled on the voltage and current waveforms."
+  impedanceMagnitudeOhms:
+    label: "impedance magnitude"
+    unit: ohm
+    meaning: "The magnitude of the series impedance vector that sets rms current."
+  currentRmsAmps:
+    label: "rms current"
+    unit: A
+    meaning: "The effective series current through every component."
+  currentPhaseDegrees:
+    label: "current phase"
+    unit: degrees
+    meaning: "Positive means current leads voltage; negative means it lags."
+  realPowerWatts:
+    label: "real power"
+    unit: W
+    meaning: "Mean rate of energy transfer to the resistive part of the load."

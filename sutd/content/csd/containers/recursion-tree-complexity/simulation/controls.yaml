@@ -1,0 +1,28 @@
+controls:
+  - id: input-size
+    label: "Input size"
+    kind: selector
+    options:
+      - { value: 64, label: "64 items" }
+      - { value: 81, label: "81 items" }
+      - { value: 128, label: "128 items" }
+      - { value: 256, label: "256 items" }
+  - id: branching-factor
+    label: "Recursive calls per node"
+    kind: selector
+    options:
+      - { value: 2, label: "2 branches" }
+      - { value: 3, label: "3 branches" }
+  - id: shrink-factor
+    label: "Shrink factor"
+    kind: selector
+    options:
+      - { value: 2, label: "n/2" }
+      - { value: 3, label: "n/3" }
+  - id: combine-exponent
+    label: "Combine-work pattern"
+    kind: selector
+    options:
+      - { value: 0, label: "constant combine work" }
+      - { value: 1, label: "linear combine work" }
+      - { value: 2, label: "quadratic combine work" }

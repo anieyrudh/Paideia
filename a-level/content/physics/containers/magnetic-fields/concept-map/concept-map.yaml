@@ -1,0 +1,49 @@
+schema_version: "1.0.0"
+concept_id: magnetic-fields
+prerequisites:
+  - id: electric-fields
+    title: Electric Fields
+    relationship: compare forces on charges while separating field direction from force direction
+    status: available
+  - id: circular-motion
+    title: Circular Motion
+    relationship: magnetic force can act as the centripetal resultant
+    status: available
+  - id: resolving-vectors
+    title: Resolving Vectors
+    relationship: perpendicular component controls the sin theta factor
+    status: available
+downstream:
+  - id: electromagnetic-induction
+    title: Electromagnetic Induction
+    relationship: changing magnetic flux produces induced emf
+    status: planned
+  - id: charged-particle-motion
+    title: Charged Particle Motion
+    relationship: magnetic force bends trajectories in fields
+    status: planned
+siblings:
+  - id: electric-fields
+    title: Electric Fields
+    relationship: both fields act on charges but with different direction rules
+    status: available
+  - id: capacitance
+    title: Capacitance
+    relationship: electric and magnetic field regions are compared in particle selectors
+    status: planned
+misconception_graph:
+  nodes:
+    - id: force-along-field
+      label: Magnetic force acts along the field line
+    - id: stationary-charge-force
+      label: Stationary charges feel magnetic force
+    - id: negative-charge-same-curve
+      label: Negative charges curve like positive charges
+  edges:
+    - from: force-along-field
+      to: negative-charge-same-curve
+      label: both skip the perpendicular direction rule
+    - from: stationary-charge-force
+      to: force-along-field
+      label: both confuse field presence with force on a particular object
+mermaid_source: graph.mmd

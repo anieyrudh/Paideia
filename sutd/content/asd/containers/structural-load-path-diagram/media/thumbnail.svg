@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title" viewBox="0 0 320 180">
+  <title id="title">Structural load path thumbnail</title>
+  <rect width="320" height="180" fill="#fbfaf7"/>
+  <rect x="44" y="28" width="232" height="124" rx="10" fill="#eef2e6" stroke="#5f6f52" stroke-width="3"/>
+  <line x1="82" y1="42" x2="82" y2="138" stroke="#5b6470" stroke-width="9"/>
+  <line x1="238" y1="42" x2="238" y2="138" stroke="#5b6470" stroke-width="9"/>
+  <line x1="72" y1="48" x2="248" y2="48" stroke="#5b6470" stroke-width="9"/>
+  <line x1="72" y1="138" x2="248" y2="138" stroke="#5b6470" stroke-width="9"/>
+  <line x1="82" y1="138" x2="238" y2="48" stroke="#1f6f8b" stroke-width="9" stroke-linecap="round"/>
+  <path d="M22 76h50" stroke="#b42318" stroke-width="7" stroke-linecap="round"/>
+  <path d="M72 76l-12-8v16z" fill="#b42318"/>
+  <path d="M160 12v34" stroke="#475467" stroke-width="7" stroke-linecap="round"/>
+  <path d="M160 46l-8-12h16z" fill="#475467"/>
+  <text x="102" y="104" font-family="Arial, sans-serif" font-size="18" fill="#1f2933">F_b = H/cos(theta)</text>
+</svg>

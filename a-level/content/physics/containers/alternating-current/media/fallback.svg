@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Alternating current fallback visual</title>
+  <desc id="desc">Static formulas for rms voltage, impedance, rms current, and phase.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <rect x="40" y="42" width="560" height="276" rx="14" fill="#f8fbff" stroke="#d0d5dd" stroke-width="3"/>
+  <text x="70" y="90" fill="#10201a" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">Alternating current</text>
+  <text x="70" y="138" fill="#1f5f8b" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">V_peak = sqrt(2) V_rms</text>
+  <text x="70" y="184" fill="#b54708" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">X = 2 pi f L - 1 / (2 pi f C)</text>
+  <text x="70" y="230" fill="#6941c6" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">|Z| = sqrt(R^2 + X^2)</text>
+  <text x="70" y="276" fill="#027a48" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">I_rms = V_rms / |Z|</text>
+</svg>

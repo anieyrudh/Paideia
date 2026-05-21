@@ -1,0 +1,129 @@
+schema_version: "1.0.0"
+id: fairness-threshold-audit
+aliases:
+  - group fairness threshold audit
+  - threshold fairness audit
+branch: sutd
+subject: dai
+level: "Freshmore"
+module: "Design and Artificial Intelligence"
+title: "Fairness Threshold Audit"
+one_line_summary: "Compare group confusion matrices under a threshold policy and explain when a shared threshold creates unequal stakeholder harm."
+syllabus_ref: "SUTD DAI / Human-centred AI fairness evaluation"
+prerequisites:
+  - confusion-matrix-thresholds
+  - trust-calibration
+  - probability
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+  - annotated-source
+predict_at: package-level
+package_predict:
+  prompt: |
+    Two student groups receive the same risk-score model. If both groups use one 70% threshold, which audit result is most plausible?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Equal overall accuracy means the threshold is fair enough"
+      - "The group with lower recall can carry more missed-support harm"
+      - "A lower threshold always makes every group better off"
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: transfer-hiring-shortlist-audit
+    prompt: |
+      A hiring shortlist model screens two applicant groups. At the current threshold, Group A has TP=18, FP=6, TN=28, FN=8. Group B has TP=10, FP=5, TN=29, FN=16. False negatives cost 30 stakeholder-harm units and false positives cost 8 review-burden units. Audit whether one threshold is acceptable, compute recall and weighted harm for each group, and propose one policy revision.
+    surface_form: "hiring shortlist threshold audit"
+    same_concept_check: "The learner still compares group confusion matrices, substitutes group error counts into recall and cost formulas, then interprets threshold policy as stakeholder impact."
+    rubric_path: problem-solving/transfer-hiring-shortlist-audit.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Paideia"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-21"
+      author: "Codex"
+      summary: "Built the SUTD DAI product slice for group threshold fairness auditing."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-21"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: published
+    last_run: "2026-05-21"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Equal accuracy means equal impact"
+    description: |
+      Learners may compare only overall accuracy and miss that one group can receive lower recall and higher weighted harm even when accuracy looks close.
+    evidence_source: "Hardt, Price, and Srebro 2016; Mitchell et al. 2021."
+    surface_in_predict: true
+  - name: "One global threshold is always fairest"
+    description: |
+      Learners may treat a single threshold as neutral without checking whether group score distributions, base rates, and error costs create unequal impact.
+    evidence_source: "Hardt, Price, and Srebro 2016; Suresh and Guttag 2021."
+    surface_in_predict: true
+sources:
+  - citation: "Hardt, M., Price, E., and Srebro, N. Equality of Opportunity in Supervised Learning. NeurIPS, 2016."
+    url: "https://papers.nips.cc/paper_files/paper/2016/hash/9d2682367c3935defcb1f9e247a97c0d-Abstract.html"
+    publication_year: 2016
+    license: "NeurIPS proceedings"
+    seab_alignment: n/a
+  - citation: "Mitchell, S., Potash, E., Barocas, S., D'Amour, A., and Lum, K. Algorithmic Fairness: Choices, Assumptions, and Definitions. Annual Review of Statistics and Its Application, 2021."
+    url: "https://www.annualreviews.org/content/journals/10.1146/annurev-statistics-042720-125902"
+    publication_year: 2021
+    license: "Publisher terms"
+    seab_alignment: n/a
+  - citation: "Suresh, H. and Guttag, J. A Framework for Understanding Sources of Harm throughout the Machine Learning Life Cycle. EAAMO, 2021."
+    url: "https://arxiv.org/abs/1901.10002"
+    publication_year: 2021
+    license: "arXiv"
+    seab_alignment: n/a
+  - citation: "Google Machine Learning Crash Course: Fairness and machine learning."
+    url: "https://developers.google.com/machine-learning/crash-course/fairness"
+    publication_year: 2024
+    license: "Google Developers Site Terms"
+    seab_alignment: n/a
+language: en

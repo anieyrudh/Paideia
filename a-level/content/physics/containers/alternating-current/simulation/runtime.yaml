@@ -1,0 +1,10 @@
+runtime:
+  package_entry: "@paideia/a-level-physics-sims/alternating-current"
+  component: AlternatingCurrentSim
+  prediction_gate: required
+  pmote:
+    predict: "Commit the rms-frequency prediction."
+    manipulate: "Adjust supply rms voltage, frequency, resistance, inductance, capacitance, and time marker."
+    observe: "Read rms-to-peak conversion, impedance magnitude, phase, waveform shift, and power factor."
+    explain: "Connect source amplitude, load reactance, current phase, and real power."
+    transfer: "Apply the same method to a laptop adapter power-factor check."

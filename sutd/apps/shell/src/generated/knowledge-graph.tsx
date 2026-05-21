@@ -2,20 +2,25 @@
 import type { ComponentType } from "react";
 import GeneratedSim0LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
 import GeneratedSim1ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
-import GeneratedSim2DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
-import GeneratedSim3GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim4ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
-import GeneratedSim5TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim6BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim7PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim8LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim9MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
-import GeneratedSim10NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim11BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim12EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim13VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim14LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim15OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim2StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
+import GeneratedSim3DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
+import GeneratedSim4GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
+import GeneratedSim5RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
+import GeneratedSim6ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
+import GeneratedSim7FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
+import GeneratedSim8TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim9BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim10PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim11SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
+import GeneratedSim12LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim13MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
+import GeneratedSim14NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim15BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim16EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim17VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim18FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
+import GeneratedSim19LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim20OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -90,6 +95,15 @@ export const knowledgeGraph = {
     status: "reviewed",
   },
   {
+    id: "sutd/asd/structural-load-path-diagram",
+    conceptId: "structural-load-path-diagram",
+    title: "Structural Load Path Diagram",
+    subject: "asd",
+    level: "Undergraduate",
+    module: "ASD structural systems",
+    status: "reviewed",
+  },
+  {
     id: "sutd/csd/dynamic-programming-state-recursion",
     conceptId: "dynamic-programming-state-recursion",
     title: "Dynamic Programming State Recursion",
@@ -108,9 +122,27 @@ export const knowledgeGraph = {
     status: "draft",
   },
   {
+    id: "sutd/csd/recursion-tree-complexity",
+    conceptId: "recursion-tree-complexity",
+    title: "Recursion Tree Complexity",
+    subject: "csd",
+    level: "Freshmore",
+    module: "ISTD/CSD",
+    status: "draft",
+  },
+  {
     id: "sutd/dai/confusion-matrix-thresholds",
     conceptId: "confusion-matrix-thresholds",
     title: "Confusion Matrix Thresholds",
+    subject: "dai",
+    level: "Freshmore",
+    module: "Design and Artificial Intelligence",
+    status: "reviewed",
+  },
+  {
+    id: "sutd/dai/fairness-threshold-audit",
+    conceptId: "fairness-threshold-audit",
+    title: "Fairness Threshold Audit",
     subject: "dai",
     level: "Freshmore",
     module: "Design and Artificial Intelligence",
@@ -142,6 +174,15 @@ export const knowledgeGraph = {
     level: "Undergraduate",
     module: "EPD control systems",
     status: "draft",
+  },
+  {
+    id: "sutd/epd/signal-filter-frequency-response",
+    conceptId: "signal-filter-frequency-response",
+    title: "Signal Filter Frequency Response",
+    subject: "epd",
+    level: "Undergraduate",
+    module: "EPD Control Systems",
+    status: "reviewed",
   },
   {
     id: "sutd/esd/linear-programming-feasible-region",
@@ -198,6 +239,15 @@ export const knowledgeGraph = {
     status: "reviewed",
   },
   {
+    id: "sutd/smt/fourier-mode-superposition",
+    conceptId: "fourier-mode-superposition",
+    title: "Fourier Mode Superposition",
+    subject: "smt",
+    level: "Undergraduate",
+    module: "Science, Mathematics and Technology",
+    status: "reviewed",
+  },
+  {
     id: "sutd/smt/linear-system-stability",
     conceptId: "linear-system-stability",
     title: "Linear System Stability",
@@ -229,12 +279,32 @@ export const knowledgeGraph = {
   { from: "sutd/asd/shading-daylight-heat-gain", to: "sutd/asd/passive-design", kind: "downstream" },
   { from: "sutd/asd/shading-daylight-heat-gain", to: "sutd/asd/building-performance-optimisation", kind: "downstream" },
   { from: "sutd/asd/shading-daylight-heat-gain", to: "sutd/asd/load-path-and-daylight-tradeoff", kind: "sibling" },
+  { from: "sutd/asd/load-path-and-daylight-tradeoff", to: "sutd/asd/structural-load-path-diagram", kind: "prerequisite" },
+  { from: "sutd/asd/free-body-diagram-mechanics", to: "sutd/asd/structural-load-path-diagram", kind: "prerequisite" },
+  { from: "sutd/asd/vector-resolution", to: "sutd/asd/structural-load-path-diagram", kind: "prerequisite" },
+  { from: "sutd/asd/structural-load-path-diagram", to: "sutd/asd/structural-optimisation", kind: "downstream" },
+  { from: "sutd/asd/structural-load-path-diagram", to: "sutd/asd/facade-tradeoff-design", kind: "downstream" },
+  { from: "sutd/asd/structural-load-path-diagram", to: "sutd/asd/shading-daylight-heat-gain", kind: "sibling" },
+  { from: "sutd/csd/dynamic-programming-state-recursion", to: "sutd/csd/recursion-tree-complexity", kind: "prerequisite" },
+  { from: "sutd/csd/graph-search-and-shortest-paths", to: "sutd/csd/recursion-tree-complexity", kind: "prerequisite" },
+  { from: "sutd/csd/asymptotic-notation", to: "sutd/csd/recursion-tree-complexity", kind: "prerequisite" },
+  { from: "sutd/csd/recursion-tree-complexity", to: "sutd/csd/divide-and-conquer", kind: "downstream" },
+  { from: "sutd/csd/recursion-tree-complexity", to: "sutd/csd/algorithm-analysis", kind: "downstream" },
+  { from: "sutd/csd/recursion-tree-complexity", to: "sutd/csd/master-theorem", kind: "sibling" },
+  { from: "sutd/csd/recursion-tree-complexity", to: "sutd/csd/recurrence-substitution", kind: "sibling" },
   { from: "sutd/dai/trust-calibration", to: "sutd/dai/confusion-matrix-thresholds", kind: "prerequisite" },
   { from: "sutd/dai/probability", to: "sutd/dai/confusion-matrix-thresholds", kind: "prerequisite" },
   { from: "sutd/dai/classification", to: "sutd/dai/confusion-matrix-thresholds", kind: "prerequisite" },
   { from: "sutd/dai/confusion-matrix-thresholds", to: "sutd/dai/fairness-auditing", kind: "downstream" },
   { from: "sutd/dai/confusion-matrix-thresholds", to: "sutd/dai/model-governance", kind: "downstream" },
   { from: "sutd/dai/confusion-matrix-thresholds", to: "sutd/dai/trust-calibration", kind: "sibling" },
+  { from: "sutd/dai/confusion-matrix-thresholds", to: "sutd/dai/fairness-threshold-audit", kind: "prerequisite" },
+  { from: "sutd/dai/trust-calibration", to: "sutd/dai/fairness-threshold-audit", kind: "prerequisite" },
+  { from: "sutd/dai/probability", to: "sutd/dai/fairness-threshold-audit", kind: "prerequisite" },
+  { from: "sutd/dai/fairness-threshold-audit", to: "sutd/dai/model-governance", kind: "downstream" },
+  { from: "sutd/dai/fairness-threshold-audit", to: "sutd/dai/deployment-monitoring", kind: "downstream" },
+  { from: "sutd/dai/fairness-threshold-audit", to: "sutd/dai/confusion-matrix-thresholds", kind: "sibling" },
+  { from: "sutd/dai/fairness-threshold-audit", to: "sutd/dai/trust-calibration", kind: "sibling" },
   { from: "sutd/epd/pid-step-response", to: "sutd/epd/bode-stability-margin", kind: "prerequisite" },
   { from: "sutd/epd/transfer-functions", to: "sutd/epd/bode-stability-margin", kind: "prerequisite" },
   { from: "sutd/epd/feedback-control", to: "sutd/epd/bode-stability-margin", kind: "prerequisite" },
@@ -246,6 +316,13 @@ export const knowledgeGraph = {
   { from: "sutd/epd/feedback-control", to: "sutd/epd/pid-step-response", kind: "prerequisite" },
   { from: "sutd/epd/pid-step-response", to: "sutd/epd/bode-plots", kind: "downstream" },
   { from: "sutd/epd/pid-step-response", to: "sutd/epd/state-space-control", kind: "downstream" },
+  { from: "sutd/epd/bode-stability-margin", to: "sutd/epd/signal-filter-frequency-response", kind: "prerequisite" },
+  { from: "sutd/epd/circuit-phasor-reasoning", to: "sutd/epd/signal-filter-frequency-response", kind: "prerequisite" },
+  { from: "sutd/epd/oscillations", to: "sutd/epd/signal-filter-frequency-response", kind: "prerequisite" },
+  { from: "sutd/epd/signal-filter-frequency-response", to: "sutd/epd/control-stability", kind: "downstream" },
+  { from: "sutd/epd/signal-filter-frequency-response", to: "sutd/epd/signal-processing", kind: "downstream" },
+  { from: "sutd/epd/signal-filter-frequency-response", to: "sutd/epd/pid-step-response", kind: "sibling" },
+  { from: "sutd/epd/signal-filter-frequency-response", to: "sutd/epd/bode-stability-margin", kind: "sibling" },
   { from: "sutd/esd/probability-distributions", to: "sutd/esd/markov-chain-steady-state", kind: "prerequisite" },
   { from: "sutd/esd/matrix-multiplication", to: "sutd/esd/markov-chain-steady-state", kind: "prerequisite" },
   { from: "sutd/esd/eigenvectors", to: "sutd/esd/markov-chain-steady-state", kind: "prerequisite" },
@@ -405,6 +482,73 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/asd/structural-load-path-diagram",
+    branch: "sutd",
+    subject: "Asd",
+    level: "Undergraduate",
+    module: "ASD structural systems",
+    title: "Structural Load Path Diagram",
+    summary: "Trace lateral and gravity loads through a braced bay, calculate support reactions, and label member force demand.",
+    syllabusRef: "SUTD ASD / Structural systems / Load paths and bracing",
+    status: "reviewed",
+    packageId: "structural-load-path-diagram",
+    simId: "structural-load-path-diagram",
+    predictPrompt: "A braced bay takes a strong sideways load. Before calculating, which part is most likely to govern the load path?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Loads disappear at supports",
+      "All members carry equal force",
+    ],
+    transferProblem: "A lightweight canopy has a braced rectangular bay, a 16 kN sideways wind load, a 30 kN roof load, a 5 m bay width, and a 3 m storey height. Trace the load path, calculate the diagonal brace force and support reactions, and explain whether the windward base risks uplift.",
+    firstPrinciples: "A structural load path is the connected route by which an applied load becomes member forces and then support reactions. A diagram is complete only when every applied load has a named path to ground and the external reactions close equilibrium.",
+    keyDefinitions: [
+      "Load path: the sequence of members and joints that carries a load to supports.",
+      "Free-body diagram: an isolated body with all external loads and reactions shown.",
+      "Axial force: tension or compression along a member's centreline.",
+      "Support reaction: the force supplied by a support to close equilibrium.",
+      "Overturning: the moment from a lateral load that shifts vertical reactions between supports.",
+    ],
+    canonicalExamples: [
+      "A wind load on a braced studio bay enters the roof beam, resolves into a diagonal brace, and changes the two base reactions.",
+      "A canopy under side wind can have a small gravity load but a large overturning shift, creating uplift at the windward base.",
+      "A facade frame with a missing brace forces lateral load through bending and can overstress columns even when gravity loads are modest.",
+    ],
+    problemSolvingSteps: [
+      "Isolate the bay",
+      "Trace load entry",
+      "Resolve the diagonal force",
+      "Calculate support reactions",
+      "Label member demand",
+      "Interpret the diagram",
+      "Transfer to a new frame",
+    ],
+    prerequisites: [
+      "Load Path and Daylight Tradeoff",
+      "Free-Body Diagram Mechanics",
+      "Vector Resolution",
+    ],
+    downstream: [
+      "Structural Optimisation",
+      "Facade Tradeoff Design",
+    ],
+    siblings: [
+      "Shading, Daylight, and Heat Gain",
+    ],
+    sims: [
+      {
+        id: "structural-load-path-diagram",
+        harnessId: "sutd/asd/structural-load-path-diagram/structural-load-path-diagram",
+        title: "Structural Load Path Diagram",
+        interactionType: "diagram-builder",
+        component: GeneratedSim2StructuralLoadPathDiagramStructuralLoadPathDiagram,
+      },
+    ],
+  },
+  {
     id: "sutd/csd/dynamic-programming-state-recursion",
     branch: "sutd",
     subject: "Csd",
@@ -446,7 +590,7 @@ export const containers = [
         harnessId: "sutd/csd/dynamic-programming-state-recursion/dynamic-programming-state-recursion",
         title: "Dynamic Programming State Recursion",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim2DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
+        component: GeneratedSim3DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
       },
     ],
   },
@@ -496,7 +640,57 @@ export const containers = [
         harnessId: "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths",
         title: "Graph Search and Shortest Paths",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim3GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
+        component: GeneratedSim4GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
+      },
+    ],
+  },
+  {
+    id: "sutd/csd/recursion-tree-complexity",
+    branch: "sutd",
+    subject: "Csd",
+    level: "Freshmore",
+    module: "ISTD/CSD",
+    title: "Recursion Tree Complexity",
+    summary: "Estimate divide-and-conquer recurrence growth by comparing cost across recursion-tree levels.",
+    syllabusRef: "SUTD CSD: Algorithms",
+    status: "draft",
+    packageId: "recursion-tree-complexity",
+    simId: "recursion-tree-complexity",
+    predictPrompt: "For T(n) = 2T(n/2) + n, which part of the recursion tree contributes the same order of work as every other level?",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "recursive code always has exponential cost",
+      "base cases do not affect total work",
+    ],
+    transferProblem: "A search-index build splits the records into three equal shards and does linear merge work at each node: T(n) = 3T(n/3) + 2n. Build the first three recursion-tree levels, compare their costs, and decide the asymptotic order.",
+    firstPrinciples: "A recursion tree turns a recurrence into a picture of work. Each node is one subproblem, each edge is a recursive call, and each level groups subproblems of the same depth. The total work is the sum of all level costs plus the leaf/base-case work.",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [],
+    prerequisites: [
+      "Dynamic Programming State Recursion",
+      "Graph Search and Shortest Paths",
+      "Asymptotic Notation",
+    ],
+    downstream: [
+      "Divide and Conquer",
+      "Algorithm Analysis",
+    ],
+    siblings: [
+      "Master Theorem",
+      "Recurrence Substitution",
+    ],
+    sims: [
+      {
+        id: "recursion-tree-complexity",
+        harnessId: "sutd/csd/recursion-tree-complexity/recursion-tree-complexity",
+        title: "Recursion Tree Complexity Lab",
+        interactionType: "algorithm-state-visualisation",
+        component: GeneratedSim5RecursionTreeComplexityRecursionTreeComplexity,
       },
     ],
   },
@@ -561,7 +755,65 @@ export const containers = [
         harnessId: "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds",
         title: "Confusion Matrix Threshold Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim4ConfusionMatrixThresholdsConfusionMatrixThresholds,
+        component: GeneratedSim6ConfusionMatrixThresholdsConfusionMatrixThresholds,
+      },
+    ],
+  },
+  {
+    id: "sutd/dai/fairness-threshold-audit",
+    branch: "sutd",
+    subject: "Dai",
+    level: "Freshmore",
+    module: "Design and Artificial Intelligence",
+    title: "Fairness Threshold Audit",
+    summary: "Compare group confusion matrices under a threshold policy and explain when a shared threshold creates unequal stakeholder harm.",
+    syllabusRef: "SUTD DAI / Human-centred AI fairness evaluation",
+    status: "reviewed",
+    packageId: "fairness-threshold-audit",
+    simId: "fairness-threshold-audit",
+    predictPrompt: "Two student groups receive the same risk-score model. If both groups use one 70% threshold, which audit result is most plausible?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+      "annotated-source",
+    ],
+    misconceptions: [
+      "Equal accuracy means equal impact",
+      "One global threshold is always fairest",
+    ],
+    transferProblem: "A hiring shortlist model screens two applicant groups. At the current threshold, Group A has TP=18, FP=6, TN=28, FN=8. Group B has TP=10, FP=5, TN=29, FN=16. False negatives cost 30 stakeholder-harm units and false positives cost 8 review-burden units. Audit whether one threshold is acceptable, compute recall and weighted harm for each group, and propose one policy revision.",
+    firstPrinciples: "A threshold converts a risk score into a decision. If a score is at or above the threshold, the system predicts positive; otherwise it predicts negative. For each group, this creates a confusion matrix:",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "Define the decision",
+      "Count group confusion matrices",
+      "Compute recall",
+      "Compute weighted harm",
+      "Compare gaps",
+      "Justify the policy",
+    ],
+    prerequisites: [
+      "Confusion Matrix Thresholds",
+      "Trust Calibration",
+      "Probability and Rates",
+    ],
+    downstream: [
+      "Model Governance",
+      "Deployment Monitoring",
+    ],
+    siblings: [
+      "Confusion Matrix Thresholds",
+      "Trust Calibration",
+    ],
+    sims: [
+      {
+        id: "fairness-threshold-audit",
+        harnessId: "sutd/dai/fairness-threshold-audit/fairness-threshold-audit",
+        title: "Fairness Threshold Audit Lab",
+        interactionType: "decision-matrix",
+        component: GeneratedSim7FairnessThresholdAuditFairnessThresholdAudit,
       },
     ],
   },
@@ -614,7 +866,7 @@ export const containers = [
         harnessId: "sutd/dai/trust-calibration/trust-calibration",
         title: "Trust Calibration Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim5TrustCalibrationTrustCalibration,
+        component: GeneratedSim8TrustCalibrationTrustCalibration,
       },
     ],
   },
@@ -680,7 +932,7 @@ export const containers = [
         harnessId: "sutd/epd/bode-stability-margin/bode-stability-margin",
         title: "Bode Margin Reader",
         interactionType: "comparative-matrix",
-        component: GeneratedSim6BodeStabilityMarginBodeStabilityMargin,
+        component: GeneratedSim9BodeStabilityMarginBodeStabilityMargin,
       },
     ],
   },
@@ -734,7 +986,65 @@ export const containers = [
         harnessId: "sutd/epd/pid-step-response/pid-step-response",
         title: "PID Step Response Explorer",
         interactionType: "comparative-matrix",
-        component: GeneratedSim7PidStepResponsePidStepResponse,
+        component: GeneratedSim10PidStepResponsePidStepResponse,
+      },
+    ],
+  },
+  {
+    id: "sutd/epd/signal-filter-frequency-response",
+    branch: "sutd",
+    subject: "Epd",
+    level: "Undergraduate",
+    module: "EPD Control Systems",
+    title: "Signal Filter Frequency Response",
+    summary: "Tune a one-pole RC filter and read cutoff, magnitude, phase, and circuit phasor evidence from the same frequency-response model.",
+    syllabusRef: "SUTD EPD / Signals and Systems / Control and Engineering Systems / frequency response of first-order filters",
+    status: "reviewed",
+    packageId: "signal-filter-frequency-response",
+    simId: "signal-filter-frequency-response",
+    predictPrompt: "For a one-pole RC low-pass filter, what happens to the output at exactly the cutoff frequency?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Cutoff is an on-off boundary",
+      "Phase is optional decoration",
+    ],
+    transferProblem: "A control sensor is sampled at 8 kHz. It must preserve a 400 Hz signal used by the controller while reducing 4 kHz noise before sampling. Choose a one-pole RC low-pass filter and justify the resistor-capacitor pair with cutoff frequency, magnitude at both frequencies, phase at 400 Hz, and the circuit impedance check.",
+    firstPrinciples: "For a resistor R in series with a capacitor C, the time constant is:",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "Decide whether the output is across the capacitor or resistor.",
+      "Convert kOhm to Ohm and uF to F before calculating cutoff.",
+      "Compute tau, omega_c, and f_c.",
+      "Use the transfer function for the selected output.",
+      "Evaluate H(j 2 pi f) at each required frequency.",
+      "Use X_C, |Z|, and RMS current to connect the response to the circuit.",
+      "Explain whether the filter preserves, attenuates, or delays each signal.",
+    ],
+    prerequisites: [
+      "Bode Stability Margin",
+      "Circuit Phasor Reasoning",
+      "Oscillations",
+    ],
+    downstream: [
+      "Control Stability",
+      "Signal Processing",
+    ],
+    siblings: [
+      "PID Step Response",
+      "Bode Stability Margin",
+    ],
+    sims: [
+      {
+        id: "signal-filter-frequency-response",
+        harnessId: "sutd/epd/signal-filter-frequency-response/signal-filter-frequency-response",
+        title: "RC Filter Frequency Response Lab",
+        interactionType: "comparative-matrix",
+        component: GeneratedSim11SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
       },
     ],
   },
@@ -778,7 +1088,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim8LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim12LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -840,7 +1150,7 @@ export const containers = [
         harnessId: "sutd/esd/markov-chain-steady-state/markov-chain-steady-state",
         title: "Markov Chain Steady-State Lab",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim9MarkovChainSteadyStateMarkovChainSteadyState,
+        component: GeneratedSim13MarkovChainSteadyStateMarkovChainSteadyState,
       },
     ],
   },
@@ -906,7 +1216,7 @@ export const containers = [
         harnessId: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
         title: "Newsvendor Critical Fractile Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim10NewsvendorCriticalFractileNewsvendorCriticalFractile,
+        component: GeneratedSim14NewsvendorCriticalFractileNewsvendorCriticalFractile,
       },
     ],
   },
@@ -969,7 +1279,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim11BayesUpdatingBayesUpdating,
+        component: GeneratedSim15BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -1023,7 +1333,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim12EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim16EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -1075,7 +1385,53 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim13VectorTransformationsVectorTransformations,
+        component: GeneratedSim17VectorTransformationsVectorTransformations,
+      },
+    ],
+  },
+  {
+    id: "sutd/smt/fourier-mode-superposition",
+    branch: "sutd",
+    subject: "Smt",
+    level: "Undergraduate",
+    module: "Science, Mathematics and Technology",
+    title: "Fourier Mode Superposition",
+    summary: "Build a target shape from sine basis modes, interpret each coefficient, and compare reconstruction error as modes are added.",
+    syllabusRef: "SUTD SMT / mathematical modelling / Fourier series and modal approximation",
+    status: "reviewed",
+    packageId: "fourier-mode-superposition",
+    simId: "fourier-mode-superposition",
+    predictPrompt: "For the selected target shape, which basis mode do you expect to carry the largest coefficient after projection?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "One mode must explain every shape",
+      "Coefficients are arbitrary visual sliders",
+    ],
+    transferProblem: "A one metre rod has an initial temperature profile with one warm lobe near the centre and cooler fixed ends. Choose the sine basis modes you would keep first, compute the first four coefficients, and state which added mode most reduces the reconstruction error.",
+    firstPrinciples: "A Fourier sine series treats a shape on a fixed interval as a sum of simple standing-wave modes. On a string of length \\(L\\), the basis functions are",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "Record the length L and the fixed-end boundary condition.",
+      "List phi_n(x) = sin(n pi x / L) for the modes kept.",
+      "Use c_n = (2/L) integral f(x) phi_n(x) dx.",
+      "Build f_N(x) from the coefficient-weighted basis functions.",
+      "Compute or estimate the RMS mismatch between target and reconstruction.",
+    ],
+    prerequisites: [],
+    downstream: [],
+    siblings: [],
+    sims: [
+      {
+        id: "fourier-mode-superposition",
+        harnessId: "sutd/smt/fourier-mode-superposition/fourier-mode-superposition",
+        title: "Fourier Mode Superposition Lab",
+        interactionType: "function-plot-with-draggable",
+        component: GeneratedSim18FourierModeSuperpositionFourierModeSuperposition,
       },
     ],
   },
@@ -1132,7 +1488,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim14LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim19LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -1198,7 +1554,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim15OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim20OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

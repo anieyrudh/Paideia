@@ -7,7 +7,9 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
+    "./confidence-intervals": "./src/confidence-intervals.tsx",
     "./hypothesis-testing": "./src/hypothesis-testing.tsx",
+    "./normal-distribution": "./src/normal-distribution.tsx",
     "./probability-statistics": "./src/probability-statistics.tsx"
   },
   "scripts": {
