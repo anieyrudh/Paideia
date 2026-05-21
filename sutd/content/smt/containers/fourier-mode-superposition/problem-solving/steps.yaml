@@ -1,0 +1,31 @@
+steps:
+  - id: identify-domain
+    title: "Identify the interval"
+    prompt: "Record the length L and the fixed-end boundary condition."
+    checks:
+      - "The interval is measured in metres."
+      - "The chosen basis is zero at both ends."
+  - id: choose-basis
+    title: "Choose sine basis modes"
+    prompt: "List phi_n(x) = sin(n pi x / L) for the modes kept."
+    checks:
+      - "Mode number n is stated."
+      - "Every basis mode has the same interval length."
+  - id: compute-coefficients
+    title: "Compute projection coefficients"
+    prompt: "Use c_n = (2/L) integral f(x) phi_n(x) dx."
+    checks:
+      - "Substitution includes L, the target shape, and units."
+      - "Coefficient sign is interpreted."
+  - id: reconstruct
+    title: "Sum the selected modes"
+    prompt: "Build f_N(x) from the coefficient-weighted basis functions."
+    checks:
+      - "Each included mode appears exactly once."
+      - "Coefficient units match the target displacement units."
+  - id: compare-error
+    title: "Compare residual error"
+    prompt: "Compute or estimate the RMS mismatch between target and reconstruction."
+    checks:
+      - "The error is in metres."
+      - "The largest missing sign pattern is named."

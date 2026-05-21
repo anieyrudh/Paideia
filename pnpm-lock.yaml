@@ -850,6 +850,9 @@ importers:
       '@paideia/mechanics':
         specifier: workspace:*
         version: link:../../../core/mechanics
+      '@paideia/numerical-math':
+        specifier: workspace:*
+        version: link:../../../core/numerical-math
       '@paideia/optimization':
         specifier: workspace:*
         version: link:../../../core/optimization

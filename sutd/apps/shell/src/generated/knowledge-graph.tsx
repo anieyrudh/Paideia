@@ -18,8 +18,9 @@ import GeneratedSim14NewsvendorCriticalFractileNewsvendorCriticalFractile from "
 import GeneratedSim15BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
 import GeneratedSim16EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
 import GeneratedSim17VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim18LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim19OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim18FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
+import GeneratedSim19LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim20OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -235,6 +236,15 @@ export const knowledgeGraph = {
     subject: "freshmore",
     level: "Freshmore",
     module: "Linear Algebra and Differential Equations",
+    status: "reviewed",
+  },
+  {
+    id: "sutd/smt/fourier-mode-superposition",
+    conceptId: "fourier-mode-superposition",
+    title: "Fourier Mode Superposition",
+    subject: "smt",
+    level: "Undergraduate",
+    module: "Science, Mathematics and Technology",
     status: "reviewed",
   },
   {
@@ -1380,6 +1390,52 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/smt/fourier-mode-superposition",
+    branch: "sutd",
+    subject: "Smt",
+    level: "Undergraduate",
+    module: "Science, Mathematics and Technology",
+    title: "Fourier Mode Superposition",
+    summary: "Build a target shape from sine basis modes, interpret each coefficient, and compare reconstruction error as modes are added.",
+    syllabusRef: "SUTD SMT / mathematical modelling / Fourier series and modal approximation",
+    status: "reviewed",
+    packageId: "fourier-mode-superposition",
+    simId: "fourier-mode-superposition",
+    predictPrompt: "For the selected target shape, which basis mode do you expect to carry the largest coefficient after projection?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "One mode must explain every shape",
+      "Coefficients are arbitrary visual sliders",
+    ],
+    transferProblem: "A one metre rod has an initial temperature profile with one warm lobe near the centre and cooler fixed ends. Choose the sine basis modes you would keep first, compute the first four coefficients, and state which added mode most reduces the reconstruction error.",
+    firstPrinciples: "A Fourier sine series treats a shape on a fixed interval as a sum of simple standing-wave modes. On a string of length \\(L\\), the basis functions are",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "Record the length L and the fixed-end boundary condition.",
+      "List phi_n(x) = sin(n pi x / L) for the modes kept.",
+      "Use c_n = (2/L) integral f(x) phi_n(x) dx.",
+      "Build f_N(x) from the coefficient-weighted basis functions.",
+      "Compute or estimate the RMS mismatch between target and reconstruction.",
+    ],
+    prerequisites: [],
+    downstream: [],
+    siblings: [],
+    sims: [
+      {
+        id: "fourier-mode-superposition",
+        harnessId: "sutd/smt/fourier-mode-superposition/fourier-mode-superposition",
+        title: "Fourier Mode Superposition Lab",
+        interactionType: "function-plot-with-draggable",
+        component: GeneratedSim18FourierModeSuperpositionFourierModeSuperposition,
+      },
+    ],
+  },
+  {
     id: "sutd/smt/linear-system-stability",
     branch: "sutd",
     subject: "Smt",
@@ -1432,7 +1488,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim18LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim19LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -1498,7 +1554,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim19OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim20OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

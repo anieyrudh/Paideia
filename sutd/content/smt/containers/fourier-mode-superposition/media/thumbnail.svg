@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Fourier mode superposition thumbnail</title>
+  <desc id="desc">Four sine modes combine into a reconstructed curve.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <g stroke="#cbd5e1" stroke-width="1">
+    <path d="M48 300H592"/>
+    <path d="M48 60V300"/>
+  </g>
+  <path d="M48 180C116 58 184 58 252 180S388 302 456 180 552 58 592 116" fill="none" stroke="#94a3b8" stroke-width="3" stroke-dasharray="9 9"/>
+  <path d="M48 180C98 100 148 98 198 180S298 260 348 180 448 100 498 180 562 238 592 206" fill="none" stroke="#0f766e" stroke-width="7" stroke-linecap="round"/>
+  <g font-family="Arial, sans-serif" font-size="18" fill="#0f172a">
+    <text x="48" y="38">Fourier Mode Superposition</text>
+    <text x="48" y="334">coefficient-weighted modes -> reconstruction</text>
+  </g>
+  <g transform="translate(430 42)" font-family="Arial, sans-serif" font-size="14">
+    <circle cx="0" cy="0" r="6" fill="#2563eb"/><text x="14" y="5">mode 1</text>
+    <circle cx="0" cy="24" r="6" fill="#7c3aed"/><text x="14" y="29">mode 2</text>
+    <circle cx="0" cy="48" r="6" fill="#d97706"/><text x="14" y="53">mode 3</text>
+  </g>
+</svg>
