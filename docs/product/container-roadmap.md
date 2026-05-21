@@ -145,6 +145,9 @@ What it proved:
 
 Latest slice notes:
 
+- Queue hygiene checked on May 21, 2026 after the route-fix and GitHub workflow
+  cleanup PRs: landed slices remain `reviewed`; no entries are stuck in
+  `in-build`; no entries are currently promoted to `ready-for-build`.
 - `kinematics-in-one-dimension` is reviewed and merged.
 - `forces-and-equilibrium` is reviewed and merged; it is the first force-balance
   slice consuming both vector resolution and kinematics.
