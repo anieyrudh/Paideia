@@ -798,6 +798,9 @@ importers:
 
   sutd/apps/shell:
     dependencies:
+      '@paideia/prediction-gate':
+        specifier: workspace:*
+        version: link:../../../core/prediction-gate
       '@paideia/sutd-sims':
         specifier: workspace:*
         version: link:../../packages/sims

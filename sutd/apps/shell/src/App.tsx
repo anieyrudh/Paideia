@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { clearPrediction } from "@paideia/prediction-gate";
 import { containers, knowledgeGraph, type ShellContainer } from "./generated/knowledge-graph.js";
 import { sutdPillars, type SutdPillar, type SutdPillarId } from "./curriculum-map.js";
 
@@ -77,20 +78,37 @@ const ClusterCard = ({
   cluster,
 }: {
   readonly cluster: SutdPillar["clusters"][number];
-}) => (
-  <article className="cluster-card">
+}) => {
+  const mappedContainers = cluster.plannedContainerIds.map((containerId) => ({
+    containerId,
+    routeId: plannedIdToContainerId(containerId),
+    container: containerById.get(plannedIdToContainerId(containerId)),
+  }));
+
+  return (
+    <article className="cluster-card">
     <div>
       <p className="meta-line">{cluster.discipline}</p>
       <h3>{cluster.title}</h3>
     </div>
     <span data-status={cluster.wrapperStatus}>{cluster.wrapperStatus}</span>
     <ul>
-      {cluster.plannedContainerIds.map((containerId) => (
-        <li key={containerId}>{containerId}</li>
+      {mappedContainers.map(({ containerId, routeId, container }) => (
+        <li key={containerId}>
+          {container === undefined ? (
+            <span>{containerId}</span>
+          ) : (
+            <a href={`#${routeId}`}>
+              <strong>{container.title}</strong>
+              <small>{containerId}</small>
+            </a>
+          )}
+        </li>
       ))}
     </ul>
   </article>
-);
+  );
+};
 
 const EmptyContainerState = () => (
   <section className="empty-state" aria-labelledby="empty-container-title">
@@ -105,17 +123,62 @@ const EmptyContainerState = () => (
 
 const ContainerPreview = ({
   activeContainer,
+  resetVersion,
+  onResetPrediction,
 }: {
   readonly activeContainer: ShellContainer;
-}) => (
-  <section className="container-preview" aria-labelledby="container-title">
-    <p className="meta-line">{activeContainer.subject} / {activeContainer.module}</p>
-    <h2 id="container-title">{activeContainer.title}</h2>
-    <p>{activeContainer.summary}</p>
-  </section>
-);
+  readonly resetVersion: number;
+  readonly onResetPrediction: () => void;
+}) => {
+  const activeSim = activeContainer.sims[0] ?? null;
+  const Sim = activeSim?.component ?? null;
+  const firstPrinciples =
+    activeContainer.firstPrinciples.trim().length > 0
+      ? activeContainer.firstPrinciples
+      : activeContainer.summary;
+
+  return (
+    <section className="container-preview" aria-labelledby="container-title">
+      <div className="container-preview__lead">
+        <p className="meta-line">{activeContainer.subject} / {activeContainer.module}</p>
+        <h2 id="container-title">{activeContainer.title}</h2>
+        <p>{activeContainer.summary}</p>
+      </div>
+
+      <div className="container-workbench">
+        <section aria-labelledby="sutd-learn-title">
+          <p className="meta-line">Learn</p>
+          <h3 id="sutd-learn-title">First principles</h3>
+          <p>{firstPrinciples}</p>
+        </section>
+
+        <section aria-labelledby="sutd-transfer-title">
+          <p className="meta-line">Transfer</p>
+          <h3 id="sutd-transfer-title">Use it elsewhere</h3>
+          <p>{activeContainer.transferProblem}</p>
+        </section>
+      </div>
+
+      {Sim === null || activeSim === null ? null : (
+        <section className="sutd-lab-bench" aria-labelledby="sutd-lab-title">
+          <div className="sutd-lab-header">
+            <div>
+              <p className="meta-line">{activeSim.interactionType}</p>
+              <p className="sutd-lab-title" id="sutd-lab-title">{activeSim.title}</p>
+            </div>
+            <button type="button" onClick={onResetPrediction}>
+              Reset prediction
+            </button>
+          </div>
+          <Sim key={resetVersion} />
+        </section>
+      )}
+    </section>
+  );
+};
 
 export const App = () => {
+  const [resetVersion, setResetVersion] = useState(0);
   const [route, setRoute] = useState<HashRoute>(() => parseHashRoute());
   const routeContainer = useMemo(
     () => (route.kind === "container" ? containerById.get(route.id) ?? null : null),
@@ -132,14 +195,24 @@ export const App = () => {
   );
 
   useEffect(() => {
-    const onHashChange = () => setRoute(parseHashRoute());
+    const onHashChange = () => {
+      setRoute(parseHashRoute());
+      setResetVersion((current) => current + 1);
+    };
     globalThis.addEventListener("hashchange", onHashChange);
     return () => globalThis.removeEventListener("hashchange", onHashChange);
   }, []);
 
   const selectPillar = (pillar: SutdPillar) => {
     setRoute({ kind: "pillar", id: pillar.id });
+    setResetVersion((current) => current + 1);
     globalThis.history?.replaceState(null, "", `#pillar/${pillar.id}`);
+  };
+
+  const resetPrediction = () => {
+    if (activeContainer === null) return;
+    clearPrediction(activeContainer.packageId, activeContainer.simId);
+    setResetVersion((current) => current + 1);
   };
 
   return (
@@ -147,16 +220,16 @@ export const App = () => {
       <header className="hero">
         <div>
           <p className="meta-line">Paideia SUTD</p>
-          <h1>SUTD curriculum wrapper substrate</h1>
+          <h1>SUTD Learning Map</h1>
           <p>
-            Shared concept containers can map into Freshmore and pillar-specific
-            learning paths without duplicating A-Level content.
+            Choose a pillar, open a concept, and use the lab to connect the
+            model, formula, and engineering decision.
           </p>
         </div>
         <dl className="stats-grid" aria-label="SUTD shell status">
           <div>
             <dt>{containers.length}</dt>
-            <dd>product containers wired</dd>
+            <dd>interactive concepts</dd>
           </div>
           <div>
             <dt>{sutdPillars.length}</dt>
@@ -164,11 +237,11 @@ export const App = () => {
           </div>
           <div>
             <dt>{totalClusters}</dt>
-            <dd>concept clusters</dd>
+            <dd>topic groups</dd>
           </div>
           <div>
             <dt>{knowledgeGraph.edges.length}</dt>
-            <dd>graph links</dd>
+            <dd>concept links</dd>
           </div>
         </dl>
       </header>
@@ -194,7 +267,7 @@ export const App = () => {
               <p className="meta-line">{activePillar.programmeLabel}</p>
               <h2 id="pillar-title">{activePillar.title}</h2>
             </div>
-            <p>{totalPlannedContainers} planned shared/container references</p>
+            <p>{totalPlannedContainers} concepts in the current build map</p>
           </div>
 
           <div className="cluster-grid">
@@ -206,7 +279,11 @@ export const App = () => {
           {activeContainer === null ? (
             <EmptyContainerState />
           ) : (
-            <ContainerPreview activeContainer={activeContainer} />
+            <ContainerPreview
+              activeContainer={activeContainer}
+              resetVersion={resetVersion}
+              onResetPrediction={resetPrediction}
+            />
           )}
         </section>
       </div>
