@@ -151,6 +151,9 @@ Latest slice notes:
 - May 22, 2026: the next build wave is promoted as shared-core bridge work.
   These containers should land once, then be wrapped by A-Level and SUTD where
   needed rather than rebuilt per curriculum.
+- The shared-core bridge wave has landed and is marked `reviewed`:
+  `linear-programming-feasible-region`, `pid-bode-builder`,
+  `graph-algorithm-explorer`, and `hypothesis-test-decision`.
 - `kinematics-in-one-dimension` is reviewed and merged.
 - `forces-and-equilibrium` is reviewed and merged; it is the first force-balance
   slice consuming both vector resolution and kinematics.
@@ -167,10 +170,9 @@ Latest slice notes:
 
 Next ready-for-build A-Level wave:
 
-| Queue ID | Why this is next for A-Level | Required kernels |
-| --- | --- | --- |
-| `shared.inference.hypothesis-test-decision` | Extends the probability/statistics chain into hypothesis testing for A-Level Mathematics while remaining reusable for SUTD and IB. | `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
-| `shared.algorithms.graph-algorithm-explorer` | Starts the Computing/CS shared track with a reusable graph-search explorable. | `core/graph-algorithms`, `core/graph-layout`, `core/algorithm-trace`, `core/prediction-gate`, `core/ui-sim` |
+No A-Level entries are currently promoted after the May 22, 2026 shared-core
+bridge wave. Promote the next candidates in `container-build-queue.yaml` before
+launching more agents.
 
 ### SUTD First Pillar Slices
 
@@ -203,12 +205,9 @@ tracked in the build queue with required kernels:
 
 Next SUTD candidates in order:
 
-| Queue ID | Primary SUTD use | Required kernels |
-| --- | --- | --- |
-| `shared.control.pid-bode-builder` | EPD control and engineering systems; replaces curriculum-local PID/Bode variants with one shared core container. | `core/sim-runtime`, `core/control-systems`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
-| `shared.optimization.linear-programming-feasible-region` | ESD optimisation and design-under-constraints; reusable by IB Math AI later. | `core/sim-runtime`, `core/optimization`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
-| `shared.algorithms.graph-algorithm-explorer` | ISTD algorithms and ESD networks; also serves A-Level Computing and IB Computer Science. | `core/graph-algorithms`, `core/graph-layout`, `core/algorithm-trace`, `core/prediction-gate`, `core/ui-sim` |
-| `shared.inference.hypothesis-test-decision` | Freshmore probability/statistics and ESD data analysis; also serves A-Level Mathematics and IB. | `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+No SUTD entries are currently promoted after the May 22, 2026 shared-core
+bridge wave. Promote the next pillar candidates in `container-build-queue.yaml`
+before launching more agents.
 
 ### Build Queue Discipline
 
