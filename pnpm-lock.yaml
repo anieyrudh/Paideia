@@ -719,6 +719,9 @@ importers:
 
   shared/packages/sims:
     dependencies:
+      '@paideia/algorithm-trace':
+        specifier: workspace:*
+        version: link:../../../core/algorithm-trace
       '@paideia/charting':
         specifier: workspace:*
         version: link:../../../core/charting
@@ -734,6 +737,12 @@ importers:
       '@paideia/dynamical-systems':
         specifier: workspace:*
         version: link:../../../core/dynamical-systems
+      '@paideia/graph-algorithms':
+        specifier: workspace:*
+        version: link:../../../core/graph-algorithms
+      '@paideia/graph-layout':
+        specifier: workspace:*
+        version: link:../../../core/graph-layout
       '@paideia/linear-algebra':
         specifier: workspace:*
         version: link:../../../core/linear-algebra

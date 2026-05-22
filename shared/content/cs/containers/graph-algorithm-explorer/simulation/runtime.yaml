@@ -1,0 +1,11 @@
+runtime:
+  package_id: graph-algorithm-explorer
+  sim_id: graph-algorithm-explorer
+  entry: simulation/index.tsx
+  renderer_module: "@paideia/shared-sims/graph-algorithm-explorer"
+  prediction_gate:
+    required: true
+    scope: per-sim
+  persistence:
+    local_state: true
+    embed_state: true

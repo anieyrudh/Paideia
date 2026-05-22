@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Graph Algorithm Explorer thumbnail</title>
+  <desc id="desc">A labelled graph with a highlighted frontier and weighted path.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <g stroke="#cbd5e1" stroke-width="4">
+    <line x1="130" y1="180" x2="260" y2="90"/>
+    <line x1="130" y1="180" x2="270" y2="250"/>
+    <line x1="260" y1="90" x2="430" y2="125"/>
+    <line x1="270" y1="250" x2="430" y2="125"/>
+    <line x1="430" y1="125" x2="520" y2="220"/>
+  </g>
+  <path d="M130 180 L270 250 L430 125 L520 220" fill="none" stroke="#7c3aed" stroke-linecap="round" stroke-width="8"/>
+  <g font-family="Arial, sans-serif" font-size="20" font-weight="700" text-anchor="middle">
+    <circle cx="130" cy="180" r="34" fill="#2563eb"/>
+    <text x="130" y="187" fill="#fff">S</text>
+    <circle cx="260" cy="90" r="30" fill="#e0f2fe" stroke="#2563eb" stroke-width="4"/>
+    <text x="260" y="97" fill="#0f172a">A</text>
+    <circle cx="270" cy="250" r="30" fill="#fef3c7" stroke="#d97706" stroke-width="4"/>
+    <text x="270" y="257" fill="#0f172a">B</text>
+    <circle cx="430" cy="125" r="30" fill="#ede9fe" stroke="#7c3aed" stroke-width="4"/>
+    <text x="430" y="132" fill="#0f172a">C</text>
+    <circle cx="520" cy="220" r="34" fill="#059669"/>
+    <text x="520" y="227" fill="#fff">T</text>
+  </g>
+  <g fill="#334155" font-family="Arial, sans-serif" font-size="18" font-weight="700">
+    <text x="185" y="118">8</text>
+    <text x="184" y="235">2</text>
+    <text x="348" y="92">2</text>
+    <text x="350" y="210">2</text>
+    <text x="490" y="160">2</text>
+  </g>
+</svg>

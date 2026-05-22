@@ -1,0 +1,19 @@
+controls:
+  - id: algorithm-mode
+    label: "Algorithm mode"
+    type: selector
+    options:
+      - id: bfs
+        label: "BFS frontier"
+      - id: dfs
+        label: "DFS branch"
+      - id: dijkstra
+        label: "Dijkstra weighted path"
+  - id: graph-scenario
+    label: "Graph scenario"
+    type: selector
+    options:
+      - id: weighted-detour
+        label: "Weighted detour"
+      - id: tie-order
+        label: "Tie-order traversal"

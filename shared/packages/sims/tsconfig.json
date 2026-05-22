@@ -8,10 +8,13 @@
     "src/**/*"
   ],
   "references": [
+    { "path": "../../../core/algorithm-trace" },
     { "path": "../../../core/charting" },
     { "path": "../../../core/circuits" },
     { "path": "../../../core/content-schema" },
     { "path": "../../../core/dynamical-systems" },
+    { "path": "../../../core/graph-algorithms" },
+    { "path": "../../../core/graph-layout" },
     { "path": "../../../core/linear-algebra" },
     { "path": "../../../core/mechanics" },
     { "path": "../../../core/optimization" },

@@ -493,7 +493,7 @@ entries:
   - id: shared.algorithms.graph-algorithm-explorer
     title: "Graph Algorithm Explorer"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: Algorithms / networks
     discipline: cs
     reuse_status: shared-core
