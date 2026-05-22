@@ -1,5 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectRevealedSimulationVisual } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("PID Step Response", () => {
   test.beforeEach(async ({ page }) => {
@@ -22,7 +23,10 @@ test.describe("PID Step Response", () => {
     await page.getByRole("button", { name: "Commit prediction" }).click();
 
     await expect(page.getByRole("region", { name: "Observation unlocked" })).toBeVisible();
-    await expect(page.getByText("Formula used: e_ss")).toBeVisible();
+    await expect(page.getByRole("img", { name: "Step response chart, output against time in seconds" })).toBeVisible();
+    await expect(page.getByRole("img", { name: "PID feedback loop diagram" })).toBeVisible();
+    await expect(page.getByLabel("Formula used")).toContainText("e_ss");
+    await expectRevealedSimulationVisual(page);
   });
 
   test("manipulate controls write to response metrics", async ({ page }) => {
@@ -39,9 +43,30 @@ test.describe("PID Step Response", () => {
     await page.getByRole("button", { name: "Commit prediction" }).click();
 
     const observation = page.getByRole("region", { name: "Observation unlocked" });
-    await expect(observation).toContainText("Gains: Kp = 1.4");
+    await expect(observation).toContainText("Kp = 1.4");
     await expect(observation).toContainText("Ki = 0.85");
-    await expect(observation).toContainText("steady-state error");
+    await expect(observation).toContainText("Final error");
+    await expect(page.getByRole("img", { name: "Step response chart, output against time in seconds" })).toBeVisible();
+    await expectRevealedSimulationVisual(page);
+  });
+
+  test("shows chart, formula legend, substitutions, units, and feedback loop", async ({ page }) => {
+    await page.getByRole("button", { name: "Start tuning" }).click();
+    await page.getByRole("button", { name: "Observe response" }).click();
+    await page.getByLabel("Increase Ki moderately").check();
+    await page
+      .getByLabel("Rationale")
+      .fill("I need the plotted response to compare overshoot, settling time, and final error.");
+    await page.getByRole("button", { name: "Commit prediction" }).click();
+
+    await expect(page.getByRole("img", { name: "Step response chart, output against time in seconds" })).toBeVisible();
+    await expect(page.getByRole("img", { name: "PID feedback loop diagram" })).toBeVisible();
+    await expect(page.getByLabel("Formula used")).toContainText("overshoot %");
+    await expect(page.getByLabel("Formula used")).toContainText("Substitution");
+    await expect(page.getByLabel("Formula used")).toContainText("s");
+    await expect(page.getByLabel("Formula legend")).toContainText("y(t)");
+    await expect(page.getByLabel("Formula legend")).toContainText("target");
+    await expectRevealedSimulationVisual(page);
   });
 
   test("has no critical accessibility violations after reveal", async ({ page }) => {
@@ -55,10 +80,10 @@ test.describe("PID Step Response", () => {
     await page.getByRole("region", { name: "Observation unlocked" }).waitFor();
 
     const results = await new AxeBuilder({ page }).analyze();
-    const criticalViolations = results.violations.filter(
-      (violation) => violation.impact === "critical",
+    const seriousOrCritical = results.violations.filter(
+      (violation) => violation.impact === "critical" || violation.impact === "serious",
     );
 
-    expect(criticalViolations).toEqual([]);
+    expect(seriousOrCritical).toEqual([]);
   });
 });

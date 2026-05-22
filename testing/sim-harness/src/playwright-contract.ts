@@ -12,6 +12,22 @@ export const mountSim = async (page: Page, simId: string): Promise<void> => {
   await page.goto(`/?sim=${encodeURIComponent(simId)}`);
 };
 
+export const expectRevealedSimulationVisual = async (
+  page: Page,
+  observationLabel = "Observation unlocked",
+): Promise<void> => {
+  const observation = page.getByLabel(observationLabel);
+  await expect(observation).toBeVisible();
+
+  const visual = observation.locator("svg:visible, canvas:visible, [role='img']:visible");
+  const visualCount = await visual.count();
+  expect(
+    visualCount,
+    `Expected revealed "${observationLabel}" state to include a visible chart, diagram, canvas, or image role.`,
+  ).toBeGreaterThan(0);
+  await expect(visual.first()).toBeVisible();
+};
+
 export const definePredictionGateContract = ({
   simId,
   predictionLabel,

@@ -217,6 +217,9 @@ export const App = () => {
 
   return (
     <main className="app-shell">
+      <nav className="global-nav" aria-label="Global navigation">
+        <a href="../">All curricula</a>
+      </nav>
       <header className="hero">
         <div>
           <p className="meta-line">Paideia SUTD</p>
