@@ -1,0 +1,30 @@
+schema_version: "1.0.0"
+labels:
+  assemblyLimit:
+    label: "Assembly capacity"
+    unit: "batch-hours"
+    symbol: "d_1"
+  laborLimit:
+    label: "Labour capacity"
+    unit: "labour-hours"
+    symbol: "d_2"
+  materialLimit:
+    label: "Material capacity"
+    unit: "material-units"
+    symbol: "d_3"
+  profitX:
+    label: "Profit from x"
+    unit: "profit-units per batch"
+    symbol: "c_x"
+  profitY:
+    label: "Profit from y"
+    unit: "profit-units per batch"
+    symbol: "c_y"
+  testX:
+    label: "Test x"
+    unit: "batches"
+    symbol: "x"
+  testY:
+    label: "Test y"
+    unit: "batches"
+    symbol: "y"

@@ -1,0 +1,129 @@
+schema_version: "1.0.0"
+id: linear-programming-feasible-region
+aliases:
+  - LP feasible region
+  - constraint polygon
+  - corner-point optimisation
+branch: shared
+subject: math
+level: "Shared core"
+module: "Optimisation"
+title: "LP Feasible Region Visualiser"
+one_line_summary: "Build the feasible polygon from two-variable inequalities, then sweep a linear objective line to find the best corner."
+syllabus_ref: "Shared mathematics / Optimisation / Linear programming feasible regions"
+prerequisites:
+  - linear-equations
+  - inequalities
+  - cartesian-plotting
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: both
+package_predict:
+  prompt: |
+    Before revealing the feasible region, which statement is most reliable for maximizing Z = 3x + 2y?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Check every feasible corner, because a linear objective reaches its best value at a boundary vertex"
+      - "Choose the visual centre of the shaded region, because it balances the constraints"
+      - "Choose the point with the largest x-value, because x has a positive coefficient"
+      - "Choose any point on one satisfied constraint, because one inequality is enough"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: production-mix-corner-check
+    prompt: |
+      A small workshop makes two products. Product x uses 1 assembly hour and 2 labour hours per batch. Product y uses 1 assembly hour and 1 labour hour per batch. The workshop has at most 12 assembly hours and 16 labour hours, and profit is Z = 4x + 3y. Find the feasible corners, evaluate the objective, and justify the optimum.
+    surface_form: "production-mix planning"
+    same_concept_check: "Same concept: translate resource limits into half-planes, intersect them into a feasible polygon, and evaluate a linear objective at the feasible corners."
+    rubric_path: problem-solving/production-mix-corner-check.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-22"
+      author: "Codex"
+      summary: "Built the shared-core LP feasible region container with kernel-backed region and objective solution."
+authors:
+  - "Codex"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-22"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-22"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "The optimum must sit at the visual centre"
+    description: "Learners may choose a visually balanced interior point even though a linear objective over a bounded polygon reaches its maximum or minimum on the boundary."
+    evidence_source: "Boyd and Vandenberghe, Convex Optimization, linear programming geometry discussion."
+    surface_in_predict: true
+  - name: "Infeasible means no equation exists"
+    description: "Learners may treat infeasibility as an algebraic failure instead of recognising that the requested point or system violates at least one inequality."
+    evidence_source: "Operations research textbook treatments of feasible sets and constraint systems."
+    surface_in_predict: true
+  - name: "One satisfied inequality proves feasibility"
+    description: "Learners may test one constraint at a point and stop, missing that feasibility requires satisfying every constraint simultaneously."
+    evidence_source: "Introductory linear programming examples in OpenStax College Algebra and operations research texts."
+    surface_in_predict: true
+sources:
+  - citation: "Boyd, S., and Vandenberghe, L. Convex Optimization, Sections 2.1 and 4.3. Cambridge University Press, 2004."
+    url: "https://web.stanford.edu/~boyd/cvxbook/"
+    publication_year: 2004
+    license: "author-hosted textbook"
+    seab_alignment: n/a
+  - citation: "OpenStax, College Algebra 2e, systems of inequalities and linear programming examples."
+    url: "https://openstax.org/details/books/college-algebra-2e"
+    publication_year: 2021
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "Hillier, F. S., and Lieberman, G. J. Introduction to Operations Research, linear programming graphical method chapters."
+    publication_year: 2021
+    license: "Textbook reference"
+    seab_alignment: n/a
+language: en

@@ -1,0 +1,10 @@
+flowchart TD
+  LE["Linear equations"] --> FR["LP feasible region"]
+  INEQ["Inequalities"] --> FR
+  PLOT["Cartesian plotting"] --> FR
+  FR --> CORNER["Corner-point evaluation"]
+  CORNER --> SIMPLEX["Simplex method"]
+  FR --> OR["Operations research"]
+  C1["Misconception: centre is best"] --> FR
+  C2["Misconception: one constraint is enough"] --> FR
+  C3["Misconception: infeasible means no equation"] --> FR

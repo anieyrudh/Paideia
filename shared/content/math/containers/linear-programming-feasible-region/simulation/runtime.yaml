@@ -1,0 +1,13 @@
+runtime:
+  package: "@paideia/shared-sims"
+  entry: "@paideia/shared-sims/linear-programming-feasible-region"
+  component: "LinearProgrammingFeasibleRegionSim"
+  prediction_gate:
+    scope: sim
+    package_id: "shared/math/linear-programming-feasible-region"
+    sim_id: "lp-feasible-region"
+  pm_oet:
+    predict: "Commit the corner-search prediction before the region and optimum render."
+    manipulate: "Adjust constraint limits, objective coefficients, and a test point."
+    observe: "Compare the kernel-generated feasible polygon, optimum corner, and substituted test point."
+    explain: "Justify why binding constraints and objective-line sweep identify the optimum."

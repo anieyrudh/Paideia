@@ -46,9 +46,10 @@ import GeneratedSim42SharedCsGradientDescentLandscapeLossSurfaceStepper from "@p
 import GeneratedSim43SharedMathBayesUpdatingBayesUpdating from "@paideia/shared-sims/bayes-updating";
 import GeneratedSim44SharedMathCentralLimitTheoremCltSampler from "@paideia/shared-sims/central-limit-theorem";
 import GeneratedSim45SharedMathEigenvectorTransformationsEigenvectorTransformations from "@paideia/shared-sims/eigenvector-transformations";
-import GeneratedSim46SharedMathOdePhasePortraitOdePhasePortrait from "@paideia/shared-sims/ode-phase-portrait";
-import GeneratedSim47SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab from "@paideia/shared-sims/circuit-phasor-reasoning";
-import GeneratedSim48SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
+import GeneratedSim46SharedMathLinearProgrammingFeasibleRegionLpFeasibleRegion from "@paideia/shared-sims/linear-programming-feasible-region";
+import GeneratedSim47SharedMathOdePhasePortraitOdePhasePortrait from "@paideia/shared-sims/ode-phase-portrait";
+import GeneratedSim48SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab from "@paideia/shared-sims/circuit-phasor-reasoning";
+import GeneratedSim49SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -287,20 +288,25 @@ export const simRegistry = {
     title: "Eigenvector Direction Lab",
     Component: GeneratedSim45SharedMathEigenvectorTransformationsEigenvectorTransformations,
   },
+  "shared/math/linear-programming-feasible-region/lp-feasible-region": {
+    id: "shared/math/linear-programming-feasible-region/lp-feasible-region",
+    title: "LP Feasible Region Visualiser",
+    Component: GeneratedSim46SharedMathLinearProgrammingFeasibleRegionLpFeasibleRegion,
+  },
   "shared/math/ode-phase-portrait/ode-phase-portrait": {
     id: "shared/math/ode-phase-portrait/ode-phase-portrait",
     title: "ODE Phase Portrait Explorer",
-    Component: GeneratedSim46SharedMathOdePhasePortraitOdePhasePortrait,
+    Component: GeneratedSim47SharedMathOdePhasePortraitOdePhasePortrait,
   },
   "shared/physics/circuit-phasor-reasoning/circuit-phasor-lab": {
     id: "shared/physics/circuit-phasor-reasoning/circuit-phasor-lab",
     title: "Circuit Phasor Lab",
-    Component: GeneratedSim47SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab,
+    Component: GeneratedSim48SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab,
   },
   "shared/physics/free-body-diagram-mechanics/force-balance": {
     id: "shared/physics/free-body-diagram-mechanics/force-balance",
     title: "Force Balance Explorer",
-    Component: GeneratedSim48SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
+    Component: GeneratedSim49SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
   }
 } satisfies Record<string, SimHarnessEntry>;
 

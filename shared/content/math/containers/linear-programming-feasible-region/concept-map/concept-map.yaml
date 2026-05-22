@@ -1,0 +1,49 @@
+schema_version: "1.0.0"
+concept_id: linear-programming-feasible-region
+prerequisites:
+  - id: linear-equations
+    title: "Linear equations"
+    relationship: "Boundary lines come from replacing each inequality with equality."
+    status: planned
+  - id: inequalities
+    title: "Inequalities"
+    relationship: "Each constraint keeps one side of a boundary line."
+    status: planned
+  - id: cartesian-plotting
+    title: "Cartesian plotting"
+    relationship: "The feasible polygon is read in the x-y plane."
+    status: planned
+downstream:
+  - id: simplex-method
+    title: "Simplex method"
+    relationship: "Corner search generalises to higher-dimensional vertex movement."
+    status: planned
+  - id: operations-research
+    title: "Operations research"
+    relationship: "Feasible-region thinking underpins resource allocation models."
+    status: planned
+siblings:
+  - id: gradient-descent-landscape
+    title: "Gradient Descent Landscape"
+    relationship: "Another optimisation surface, but with local descent rather than polygon corners."
+    status: available
+  - id: newsvendor-critical-fractile
+    title: "Newsvendor Critical Fractile"
+    relationship: "Another constrained decision model using an objective under uncertainty."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: centre-optimum
+      label: "Optimum at visual centre"
+    - id: one-constraint
+      label: "One satisfied inequality is enough"
+    - id: infeasible-equation
+      label: "Infeasible means no equation exists"
+  edges:
+    - from: one-constraint
+      to: centre-optimum
+      label: "both skip all-constraint checking"
+    - from: infeasible-equation
+      to: one-constraint
+      label: "both confuse equations with constraint systems"
+mermaid_source: graph.mmd

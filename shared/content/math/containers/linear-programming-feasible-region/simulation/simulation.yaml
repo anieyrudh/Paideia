@@ -1,0 +1,62 @@
+id: lp-feasible-region
+title: "LP Feasible Region Visualiser"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/sim-runtime
+  - core/optimization
+  - core/plotting
+  - core/prediction-gate
+  - core/ui-sim
+manipulate:
+  controls:
+    - id: assembly-limit
+      label: "Assembly capacity"
+      kind: slider
+      kernel_binding: constraints.assembly.c
+      bounds: { min: 8, max: 14, step: 1 }
+    - id: labor-limit
+      label: "Labour capacity"
+      kind: slider
+      kernel_binding: constraints.labor.c
+      bounds: { min: 10, max: 18, step: 1 }
+    - id: material-limit
+      label: "Material capacity"
+      kind: slider
+      kernel_binding: constraints.material.c
+      bounds: { min: 12, max: 24, step: 1 }
+    - id: profit-x
+      label: "Profit from x"
+      kind: slider
+      kernel_binding: objective.cx
+      bounds: { min: 1, max: 6, step: 0.5 }
+    - id: profit-y
+      label: "Profit from y"
+      kind: slider
+      kernel_binding: objective.cy
+      bounds: { min: 1, max: 6, step: 0.5 }
+predict:
+  prompt: |
+    Before revealing the feasible region, which statement is most reliable for maximizing Z = 3x + 2y?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Check every feasible corner, because a linear objective reaches its best value at a boundary vertex"
+      - "Choose the visual centre of the shaded region, because it balances the constraints"
+      - "Choose the point with the largest x-value, because x has a positive coefficient"
+      - "Choose any point on one satisfied constraint, because one inequality is enough"
+    correct_index: 0
+  rationale_required: true
+observe:
+  renderers:
+    - id: feasible-polygon
+      module: "@paideia/shared-sims/linear-programming-feasible-region"
+      symbol: "LinearProgrammingFeasibleRegionSim"
+      props_binding: "Use optimization-kernel vertices and objective solution to draw the region, objective line, and optimum."
+explain:
+  prompt: |
+    Explain which constraints are binding at the optimum and why checking only a single favourite point is weaker than sweeping the objective line across all feasible corners.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "The optimum must sit at the visual centre"
+    - "Infeasible means no equation exists"
+    - "Satisfying one inequality proves feasibility"

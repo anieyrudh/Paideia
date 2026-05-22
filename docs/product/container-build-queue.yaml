@@ -695,7 +695,7 @@ entries:
   - id: shared.optimization.linear-programming-feasible-region
     title: "LP Feasible Region Visualiser"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: Optimisation
     discipline: math
     reuse_status: shared-core

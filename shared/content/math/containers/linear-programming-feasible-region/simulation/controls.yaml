@@ -1,0 +1,72 @@
+schema_version: "1.0.0"
+controls:
+  - id: assembly-limit
+    label: "Assembly capacity"
+    kind: slider
+    unit: batch-hours
+    min: 8
+    max: 14
+    step: 1
+    default: 10
+    formula_symbol: "d_1"
+    color: blue
+  - id: labor-limit
+    label: "Labour capacity"
+    kind: slider
+    unit: labour-hours
+    min: 10
+    max: 18
+    step: 1
+    default: 14
+    formula_symbol: "d_2"
+    color: purple
+  - id: material-limit
+    label: "Material capacity"
+    kind: slider
+    unit: material-units
+    min: 12
+    max: 24
+    step: 1
+    default: 12
+    formula_symbol: "d_3"
+    color: green
+  - id: profit-x
+    label: "Profit from x"
+    kind: slider
+    unit: profit-units per batch
+    min: 1
+    max: 6
+    step: 0.5
+    default: 3
+    formula_symbol: "c_x"
+    color: blue
+  - id: profit-y
+    label: "Profit from y"
+    kind: slider
+    unit: profit-units per batch
+    min: 1
+    max: 6
+    step: 0.5
+    default: 2
+    formula_symbol: "c_y"
+    color: green
+  - id: test-x
+    label: "Test x"
+    kind: slider
+    unit: batches
+    min: 0
+    max: 10
+    step: 0.5
+    default: 4
+    formula_symbol: "x"
+    color: purple
+  - id: test-y
+    label: "Test y"
+    kind: slider
+    unit: batches
+    min: 0
+    max: 10
+    step: 0.5
+    default: 4
+    formula_symbol: "y"
+    color: purple
