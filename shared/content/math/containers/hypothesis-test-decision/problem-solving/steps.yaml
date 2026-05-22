@@ -1,0 +1,19 @@
+steps:
+  - id: declare-hypotheses
+    label: "Declare null and alternative"
+    formula: "H_0: \\mu = \\mu_0"
+  - id: compute-standard-error
+    label: "Compute standard error"
+    formula: "SE = \\sigma / \\sqrt{n}"
+  - id: compute-z
+    label: "Compute test statistic"
+    formula: "z = (\\bar{x} - \\mu_0) / SE"
+  - id: compare-boundary
+    label: "Compare with rejection region"
+    formula: "z \\ge z_\\alpha, z \\le -z_\\alpha, or |z| \\ge z_{\\alpha/2}"
+  - id: decide
+    label: "Make the statistical decision"
+    check: "Reject only if the statistic is in the rejection region."
+  - id: interpret
+    label: "Interpret in context"
+    check: "Separate statistical evidence from practical importance."

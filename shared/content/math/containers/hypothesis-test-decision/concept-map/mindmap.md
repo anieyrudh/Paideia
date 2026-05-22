@@ -1,0 +1,26 @@
+# Hypothesis Test Decision Lab Mindmap
+
+- Hypothesis test decision
+  - Null hypothesis
+    - Baseline claim
+    - Sampling distribution if the claim were true
+  - Alternative hypothesis
+    - Greater than
+    - Less than
+    - Two-sided difference
+  - Test statistic
+    - Sample mean minus null mean
+    - Divide by standard error
+    - Express evidence in z units
+  - Decision region
+    - Alpha sets the tail size
+    - Critical boundary marks rejection
+    - Tail choice follows the alternative
+  - Interpretation
+    - Reject: evidence crossed the threshold
+    - Do not reject: threshold was not crossed
+    - Practical importance needs separate context
+  - Misconceptions
+    - P-value as probability the null is true
+    - Significance as importance
+    - Direction-only decision

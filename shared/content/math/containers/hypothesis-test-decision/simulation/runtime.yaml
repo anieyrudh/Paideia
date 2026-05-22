@@ -1,0 +1,12 @@
+runtime:
+  mode: react
+  package: "@paideia/shared-sims"
+  export: "./hypothesis-test-decision"
+  entry: "HypothesisTestDecisionSim"
+  persistence:
+    prediction_gate: local
+    sim_state: host-managed
+  accessibility:
+    prediction_gate: required
+    keyboard_controls: required
+    axe_after_reveal: required

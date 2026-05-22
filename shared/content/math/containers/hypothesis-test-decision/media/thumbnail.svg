@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Hypothesis test decision thumbnail</title>
+  <desc id="desc">A bell curve with a shaded rejection region and a z statistic marker.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <rect x="40" y="36" width="560" height="288" rx="8" fill="#ffffff" stroke="#cbd5e1"/>
+  <path d="M82 260 C140 258 170 238 214 172 C255 112 293 92 320 92 C347 92 385 112 426 172 C470 238 500 258 558 260" fill="none" stroke="#1f5f8b" stroke-width="8" stroke-linecap="round"/>
+  <path d="M452 181 C489 240 516 258 558 260 L558 288 L452 288 Z" fill="#b54708" opacity="0.25"/>
+  <line x1="452" y1="118" x2="452" y2="292" stroke="#b54708" stroke-width="4" stroke-dasharray="10 8"/>
+  <line x1="414" y1="146" x2="414" y2="292" stroke="#6941c6" stroke-width="4"/>
+  <text x="70" y="82" fill="#0f172a" font-family="Arial, sans-serif" font-size="30" font-weight="700">Hypothesis Test Decision</text>
+  <text x="438" y="112" fill="#b54708" font-family="Arial, sans-serif" font-size="20" font-weight="700">critical</text>
+  <text x="384" y="138" fill="#6941c6" font-family="Arial, sans-serif" font-size="20" font-weight="700">z</text>
+  <text x="84" y="304" fill="#334155" font-family="Arial, sans-serif" font-size="20">Reject only when the statistic enters the decision region.</text>
+</svg>

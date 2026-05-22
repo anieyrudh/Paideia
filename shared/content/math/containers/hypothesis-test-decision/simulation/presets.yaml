@@ -1,0 +1,28 @@
+presets:
+  - id: borderline-upper
+    label: "Borderline upper-tail claim"
+    state:
+      nullMean: 50
+      observedMean: 51.3
+      populationStandardDeviation: 6
+      sampleSize: 36
+      alpha: 0.05
+      alternative: greater
+  - id: reject-upper
+    label: "Clear upper-tail rejection"
+    state:
+      nullMean: 50
+      observedMean: 52.4
+      populationStandardDeviation: 6
+      sampleSize: 49
+      alpha: 0.05
+      alternative: greater
+  - id: lower-tail-quality
+    label: "Lower-tail quality check"
+    state:
+      nullMean: 50
+      observedMean: 48.3
+      populationStandardDeviation: 5
+      sampleSize: 36
+      alpha: 0.05
+      alternative: less

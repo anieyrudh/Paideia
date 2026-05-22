@@ -285,7 +285,7 @@ entries:
   - id: shared.inference.hypothesis-test-decision
     title: "Hypothesis Test Decision Lab"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: Inference
     discipline: math
     reuse_status: shared-core

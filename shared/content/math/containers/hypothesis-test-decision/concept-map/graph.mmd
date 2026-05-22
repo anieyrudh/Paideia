@@ -1,0 +1,9 @@
+graph TD
+  probability_distributions["Probability distributions"] --> hypothesis_test_decision["Hypothesis test decision"]
+  central_limit_theorem["Central limit theorem"] --> hypothesis_test_decision
+  hypothesis_test_decision --> confidence_intervals["Confidence intervals"]
+  hypothesis_test_decision --> experimental_design["Experimental design"]
+  hypothesis_test_decision --- p_values["P-values"]
+  hypothesis_test_decision --- effect_size["Effect size"]
+  direction_only["Direction alone decides rejection"] --> p_value_null_true["P-value as probability H0 is true"]
+  p_value_null_true --> significance_importance["Statistical significance as practical importance"]
