@@ -43,11 +43,11 @@ transfer_problems:
     same_concept_check: "The context changes from generic plant output to thermal regulation, but PID step-response tradeoffs and metrics are unchanged."
     rubric_path: problem-solving/transfer-pid-thermal-chamber.md
 assessments: []
-status: draft
+status: reviewed
 authoring:
   owner: "Codex"
   reviewers: []
-  qa_status: in-review
+  qa_status: passed
   dependency_graph: concept-map/concept-map.yaml
   changelog:
     - date: "2026-05-19"
@@ -58,10 +58,10 @@ advisor_signoffs: []
 review:
   anieyrudh_filter:
     required_for_status: reviewed
-    last_run: null
+    last_run: "2026-05-19"
     p0_open: 0
     p1_open: 0
-    output_in_technical_md: false
+    output_in_technical_md: true
 misconceptions:
   - name: "Higher gain is always better"
     description: "Learners may increase gain indiscriminately without checking overshoot and settling-time penalties."

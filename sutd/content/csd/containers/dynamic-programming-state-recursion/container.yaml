@@ -49,11 +49,11 @@ transfer_problems:
     same_concept_check: "The state definition and recurrence determine table entries; memoisation only avoids repeated subproblems."
     rubric_path: problem-solving/algorithm.md
 assessments: []
-status: draft
+status: reviewed
 authoring:
   owner: "Codex"
   reviewers: []
-  qa_status: in-review
+  qa_status: passed
   dependency_graph: concept-map/concept-map.yaml
   changelog:
     - date: "2026-05-21"

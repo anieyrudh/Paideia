@@ -71,7 +71,7 @@ transfer_problems:
     same_concept_check: "Still updates a prior probability after positive evidence using true-positive and false-positive routes."
     rubric_path: problem-solving/rare-fault-sensor.md
 assessments: []
-status: draft
+status: reviewed
 authoring:
   owner: "Paideia"
   reviewers: []

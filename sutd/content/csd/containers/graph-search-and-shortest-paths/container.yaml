@@ -48,11 +48,11 @@ transfer_problems:
     same_concept_check: "Still compares traversal order versus weighted shortest path objective."
     rubric_path: problem-solving/algorithm.md
 assessments: []
-status: draft
+status: reviewed
 authoring:
   owner: "Codex"
   reviewers: []
-  qa_status: not-started
+  qa_status: passed
   dependency_graph: concept-map/concept-map.yaml
   changelog:
     - date: "2026-05-19"

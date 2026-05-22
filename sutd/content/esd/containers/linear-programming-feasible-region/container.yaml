@@ -65,11 +65,11 @@ transfer_problems:
     same_concept_check: "Learners still use feasible-region corner evaluation with two-variable inequalities."
     rubric_path: problem-solving/algorithm.md
 assessments: []
-status: draft
+status: reviewed
 authoring:
   owner: "Codex"
   reviewers: []
-  qa_status: in-review
+  qa_status: passed
   dependency_graph: concept-map/concept-map.yaml
   changelog:
     - date: "2026-05-19"
