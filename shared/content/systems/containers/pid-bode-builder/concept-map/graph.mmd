@@ -1,0 +1,10 @@
+graph TD
+  ode["Ordinary differential equations"] --> pid["PID Tuner and Bode Builder"]
+  tf["Transfer functions"] --> pid
+  pid --> state["State-space control"]
+  pid --> sysid["System identification"]
+  step["PID step response"] --- pid
+  bode["Bode stability margin"] --- pid
+  gain["Misconception: high gain always improves control"] -.-> pid
+  mag["Misconception: magnitude alone decides stability"] -.-> pid
+  deriv["Misconception: derivative removes steady-state error"] -.-> pid

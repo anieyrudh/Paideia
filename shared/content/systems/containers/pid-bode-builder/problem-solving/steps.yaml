@@ -1,0 +1,16 @@
+steps:
+  - id: plant-controller
+    label: "Build plant and controller"
+    formula: "L(s) = C(s)G(s)"
+  - id: closed-loop
+    label: "Close the feedback loop"
+    formula: "T(s) = L(s) / (1 + L(s))"
+  - id: time-response
+    label: "Measure the step response"
+    formula: "overshoot % = max(0, y_peak - 1) * 100"
+  - id: frequency-response
+    label: "Read the Bode margins"
+    formula: "PM = 180 deg + angle L(j omega_gc)"
+  - id: tradeoff
+    label: "Choose a defensible tuning"
+    check: "The selected gains must satisfy both time-response targets and robustness-margin targets."

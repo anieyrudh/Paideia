@@ -1,0 +1,27 @@
+# PID Tuner and Bode Builder Mindmap
+
+- PID Tuner and Bode Builder
+  - Inputs
+    - \(K_p\): present error gain
+    - \(K_i\): accumulated error gain
+    - \(K_d\): error-slope gain
+    - plant natural frequency and damping ratio
+  - Time-domain evidence
+    - peak response
+    - overshoot percentage
+    - settling time
+    - final error
+  - Frequency-domain evidence
+    - open-loop magnitude
+    - open-loop phase
+    - gain crossover
+    - phase margin
+    - gain margin
+  - Design judgement
+    - faster response
+    - less overshoot
+    - robustness to extra lag
+  - Misconceptions
+    - high gain is always better
+    - magnitude alone decides stability
+    - derivative removes steady-state error

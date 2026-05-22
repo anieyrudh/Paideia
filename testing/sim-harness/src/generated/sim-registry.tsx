@@ -50,6 +50,7 @@ import GeneratedSim46SharedMathLinearProgrammingFeasibleRegionLpFeasibleRegion f
 import GeneratedSim47SharedMathOdePhasePortraitOdePhasePortrait from "@paideia/shared-sims/ode-phase-portrait";
 import GeneratedSim48SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab from "@paideia/shared-sims/circuit-phasor-reasoning";
 import GeneratedSim49SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
+import GeneratedSim50SharedSystemsPidBodeBuilderPidBodeBuilder from "@paideia/shared-sims/pid-bode-builder";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -307,6 +308,11 @@ export const simRegistry = {
     id: "shared/physics/free-body-diagram-mechanics/force-balance",
     title: "Force Balance Explorer",
     Component: GeneratedSim49SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
+  },
+  "shared/systems/pid-bode-builder/pid-bode-builder": {
+    id: "shared/systems/pid-bode-builder/pid-bode-builder",
+    title: "PID Tuner and Bode Builder",
+    Component: GeneratedSim50SharedSystemsPidBodeBuilderPidBodeBuilder,
   }
 } satisfies Record<string, SimHarnessEntry>;
 

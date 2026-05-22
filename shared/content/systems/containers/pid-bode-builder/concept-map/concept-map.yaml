@@ -1,0 +1,48 @@
+schema_version: "1.0.0"
+concept_id: pid-bode-builder
+prerequisites:
+  - id: odes
+    title: "Ordinary differential equations"
+    relationship: "plant dynamics are represented by continuous-time differential equations"
+    status: planned
+  - id: transfer-functions
+    title: "Transfer functions"
+    relationship: "PID, plant, and closed-loop dynamics are composed as transfer functions"
+    status: planned
+downstream:
+  - id: state-space-control
+    title: "State-space control"
+    relationship: "extends loop reasoning to multi-state models"
+    status: planned
+  - id: system-identification
+    title: "System identification"
+    relationship: "uses response data to estimate plant models before tuning"
+    status: planned
+siblings:
+  - id: bode-stability-margin
+    title: "Bode stability margin"
+    relationship: "focuses on crossover and margin reading"
+    status: available
+  - id: pid-step-response
+    title: "PID step response"
+    relationship: "focuses on time-domain PID effects"
+    status: available
+misconception_graph:
+  nodes:
+    - id: high-gain-always-improves
+      label: "High gain always improves control"
+    - id: magnitude-alone
+      label: "Bode magnitude alone determines stability"
+    - id: derivative-removes-offset
+      label: "Derivative gain removes steady-state error"
+  edges:
+    - from: high-gain-always-improves
+      to: pid-bode-builder
+      label: "challenged by phase margin"
+    - from: magnitude-alone
+      to: pid-bode-builder
+      label: "challenged by phase trace"
+    - from: derivative-removes-offset
+      to: pid-bode-builder
+      label: "challenged by PID term comparison"
+mermaid_source: graph.mmd

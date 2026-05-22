@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">PID and Bode fallback visual</title>
+  <desc id="desc">Static fallback showing PID gain controls, a step response, and Bode margin readouts.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <rect x="36" y="38" width="568" height="284" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="64" y="82" fill="#0f172a" font-family="Arial, sans-serif" font-size="26" font-weight="700">PID Tuner and Bode Builder</text>
+  <text x="64" y="124" fill="#2563eb" font-family="Arial, sans-serif" font-size="18">Kp  Ki  Kd</text>
+  <text x="64" y="154" fill="#16a34a" font-family="Arial, sans-serif" font-size="18">Step: overshoot, settling, final error</text>
+  <text x="64" y="184" fill="#7c3aed" font-family="Arial, sans-serif" font-size="18">Bode: crossover, phase margin, gain margin</text>
+  <polyline points="76,270 128,254 180,205 232,188 284,196 336,207" fill="none" stroke="#dc2626" stroke-width="5"/>
+  <polyline points="380,280 426,258 472,232 518,198 564,154" fill="none" stroke="#2563eb" stroke-width="5"/>
+  <line x1="380" x2="564" y1="238" y2="238" stroke="#64748b" stroke-dasharray="8 6" stroke-width="3"/>
+</svg>
