@@ -1,0 +1,35 @@
+schema_version: "1.0.0"
+presets:
+  - id: baseline
+    title: "Baseline"
+    description: "A bounded feasible polygon with optimum at (6, 2)."
+    state:
+      assemblyLimit: 10
+      laborLimit: 14
+      materialLimit: 12
+      profitX: 3
+      profitY: 2
+      testX: 4
+      testY: 4
+  - id: corner-check
+    title: "Corner check"
+    description: "Profit weights make the active corner easy to compare with the test point."
+    state:
+      assemblyLimit: 10
+      laborLimit: 14
+      materialLimit: 12
+      profitX: 4
+      profitY: 3
+      testX: 6
+      testY: 2
+  - id: infeasible-test
+    title: "Infeasible test"
+    description: "The test point violates at least one tightened resource constraint."
+    state:
+      assemblyLimit: 8
+      laborLimit: 10
+      materialLimit: 12
+      profitX: 3
+      profitY: 2
+      testX: 7
+      testY: 4

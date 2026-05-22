@@ -13,6 +13,7 @@
     "./eigenvector-transformations": "./src/eigenvector-transformations.tsx",
     "./free-body-diagram-mechanics": "./src/free-body-diagram-mechanics.tsx",
     "./gradient-descent-landscape": "./src/gradient-descent-landscape.tsx",
+    "./linear-programming-feasible-region": "./src/linear-programming-feasible-region.tsx",
     "./ode-phase-portrait": "./src/ode-phase-portrait.tsx"
   },
   "scripts": {

@@ -1,0 +1,25 @@
+# Mindmap
+
+- Linear programming feasible region
+  - Inputs
+    - Decision variables `x` and `y`
+    - Resource constraints such as `x + y <= 10`
+    - Non-negativity constraints when quantities cannot be negative
+    - Objective `Z = c_x x + c_y y`
+  - Feasible set
+    - Convert inequalities to boundary lines
+    - Shade the allowed side of each line
+    - Keep only the overlap of all allowed sides
+  - Corner method
+    - List feasible vertices
+    - Substitute each vertex into the objective
+    - Choose the best value for max or min
+  - Checks
+    - Feasibility uses every constraint
+    - Objective value uses the objective only after feasibility is known
+    - Binding constraints are equalities at the chosen corner
+  - Transfers
+    - Production mix
+    - Diet and blending models
+    - Capacity allocation
+    - Design under constraints

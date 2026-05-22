@@ -1,0 +1,26 @@
+schema_version: "1.0.0"
+steps:
+  - id: define-variables
+    title: "Define decision variables"
+    prompt: "Name x and y, including units."
+    check: "Variables measure quantities that the decision maker can choose."
+  - id: translate-constraints
+    title: "Translate resource limits"
+    prompt: "Write each limit as a linear inequality."
+    check: "Every inequality has a left-hand usage expression, a relation, and a capacity."
+  - id: shade-overlap
+    title: "Build the feasible region"
+    prompt: "Plot boundary lines and keep the shared allowed side."
+    check: "The region contains only points satisfying all constraints."
+  - id: list-corners
+    title: "List feasible corners"
+    prompt: "Find boundary intersections and reject infeasible ones."
+    check: "Every listed corner passes all inequalities."
+  - id: evaluate-objective
+    title: "Evaluate the objective"
+    prompt: "Substitute each feasible corner into Z = c_x x + c_y y."
+    check: "The chosen corner gives the highest value for a maximisation problem."
+  - id: interpret-binding
+    title: "Interpret binding constraints"
+    prompt: "Identify which constraints are equalities at the optimum."
+    check: "Binding constraints explain the scarce resources at the chosen plan."
