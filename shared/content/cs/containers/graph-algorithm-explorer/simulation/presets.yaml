@@ -1,0 +1,16 @@
+presets:
+  - id: weighted-detour-bfs
+    label: "Fewest edges first"
+    state:
+      algorithmMode: bfs
+      graphScenario: weighted-detour
+  - id: weighted-detour-dijkstra
+    label: "Lowest weight first"
+    state:
+      algorithmMode: dijkstra
+      graphScenario: weighted-detour
+  - id: tie-order-dfs
+    label: "Branch-first tie order"
+    state:
+      algorithmMode: dfs
+      graphScenario: tie-order

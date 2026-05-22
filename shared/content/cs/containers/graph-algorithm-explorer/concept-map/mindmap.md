@@ -1,0 +1,26 @@
+# Mindmap
+
+- Graph Algorithm Explorer
+  - Representation
+    - nodes
+    - directed edges
+    - non-negative weights
+    - adjacency order
+  - Algorithms
+    - BFS expands frontier by hop count
+    - DFS follows a stack discipline
+    - Dijkstra settles lowest tentative distance
+  - Evidence
+    - frontier
+    - visited set
+    - predecessor links
+    - distance table
+    - operation trace
+  - Misconceptions
+    - drawing distance is not edge weight
+    - DFS is not a shortest-path guarantee
+    - deterministic order still depends on representation
+  - Transfer
+    - route planning
+    - dependency checking
+    - network diagnostics

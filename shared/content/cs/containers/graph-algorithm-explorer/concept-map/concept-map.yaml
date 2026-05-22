@@ -1,0 +1,51 @@
+schema_version: "1.0.0"
+concept_id: graph-algorithm-explorer
+prerequisites:
+  - id: graph-representation
+    title: "Graph representation"
+    relationship: "Adjacency lists, directions, and weights define what the algorithms can read."
+    status: planned
+  - id: recursion-or-iteration
+    title: "Recursion or iteration"
+    relationship: "Traversal can be implemented with queues, stacks, or recursive call structure."
+    status: planned
+downstream:
+  - id: shortest-paths
+    title: "Shortest paths"
+    relationship: "Dijkstra generalises traversal to non-negative weighted objectives."
+    status: planned
+  - id: spanning-trees
+    title: "Spanning trees"
+    relationship: "Frontier and visited-set reasoning prepares learners for tree-building graph algorithms."
+    status: planned
+  - id: network-flow
+    title: "Network flow"
+    relationship: "Flow algorithms build on graph representation, residual edges, and invariant tracking."
+    status: planned
+siblings:
+  - id: dynamic-programming-state-recursion
+    title: "Dynamic Programming State Recursion"
+    relationship: "Both expose state transitions and trace why an algorithm's local updates are valid."
+    status: available
+  - id: recursion-tree-complexity
+    title: "Recursion Tree Complexity"
+    relationship: "Both use traces to connect algorithm steps to cost and correctness reasoning."
+    status: available
+misconception_graph:
+  nodes:
+    - id: visual-distance-weight
+      label: "Visual distance equals edge weight"
+    - id: edge-labels-objective
+      label: "Edge labels define the objective"
+    - id: unique-visited-order
+      label: "Visited order is unique"
+    - id: adjacency-tie-order
+      label: "Adjacency order resolves ties"
+  edges:
+    - from: visual-distance-weight
+      to: edge-labels-objective
+      label: "challenged by"
+    - from: unique-visited-order
+      to: adjacency-tie-order
+      label: "challenged by"
+mermaid_source: graph.mmd

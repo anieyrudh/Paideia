@@ -1,0 +1,19 @@
+steps:
+  - id: parse-graph
+    label: "Parse the graph"
+    prompt: "List nodes, edges, directions, weights, start node, and target node before looking at the drawing."
+  - id: name-objective
+    label: "Name the objective"
+    prompt: "Decide whether the task asks for fewest edges, lowest weight, branch-first evidence, or connectivity."
+  - id: choose-algorithm
+    label: "Choose the matching algorithm"
+    prompt: "Match BFS, DFS, Dijkstra, or components to the objective and state its invariant."
+  - id: trace-frontier
+    label: "Trace frontier and visited set"
+    prompt: "Record each visit or settlement and keep predecessor links tied to the represented graph."
+  - id: compute-evidence
+    label: "Compute the evidence"
+    prompt: "For weighted paths, sum edge weights; for traversal, report visited order and hop counts."
+  - id: interpret
+    label: "Interpret the invariant"
+    prompt: "Explain why the invariant supports the answer and why visual distance alone is irrelevant."

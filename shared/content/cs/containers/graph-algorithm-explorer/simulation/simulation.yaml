@@ -1,0 +1,45 @@
+id: graph-algorithm-explorer
+title: "Graph Algorithm Explorer"
+interaction_type: algorithm-state-visualisation
+kernel_deps:
+  - core/graph-algorithms
+  - core/graph-layout
+  - core/algorithm-trace
+  - core/content-schema
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+predict:
+  prompt: |
+    In a weighted graph, which claim is safest before you run the algorithms?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "BFS finds the fewest edges, while Dijkstra finds the lowest total weight"
+      - "DFS always reaches the cheapest route first"
+      - "The visually closest node must have the smallest edge weight"
+      - "Every valid graph has only one possible visited order"
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: algorithm-mode
+      label: "Algorithm mode"
+      kind: selector
+      kernel_binding: "core/graph-algorithms.traversalOrShortestPath"
+    - id: graph-scenario
+      label: "Graph scenario"
+      kind: selector
+      kernel_binding: "core/graph-layout.forceDirected2D.graph"
+observe:
+  renderers:
+    - id: graph-trace-panel
+      module: "@paideia/shared-sims/graph-algorithm-explorer"
+      symbol: "GraphAlgorithmExplorerSim"
+      props_binding: "core/graph-layout coordinates, core/algorithm-trace traversal steps, and core/graph-algorithms answers"
+explain:
+  prompt: "Which invariant explains why the selected algorithm can be trusted for the current objective?"
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Visual distance equals edge weight"
+    - "Visited order is unique for every graph"

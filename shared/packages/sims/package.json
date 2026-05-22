@@ -12,6 +12,7 @@
     "./circuit-phasor-reasoning": "./src/circuit-phasor-reasoning.tsx",
     "./eigenvector-transformations": "./src/eigenvector-transformations.tsx",
     "./free-body-diagram-mechanics": "./src/free-body-diagram-mechanics.tsx",
+    "./graph-algorithm-explorer": "./src/graph-algorithm-explorer.tsx",
     "./gradient-descent-landscape": "./src/gradient-descent-landscape.tsx",
     "./linear-programming-feasible-region": "./src/linear-programming-feasible-region.tsx",
     "./ode-phase-portrait": "./src/ode-phase-portrait.tsx",
@@ -24,11 +25,14 @@
     "typecheck": "tsc -b --pretty false"
   },
   "dependencies": {
+    "@paideia/algorithm-trace": "workspace:*",
     "@paideia/charting": "workspace:*",
     "@paideia/circuits": "workspace:*",
     "@paideia/content-schema": "workspace:*",
     "@paideia/control-systems": "workspace:*",
     "@paideia/dynamical-systems": "workspace:*",
+    "@paideia/graph-algorithms": "workspace:*",
+    "@paideia/graph-layout": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/mechanics": "workspace:*",
     "@paideia/optimization": "workspace:*",

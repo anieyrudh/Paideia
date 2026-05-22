@@ -1,0 +1,12 @@
+state_labels:
+  algorithmMode:
+    label: "Algorithm mode"
+    values:
+      bfs: "BFS frontier"
+      dfs: "DFS branch"
+      dijkstra: "Dijkstra weighted path"
+  graphScenario:
+    label: "Graph scenario"
+    values:
+      weighted-detour: "Weighted detour"
+      tie-order: "Tie-order traversal"

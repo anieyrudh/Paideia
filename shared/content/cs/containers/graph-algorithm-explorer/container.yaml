@@ -1,0 +1,121 @@
+schema_version: "1.0.0"
+id: graph-algorithm-explorer
+aliases:
+  - graph search explorer
+  - traversal and shortest path lab
+  - algorithm frontier visualiser
+branch: shared
+subject: cs
+level: "Shared core"
+module: "Algorithms / networks"
+title: "Graph Algorithm Explorer"
+one_line_summary: "Compare graph traversal, frontier growth, and weighted shortest-path evidence on the same network."
+syllabus_ref: "Shared computing / Graph algorithms / Traversal and shortest paths"
+prerequisites:
+  - graph-representation
+  - recursion-or-iteration
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    In a weighted graph, which claim is safest before you run the algorithms?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "BFS finds the fewest edges, while Dijkstra finds the lowest total weight"
+      - "DFS always reaches the cheapest route first"
+      - "The visually closest node must have the smallest edge weight"
+      - "Every valid graph has only one possible visited order"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: route-planning-shortest-path
+    prompt: |
+      A delivery map has five intersections. The route with the fewest road segments is not the route with the lowest travel time. Choose whether to model the task with BFS, DFS, or Dijkstra, then justify the invariant you will inspect before trusting the answer.
+    surface_form: "delivery route planning with road travel-time weights"
+    same_concept_check: "Learners still distinguish graph representation from layout, inspect frontier or visited-set evidence, and choose the algorithm whose invariant matches the requested objective."
+    rubric_path: problem-solving/route-planning-shortest-path.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-22"
+      author: "Codex"
+      summary: "Built the shared-core graph algorithm explorer with kernel-backed traversal, layout, and trace surfaces."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-22"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-22"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Visual distance equals edge weight"
+    description: "Learners may read a node-link drawing as if short screen distance means cheap travel cost, even when edge weights encode the real objective."
+    evidence_source: "Cormen, Leiserson, Rivest, and Stein, Introduction to Algorithms, graph algorithms chapters."
+    surface_in_predict: true
+  - name: "Visited order is unique for every graph"
+    description: "Learners may assume BFS or DFS has one universal visited order, missing that adjacency order and tie-breaking are part of the algorithm contract."
+    evidence_source: "Skiena, The Algorithm Design Manual, graph traversal discussion."
+    surface_in_predict: true
+sources:
+  - citation: "Cormen, T. H., Leiserson, C. E., Rivest, R. L., and Stein, C. Introduction to Algorithms, 4th edition, Chapters 20 and 22. MIT Press, 2022."
+    publication_year: 2022
+    license: "commercial textbook"
+    seab_alignment: n/a
+  - citation: "Skiena, S. S. The Algorithm Design Manual, 3rd edition, Chapter 7: Graph Algorithms. Springer, 2020."
+    publication_year: 2020
+    license: "commercial textbook"
+    seab_alignment: n/a
+  - citation: "Dijkstra, E. W. A note on two problems in connexion with graphs. Numerische Mathematik 1, 269-271, 1959."
+    publication_year: 1959
+    license: "publisher article"
+    seab_alignment: n/a
+language: en
