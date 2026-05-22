@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-labelledby="title desc">
+  <title id="title">Static hypothesis test decision visual</title>
+  <desc id="desc">Static fallback showing the formula z equals observed mean minus null mean over standard error, with a right-tail rejection region.</desc>
+  <rect width="800" height="420" fill="#ffffff"/>
+  <rect x="48" y="46" width="704" height="328" rx="8" fill="#f8fafc" stroke="#cbd5e1"/>
+  <text x="80" y="100" fill="#0f172a" font-family="Arial, sans-serif" font-size="28" font-weight="700">Decision rule</text>
+  <text x="80" y="150" fill="#0f172a" font-family="monospace" font-size="25">z = (xbar - mu0) / (sigma / sqrt(n))</text>
+  <path d="M96 300 C174 298 220 254 272 190 C306 148 350 132 400 132 C450 132 494 148 528 190 C580 254 626 298 704 300" fill="none" stroke="#1f5f8b" stroke-width="7" stroke-linecap="round"/>
+  <path d="M592 260 C626 296 659 300 704 300 L704 330 L592 330 Z" fill="#b54708" opacity="0.28"/>
+  <line x1="592" y1="164" x2="592" y2="330" stroke="#b54708" stroke-width="4" stroke-dasharray="10 8"/>
+  <line x1="552" y1="188" x2="552" y2="330" stroke="#6941c6" stroke-width="4"/>
+  <text x="582" y="154" fill="#b54708" font-family="Arial, sans-serif" font-size="18" font-weight="700">critical boundary</text>
+  <text x="520" y="180" fill="#6941c6" font-family="Arial, sans-serif" font-size="18" font-weight="700">sample z</text>
+  <text x="80" y="352" fill="#334155" font-family="Arial, sans-serif" font-size="20">The observed mean must be scaled by standard error before deciding.</text>
+</svg>

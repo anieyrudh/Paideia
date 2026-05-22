@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: hypothesis-test-decision
+prerequisites:
+  - id: probability-distributions
+    title: "Probability Distributions"
+    relationship: "Null models assign probability to possible sample statistics."
+    status: planned
+  - id: central-limit-theorem
+    title: "Central Limit Theorem"
+    relationship: "Sampling distributions justify normal decision regions for sample means."
+    status: available
+downstream:
+  - id: confidence-intervals
+    title: "Confidence Intervals"
+    relationship: "Interval estimates and two-sided tests use the same sampling uncertainty."
+    status: available
+  - id: experimental-design
+    title: "Experimental Design"
+    relationship: "Study design determines what a rejected null can and cannot support."
+    status: planned
+siblings:
+  - id: p-values
+    title: "P-values"
+    relationship: "Tail evidence is another way to express the same decision threshold."
+    status: planned
+  - id: effect-size
+    title: "Effect Size"
+    relationship: "Practical importance must be separated from significance."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: p-value-null-true
+      label: "P-value as probability H0 is true"
+    - id: significance-importance
+      label: "Statistical significance as practical importance"
+    - id: direction-only
+      label: "Direction alone decides rejection"
+  edges:
+    - from: direction-only
+      to: p-value-null-true
+      label: "both skip the null sampling distribution"
+    - from: p-value-null-true
+      to: significance-importance
+      label: "overstates what the decision proves"
+mermaid_source: graph.mmd

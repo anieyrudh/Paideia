@@ -1,0 +1,129 @@
+schema_version: "1.0.0"
+id: hypothesis-test-decision
+aliases:
+  - hypothesis testing
+  - significance test
+  - rejection region
+  - p-value comparison
+branch: shared
+subject: math
+level: "Shared core"
+module: "Inference"
+title: "Hypothesis Test Decision Lab"
+one_line_summary: "Decide whether sample evidence falls in a rejection region for a normal mean test."
+syllabus_ref: "Shared mathematics / Inference / One-sample hypothesis tests"
+prerequisites:
+  - probability-distributions
+  - central-limit-theorem
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A process is claimed to have mean 50. A sample of 36 observations has mean 51.3 and known population standard deviation 6.0. For a 5% upper-tail test, what decision should the test make?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Reject the null hypothesis because the observed mean is above 50."
+      - "Do not reject the null hypothesis because the z statistic is below the 5% critical boundary."
+      - "Reject the null hypothesis because the p-value is the probability the null is true."
+      - "Do not reject the null hypothesis because significance never applies to sample means."
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: battery-life-claim
+    prompt: |
+      A battery maker claims the mean life is 10.0 hours. A quality team samples 49 batteries, finds a mean of 9.6 hours, and uses a known population standard deviation of 1.4 hours. At the 5% level, decide whether there is evidence that the mean life is lower than claimed.
+    surface_form: "battery-life quality claim"
+    same_concept_check: "Same concept: define a null mean, compute a standard error and z statistic, compare with the correct tail's critical boundary, then interpret reject or do-not-reject in context."
+    rubric_path: problem-solving/battery-life-claim.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-22"
+      author: "Codex"
+      summary: "Built shared-core hypothesis test decision lab with prediction gate, normal-mean decision kernel, decision-region chart, formula panel, and transfer problem."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-22"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-22"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "P-value is the probability the null is true"
+    description: "Learners may read a small p-value as P(H0 is true) instead of as tail evidence calculated assuming the null model."
+    evidence_source: "OpenStax Introductory Statistics 2e, Chapter 9 hypothesis testing discussion."
+    surface_in_predict: true
+  - name: "Significance means practical importance"
+    description: "Learners may treat rejection as proof of a large or important real-world effect, even when the sample size makes a small difference statistically detectable."
+    evidence_source: "OpenStax Introductory Statistics 2e, Chapter 9 hypothesis testing examples."
+    surface_in_predict: true
+  - name: "Any sample mean above the null rejects an upper-tail test"
+    description: "Learners may compare only the direction of the observed mean to the null mean and skip the standard error, alpha, and critical boundary."
+    evidence_source: "OpenStax Introductory Statistics 2e, Section 9.5 full hypothesis test examples."
+    surface_in_predict: true
+sources:
+  - citation: "Illowsky, B., Dean, S., et al. Introductory Statistics 2e, Chapter 9 Hypothesis Testing with One Sample. OpenStax, 2023."
+    url: "https://openstax.org/books/introductory-statistics-2e/pages/9-introduction"
+    publication_year: 2023
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "Illowsky, B., Dean, S., et al. Introductory Statistics 2e, Section 9.1 Null and Alternative Hypotheses. OpenStax, 2023."
+    url: "https://openstax.org/books/introductory-statistics-2e/pages/9-1-null-and-alternative-hypotheses"
+    publication_year: 2023
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "Illowsky, B., Dean, S., et al. Introductory Statistics 2e, Section 9.5 Additional Information and Full Hypothesis Test Examples. OpenStax, 2023."
+    url: "https://openstax.org/books/introductory-statistics-2e/pages/9-5-additional-information-and-full-hypothesis-test-examples"
+    publication_year: 2023
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+language: en

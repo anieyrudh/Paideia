@@ -1,0 +1,11 @@
+state_labels:
+  nullMean: "Null mean"
+  observedMean: "Observed sample mean"
+  populationStandardDeviation: "Known population standard deviation"
+  sampleSize: "Sample size"
+  alpha: "Significance level"
+  alternative: "Alternative hypothesis"
+  standardError: "Standard error"
+  z: "z statistic"
+  criticalBoundary: "Critical boundary"
+  rejectNull: "Decision"
