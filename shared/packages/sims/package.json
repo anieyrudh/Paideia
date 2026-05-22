@@ -14,7 +14,8 @@
     "./free-body-diagram-mechanics": "./src/free-body-diagram-mechanics.tsx",
     "./gradient-descent-landscape": "./src/gradient-descent-landscape.tsx",
     "./linear-programming-feasible-region": "./src/linear-programming-feasible-region.tsx",
-    "./ode-phase-portrait": "./src/ode-phase-portrait.tsx"
+    "./ode-phase-portrait": "./src/ode-phase-portrait.tsx",
+    "./pid-bode-builder": "./src/pid-bode-builder.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -26,6 +27,7 @@
     "@paideia/charting": "workspace:*",
     "@paideia/circuits": "workspace:*",
     "@paideia/content-schema": "workspace:*",
+    "@paideia/control-systems": "workspace:*",
     "@paideia/dynamical-systems": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/mechanics": "workspace:*",

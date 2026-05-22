@@ -1,0 +1,22 @@
+state_labels:
+  kp:
+    label: "Proportional gain Kp"
+    meaning: "Present-error gain applied by the PID controller."
+  ki:
+    label: "Integral gain Ki"
+    meaning: "Accumulated-error gain that reduces persistent final offset."
+  kd:
+    label: "Derivative gain Kd"
+    meaning: "Error-slope gain that can add damping and phase lead."
+  naturalFrequencyRadPerSec:
+    label: "Plant natural frequency"
+    meaning: "Undamped plant frequency in radians per second."
+  dampingRatio:
+    label: "Plant damping ratio"
+    meaning: "Dimensionless damping ratio of the second-order plant."
+  phaseMarginDeg:
+    label: "Phase margin"
+    meaning: "Angular buffer from the gain crossover phase to -180 degrees."
+  overshootPercent:
+    label: "Overshoot"
+    meaning: "Amount the closed-loop step response exceeds the reference, as a percentage."

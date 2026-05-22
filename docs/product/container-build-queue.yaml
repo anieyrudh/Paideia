@@ -652,7 +652,7 @@ entries:
   - id: shared.control.pid-bode-builder
     title: "PID Tuner & Bode Builder"
     priority: P0
-    status: ready-for-build
+    status: in-build
     cluster: Control theory
     discipline: systems
     reuse_status: shared-core

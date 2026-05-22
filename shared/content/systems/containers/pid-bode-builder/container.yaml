@@ -1,0 +1,114 @@
+schema_version: "1.0.0"
+id: pid-bode-builder
+aliases:
+  - PID tuner
+  - Bode builder
+  - closed-loop response
+  - stability margins
+branch: shared
+subject: systems
+level: "Shared core"
+module: "Control theory"
+title: "PID Tuner and Bode Builder"
+one_line_summary: "Tune PID gains and connect the closed-loop step response to open-loop Bode stability margins."
+syllabus_ref: "Shared systems / Control theory / PID response and Bode stability margins"
+prerequisites:
+  - odes
+  - transfer-functions
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: per-sim
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: thermal-loop-retune
+    prompt: |
+      A thermal chamber has a slower sensor than the training plant. Retune the PID gains so overshoot stays below 15% while the phase margin remains at least 35 degrees.
+    surface_form: "thermal chamber retune"
+    same_concept_check: "Still compares PID time-response metrics with open-loop Bode stability margins for a feedback loop."
+    rubric_path: problem-solving/thermal-loop-retune.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Paideia"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-22"
+      author: "Codex"
+      summary: "Built shared-core PID/Bode container with prediction gate, formula evidence, control-system kernels, and shared sim package."
+authors:
+  - "Codex"
+advisor_signoffs: []
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-22"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "High gain always improves control"
+    description: |
+      Learners may focus on faster response and miss that higher crossover frequency often comes with more phase lag and less robustness.
+    evidence_source: "Astrom and Murray feedback systems PID and loop-shaping chapters."
+    surface_in_predict: true
+  - name: "Bode magnitude alone determines stability"
+    description: |
+      Learners may read only the 0 dB crossing and ignore the phase left before the loop reaches -180 degrees.
+    evidence_source: "Astrom and Murray feedback systems frequency-response stability margins."
+    surface_in_predict: true
+  - name: "Derivative gain removes steady-state error"
+    description: |
+      Learners may attribute integral-action behaviour to derivative gain instead of seeing derivative as damping and phase-shaping.
+    evidence_source: "Nise control systems PID controller discussion."
+    surface_in_predict: true
+sources:
+  - citation: "Astrom, Karl J., and Richard M. Murray. Feedback Systems: An Introduction for Scientists and Engineers, second edition."
+    url: "https://fbsbook.org/"
+    publication_year: 2021
+    license: "CC BY-NC-SA 4.0"
+    seab_alignment: n/a
+  - citation: "Nise, Norman S. Control Systems Engineering, eighth edition, PID control and frequency-response chapters."
+    publication_year: 2020
+    license: "Proprietary textbook reference"
+    seab_alignment: n/a
+  - citation: "MIT OpenCourseWare. Dynamic Systems and Control, frequency response and PID control lecture notes."
+    url: "https://ocw.mit.edu/"
+    publication_year: 2024
+    license: "CC BY-NC-SA"
+    seab_alignment: n/a
+language: en

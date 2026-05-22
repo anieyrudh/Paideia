@@ -728,6 +728,9 @@ importers:
       '@paideia/content-schema':
         specifier: workspace:*
         version: link:../../../core/content-schema
+      '@paideia/control-systems':
+        specifier: workspace:*
+        version: link:../../../core/control-systems
       '@paideia/dynamical-systems':
         specifier: workspace:*
         version: link:../../../core/dynamical-systems

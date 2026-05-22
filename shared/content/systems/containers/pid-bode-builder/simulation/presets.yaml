@@ -1,0 +1,25 @@
+presets:
+  - id: balanced-loop
+    label: "Balanced loop"
+    state:
+      kp: 1.4
+      ki: 0.7
+      kd: 0.18
+      naturalFrequencyRadPerSec: 2.5
+      dampingRatio: 0.45
+  - id: aggressive-proportional
+    label: "Aggressive proportional"
+    state:
+      kp: 3.2
+      ki: 0.7
+      kd: 0.18
+      naturalFrequencyRadPerSec: 2.5
+      dampingRatio: 0.45
+  - id: damping-focused
+    label: "Damping focused"
+    state:
+      kp: 1.8
+      ki: 0.55
+      kd: 0.42
+      naturalFrequencyRadPerSec: 2.5
+      dampingRatio: 0.45

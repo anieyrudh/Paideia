@@ -1,0 +1,64 @@
+id: pid-bode-builder
+title: "PID Tuner and Bode Builder"
+interaction_type: systems-flow-diagram
+kernel_deps:
+  - core/sim-runtime
+  - core/control-systems
+  - core/charting
+  - core/prediction-gate
+  - core/ui-sim
+  - core/shared
+predict:
+  prompt: |
+    A PID loop starts with Kp = 1.4, Ki = 0.7, and Kd = 0.18. If Kp is increased while the plant is unchanged, what is the most likely robustness tradeoff?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The response can get faster, but the phase margin may shrink."
+      - "The phase margin must increase because the controller is stronger."
+      - "Only the Bode magnitude changes; the step response cannot change."
+      - "Derivative action will remove the final steady-state error."
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: proportional-gain
+      label: "Proportional gain Kp"
+      kind: slider
+      kernel_binding: state.kp
+      bounds: { min: 0.2, max: 5, step: 0.1 }
+    - id: integral-gain
+      label: "Integral gain Ki"
+      kind: slider
+      kernel_binding: state.ki
+      bounds: { min: 0, max: 2.5, step: 0.05 }
+    - id: derivative-gain
+      label: "Derivative gain Kd"
+      kind: slider
+      kernel_binding: state.kd
+      bounds: { min: 0, max: 1, step: 0.02 }
+    - id: natural-frequency
+      label: "Plant natural frequency"
+      kind: slider
+      kernel_binding: state.naturalFrequencyRadPerSec
+      bounds: { min: 1, max: 6, step: 0.1 }
+    - id: damping-ratio
+      label: "Plant damping ratio"
+      kind: slider
+      kernel_binding: state.dampingRatio
+      bounds: { min: 0.15, max: 1.2, step: 0.05 }
+observe:
+  renderers:
+    - id: pid-bode-readout
+      module: "@paideia/shared-sims/pid-bode-builder"
+      symbol: PidBodeBuilderSim
+      props_binding: |
+        Show PID gains, closed-loop step response, open-loop Bode traces, margin readouts, formula legend, substitutions, units, and interpretation.
+explain:
+  prompt: |
+    Which gain improved the time response, and what did it cost in phase margin or overshoot?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "High gain always improves control"
+    - "Bode magnitude alone determines stability"
+    - "Derivative gain removes steady-state error"
