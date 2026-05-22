@@ -51,16 +51,16 @@ button {
   display: grid;
   gap: 1.4rem;
   grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
-  min-height: 300px;
-  padding: 2rem;
+  min-height: 260px;
+  padding: 1.8rem 2rem;
 }
 
 .hero h1 {
-  font-size: clamp(2.4rem, 6vw, 5.6rem);
+  font-size: clamp(2.4rem, 6vw, 5rem);
   letter-spacing: 0;
   line-height: 0.92;
   margin: 0;
-  max-width: 11ch;
+  max-width: 12ch;
 }
 
 .hero p {
@@ -211,9 +211,96 @@ button {
   overflow-wrap: anywhere;
 }
 
+.cluster-card a {
+  color: inherit;
+  display: grid;
+  gap: 0.18rem;
+  text-decoration: none;
+}
+
+.cluster-card a:hover,
+.cluster-card a:focus-visible {
+  color: var(--accent);
+  outline: 3px solid rgba(15, 107, 104, 0.18);
+  outline-offset: 3px;
+}
+
+.cluster-card strong {
+  color: var(--ink);
+}
+
+.cluster-card small {
+  color: var(--muted);
+}
+
 .empty-state,
 .container-preview {
   border-left: 4px solid var(--accent);
+}
+
+.container-preview {
+  gap: 1rem;
+}
+
+.container-preview__lead {
+  max-width: 70ch;
+}
+
+.container-workbench {
+  border-block: 1px solid var(--line);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  padding-block: 1rem;
+}
+
+.container-workbench section {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.container-workbench h3,
+.container-workbench p,
+.sutd-lab-title {
+  margin: 0;
+}
+
+.sutd-lab-title {
+  color: var(--ink);
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+.sutd-lab-bench {
+  background: #f8fbfa;
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.sutd-lab-header {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.sutd-lab-bench button {
+  background: var(--accent);
+  border: 0;
+  color: white;
+  cursor: pointer;
+  font-weight: 900;
+  min-height: 44px;
+  padding: 0.7rem 0.9rem;
+}
+
+.sutd-lab-bench button:hover,
+.sutd-lab-bench button:focus-visible {
+  background: #0b5654;
+  outline: 3px solid rgba(15, 107, 104, 0.2);
+  outline-offset: 2px;
 }
 
 .sutd-sim-panel {
@@ -370,5 +457,14 @@ button {
 
   .sutd-sim-panel {
     grid-template-columns: 1fr;
+  }
+
+  .container-workbench {
+    grid-template-columns: 1fr;
+  }
+
+  .sutd-lab-header {
+    align-items: start;
+    display: grid;
   }
 }

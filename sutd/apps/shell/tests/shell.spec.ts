@@ -3,10 +3,10 @@ import { expect, test } from "@playwright/test";
 test("renders the first SUTD curriculum wrapper container", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: "SUTD curriculum wrapper substrate" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "SUTD Learning Map" })).toBeVisible();
   const status = page.getByLabel("SUTD shell status");
   await expect(status).toContainText("7");
-  await expect(status.getByText("product containers wired", { exact: true })).toBeVisible();
+  await expect(status.getByText("interactive concepts", { exact: true })).toBeVisible();
 
   await page.getByRole("button", { name: /EPD/ }).click();
   await expect(page.getByRole("heading", { name: "PID Step Response" })).toBeVisible();

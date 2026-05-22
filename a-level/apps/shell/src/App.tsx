@@ -104,17 +104,28 @@ const orderedContainers = [...containers].sort((left, right) => {
   return left.title.localeCompare(right.title);
 });
 
-const StageList = () => {
+const LearningGuide = () => {
   const stages = [
-    { name: "Predict", detail: "commit first" },
-    { name: "Manipulate", detail: "move the model" },
-    { name: "Observe", detail: "read the result" },
-    { name: "Explain", detail: "explain the cause" },
-    { name: "Transfer", detail: "use it elsewhere" },
+    {
+      name: "Make a call",
+      detail: "Choose what you expect before the result appears.",
+    },
+    {
+      name: "Move one control",
+      detail: "Change a single quantity and watch the model respond.",
+    },
+    {
+      name: "Read the formula",
+      detail: "Match the numbers, units, and colored symbols to the visual.",
+    },
+    {
+      name: "Use it elsewhere",
+      detail: "Try the transfer problem after the lab makes sense.",
+    },
   ] as const;
 
   return (
-    <ol className="stage-list" aria-label="PMOE-T stages">
+    <ol className="learning-guide" aria-label="How to use this lab">
       {stages.map((stage) => (
         <li key={stage.name}>
           <strong>{stage.name}</strong>
@@ -193,6 +204,36 @@ const ContainerList = ({
   );
 };
 
+const ConceptTabs = ({
+  active,
+  onJump,
+}: {
+  readonly active: ShellContainer;
+  readonly onJump: (targetId: string) => (event: MouseEvent<HTMLAnchorElement>) => void;
+}) => {
+  const tabs = [
+    { id: "learn", label: "Learn", detail: "intuition and definitions" },
+    { id: "lab", label: "Simulate", detail: "change the model" },
+    { id: "solve", label: "Solve", detail: "strategy and transfer" },
+    { id: "map", label: "Map", detail: "what connects next" },
+  ] as const;
+
+  return (
+    <nav className="concept-tabs" aria-label={`${active.title} sections`}>
+      {tabs.map((tab) => (
+        <a
+          href={`#${encodeURIComponent(active.id)}`}
+          key={tab.id}
+          onClick={onJump(tab.id)}
+        >
+          <strong>{tab.label}</strong>
+          <span>{tab.detail}</span>
+        </a>
+      ))}
+    </nav>
+  );
+};
+
 const KnowledgeGraphBrief = ({
   active,
 }: {
@@ -206,7 +247,7 @@ const KnowledgeGraphBrief = ({
   ];
 
   return (
-    <section className="brief-section" aria-labelledby="graph-title">
+    <section className="brief-section" id="map" aria-labelledby="graph-title">
       <h2 id="graph-title">Knowledge graph</h2>
       <p>{graphText}</p>
       <ul>
@@ -290,7 +331,7 @@ const ConceptContent = ({
 }: {
   readonly active: ShellContainer;
 }) => (
-  <section className="concept-panel" aria-labelledby="concept-brief-title">
+  <section className="concept-panel" id="learn" aria-labelledby="concept-brief-title">
     <div className="concept-section concept-lead">
       <p className="meta-line">concept card</p>
       <h2 id="concept-brief-title">First principles</h2>
@@ -316,7 +357,7 @@ const ConceptContent = ({
         </ul>
       </section>
 
-      <section className="concept-section" aria-labelledby="strategy-title">
+      <section className="concept-section" id="solve" aria-labelledby="strategy-title">
         <h3 id="strategy-title">Problem-solving algorithm</h3>
         <ol>
           {active.problemSolvingSteps.map((step) => (
@@ -424,16 +465,16 @@ export const App = () => {
             </div>
           </div>
 
+          <ConceptTabs active={active} onJump={scrollWithinActiveContainer} />
           <MasteryMap active={active} mastery={mastery} onMasteryChange={updateMastery} />
+          <LearningGuide />
 
-          <StageList />
-
-          <div className="lab-layout" id="lab">
+          <div className="lab-layout">
             <div className="learning-column">
               <ConceptContent active={active} />
 
               {Sim === null || activeSim === null ? (
-                <section className="sim-panel" aria-labelledby="sim-title">
+                <section className="sim-panel" id="lab" aria-labelledby="sim-title">
                   <div className="sim-header">
                     <div>
                       <p className="meta-line">{learnerStatus(active.status)}</p>
@@ -442,7 +483,7 @@ export const App = () => {
                   </div>
                 </section>
               ) : (
-                <section className="sim-panel" aria-labelledby="sim-title">
+                <section className="sim-panel" id="lab" aria-labelledby="sim-title">
                   <div className="sim-header">
                     <div>
                       <p className="meta-line">{learnerInteractionType(activeSim.interactionType)}</p>

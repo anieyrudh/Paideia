@@ -110,7 +110,7 @@ textarea:focus-visible {
 .meta-line,
 .sidebar p,
 .package-row small,
-.stage-list span {
+.learning-guide span {
   color: var(--muted);
   font-size: 0.82rem;
 }
@@ -227,7 +227,7 @@ textarea:focus-visible {
 
 .content-panel {
   display: grid;
-  gap: 1.2rem;
+  gap: 1rem;
   padding: 1.7rem;
 }
 
@@ -239,10 +239,10 @@ textarea:focus-visible {
 }
 
 .container-header h1 {
-  font-size: clamp(2.5rem, 7vw, 6.8rem);
+  font-size: clamp(2.4rem, 6vw, 5.8rem);
   letter-spacing: 0;
-  line-height: 0.86;
-  max-width: 10ch;
+  line-height: 0.9;
+  max-width: 13ch;
 }
 
 .container-header p {
@@ -266,23 +266,56 @@ textarea:focus-visible {
   text-align: right;
 }
 
-.stage-list {
+.concept-tabs {
+  border-block: 1px solid var(--line);
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.concept-tabs a {
+  display: grid;
+  gap: 0.18rem;
+  min-height: 72px;
+  padding: 0.8rem 0.9rem;
+}
+
+.concept-tabs a + a {
+  border-left: 1px solid var(--line);
+}
+
+.concept-tabs strong {
+  color: var(--deep);
+  font-size: 1rem;
+}
+
+.concept-tabs span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.concept-tabs a:hover,
+.concept-tabs a:focus-visible {
+  background: rgba(255, 253, 247, 0.78);
+}
+
+.learning-guide {
   display: grid;
   gap: 0.6rem;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.stage-list li {
-  border-top: 2px solid var(--deep);
+.learning-guide li {
+  border-top: 2px solid color-mix(in srgb, var(--accent) 72%, var(--line));
   display: grid;
   gap: 0.15rem;
   padding: 0.55rem 0 0;
 }
 
-.stage-list strong {
+.learning-guide strong {
   font-size: 0.95rem;
 }
 
@@ -366,8 +399,9 @@ textarea:focus-visible {
 .lab-layout {
   align-items: start;
   display: grid;
-  gap: 1rem;
-  grid-template-columns: minmax(0, 1fr) minmax(250px, 320px);
+  gap: 1.2rem;
+  grid-template-columns: minmax(0, 1fr) minmax(250px, 340px);
+  scroll-margin-top: 1rem;
 }
 
 .learning-column {
@@ -376,12 +410,11 @@ textarea:focus-visible {
 }
 
 .concept-panel {
-  background: rgba(255, 253, 247, 0.72);
-  border: 1px solid var(--line);
-  border-radius: 18px;
+  border-block: 1px solid var(--line);
   display: grid;
   gap: 1rem;
-  padding: 1rem;
+  padding: 1rem 0;
+  scroll-margin-top: 1rem;
 }
 
 .concept-grid {
@@ -426,9 +459,10 @@ textarea:focus-visible {
 .sim-panel {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 18px;
-  box-shadow: 0 24px 60px rgba(16, 32, 26, 0.09);
+  border-radius: 14px;
+  box-shadow: 0 18px 48px rgba(16, 32, 26, 0.08);
   overflow: hidden;
+  scroll-margin-top: 1rem;
 }
 
 .sim-header {
@@ -456,6 +490,7 @@ textarea:focus-visible {
   display: grid;
   gap: 0.55rem;
   padding-top: 0.8rem;
+  scroll-margin-top: 1rem;
 }
 
 .brief-section p,
@@ -614,6 +649,7 @@ textarea:focus-visible {
   .container-header,
   .lab-layout,
   .concept-grid,
+  .concept-tabs,
   .vector-lab {
     display: grid;
     grid-template-columns: 1fr;
@@ -641,7 +677,12 @@ textarea:focus-visible {
     justify-items: start;
   }
 
-  .stage-list {
+  .concept-tabs a + a {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .learning-guide {
     grid-template-columns: 1fr;
   }
 
