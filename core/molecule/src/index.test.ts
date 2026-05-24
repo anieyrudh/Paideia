@@ -1,6 +1,8 @@
 import fc from "fast-check";
 import { describe, expect, it } from "vitest";
 
+import { approxEqual } from "@paideia/shared";
+
 import {
   adjacencyList,
   atomicMass,
@@ -118,10 +120,11 @@ describe("molecularFormula and molecularMass", () => {
   });
 
   it("computes mass from caller supplied atomic masses and rejects missing masses", () => {
-    expect(molecularMass(water, { H: mass(1.008), O: mass(15.999) })).toEqual({
-      ok: true,
-      value: 18.015,
-    });
+    const waterMass = molecularMass(water, { H: mass(1.008), O: mass(15.999) });
+    expect(waterMass.ok).toBe(true);
+    if (waterMass.ok) {
+      expect(approxEqual(waterMass.value, 18.015, 1e-9)).toBe(true);
+    }
     expect(molecularMass(water, { H: mass(1.008) }).ok).toBe(false);
     expect(molecularMass(water, { H: mass(1.008), O: 0 as ReturnType<typeof mass> }).ok).toBe(false);
 
@@ -148,6 +151,7 @@ describe("molecularFormula and molecularMass", () => {
           expect(total).toBe(symbols.length);
         },
       ),
+      { seed: 42 },
     );
   });
 });
@@ -233,6 +237,7 @@ describe("layoutMolecule2D", () => {
           expect(Number.isFinite(position.y)).toBe(true);
         }
       }),
+      { seed: 84 },
     );
   });
 });

@@ -115,7 +115,12 @@ export const molecularFormula = (molecule: MoleculeGraph): KernelResult<Molecule
 
   const ordered = orderedElements(counts);
   return ok({
-    hill: ordered.map((element) => `${element}${counts[element] === 1 ? "" : counts[element]}`).join(""),
+    hill: ordered
+      .map((element) => {
+        const count = counts[element] ?? 0;
+        return `${element}${count === 1 ? "" : count}`;
+      })
+      .join(""),
     counts,
   });
 };
