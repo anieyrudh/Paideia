@@ -7,6 +7,7 @@
     { "path": "./core/function-eval" },
     { "path": "./core/numerical-math" },
     { "path": "./core/ui-app" },
+    { "path": "./core/a11y" },
     { "path": "./core/probability-stats" },
     { "path": "./core/uncertainty-propagation" },
     { "path": "./core/linear-algebra" },
