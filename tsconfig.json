@@ -17,6 +17,7 @@
     { "path": "./core/control-systems" },
     { "path": "./core/electromagnetism" },
     { "path": "./core/mechanics" },
+    { "path": "./core/materials" },
     { "path": "./core/waves" },
     { "path": "./core/thermodynamics" },
     { "path": "./core/heat-transfer" },
