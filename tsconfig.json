@@ -16,6 +16,7 @@
     { "path": "./core/control-systems" },
     { "path": "./core/electromagnetism" },
     { "path": "./core/mechanics" },
+    { "path": "./core/waves" },
     { "path": "./core/plotting" },
     { "path": "./core/charting" },
     { "path": "./core/graph-layout" },
