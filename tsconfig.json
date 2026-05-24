@@ -16,6 +16,7 @@
     { "path": "./core/digital-logic" },
     { "path": "./core/control-systems" },
     { "path": "./core/electromagnetism" },
+    { "path": "./core/chemistry" },
     { "path": "./core/mechanics" },
     { "path": "./core/materials" },
     { "path": "./core/waves" },
