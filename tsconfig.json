@@ -13,6 +13,7 @@
     { "path": "./core/dynamical-systems" },
     { "path": "./core/optimization" },
     { "path": "./core/circuits" },
+    { "path": "./core/digital-logic" },
     { "path": "./core/control-systems" },
     { "path": "./core/electromagnetism" },
     { "path": "./core/mechanics" },
