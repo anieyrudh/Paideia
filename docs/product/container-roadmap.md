@@ -64,7 +64,6 @@ sim-bayes
 sim-eigenlab
 sim-pid-bode
 alevel-sim-waves
-ib-core-tok-essay
 ```
 
 ## Kernel Foundation Status
@@ -105,6 +104,9 @@ Existing Tier 1 support kernels already available for first product work:
 
 Next missing foundations:
 
+- Foundation gap matrix: use
+  [`core-foundation-gap-matrix.md`](./core-foundation-gap-matrix.md) before
+  promoting table rows to `ready-for-build`.
 - Container registry: keep the checked seed in [`container-build-queue.yaml`](./container-build-queue.yaml), then generate shell navigation, dependency graph views, and build queues from it.
 - Container wave runbook: use [`container-wave-runbook.md`](./container-wave-runbook.md) to claim `ready-for-build` items safely and keep one container per PR.
 - Parallel product-slice prompts: use [`parallel-build-prompts.md`](./parallel-build-prompts.md) for one-PR-per-container assignment.
@@ -113,7 +115,9 @@ Next missing foundations:
 - Notebook lab runtime: needed for computational topics, data analysis, and Python-first exploration.
 - Media pipeline: thumbnails, diagrams, narrated walkthroughs, and fallback visuals should be generated and validated consistently.
 - Assessment adapter: connect problem-solving algorithms, mastery state, FSRS/BKT, and curriculum-specific exam wrappers.
-- Domain-specific heavy kernels: molecule, systems dynamics, argument graph, corpus, and comparator kernels should wait until a concrete first container needs them.
+- Domain-specific heavy kernels should wait until a concrete first container
+  needs them. A-Level humanities, GP, KI, history, literature, art, theatre,
+  MOB, and POA are out of current scope.
 
 ## Product Slice Proofs
 
@@ -253,18 +257,17 @@ Build these first because they unlock the most reuse.
 
 | Container | Cluster | Curricula |
 | --- | --- | --- |
-| Bayes Theorem Visualiser | Bayesian reasoning | SUTD, A-Level, IB |
-| Central Limit Theorem Sampler | Probability | SUTD, A-Level, IB |
-| Hypothesis Test Decision Lab | Inference | SUTD, A-Level, IB |
-| Eigenvector Transformation Lab | Linear algebra | SUTD, IB, shared math |
-| ODE Phase Portrait Lab | Dynamical systems | SUTD, IB, engineering |
-| Gradient Descent Landscape | Optimisation / ML | SUTD, IB, A-Level Computing |
-| Graph Algorithm Explorer | Algorithms / networks | SUTD, A-Level Computing, IB |
-| Free-Body Diagram / Mechanics Lab | Physics / engineering | SUTD, A-Level, IB |
-| Circuit & Phasor Lab | Signals / circuits | SUTD, A-Level, IB |
+| Bayes Theorem Visualiser | Bayesian reasoning | SUTD, A-Level |
+| Central Limit Theorem Sampler | Probability | SUTD, A-Level |
+| Hypothesis Test Decision Lab | Inference | SUTD, A-Level |
+| Eigenvector Transformation Lab | Linear algebra | SUTD, shared math |
+| ODE Phase Portrait Lab | Dynamical systems | SUTD, engineering |
+| Gradient Descent Landscape | Optimisation / ML | SUTD, A-Level Computing |
+| Graph Algorithm Explorer | Algorithms / networks | SUTD, A-Level Computing |
+| Free-Body Diagram / Mechanics Lab | Physics / engineering | SUTD, A-Level |
+| Circuit & Phasor Lab | Signals / circuits | SUTD, A-Level |
 | PID Tuner & Bode Builder | Control theory | SUTD, engineering |
-| LP Feasible Region Visualiser | Optimisation | SUTD ESD, IB Math AI |
-| TOK Knowledge Framework Explorer | IB core | IB |
+| LP Feasible Region Visualiser | Optimisation | SUTD ESD |
 
 ### P1: High-Value Simulation Families
 
@@ -276,18 +279,15 @@ Build these first because they unlock the most reuse.
 | Electrical systems | Maxwell builder, impedance, power electronics |
 | Chemistry | Equilibrium, kinetics, spectroscopy, VSEPR |
 | Biology | DNA-to-protein, membranes, enzyme kinetics |
-| IB IA / EE | Research question generator, source pack builder, uncertainty lab |
 | ESD systems | Markov chains, queueing, newsvendor, bullwhip |
 
-### P2: Specialized, Advanced, And Humanities
+### P2: Specialized And Advanced
 
 | Area | Examples |
 | --- | --- |
 | ASD | Load paths, daylighting, architectural comparators |
 | DAI | Human-centred AI, trust calibration, AI evaluation |
 | SMT | Acoustics, spiking neurons, quantum confinement |
-| IB Arts | Comparative study builder, process portfolio logger |
-| History / GP / TOK | OPVL, argument maps, historiography lens tools |
 
 ## Curriculum Views
 
@@ -330,7 +330,8 @@ Initial focus:
 - A-Level Chemistry.
 - A-Level Biology.
 - A-Level Computing.
-- Economics and GP later as structured reasoning containers.
+- A-Level humanities, GP, KI, history, literature, art, theatre, MOB, and POA
+  are out of current scope.
 
 First useful A-Level sequence:
 
@@ -355,29 +356,6 @@ First useful A-Level sequence:
 19. Magnetic fields. Status: reviewed product slice.
 20. Normal distribution. Status: reviewed product slice.
 21. Confidence intervals. Status: reviewed product slice.
-
-### IB
-
-IB needs both content mastery and programme-core support.
-
-Build order:
-
-1. TOK containers.
-2. EE containers.
-3. IA infrastructure.
-4. Group 4 science containers.
-5. Group 5 math containers.
-6. Economics / History / Psychology.
-7. Language and Arts process containers.
-
-IB-specific overlays should include:
-
-- HL/SL distinction.
-- IA links.
-- TOK links.
-- EE suitability.
-- Assessment criteria.
-- Reflection prompts.
 
 ## Cross-Curriculum Shared Containers
 
@@ -414,15 +392,6 @@ IB-specific overlays should include:
 - TCP congestion.
 - Consensus: Paxos and Raft.
 
-### Inquiry And Research Shared
-
-- Research question evaluator.
-- Source pack builder.
-- Argument map builder.
-- Concept map and mindmap generator.
-- Reflection / Feynman explain-back.
-- IA / EE / TOK transfer prompt engine.
-
 ## First Repository Workstreams
 
 Use these as the first planning groups:
@@ -440,12 +409,6 @@ alevel-math
 alevel-physics
 alevel-chemistry
 alevel-biology
-ib-core-tok-ee-cas
-ib-sciences
-ib-math-aa
-ib-math-ai
-ib-economics-history-psychology
-ib-language-arts
 ```
 
 ## Candidate Registry Seed
