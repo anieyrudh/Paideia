@@ -26,6 +26,7 @@
     { "path": "./core/functional-dependencies" },
     { "path": "./core/indexing-query-cost" },
     { "path": "./core/transactions" },
+    { "path": "./core/model-evaluation" },
     { "path": "./core/mechanics" },
     { "path": "./core/materials" },
     { "path": "./core/waves" },
