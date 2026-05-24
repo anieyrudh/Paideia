@@ -23,6 +23,7 @@
     { "path": "./core/time-series" },
     { "path": "./core/finance" },
     { "path": "./core/relational-data" },
+    { "path": "./core/functional-dependencies" },
     { "path": "./core/mechanics" },
     { "path": "./core/materials" },
     { "path": "./core/waves" },
