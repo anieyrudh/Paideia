@@ -6,6 +6,7 @@
     { "path": "./core/prediction-gate" },
     { "path": "./core/function-eval" },
     { "path": "./core/numerical-math" },
+    { "path": "./core/ui-app" },
     { "path": "./core/probability-stats" },
     { "path": "./core/uncertainty-propagation" },
     { "path": "./core/linear-algebra" },
