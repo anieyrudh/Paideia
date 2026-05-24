@@ -17,6 +17,7 @@
     { "path": "./core/control-systems" },
     { "path": "./core/electromagnetism" },
     { "path": "./core/chemistry" },
+    { "path": "./core/queueing-systems" },
     { "path": "./core/mechanics" },
     { "path": "./core/materials" },
     { "path": "./core/waves" },
