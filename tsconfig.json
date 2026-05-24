@@ -13,6 +13,7 @@
     { "path": "./core/systems-dynamics" },
     { "path": "./core/argument-graph" },
     { "path": "./core/corpus" },
+    { "path": "./core/molecule" },
     { "path": "./core/probability-stats" },
     { "path": "./core/uncertainty-propagation" },
     { "path": "./core/linear-algebra" },
