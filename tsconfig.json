@@ -12,6 +12,7 @@
     { "path": "./core/comparator" },
     { "path": "./core/systems-dynamics" },
     { "path": "./core/argument-graph" },
+    { "path": "./core/corpus" },
     { "path": "./core/probability-stats" },
     { "path": "./core/uncertainty-propagation" },
     { "path": "./core/linear-algebra" },
