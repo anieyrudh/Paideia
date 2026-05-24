@@ -19,6 +19,7 @@
     { "path": "./core/waves" },
     { "path": "./core/thermodynamics" },
     { "path": "./core/heat-transfer" },
+    { "path": "./core/fluid-mechanics" },
     { "path": "./core/plotting" },
     { "path": "./core/charting" },
     { "path": "./core/graph-layout" },
