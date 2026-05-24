@@ -20,6 +20,7 @@
     { "path": "./core/queueing-systems" },
     { "path": "./core/scheduling" },
     { "path": "./core/vector-calculus" },
+    { "path": "./core/time-series" },
     { "path": "./core/mechanics" },
     { "path": "./core/materials" },
     { "path": "./core/waves" },
