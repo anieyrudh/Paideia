@@ -19,6 +19,7 @@
     { "path": "./core/chemistry" },
     { "path": "./core/queueing-systems" },
     { "path": "./core/scheduling" },
+    { "path": "./core/vector-calculus" },
     { "path": "./core/mechanics" },
     { "path": "./core/materials" },
     { "path": "./core/waves" },
