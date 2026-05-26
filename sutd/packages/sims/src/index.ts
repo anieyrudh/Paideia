@@ -19,3 +19,4 @@ export { default as MarkovChainSteadyState } from "./markov-chain-steady-state.j
 export { default as FairnessThresholdAudit } from "./fairness-threshold-audit.js";
 export { default as DeterminantAndTrace } from "./determinant-and-trace.js";
 export { default as EigenvaluesAndEigenvectors } from "./eigenvalues-and-eigenvectors.js";
+export { default as LinearTransformations } from "./linear-transformations.js";

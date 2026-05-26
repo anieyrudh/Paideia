@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: linear-transformations
+prerequisites:
+  - id: matrices
+    title: "Matrices"
+    relationship: "Linear transformations are represented by 2x2 matrices via basis images."
+    status: planned
+  - id: vector-transformations
+    title: "Vector Transformations"
+    relationship: "Linearity sends every vector via x T(e_1) + y T(e_2)."
+    status: available
+downstream:
+  - id: determinant-and-trace
+    title: "Determinant and Trace"
+    relationship: "Determinant reads area scale and orientation; trace summarises rotation/scaling axes."
+    status: available
+  - id: eigenvalues-and-eigenvectors
+    title: "Eigenvalues and Eigenvectors"
+    relationship: "Eigenvectors are invariant directions of the linear map."
+    status: planned
+  - id: computer-graphics-transforms
+    title: "Computer Graphics Transforms"
+    relationship: "Real-world graphics pipelines stack rotations, scales, shears, and reflections."
+    status: planned
+siblings:
+  - id: matrix-inverse-2x2
+    title: "Matrix Inverse (2x2)"
+    relationship: "Inverting a linear transformation requires det != 0."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: linear-equals-rigid
+      label: "Linear means rigid"
+    - id: rotation-diagonal
+      label: "Rotation matrices are diagonal"
+    - id: linear-allows-translation
+      label: "Linear transformations may translate"
+  edges:
+    - from: linear-equals-rigid
+      to: rotation-diagonal
+      label: "both ignore the off-diagonal pattern"
+    - from: linear-allows-translation
+      to: linear-equals-rigid
+      label: "both relax the origin-fixing requirement"
+mermaid_source: graph.mmd
