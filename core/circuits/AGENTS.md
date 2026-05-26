@@ -23,6 +23,9 @@ Exports from `@paideia/circuits`:
 - `SeriesAcCircuitInput = { readonly sourceVoltageRmsVolts: number; readonly frequencyHertz: number; readonly elements: readonly SeriesAcElement[] }`
 - `SeriesAcCircuitSolution = { readonly impedance: ComplexImpedance; readonly elementImpedances: readonly ComplexImpedance[]; readonly impedanceMagnitudeOhms: number; readonly impedancePhaseRadians: number; readonly currentRmsAmps: number; readonly currentPhaseRadians: number; readonly powerFactor: number; readonly apparentPowerVoltAmps: number; readonly realPowerWatts: number; readonly reactivePowerVars: number }`
 - `solveSeriesAcCircuit(input: SeriesAcCircuitInput): KernelResult<SeriesAcCircuitSolution>` — solve equivalent series RLC impedance, RMS current, current phase relative to a 0 degree voltage reference, power factor, and AC power terms.
+- `SeriesRlcResonanceInput = { readonly sourceVoltageRmsVolts: number; readonly resistanceOhms: number; readonly inductanceHenrys: number; readonly capacitanceFarads: number; readonly frequencyHertz: number }`
+- `SeriesRlcResonanceModel = { readonly resonantFrequencyHertz: number; readonly angularFrequencyRadPerSec: number; readonly inductiveReactanceOhms: number; readonly capacitiveReactanceOhms: number; readonly netReactanceOhms: number; readonly impedanceMagnitudeOhms: number; readonly currentRmsAmps: number; readonly currentPhaseRadians: number; readonly powerFactor: number; readonly qualityFactor: number; readonly bandwidthHertz: number; readonly interpretation: string }`
+- `seriesRlcResonanceModel(input: SeriesRlcResonanceInput): KernelResult<SeriesRlcResonanceModel>` — solve learner-facing series RLC resonance evidence from the AC impedance kernel.
 - `ResistorElement = { readonly kind: "resistor"; readonly id: CircuitElementId; readonly from: CircuitNodeId; readonly to: CircuitNodeId; readonly resistanceOhms: number }`
 - `CurrentSourceElement = { readonly kind: "current-source"; readonly id: CircuitElementId; readonly from: CircuitNodeId; readonly to: CircuitNodeId; readonly currentAmps: number }` — positive current flows from `from` to `to`.
 - `VoltageSourceElement = { readonly kind: "voltage-source"; readonly id: CircuitElementId; readonly positive: CircuitNodeId; readonly negative: CircuitNodeId; readonly voltageVolts: number }`
@@ -38,6 +41,7 @@ Exports from `@paideia/circuits`:
 - Node and element IDs are stable, non-empty strings created with `nodeId` and `elementId`.
 - Resistor values are finite and strictly positive in ohms.
 - AC source RMS voltage, frequency, inductance, and capacitance are finite and strictly positive.
+- Series RLC resonance calculations treat resonance as `f0 = 1 / (2*pi*sqrt(LC))`, net reactance as `X_L - X_C`, and current phase relative to a 0 degree source-voltage reference.
 - Source values are finite SI values. Signed current and voltage are allowed.
 - `DcCircuit.referenceNode` is the ground node and is always reported at `0 V`.
 - Element current signs follow each element's declared orientation: resistor `from -> to`, current source `from -> to`, voltage source `positive -> negative`.
@@ -54,7 +58,7 @@ Exports from `@paideia/circuits`:
 - Does **not** use branch-specific shortcuts or curriculum flags.
 
 ## When to consider this module
-Use `core/circuits` when a sim needs Ohm's law checks, equivalent resistance, voltage drops in a divider, a DC operating point for a small ideal linear circuit, or a series RLC impedance/phasor calculation. If a sim is about to hand-roll Kirchhoff equations or impedance vector arithmetic, stop and use this module.
+Use `core/circuits` when a sim needs Ohm's law checks, equivalent resistance, voltage drops in a divider, a DC operating point for a small ideal linear circuit, or a series RLC impedance/phasor/resonance calculation. If a sim is about to hand-roll Kirchhoff equations or impedance vector arithmetic, stop and use this module.
 
 ## Extension protocol
 1. Open a `core-change-proposal` issue naming every current consumer (A-Level electricity sims, SUTD circuits labs, any diagnostics that compare power balance).

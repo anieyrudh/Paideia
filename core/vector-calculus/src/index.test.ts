@@ -5,11 +5,14 @@ import type { KernelResult, Rect } from "@paideia/shared";
 import {
   curl2D,
   divergence2D,
+  directionalDerivative2D,
   doubleIntegralRect,
   gradient2D,
   hessian2D,
   lineIntegral2D,
   point2,
+  quadraticSurfaceAt2D,
+  quadraticSurfaceCoefficients2D,
   sampleVectorField2D,
   scalarLineIntegral2D,
 } from "./index.js";
@@ -57,6 +60,66 @@ describe("point and derivative probes", () => {
     expect(curl2D(() => {
       throw new Error("bad field");
     }, unwrap(point2(0, 0))).ok).toBe(false);
+  });
+});
+
+describe("quadratic surface helpers", () => {
+  it("returns closed-form surface value, gradient, and Hessian", () => {
+    const coefficients = unwrap(
+      quadraticSurfaceCoefficients2D({
+        family: "bowl",
+        xCurvature: 1.2,
+        xyCoupling: 0.3,
+        yCurvature: 0.8,
+      }),
+    );
+    const surface = unwrap(
+      quadraticSurfaceAt2D({
+        coefficients,
+        point: unwrap(point2(1, 0.5)),
+      }),
+    );
+
+    expect(surface.gradient.value[0]).toBeCloseTo(1.75, 12);
+    expect(surface.gradient.value[1]).toBeCloseTo(0.5, 12);
+    expect(surface.hessian.matrix).toEqual([
+      [1.2, 0.3],
+      [0.3, 0.8],
+    ]);
+  });
+
+  it("projects gradients onto unit directions", () => {
+    const derivative = unwrap(
+      directionalDerivative2D({
+        direction: [3, 4],
+        gradient: {
+          at: [0, 0],
+          magnitude: 5,
+          value: [5, 0],
+        },
+      }),
+    );
+
+    expect(derivative.unitDirection[0]).toBeCloseTo(0.6, 12);
+    expect(derivative.unitDirection[1]).toBeCloseTo(0.8, 12);
+    expect(derivative.value).toBeCloseTo(3, 12);
+  });
+
+  it("rejects non-finite coefficients and zero directions", () => {
+    expect(
+      quadraticSurfaceCoefficients2D({
+        family: "saddle",
+        xCurvature: Number.NaN,
+        xyCoupling: 0,
+        yCurvature: 1,
+      }).ok,
+    ).toBe(false);
+    expect(
+      directionalDerivative2D({
+        direction: [0, 0],
+        gradient: { at: [0, 0], magnitude: 0, value: [1, 1] },
+      }).ok,
+    ).toBe(false);
   });
 });
 

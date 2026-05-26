@@ -3,9 +3,19 @@ import fc from "fast-check";
 import { approxEqual } from "@paideia/shared";
 import {
   coulombs,
+  degrees,
   electricForceOnCharge,
+  electromagneticWaveModel,
+  hertz,
+  ohms,
   pointChargeElectricField,
   pointChargeModel,
+  seconds,
+  squareMetres,
+  speedOfLightVacuumMetresPerSecond,
+  teslas,
+  uniformFluxInductionModel,
+  voltsPerMetre,
 } from "./index.js";
 
 describe("point-charge electromagnetism", () => {
@@ -111,5 +121,132 @@ describe("point-charge electromagnetism", () => {
       ),
       { seed: 20260521, numRuns: 80 },
     );
+  });
+});
+
+describe("uniform flux induction", () => {
+  it("computes Faraday emf and Lenz opposition for increasing flux", () => {
+    const model = uniformFluxInductionModel({
+      angleToNormalDegrees: degrees(0),
+      circuitResistanceOhms: ohms(5),
+      durationSeconds: seconds(0.2),
+      finalFieldTeslas: teslas(0.8),
+      initialFieldTeslas: teslas(0.2),
+      loopAreaSquareMetres: squareMetres(0.03),
+      turns: 40,
+    });
+
+    expect(model.ok).toBe(true);
+    if (!model.ok) throw new Error(model.error.message);
+    expect(approxEqual(model.value.initialFluxWebers, 0.006, 1e-12)).toBe(true);
+    expect(approxEqual(model.value.finalFluxWebers, 0.024, 1e-12)).toBe(true);
+    expect(approxEqual(model.value.inducedEmfVolts, -3.6, 1e-12)).toBe(true);
+    expect(approxEqual(model.value.inducedCurrentAmps, 0.72, 1e-12)).toBe(true);
+    expect(model.value.lenzOpposition).toBe("oppose-increase");
+    expect(model.value.inducedFieldDirection).toBe("into-page");
+  });
+
+  it("uses the angle to the loop normal in the flux projection", () => {
+    const faceOn = uniformFluxInductionModel({
+      angleToNormalDegrees: degrees(0),
+      circuitResistanceOhms: ohms(10),
+      durationSeconds: seconds(0.5),
+      finalFieldTeslas: teslas(0.4),
+      initialFieldTeslas: teslas(0.1),
+      loopAreaSquareMetres: squareMetres(0.02),
+      turns: 10,
+    });
+    const tilted = uniformFluxInductionModel({
+      angleToNormalDegrees: degrees(60),
+      circuitResistanceOhms: ohms(10),
+      durationSeconds: seconds(0.5),
+      finalFieldTeslas: teslas(0.4),
+      initialFieldTeslas: teslas(0.1),
+      loopAreaSquareMetres: squareMetres(0.02),
+      turns: 10,
+    });
+
+    expect(faceOn.ok).toBe(true);
+    expect(tilted.ok).toBe(true);
+    if (!faceOn.ok || !tilted.ok) throw new Error("Expected valid induction models.");
+    expect(approxEqual(tilted.value.inducedEmfMagnitudeVolts / faceOn.value.inducedEmfMagnitudeVolts, 0.5, 1e-12)).toBe(true);
+  });
+
+  it("rejects invalid turns and timing", () => {
+    const model = uniformFluxInductionModel({
+      angleToNormalDegrees: degrees(0),
+      circuitResistanceOhms: ohms(5),
+      durationSeconds: seconds(0),
+      finalFieldTeslas: teslas(0.8),
+      initialFieldTeslas: teslas(0.2),
+      loopAreaSquareMetres: squareMetres(0.03),
+      turns: 40,
+    });
+
+    expect(model.ok).toBe(false);
+    if (model.ok) throw new Error("Expected zero duration to be rejected.");
+    expect(model.error.code).toBe("precondition-violated");
+  });
+});
+
+describe("electromagnetic wave model", () => {
+  it("connects Maxwell wave speed, wavelength, and field amplitudes", () => {
+    const model = electromagneticWaveModel({
+      electricFieldAmplitudeVoltsPerMetre: voltsPerMetre(10),
+      frequencyHertz: hertz(100e6),
+      relativePermeability: 1,
+      relativePermittivity: 1,
+    });
+
+    expect(model.ok).toBe(true);
+    if (!model.ok) throw new Error(model.error.message);
+    expect(approxEqual(model.value.speedMetresPerSecond, speedOfLightVacuumMetresPerSecond, 1e-12)).toBe(true);
+    expect(approxEqual(model.value.wavelengthMetres, 2.99792458, 1e-12)).toBe(true);
+    expect(approxEqual(model.value.magneticFieldAmplitudeTesla, 3.3356409519815205e-8, 1e-12)).toBe(true);
+    expect(model.value.spectrumBand).toBe("radio");
+  });
+
+  it("slows waves in higher relative permittivity media", () => {
+    const vacuum = electromagneticWaveModel({
+      electricFieldAmplitudeVoltsPerMetre: voltsPerMetre(4),
+      frequencyHertz: hertz(3e14),
+      relativePermeability: 1,
+      relativePermittivity: 1,
+    });
+    const glass = electromagneticWaveModel({
+      electricFieldAmplitudeVoltsPerMetre: voltsPerMetre(4),
+      frequencyHertz: hertz(3e14),
+      relativePermeability: 1,
+      relativePermittivity: 2.25,
+    });
+
+    expect(vacuum.ok).toBe(true);
+    expect(glass.ok).toBe(true);
+    if (!vacuum.ok || !glass.ok) throw new Error("Expected valid wave models.");
+    expect(glass.value.speedMetresPerSecond).toBeLessThan(vacuum.value.speedMetresPerSecond);
+    expect(glass.value.wavelengthMetres).toBeLessThan(vacuum.value.wavelengthMetres);
+  });
+
+  it("rejects non-positive frequency or field amplitude", () => {
+    const invalidFrequency = electromagneticWaveModel({
+      electricFieldAmplitudeVoltsPerMetre: voltsPerMetre(1),
+      frequencyHertz: hertz(0),
+      relativePermeability: 1,
+      relativePermittivity: 1,
+    });
+    const invalidField = electromagneticWaveModel({
+      electricFieldAmplitudeVoltsPerMetre: voltsPerMetre(0),
+      frequencyHertz: hertz(5e14),
+      relativePermeability: 1,
+      relativePermittivity: 1,
+    });
+
+    expect(invalidFrequency.ok).toBe(false);
+    expect(invalidField.ok).toBe(false);
+    if (invalidFrequency.ok || invalidField.ok) {
+      throw new Error("Expected invalid wave inputs to be rejected.");
+    }
+    expect(invalidFrequency.error.code).toBe("precondition-violated");
+    expect(invalidField.error.code).toBe("precondition-violated");
   });
 });

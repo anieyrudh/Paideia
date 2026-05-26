@@ -1,0 +1,8 @@
+labels:
+  frequencyTeraHertz: "Frequency (THz)"
+  electricFieldVoltsPerMetre: "Electric field amplitude (V/m)"
+  relativePermittivity: "Relative permittivity"
+  relativePermeability: "Relative permeability"
+  speedMetresPerSecond: "Wave speed (m/s)"
+  wavelengthMetres: "Wavelength (m)"
+  magneticFieldAmplitudeTesla: "Magnetic field amplitude (T)"

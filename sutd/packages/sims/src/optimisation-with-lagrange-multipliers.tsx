@@ -1,6 +1,9 @@
 import type { TSimulationSpec } from "@paideia/content-schema";
-import { optimizationTolerance } from "@paideia/optimization";
-import { type ConceptPackageId, err, ok, type KernelResult } from "@paideia/shared";
+import {
+  lagrangeMultiplierEvidence2D,
+  type LagrangeMultiplierEvidence2D,
+} from "@paideia/optimization";
+import { type ConceptPackageId, ok, type KernelResult } from "@paideia/shared";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
 import { ControlGroup, Slider } from "@paideia/ui-sim";
 import type { CSSProperties } from "react";
@@ -16,16 +19,7 @@ type LagrangeState = {
 
 type LagrangeEvidence = {
   readonly state: LagrangeState;
-  readonly point: readonly [number, number];
-  readonly objectiveValue: number;
-  readonly constraintValue: number;
-  readonly objectiveGradient: readonly [number, number];
-  readonly constraintGradient: readonly [number, number];
-  readonly lambda: number;
-  readonly residual: number;
-  readonly tangentDerivative: number;
-  readonly sensitivity: "x-resource" | "y-resource" | "balanced";
-};
+} & LagrangeMultiplierEvidence2D;
 
 export const lagrangeMultipliersPackageId =
   "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/optimisation-with-lagrange-multipliers" as ConceptPackageId;
@@ -76,6 +70,13 @@ export const lagrangeMultipliersSpec: TSimulationSpec = {
         kind: "slider",
         kernel_binding: "state.linearY",
         bounds: { min: 0.5, max: 6, step: 0.1 },
+      },
+      {
+        id: "curvature",
+        label: "diminishing returns",
+        kind: "slider",
+        kernel_binding: "state.curvature",
+        bounds: { min: 0.1, max: 1.2, step: 0.05 },
       },
     ],
   },
@@ -137,64 +138,17 @@ const currentState = (state: Partial<LagrangeState>): LagrangeState => ({
   curvature: clamp(state.curvature ?? defaults.curvature, 0.1, 1.2),
 });
 
-const dot = (left: readonly [number, number], right: readonly [number, number]): number =>
-  left[0] * right[0] + left[1] * right[1];
-
 const norm = (vector: readonly [number, number]): number => Math.hypot(vector[0], vector[1]);
-
-const objective = (state: LagrangeState, x: number, y: number): number =>
-  state.linearX * x +
-  state.linearY * y -
-  0.5 * state.curvature * (x * x + y * y);
 
 export const lagrangeEvidence = (
   partial: Partial<LagrangeState>,
 ): KernelResult<LagrangeEvidence> => {
   const state = currentState(partial);
-  const theta = (state.angleDegrees * Math.PI) / 180;
-  const point = [state.radiusX * Math.cos(theta), state.radiusY * Math.sin(theta)] as const;
-  const objectiveGradient = [
-    state.linearX - state.curvature * point[0],
-    state.linearY - state.curvature * point[1],
-  ] as const;
-  const constraintGradient = [
-    (2 * point[0]) / (state.radiusX * state.radiusX),
-    (2 * point[1]) / (state.radiusY * state.radiusY),
-  ] as const;
-  const constraintNormSquared = dot(constraintGradient, constraintGradient);
-  if (constraintNormSquared <= optimizationTolerance.tight) {
-    return err("numerical-instability", "constraint gradient is too small for lambda estimate");
-  }
-  const lambda = dot(objectiveGradient, constraintGradient) / constraintNormSquared;
-  const residualVector = [
-    objectiveGradient[0] - lambda * constraintGradient[0],
-    objectiveGradient[1] - lambda * constraintGradient[1],
-  ] as const;
-  const residual = norm(residualVector);
-  const tangent = [-constraintGradient[1], constraintGradient[0]] as const;
-  const tangentNorm = norm(tangent);
-  const unitTangent = [tangent[0] / tangentNorm, tangent[1] / tangentNorm] as const;
-  const tangentDerivative = dot(objectiveGradient, unitTangent);
-  const constraintValue =
-    (point[0] * point[0]) / (state.radiusX * state.radiusX) +
-    (point[1] * point[1]) / (state.radiusY * state.radiusY);
-  const sensitivity =
-    Math.abs(constraintGradient[0]) > Math.abs(constraintGradient[1]) + 0.1
-      ? "x-resource"
-      : Math.abs(constraintGradient[1]) > Math.abs(constraintGradient[0]) + 0.1
-        ? "y-resource"
-        : "balanced";
+  const evidence = lagrangeMultiplierEvidence2D(state);
+  if (!evidence.ok) return evidence;
   return ok({
+    ...evidence.value,
     state,
-    point,
-    objectiveValue: objective(state, point[0], point[1]),
-    constraintValue,
-    objectiveGradient,
-    constraintGradient,
-    lambda,
-    residual,
-    tangentDerivative,
-    sensitivity,
   });
 };
 
@@ -229,9 +183,11 @@ const Metric = ({ label, value }: { readonly label: string; readonly value: stri
   </div>
 );
 
-const toSvg = (state: LagrangeState, x: number, y: number): readonly [number, number] => [
-  180 + (x / state.radiusX) * 110,
-  180 - (y / state.radiusY) * 110,
+const svgUnitsPerDesignUnit = 32;
+
+const toSvg = (_state: LagrangeState, x: number, y: number): readonly [number, number] => [
+  180 + x * svgUnitsPerDesignUnit,
+  180 - y * svgUnitsPerDesignUnit,
 ];
 
 const ConstraintPlot = ({ evidence }: { readonly evidence: LagrangeEvidence }) => {
@@ -243,7 +199,15 @@ const ConstraintPlot = ({ evidence }: { readonly evidence: LagrangeEvidence }) =
   return (
     <svg aria-label="Constraint ellipse with gradient vectors" role="img" viewBox="0 0 360 360">
       <rect fill="#f8fafc" height="360" width="360" />
-      <ellipse cx="180" cy="180" fill="#ecfeff" rx="110" ry="110" stroke="#0891b2" strokeWidth="4" />
+      <ellipse
+        cx="180"
+        cy="180"
+        fill="#ecfeff"
+        rx={state.radiusX * svgUnitsPerDesignUnit}
+        ry={state.radiusY * svgUnitsPerDesignUnit}
+        stroke="#0891b2"
+        strokeWidth="4"
+      />
       {[-1, 0, 1].map((tick) => (
         <g key={tick} stroke="#d9e2ef" strokeWidth="1">
           <line x1={70} x2={290} y1={180 + tick * 55} y2={180 + tick * 55} />

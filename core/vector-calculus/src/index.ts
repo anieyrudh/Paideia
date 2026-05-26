@@ -92,8 +92,165 @@ export interface VectorFieldSample2D {
   readonly magnitude: number;
 }
 
+export type QuadraticSurfaceFamily2D = "bowl" | "saddle" | "tilted-valley";
+
+export interface QuadraticSurfaceFamilyInput2D {
+  readonly family: QuadraticSurfaceFamily2D;
+  readonly xCurvature: number;
+  readonly yCurvature: number;
+  readonly xyCoupling: number;
+}
+
+export interface QuadraticSurfaceCoefficients2D {
+  readonly xx: number;
+  readonly yy: number;
+  readonly xy: number;
+  readonly x: number;
+  readonly y: number;
+  readonly constant: number;
+}
+
+export interface QuadraticSurfaceAtInput2D {
+  readonly coefficients: QuadraticSurfaceCoefficients2D;
+  readonly point: Point2;
+}
+
+export interface QuadraticSurfaceAt2D {
+  readonly point: Point2;
+  readonly value: number;
+  readonly gradient: Gradient2D;
+  readonly hessian: Hessian2D;
+}
+
+export interface DirectionalDerivativeInput2D {
+  readonly gradient: Gradient2D;
+  readonly direction: Vector2;
+}
+
+export interface DirectionalDerivative2D {
+  readonly at: Point2;
+  readonly unitDirection: Vector2;
+  readonly value: number;
+}
+
 export const point2 = (x: number, y: number): KernelResult<Point2> =>
   validatePoint([x, y], "point");
+
+export const quadraticSurfaceCoefficients2D = (
+  input: QuadraticSurfaceFamilyInput2D,
+): KernelResult<QuadraticSurfaceCoefficients2D> => {
+  const xCurvature = finiteNumber(input.xCurvature, "xCurvature");
+  if (!xCurvature.ok) return xCurvature;
+  const yCurvature = finiteNumber(input.yCurvature, "yCurvature");
+  if (!yCurvature.ok) return yCurvature;
+  const xyCoupling = finiteNumber(input.xyCoupling, "xyCoupling");
+  if (!xyCoupling.ok) return xyCoupling;
+
+  switch (input.family) {
+    case "bowl":
+      return ok({
+        constant: 0,
+        x: 0.4,
+        xx: input.xCurvature,
+        xy: input.xyCoupling,
+        y: -0.2,
+        yy: input.yCurvature,
+      });
+    case "saddle":
+      return ok({
+        constant: 0,
+        x: 0.2,
+        xx: input.xCurvature,
+        xy: input.xyCoupling,
+        y: 0.1,
+        yy: -input.yCurvature,
+      });
+    case "tilted-valley":
+      return ok({
+        constant: 0,
+        x: 0.9,
+        xx: 0.35 * input.xCurvature,
+        xy: -0.6 + input.xyCoupling,
+        y: -0.35,
+        yy: 1.4 * input.yCurvature,
+      });
+  }
+};
+
+export const quadraticSurfaceAt2D = (
+  input: QuadraticSurfaceAtInput2D,
+): KernelResult<QuadraticSurfaceAt2D> => {
+  const point = validatePoint(input.point, "point");
+  if (!point.ok) return point;
+  const { coefficients } = input;
+  for (const [value, label] of [
+    [coefficients.xx, "xx"],
+    [coefficients.yy, "yy"],
+    [coefficients.xy, "xy"],
+    [coefficients.x, "x"],
+    [coefficients.y, "y"],
+    [coefficients.constant, "constant"],
+  ] as const) {
+    const finite = finiteNumber(value, label);
+    if (!finite.ok) return finite;
+  }
+
+  const [x, y] = point.value;
+  const value =
+    0.5 * coefficients.xx * x * x +
+    0.5 * coefficients.yy * y * y +
+    coefficients.xy * x * y +
+    coefficients.x * x +
+    coefficients.y * y +
+    coefficients.constant;
+  const gradientValue: Vector2 = [
+    coefficients.xx * x + coefficients.xy * y + coefficients.x,
+    coefficients.yy * y + coefficients.xy * x + coefficients.y,
+  ];
+  const magnitude = Math.hypot(gradientValue[0], gradientValue[1]);
+  const hessian: Matrix2 = [
+    [coefficients.xx, coefficients.xy],
+    [coefficients.xy, coefficients.yy],
+  ];
+  const finiteValue = finiteNumber(value, "quadratic surface value");
+  if (!finiteValue.ok) return finiteValue;
+  const finiteGradient = validatePoint(gradientValue, "quadratic surface gradient");
+  if (!finiteGradient.ok) return finiteGradient;
+  const finiteMagnitude = finiteNumber(magnitude, "quadratic surface gradient magnitude");
+  if (!finiteMagnitude.ok) return finiteMagnitude;
+  const finiteHessian = finiteMatrix(hessian, "quadratic surface Hessian");
+  if (!finiteHessian.ok) return finiteHessian;
+
+  return ok({
+    gradient: { at: point.value, magnitude, value: finiteGradient.value },
+    hessian: { at: point.value, matrix: hessian },
+    point: point.value,
+    value,
+  });
+};
+
+export const directionalDerivative2D = (
+  input: DirectionalDerivativeInput2D,
+): KernelResult<DirectionalDerivative2D> => {
+  const direction = validatePoint(input.direction, "direction");
+  if (!direction.ok) return direction;
+  const magnitude = Math.hypot(direction.value[0], direction.value[1]);
+  const finiteMagnitude = finiteNumber(magnitude, "direction magnitude");
+  if (!finiteMagnitude.ok) return finiteMagnitude;
+  if (magnitude === 0) {
+    return err("precondition-violated", "direction magnitude must be positive");
+  }
+  const unitDirection: Vector2 = [
+    direction.value[0] / magnitude,
+    direction.value[1] / magnitude,
+  ];
+  const value =
+    input.gradient.value[0] * unitDirection[0] +
+    input.gradient.value[1] * unitDirection[1];
+  const finiteValue = finiteNumber(value, "directional derivative");
+  if (!finiteValue.ok) return finiteValue;
+  return ok({ at: input.gradient.at, unitDirection, value });
+};
 
 export const gradient2D = (
   field: Function3D,

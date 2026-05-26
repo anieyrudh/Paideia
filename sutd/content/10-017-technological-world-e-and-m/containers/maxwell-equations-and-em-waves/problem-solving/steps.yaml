@@ -1,0 +1,25 @@
+steps:
+  - id: convert-frequency
+    title: "Convert frequency"
+    prompt: "Convert THz, GHz, or MHz into hertz."
+    expected: "Use 1 THz = 10^12 Hz."
+  - id: identify-medium
+    title: "Identify medium constants"
+    prompt: "Read epsilon_r and mu_r or infer n."
+    expected: "For a simple medium, n = sqrt(epsilon_r mu_r)."
+  - id: compute-speed
+    title: "Compute wave speed"
+    prompt: "Use Maxwell's wave-speed relation."
+    expected: "v = c / sqrt(epsilon_r mu_r)."
+  - id: compute-wavelength
+    title: "Compute wavelength"
+    prompt: "Use frequency and speed."
+    expected: "lambda = v / f."
+  - id: relate-fields
+    title: "Relate E and B"
+    prompt: "Calculate magnetic-field amplitude if E0 is known."
+    expected: "B0 = E0 / v."
+  - id: interpret
+    title: "Interpret coupling"
+    prompt: "Explain why the wave can propagate without a wire current."
+    expected: "Changing E and B fields sustain each other through Maxwell's equations."
