@@ -1,0 +1,111 @@
+schema_version: "1.0.0"
+id: divergence-and-curl
+aliases:
+  - vector-field-local-diagnostics
+  - divergence-curl
+branch: sutd
+subject: 10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra
+level: "Freshmore"
+module: "Modelling Space and Systems: Multivariable Calculus and Linear Algebra"
+title: "Divergence and Curl"
+one_line_summary: "Use local partial-derivative diagnostics to distinguish source strength from rotational tendency in a vector field."
+syllabus_ref: "SUTD 10.018 Modelling Space and Systems / Multivariable Calculus"
+prerequisites:
+  - vector-fields
+  - partial-derivatives
+  - line-integrals
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    For the field F = <-y, x>, which local diagnostic is nonzero at the origin?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Curl is nonzero while divergence is zero"
+      - "Divergence is nonzero while curl is zero"
+      - "Both divergence and curl are zero"
+      - "Both divergence and curl are negative"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: airflow-local-diagnostic
+    prompt: |
+      An airflow map near a vent has arrows that spread outward but do not visibly rotate. Decide which diagnostic should be large and what it says about the local model.
+    surface_form: "airflow sensor interpretation"
+    same_concept_check: "Same concept: divergence diagnoses source or sink behaviour, while curl diagnoses local spin."
+    rubric_path: problem-solving/airflow-local-diagnostic.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Built SUTD 10.018 divergence-and-curl product slice."
+authors: ["Codex"]
+advisor_signoffs: []
+misconceptions:
+  - name: "Large arrows automatically mean large divergence"
+    description: "Learners may read speed from arrow length as source strength, rather than checking whether flow expands or contracts locally."
+    evidence_source: "OpenStax Calculus Volume 3, vector field diagnostics."
+    surface_in_predict: true
+  - name: "Curl means the whole field must move in circles"
+    description: "Learners may miss that curl is a local rotational tendency, even in fields that do not form complete circular streamlines."
+    evidence_source: "MIT OpenCourseWare multivariable calculus notes on curl."
+    surface_in_predict: true
+sources:
+  - citation: "SUTD 10.018 Modelling Space and Systems course page."
+    url: "https://www.sutd.edu.sg/course/10-018-modelling-space-and-systems"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+  - citation: "OpenStax, Calculus Volume 3, Divergence and Curl."
+    url: "https://openstax.org/details/books/calculus-volume-3"
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "MIT OpenCourseWare 18.02SC Multivariable Calculus."
+    url: "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/"
+    publication_year: 2010
+    license: "CC BY-NC-SA 4.0"
+    seab_alignment: n/a
+language: en

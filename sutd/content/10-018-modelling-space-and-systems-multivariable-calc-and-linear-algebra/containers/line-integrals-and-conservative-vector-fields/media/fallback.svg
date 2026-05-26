@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Fallback diagram for line integrals">
+  <rect width="640" height="360" fill="#ffffff"/>
+  <path d="M90 270 L360 90 L540 250" fill="none" stroke="#dc2626" stroke-width="10" stroke-linejoin="round"/>
+  <circle cx="90" cy="270" r="12" fill="#0f766e"/>
+  <circle cx="540" cy="250" r="12" fill="#7c2d12"/>
+  <text x="70" y="330" font-family="Arial" font-size="28" fill="#0f172a">Path integral compares field direction with route direction</text>
+</svg>

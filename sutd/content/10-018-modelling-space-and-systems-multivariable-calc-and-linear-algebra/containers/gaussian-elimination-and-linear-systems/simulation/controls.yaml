@@ -2,36 +2,42 @@ controls:
   - id: a-coeff
     label: Row 1 x coefficient
     type: slider
+    kernel_binding: state.a
     min: -4
     max: 4
     step: 0.5
   - id: b-coeff
     label: Row 1 y coefficient
     type: slider
+    kernel_binding: state.b
     min: -4
     max: 4
     step: 0.5
   - id: c-coeff
     label: Row 2 x coefficient
     type: slider
+    kernel_binding: state.c
     min: -4
     max: 4
     step: 0.5
   - id: d-coeff
     label: Row 2 y coefficient
     type: slider
+    kernel_binding: state.d
     min: -4
     max: 4
     step: 0.5
   - id: e-rhs
     label: Row 1 right side
     type: slider
+    kernel_binding: state.e
     min: -8
     max: 8
     step: 0.5
   - id: f-rhs
     label: Row 2 right side
     type: slider
+    kernel_binding: state.f
     min: -8
     max: 8
     step: 0.5

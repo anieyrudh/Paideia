@@ -1,0 +1,121 @@
+schema_version: "1.0.0"
+id: double-and-triple-integrals
+aliases:
+  - multiple integrals
+  - volume accumulation
+  - density integration
+branch: sutd
+subject: "10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra"
+level: "Undergraduate"
+module: "10.018 Modelling Space and Systems"
+title: "Double and Triple Integrals"
+one_line_summary: "Accumulate density over rectangular regions and stack area accumulation into volume accumulation."
+syllabus_ref: "SUTD 10.018 Modelling Space and Systems / double and triple integrals"
+prerequisites:
+  - single-variable-integration
+  - regions-and-bounds
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    When a rectangular region doubles in one bound, what happens to a constant-density double integral?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "It doubles, because twice as much base area is accumulated"
+      - "It stays fixed, because density does not change"
+      - "It squares, because there are two variables"
+      - "It becomes a line integral along the boundary"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: nonuniform-plate-mass
+    prompt: |
+      A rectangular component has non-uniform areal density. Set up and evaluate a double integral for total mass, then extend it to a constant-height volume.
+    surface_form: "mass from non-uniform density"
+    same_concept_check: "The setting changes to mass, but the concept remains accumulation of density over area or volume."
+    rubric_path: problem-solving/nonuniform-plate-mass.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Built SUTD 10.018 double and triple integrals product slice with prediction-gated accumulation lab."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-26"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-26"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Bounds are independent of order"
+    description: "Learners may change the order or dimension of integration without updating bounds to match the region."
+    evidence_source: "Stewart Calculus, multiple integrals chapters."
+    surface_in_predict: true
+  - name: "Double integrals only compute area"
+    description: "Learners may miss that double integrals accumulate any density over area, not just unit density."
+    evidence_source: "MIT OCW 18.02SC multiple integrals notes."
+    surface_in_predict: true
+sources:
+  - citation: "Stewart, J. Calculus: Early Transcendentals. 8th ed. Cengage, 2015."
+    publication_year: 2015
+    license: "Publisher copyright"
+    seab_alignment: n/a
+  - citation: "MIT OpenCourseWare. 18.02SC Multivariable Calculus, Unit 3: Multiple Integrals."
+    publication_year: 2010
+    license: "CC BY-NC-SA 4.0"
+    seab_alignment: n/a
+  - citation: "SUTD. 10.018 Modelling Space and Systems course topic list."
+    publication_year: 2026
+    license: "Institutional syllabus reference"
+    seab_alignment: n/a
+language: en

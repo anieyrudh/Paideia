@@ -1,0 +1,70 @@
+id: optimisation-with-lagrange-multipliers
+title: "Lagrange Multipliers Lab"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/optimization
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    At a constrained optimum, what relationship should hold between the objective gradient and the constraint gradient?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "They are parallel, so the objective has no first-order gain along the constraint"
+      - "They are perpendicular, so the objective crosses the constraint"
+      - "The objective gradient must be zero everywhere on the constraint"
+      - "The multiplier is the optimum value of the objective"
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: angle-degrees
+      label: "Constraint point angle"
+      kind: slider
+      kernel_binding: state.angleDegrees
+      bounds: { min: 0, max: 360, step: 5 }
+    - id: radius-x
+      label: "x resource radius"
+      kind: slider
+      kernel_binding: state.radiusX
+      bounds: { min: 1, max: 4, step: 0.1 }
+    - id: radius-y
+      label: "y resource radius"
+      kind: slider
+      kernel_binding: state.radiusY
+      bounds: { min: 1, max: 4, step: 0.1 }
+    - id: linear-x
+      label: "x benefit"
+      kind: slider
+      kernel_binding: state.linearX
+      bounds: { min: 0.5, max: 6, step: 0.1 }
+    - id: linear-y
+      label: "y benefit"
+      kind: slider
+      kernel_binding: state.linearY
+      bounds: { min: 0.5, max: 6, step: 0.1 }
+    - id: curvature
+      label: "diminishing returns"
+      kind: slider
+      kernel_binding: state.curvature
+      bounds: { min: 0.1, max: 1.2, step: 0.05 }
+observe:
+  renderers:
+    - id: lagrange-multipliers-renderer
+      module: "@paideia/sutd-sims/optimisation-with-lagrange-multipliers"
+      symbol: OptimisationWithLagrangeMultipliers
+      props_binding: |
+        Show constraint ellipse, selected feasible point, objective and constraint gradients, lambda estimate, tangent derivative residual, formula legend, substitutions, units, and interpretation.
+explain:
+  prompt: |
+    Explain why parallel gradients mean every feasible first-order move has zero objective gain at the optimum.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "The multiplier is the answer rather than a sensitivity"
+    - "The gradients should be perpendicular at an optimum"
+transfer:
+  prompt: |
+    A package design has a profit objective and a fixed material-budget constraint. Use Lagrange multipliers to decide when no feasible first-order move improves profit.
+  rubric_path: ../problem-solving/packaging-material-budget.md

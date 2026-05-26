@@ -4,6 +4,7 @@ runtime:
   component: GaussianEliminationAndLinearSystems
   kernel_dependencies:
     - "@paideia/linear-algebra"
+    - "@paideia/prediction-gate"
     - "@paideia/sim-runtime"
     - "@paideia/ui-sim"
   browser_required: true

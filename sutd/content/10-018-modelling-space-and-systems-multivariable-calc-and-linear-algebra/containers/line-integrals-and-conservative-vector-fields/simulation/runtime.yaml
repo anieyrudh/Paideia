@@ -1,0 +1,10 @@
+runtime:
+  package: "@paideia/sutd-sims"
+  module: "@paideia/sutd-sims/line-integrals-and-conservative-vector-fields"
+  component: LineIntegralsAndConservativeVectorFields
+  kernel_dependencies:
+    - "@paideia/vector-calculus"
+    - "@paideia/prediction-gate"
+    - "@paideia/sim-runtime"
+    - "@paideia/ui-sim"
+  browser_required: true

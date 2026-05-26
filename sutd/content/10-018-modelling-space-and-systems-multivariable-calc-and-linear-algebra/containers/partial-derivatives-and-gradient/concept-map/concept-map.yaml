@@ -1,0 +1,49 @@
+schema_version: "1.0.0"
+concept_id: partial-derivatives-and-gradient
+title: "Partial Derivatives and Gradient Concept Map"
+nodes:
+  - id: single-variable-derivatives
+    label: "Single-variable derivatives"
+    kind: prerequisite
+  - id: contour-plots
+    label: "Contour plots"
+    kind: prerequisite
+  - id: partial-derivatives-and-gradient
+    label: "Partial derivatives and gradient"
+    kind: core
+  - id: directional-derivatives
+    label: "Directional derivatives"
+    kind: core
+  - id: optimisation-with-lagrange-multipliers
+    label: "Optimisation with Lagrange multipliers"
+    kind: downstream
+  - id: divergence-and-curl
+    label: "Divergence and curl"
+    kind: downstream
+  - id: gradient-along-contour
+    label: "Misconception: gradient points along a contour"
+    kind: misconception
+edges:
+  - from: single-variable-derivatives
+    to: partial-derivatives-and-gradient
+    relation: prerequisite
+  - from: contour-plots
+    to: partial-derivatives-and-gradient
+    relation: prerequisite
+  - from: partial-derivatives-and-gradient
+    to: directional-derivatives
+    relation: supports
+  - from: directional-derivatives
+    to: optimisation-with-lagrange-multipliers
+    relation: prepares
+  - from: partial-derivatives-and-gradient
+    to: divergence-and-curl
+    relation: prepares
+  - from: gradient-along-contour
+    to: partial-derivatives-and-gradient
+    relation: misconception_about
+misconceptions:
+  - id: gradient-along-contour
+    statement: "The gradient points along a contour because the contour is the visible curve."
+    correction: "The gradient is normal to the contour and points toward fastest increase."
+    surfaced_in: predict

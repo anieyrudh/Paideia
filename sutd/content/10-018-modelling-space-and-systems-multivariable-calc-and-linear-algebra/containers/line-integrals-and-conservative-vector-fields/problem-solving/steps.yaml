@@ -1,0 +1,13 @@
+steps:
+  - id: parameterise
+    label: Parameterise the path
+    prompt: "Write the route as r(t), including endpoints and any corner point."
+  - id: dot-product
+    label: Form the work integrand
+    prompt: "Compute F(r(t)) dot r'(t)."
+  - id: integrate
+    label: Accumulate work
+    prompt: "Integrate the scalar work contribution over the route."
+  - id: certify
+    label: Check for a potential
+    prompt: "If a potential exists, compare work with endpoint potential change."

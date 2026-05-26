@@ -6,7 +6,10 @@ describe("gaussian-elimination embed API", () => {
     const loaded = load();
     const resumed = resume({ ...loaded, a: 1 });
     expect(saveState(resumed)).toEqual(resumed);
+    expect(load()).not.toBe(load());
+    expect(saveState(resumed)).not.toBe(resumed);
     expect(score(loaded).uniqueDefaultRecognised).toBe(true);
+    expect(score(resumed).uniqueDefaultRecognised).toBe(false);
     expect(score(resumed).evidenceRevealed).toBe(true);
   });
 });

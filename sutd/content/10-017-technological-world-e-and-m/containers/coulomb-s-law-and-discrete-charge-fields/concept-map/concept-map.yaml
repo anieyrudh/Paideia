@@ -1,0 +1,37 @@
+schema_version: "1.0.0"
+concept_id: coulomb-s-law-and-discrete-charge-fields
+prerequisites:
+  - id: vectors
+    title: Vectors
+    relationship: Electric field and force are vector quantities with direction and magnitude
+    status: planned
+  - id: inverse-square-laws
+    title: Inverse-Square Laws
+    relationship: Coulomb field strength scales with the inverse square of separation
+    status: planned
+downstream:
+  - id: gauss-law-for-symmetric-distributions
+    title: Gauss Law for Symmetric Distributions
+    relationship: Point-charge field reasoning motivates flux and symmetry arguments
+    status: planned
+siblings:
+  - id: electric-field
+    title: Electric Field
+    relationship: Field strength separates source effects from probe-charge force
+    status: planned
+misconception_graph:
+  nodes:
+    - id: field-equals-force
+      label: Field strength is the same as force on every charge
+    - id: source-sets-field
+      label: Source charge sets electric field
+    - id: test-charge-sets-force
+      label: Test charge scales and orients force
+  edges:
+    - from: field-equals-force
+      to: source-sets-field
+      label: challenge by holding source fixed
+    - from: source-sets-field
+      to: test-charge-sets-force
+      label: multiply by q to get force
+mermaid_source: graph.mmd

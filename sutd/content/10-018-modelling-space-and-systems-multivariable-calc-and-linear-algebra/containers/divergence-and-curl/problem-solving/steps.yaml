@@ -1,0 +1,13 @@
+steps:
+  - id: components
+    label: Identify components
+    prompt: "Name P and Q in F=<P,Q>."
+  - id: divergence
+    label: Compute divergence
+    prompt: "Add dP/dx and dQ/dy."
+  - id: curl
+    label: Compute curl
+    prompt: "Subtract dP/dy from dQ/dx."
+  - id: interpret
+    label: Interpret the signs
+    prompt: "Decide whether the field behaves like a source, sink, spinner, or neither."

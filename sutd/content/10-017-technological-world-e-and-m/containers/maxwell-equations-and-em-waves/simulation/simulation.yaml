@@ -1,0 +1,59 @@
+id: maxwell-equations-and-em-waves
+title: Maxwell Equations and EM Waves
+interaction_type: diagram-builder
+kernel_deps:
+  - core/shared
+  - core/content-schema
+  - core/sim-runtime
+  - core/electromagnetism
+  - core/prediction-gate
+  - core/ui-sim
+manipulate:
+  controls:
+    - id: frequency
+      label: Frequency
+      kind: slider
+      kernel_binding: state.frequencyTeraHertz
+      bounds: { min: 100, max: 900, step: 10 }
+    - id: electric-field
+      label: Electric field amplitude
+      kind: slider
+      kernel_binding: state.electricFieldVoltsPerMetre
+      bounds: { min: 1, max: 40, step: 1 }
+    - id: relative-permittivity
+      label: Relative permittivity
+      kind: slider
+      kernel_binding: state.relativePermittivity
+      bounds: { min: 1, max: 6, step: 0.25 }
+    - id: relative-permeability
+      label: Relative permeability
+      kind: slider
+      kernel_binding: state.relativePermeability
+      bounds: { min: 1, max: 3, step: 0.1 }
+predict:
+  prompt: |
+    A changing electric field crosses empty space. What does Maxwell's correction predict next?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - It sustains a changing magnetic field, allowing a transverse electromagnetic wave to propagate.
+      - It needs a wire current, so no wave can travel in vacuum.
+      - It produces only a static electric field with no magnetic component.
+      - It travels faster in glass because the medium has larger permittivity.
+    correct_index: 0
+  rationale_required: true
+observe:
+  renderers:
+    - id: maxwell-wave-readout
+      module: "@paideia/sutd-sims/maxwell-equations-and-em-waves"
+      symbol: MaxwellEquationsAndEmWaves
+      props_binding: |
+        Show coupled E/B fields, medium speed, wavelength, spectrum band, formula substitution, units, and interpretation.
+explain:
+  prompt: |
+    Explain why Maxwell's displacement current term lets light propagate without a conduction current.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - EM waves require a wire current everywhere.
+    - Electric and magnetic waves are separate waves.
+    - Higher permittivity makes the wave faster.

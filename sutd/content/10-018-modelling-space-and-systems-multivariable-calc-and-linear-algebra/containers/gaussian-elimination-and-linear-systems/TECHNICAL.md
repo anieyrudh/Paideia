@@ -140,29 +140,25 @@ pnpm graph:generate
 
 ## Anieyrudh Filter pass
 
-Date: TBD
+Date: 2026-05-26
 Filter version: aniegpt v1.0
 
 ### P0 issues
 
-- No generated Filter output recorded yet.
+- None open after repair. The revealed state is still prediction-gated, uses `core/linear-algebra.gaussianElimination2` for row-reduction evidence, and exposes a visible matrix diagram plus formula/legend/substitution readout.
 
 ### P1 issues
 
-- No generated P1 disposition recorded yet.
+- Runtime dependency drift: resolved by declaring `@paideia/prediction-gate` in `simulation/runtime.yaml`, matching the sim spec and Playwright gate contract.
+- Control binding drift: resolved by adding `kernel_binding` entries for all six coefficient/RHS controls in `simulation/controls.yaml`.
+- Embed lifecycle aliasing: resolved by returning cloned state objects from `load()` and `saveState()`; `resume()` already creates a fresh merged state.
+- Kernel branch coverage: resolved by adding dependent-system and row-swap cases for `gaussianElimination2`.
+- Reveal-gate assertions: resolved by asserting the observation region is absent before prediction commit in manipulation and accessibility tests.
 
 ### High-bandwidth questions surfaced
 
-- None recorded.
+- None. The 2 by 2 scope is intentionally narrow; larger systems should be a separate kernel extension rather than hidden inside this container.
 
 ## Iteration log
 
 - Regenerated README.md and TECHNICAL.md with `pnpm container:docs`.
-
-## P2 notes
-
-- No P2 issues recorded.
-
-## Performance notes
-
-- The sim runs one constant-size 2 by 2 elimination per render with no iterative solver, network assets, animation loop, or large allocation.

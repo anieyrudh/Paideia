@@ -1,12 +1,30 @@
 import {
   err,
+  hertz,
   ok,
+  radians,
+  radiansPerSecond,
   type Brand,
+  type Hertz,
   type KernelResult,
+  type Radians,
+  type RadiansPerSecond,
 } from "@paideia/shared";
 
 export type CircuitNodeId = Brand<string, "CircuitNodeId">;
 export type CircuitElementId = Brand<string, "CircuitElementId">;
+export type Volts = Brand<number, "Volts">;
+export type Ohms = Brand<number, "Ohms">;
+export type Henrys = Brand<number, "Henrys">;
+export type Farads = Brand<number, "Farads">;
+export type Amps = Brand<number, "Amps">;
+
+export const volts = (value: number): Volts => value as Volts;
+export const ohms = (value: number): Ohms => value as Ohms;
+export const henrys = (value: number): Henrys => value as Henrys;
+export const farads = (value: number): Farads => value as Farads;
+export const amps = (value: number): Amps => value as Amps;
+export { hertz, radians, radiansPerSecond };
 
 export const nodeId = (id: string): KernelResult<CircuitNodeId> => {
   const trimmed = id.trim();
@@ -89,6 +107,29 @@ export interface SeriesAcCircuitSolution {
   readonly apparentPowerVoltAmps: number;
   readonly realPowerWatts: number;
   readonly reactivePowerVars: number;
+}
+
+export interface SeriesRlcResonanceInput {
+  readonly sourceVoltageRmsVolts: Volts;
+  readonly resistanceOhms: Ohms;
+  readonly inductanceHenrys: Henrys;
+  readonly capacitanceFarads: Farads;
+  readonly frequencyHertz: Hertz;
+}
+
+export interface SeriesRlcResonanceModel {
+  readonly resonantFrequencyHertz: Hertz;
+  readonly angularFrequencyRadPerSec: RadiansPerSecond;
+  readonly inductiveReactanceOhms: Ohms;
+  readonly capacitiveReactanceOhms: Ohms;
+  readonly netReactanceOhms: Ohms;
+  readonly impedanceMagnitudeOhms: Ohms;
+  readonly currentRmsAmps: Amps;
+  readonly currentPhaseRadians: Radians;
+  readonly powerFactor: number;
+  readonly qualityFactor: number;
+  readonly bandwidthHertz: Hertz;
+  readonly interpretation: string;
 }
 
 export interface ResistorElement {
@@ -411,6 +452,68 @@ export const solveSeriesAcCircuit = (
     Number.isFinite(solution.reactivePowerVars)
     ? ok(solution)
     : err("numerical-instability", "Series AC circuit solution must be finite");
+};
+
+export const seriesRlcResonanceModel = (
+  input: SeriesRlcResonanceInput,
+): KernelResult<SeriesRlcResonanceModel> => {
+  const sourceVoltage = positiveFinite(input.sourceVoltageRmsVolts, "sourceVoltageRmsVolts");
+  if (!sourceVoltage.ok) return sourceVoltage;
+  const resistance = positiveResistance(input.resistanceOhms);
+  if (!resistance.ok) return resistance;
+  const inductance = positiveFinite(input.inductanceHenrys, "inductanceHenrys");
+  if (!inductance.ok) return inductance;
+  const capacitance = positiveFinite(input.capacitanceFarads, "capacitanceFarads");
+  if (!capacitance.ok) return capacitance;
+  const frequency = positiveFinite(input.frequencyHertz, "frequencyHertz");
+  if (!frequency.ok) return frequency;
+
+  const solution = solveSeriesAcCircuit({
+    sourceVoltageRmsVolts: sourceVoltage.value,
+    frequencyHertz: frequency.value,
+    elements: [
+      { kind: "resistor", resistanceOhms: resistance.value },
+      { kind: "inductor", inductanceHenrys: inductance.value },
+      { kind: "capacitor", capacitanceFarads: capacitance.value },
+    ],
+  });
+  if (!solution.ok) return solution;
+
+  const angularFrequencyRadPerSec = 2 * Math.PI * frequency.value;
+  const inductiveReactanceOhms = angularFrequencyRadPerSec * inductance.value;
+  const capacitiveReactanceOhms = 1 / (angularFrequencyRadPerSec * capacitance.value);
+  const netReactanceOhms = inductiveReactanceOhms - capacitiveReactanceOhms;
+  const resonantFrequencyHertz =
+    1 / (2 * Math.PI * Math.sqrt(inductance.value * capacitance.value));
+  const qualityFactor =
+    (1 / resistance.value) * Math.sqrt(inductance.value / capacitance.value);
+  const bandwidthHertz = resonantFrequencyHertz / qualityFactor;
+  const detuningRatio = (frequency.value - resonantFrequencyHertz) / resonantFrequencyHertz;
+  const interpretation =
+    Math.abs(detuningRatio) < 0.03
+      ? "near resonance: inductive and capacitive reactance nearly cancel, so current is high"
+      : netReactanceOhms > 0
+        ? "above resonance: inductive reactance dominates, so current lags the source voltage"
+        : "below resonance: capacitive reactance dominates, so current leads the source voltage";
+
+  const model: SeriesRlcResonanceModel = {
+    angularFrequencyRadPerSec: radiansPerSecond(angularFrequencyRadPerSec),
+    bandwidthHertz: hertz(bandwidthHertz),
+    capacitiveReactanceOhms: ohms(capacitiveReactanceOhms),
+    currentPhaseRadians: radians(solution.value.currentPhaseRadians),
+    currentRmsAmps: amps(solution.value.currentRmsAmps),
+    impedanceMagnitudeOhms: ohms(solution.value.impedanceMagnitudeOhms),
+    inductiveReactanceOhms: ohms(inductiveReactanceOhms),
+    interpretation,
+    netReactanceOhms: ohms(netReactanceOhms),
+    powerFactor: solution.value.powerFactor,
+    qualityFactor,
+    resonantFrequencyHertz: hertz(resonantFrequencyHertz),
+  };
+
+  return Object.values(model).every((value) => typeof value === "string" || Number.isFinite(value))
+    ? ok(model)
+    : err("numerical-instability", "Series RLC resonance model must be finite");
 };
 
 const elementEndpoints = (

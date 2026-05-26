@@ -1,0 +1,64 @@
+controls:
+  - id: turns
+    label: "Coil turns"
+    kind: slider
+    kernel_binding: state.turns
+    unit: turns
+    default: 40
+    min: 1
+    max: 120
+    step: 1
+  - id: loop-area
+    label: "Loop area"
+    kind: slider
+    kernel_binding: state.loopAreaSquareCentimetres
+    unit: cm^2
+    default: 120
+    min: 20
+    max: 300
+    step: 5
+  - id: initial-field
+    label: "Initial field"
+    kind: slider
+    kernel_binding: state.initialFieldMilliTeslas
+    unit: mT
+    default: 100
+    min: -800
+    max: 800
+    step: 25
+  - id: final-field
+    label: "Final field"
+    kind: slider
+    kernel_binding: state.finalFieldMilliTeslas
+    unit: mT
+    default: 500
+    min: -800
+    max: 800
+    step: 25
+  - id: angle
+    label: "Angle to normal"
+    kind: slider
+    kernel_binding: state.angleToNormalDegrees
+    unit: deg
+    default: 0
+    min: 0
+    max: 90
+    step: 5
+  - id: duration
+    label: "Change time"
+    kind: slider
+    kernel_binding: state.durationMilliseconds
+    unit: ms
+    default: 300
+    min: 50
+    max: 2000
+    step: 50
+  - id: resistance
+    label: "Circuit resistance"
+    kind: slider
+    kernel_binding: state.resistanceOhms
+    unit: ohm
+    default: 8
+    min: 1
+    max: 50
+    step: 1
