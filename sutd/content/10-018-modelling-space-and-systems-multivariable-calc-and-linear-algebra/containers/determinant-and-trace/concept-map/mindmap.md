@@ -1,0 +1,23 @@
+# Mindmap
+
+- Determinant and trace
+  - Geometric meaning
+    - Determinant scales signed area
+    - Sign records orientation
+    - Zero determinant collapses dimension
+  - Algebraic meaning
+    - `det A = ad - bc`
+    - `tr A = a + d`
+    - Characteristic polynomial uses both
+  - Connection to eigenvalues
+    - `det A = lambda_1 lambda_2`
+    - `tr A = lambda_1 + lambda_2`
+    - Discriminant `T^2 - 4D` classifies eigenvalue type
+  - Misconceptions
+    - Sign of determinant ignored
+    - Trace confused with determinant
+    - Zero determinant treated as zero output
+  - Transfers
+    - Linear system stability classification
+    - Eigenvalue computation
+    - Invertibility check

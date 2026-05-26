@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: determinant-and-trace
+prerequisites:
+  - id: matrices
+    title: "Matrices"
+    relationship: "A 2x2 matrix supplies the entries that define det and tr."
+    status: planned
+  - id: vector-transformations
+    title: "Vector Transformations"
+    relationship: "Matrices act on vectors so the unit square has a well-defined image."
+    status: available
+downstream:
+  - id: eigenvalues-and-eigenvectors
+    title: "Eigenvalues and Eigenvectors"
+    relationship: "Trace and determinant determine the eigenvalue sum and product."
+    status: planned
+  - id: linear-system-stability
+    title: "Linear System Stability"
+    relationship: "Stability classification reads off trace and determinant."
+    status: available
+  - id: characteristic-polynomial
+    title: "Characteristic Polynomial"
+    relationship: "lambda^2 - T lambda + D = 0 builds directly on T and D."
+    status: planned
+siblings:
+  - id: matrix-inverse-2x2
+    title: "Matrix Inverse (2x2)"
+    relationship: "Invertibility is exactly det not equal to zero."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: unsigned-area
+      label: "Determinant is unsigned area"
+    - id: trace-equals-det
+      label: "Trace equals determinant"
+    - id: zero-det-means-zero-output
+      label: "Zero determinant means every output is zero"
+  edges:
+    - from: unsigned-area
+      to: trace-equals-det
+      label: "both ignore the role of sign"
+    - from: zero-det-means-zero-output
+      to: unsigned-area
+      label: "weakens geometric reading of det"
+mermaid_source: graph.mmd
