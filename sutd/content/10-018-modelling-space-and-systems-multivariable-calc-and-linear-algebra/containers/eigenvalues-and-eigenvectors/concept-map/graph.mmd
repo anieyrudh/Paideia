@@ -1,0 +1,10 @@
+graph TD
+  DT["Determinant and trace"] --> EV["Eigenvalues and eigenvectors"]
+  VT["Vector transformations"] --> EV
+  EV --> DIAG["Diagonalisation"]
+  EV --> STAB["Linear system stability"]
+  EV --> PCA["Principal component analysis"]
+  EV --> CHARP["Characteristic polynomial"]
+  M1["Diagonal = eigenvalues"] -.-> EV
+  M2["Complex eigen = wrong"] -.-> EV
+  M3["Zero vector eigenvector"] -.-> EV
