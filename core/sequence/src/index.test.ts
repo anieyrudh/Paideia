@@ -1,4 +1,7 @@
+import fc from "fast-check";
 import { describe, expect, it } from "vitest";
+
+import { approxEqual } from "@paideia/shared";
 
 import {
   codon,
@@ -15,12 +18,21 @@ import {
   standardCodonTable,
   transcribe,
   translate,
+  type DnaSequence,
+  type RnaSequence,
 } from "./index.js";
 
 const unwrap = <T>(result: { ok: true; value: T } | { ok: false }): T => {
   if (!result.ok) throw new Error("expected ok result");
   return result.value;
 };
+
+const arbitraryDna = fc
+  .array(fc.constantFrom("A", "C", "G", "T"), { minLength: 1, maxLength: 96 })
+  .map((letters) => letters.join(""));
+
+const complementSeed = 0x5eed101;
+const reverseComplementSeed = 0x5eed102;
 
 describe("alphabets", () => {
   it("dnaAlphabet contains exactly ACGT", () => {
@@ -36,6 +48,18 @@ describe("alphabets", () => {
     expect(proteinAlphabet.has("*")).toBe(true);
     expect(proteinAlphabet.has("M")).toBe(true);
     expect(proteinAlphabet.has("B")).toBe(false);
+  });
+
+  it("public alphabets are frozen readonly views, not mutable Sets", () => {
+    expect(Object.isFrozen(dnaAlphabet)).toBe(true);
+    expect("add" in dnaAlphabet).toBe(false);
+    expect("delete" in dnaAlphabet).toBe(false);
+
+    const attemptedMutation = dnaAlphabet as unknown as { add?: (value: string) => unknown };
+    attemptedMutation.add?.("U");
+
+    expect(dnaAlphabet.has("U")).toBe(false);
+    expect(dna("U").ok).toBe(false);
   });
 });
 
@@ -133,13 +157,20 @@ describe("complement and reverse complement", () => {
   });
 
   it("complementDna is involutive (property test)", () => {
-    const samples = ["A", "T", "C", "G", "ACGT", "AAAA", "GCATGCAT", "ACGTACGTACGT"];
-    for (const sample of samples) {
-      const seq = unwrap(dna(sample));
-      const once = unwrap(complementDna(seq));
-      const onceBranded = unwrap(dna(once));
-      const twice = unwrap(complementDna(onceBranded));
-      expect(twice).toBe(sample);
+    try {
+      fc.assert(
+        fc.property(arbitraryDna, (sample) => {
+          const seq = unwrap(dna(sample));
+          const once = unwrap(complementDna(seq));
+          const onceBranded = unwrap(dna(once));
+          const twice = unwrap(complementDna(onceBranded));
+          expect(twice).toBe(sample);
+        }),
+        { seed: complementSeed, numRuns: 200 },
+      );
+    } catch (error) {
+      console.error(`fast-check seed: ${complementSeed}`);
+      throw error;
     }
   });
 
@@ -149,13 +180,20 @@ describe("complement and reverse complement", () => {
   });
 
   it("reverseComplementDna is involutive (property test)", () => {
-    const samples = ["A", "ACGT", "GCATGCAT", "AATTGGCC", "TTAACCGG"];
-    for (const sample of samples) {
-      const seq = unwrap(dna(sample));
-      const once = unwrap(reverseComplementDna(seq));
-      const onceBranded = unwrap(dna(once));
-      const twice = unwrap(reverseComplementDna(onceBranded));
-      expect(twice).toBe(sample);
+    try {
+      fc.assert(
+        fc.property(arbitraryDna, (sample) => {
+          const seq = unwrap(dna(sample));
+          const once = unwrap(reverseComplementDna(seq));
+          const onceBranded = unwrap(dna(once));
+          const twice = unwrap(reverseComplementDna(onceBranded));
+          expect(twice).toBe(sample);
+        }),
+        { seed: reverseComplementSeed, numRuns: 200 },
+      );
+    } catch (error) {
+      console.error(`fast-check seed: ${reverseComplementSeed}`);
+      throw error;
     }
   });
 });
@@ -171,6 +209,12 @@ describe("transcribe", () => {
   it("preserves a U-less sequence unchanged", () => {
     const seq = unwrap(dna("ACGACG"));
     expect(unwrap(transcribe(seq))).toBe("ACGACG");
+  });
+
+  it("rejects forged DNA brands with non-DNA letters", () => {
+    const result = transcribe("ACGU" as DnaSequence);
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("precondition-violated");
   });
 });
 
@@ -212,16 +256,26 @@ describe("translate", () => {
 describe("gcContent", () => {
   it("counts G and C as a fraction in [0, 1]", () => {
     const seq = unwrap(dna("GCGC"));
-    expect(unwrap(gcContent(seq))).toBe(1);
+    expect(approxEqual(unwrap(gcContent(seq)), 1)).toBe(true);
     const seq2 = unwrap(dna("AAAA"));
-    expect(unwrap(gcContent(seq2))).toBe(0);
+    expect(approxEqual(unwrap(gcContent(seq2)), 0)).toBe(true);
     const seq3 = unwrap(dna("AAGC"));
-    expect(unwrap(gcContent(seq3))).toBeCloseTo(0.5);
+    expect(approxEqual(unwrap(gcContent(seq3)), 0.5)).toBe(true);
   });
 
   it("works on RNA as well as DNA", () => {
     const seq = unwrap(rna("GCGC"));
-    expect(unwrap(gcContent(seq))).toBe(1);
+    expect(approxEqual(unwrap(gcContent(seq)), 1)).toBe(true);
+  });
+
+  it("rejects forged sequence brands with non-nucleotide letters", () => {
+    const dnaResult = gcContent("AX" as DnaSequence);
+    expect(dnaResult.ok).toBe(false);
+    if (!dnaResult.ok) expect(dnaResult.error.code).toBe("precondition-violated");
+
+    const rnaResult = gcContent("AZ" as RnaSequence);
+    expect(rnaResult.ok).toBe(false);
+    if (!rnaResult.ok) expect(rnaResult.error.code).toBe("precondition-violated");
   });
 });
 

@@ -41,9 +41,51 @@ const PROTEIN_LETTERS = [
   "*",
 ] as const;
 
-export const dnaAlphabet: ReadonlySet<string> = new Set(DNA_LETTERS);
-export const rnaAlphabet: ReadonlySet<string> = new Set(RNA_LETTERS);
-export const proteinAlphabet: ReadonlySet<string> = new Set(PROTEIN_LETTERS);
+const readonlyAlphabet = (values: readonly string[]): ReadonlySet<string> => {
+  const backing = new Set<string>(values);
+  const readonly: ReadonlySet<string> = Object.freeze({
+    get size(): number {
+      return backing.size;
+    },
+    has(value: string): boolean {
+      return backing.has(value);
+    },
+    entries(): IterableIterator<[string, string]> {
+      return backing.entries();
+    },
+    keys(): IterableIterator<string> {
+      return backing.keys();
+    },
+    values(): IterableIterator<string> {
+      return backing.values();
+    },
+    forEach(
+      callbackfn: (value: string, value2: string, set: ReadonlySet<string>) => void,
+      thisArg?: unknown,
+    ): void {
+      backing.forEach((value, value2) => {
+        callbackfn.call(thisArg, value, value2, readonly);
+      });
+    },
+    [Symbol.iterator](): IterableIterator<string> {
+      return backing[Symbol.iterator]();
+    },
+    get [Symbol.toStringTag](): string {
+      return "Set";
+    },
+  });
+
+  return readonly;
+};
+
+const DNA_ALPHABET = new Set<string>(DNA_LETTERS);
+const RNA_ALPHABET = new Set<string>(RNA_LETTERS);
+const PROTEIN_ALPHABET = new Set<string>(PROTEIN_LETTERS);
+const NUCLEOTIDE_ALPHABET = new Set<string>([...DNA_LETTERS, "U"]);
+
+export const dnaAlphabet: ReadonlySet<string> = readonlyAlphabet(DNA_LETTERS);
+export const rnaAlphabet: ReadonlySet<string> = readonlyAlphabet(RNA_LETTERS);
+export const proteinAlphabet: ReadonlySet<string> = readonlyAlphabet(PROTEIN_LETTERS);
 
 /**
  * NCBI standard genetic code (translation table 1). 64 RNA codons mapping to
@@ -98,17 +140,17 @@ const validateAgainst = (
 };
 
 export const dna = (input: string): KernelResult<DnaSequence> => {
-  const validated = validateAgainst(input, dnaAlphabet, "DNA sequence");
+  const validated = validateAgainst(input, DNA_ALPHABET, "DNA sequence");
   return validated.ok ? ok(validated.value as DnaSequence) : validated;
 };
 
 export const rna = (input: string): KernelResult<RnaSequence> => {
-  const validated = validateAgainst(input, rnaAlphabet, "RNA sequence");
+  const validated = validateAgainst(input, RNA_ALPHABET, "RNA sequence");
   return validated.ok ? ok(validated.value as RnaSequence) : validated;
 };
 
 export const protein = (input: string): KernelResult<ProteinSequence> => {
-  const validated = validateAgainst(input, proteinAlphabet, "Protein sequence");
+  const validated = validateAgainst(input, PROTEIN_ALPHABET, "Protein sequence");
   return validated.ok ? ok(validated.value as ProteinSequence) : validated;
 };
 
@@ -122,7 +164,7 @@ export const codon = (input: string): KernelResult<Codon> => {
       `Codon must be exactly three RNA letters; got length ${input.length}.`,
     );
   }
-  const validated = validateAgainst(input, rnaAlphabet, "Codon");
+  const validated = validateAgainst(input, RNA_ALPHABET, "Codon");
   return validated.ok ? ok(validated.value as Codon) : validated;
 };
 
@@ -165,6 +207,12 @@ export const transcribe = (seq: DnaSequence): KernelResult<RnaSequence> => {
   let out = "";
   for (let index = 0; index < seq.length; index += 1) {
     const letter = seq.charAt(index);
+    if (!DNA_ALPHABET.has(letter)) {
+      return err(
+        "precondition-violated",
+        `DNA sequence brand violated: unexpected letter "${letter}" at position ${index}.`,
+      );
+    }
     out += letter === "T" ? "U" : letter;
   }
   return ok(out as RnaSequence);
@@ -210,6 +258,12 @@ export const gcContent = (
   let count = 0;
   for (let index = 0; index < seq.length; index += 1) {
     const letter = seq.charAt(index);
+    if (!NUCLEOTIDE_ALPHABET.has(letter)) {
+      return err(
+        "precondition-violated",
+        `Sequence brand violated: unexpected letter "${letter}" at position ${index}.`,
+      );
+    }
     if (letter === "G" || letter === "C") count += 1;
   }
   return ok(count / seq.length);
