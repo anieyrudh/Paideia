@@ -7,7 +7,9 @@ const defaults: DivergenceAndCurlState = {
   strength: 1,
 };
 
-export const load = (): DivergenceAndCurlState => defaults;
+const cloneState = (state: DivergenceAndCurlState): DivergenceAndCurlState => ({ ...state });
+
+export const load = (): DivergenceAndCurlState => cloneState(defaults);
 export const saveState = (state: DivergenceAndCurlState) => state;
 export const resume = (state: Partial<DivergenceAndCurlState>) => ({ ...defaults, ...state });
 export const score = (state: DivergenceAndCurlState): DivergenceAndCurlScore => ({

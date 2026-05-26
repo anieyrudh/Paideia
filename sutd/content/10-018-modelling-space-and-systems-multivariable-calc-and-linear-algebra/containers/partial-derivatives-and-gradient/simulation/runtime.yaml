@@ -1,0 +1,14 @@
+runtime:
+  renderer: react
+  entry_module: "@paideia/sutd-sims/partial-derivatives-and-gradient"
+  export: PartialDerivativesAndGradient
+  min_viewport:
+    width: 360
+    height: 640
+  performance_budget:
+    main_thread_ms: 16
+    network_requests: 0
+  accessibility:
+    requires_prediction_gate: true
+    requires_keyboard_controls: true
+    requires_formula_panel: true

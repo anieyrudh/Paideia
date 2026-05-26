@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 240" role="img" aria-labelledby="title desc">
+  <title id="title">Coulomb law fallback diagram</title>
+  <desc id="desc">Electric field points away from a positive source charge while force on a negative test charge points back toward the source.</desc>
+  <rect width="420" height="240" rx="16" fill="#f8fbff"/>
+  <circle cx="150" cy="120" r="32" fill="#dc2626"/>
+  <text x="150" y="131" fill="#fff" font-size="34" font-weight="800" text-anchor="middle">+</text>
+  <circle cx="285" cy="120" r="24" fill="#2563eb"/>
+  <text x="285" y="129" fill="#fff" font-size="28" font-weight="800" text-anchor="middle">-</text>
+  <line x1="150" y1="120" x2="285" y2="120" stroke="#64748b" stroke-width="3" stroke-dasharray="7 7"/>
+  <text x="218" y="108" fill="#334155" font-size="14" font-weight="700" text-anchor="middle">r</text>
+  <line x1="285" y1="93" x2="350" y2="93" stroke="#059669" stroke-width="6" stroke-linecap="round"/>
+  <polygon points="350,93 334,83 334,103" fill="#059669"/>
+  <line x1="285" y1="147" x2="220" y2="147" stroke="#d97706" stroke-width="6" stroke-linecap="round"/>
+  <polygon points="220,147 236,137 236,157" fill="#d97706"/>
+  <text x="358" y="99" fill="#065f46" font-size="18" font-weight="800">E = kQ/r^2</text>
+  <text x="145" y="153" fill="#92400e" font-size="18" font-weight="800">F = qE</text>
+</svg>

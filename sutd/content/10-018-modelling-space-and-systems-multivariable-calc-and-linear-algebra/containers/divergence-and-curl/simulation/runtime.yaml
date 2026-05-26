@@ -4,6 +4,7 @@ runtime:
   component: DivergenceAndCurl
   kernel_dependencies:
     - "@paideia/vector-calculus"
+    - "@paideia/prediction-gate"
     - "@paideia/sim-runtime"
     - "@paideia/ui-sim"
   browser_required: true

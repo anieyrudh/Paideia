@@ -1,0 +1,25 @@
+presets:
+  - id: constant-base
+    label: "Constant density base"
+    state:
+      mode: double
+      densityKind: constant
+      xMax: 3
+      yMax: 2
+      zMax: 2
+  - id: ramp-stack
+    label: "Ramp density stack"
+    state:
+      mode: triple
+      densityKind: ramp-x
+      xMax: 4
+      yMax: 2
+      zMax: 3
+  - id: tilted-plane
+    label: "Tilted plane density"
+    state:
+      mode: double
+      densityKind: tilted-plane
+      xMax: 2.5
+      yMax: 3
+      zMax: 1.5

@@ -1,0 +1,21 @@
+steps:
+  - id: identify-surface
+    title: "Identify the surface and point"
+    learner_action: "Write down f(x,y), the point (x0,y0), and the requested direction."
+    success_criteria: "The point and direction match the problem statement."
+  - id: compute-partials
+    title: "Compute partial derivatives"
+    learner_action: "Find f_x and f_y by holding the other variable fixed."
+    success_criteria: "Both component slopes are symbolic or numerically evaluated correctly."
+  - id: assemble-gradient
+    title: "Assemble the gradient"
+    learner_action: "Evaluate the partials at the point and form a vector."
+    success_criteria: "The vector order is <f_x, f_y>."
+  - id: project-direction
+    title: "Project onto the direction"
+    learner_action: "Normalize the direction and compute the dot product with the gradient."
+    success_criteria: "The result has units of output per unit distance."
+  - id: interpret
+    title: "Interpret the sign"
+    learner_action: "State whether the move is uphill, downhill, or approximately level."
+    success_criteria: "The interpretation connects to contours and fastest increase."

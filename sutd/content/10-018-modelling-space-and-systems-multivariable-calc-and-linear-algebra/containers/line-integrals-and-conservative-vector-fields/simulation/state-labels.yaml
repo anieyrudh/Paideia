@@ -1,0 +1,6 @@
+state_labels:
+  field-kind: "Vector field"
+  curve-kind: "Path shape"
+  end-x: "Endpoint x"
+  end-y: "Endpoint y"
+  bend: "Elbow height"

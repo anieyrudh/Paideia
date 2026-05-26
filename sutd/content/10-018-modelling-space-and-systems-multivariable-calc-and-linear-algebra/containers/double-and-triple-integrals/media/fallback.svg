@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Static multiple integral formula</title>
+  <desc id="desc">A formula panel for double and triple integrals.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <rect x="36" y="36" width="568" height="288" rx="8" fill="#f8fafc" stroke="#d6dde8"/>
+  <text x="70" y="96" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#111827">Accumulation over regions</text>
+  <text x="70" y="150" font-family="Arial, sans-serif" font-size="27" fill="#0f172a">∫∫R ρ(x,y) dA</text>
+  <text x="70" y="200" font-family="Arial, sans-serif" font-size="27" fill="#0f172a">∫∫∫B ρ(x,y,z) dV</text>
+  <text x="70" y="252" font-family="Arial, sans-serif" font-size="19" fill="#475569">Bounds describe the region; density supplies the units.</text>
+</svg>

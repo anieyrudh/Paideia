@@ -1,0 +1,46 @@
+controls:
+  - id: frequency
+    label: "Drive frequency"
+    kind: slider
+    kernel_binding: state.frequencyHertz
+    unit: Hz
+    default: 50
+    min: 20
+    max: 240
+    step: 1
+  - id: resistance
+    label: "Resistance"
+    kind: slider
+    kernel_binding: state.resistanceOhms
+    unit: ohm
+    default: 20
+    min: 5
+    max: 80
+    step: 1
+  - id: inductance
+    label: "Inductance"
+    kind: slider
+    kernel_binding: state.inductanceMilliHenrys
+    unit: mH
+    default: 100
+    min: 20
+    max: 300
+    step: 5
+  - id: capacitance
+    label: "Capacitance"
+    kind: slider
+    kernel_binding: state.capacitanceMicroFarads
+    unit: microF
+    default: 100
+    min: 20
+    max: 300
+    step: 5
+  - id: source-voltage
+    label: "Source voltage"
+    kind: slider
+    kernel_binding: state.sourceVoltageRmsVolts
+    unit: V RMS
+    default: 10
+    min: 2
+    max: 24
+    step: 0.5

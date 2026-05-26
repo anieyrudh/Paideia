@@ -25,6 +25,7 @@ test.describe("Divergence and Curl", () => {
     await page.getByRole("button", { name: "Set up local diagnostic check" }).click();
     await page.getByLabel("Vector field").selectOption({ label: "Source field" });
     await page.getByRole("button", { name: "Reveal divergence and curl evidence" }).click();
+    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
     await page.getByRole("radio", { name: "Curl is nonzero while divergence is zero" }).check();
     await page.getByLabel("Rationale").fill("Switching field tests the diagnostic contrast.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
@@ -34,6 +35,7 @@ test.describe("Divergence and Curl", () => {
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await page.getByRole("button", { name: "Set up local diagnostic check" }).click();
     await page.getByRole("button", { name: "Reveal divergence and curl evidence" }).click();
+    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
     await page.getByRole("radio", { name: "Curl is nonzero while divergence is zero" }).check();
     await page.getByLabel("Rationale").fill("Vortex has local spin but no source strength.");
     await page.getByRole("button", { name: "Commit prediction" }).click();

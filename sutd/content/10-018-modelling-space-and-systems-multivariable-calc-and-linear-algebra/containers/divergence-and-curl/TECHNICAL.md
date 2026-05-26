@@ -120,20 +120,23 @@ pnpm graph:generate
 
 ## Anieyrudh Filter pass
 
-Date: TBD
+Date: 2026-05-26
 Filter version: aniegpt v1.0
 
 ### P0 issues
 
-- No generated Filter output recorded yet.
+- None after repair. Reusable divergence/curl computation remains in `core/vector-calculus`, revealed evidence is blocked until prediction commit, and the UI remains student-facing.
 
 ### P1 issues
 
-- No generated P1 disposition recorded yet.
+- Runtime dependency drift: `simulation.yaml` declared `core/prediction-gate` while `runtime.yaml` omitted `@paideia/prediction-gate`; fixed.
+- Embed lifecycle aliasing: `load()` returned the shared default state object; fixed by returning a fresh copy.
+- Gate assertions: every simulation test that reveals evidence now asserts the observation region is absent before commit.
+- Source resolution: container sources now include the MIT OCW source used by misconception evidence.
 
 ### High-bandwidth questions surfaced
 
-- None recorded.
+- No high-bandwidth questions.
 
 ## Iteration log
 

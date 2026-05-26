@@ -7,6 +7,7 @@ describe("divergence-and-curl embed API", () => {
     const resumed = resume({ ...loaded, fieldKind: "sink" });
     expect(saveState(resumed)).toEqual(resumed);
     expect(score(loaded).diagnosticContrastVisible).toBe(true);
+    expect(score(resumed).diagnosticContrastVisible).toBe(false);
     expect(score(resumed).evidenceRevealed).toBe(true);
   });
 });
