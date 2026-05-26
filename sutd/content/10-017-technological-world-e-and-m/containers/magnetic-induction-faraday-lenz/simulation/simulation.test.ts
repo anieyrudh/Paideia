@@ -36,9 +36,11 @@ test.describe("Magnetic Induction: Faraday-Lenz", () => {
   });
 
   test("manipulation changes visible induced emf", async ({ page }) => {
+    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
     await page.getByRole("button", { name: "Prepare induction model" }).click();
     await page.getByRole("slider", { name: "Coil turns" }).fill("80");
     await page.getByRole("button", { name: "Reveal induced emf" }).click();
+    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
     await page
       .getByRole("radio", {
         name: "Into the page, because Lenz's law opposes the increase in outward flux.",

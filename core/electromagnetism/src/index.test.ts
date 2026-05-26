@@ -3,9 +3,13 @@ import fc from "fast-check";
 import { approxEqual } from "@paideia/shared";
 import {
   coulombs,
+  degrees,
   electricForceOnCharge,
+  ohms,
   pointChargeElectricField,
   pointChargeModel,
+  seconds,
+  squareMetres,
   teslas,
   uniformFluxInductionModel,
 } from "./index.js";
@@ -119,12 +123,12 @@ describe("point-charge electromagnetism", () => {
 describe("uniform flux induction", () => {
   it("computes Faraday emf and Lenz opposition for increasing flux", () => {
     const model = uniformFluxInductionModel({
-      angleToNormalDegrees: 0,
-      circuitResistanceOhms: 5,
-      durationSeconds: 0.2,
+      angleToNormalDegrees: degrees(0),
+      circuitResistanceOhms: ohms(5),
+      durationSeconds: seconds(0.2),
       finalFieldTeslas: teslas(0.8),
       initialFieldTeslas: teslas(0.2),
-      loopAreaSquareMetres: 0.03,
+      loopAreaSquareMetres: squareMetres(0.03),
       turns: 40,
     });
 
@@ -140,21 +144,21 @@ describe("uniform flux induction", () => {
 
   it("uses the angle to the loop normal in the flux projection", () => {
     const faceOn = uniformFluxInductionModel({
-      angleToNormalDegrees: 0,
-      circuitResistanceOhms: 10,
-      durationSeconds: 0.5,
+      angleToNormalDegrees: degrees(0),
+      circuitResistanceOhms: ohms(10),
+      durationSeconds: seconds(0.5),
       finalFieldTeslas: teslas(0.4),
       initialFieldTeslas: teslas(0.1),
-      loopAreaSquareMetres: 0.02,
+      loopAreaSquareMetres: squareMetres(0.02),
       turns: 10,
     });
     const tilted = uniformFluxInductionModel({
-      angleToNormalDegrees: 60,
-      circuitResistanceOhms: 10,
-      durationSeconds: 0.5,
+      angleToNormalDegrees: degrees(60),
+      circuitResistanceOhms: ohms(10),
+      durationSeconds: seconds(0.5),
       finalFieldTeslas: teslas(0.4),
       initialFieldTeslas: teslas(0.1),
-      loopAreaSquareMetres: 0.02,
+      loopAreaSquareMetres: squareMetres(0.02),
       turns: 10,
     });
 
@@ -166,12 +170,12 @@ describe("uniform flux induction", () => {
 
   it("rejects invalid turns and timing", () => {
     const model = uniformFluxInductionModel({
-      angleToNormalDegrees: 0,
-      circuitResistanceOhms: 5,
-      durationSeconds: 0,
+      angleToNormalDegrees: degrees(0),
+      circuitResistanceOhms: ohms(5),
+      durationSeconds: seconds(0),
       finalFieldTeslas: teslas(0.8),
       initialFieldTeslas: teslas(0.2),
-      loopAreaSquareMetres: 0.03,
+      loopAreaSquareMetres: squareMetres(0.03),
       turns: 40,
     });
 

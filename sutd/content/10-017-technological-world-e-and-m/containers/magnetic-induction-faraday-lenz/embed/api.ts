@@ -1,17 +1,29 @@
-export interface ContainerEmbedState {
-  readonly predictionCommitted: boolean;
-}
+import { z } from "zod";
 
-export interface ContainerEmbedTheme {
-  readonly colorScheme: "light" | "dark";
-  readonly accentColor?: string;
-}
+export const ContainerEmbedStateSchema = z
+  .object({
+    predictionCommitted: z.boolean(),
+  })
+  .strict();
 
-export interface ContainerEmbedScore {
-  readonly completed: boolean;
-  readonly predictionCommitted: boolean;
-  readonly score: number;
-}
+export const ContainerEmbedThemeSchema = z
+  .object({
+    colorScheme: z.enum(["light", "dark"]),
+    accentColor: z.string().optional(),
+  })
+  .strict();
+
+export const ContainerEmbedScoreSchema = z
+  .object({
+    completed: z.boolean(),
+    predictionCommitted: z.boolean(),
+    score: z.number().min(0).max(1),
+  })
+  .strict();
+
+export type ContainerEmbedState = z.infer<typeof ContainerEmbedStateSchema>;
+export type ContainerEmbedTheme = z.infer<typeof ContainerEmbedThemeSchema>;
+export type ContainerEmbedScore = z.infer<typeof ContainerEmbedScoreSchema>;
 
 export interface ContainerEmbedApi {
   load(target: Element): Promise<void>;

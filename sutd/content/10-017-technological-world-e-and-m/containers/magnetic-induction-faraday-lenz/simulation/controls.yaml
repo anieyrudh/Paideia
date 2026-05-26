@@ -2,7 +2,7 @@ controls:
   - id: turns
     label: "Coil turns"
     kind: slider
-    variable: turns
+    kernel_binding: state.turns
     unit: turns
     default: 40
     min: 1
@@ -11,7 +11,7 @@ controls:
   - id: loop-area
     label: "Loop area"
     kind: slider
-    variable: loopAreaSquareCentimetres
+    kernel_binding: state.loopAreaSquareCentimetres
     unit: cm^2
     default: 120
     min: 20
@@ -20,7 +20,7 @@ controls:
   - id: initial-field
     label: "Initial field"
     kind: slider
-    variable: initialFieldMilliTeslas
+    kernel_binding: state.initialFieldMilliTeslas
     unit: mT
     default: 100
     min: -800
@@ -29,7 +29,7 @@ controls:
   - id: final-field
     label: "Final field"
     kind: slider
-    variable: finalFieldMilliTeslas
+    kernel_binding: state.finalFieldMilliTeslas
     unit: mT
     default: 500
     min: -800
@@ -38,7 +38,7 @@ controls:
   - id: angle
     label: "Angle to normal"
     kind: slider
-    variable: angleToNormalDegrees
+    kernel_binding: state.angleToNormalDegrees
     unit: deg
     default: 0
     min: 0
@@ -47,7 +47,7 @@ controls:
   - id: duration
     label: "Change time"
     kind: slider
-    variable: durationMilliseconds
+    kernel_binding: state.durationMilliseconds
     unit: ms
     default: 300
     min: 50
@@ -56,7 +56,7 @@ controls:
   - id: resistance
     label: "Circuit resistance"
     kind: slider
-    variable: resistanceOhms
+    kernel_binding: state.resistanceOhms
     unit: ohm
     default: 8
     min: 1

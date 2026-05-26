@@ -1,5 +1,9 @@
 import type { TSimulationSpec } from "@paideia/content-schema";
 import {
+  degrees,
+  ohms,
+  seconds,
+  squareMetres,
   teslas,
   uniformFluxInductionModel,
   type UniformFluxInductionModel,
@@ -179,12 +183,12 @@ const fmtMicro = (value: number, places = 2): string => fmt(value * 1_000_000, p
 
 export const inductionEvidence = (state: InductionState): KernelResult<InductionEvidence> => {
   const model = uniformFluxInductionModel({
-    angleToNormalDegrees: state.angleToNormalDegrees,
-    circuitResistanceOhms: state.resistanceOhms,
-    durationSeconds: state.durationMilliseconds / 1000,
+    angleToNormalDegrees: degrees(state.angleToNormalDegrees),
+    circuitResistanceOhms: ohms(state.resistanceOhms),
+    durationSeconds: seconds(state.durationMilliseconds / 1000),
     finalFieldTeslas: teslas(state.finalFieldMilliTeslas / 1000),
     initialFieldTeslas: teslas(state.initialFieldMilliTeslas / 1000),
-    loopAreaSquareMetres: state.loopAreaSquareCentimetres / 10000,
+    loopAreaSquareMetres: squareMetres(state.loopAreaSquareCentimetres / 10000),
     turns: state.turns,
   });
   if (!model.ok) return model;
@@ -247,13 +251,15 @@ const CoilDiagram = ({ evidence }: { readonly evidence: InductionEvidence }) => 
           {evidence.state.finalFieldMilliTeslas >= evidence.state.initialFieldMilliTeslas ? "•" : "×"}
         </text>
       ))}
-      <path
-        d={increasing ? "M310 92 C348 112 348 152 310 172" : "M310 172 C348 152 348 112 310 92"}
-        fill="none"
-        stroke="#f97316"
-        strokeWidth="6"
-        markerEnd="url(#arrow)"
-      />
+      {evidence.model.lenzOpposition !== "no-change" ? (
+        <path
+          d={increasing ? "M310 92 C348 112 348 152 310 172" : "M310 172 C348 152 348 112 310 92"}
+          fill="none"
+          stroke="#f97316"
+          strokeWidth="6"
+          markerEnd="url(#arrow)"
+        />
+      ) : null}
       <text x="286" y="208" fill="#9a3412" fontSize="16" fontWeight="700">{fieldText}</text>
       <text x="88" y="224" fill="#1e3a8a" fontSize="16">N = {evidence.state.turns} turns</text>
       <defs>

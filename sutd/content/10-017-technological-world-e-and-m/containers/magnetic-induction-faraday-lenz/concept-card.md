@@ -45,7 +45,7 @@ and what current direction will oppose that change?"
 
 ## Canonical Example
 
-A `40` turn coil of area `0.0120 m^2` sees the field normal to the loop change
+A `40`-turn coil of area `0.0120 m^2` sees the field normal to the loop change
 from `0.100 T` to `0.500 T` in `0.300 s`.
 
 ```latex

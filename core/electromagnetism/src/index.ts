@@ -6,11 +6,15 @@ import {
 } from "@paideia/linear-algebra";
 import {
   err,
+  degrees,
   joules,
   ok,
+  seconds,
   type Brand,
+  type Degrees,
   type Joules,
   type KernelResult,
+  type Seconds,
 } from "@paideia/shared";
 
 export const coulombConstantVacuum = 8.99e9;
@@ -26,6 +30,10 @@ export type Volts = Brand<number, "Volts">;
 export type NewtonsPerCoulomb = Brand<number, "NewtonsPerCoulomb">;
 export type Teslas = Brand<number, "Teslas">;
 export type Webers = Brand<number, "Webers">;
+export type WebersPerSecond = Brand<number, "WebersPerSecond">;
+export type SquareMetres = Brand<number, "SquareMetres">;
+export type Ohms = Brand<number, "Ohms">;
+export type Amps = Brand<number, "Amps">;
 
 export interface PointChargeElectricFieldInput {
   readonly sourceChargeCoulombs: Coulombs;
@@ -70,22 +78,22 @@ export type LenzOpposition = "oppose-increase" | "oppose-decrease" | "no-change"
 
 export interface UniformFluxInductionInput {
   readonly turns: number;
-  readonly loopAreaSquareMetres: number;
+  readonly loopAreaSquareMetres: SquareMetres;
   readonly initialFieldTeslas: Teslas;
   readonly finalFieldTeslas: Teslas;
-  readonly angleToNormalDegrees: number;
-  readonly durationSeconds: number;
-  readonly circuitResistanceOhms: number;
+  readonly angleToNormalDegrees: Degrees;
+  readonly durationSeconds: Seconds;
+  readonly circuitResistanceOhms: Ohms;
 }
 
 export interface UniformFluxInductionModel {
   readonly initialFluxWebers: Webers;
   readonly finalFluxWebers: Webers;
   readonly fluxChangeWebers: Webers;
-  readonly fluxRateWebersPerSecond: number;
+  readonly fluxRateWebersPerSecond: WebersPerSecond;
   readonly inducedEmfVolts: Volts;
   readonly inducedEmfMagnitudeVolts: Volts;
-  readonly inducedCurrentAmps: number;
+  readonly inducedCurrentAmps: Amps;
   readonly lenzOpposition: LenzOpposition;
   readonly inducedFieldDirection: "into-page" | "out-of-page" | "none";
   readonly interpretation: string;
@@ -97,6 +105,12 @@ export const newtonsPerCoulomb = (value: number): NewtonsPerCoulomb =>
   value as NewtonsPerCoulomb;
 export const teslas = (value: number): Teslas => value as Teslas;
 export const webers = (value: number): Webers => value as Webers;
+export const webersPerSecond = (value: number): WebersPerSecond =>
+  value as WebersPerSecond;
+export const squareMetres = (value: number): SquareMetres => value as SquareMetres;
+export const ohms = (value: number): Ohms => value as Ohms;
+export const amps = (value: number): Amps => value as Amps;
+export { degrees, seconds };
 
 const finite = (value: number, label: string): KernelResult<void> =>
   Number.isFinite(value)
@@ -304,8 +318,8 @@ export const uniformFluxInductionModel = (
   return ok({
     finalFluxWebers: webers(finalFlux),
     fluxChangeWebers: webers(fluxChange),
-    fluxRateWebersPerSecond: fluxRate,
-    inducedCurrentAmps: inducedCurrent,
+    fluxRateWebersPerSecond: webersPerSecond(fluxRate),
+    inducedCurrentAmps: amps(inducedCurrent),
     inducedEmfMagnitudeVolts: volts(inducedEmfMagnitude),
     inducedEmfVolts: volts(inducedEmf),
     inducedFieldDirection,
