@@ -1306,6 +1306,9 @@ importers:
       '@paideia/electromagnetism':
         specifier: workspace:*
         version: link:../../../core/electromagnetism
+      '@paideia/fluid-mechanics':
+        specifier: workspace:*
+        version: link:../../../core/fluid-mechanics
       '@paideia/graph-algorithms':
         specifier: workspace:*
         version: link:../../../core/graph-algorithms
