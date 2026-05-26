@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-label="Line integral thumbnail">
+  <rect width="320" height="180" fill="#f8fafc"/>
+  <path d="M40 130 C100 30 180 150 280 50" fill="none" stroke="#dc2626" stroke-width="8" stroke-linecap="round"/>
+  <g stroke="#475569" stroke-width="3">
+    <line x1="70" y1="80" x2="94" y2="70"/><line x1="140" y1="90" x2="164" y2="80"/><line x1="210" y1="95" x2="234" y2="85"/>
+  </g>
+  <text x="26" y="166" font-family="Arial" font-size="22" fill="#0f172a">W = integral F dot dr</text>
+</svg>

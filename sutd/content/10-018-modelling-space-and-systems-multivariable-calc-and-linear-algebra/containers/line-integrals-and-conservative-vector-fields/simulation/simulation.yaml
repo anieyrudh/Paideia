@@ -1,0 +1,59 @@
+id: line-integrals-and-conservative-vector-fields
+title: "Line Integrals and Conservative Vector Fields"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/vector-calculus
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    For F = grad(0.5x^2 + y) from (0,0) to (2,1), what happens if the path changes from direct to an elbow?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The work stays the same because the field is conservative"
+      - "The work doubles because the elbow is longer"
+      - "The work becomes zero because the start point is the origin"
+      - "The work depends only on the number of sample steps"
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: field-kind
+      label: "Vector field"
+      kind: selector
+      kernel_binding: state.fieldKind
+    - id: curve-kind
+      label: "Path shape"
+      kind: selector
+      kernel_binding: state.curveKind
+    - id: end-x
+      label: "Endpoint x"
+      kind: slider
+      kernel_binding: state.endX
+      bounds: { min: -2, max: 2, step: 0.25 }
+    - id: end-y
+      label: "Endpoint y"
+      kind: slider
+      kernel_binding: state.endY
+      bounds: { min: -2, max: 2, step: 0.25 }
+    - id: bend
+      label: "Elbow height"
+      kind: slider
+      kernel_binding: state.bend
+      bounds: { min: -2, max: 2, step: 0.25 }
+observe:
+  renderers:
+    - id: line-integrals-readout
+      module: "@paideia/sutd-sims/line-integrals-and-conservative-vector-fields"
+      symbol: LineIntegralsAndConservativeVectorFields
+      props_binding: |
+        Show the vector field, selected path, work integral, potential comparison, and path-dependence verdict.
+explain:
+  prompt: |
+    Explain why a conservative field makes line-integral work path independent, and why circulation fields break that shortcut.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Longer path always means larger line integral"
+    - "Every vector field has a potential function"
