@@ -1,0 +1,59 @@
+id: capacitor-with-dielectric
+title: "Capacitor with Dielectric"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/shared
+  - core/content-schema
+  - core/sim-runtime
+  - core/electromagnetism
+  - core/prediction-gate
+  - core/ui-sim
+manipulate:
+  controls:
+    - id: dielectric-constant
+      label: "Dielectric constant"
+      kind: slider
+      kernel_binding: state.dielectricConstant
+      bounds: { min: 1, max: 8, step: 0.25 }
+    - id: plate-area
+      label: "Plate area"
+      kind: slider
+      kernel_binding: state.plateAreaSquareCentimetres
+      bounds: { min: 20, max: 160, step: 5 }
+    - id: plate-gap
+      label: "Plate separation"
+      kind: slider
+      kernel_binding: state.plateSeparationMillimetres
+      bounds: { min: 0.4, max: 3, step: 0.1 }
+    - id: voltage
+      label: "Applied voltage"
+      kind: slider
+      kernel_binding: state.voltageVolts
+      bounds: { min: 2, max: 24, step: 0.5 }
+predict:
+  prompt: |
+    A dielectric slab is inserted fully between charged parallel plates while plate area, spacing, and voltage stay fixed. What should happen to capacitance and stored energy?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Both capacitance and stored energy increase in proportion to the dielectric constant."
+      - "Capacitance increases, but stored energy stays fixed because voltage is fixed."
+      - "Both decrease because the dielectric blocks the electric field."
+      - "Only charge changes; capacitance is a property of the battery."
+    correct_index: 0
+  rationale_required: true
+observe:
+  renderers:
+    - id: dielectric-capacitor-readout
+      module: "@paideia/sutd-sims/capacitor-with-dielectric"
+      symbol: CapacitorWithDielectric
+      props_binding: |
+        Show parallel plates, dielectric slab, field strength, capacitance, charge, energy, formula substitution, units, and interpretation.
+explain:
+  prompt: |
+    Why does the dielectric increase charge storage at the same voltage without changing the plate spacing?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "A dielectric blocks all field lines."
+    - "Capacitance is set by the battery rather than geometry and material."
+    - "Energy cannot change if voltage stays fixed."

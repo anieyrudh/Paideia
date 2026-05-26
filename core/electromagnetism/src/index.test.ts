@@ -8,12 +8,14 @@ import {
   electromagneticWaveModel,
   hertz,
   ohms,
+  parallelPlateCapacitorModel,
   pointChargeElectricField,
   pointChargeModel,
   seconds,
   squareMetres,
   speedOfLightVacuumMetresPerSecond,
   teslas,
+  volts,
   uniformFluxInductionModel,
   voltsPerMetre,
 } from "./index.js";
@@ -120,6 +122,112 @@ describe("point-charge electromagnetism", () => {
         },
       ),
       { seed: 20260521, numRuns: 80 },
+    );
+  });
+});
+
+describe("parallel-plate capacitor electromagnetism", () => {
+  it("computes capacitance, charge, stored energy, field, and energy density", () => {
+    const model = parallelPlateCapacitorModel({
+      dielectricConstant: 3,
+      plateAreaSquareMetres: 0.008,
+      plateSeparationMetres: 0.001,
+      voltageVolts: volts(12),
+    });
+
+    expect(model.ok).toBe(true);
+    if (!model.ok) throw new Error(model.error.message);
+    expect(approxEqual(model.value.capacitanceFarads, 2.125005075072e-10, 1e-12)).toBe(true);
+    expect(approxEqual(model.value.chargeCoulombs, 2.5500060900864e-9, 1e-12)).toBe(true);
+    expect(approxEqual(model.value.energyJoules, 1.53000365405184e-8, 1e-12)).toBe(true);
+    expect(approxEqual(model.value.electricFieldVoltsPerMetre, 12000, 1e-12)).toBe(true);
+    expect(approxEqual(model.value.energyDensityJoulesPerCubicMetre, 0.0019125045675648, 1e-12)).toBe(true);
+  });
+
+  it("rejects non-positive geometry or dielectric inputs", () => {
+    const model = parallelPlateCapacitorModel({
+      dielectricConstant: 0,
+      plateAreaSquareMetres: 0.008,
+      plateSeparationMetres: 0.001,
+      voltageVolts: volts(12),
+    });
+
+    expect(model.ok).toBe(false);
+    if (model.ok) throw new Error("Expected zero dielectric constant to be rejected.");
+    expect(model.error.code).toBe("precondition-violated");
+  });
+
+  it("preserves linear, inverse, voltage-squared, and charge invariants", () => {
+    fc.assert(
+      fc.property(
+        fc.double({ min: 1e-5, max: 0.5, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 1e-5, max: 0.05, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 1, max: 12, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 1, max: 1000, noDefaultInfinity: true, noNaN: true }),
+        fc.double({ min: 1.2, max: 5, noDefaultInfinity: true, noNaN: true }),
+        (area, separation, dielectric, voltage, factor) => {
+          const base = parallelPlateCapacitorModel({
+            dielectricConstant: dielectric,
+            plateAreaSquareMetres: area,
+            plateSeparationMetres: separation,
+            voltageVolts: volts(voltage),
+          });
+          const areaScaled = parallelPlateCapacitorModel({
+            dielectricConstant: dielectric,
+            plateAreaSquareMetres: area * factor,
+            plateSeparationMetres: separation,
+            voltageVolts: volts(voltage),
+          });
+          const separationScaled = parallelPlateCapacitorModel({
+            dielectricConstant: dielectric,
+            plateAreaSquareMetres: area,
+            plateSeparationMetres: separation * factor,
+            voltageVolts: volts(voltage),
+          });
+          const voltageScaled = parallelPlateCapacitorModel({
+            dielectricConstant: dielectric,
+            plateAreaSquareMetres: area,
+            plateSeparationMetres: separation,
+            voltageVolts: volts(voltage * factor),
+          });
+
+          expect(base.ok).toBe(true);
+          expect(areaScaled.ok).toBe(true);
+          expect(separationScaled.ok).toBe(true);
+          expect(voltageScaled.ok).toBe(true);
+          if (!base.ok || !areaScaled.ok || !separationScaled.ok || !voltageScaled.ok) return;
+
+          expect(
+            approxEqual(
+              areaScaled.value.capacitanceFarads / base.value.capacitanceFarads,
+              factor,
+              1e-9,
+            ),
+          ).toBe(true);
+          expect(
+            approxEqual(
+              separationScaled.value.capacitanceFarads / base.value.capacitanceFarads,
+              1 / factor,
+              1e-9,
+            ),
+          ).toBe(true);
+          expect(
+            approxEqual(
+              voltageScaled.value.energyJoules / base.value.energyJoules,
+              factor * factor,
+              1e-9,
+            ),
+          ).toBe(true);
+          expect(
+            approxEqual(
+              base.value.chargeCoulombs,
+              base.value.capacitanceFarads * voltage,
+              1e-9,
+            ),
+          ).toBe(true);
+        },
+      ),
+      { seed: 20260527, numRuns: 80 },
     );
   });
 });

@@ -1,0 +1,10 @@
+flowchart TD
+  electric_field["Electric field"] --> plate_geometry["Plate geometry"]
+  electric_potential["Electric potential"] --> capacitance["Capacitance"]
+  capacitance --> formula["C = kappa epsilon0 A / d"]
+  dielectric["Dielectric polarisation"] --> formula
+  plate_geometry --> formula
+  formula --> charge["Q = CV"]
+  formula --> energy["U = 1/2 CV^2"]
+  charge --> design["Capacitive sensor design"]
+  energy --> design

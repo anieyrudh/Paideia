@@ -26,6 +26,7 @@ import {
 } from "@paideia/shared";
 
 export const coulombConstantVacuum = 8.99e9;
+export const vacuumPermittivityFaradsPerMetre = 8.8541878128e-12;
 export const speedOfLightVacuumMetresPerSecond = 299_792_458;
 export const vacuumImpedanceOhms = 376.730313668;
 
@@ -38,6 +39,7 @@ export const electromagnetismTolerance = {
 export type Coulombs = Brand<number, "Coulombs">;
 export type Volts = Brand<number, "Volts">;
 export type NewtonsPerCoulomb = Brand<number, "NewtonsPerCoulomb">;
+export type Farads = Brand<number, "Farads">;
 export type Teslas = Brand<number, "Teslas">;
 export type Webers = Brand<number, "Webers">;
 export type WebersPerSecond = Brand<number, "WebersPerSecond">;
@@ -47,6 +49,7 @@ export type Amps = Brand<number, "Amps">;
 export type VoltsPerMetre = Brand<number, "VoltsPerMetre">;
 export type RadiansPerMetre = Brand<number, "RadiansPerMetre">;
 export type WattsPerSquareMetre = Brand<number, "WattsPerSquareMetre">;
+export type JoulesPerCubicMetre = Brand<number, "JoulesPerCubicMetre">;
 
 export interface PointChargeElectricFieldInput {
   readonly sourceChargeCoulombs: Coulombs;
@@ -85,6 +88,21 @@ export interface PointChargeModel {
   readonly potentialVolts: Volts;
   readonly potentialEnergyJoules: Joules;
   readonly separationMetres: number;
+}
+
+export interface ParallelPlateCapacitorInput {
+  readonly plateAreaSquareMetres: number;
+  readonly plateSeparationMetres: number;
+  readonly dielectricConstant: number;
+  readonly voltageVolts: Volts;
+}
+
+export interface ParallelPlateCapacitorModel {
+  readonly capacitanceFarads: Farads;
+  readonly chargeCoulombs: Coulombs;
+  readonly energyJoules: Joules;
+  readonly electricFieldVoltsPerMetre: VoltsPerMetre;
+  readonly energyDensityJoulesPerCubicMetre: JoulesPerCubicMetre;
 }
 
 export type LenzOpposition = "oppose-increase" | "oppose-decrease" | "no-change";
@@ -137,6 +155,7 @@ export const coulombs = (value: number): Coulombs => value as Coulombs;
 export const volts = (value: number): Volts => value as Volts;
 export const newtonsPerCoulomb = (value: number): NewtonsPerCoulomb =>
   value as NewtonsPerCoulomb;
+export const farads = (value: number): Farads => value as Farads;
 export const teslas = (value: number): Teslas => value as Teslas;
 export const webers = (value: number): Webers => value as Webers;
 export const webersPerSecond = (value: number): WebersPerSecond =>
@@ -150,6 +169,8 @@ export const radiansPerMetre = (value: number): RadiansPerMetre =>
   value as RadiansPerMetre;
 export const wattsPerSquareMetre = (value: number): WattsPerSquareMetre =>
   value as WattsPerSquareMetre;
+export const joulesPerCubicMetre = (value: number): JoulesPerCubicMetre =>
+  value as JoulesPerCubicMetre;
 export { degrees, hertz, metres, metresPerSecond, radiansPerSecond, seconds };
 
 const finite = (value: number, label: string): KernelResult<void> =>
@@ -298,6 +319,53 @@ export const pointChargeModel = (
     potentialEnergyJoules: potentialEnergy.value,
     potentialVolts: potential.value,
     separationMetres: distance.value,
+  });
+};
+
+export const parallelPlateCapacitorModel = (
+  input: ParallelPlateCapacitorInput,
+): KernelResult<ParallelPlateCapacitorModel> => {
+  const area = finitePositive(input.plateAreaSquareMetres, "plateAreaSquareMetres");
+  if (!area.ok) return area;
+  const separation = finitePositive(input.plateSeparationMetres, "plateSeparationMetres");
+  if (!separation.ok) return separation;
+  const dielectric = finitePositive(input.dielectricConstant, "dielectricConstant");
+  if (!dielectric.ok) return dielectric;
+  const voltage = finite(input.voltageVolts, "voltageVolts");
+  if (!voltage.ok) return voltage;
+
+  const capacitance =
+    (input.dielectricConstant *
+      vacuumPermittivityFaradsPerMetre *
+      input.plateAreaSquareMetres) /
+    input.plateSeparationMetres;
+  const charge = capacitance * input.voltageVolts;
+  const energy = 0.5 * capacitance * input.voltageVolts * input.voltageVolts;
+  const electricField = input.voltageVolts / input.plateSeparationMetres;
+  const energyDensity =
+    0.5 *
+    input.dielectricConstant *
+    vacuumPermittivityFaradsPerMetre *
+    electricField *
+    electricField;
+
+  for (const [value, label] of [
+    [capacitance, "capacitanceFarads"],
+    [charge, "chargeCoulombs"],
+    [energy, "energyJoules"],
+    [electricField, "electricFieldVoltsPerMetre"],
+    [energyDensity, "energyDensityJoulesPerCubicMetre"],
+  ] as const) {
+    const finiteValue = finiteDerived(value, label);
+    if (!finiteValue.ok) return finiteValue;
+  }
+
+  return ok({
+    capacitanceFarads: farads(capacitance),
+    chargeCoulombs: coulombs(charge),
+    electricFieldVoltsPerMetre: voltsPerMetre(electricField),
+    energyDensityJoulesPerCubicMetre: joulesPerCubicMetre(energyDensity),
+    energyJoules: joules(energy),
   });
 };
 

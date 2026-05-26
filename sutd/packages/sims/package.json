@@ -41,7 +41,8 @@
     "./optimisation-with-lagrange-multipliers": "./src/optimisation-with-lagrange-multipliers.tsx",
     "./maxwell-equations-and-em-waves": "./src/maxwell-equations-and-em-waves.tsx",
     "./rlc-circuit-and-resonance": "./src/rlc-circuit-and-resonance.tsx",
-    "./coulomb-s-law-and-discrete-charge-fields": "./src/coulomb-s-law-and-discrete-charge-fields.tsx"
+    "./coulomb-s-law-and-discrete-charge-fields": "./src/coulomb-s-law-and-discrete-charge-fields.tsx",
+    "./capacitor-with-dielectric": "./src/capacitor-with-dielectric.tsx"
   },
   "scripts": {
     "build": "tsc -b",

@@ -1,0 +1,31 @@
+steps:
+  - id: convert-units
+    title: "Convert geometry"
+    prompt: "Write area in m^2, separation in m, and voltage in V."
+    checks:
+      - "Square centimetres are divided by 10000."
+      - "Millimetres are divided by 1000."
+  - id: compute-capacitance
+    title: "Compute C"
+    prompt: "Use C = kappa epsilon0 A / d."
+    checks:
+      - "Dielectric constant is unitless."
+      - "The result is in farads."
+  - id: compute-charge-energy
+    title: "Compute Q and U"
+    prompt: "Use Q = CV and U = 1/2 CV^2 for fixed voltage."
+    checks:
+      - "Charge is in coulombs."
+      - "Energy is in joules."
+  - id: check-field
+    title: "Check the field limit"
+    prompt: "Use E = V / d and compare with the material limit."
+    checks:
+      - "Field strength is in V/m."
+      - "A smaller gap is treated as a field-risk tradeoff."
+  - id: interpret-design
+    title: "Interpret the tradeoff"
+    prompt: "Name which variables improve capacitance and which variables affect field strength."
+    checks:
+      - "Material and area are separated from voltage."
+      - "The final claim matches the calculated constraint."
