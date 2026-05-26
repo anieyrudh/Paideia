@@ -45,7 +45,8 @@
     "./capacitor-with-dielectric": "./src/capacitor-with-dielectric.tsx",
     "./chemical-bonding-and-intermolecular-forces": "./src/chemical-bonding-and-intermolecular-forces.tsx",
     "./thermochemistry-and-equilibrium": "./src/thermochemistry-and-equilibrium.tsx",
-    "./polymers-and-plastic-waste-management": "./src/polymers-and-plastic-waste-management.tsx"
+    "./polymers-and-plastic-waste-management": "./src/polymers-and-plastic-waste-management.tsx",
+    "./electrochemistry-and-batteries": "./src/electrochemistry-and-batteries.tsx"
   },
   "scripts": {
     "build": "tsc -b",
