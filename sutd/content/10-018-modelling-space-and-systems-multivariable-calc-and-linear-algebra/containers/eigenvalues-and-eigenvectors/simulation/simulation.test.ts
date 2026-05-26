@@ -41,6 +41,7 @@ test.describe("Eigenvalues and Eigenvectors", () => {
     await page.getByRole("slider", { name: "Bottom-left entry c" }).fill("1");
     await page.getByRole("slider", { name: "Bottom-right entry d" }).fill("0");
     await page.getByRole("button", { name: "Reveal eigenvalue evidence" }).click();
+    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
     await page
       .getByRole("radio", {
         name: "lambda = 1 + i and lambda = 1 - i (complex conjugates)",
@@ -57,6 +58,7 @@ test.describe("Eigenvalues and Eigenvectors", () => {
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await page.getByRole("button", { name: "Set up eigenvalue check" }).click();
     await page.getByRole("button", { name: "Reveal eigenvalue evidence" }).click();
+    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
     await page
       .getByRole("radio", {
         name: "lambda = 3 and lambda = 2 (the diagonal entries, because A is upper-triangular)",

@@ -1,6 +1,9 @@
 import type { TSimulationSpec } from "@paideia/content-schema";
 import {
+  checkEigenvector2,
   determinant2,
+  eigenvalues2,
+  eigenvectors2,
   matrix2,
   trace2,
   type Matrix2,
@@ -144,27 +147,6 @@ const fmt = (value: number): string => {
 
 const TOLERANCE = 1e-9;
 
-const eigenspaceDirection = (
-  matrix: Matrix2,
-  lambda: number,
-): readonly [number, number] => {
-  const [[a, b], [c, d]] = matrix;
-  const m11 = a - lambda;
-  const m12 = b;
-  const m21 = c;
-  const m22 = d - lambda;
-  if (Math.abs(m12) > TOLERANCE || Math.abs(m11) > TOLERANCE) {
-    const direction: readonly [number, number] = [m12, -m11];
-    if (Math.abs(direction[0]) > TOLERANCE || Math.abs(direction[1]) > TOLERANCE) {
-      return direction;
-    }
-  }
-  if (Math.abs(m22) > TOLERANCE || Math.abs(m21) > TOLERANCE) {
-    return [m22, -m21];
-  }
-  return [1, 0];
-};
-
 export const eigenvalueEvidence = (
   state: EigenvaluesState,
 ): KernelResult<EigenvalueEvidence> => {
@@ -180,19 +162,18 @@ export const eigenvalueEvidence = (
   }
 
   if (discriminant > TOLERANCE) {
-    const root = Math.sqrt(discriminant);
-    const l1 = (trace.value + root) / 2;
-    const l2 = (trace.value - root) / 2;
+    const pairs = eigenvectors2(matrix.value);
+    if (!pairs.ok) return pairs;
     return ok({
       matrix: matrix.value,
       trace: trace.value,
       det: det.value,
       discriminant,
       kind: "real-distinct",
-      realPairs: [
-        { value: l1, direction: eigenspaceDirection(matrix.value, l1) },
-        { value: l2, direction: eigenspaceDirection(matrix.value, l2) },
-      ],
+      realPairs: pairs.value.map((pair) => ({
+        value: pair.value,
+        direction: pair.vector,
+      })),
       complexPair: null,
     });
   }
@@ -213,13 +194,26 @@ export const eigenvalueEvidence = (
     });
   }
   const repeated = trace.value / 2;
+  const repeatedValues = eigenvalues2(matrix.value);
+  if (!repeatedValues.ok) return repeatedValues;
+  const candidateDirections: readonly (readonly [number, number])[] = [
+    [1, 0],
+    [0, 1],
+    [1, 1],
+    [-1, 1],
+  ];
+  const direction =
+    candidateDirections.find((candidate) => {
+      const check = checkEigenvector2(matrix.value, candidate);
+      return check.ok && check.value.isEigenvector;
+    }) ?? [1, 0];
   return ok({
     matrix: matrix.value,
     trace: trace.value,
     det: det.value,
     discriminant,
     kind: "real-repeated",
-    realPairs: [{ value: repeated, direction: eigenspaceDirection(matrix.value, repeated) }],
+    realPairs: [{ value: repeated, direction }],
     complexPair: null,
   });
 };
