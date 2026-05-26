@@ -2,30 +2,31 @@
 import type { ComponentType } from "react";
 import GeneratedSim0CoulombSLawAndDiscreteChargeFieldsCoulombFieldVectorLab from "@paideia/sutd-sims/coulomb-s-law-and-discrete-charge-fields";
 import GeneratedSim1MagneticInductionFaradayLenzMagneticInductionFaradayLenz from "@paideia/sutd-sims/magnetic-induction-faraday-lenz";
-import GeneratedSim2DeterminantAndTraceDeterminantAndTrace from "@paideia/sutd-sims/determinant-and-trace";
-import GeneratedSim3EigenvaluesAndEigenvectorsEigenvaluesAndEigenvectors from "@paideia/sutd-sims/eigenvalues-and-eigenvectors";
-import GeneratedSim4LinearTransformationsLinearTransformations from "@paideia/sutd-sims/linear-transformations";
-import GeneratedSim5LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
-import GeneratedSim6ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
-import GeneratedSim7StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
-import GeneratedSim8DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
-import GeneratedSim9GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim10RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
-import GeneratedSim11ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
-import GeneratedSim12FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
-import GeneratedSim13TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim14BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim15PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim16SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
-import GeneratedSim17LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim18MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
-import GeneratedSim19NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim20BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim21EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim22VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim23FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
-import GeneratedSim24LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim25OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim2RlcCircuitAndResonanceRlcCircuitAndResonance from "@paideia/sutd-sims/rlc-circuit-and-resonance";
+import GeneratedSim3DeterminantAndTraceDeterminantAndTrace from "@paideia/sutd-sims/determinant-and-trace";
+import GeneratedSim4EigenvaluesAndEigenvectorsEigenvaluesAndEigenvectors from "@paideia/sutd-sims/eigenvalues-and-eigenvectors";
+import GeneratedSim5LinearTransformationsLinearTransformations from "@paideia/sutd-sims/linear-transformations";
+import GeneratedSim6LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
+import GeneratedSim7ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
+import GeneratedSim8StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
+import GeneratedSim9DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
+import GeneratedSim10GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
+import GeneratedSim11RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
+import GeneratedSim12ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
+import GeneratedSim13FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
+import GeneratedSim14TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim15BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim16PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim17SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
+import GeneratedSim18LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim19MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
+import GeneratedSim20NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim21BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim22EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim23VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim24FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
+import GeneratedSim25LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim26OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -94,6 +95,15 @@ export const knowledgeGraph = {
     id: "sutd/10-017-technological-world-e-and-m/magnetic-induction-faraday-lenz",
     conceptId: "magnetic-induction-faraday-lenz",
     title: "Magnetic Induction: Faraday-Lenz",
+    subject: "10-017-technological-world-e-and-m",
+    level: "Undergraduate",
+    module: "10.017 Technological World: Electricity and Magnetism",
+    status: "reviewed",
+  },
+  {
+    id: "sutd/10-017-technological-world-e-and-m/rlc-circuit-and-resonance",
+    conceptId: "rlc-circuit-and-resonance",
+    title: "RLC Circuit and Resonance",
     subject: "10-017-technological-world-e-and-m",
     level: "Undergraduate",
     module: "10.017 Technological World: Electricity and Magnetism",
@@ -321,6 +331,10 @@ export const knowledgeGraph = {
   { from: "sutd/10-017-technological-world-e-and-m/inverse-square-laws", to: "sutd/10-017-technological-world-e-and-m/coulomb-s-law-and-discrete-charge-fields", kind: "prerequisite" },
   { from: "sutd/10-017-technological-world-e-and-m/coulomb-s-law-and-discrete-charge-fields", to: "sutd/10-017-technological-world-e-and-m/gauss-law-for-symmetric-distributions", kind: "downstream" },
   { from: "sutd/10-017-technological-world-e-and-m/coulomb-s-law-and-discrete-charge-fields", to: "sutd/10-017-technological-world-e-and-m/electric-field", kind: "sibling" },
+  { from: "sutd/10-017-technological-world-e-and-m/ac-current", to: "sutd/10-017-technological-world-e-and-m/rlc-circuit-and-resonance", kind: "prerequisite" },
+  { from: "sutd/10-017-technological-world-e-and-m/impedance", to: "sutd/10-017-technological-world-e-and-m/rlc-circuit-and-resonance", kind: "prerequisite" },
+  { from: "sutd/10-017-technological-world-e-and-m/rlc-circuit-and-resonance", to: "sutd/10-017-technological-world-e-and-m/filters", kind: "downstream" },
+  { from: "sutd/10-017-technological-world-e-and-m/rlc-circuit-and-resonance", to: "sutd/10-017-technological-world-e-and-m/circuit-phasor-reasoning", kind: "sibling" },
   { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/matrices", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/determinant-and-trace", kind: "prerequisite" },
   { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/vector-transformations", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/determinant-and-trace", kind: "prerequisite" },
   { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/determinant-and-trace", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/eigenvalues-and-eigenvectors", kind: "downstream" },
@@ -529,6 +543,61 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/10-017-technological-world-e-and-m/rlc-circuit-and-resonance",
+    branch: "sutd",
+    subject: "10 017 Technological World E And M",
+    level: "Undergraduate",
+    module: "10.017 Technological World: Electricity and Magnetism",
+    title: "RLC Circuit and Resonance",
+    summary: "Tune a series RLC circuit and predict when inductive and capacitive reactance cancel.",
+    syllabusRef: "SUTD 10.017 / AC circuits, impedance, and resonance",
+    status: "reviewed",
+    packageId: "rlc-circuit-and-resonance",
+    simId: "rlc-circuit-and-resonance",
+    predictPrompt: "A series RLC circuit is driven at its resonant frequency. What happens to the net reactance and RMS current?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Resonance means zero impedance",
+      "The larger reactance always gives larger current",
+    ],
+    transferProblem: "A receiver coil has L = 0.20 H and R = 18 ohm. Choose a capacitor so the circuit resonates at 800 Hz, then estimate the resonant current from a 6.0 V RMS source.",
+    firstPrinciples: "In a sinusoidal steady-state series RLC circuit, the resistor, inductor, and capacitor carry the same RMS current. Their opposition to current is impedance:",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "Convert millihenrys and microfarads into henrys and farads.",
+      "Calculate X_L and X_C at the drive frequency.",
+      "Form the real and imaginary parts of total impedance.",
+      "Use the impedance magnitude to find RMS current.",
+      "If the target frequency is specified, solve f0 = 1 / (2 pi sqrt(LC)).",
+      "Explain whether the circuit is broadly or sharply tuned.",
+      "Explain why resonance does not make total impedance zero.",
+    ],
+    prerequisites: [
+      "AC current",
+      "Impedance",
+    ],
+    downstream: [
+      "Frequency filters",
+    ],
+    siblings: [
+      "Circuit Phasor Reasoning",
+    ],
+    sims: [
+      {
+        id: "rlc-circuit-and-resonance",
+        harnessId: "sutd/10-017-technological-world-e-and-m/rlc-circuit-and-resonance/rlc-circuit-and-resonance",
+        title: "RLC Circuit and Resonance",
+        interactionType: "diagram-builder",
+        component: GeneratedSim2RlcCircuitAndResonanceRlcCircuitAndResonance,
+      },
+    ],
+  },
+  {
     id: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/determinant-and-trace",
     branch: "sutd",
     subject: "10 018 Modelling Space And Systems Multivariable Calc And Linear Algebra",
@@ -580,7 +649,7 @@ export const containers = [
         harnessId: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/determinant-and-trace/determinant-and-trace",
         title: "Determinant and Trace Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim2DeterminantAndTraceDeterminantAndTrace,
+        component: GeneratedSim3DeterminantAndTraceDeterminantAndTrace,
       },
     ],
   },
@@ -636,7 +705,7 @@ export const containers = [
         harnessId: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/eigenvalues-and-eigenvectors/eigenvalues-and-eigenvectors",
         title: "Eigenvalue and Eigenvector Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim3EigenvaluesAndEigenvectorsEigenvaluesAndEigenvectors,
+        component: GeneratedSim4EigenvaluesAndEigenvectorsEigenvaluesAndEigenvectors,
       },
     ],
   },
@@ -692,7 +761,7 @@ export const containers = [
         harnessId: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/linear-transformations/linear-transformations",
         title: "Linear Transformation Classifier",
         interactionType: "diagram-builder",
-        component: GeneratedSim4LinearTransformationsLinearTransformations,
+        component: GeneratedSim5LinearTransformationsLinearTransformations,
       },
     ],
   },
@@ -758,7 +827,7 @@ export const containers = [
         harnessId: "sutd/asd/load-path-and-daylight-tradeoff/load-path-and-daylight-tradeoff",
         title: "Load Path and Daylight Tradeoff Explorer",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim5LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
+        component: GeneratedSim6LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
       },
     ],
   },
@@ -815,7 +884,7 @@ export const containers = [
         harnessId: "sutd/asd/shading-daylight-heat-gain/shading-daylight-heat-gain",
         title: "Shading, Daylight, and Heat Gain",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim6ShadingDaylightHeatGainShadingDaylightHeatGain,
+        component: GeneratedSim7ShadingDaylightHeatGainShadingDaylightHeatGain,
       },
     ],
   },
@@ -882,7 +951,7 @@ export const containers = [
         harnessId: "sutd/asd/structural-load-path-diagram/structural-load-path-diagram",
         title: "Structural Load Path Diagram",
         interactionType: "diagram-builder",
-        component: GeneratedSim7StructuralLoadPathDiagramStructuralLoadPathDiagram,
+        component: GeneratedSim8StructuralLoadPathDiagramStructuralLoadPathDiagram,
       },
     ],
   },
@@ -928,7 +997,7 @@ export const containers = [
         harnessId: "sutd/csd/dynamic-programming-state-recursion/dynamic-programming-state-recursion",
         title: "Dynamic Programming State Recursion",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim8DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
+        component: GeneratedSim9DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
       },
     ],
   },
@@ -978,7 +1047,7 @@ export const containers = [
         harnessId: "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths",
         title: "Graph Search and Shortest Paths",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim9GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
+        component: GeneratedSim10GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
       },
     ],
   },
@@ -1028,7 +1097,7 @@ export const containers = [
         harnessId: "sutd/csd/recursion-tree-complexity/recursion-tree-complexity",
         title: "Recursion Tree Complexity Lab",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim10RecursionTreeComplexityRecursionTreeComplexity,
+        component: GeneratedSim11RecursionTreeComplexityRecursionTreeComplexity,
       },
     ],
   },
@@ -1093,7 +1162,7 @@ export const containers = [
         harnessId: "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds",
         title: "Confusion Matrix Threshold Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim11ConfusionMatrixThresholdsConfusionMatrixThresholds,
+        component: GeneratedSim12ConfusionMatrixThresholdsConfusionMatrixThresholds,
       },
     ],
   },
@@ -1151,7 +1220,7 @@ export const containers = [
         harnessId: "sutd/dai/fairness-threshold-audit/fairness-threshold-audit",
         title: "Fairness Threshold Audit Lab",
         interactionType: "decision-matrix",
-        component: GeneratedSim12FairnessThresholdAuditFairnessThresholdAudit,
+        component: GeneratedSim13FairnessThresholdAuditFairnessThresholdAudit,
       },
     ],
   },
@@ -1204,7 +1273,7 @@ export const containers = [
         harnessId: "sutd/dai/trust-calibration/trust-calibration",
         title: "Trust Calibration Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim13TrustCalibrationTrustCalibration,
+        component: GeneratedSim14TrustCalibrationTrustCalibration,
       },
     ],
   },
@@ -1270,7 +1339,7 @@ export const containers = [
         harnessId: "sutd/epd/bode-stability-margin/bode-stability-margin",
         title: "Bode Margin Reader",
         interactionType: "comparative-matrix",
-        component: GeneratedSim14BodeStabilityMarginBodeStabilityMargin,
+        component: GeneratedSim15BodeStabilityMarginBodeStabilityMargin,
       },
     ],
   },
@@ -1324,7 +1393,7 @@ export const containers = [
         harnessId: "sutd/epd/pid-step-response/pid-step-response",
         title: "PID Step Response Explorer",
         interactionType: "comparative-matrix",
-        component: GeneratedSim15PidStepResponsePidStepResponse,
+        component: GeneratedSim16PidStepResponsePidStepResponse,
       },
     ],
   },
@@ -1382,7 +1451,7 @@ export const containers = [
         harnessId: "sutd/epd/signal-filter-frequency-response/signal-filter-frequency-response",
         title: "RC Filter Frequency Response Lab",
         interactionType: "comparative-matrix",
-        component: GeneratedSim16SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
+        component: GeneratedSim17SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
       },
     ],
   },
@@ -1426,7 +1495,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim17LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim18LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -1488,7 +1557,7 @@ export const containers = [
         harnessId: "sutd/esd/markov-chain-steady-state/markov-chain-steady-state",
         title: "Markov Chain Steady-State Lab",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim18MarkovChainSteadyStateMarkovChainSteadyState,
+        component: GeneratedSim19MarkovChainSteadyStateMarkovChainSteadyState,
       },
     ],
   },
@@ -1554,7 +1623,7 @@ export const containers = [
         harnessId: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
         title: "Newsvendor Critical Fractile Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim19NewsvendorCriticalFractileNewsvendorCriticalFractile,
+        component: GeneratedSim20NewsvendorCriticalFractileNewsvendorCriticalFractile,
       },
     ],
   },
@@ -1617,7 +1686,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim20BayesUpdatingBayesUpdating,
+        component: GeneratedSim21BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -1671,7 +1740,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim21EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim22EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -1723,7 +1792,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim22VectorTransformationsVectorTransformations,
+        component: GeneratedSim23VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -1769,7 +1838,7 @@ export const containers = [
         harnessId: "sutd/smt/fourier-mode-superposition/fourier-mode-superposition",
         title: "Fourier Mode Superposition Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim23FourierModeSuperpositionFourierModeSuperposition,
+        component: GeneratedSim24FourierModeSuperpositionFourierModeSuperposition,
       },
     ],
   },
@@ -1826,7 +1895,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim24LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim25LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -1892,7 +1961,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim25OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim26OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

@@ -1,0 +1,16 @@
+state_labels:
+  frequencyHertz:
+    label: "Drive frequency"
+    meaning: "Source frequency used to evaluate reactance and current."
+  resistanceOhms:
+    label: "Resistance"
+    meaning: "Series resistance that remains at resonance."
+  inductanceMilliHenrys:
+    label: "Inductance"
+    meaning: "Inductor value that raises reactance with frequency."
+  capacitanceMicroFarads:
+    label: "Capacitance"
+    meaning: "Capacitor value that lowers reactance as frequency rises."
+  sourceVoltageRmsVolts:
+    label: "Source voltage"
+    meaning: "RMS source voltage used to estimate current."

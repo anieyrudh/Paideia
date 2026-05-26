@@ -1,0 +1,118 @@
+schema_version: "1.0.0"
+id: rlc-circuit-and-resonance
+aliases:
+  - RLC resonance
+  - series resonance
+  - AC impedance
+branch: sutd
+subject: 10-017-technological-world-e-and-m
+level: "Undergraduate"
+module: "10.017 Technological World: Electricity and Magnetism"
+title: "RLC Circuit and Resonance"
+one_line_summary: "Tune a series RLC circuit and predict when inductive and capacitive reactance cancel."
+syllabus_ref: "SUTD 10.017 / AC circuits, impedance, and resonance"
+prerequisites:
+  - ac-current
+  - impedance
+  - capacitors-and-inductors
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A series RLC circuit is driven at its resonant frequency. What happens to the net reactance and RMS current?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Net reactance is near zero, so impedance is mostly resistance and current is largest."
+      - "Inductive reactance becomes infinite, so current is zero."
+      - "Capacitive reactance disappears, so voltage across the capacitor is zero."
+      - "Resistance cancels reactance, so total impedance is zero."
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: receiver-tuning
+    prompt: |
+      A receiver coil has L = 0.20 H and R = 18 ohm. Choose a capacitor so the circuit resonates at 800 Hz, then estimate the resonant current from a 6.0 V RMS source.
+    surface_form: "receiver tuning from target resonant frequency"
+    same_concept_check: "The context changes from a lab circuit to a tuned receiver, but the learner still applies f0 = 1/(2 pi sqrt(LC)) and I = V/R at resonance."
+    rubric_path: problem-solving/receiver-tuning.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Built SUTD 10.017 RLC resonance product slice with prediction-gated impedance simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-26"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-26"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Resonance means zero impedance"
+    description: "Learners may cancel reactance and forget that the resistor still sets the minimum impedance."
+    evidence_source: "OpenStax University Physics Volume 2, AC circuits chapter."
+    surface_in_predict: true
+  - name: "The larger reactance always gives larger current"
+    description: "Learners may miss that current is largest when net reactance is smallest, not when either reactance is large."
+    evidence_source: "Halliday, Resnick, and Walker, Fundamentals of Physics, 2018."
+    surface_in_predict: true
+sources:
+  - citation: "OpenStax. University Physics Volume 2, Chapter 15: Alternating-Current Circuits. OpenStax, 2016."
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "Halliday, D., Resnick, R., and Walker, J. Fundamentals of Physics. 11th ed. Wiley, 2018."
+    publication_year: 2018
+    license: "Publisher copyright"
+    seab_alignment: n/a
+language: en
