@@ -4,9 +4,9 @@ Pure first-year chemistry helpers for Paideia simulations.
 
 Use this package when a container needs a reference answer for molar mass,
 stoichiometry, ideal gases, strong-acid/base pH, buffer pH, equilibrium
-quotients, or Nernst potentials. Chemical data belongs in containers with
-citations; this package does not ship an atomic-mass table or electrochemical
-series.
+quotients, Nernst potentials, or first-year Aufbau electron configurations.
+Chemical data belongs in containers with citations; this package does not ship
+an atomic-mass table or electrochemical series.
 
 ```ts
 import {
@@ -43,6 +43,9 @@ if (masses.H.ok && masses.O.ok) {
 - Henderson-Hasselbalch is a buffer approximation, not a full equilibrium
   solver.
 - Nernst uses `E = E0 - RT/(nF) ln Q`.
+- `electronConfiguration` uses the Aufbau filling order through krypton
+  (`Z <= 36`) and intentionally does not handle transition-metal exceptions,
+  ions, spins, or excited states.
 
 ## Constants
 

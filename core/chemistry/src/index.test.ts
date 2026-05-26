@@ -5,6 +5,7 @@ import type { KernelResult } from "@paideia/shared";
 import {
   atmospheres,
   equilibriumQuotient,
+  electronConfiguration,
   grams,
   gramsToMoles,
   hendersonHasselbalch,
@@ -113,6 +114,33 @@ describe("unit constructors and formulas", () => {
         },
       ),
     );
+  });
+});
+
+describe("electron configuration", () => {
+  it("fills shells and subshells in Aufbau order for first-year elements", () => {
+    expect(unwrap(electronConfiguration(6))).toMatchObject({
+      notation: "1s2 2s2 2p2",
+      valenceElectrons: 4,
+      shells: [
+        { shell: 1, electrons: 2, capacity: 2 },
+        { shell: 2, electrons: 4, capacity: 8 },
+      ],
+    });
+    expect(unwrap(electronConfiguration(11))).toMatchObject({
+      notation: "1s2 2s2 2p6 3s1",
+      valenceElectrons: 1,
+    });
+    expect(unwrap(electronConfiguration(17))).toMatchObject({
+      notation: "1s2 2s2 2p6 3s2 3p5",
+      valenceElectrons: 7,
+    });
+  });
+
+  it("rejects atomic numbers outside the supported teaching model", () => {
+    expect(electronConfiguration(0).ok).toBe(false);
+    expect(electronConfiguration(37).ok).toBe(false);
+    expect(electronConfiguration(8.5).ok).toBe(false);
   });
 });
 

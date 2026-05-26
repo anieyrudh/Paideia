@@ -1,0 +1,118 @@
+schema_version: "1.0.0"
+id: atomic-structure-and-electron-configuration
+aliases:
+  - atomic structure
+  - electron configuration
+  - valence electrons
+branch: sutd
+subject: 10-016-science-for-a-sustainable-world
+level: "Freshmore"
+module: "10.016 Science for a Sustainable World"
+title: "Atomic Structure and Electron Configuration"
+one_line_summary: "Connect atomic number to neutral electron count, shell filling, subshell notation, and valence electrons."
+syllabus_ref: "SUTD 10.016 Science for a Sustainable World / atomic structure"
+prerequisites:
+  - atoms-and-elements
+  - electric-charge
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    Carbon has atomic number 6. Before reveal, which shell distribution is neutral carbon?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "2, 4"
+      - "2, 8, 6"
+      - "6 in the first shell"
+      - "1s2 2s2 2p6"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: sodium-chlorine-valence
+    prompt: |
+      Use electron configurations to compare sodium and chlorine. Explain which atom has one outer electron, which has seven outer electrons, and how that supports an ionic bonding prediction.
+    surface_form: "sodium and chlorine valence comparison"
+    same_concept_check: "Same concept: atomic number fixes neutral electron count, shell filling gives valence electrons, and valence electrons support bonding predictions."
+    rubric_path: problem-solving/sodium-chlorine-valence.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Built initial SUTD 10.016 atomic structure product slice with prediction gate and electron-configuration visual model."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-26"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-26"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Atomic mass determines electron count"
+    description: "Learners may use mass number or relative atomic mass to decide electron count instead of using atomic number for a neutral atom."
+    evidence_source: "OpenStax Chemistry 2e atomic structure and electron configuration sections."
+    surface_in_predict: true
+  - name: "All electrons fit into the first shell"
+    description: "Learners may count electrons correctly but ignore shell capacities, placing every electron close to the nucleus."
+    evidence_source: "OpenStax Chemistry 2e electron configuration treatment."
+    surface_in_predict: true
+sources:
+  - citation: "OpenStax. Chemistry 2e, Atoms, Molecules, and Ions; Electronic Structure and Periodic Properties."
+    url: "https://openstax.org/details/books/chemistry-2e"
+    publication_year: 2019
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "SUTD. 10.016 Science for a Sustainable World module listing and learning context."
+    url: "https://www.sutd.edu.sg"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+language: en

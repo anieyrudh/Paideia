@@ -1,0 +1,16 @@
+steps:
+  - id: identify-z
+    title: "Identify atomic number"
+    prompt: "Find Z from the element identity or periodic table."
+  - id: set-electrons
+    title: "Set neutral electron count"
+    prompt: "For a neutral atom, total electrons equal Z."
+  - id: fill-shells
+    title: "Fill shells and subshells"
+    prompt: "Apply the filling order until all electrons have been placed."
+  - id: read-valence
+    title: "Read valence electrons"
+    prompt: "Count electrons in the outermost occupied shell."
+  - id: interpret
+    title: "Interpret chemical tendency"
+    prompt: "Use valence electrons to compare possible ion formation or bonding patterns."

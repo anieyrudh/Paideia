@@ -5,8 +5,9 @@
 Pure first-year chemistry kernels for teaching quantitative chemistry. It owns
 formula parsing, molar-mass calculation from caller-supplied atomic masses,
 reaction stoichiometry, limiting-reagent math, ideal-gas calculations, strong
-acid/base pH, Henderson-Hasselbalch buffers, equilibrium quotients, and Nernst
-cell potentials. It returns deterministic numbers and readonly records only;
+acid/base pH, Henderson-Hasselbalch buffers, equilibrium quotients, Nernst
+cell potentials, and first-year Aufbau electron configurations up to krypton.
+It returns deterministic numbers and readonly records only;
 molecule rendering, reaction animations, titration curves, data tables, and
 learner controls live elsewhere.
 
@@ -33,6 +34,9 @@ Exports from `@paideia/chemistry`:
 - `EquilibriumTerm = { species: string; concentration: Molarity; coefficient: number }`
 - `EquilibriumQuotientInput = { products: readonly EquilibriumTerm[]; reactants: readonly EquilibriumTerm[] }`
 - `NernstInput = { standardPotentialVolts: Volts; electronCount: number; reactionQuotient: number; temperatureKelvins?: Kelvins }`
+- `ElectronSubshellOccupancy = { label: string; principalShell: number; orbital: "s" | "p" | "d" | "f"; electrons: number; capacity: number }`
+- `ElectronShellOccupancy = { shell: number; electrons: number; capacity: number }`
+- `ElectronConfiguration = { atomicNumber: number; totalElectrons: number; subshells: readonly ElectronSubshellOccupancy[]; shells: readonly ElectronShellOccupancy[]; notation: string; valenceElectrons: number }`
 - `moles(value: number): KernelResult<Moles>`
 - `grams(value: number): KernelResult<Grams>`
 - `litres(value: number): KernelResult<Litres>`
@@ -53,6 +57,7 @@ Exports from `@paideia/chemistry`:
 - `hendersonHasselbalch(pKa: number, baseConcentration: Molarity, acidConcentration: Molarity): KernelResult<number>`
 - `equilibriumQuotient(input: EquilibriumQuotientInput): KernelResult<number>`
 - `nernstPotential(input: NernstInput): KernelResult<Volts>`
+- `electronConfiguration(atomicNumber: number): KernelResult<ElectronConfiguration>`
 
 ## Invariants the caller must preserve
 
@@ -68,6 +73,8 @@ Exports from `@paideia/chemistry`:
 - Equilibrium coefficients are exponents; concentration terms must be positive.
 - Nernst input uses reaction quotient `Q > 0`, electron count `n > 0`, and SI
   temperature in kelvins.
+- `electronConfiguration` uses the first-year Aufbau filling order through
+  krypton (`Z <= 36`) and does not model transition-metal exceptions.
 
 Violations return `KernelResult.err("precondition-violated", ...)` or
 `KernelResult.err("out-of-domain", ...)`.
@@ -82,6 +89,8 @@ Violations return `KernelResult.err("precondition-violated", ...)` or
 - Does not model weak acid/base equilibria beyond Henderson-Hasselbalch.
 - Does not model activities, ionic strength, non-ideal gases, temperature-varying
   constants, or kinetics.
+- Does not model spin, orbital box diagrams, ions, excited states, or
+  transition-metal configuration exceptions.
 - Does not import branch-specific content or flags.
 
 ## When to consider this module
