@@ -1,0 +1,13 @@
+steps:
+  - id: augment
+    label: Build augmented matrix
+    prompt: "Place coefficients and right-hand side in [A|b]."
+  - id: pivot
+    label: Choose pivot
+    prompt: "Use a nonzero first-column entry as the pivot."
+  - id: eliminate
+    label: Clear below pivot
+    prompt: "Apply a row operation that preserves the solution set."
+  - id: classify
+    label: Classify solution set
+    prompt: "Use the remaining row to decide unique, parallel, or dependent."

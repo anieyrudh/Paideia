@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Fallback diagram for Gaussian elimination">
+  <rect width="640" height="360" fill="#ffffff"/>
+  <text x="90" y="130" font-family="monospace" font-size="42" fill="#0f172a">[ a b | e ]</text>
+  <text x="90" y="200" font-family="monospace" font-size="42" fill="#0f172a">[ c d | f ]</text>
+  <path d="M430 170 H560" stroke="#dc2626" stroke-width="12"/>
+  <text x="90" y="310" font-family="Arial" font-size="30" fill="#0f172a">Row operations preserve the solution set</text>
+</svg>

@@ -7,6 +7,7 @@ import {
   dot2,
   eigenvalues2,
   eigenvectors2,
+  gaussianElimination2,
   linearAlgebraTolerance,
   matrix2,
   multiplyMatrix2,
@@ -87,6 +88,25 @@ describe("@paideia/linear-algebra", () => {
       [4, 4],
       [10, 8],
     ]);
+  });
+
+  it("performs 2x2 Gaussian elimination with classification", () => {
+    const unique = expectOk(gaussianElimination2([[2, 1], [1, -1]], [5, 1]));
+    expect(unique.classification).toBe("unique");
+    expectCloseVector(unique.solution ?? [0, 0], [2, 1]);
+
+    const parallel = expectOk(gaussianElimination2([[1, 1], [2, 2]], [2, 5]));
+    expect(parallel.classification).toBe("parallel");
+    expect(parallel.solution).toBeNull();
+
+    const dependent = expectOk(gaussianElimination2([[1, 1], [2, 2]], [2, 4]));
+    expect(dependent.classification).toBe("dependent");
+    expect(dependent.solution).toBeNull();
+
+    const rowSwap = expectOk(gaussianElimination2([[0, 2], [1, 1]], [4, 3]));
+    expect(rowSwap.classification).toBe("unique");
+    expectCloseVector(rowSwap.solution ?? [0, 0], [1, 2]);
+    expect(rowSwap.steps).toContain("Swap rows to move a nonzero pivot into row 1.");
   });
 
   it("computes real eigenvalues and normalized eigenvectors", () => {

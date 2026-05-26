@@ -1,0 +1,10 @@
+presets:
+  - id: unique
+    label: Unique solution
+    state: { a: 2, b: 1, c: 1, d: -1, e: 5, f: 1 }
+  - id: parallel
+    label: Parallel inconsistent
+    state: { a: 1, b: 1, c: 2, d: 2, e: 2, f: 5 }
+  - id: dependent
+    label: Dependent rows
+    state: { a: 1, b: 1, c: 2, d: 2, e: 2, f: 4 }
