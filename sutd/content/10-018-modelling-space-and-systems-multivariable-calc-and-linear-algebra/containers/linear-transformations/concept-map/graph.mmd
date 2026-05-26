@@ -1,0 +1,10 @@
+graph TD
+  MAT["Matrices"] --> LT["Linear transformations"]
+  VT["Vector transformations"] --> LT
+  LT --> DT["Determinant and trace"]
+  LT --> EV["Eigenvalues and eigenvectors"]
+  LT --> CG["Computer graphics transforms"]
+  LT --> INV["Matrix inverse (2x2)"]
+  M1["Linear = rigid"] -.-> LT
+  M2["Rotation is diagonal"] -.-> LT
+  M3["Linear allows translation"] -.-> LT

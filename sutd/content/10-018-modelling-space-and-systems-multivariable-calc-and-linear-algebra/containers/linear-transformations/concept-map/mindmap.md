@@ -1,0 +1,24 @@
+# Mindmap
+
+- Linear transformations
+  - Definition
+    - Preserves vector addition
+    - Preserves scalar multiplication
+    - Origin fixed (no translation)
+  - Matrix representation
+    - Columns are images of e_1, e_2
+    - 2x2 matrix completely determines T
+  - Canonical classes
+    - Scaling (diagonal)
+    - Rotation (cos/sin pattern)
+    - Reflection (det = -1)
+    - Shear (one column unchanged)
+    - Composites (products)
+  - Misconceptions
+    - Linear = rigid
+    - Rotation = diagonal
+    - Linear = affine
+  - Transfers
+    - Determinant and trace as classifiers
+    - Eigenvectors as invariant directions
+    - Graphics pipelines

@@ -29,7 +29,10 @@
     "./confusion-matrix-thresholds": "./src/confusion-matrix-thresholds.tsx",
     "./markov-chain-steady-state": "./src/markov-chain-steady-state.tsx",
     "./fairness-threshold-audit": "./src/fairness-threshold-audit.tsx",
-    "./determinant-and-trace": "./src/determinant-and-trace.tsx"
+    "./determinant-and-trace": "./src/determinant-and-trace.tsx",
+    "./eigenvalues-and-eigenvectors": "./src/eigenvalues-and-eigenvectors.tsx",
+    "./linear-transformations": "./src/linear-transformations.tsx",
+    "./coulomb-s-law-and-discrete-charge-fields": "./src/coulomb-s-law-and-discrete-charge-fields.tsx"
   },
   "scripts": {
     "build": "tsc -b",

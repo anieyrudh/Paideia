@@ -1,0 +1,56 @@
+id: eigenvalues-and-eigenvectors
+title: "Eigenvalue and Eigenvector Lab"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/linear-algebra
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    Matrix A = [[3, 1], [0, 2]]. Before reveal, what are its eigenvalues?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "lambda = 3 and lambda = 2 (the diagonal entries, because A is upper-triangular)"
+      - "lambda = 5 and lambda = 6 (read tr and det as eigenvalues)"
+      - "lambda = 1 + i and lambda = 1 - i (complex conjugates)"
+      - "Only one eigenvalue exists for a 2x2 matrix"
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: a11
+      label: "Top-left entry a"
+      kind: slider
+      kernel_binding: state.a11
+      bounds: { min: -4, max: 4, step: 0.5 }
+    - id: a12
+      label: "Top-right entry b"
+      kind: slider
+      kernel_binding: state.a12
+      bounds: { min: -4, max: 4, step: 0.5 }
+    - id: a21
+      label: "Bottom-left entry c"
+      kind: slider
+      kernel_binding: state.a21
+      bounds: { min: -4, max: 4, step: 0.5 }
+    - id: a22
+      label: "Bottom-right entry d"
+      kind: slider
+      kernel_binding: state.a22
+      bounds: { min: -4, max: 4, step: 0.5 }
+observe:
+  renderers:
+    - id: eigenvalues-and-eigenvectors-readout
+      module: "@paideia/sutd-sims/eigenvalues-and-eigenvectors"
+      symbol: EigenvaluesAndEigenvectors
+      props_binding: |
+        Show characteristic polynomial roots, eigenspace lines in the plane, discriminant verdict, and the complex-case interpretation.
+explain:
+  prompt: |
+    Explain how the discriminant T^2 - 4D decides whether the matrix has two real invariant lines, one repeated direction, or a complex rotation-plus-scaling behaviour.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Eigenvalues are always the diagonal entries"
+    - "Complex eigenvalues mean no real behaviour"

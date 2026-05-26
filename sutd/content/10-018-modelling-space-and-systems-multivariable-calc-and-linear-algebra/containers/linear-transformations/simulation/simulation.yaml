@@ -1,0 +1,56 @@
+id: linear-transformations
+title: "Linear Transformation Classifier"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/linear-algebra
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    Matrix A = [[0, -1], [1, 0]]. Before reveal, which classification best describes this linear transformation?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Pure rotation by 90 degrees counter-clockwise; area preserved, orientation preserved"
+      - "Reflection across the x-axis; orientation flipped"
+      - "Horizontal shear; area preserved, orientation preserved"
+      - "Anisotropic scaling; both basis vectors stretched differently"
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: a11
+      label: "Top-left entry a"
+      kind: slider
+      kernel_binding: state.a11
+      bounds: { min: -3, max: 3, step: 0.5 }
+    - id: a12
+      label: "Top-right entry b"
+      kind: slider
+      kernel_binding: state.a12
+      bounds: { min: -3, max: 3, step: 0.5 }
+    - id: a21
+      label: "Bottom-left entry c"
+      kind: slider
+      kernel_binding: state.a21
+      bounds: { min: -3, max: 3, step: 0.5 }
+    - id: a22
+      label: "Bottom-right entry d"
+      kind: slider
+      kernel_binding: state.a22
+      bounds: { min: -3, max: 3, step: 0.5 }
+observe:
+  renderers:
+    - id: linear-transformations-readout
+      module: "@paideia/sutd-sims/linear-transformations"
+      symbol: LinearTransformations
+      props_binding: |
+        Show the basis images on a grid, the canonical-class verdict, area scale, orientation, and rotation/scaling extraction.
+explain:
+  prompt: |
+    Explain why specifying T(e_1) and T(e_2) is sufficient to describe T on every vector in the plane.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Linear transformations always preserve length"
+    - "Rotation matrices have nonzero diagonal entries only"

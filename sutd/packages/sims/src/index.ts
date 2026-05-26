@@ -18,4 +18,5 @@ export { default as ConfusionMatrixThresholds } from "./confusion-matrix-thresho
 export { default as MarkovChainSteadyState } from "./markov-chain-steady-state.js";
 export { default as FairnessThresholdAudit } from "./fairness-threshold-audit.js";
 export { default as DeterminantAndTrace } from "./determinant-and-trace.js";
-export { default as MagneticInductionFaradayLenz } from "./magnetic-induction-faraday-lenz.js";
+export { default as EigenvaluesAndEigenvectors } from "./eigenvalues-and-eigenvectors.js";
+export { default as LinearTransformations } from "./linear-transformations.js";
