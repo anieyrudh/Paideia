@@ -17,9 +17,16 @@ import { VectorFieldPlot } from "@paideia/plotting";
 import type { PredictionEvent } from "@paideia/prediction-gate";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
 import {
+  approxEqual,
+  metres,
+  newtons,
   ok,
+  type Brand,
   type ConceptPackageId,
+  type Joules,
   type KernelResult,
+  type Metres,
+  type Newtons,
   type VectorField2D,
 } from "@paideia/shared";
 import { ControlGroup, Slider } from "@paideia/ui-sim";
@@ -28,10 +35,10 @@ export const electricFieldsPackageId = "sutd/10-017-technological-world-e-and-m/
 export const electricFieldsSimId = "coulomb-field-vector-lab";
 export type ElectricFieldsPredictionEvent = PredictionEvent;
 
-type MicroCoulombs = number & { readonly __brand: "MicroCoulombs" };
-type NanoCoulombs = number & { readonly __brand: "NanoCoulombs" };
-type Centimetres = number & { readonly __brand: "Centimetres" };
-type DegreesValue = number & { readonly __brand: "DegreesValue" };
+type MicroCoulombs = Brand<number, "MicroCoulombs">;
+type NanoCoulombs = Brand<number, "NanoCoulombs">;
+type Centimetres = Brand<number, "Centimetres">;
+type DegreesValue = Brand<number, "DegreesValue">;
 
 const MIN_FIELD_RADIUS_METRES = 0.025;
 
@@ -45,14 +52,14 @@ export interface ElectricFieldsState {
 export interface ElectricFieldsModel {
   readonly sourceChargeCoulombs: Coulombs;
   readonly testChargeCoulombs: Coulombs;
-  readonly separationMetres: number;
+  readonly separationMetres: Metres;
   readonly positionVectorMetres: Vector2;
   readonly electricFieldVectorNPerC: Vector2;
   readonly electricFieldStrengthNPerC: NewtonsPerCoulomb;
   readonly forceVectorNewtons: Vector2;
-  readonly forceMagnitudeNewtons: number;
+  readonly forceMagnitudeNewtons: Newtons;
   readonly potentialVolts: Volts;
-  readonly potentialEnergyJoules: number;
+  readonly potentialEnergyJoules: Joules;
   readonly fieldDirectionSummary: string;
   readonly forceDirectionSummary: string;
 }
@@ -203,7 +210,7 @@ const formatChargeNano = (value: number): string => `${formatFixed(value, 0)} nC
 const formatDistance = (value: number): string => `${formatFixed(value, 0)} cm`;
 
 const formatScientific = (value: number, unit: string): string => {
-  if (value === 0) return `0 ${unit}`;
+  if (approxEqual(value, 0)) return `0 ${unit}`;
   const [mantissa, exponent] = value.toExponential(2).split("e");
   return `${mantissa} x 10^${Number(exponent)} ${unit}`;
 };
@@ -230,13 +237,13 @@ const positionFromState = (state: ElectricFieldsState): KernelResult<Vector2> =>
 };
 
 export const electricFieldVectorAt = (
-  sourceChargeCoulombs: number,
+  sourceChargeCoulombs: Coulombs,
   pointMetres: Vector2,
 ): KernelResult<Vector2> =>
   pointChargeElectricField({
     minRadiusMetres: MIN_FIELD_RADIUS_METRES,
     pointMetres,
-    sourceChargeCoulombs: coulombs(sourceChargeCoulombs),
+    sourceChargeCoulombs,
   });
 
 export const electricFieldsModel = (
@@ -269,12 +276,12 @@ export const electricFieldsModel = (
         : testChargeCoulombs < 0
           ? "The negative test charge feels force opposite to the field direction."
           : "A zero test charge feels no electric force.",
-    forceMagnitudeNewtons: model.value.forceMagnitudeNewtons,
+    forceMagnitudeNewtons: newtons(model.value.forceMagnitudeNewtons),
     forceVectorNewtons: model.value.forceVectorNewtons,
     positionVectorMetres: position.value,
     potentialEnergyJoules: model.value.potentialEnergyJoules,
     potentialVolts: model.value.potentialVolts,
-    separationMetres: model.value.separationMetres,
+    separationMetres: metres(model.value.separationMetres),
     sourceChargeCoulombs,
     testChargeCoulombs,
   });
@@ -291,7 +298,7 @@ const setScenario = (
 };
 
 const fieldForPlot = (state: ElectricFieldsState): VectorField2D => {
-  const sourceChargeCoulombs = state.sourceChargeMicroC * 1e-6;
+  const sourceChargeCoulombs = coulombs(state.sourceChargeMicroC * 1e-6);
   return (x, y) => {
     const point = vector2(x, y);
     if (!point.ok) return [0, 0] as const;

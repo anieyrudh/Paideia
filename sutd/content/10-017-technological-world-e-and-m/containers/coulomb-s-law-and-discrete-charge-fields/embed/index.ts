@@ -26,10 +26,30 @@ const parseScore = (score: ContainerEmbedScore): ContainerEmbedScore =>
 export const createContainerEmbed = (): ContainerEmbedApi => {
   let state = parseState(defaultState);
   let targetElement: Element | null = null;
+  let theme: ContainerEmbedTheme | null = null;
+
+  const clearTheme = (target: Element): void => {
+    target.removeAttribute("data-paideia-theme");
+    target.removeAttribute("data-paideia-accent-color");
+  };
+
+  const applyTheme = (): void => {
+    if (targetElement === null || theme === null) return;
+    targetElement.setAttribute("data-paideia-theme", theme.colorScheme);
+    if (theme.accentColor === undefined) {
+      targetElement.removeAttribute("data-paideia-accent-color");
+    } else {
+      targetElement.setAttribute("data-paideia-accent-color", theme.accentColor);
+    }
+  };
 
   return {
     async load(target: Element): Promise<void> {
+      if (targetElement !== null && targetElement !== target) {
+        clearTheme(targetElement);
+      }
       targetElement = target;
+      applyTheme();
     },
     saveState(): ContainerEmbedState {
       return parseState(state);
@@ -44,13 +64,15 @@ export const createContainerEmbed = (): ContainerEmbedApi => {
     resume(nextState: ContainerEmbedState): void {
       state = parseState(nextState);
     },
-    syncTheme(theme: ContainerEmbedTheme): void {
-      const parsedTheme = parseTheme(theme);
-      targetElement?.setAttribute("data-paideia-theme", parsedTheme.colorScheme);
+    syncTheme(nextTheme: ContainerEmbedTheme): void {
+      const parsedTheme = parseTheme(nextTheme);
+      theme = parsedTheme;
+      applyTheme();
     },
     destroy(): void {
-      targetElement?.removeAttribute("data-paideia-theme");
+      if (targetElement !== null) clearTheme(targetElement);
       targetElement = null;
+      theme = null;
       state = parseState(defaultState);
     },
   };
