@@ -20,6 +20,7 @@ export { default as FairnessThresholdAudit } from "./fairness-threshold-audit.js
 export { default as DeterminantAndTrace } from "./determinant-and-trace.js";
 export { default as EigenvaluesAndEigenvectors } from "./eigenvalues-and-eigenvectors.js";
 export { default as LinearTransformations } from "./linear-transformations.js";
+export { default as PartialDerivativesAndGradient } from "./partial-derivatives-and-gradient.js";
 export { default as MaxwellEquationsAndEmWaves } from "./maxwell-equations-and-em-waves.js";
 export { default as RlcCircuitAndResonance } from "./rlc-circuit-and-resonance.js";
 export { default as CoulombsLawAndDiscreteChargeFields } from "./coulomb-s-law-and-discrete-charge-fields.js";

@@ -1,0 +1,121 @@
+schema_version: "1.0.0"
+id: partial-derivatives-and-gradient
+aliases:
+  - gradient vector
+  - partial derivatives
+  - directional derivative
+branch: sutd
+subject: "10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra"
+level: "Undergraduate"
+module: "10.018 Modelling Space and Systems"
+title: "Partial Derivatives and Gradient"
+one_line_summary: "Probe a surface at a point, connect partial derivatives to the gradient vector, and use directional derivatives to predict fastest increase."
+syllabus_ref: "SUTD 10.018 Modelling Space and Systems / partial derivatives and gradient"
+prerequisites:
+  - single-variable-derivatives
+  - contour-plots
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    On a contour plot, which direction does the gradient vector point at the selected point?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Perpendicular to the contour, toward fastest increase"
+      - "Along the contour, because the contour is the visible line"
+      - "Always toward the positive x-axis"
+      - "Always toward the origin"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: temperature-surface-gradient
+    prompt: |
+      A plate has measured temperature T(x,y). At a sensor point, use partial derivatives to find the direction of fastest temperature increase and estimate the temperature after a small move.
+    surface_form: "thermal surface gradient estimate"
+    same_concept_check: "The context changes from an abstract surface to temperature on a plate, but the work is still computing partial derivatives, assembling the gradient, and projecting it onto a direction."
+    rubric_path: problem-solving/temperature-surface-gradient.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Built SUTD 10.018 partial derivatives and gradient product slice with prediction-gated surface-gradient lab."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-26"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-26"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "The gradient points along a contour"
+    description: "Learners may follow the drawn level curve instead of recognizing that a level curve has zero first-order change and the gradient is normal to it."
+    evidence_source: "Stewart Calculus, multivariable calculus chapters on directional derivatives."
+    surface_in_predict: true
+  - name: "Partial derivatives describe total change in every direction"
+    description: "Learners may treat f_x or f_y alone as the total slope, instead of using the gradient dot product to measure change along an arbitrary direction."
+    evidence_source: "MIT OCW 18.02SC directional derivatives and gradients notes."
+    surface_in_predict: true
+sources:
+  - citation: "Stewart, J. Calculus: Early Transcendentals. 8th ed. Cengage, 2015."
+    publication_year: 2015
+    license: "Publisher copyright"
+    seab_alignment: n/a
+  - citation: "MIT OpenCourseWare. 18.02SC Multivariable Calculus, Unit 2: Partial Derivatives."
+    publication_year: 2010
+    license: "CC BY-NC-SA 4.0"
+    seab_alignment: n/a
+  - citation: "SUTD. 10.018 Modelling Space and Systems course topic list."
+    publication_year: 2026
+    license: "Institutional syllabus reference"
+    seab_alignment: n/a
+language: en

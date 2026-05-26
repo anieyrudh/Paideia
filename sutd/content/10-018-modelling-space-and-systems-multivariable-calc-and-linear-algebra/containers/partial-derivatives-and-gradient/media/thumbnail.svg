@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Gradient crossing contours</title>
+  <desc id="desc">A contour map with a point and a gradient arrow crossing level curves.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <g transform="translate(320 180) rotate(-18)" fill="none" stroke-width="5">
+    <ellipse rx="70" ry="34" stroke="#93c5fd"/>
+    <ellipse rx="120" ry="62" stroke="#60a5fa"/>
+    <ellipse rx="170" ry="92" stroke="#f59e0b"/>
+    <ellipse rx="220" ry="122" stroke="#f97316"/>
+  </g>
+  <circle cx="310" cy="190" r="11" fill="#111827"/>
+  <path d="M310 190 L424 120" stroke="#0f766e" stroke-width="12" stroke-linecap="round"/>
+  <path d="M424 120 l-12 34 l-20 -26 z" fill="#0f766e"/>
+  <text x="48" y="70" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#111827">Partial derivatives and gradient</text>
+  <text x="48" y="112" font-family="Arial, sans-serif" font-size="22" fill="#475569">Gradient is fastest increase, normal to contours</text>
+</svg>

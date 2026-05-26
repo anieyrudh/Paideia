@@ -29,7 +29,17 @@ Exports from `@paideia/vector-calculus`:
 - `RectIntegral2D = { readonly value: number; readonly cells: number; readonly rule: IntegrationRule2D; readonly samples: readonly RectIntegralSample2D[] }`
 - `LineIntegral2D = { readonly value: number; readonly samples: readonly CurveSample2D[]; readonly bounds: ParametricBounds; readonly steps: number }`
 - `VectorFieldSample2D = { readonly point: Point2; readonly vector: Vector2; readonly magnitude: number }`
+- `QuadraticSurfaceFamily2D = "bowl" | "saddle" | "tilted-valley"`
+- `QuadraticSurfaceFamilyInput2D = { readonly family: QuadraticSurfaceFamily2D; readonly xCurvature: number; readonly yCurvature: number; readonly xyCoupling: number }`
+- `QuadraticSurfaceCoefficients2D = { readonly xx: number; readonly yy: number; readonly xy: number; readonly x: number; readonly y: number; readonly constant: number }`
+- `QuadraticSurfaceAtInput2D = { readonly coefficients: QuadraticSurfaceCoefficients2D; readonly point: Point2 }`
+- `QuadraticSurfaceAt2D = { readonly point: Point2; readonly value: number; readonly gradient: Gradient2D; readonly hessian: Hessian2D }`
+- `DirectionalDerivativeInput2D = { readonly gradient: Gradient2D; readonly direction: Vector2 }`
+- `DirectionalDerivative2D = { readonly at: Point2; readonly unitDirection: Vector2; readonly value: number }`
 - `point2(x: number, y: number): KernelResult<Point2>`
+- `quadraticSurfaceCoefficients2D(input: QuadraticSurfaceFamilyInput2D): KernelResult<QuadraticSurfaceCoefficients2D>`
+- `quadraticSurfaceAt2D(input: QuadraticSurfaceAtInput2D): KernelResult<QuadraticSurfaceAt2D>`
+- `directionalDerivative2D(input: DirectionalDerivativeInput2D): KernelResult<DirectionalDerivative2D>`
 - `gradient2D(field: Function3D, at: Point2, opts?: DerivativeOptions): KernelResult<Gradient2D>`
 - `hessian2D(field: Function3D, at: Point2, opts?: DerivativeOptions): KernelResult<Hessian2D>`
 - `divergence2D(field: VectorField2D, at: Point2, opts?: DerivativeOptions): KernelResult<Divergence2D>`
@@ -48,6 +58,8 @@ Exports from `@paideia/vector-calculus`:
 - Grid counts and line-integral step counts are positive integers.
 - Vector fields return exactly two finite components.
 - Curves return exactly two finite coordinates.
+- Quadratic-surface coefficients and directional-derivative directions are finite;
+  directions have positive magnitude.
 
 Violations return `KernelResult.err("precondition-violated", ...)`,
 `KernelResult.err("undefined-at-point", ...)`, or
@@ -64,9 +76,10 @@ Violations return `KernelResult.err("precondition-violated", ...)`,
 
 ## When to consider this module
 
-Use `core/vector-calculus` when a sim needs canonical gradients, tangent-plane
-evidence, Hessian curvature, divergence/curl probes, line-integral work, scalar
-path integrals, rectangular double integrals, or sampled vector-field arrows.
+Use `core/vector-calculus` when a sim needs canonical gradients, directional
+derivatives, quadratic-surface evidence, tangent-plane evidence, Hessian
+curvature, divergence/curl probes, line-integral work, scalar path integrals,
+rectangular double integrals, or sampled vector-field arrows.
 If a multivariable sim is about to inline finite differences, path work, curl,
 or divergence, use this module instead.
 
