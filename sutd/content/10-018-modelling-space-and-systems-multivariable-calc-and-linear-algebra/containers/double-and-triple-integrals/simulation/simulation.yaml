@@ -1,0 +1,63 @@
+id: double-and-triple-integrals
+title: "Double and Triple Integrals Lab"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/vector-calculus
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    When a rectangular region doubles in one bound, what happens to a constant-density double integral?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "It doubles, because twice as much base area is accumulated"
+      - "It stays fixed, because density does not change"
+      - "It squares, because there are two variables"
+      - "It becomes a line integral along the boundary"
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: integral-mode
+      label: "Integral mode"
+      kind: selector
+      kernel_binding: state.mode
+    - id: density-kind
+      label: "Density field"
+      kind: selector
+      kernel_binding: state.densityKind
+    - id: x-max
+      label: "x upper bound"
+      kind: slider
+      kernel_binding: state.xMax
+      bounds: { min: 1, max: 5, step: 0.25 }
+    - id: y-max
+      label: "y upper bound"
+      kind: slider
+      kernel_binding: state.yMax
+      bounds: { min: 1, max: 5, step: 0.25 }
+    - id: z-max
+      label: "z layer height"
+      kind: slider
+      kernel_binding: state.zMax
+      bounds: { min: 1, max: 4, step: 0.25 }
+observe:
+  renderers:
+    - id: double-triple-integrals-renderer
+      module: "@paideia/sutd-sims/double-and-triple-integrals"
+      symbol: DoubleAndTripleIntegrals
+      props_binding: |
+        Show base region, sampled cells, layer stack, double/triple integral readouts, formula legend, substitutions, units, and interpretation.
+explain:
+  prompt: |
+    Explain how an integral accumulates density over area or volume, and why changing bounds changes the accumulated quantity.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Bounds are independent of the chosen order"
+    - "A double integral is only area, never accumulated density"
+transfer:
+  prompt: |
+    A rectangular component has non-uniform areal density. Set up and evaluate a double integral for total mass, then extend it to a constant-height volume.
+  rubric_path: ../problem-solving/nonuniform-plate-mass.md
