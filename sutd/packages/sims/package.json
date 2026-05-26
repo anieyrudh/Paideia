@@ -30,7 +30,8 @@
     "./fairness-threshold-audit": "./src/fairness-threshold-audit.tsx",
     "./determinant-and-trace": "./src/determinant-and-trace.tsx",
     "./eigenvalues-and-eigenvectors": "./src/eigenvalues-and-eigenvectors.tsx",
-    "./linear-transformations": "./src/linear-transformations.tsx"
+    "./linear-transformations": "./src/linear-transformations.tsx",
+    "./line-integrals-and-conservative-vector-fields": "./src/line-integrals-and-conservative-vector-fields.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -57,7 +58,8 @@
     "@paideia/probability-stats": "workspace:*",
     "@paideia/shared": "workspace:*",
     "@paideia/sim-runtime": "workspace:*",
-    "@paideia/ui-sim": "workspace:*"
+    "@paideia/ui-sim": "workspace:*",
+    "@paideia/vector-calculus": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18"

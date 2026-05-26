@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: line-integrals-and-conservative-vector-fields
+prerequisites:
+  - id: vector-fields
+    title: "Vector Fields"
+    relationship: "Line integrals sample a vector field along a curve."
+    status: planned
+  - id: parametric-curves
+    title: "Parametric Curves"
+    relationship: "The tangent vector supplies the displacement direction in F dot dr."
+    status: planned
+  - id: gradients
+    title: "Gradients"
+    relationship: "Conservative fields are gradients of potential functions."
+    status: available
+downstream:
+  - id: divergence-and-curl
+    title: "Divergence and Curl"
+    relationship: "Curl gives a local diagnostic for circulation and non-conservative behaviour."
+    status: planned
+  - id: greens-theorem
+    title: "Green's Theorem"
+    relationship: "Closed line integrals connect circulation to area integrals of curl."
+    status: planned
+siblings:
+  - id: double-and-triple-integrals
+    title: "Double and Triple Integrals"
+    relationship: "Both topics convert geometric regions into accumulated scalar quantities."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: longer-path-larger-work
+      label: "Longer path always means larger work"
+    - id: every-field-has-potential
+      label: "Every vector field has a potential"
+    - id: sampling-controls-truth
+      label: "More samples decide conservativeness"
+  edges:
+    - from: longer-path-larger-work
+      to: every-field-has-potential
+      label: "both ignore field direction and curl"
+    - from: sampling-controls-truth
+      to: every-field-has-potential
+      label: "both mistake numerical approximation for a structural condition"
+mermaid_source: graph.mmd
