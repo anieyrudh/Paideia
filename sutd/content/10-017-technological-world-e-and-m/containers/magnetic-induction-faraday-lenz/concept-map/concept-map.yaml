@@ -1,0 +1,60 @@
+schema_version: "1.0.0"
+concept_id: magnetic-induction-faraday-lenz
+title: "Magnetic Induction Faraday-Lenz Concept Map"
+nodes:
+  - id: magnetic-field
+    label: "Magnetic field"
+    kind: prerequisite
+    relationship: "Field strength supplies the B term in magnetic flux."
+  - id: loop-area-orientation
+    label: "Loop area and orientation"
+    kind: prerequisite
+    relationship: "Area and angle decide how much field passes through the loop."
+  - id: magnetic-flux
+    label: "Magnetic flux"
+    kind: core
+    relationship: "Phi = BA cos(theta) measures field-through-loop amount."
+  - id: flux-rate
+    label: "Rate of flux change"
+    kind: core
+    relationship: "Delta Phi / Delta t controls induced emf magnitude."
+  - id: faraday-law
+    label: "Faraday's law"
+    kind: core
+    relationship: "emf = -N Delta Phi / Delta t connects turns and flux-rate."
+  - id: lenz-law
+    label: "Lenz's law"
+    kind: core
+    relationship: "The induced magnetic effect opposes the change in flux."
+  - id: induced-current
+    label: "Induced current"
+    kind: outcome
+    relationship: "Current magnitude follows |emf| / R when a simple load closes the circuit."
+  - id: pickup-coils
+    label: "Pickup coils and generators"
+    kind: downstream
+    relationship: "Changing flux is converted into a usable electrical signal."
+edges:
+  - from: magnetic-field
+    to: magnetic-flux
+  - from: loop-area-orientation
+    to: magnetic-flux
+  - from: magnetic-flux
+    to: flux-rate
+  - from: flux-rate
+    to: faraday-law
+  - from: faraday-law
+    to: lenz-law
+  - from: faraday-law
+    to: induced-current
+  - from: induced-current
+    to: pickup-coils
+misconceptions:
+  - id: opposes-field
+    statement: "Lenz's law opposes the magnetic field itself."
+    correction: "Lenz's law opposes the change in magnetic flux."
+    surfaced_in: predict
+  - id: no-motion-no-induction
+    statement: "No motion means no induced emf."
+    correction: "A changing field induces emf even if loop area and position are fixed."
+    surfaced_in: observe

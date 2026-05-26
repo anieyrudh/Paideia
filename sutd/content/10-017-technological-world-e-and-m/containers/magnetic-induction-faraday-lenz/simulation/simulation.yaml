@@ -1,0 +1,74 @@
+id: magnetic-induction-faraday-lenz
+title: "Magnetic Induction: Faraday-Lenz"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/shared
+  - core/content-schema
+  - core/sim-runtime
+  - core/electromagnetism
+  - core/prediction-gate
+  - core/ui-sim
+manipulate:
+  controls:
+    - id: turns
+      label: "Coil turns"
+      kind: slider
+      kernel_binding: state.turns
+      bounds: { min: 1, max: 120, step: 1 }
+    - id: loop-area
+      label: "Loop area"
+      kind: slider
+      kernel_binding: state.loopAreaSquareCentimetres
+      bounds: { min: 20, max: 300, step: 5 }
+    - id: initial-field
+      label: "Initial field"
+      kind: slider
+      kernel_binding: state.initialFieldMilliTeslas
+      bounds: { min: -800, max: 800, step: 25 }
+    - id: final-field
+      label: "Final field"
+      kind: slider
+      kernel_binding: state.finalFieldMilliTeslas
+      bounds: { min: -800, max: 800, step: 25 }
+    - id: angle
+      label: "Angle to normal"
+      kind: slider
+      kernel_binding: state.angleToNormalDegrees
+      bounds: { min: 0, max: 90, step: 5 }
+    - id: duration
+      label: "Change time"
+      kind: slider
+      kernel_binding: state.durationMilliseconds
+      bounds: { min: 50, max: 2000, step: 50 }
+    - id: resistance
+      label: "Circuit resistance"
+      kind: slider
+      kernel_binding: state.resistanceOhms
+      bounds: { min: 1, max: 50, step: 1 }
+predict:
+  prompt: |
+    A coil sees magnetic flux out of the page increasing. What direction should the induced field point?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Into the page, because Lenz's law opposes the increase in outward flux."
+      - "Out of the page, because the coil always reinforces the applied change."
+      - "There is no induced field because the coil area is fixed."
+      - "The direction cannot be predicted from flux change."
+    correct_index: 0
+  rationale_required: true
+observe:
+  renderers:
+    - id: faraday-lenz-readout
+      module: "@paideia/sutd-sims/magnetic-induction-faraday-lenz"
+      symbol: MagneticInductionFaradayLenz
+      props_binding: |
+        Show coil, changing flux, Lenz opposition direction, induced emf/current, formula substitution, units, and interpretation.
+explain:
+  prompt: |
+    Why does the minus sign in Faraday's law describe opposition to flux change rather than opposition to magnetic field itself?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Lenz's law opposes the magnetic field rather than the change in flux."
+    - "A fixed coil area means no induction can occur."
+    - "More turns changes direction instead of magnitude."

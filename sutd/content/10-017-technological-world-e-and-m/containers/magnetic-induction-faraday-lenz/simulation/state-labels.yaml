@@ -1,0 +1,22 @@
+state_labels:
+  turns:
+    label: "Coil turns"
+    meaning: "Number of identical turns linked by the same flux change."
+  loopAreaSquareCentimetres:
+    label: "Loop area"
+    meaning: "Area of one loop face in square centimetres."
+  initialFieldMilliTeslas:
+    label: "Initial field"
+    meaning: "Starting magnetic flux density, with positive chosen as out of the page."
+  finalFieldMilliTeslas:
+    label: "Final field"
+    meaning: "Ending magnetic flux density, with positive chosen as out of the page."
+  angleToNormalDegrees:
+    label: "Angle to normal"
+    meaning: "Angle between the magnetic field and the loop normal."
+  durationMilliseconds:
+    label: "Change time"
+    meaning: "Time interval over which the field changes."
+  resistanceOhms:
+    label: "Circuit resistance"
+    meaning: "Total load resistance used to estimate current magnitude."
