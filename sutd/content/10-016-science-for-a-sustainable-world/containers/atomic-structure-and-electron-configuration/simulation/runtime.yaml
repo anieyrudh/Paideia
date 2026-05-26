@@ -1,0 +1,7 @@
+runtime:
+  renderer: react
+  package: "@paideia/sutd-sims/atomic-structure-and-electron-configuration"
+  entry: simulation/index.tsx
+  state:
+    atomicNumber: 6
+  persistence: local

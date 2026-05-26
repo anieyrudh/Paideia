@@ -1288,6 +1288,9 @@ importers:
       '@paideia/charting':
         specifier: workspace:*
         version: link:../../../core/charting
+      '@paideia/chemistry':
+        specifier: workspace:*
+        version: link:../../../core/chemistry
       '@paideia/circuits':
         specifier: workspace:*
         version: link:../../../core/circuits

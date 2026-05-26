@@ -5,6 +5,7 @@ import type { KernelResult } from "@paideia/shared";
 import {
   atmospheres,
   equilibriumQuotient,
+  electronConfiguration,
   grams,
   gramsToMoles,
   hendersonHasselbalch,
@@ -112,6 +113,60 @@ describe("unit constructors and formulas", () => {
           expect(unwrap(molesToGrams(amount, mm))).toBeCloseTo(massValue);
         },
       ),
+    );
+  });
+});
+
+describe("electron configuration", () => {
+  it("fills shells and subshells in Aufbau order for first-year elements", () => {
+    expect(unwrap(electronConfiguration(6))).toMatchObject({
+      notation: "1s2 2s2 2p2",
+      valenceElectrons: 4,
+      shells: [
+        { shell: 1, electrons: 2, capacity: 2 },
+        { shell: 2, electrons: 4, capacity: 8 },
+      ],
+    });
+    expect(unwrap(electronConfiguration(11))).toMatchObject({
+      notation: "1s2 2s2 2p6 3s1",
+      valenceElectrons: 1,
+    });
+    expect(unwrap(electronConfiguration(17))).toMatchObject({
+      notation: "1s2 2s2 2p6 3s2 3p5",
+      valenceElectrons: 7,
+    });
+  });
+
+  it("rejects atomic numbers outside the supported teaching model", () => {
+    expect(electronConfiguration(0).ok).toBe(false);
+    expect(electronConfiguration(37).ok).toBe(false);
+    expect(electronConfiguration(8.5).ok).toBe(false);
+  });
+
+  it("preserves shell bookkeeping invariants across the supported domain", () => {
+    const seed = 10016;
+
+    fc.assert(
+      fc.property(fc.integer({ min: 1, max: 36 }), (atomicNumber) => {
+        const result = electronConfiguration(atomicNumber);
+
+        expect(result.ok, `seed=${seed}, atomicNumber=${atomicNumber}`).toBe(true);
+        if (!result.ok) {
+          throw new Error(`expected electronConfiguration to accept ${atomicNumber}`);
+        }
+
+        const shellTotal = result.value.shells.reduce(
+          (total, shell) => total + shell.electrons,
+          0,
+        );
+
+        expect(result.value.notation.length).toBeGreaterThan(0);
+        expect(shellTotal).toBe(result.value.totalElectrons);
+        expect(result.value.totalElectrons).toBe(atomicNumber);
+        expect(result.value.valenceElectrons).toBeGreaterThanOrEqual(0);
+        expect(result.value.valenceElectrons).toBeLessThanOrEqual(8);
+      }),
+      { seed },
     );
   });
 });
