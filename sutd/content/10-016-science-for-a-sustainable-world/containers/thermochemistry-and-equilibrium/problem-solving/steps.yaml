@@ -1,0 +1,16 @@
+steps:
+  - id: temperature-change
+    title: "Find temperature change"
+    prompt: "Subtract initial temperature from final temperature."
+  - id: heat-transfer
+    title: "Compute heat transfer"
+    prompt: "Use q = mc Delta T with mass and specific heat capacity."
+  - id: concentration-ratio
+    title: "Compute reaction quotient"
+    prompt: "Compare product concentration with reactant concentration."
+  - id: interpret-separately
+    title: "Interpret separately"
+    prompt: "Do not use heat sign alone as proof of equilibrium position."
+  - id: combine-evidence
+    title: "Combine evidence"
+    prompt: "Use heat and composition together for the reaction-system explanation."
