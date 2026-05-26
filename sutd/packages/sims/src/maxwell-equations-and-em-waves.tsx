@@ -1,7 +1,9 @@
 import type { TSimulationSpec } from "@paideia/content-schema";
 import {
   electromagneticWaveModel,
+  hertz,
   type ElectromagneticWaveModel,
+  voltsPerMetre,
 } from "@paideia/electromagnetism";
 import { ok, type ConceptPackageId, type KernelResult } from "@paideia/shared";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
@@ -138,8 +140,8 @@ const scientific = (value: number, places = 2): string => value.toExponential(pl
 
 export const maxwellEvidence = (state: MaxwellState): KernelResult<MaxwellEvidence> => {
   const model = electromagneticWaveModel({
-    electricFieldAmplitudeVoltsPerMetre: state.electricFieldVoltsPerMetre,
-    frequencyHertz: state.frequencyTeraHertz * 1e12,
+    electricFieldAmplitudeVoltsPerMetre: voltsPerMetre(state.electricFieldVoltsPerMetre),
+    frequencyHertz: hertz(state.frequencyTeraHertz * 1e12),
     relativePermeability: state.relativePermeability,
     relativePermittivity: state.relativePermittivity,
   });

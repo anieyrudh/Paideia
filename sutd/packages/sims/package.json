@@ -23,6 +23,7 @@
     "./trust-calibration": "./src/trust-calibration.tsx",
     "./vector-transformations": "./src/vector-transformations.tsx",
     "./bayes-updating": "./src/bayes-updating.tsx",
+    "./magnetic-induction-faraday-lenz": "./src/magnetic-induction-faraday-lenz.tsx",
     "./eigenvector-transformations": "./src/eigenvector-transformations.tsx",
     "./newsvendor-critical-fractile": "./src/newsvendor-critical-fractile.tsx",
     "./confusion-matrix-thresholds": "./src/confusion-matrix-thresholds.tsx",
@@ -31,7 +32,9 @@
     "./determinant-and-trace": "./src/determinant-and-trace.tsx",
     "./eigenvalues-and-eigenvectors": "./src/eigenvalues-and-eigenvectors.tsx",
     "./linear-transformations": "./src/linear-transformations.tsx",
-    "./maxwell-equations-and-em-waves": "./src/maxwell-equations-and-em-waves.tsx"
+    "./maxwell-equations-and-em-waves": "./src/maxwell-equations-and-em-waves.tsx",
+    "./rlc-circuit-and-resonance": "./src/rlc-circuit-and-resonance.tsx",
+    "./coulomb-s-law-and-discrete-charge-fields": "./src/coulomb-s-law-and-discrete-charge-fields.tsx"
   },
   "scripts": {
     "build": "tsc -b",

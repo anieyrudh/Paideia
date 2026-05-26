@@ -1,0 +1,5 @@
+runtime:
+  package: "@paideia/sutd-sims"
+  export: CoulombLawAndDiscreteChargeFields
+  route: sutd/10-017-technological-world-e-and-m/coulomb-s-law-and-discrete-charge-fields/coulomb-field-vector-lab
+  prediction_gate: required

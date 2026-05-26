@@ -1,0 +1,29 @@
+controls:
+  - id: source-charge
+    label: Source charge
+    type: slider
+    min: -1
+    max: 1
+    step: 0.1
+    unit: microC
+  - id: test-charge
+    label: Test charge
+    type: slider
+    min: -30
+    max: 30
+    step: 5
+    unit: nC
+  - id: separation
+    label: Separation
+    type: slider
+    min: 5
+    max: 25
+    step: 1
+    unit: cm
+  - id: angle
+    label: Position angle
+    type: slider
+    min: 0
+    max: 180
+    step: 5
+    unit: deg

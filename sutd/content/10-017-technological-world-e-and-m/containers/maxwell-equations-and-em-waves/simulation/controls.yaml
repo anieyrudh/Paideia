@@ -1,6 +1,7 @@
 controls:
   - id: frequency
     label: Frequency
+    kernel_binding: state.frequencyTeraHertz
     unit: THz
     min: 100
     max: 900
@@ -8,6 +9,7 @@ controls:
     default: 600
   - id: electric-field
     label: Electric field amplitude
+    kernel_binding: state.electricFieldVoltsPerMetre
     unit: V/m
     min: 1
     max: 40
@@ -15,12 +17,14 @@ controls:
     default: 12
   - id: relative-permittivity
     label: Relative permittivity
+    kernel_binding: state.relativePermittivity
     min: 1
     max: 6
     step: 0.25
     default: 1
   - id: relative-permeability
     label: Relative permeability
+    kernel_binding: state.relativePermeability
     min: 1
     max: 3
     step: 0.1

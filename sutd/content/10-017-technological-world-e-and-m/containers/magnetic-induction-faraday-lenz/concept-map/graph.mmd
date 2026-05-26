@@ -1,0 +1,10 @@
+flowchart TD
+  field["Magnetic field B"] --> flux["Flux Phi = BA cos(theta)"]
+  area["Loop area and orientation"] --> flux
+  flux --> rate["Flux-rate Delta Phi / Delta t"]
+  rate --> faraday["Faraday law"]
+  faraday --> emf["Induced emf"]
+  faraday --> lenz["Lenz opposition"]
+  emf --> current["Induced current"]
+  lenz --> direction["Induced field direction"]
+  current --> pickup["Pickup coils and generators"]

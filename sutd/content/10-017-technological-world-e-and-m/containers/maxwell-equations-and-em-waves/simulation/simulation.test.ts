@@ -32,6 +32,8 @@ test.describe("Maxwell Equations and EM Waves", () => {
     await page.getByRole("button", { name: "Prepare Maxwell model" }).click();
     await page.getByLabel("Relative permittivity").fill("4");
     await page.getByRole("button", { name: "Reveal wave model" }).click();
+    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
     await page
       .getByRole("radio", {
         name: "It sustains a changing magnetic field, allowing a transverse electromagnetic wave to propagate.",
