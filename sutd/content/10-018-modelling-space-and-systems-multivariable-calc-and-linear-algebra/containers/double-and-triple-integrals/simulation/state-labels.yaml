@@ -1,0 +1,7 @@
+state_labels:
+  mode: "Integral mode"
+  densityKind: "Density field"
+  xMax: "x upper bound"
+  yMax: "y upper bound"
+  zMax: "z layer height"
+  gridCount: "grid count"

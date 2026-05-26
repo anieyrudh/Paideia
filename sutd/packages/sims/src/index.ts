@@ -20,6 +20,7 @@ export { default as FairnessThresholdAudit } from "./fairness-threshold-audit.js
 export { default as DeterminantAndTrace } from "./determinant-and-trace.js";
 export { default as EigenvaluesAndEigenvectors } from "./eigenvalues-and-eigenvectors.js";
 export { default as LinearTransformations } from "./linear-transformations.js";
+export { default as DoubleAndTripleIntegrals } from "./double-and-triple-integrals.js";
 export { default as PartialDerivativesAndGradient } from "./partial-derivatives-and-gradient.js";
 export { default as OptimisationWithLagrangeMultipliers } from "./optimisation-with-lagrange-multipliers.js";
 export { default as MaxwellEquationsAndEmWaves } from "./maxwell-equations-and-em-waves.js";

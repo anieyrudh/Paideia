@@ -32,6 +32,7 @@
     "./determinant-and-trace": "./src/determinant-and-trace.tsx",
     "./eigenvalues-and-eigenvectors": "./src/eigenvalues-and-eigenvectors.tsx",
     "./linear-transformations": "./src/linear-transformations.tsx",
+    "./double-and-triple-integrals": "./src/double-and-triple-integrals.tsx",
     "./partial-derivatives-and-gradient": "./src/partial-derivatives-and-gradient.tsx",
     "./optimisation-with-lagrange-multipliers": "./src/optimisation-with-lagrange-multipliers.tsx",
     "./maxwell-equations-and-em-waves": "./src/maxwell-equations-and-em-waves.tsx",
@@ -73,6 +74,7 @@
   "devDependencies": {
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
+    "fast-check": "^3.23.2",
     "jsdom": "^25.0.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
