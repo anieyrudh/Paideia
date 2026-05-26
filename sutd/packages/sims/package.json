@@ -30,7 +30,8 @@
     "./fairness-threshold-audit": "./src/fairness-threshold-audit.tsx",
     "./determinant-and-trace": "./src/determinant-and-trace.tsx",
     "./eigenvalues-and-eigenvectors": "./src/eigenvalues-and-eigenvectors.tsx",
-    "./linear-transformations": "./src/linear-transformations.tsx"
+    "./linear-transformations": "./src/linear-transformations.tsx",
+    "./maxwell-equations-and-em-waves": "./src/maxwell-equations-and-em-waves.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -46,6 +47,7 @@
     "@paideia/circuits": "workspace:*",
     "@paideia/control-systems": "workspace:*",
     "@paideia/dynamical-systems": "workspace:*",
+    "@paideia/electromagnetism": "workspace:*",
     "@paideia/graph-algorithms": "workspace:*",
     "@paideia/graph-layout": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",

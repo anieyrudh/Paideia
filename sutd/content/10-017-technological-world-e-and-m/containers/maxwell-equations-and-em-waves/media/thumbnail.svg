@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Maxwell electromagnetic wave thumbnail</title>
+  <desc id="desc">Blue and red transverse waves propagate together.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <rect x="36" y="42" width="568" height="276" rx="18" fill="#ffffff" stroke="#cbd5e1" stroke-width="3"/>
+  <line x1="78" y1="180" x2="536" y2="180" stroke="#94a3b8" stroke-width="4" stroke-dasharray="10 10"/>
+  <path d="M78 180 C 116 68 154 68 192 180 S 268 292 306 180 S 382 68 420 180 S 496 292 534 180" fill="none" stroke="#2563eb" stroke-width="10" stroke-linecap="round"/>
+  <path d="M78 180 C 116 292 154 292 192 180 S 268 68 306 180 S 382 292 420 180 S 496 68 534 180" fill="none" stroke="#dc2626" stroke-width="10" stroke-linecap="round"/>
+  <path d="M510 92 l64 88 -64 88" fill="none" stroke="#0f172a" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="88" y="92" fill="#2563eb" font-family="Arial, sans-serif" font-size="30" font-weight="700">E</text>
+  <text x="88" y="292" fill="#dc2626" font-family="Arial, sans-serif" font-size="30" font-weight="700">B</text>
+  <text x="348" y="88" fill="#0f172a" font-family="Arial, sans-serif" font-size="25" font-weight="700">v = c / sqrt(epsilon mu)</text>
+</svg>

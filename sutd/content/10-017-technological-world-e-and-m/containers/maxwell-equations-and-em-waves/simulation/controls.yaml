@@ -1,0 +1,27 @@
+controls:
+  - id: frequency
+    label: Frequency
+    unit: THz
+    min: 100
+    max: 900
+    step: 10
+    default: 600
+  - id: electric-field
+    label: Electric field amplitude
+    unit: V/m
+    min: 1
+    max: 40
+    step: 1
+    default: 12
+  - id: relative-permittivity
+    label: Relative permittivity
+    min: 1
+    max: 6
+    step: 0.25
+    default: 1
+  - id: relative-permeability
+    label: Relative permeability
+    min: 1
+    max: 3
+    step: 0.1
+    default: 1

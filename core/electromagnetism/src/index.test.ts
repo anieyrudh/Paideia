@@ -4,8 +4,10 @@ import { approxEqual } from "@paideia/shared";
 import {
   coulombs,
   electricForceOnCharge,
+  electromagneticWaveModel,
   pointChargeElectricField,
   pointChargeModel,
+  speedOfLightVacuumMetresPerSecond,
 } from "./index.js";
 
 describe("point-charge electromagnetism", () => {
@@ -111,5 +113,44 @@ describe("point-charge electromagnetism", () => {
       ),
       { seed: 20260521, numRuns: 80 },
     );
+  });
+});
+
+describe("electromagnetic wave model", () => {
+  it("connects Maxwell wave speed, wavelength, and field amplitudes", () => {
+    const model = electromagneticWaveModel({
+      electricFieldAmplitudeVoltsPerMetre: 10,
+      frequencyHertz: 100e6,
+      relativePermeability: 1,
+      relativePermittivity: 1,
+    });
+
+    expect(model.ok).toBe(true);
+    if (!model.ok) throw new Error(model.error.message);
+    expect(approxEqual(model.value.speedMetresPerSecond, speedOfLightVacuumMetresPerSecond, 1e-12)).toBe(true);
+    expect(approxEqual(model.value.wavelengthMetres, 2.99792458, 1e-12)).toBe(true);
+    expect(approxEqual(model.value.magneticFieldAmplitudeTesla, 3.3356409519815205e-8, 1e-12)).toBe(true);
+    expect(model.value.spectrumBand).toBe("radio");
+  });
+
+  it("slows waves in higher relative permittivity media", () => {
+    const vacuum = electromagneticWaveModel({
+      electricFieldAmplitudeVoltsPerMetre: 4,
+      frequencyHertz: 3e14,
+      relativePermeability: 1,
+      relativePermittivity: 1,
+    });
+    const glass = electromagneticWaveModel({
+      electricFieldAmplitudeVoltsPerMetre: 4,
+      frequencyHertz: 3e14,
+      relativePermeability: 1,
+      relativePermittivity: 2.25,
+    });
+
+    expect(vacuum.ok).toBe(true);
+    expect(glass.ok).toBe(true);
+    if (!vacuum.ok || !glass.ok) throw new Error("Expected valid wave models.");
+    expect(glass.value.speedMetresPerSecond).toBeLessThan(vacuum.value.speedMetresPerSecond);
+    expect(glass.value.wavelengthMetres).toBeLessThan(vacuum.value.wavelengthMetres);
   });
 });
