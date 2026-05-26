@@ -1,5 +1,13 @@
 import type { TSimulationSpec } from "@paideia/content-schema";
-import { seriesRlcResonanceModel, type SeriesRlcResonanceModel } from "@paideia/circuits";
+import {
+  farads,
+  henrys,
+  hertz,
+  ohms,
+  seriesRlcResonanceModel,
+  volts,
+  type SeriesRlcResonanceModel,
+} from "@paideia/circuits";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
 import { ok, type ConceptPackageId, type KernelResult } from "@paideia/shared";
 import { ControlGroup, Slider } from "@paideia/ui-sim";
@@ -115,11 +123,11 @@ const deg = (radians: number): number => (radians * 180) / Math.PI;
 
 export const rlcEvidence = (state: RlcState): KernelResult<RlcEvidence> => {
   const model = seriesRlcResonanceModel({
-    capacitanceFarads: state.capacitanceMicroFarads / 1_000_000,
-    frequencyHertz: state.frequencyHertz,
-    inductanceHenrys: state.inductanceMilliHenrys / 1000,
-    resistanceOhms: state.resistanceOhms,
-    sourceVoltageRmsVolts: state.sourceVoltageRmsVolts,
+    capacitanceFarads: farads(state.capacitanceMicroFarads / 1_000_000),
+    frequencyHertz: hertz(state.frequencyHertz),
+    inductanceHenrys: henrys(state.inductanceMilliHenrys / 1000),
+    resistanceOhms: ohms(state.resistanceOhms),
+    sourceVoltageRmsVolts: volts(state.sourceVoltageRmsVolts),
   });
   return model.ok ? ok({ model: model.value, state }) : model;
 };

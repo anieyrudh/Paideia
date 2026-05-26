@@ -1,12 +1,30 @@
 import {
   err,
+  hertz,
   ok,
+  radians,
+  radiansPerSecond,
   type Brand,
+  type Hertz,
   type KernelResult,
+  type Radians,
+  type RadiansPerSecond,
 } from "@paideia/shared";
 
 export type CircuitNodeId = Brand<string, "CircuitNodeId">;
 export type CircuitElementId = Brand<string, "CircuitElementId">;
+export type Volts = Brand<number, "Volts">;
+export type Ohms = Brand<number, "Ohms">;
+export type Henrys = Brand<number, "Henrys">;
+export type Farads = Brand<number, "Farads">;
+export type Amps = Brand<number, "Amps">;
+
+export const volts = (value: number): Volts => value as Volts;
+export const ohms = (value: number): Ohms => value as Ohms;
+export const henrys = (value: number): Henrys => value as Henrys;
+export const farads = (value: number): Farads => value as Farads;
+export const amps = (value: number): Amps => value as Amps;
+export { hertz, radians, radiansPerSecond };
 
 export const nodeId = (id: string): KernelResult<CircuitNodeId> => {
   const trimmed = id.trim();
@@ -92,25 +110,25 @@ export interface SeriesAcCircuitSolution {
 }
 
 export interface SeriesRlcResonanceInput {
-  readonly sourceVoltageRmsVolts: number;
-  readonly resistanceOhms: number;
-  readonly inductanceHenrys: number;
-  readonly capacitanceFarads: number;
-  readonly frequencyHertz: number;
+  readonly sourceVoltageRmsVolts: Volts;
+  readonly resistanceOhms: Ohms;
+  readonly inductanceHenrys: Henrys;
+  readonly capacitanceFarads: Farads;
+  readonly frequencyHertz: Hertz;
 }
 
 export interface SeriesRlcResonanceModel {
-  readonly resonantFrequencyHertz: number;
-  readonly angularFrequencyRadPerSec: number;
-  readonly inductiveReactanceOhms: number;
-  readonly capacitiveReactanceOhms: number;
-  readonly netReactanceOhms: number;
-  readonly impedanceMagnitudeOhms: number;
-  readonly currentRmsAmps: number;
-  readonly currentPhaseRadians: number;
+  readonly resonantFrequencyHertz: Hertz;
+  readonly angularFrequencyRadPerSec: RadiansPerSecond;
+  readonly inductiveReactanceOhms: Ohms;
+  readonly capacitiveReactanceOhms: Ohms;
+  readonly netReactanceOhms: Ohms;
+  readonly impedanceMagnitudeOhms: Ohms;
+  readonly currentRmsAmps: Amps;
+  readonly currentPhaseRadians: Radians;
   readonly powerFactor: number;
   readonly qualityFactor: number;
-  readonly bandwidthHertz: number;
+  readonly bandwidthHertz: Hertz;
   readonly interpretation: string;
 }
 
@@ -479,18 +497,18 @@ export const seriesRlcResonanceModel = (
         : "below resonance: capacitive reactance dominates, so current leads the source voltage";
 
   const model: SeriesRlcResonanceModel = {
-    angularFrequencyRadPerSec,
-    bandwidthHertz,
-    capacitiveReactanceOhms,
-    currentPhaseRadians: solution.value.currentPhaseRadians,
-    currentRmsAmps: solution.value.currentRmsAmps,
-    impedanceMagnitudeOhms: solution.value.impedanceMagnitudeOhms,
-    inductiveReactanceOhms,
+    angularFrequencyRadPerSec: radiansPerSecond(angularFrequencyRadPerSec),
+    bandwidthHertz: hertz(bandwidthHertz),
+    capacitiveReactanceOhms: ohms(capacitiveReactanceOhms),
+    currentPhaseRadians: radians(solution.value.currentPhaseRadians),
+    currentRmsAmps: amps(solution.value.currentRmsAmps),
+    impedanceMagnitudeOhms: ohms(solution.value.impedanceMagnitudeOhms),
+    inductiveReactanceOhms: ohms(inductiveReactanceOhms),
     interpretation,
-    netReactanceOhms,
+    netReactanceOhms: ohms(netReactanceOhms),
     powerFactor: solution.value.powerFactor,
     qualityFactor,
-    resonantFrequencyHertz,
+    resonantFrequencyHertz: hertz(resonantFrequencyHertz),
   };
 
   return Object.values(model).every((value) => typeof value === "string" || Number.isFinite(value))

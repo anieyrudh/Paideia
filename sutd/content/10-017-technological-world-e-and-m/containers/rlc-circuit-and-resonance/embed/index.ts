@@ -47,7 +47,9 @@ export const createContainerEmbed = (): ContainerEmbedApi => {
     syncTheme(theme: ContainerEmbedTheme): void {
       const parsedTheme = parseTheme(theme);
       targetElement?.setAttribute("data-paideia-theme", parsedTheme.colorScheme);
-      if (parsedTheme.accentColor !== undefined) {
+      if (parsedTheme.accentColor === undefined) {
+        targetElement?.removeAttribute("data-paideia-accent");
+      } else {
         targetElement?.setAttribute("data-paideia-accent", parsedTheme.accentColor);
       }
     },

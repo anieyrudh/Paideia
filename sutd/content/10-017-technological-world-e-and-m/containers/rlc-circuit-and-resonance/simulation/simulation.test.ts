@@ -35,9 +35,11 @@ test.describe("RLC Circuit and Resonance", () => {
   });
 
   test("manipulation changes visible resonance state", async ({ page }) => {
+    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
     await page.getByRole("button", { name: "Prepare RLC model" }).click();
     await page.getByRole("slider", { name: "Resistance" }).fill("10");
     await page.getByRole("button", { name: "Reveal resonance readout" }).click();
+    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
     await page
       .getByRole("radio", {
         name: "Net reactance is near zero, so impedance is mostly resistance and current is largest.",

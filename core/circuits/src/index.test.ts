@@ -4,11 +4,16 @@ import {
   combineParallel,
   combineSeries,
   elementId,
+  farads,
+  henrys,
+  hertz,
   nodeId,
+  ohms,
   ohmsLaw,
   seriesRlcResonanceModel,
   solveSeriesAcCircuit,
   solveDcCircuit,
+  volts,
   voltageDivider,
   type CircuitElementId,
   type CircuitNodeId,
@@ -194,11 +199,11 @@ describe("@paideia/circuits", () => {
 
   it("models series RLC resonance evidence", () => {
     const result = seriesRlcResonanceModel({
-      sourceVoltageRmsVolts: 10,
-      resistanceOhms: 20,
-      inductanceHenrys: 0.1,
-      capacitanceFarads: 100e-6,
-      frequencyHertz: 50.32921210448704,
+      sourceVoltageRmsVolts: volts(10),
+      resistanceOhms: ohms(20),
+      inductanceHenrys: henrys(0.1),
+      capacitanceFarads: farads(100e-6),
+      frequencyHertz: hertz(50.32921210448704),
     });
 
     expect(result.ok).toBe(true);

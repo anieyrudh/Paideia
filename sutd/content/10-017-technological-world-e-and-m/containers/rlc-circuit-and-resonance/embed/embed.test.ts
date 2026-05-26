@@ -14,6 +14,11 @@ describe("rlc circuit and resonance embed API", () => {
     expect(host.getAttribute("data-paideia-theme")).toBe("dark");
     expect(host.getAttribute("data-paideia-accent")).toBe("#f97316");
 
+    embed.syncTheme({ colorScheme: "light" });
+
+    expect(host.getAttribute("data-paideia-theme")).toBe("light");
+    expect(host.hasAttribute("data-paideia-accent")).toBe(false);
+
     embed.destroy();
 
     expect(host.hasAttribute("data-paideia-theme")).toBe(false);
