@@ -42,7 +42,8 @@
     "./maxwell-equations-and-em-waves": "./src/maxwell-equations-and-em-waves.tsx",
     "./rlc-circuit-and-resonance": "./src/rlc-circuit-and-resonance.tsx",
     "./coulomb-s-law-and-discrete-charge-fields": "./src/coulomb-s-law-and-discrete-charge-fields.tsx",
-    "./capacitor-with-dielectric": "./src/capacitor-with-dielectric.tsx"
+    "./capacitor-with-dielectric": "./src/capacitor-with-dielectric.tsx",
+    "./chemical-bonding-and-intermolecular-forces": "./src/chemical-bonding-and-intermolecular-forces.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -64,6 +65,7 @@
     "@paideia/graph-layout": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/mechanics": "workspace:*",
+    "@paideia/molecule": "workspace:*",
     "@paideia/numerical-math": "workspace:*",
     "@paideia/optimization": "workspace:*",
     "@paideia/plotting": "workspace:*",

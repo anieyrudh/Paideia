@@ -1,0 +1,13 @@
+presets:
+  - id: sodium-chloride
+    label: Sodium chloride
+    state:
+      scenario: sodium-chloride
+  - id: water
+    label: Water
+    state:
+      scenario: water
+  - id: carbon-dioxide
+    label: Carbon dioxide
+    state:
+      scenario: carbon-dioxide

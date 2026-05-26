@@ -1318,6 +1318,9 @@ importers:
       '@paideia/mechanics':
         specifier: workspace:*
         version: link:../../../core/mechanics
+      '@paideia/molecule':
+        specifier: workspace:*
+        version: link:../../../core/molecule
       '@paideia/numerical-math':
         specifier: workspace:*
         version: link:../../../core/numerical-math
