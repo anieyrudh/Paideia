@@ -1318,7 +1318,7 @@ entries:
   - id: sutd.10-017-technological-world-e-and-m.coulomb-s-law-and-discrete-charge-fields
     title: "Coulomb's Law and Discrete Charge Fields"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.017 Technological World, E and M
     discipline: electromagnetism
     reuse_status: subject-specific
@@ -1346,7 +1346,7 @@ entries:
   - id: sutd.10-017-technological-world-e-and-m.gauss-law-for-symmetric-distributions
     title: "Gauss Law for Symmetric Distributions"
     priority: P1
-    status: ready-for-build
+    status: blocked
     cluster: SUTD 10.017 Technological World, E and M
     discipline: electromagnetism
     reuse_status: subject-specific
@@ -1362,6 +1362,9 @@ entries:
       downstream: [capacitors]
       misconceptions: [Gauss law only works for spheres]
     kernel_dependencies: [core/electromagnetism, core/plotting, core/prediction-gate, core/ui-sim]
+    blocked_on_issue: 211
+    blocked_on_kernel_dependencies: [core/electromagnetism]
+    blocked_reason: "core/electromagnetism lacks Gauss-law symmetric distribution helpers; see #211."
     repo_package_name: sutd-sims
     estimated_effort: M
     repo:
@@ -1402,7 +1405,7 @@ entries:
   - id: sutd.10-017-technological-world-e-and-m.magnetic-induction-faraday-lenz
     title: "Magnetic Induction, Faraday, and Lenz"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.017 Technological World, E and M
     discipline: electromagnetism
     reuse_status: subject-specific
@@ -1430,7 +1433,7 @@ entries:
   - id: sutd.10-017-technological-world-e-and-m.rlc-circuit-and-resonance
     title: "RLC Circuit and Resonance"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.017 Technological World, E and M
     discipline: electromagnetism
     reuse_status: subject-specific
@@ -1458,7 +1461,7 @@ entries:
   - id: sutd.10-017-technological-world-e-and-m.maxwell-equations-and-em-waves
     title: "Maxwell Equations and EM Waves"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.017 Technological World, E and M
     discipline: electromagnetism
     reuse_status: subject-specific
@@ -1486,7 +1489,7 @@ entries:
   - id: sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.partial-derivatives-and-gradient
     title: "Partial Derivatives and Gradient"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.018 Modelling Space and Systems
     discipline: math-linear-algebra
     reuse_status: subject-specific
@@ -1514,7 +1517,7 @@ entries:
   - id: sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.optimisation-with-lagrange-multipliers
     title: "Optimisation with Lagrange Multipliers"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.018 Modelling Space and Systems
     discipline: math-linear-algebra
     reuse_status: subject-specific
@@ -1542,7 +1545,7 @@ entries:
   - id: sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.double-and-triple-integrals
     title: "Double and Triple Integrals"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.018 Modelling Space and Systems
     discipline: math-linear-algebra
     reuse_status: subject-specific
@@ -1570,7 +1573,7 @@ entries:
   - id: sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.line-integrals-and-conservative-vector-fields
     title: "Line Integrals and Conservative Vector Fields"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.018 Modelling Space and Systems
     discipline: math-linear-algebra
     reuse_status: subject-specific
@@ -1598,7 +1601,7 @@ entries:
   - id: sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.divergence-and-curl
     title: "Divergence and Curl"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.018 Modelling Space and Systems
     discipline: math-linear-algebra
     reuse_status: subject-specific
@@ -1626,7 +1629,7 @@ entries:
   - id: sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.gaussian-elimination-and-linear-systems
     title: "Gaussian Elimination and Linear Systems"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.018 Modelling Space and Systems
     discipline: math-linear-algebra
     reuse_status: subject-specific
