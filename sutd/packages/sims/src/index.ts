@@ -20,3 +20,4 @@ export { default as FairnessThresholdAudit } from "./fairness-threshold-audit.js
 export { default as DeterminantAndTrace } from "./determinant-and-trace.js";
 export { default as EigenvaluesAndEigenvectors } from "./eigenvalues-and-eigenvectors.js";
 export { default as LinearTransformations } from "./linear-transformations.js";
+export { default as CoulombLawAndDiscreteChargeFields } from "./coulomb-s-law-and-discrete-charge-fields.js";
