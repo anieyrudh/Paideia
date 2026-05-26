@@ -2,27 +2,28 @@
 import type { ComponentType } from "react";
 import GeneratedSim0DeterminantAndTraceDeterminantAndTrace from "@paideia/sutd-sims/determinant-and-trace";
 import GeneratedSim1EigenvaluesAndEigenvectorsEigenvaluesAndEigenvectors from "@paideia/sutd-sims/eigenvalues-and-eigenvectors";
-import GeneratedSim2LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
-import GeneratedSim3ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
-import GeneratedSim4StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
-import GeneratedSim5DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
-import GeneratedSim6GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim7RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
-import GeneratedSim8ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
-import GeneratedSim9FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
-import GeneratedSim10TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim11BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim12PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim13SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
-import GeneratedSim14LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim15MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
-import GeneratedSim16NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim17BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim18EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim19VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim20FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
-import GeneratedSim21LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim22OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim2LinearTransformationsLinearTransformations from "@paideia/sutd-sims/linear-transformations";
+import GeneratedSim3LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
+import GeneratedSim4ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
+import GeneratedSim5StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
+import GeneratedSim6DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
+import GeneratedSim7GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
+import GeneratedSim8RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
+import GeneratedSim9ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
+import GeneratedSim10FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
+import GeneratedSim11TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim12BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim13PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim14SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
+import GeneratedSim15LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim16MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
+import GeneratedSim17NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim18BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim19EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim20VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim21FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
+import GeneratedSim22LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim23OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -91,6 +92,15 @@ export const knowledgeGraph = {
     id: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/eigenvalues-and-eigenvectors",
     conceptId: "eigenvalues-and-eigenvectors",
     title: "Eigenvalues and Eigenvectors",
+    subject: "10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra",
+    level: "Freshmore",
+    module: "Modelling Space and Systems: Multivariable Calculus and Linear Algebra",
+    status: "draft",
+  },
+  {
+    id: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/linear-transformations",
+    conceptId: "linear-transformations",
+    title: "Linear Transformations",
     subject: "10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra",
     level: "Freshmore",
     module: "Modelling Space and Systems: Multivariable Calculus and Linear Algebra",
@@ -299,6 +309,12 @@ export const knowledgeGraph = {
   { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/eigenvalues-and-eigenvectors", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/linear-system-stability", kind: "downstream" },
   { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/eigenvalues-and-eigenvectors", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/principal-component-analysis", kind: "downstream" },
   { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/eigenvalues-and-eigenvectors", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/characteristic-polynomial", kind: "sibling" },
+  { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/matrices", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/linear-transformations", kind: "prerequisite" },
+  { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/vector-transformations", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/linear-transformations", kind: "prerequisite" },
+  { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/linear-transformations", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/determinant-and-trace", kind: "downstream" },
+  { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/linear-transformations", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/eigenvalues-and-eigenvectors", kind: "downstream" },
+  { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/linear-transformations", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/computer-graphics-transforms", kind: "downstream" },
+  { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/linear-transformations", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/matrix-inverse-2x2", kind: "sibling" },
   { from: "sutd/asd/force-equilibrium", to: "sutd/asd/load-path-and-daylight-tradeoff", kind: "prerequisite" },
   { from: "sutd/asd/vectors", to: "sutd/asd/load-path-and-daylight-tradeoff", kind: "prerequisite" },
   { from: "sutd/asd/ratio-reasoning", to: "sutd/asd/load-path-and-daylight-tradeoff", kind: "prerequisite" },
@@ -503,6 +519,62 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/linear-transformations",
+    branch: "sutd",
+    subject: "10 018 Modelling Space And Systems Multivariable Calc And Linear Algebra",
+    level: "Freshmore",
+    module: "Modelling Space and Systems: Multivariable Calculus and Linear Algebra",
+    title: "Linear Transformations",
+    summary: "Classify a 2D linear transformation as scaling, rotation, reflection, shear, or a composite by reading where it sends the standard basis.",
+    syllabusRef: "SUTD 10.018 Modelling Space and Systems / Linear Algebra",
+    status: "draft",
+    packageId: "linear-transformations",
+    simId: "linear-transformations",
+    predictPrompt: "Matrix A = [[0, -1], [1, 0]]. Before reveal, which classification best describes this linear transformation?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Linear transformations always preserve length",
+      "Rotation matrices have nonzero diagonal entries only",
+    ],
+    transferProblem: "A = [[2, 0], [0, 2]] composed with [[cos(theta), -sin(theta)], [sin(theta), cos(theta)]] for theta = 30 degrees. Decompose the composite into the order \"scale then rotate\" and explain how the determinant, trace, and basis images change between scaling, rotating, and the composite.",
+    firstPrinciples: "Because of linearity, any vector v = x e_1 + y e_2 is sent to T(v) = x T(e_1) + y T(e_2). The transformation is therefore completely determined by where the basis lands. The four matrix entries are the coordinates of those two basis images:",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "Where do e_1 and e_2 land?",
+      "Are the basis images unit length and perpendicular?",
+      "Does the transformation preserve orientation?",
+      "Which canonical class fits best?",
+      "What are the angles or scale factors?",
+      "Does a non-basis point check out?",
+    ],
+    prerequisites: [
+      "Matrices",
+      "Vector Transformations",
+    ],
+    downstream: [
+      "Determinant and Trace",
+      "Eigenvalues and Eigenvectors",
+      "Computer Graphics Transforms",
+    ],
+    siblings: [
+      "Matrix Inverse (2x2)",
+    ],
+    sims: [
+      {
+        id: "linear-transformations",
+        harnessId: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/linear-transformations/linear-transformations",
+        title: "Linear Transformation Classifier",
+        interactionType: "diagram-builder",
+        component: GeneratedSim2LinearTransformationsLinearTransformations,
+      },
+    ],
+  },
+  {
     id: "sutd/asd/load-path-and-daylight-tradeoff",
     branch: "sutd",
     subject: "Asd",
@@ -564,7 +636,7 @@ export const containers = [
         harnessId: "sutd/asd/load-path-and-daylight-tradeoff/load-path-and-daylight-tradeoff",
         title: "Load Path and Daylight Tradeoff Explorer",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim2LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
+        component: GeneratedSim3LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
       },
     ],
   },
@@ -621,7 +693,7 @@ export const containers = [
         harnessId: "sutd/asd/shading-daylight-heat-gain/shading-daylight-heat-gain",
         title: "Shading, Daylight, and Heat Gain",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim3ShadingDaylightHeatGainShadingDaylightHeatGain,
+        component: GeneratedSim4ShadingDaylightHeatGainShadingDaylightHeatGain,
       },
     ],
   },
@@ -688,7 +760,7 @@ export const containers = [
         harnessId: "sutd/asd/structural-load-path-diagram/structural-load-path-diagram",
         title: "Structural Load Path Diagram",
         interactionType: "diagram-builder",
-        component: GeneratedSim4StructuralLoadPathDiagramStructuralLoadPathDiagram,
+        component: GeneratedSim5StructuralLoadPathDiagramStructuralLoadPathDiagram,
       },
     ],
   },
@@ -734,7 +806,7 @@ export const containers = [
         harnessId: "sutd/csd/dynamic-programming-state-recursion/dynamic-programming-state-recursion",
         title: "Dynamic Programming State Recursion",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim5DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
+        component: GeneratedSim6DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
       },
     ],
   },
@@ -784,7 +856,7 @@ export const containers = [
         harnessId: "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths",
         title: "Graph Search and Shortest Paths",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim6GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
+        component: GeneratedSim7GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
       },
     ],
   },
@@ -834,7 +906,7 @@ export const containers = [
         harnessId: "sutd/csd/recursion-tree-complexity/recursion-tree-complexity",
         title: "Recursion Tree Complexity Lab",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim7RecursionTreeComplexityRecursionTreeComplexity,
+        component: GeneratedSim8RecursionTreeComplexityRecursionTreeComplexity,
       },
     ],
   },
@@ -899,7 +971,7 @@ export const containers = [
         harnessId: "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds",
         title: "Confusion Matrix Threshold Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim8ConfusionMatrixThresholdsConfusionMatrixThresholds,
+        component: GeneratedSim9ConfusionMatrixThresholdsConfusionMatrixThresholds,
       },
     ],
   },
@@ -957,7 +1029,7 @@ export const containers = [
         harnessId: "sutd/dai/fairness-threshold-audit/fairness-threshold-audit",
         title: "Fairness Threshold Audit Lab",
         interactionType: "decision-matrix",
-        component: GeneratedSim9FairnessThresholdAuditFairnessThresholdAudit,
+        component: GeneratedSim10FairnessThresholdAuditFairnessThresholdAudit,
       },
     ],
   },
@@ -1010,7 +1082,7 @@ export const containers = [
         harnessId: "sutd/dai/trust-calibration/trust-calibration",
         title: "Trust Calibration Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim10TrustCalibrationTrustCalibration,
+        component: GeneratedSim11TrustCalibrationTrustCalibration,
       },
     ],
   },
@@ -1076,7 +1148,7 @@ export const containers = [
         harnessId: "sutd/epd/bode-stability-margin/bode-stability-margin",
         title: "Bode Margin Reader",
         interactionType: "comparative-matrix",
-        component: GeneratedSim11BodeStabilityMarginBodeStabilityMargin,
+        component: GeneratedSim12BodeStabilityMarginBodeStabilityMargin,
       },
     ],
   },
@@ -1130,7 +1202,7 @@ export const containers = [
         harnessId: "sutd/epd/pid-step-response/pid-step-response",
         title: "PID Step Response Explorer",
         interactionType: "comparative-matrix",
-        component: GeneratedSim12PidStepResponsePidStepResponse,
+        component: GeneratedSim13PidStepResponsePidStepResponse,
       },
     ],
   },
@@ -1188,7 +1260,7 @@ export const containers = [
         harnessId: "sutd/epd/signal-filter-frequency-response/signal-filter-frequency-response",
         title: "RC Filter Frequency Response Lab",
         interactionType: "comparative-matrix",
-        component: GeneratedSim13SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
+        component: GeneratedSim14SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
       },
     ],
   },
@@ -1232,7 +1304,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim14LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim15LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -1294,7 +1366,7 @@ export const containers = [
         harnessId: "sutd/esd/markov-chain-steady-state/markov-chain-steady-state",
         title: "Markov Chain Steady-State Lab",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim15MarkovChainSteadyStateMarkovChainSteadyState,
+        component: GeneratedSim16MarkovChainSteadyStateMarkovChainSteadyState,
       },
     ],
   },
@@ -1360,7 +1432,7 @@ export const containers = [
         harnessId: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
         title: "Newsvendor Critical Fractile Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim16NewsvendorCriticalFractileNewsvendorCriticalFractile,
+        component: GeneratedSim17NewsvendorCriticalFractileNewsvendorCriticalFractile,
       },
     ],
   },
@@ -1423,7 +1495,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim17BayesUpdatingBayesUpdating,
+        component: GeneratedSim18BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -1477,7 +1549,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim18EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim19EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -1529,7 +1601,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim19VectorTransformationsVectorTransformations,
+        component: GeneratedSim20VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -1575,7 +1647,7 @@ export const containers = [
         harnessId: "sutd/smt/fourier-mode-superposition/fourier-mode-superposition",
         title: "Fourier Mode Superposition Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim20FourierModeSuperpositionFourierModeSuperposition,
+        component: GeneratedSim21FourierModeSuperpositionFourierModeSuperposition,
       },
     ],
   },
@@ -1632,7 +1704,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim21LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim22LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -1698,7 +1770,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim22OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim23OdePhasePortraitOdePhasePortrait,
       },
     ],
   }
