@@ -1,0 +1,29 @@
+presets:
+  - id: upper-triangular
+    label: "Upper-triangular stretch"
+    state:
+      a11: 3
+      a12: 1
+      a21: 0
+      a22: 2
+  - id: orientation-flip
+    label: "Orientation flip (negative det)"
+    state:
+      a11: 0
+      a12: 1
+      a21: 1
+      a22: 0
+  - id: collapse
+    label: "Singular collapse (det = 0)"
+    state:
+      a11: 2
+      a12: 1
+      a21: 4
+      a22: 2
+  - id: rotation-pure-spin
+    label: "Pure rotation (T = 0, D = 1)"
+    state:
+      a11: 0
+      a12: -1
+      a21: 1
+      a22: 0

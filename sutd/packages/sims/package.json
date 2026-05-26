@@ -27,7 +27,8 @@
     "./newsvendor-critical-fractile": "./src/newsvendor-critical-fractile.tsx",
     "./confusion-matrix-thresholds": "./src/confusion-matrix-thresholds.tsx",
     "./markov-chain-steady-state": "./src/markov-chain-steady-state.tsx",
-    "./fairness-threshold-audit": "./src/fairness-threshold-audit.tsx"
+    "./fairness-threshold-audit": "./src/fairness-threshold-audit.tsx",
+    "./determinant-and-trace": "./src/determinant-and-trace.tsx"
   },
   "scripts": {
     "build": "tsc -b",
