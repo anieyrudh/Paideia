@@ -31,3 +31,4 @@ export { default as RlcCircuitAndResonance } from "./rlc-circuit-and-resonance.j
 export { default as CoulombsLawAndDiscreteChargeFields } from "./coulomb-s-law-and-discrete-charge-fields.js";
 export { default as ChemicalBondingAndIntermolecularForces } from "./chemical-bonding-and-intermolecular-forces.js";
 export { default as ThermochemistryAndEquilibrium } from "./thermochemistry-and-equilibrium.js";
+export { default as PolymersAndPlasticWasteManagement } from "./polymers-and-plastic-waste-management.js";
