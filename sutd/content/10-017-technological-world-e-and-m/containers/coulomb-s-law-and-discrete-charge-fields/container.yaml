@@ -1,0 +1,108 @@
+schema_version: "1.0.0"
+id: coulomb-s-law-and-discrete-charge-fields
+aliases:
+  - Coulomb's law
+  - discrete charge fields
+branch: sutd
+subject: 10-017-technological-world-e-and-m
+level: "Undergraduate"
+module: "10.017 Technological World, E and M"
+title: "Coulomb's Law and Discrete Charge Fields"
+one_line_summary: "Use source charge, separation, and test-charge sign to distinguish electric field strength from force."
+syllabus_ref: "SUTD 10.017 Technological World, E and M / Coulomb's law and discrete charge fields"
+prerequisites:
+  - vectors
+  - inverse-square-laws
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A negative test charge is placed to the right of a positive source charge. Before revealing the vectors, which way does the force on the test charge point?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "To the right, because the electric field points away from a positive source."
+      - "To the left, because a negative test charge feels force opposite to the electric field."
+      - "Upwards, because field lines curve around the source."
+      - "There is no force because electric field and voltage are the same thing."
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: charge-sensor-placement
+    prompt: |
+      A lab team places a small positive sensor charge 18 cm from a -0.7 microC source. Predict the electric field direction, the force direction on the sensor, and how both change if the sensor charge is replaced by a negative sensor.
+    surface_form: "charge sensor placement around a point source"
+    same_concept_check: "The task changes the apparatus to a sensor probe, but the decision still separates field from source charge and force from test-charge sign."
+    rubric_path: problem-solving/charge-sensor-placement.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Built Coulomb field vector product slice."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-26"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-26"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Field strength is the same as force on every charge"
+    description: "Learners may treat the electric field as the force itself, missing that the force also depends on the test charge magnitude and sign."
+    evidence_source: "OpenStax University Physics Volume 2, electric field and Coulomb force sections."
+    surface_in_predict: true
+sources:
+  - citation: "OpenStax. University Physics Volume 2, Chapter 5: Electric Charges and Fields."
+    url: "https://openstax.org/books/university-physics-volume-2/pages/5-introduction"
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+language: en

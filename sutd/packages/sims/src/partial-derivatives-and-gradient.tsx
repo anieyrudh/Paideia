@@ -1,11 +1,18 @@
 import type { TSimulationSpec } from "@paideia/content-schema";
-import { gradient2D, point2, type Gradient2D } from "@paideia/vector-calculus";
-import { type ConceptPackageId, err, ok, type KernelResult } from "@paideia/shared";
+import {
+  directionalDerivative2D,
+  point2,
+  quadraticSurfaceAt2D,
+  quadraticSurfaceCoefficients2D,
+  type Gradient2D,
+  type QuadraticSurfaceFamily2D,
+} from "@paideia/vector-calculus";
+import { type ConceptPackageId, ok, type KernelResult } from "@paideia/shared";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
 import { ControlGroup, Selector, Slider } from "@paideia/ui-sim";
 import type { CSSProperties } from "react";
 
-type SurfaceKind = "bowl" | "saddle" | "tilted-valley";
+type SurfaceKind = QuadraticSurfaceFamily2D;
 
 type GradientState = {
   readonly surfaceKind: SurfaceKind;
@@ -69,6 +76,27 @@ export const partialDerivativesAndGradientSpec: TSimulationSpec = {
         kind: "slider",
         kernel_binding: "state.directionDegrees",
         bounds: { min: 0, max: 360, step: 5 },
+      },
+      {
+        id: "x-curvature",
+        label: "x curvature",
+        kind: "slider",
+        kernel_binding: "state.xCurvature",
+        bounds: { min: -2.5, max: 2.5, step: 0.1 },
+      },
+      {
+        id: "y-curvature",
+        label: "y curvature",
+        kind: "slider",
+        kernel_binding: "state.yCurvature",
+        bounds: { min: -2.5, max: 2.5, step: 0.1 },
+      },
+      {
+        id: "xy-coupling",
+        label: "xy coupling",
+        kind: "slider",
+        kernel_binding: "state.coupling",
+        bounds: { min: -1.5, max: 1.5, step: 0.05 },
       },
     ],
   },
@@ -138,57 +166,45 @@ const currentState = (state: Partial<GradientState>): GradientState => ({
   coupling: clamp(state.coupling ?? defaults.coupling, -1.5, 1.5),
 });
 
-const coefficientsFor = (
-  state: GradientState,
-): readonly [a: number, b: number, c: number, d: number, e: number] => {
-  switch (state.surfaceKind) {
-    case "bowl":
-      return [state.xCurvature, state.yCurvature, state.coupling, 0.4, -0.2];
-    case "saddle":
-      return [state.xCurvature, -state.yCurvature, state.coupling, 0.2, 0.1];
-    case "tilted-valley":
-      return [0.35 * state.xCurvature, 1.4 * state.yCurvature, -0.6 + state.coupling, 0.9, -0.35];
-  }
-};
-
-const scalarField = (state: GradientState) => {
-  const [a, b, c, d, e] = coefficientsFor(state);
-  return (x: number, y: number): number =>
-    0.5 * a * x * x + 0.5 * b * y * y + c * x * y + d * x + e * y;
-};
-
 export const gradientSurfaceEvidence = (
   partial: Partial<GradientState>,
 ): KernelResult<GradientEvidence> => {
   const state = currentState(partial);
   const point = point2(state.x, state.y);
   if (!point.ok) return point;
-  const field = scalarField(state);
-  const gradient = gradient2D(field, point.value);
-  if (!gradient.ok) return gradient;
+  const coefficients = quadraticSurfaceCoefficients2D({
+    family: state.surfaceKind,
+    xCurvature: state.xCurvature,
+    xyCoupling: state.coupling,
+    yCurvature: state.yCurvature,
+  });
+  if (!coefficients.ok) return coefficients;
+  const surface = quadraticSurfaceAt2D({
+    coefficients: coefficients.value,
+    point: point.value,
+  });
+  if (!surface.ok) return surface;
   const radians = (state.directionDegrees * Math.PI) / 180;
-  const unitDirection: readonly [number, number] = [Math.cos(radians), Math.sin(radians)];
-  const directionalDerivative =
-    gradient.value.value[0] * unitDirection[0] + gradient.value.value[1] * unitDirection[1];
-  if (!Number.isFinite(directionalDerivative)) {
-    return err("numerical-instability", "directional derivative is non-finite");
-  }
+  const derivative = directionalDerivative2D({
+    direction: [Math.cos(radians), Math.sin(radians)],
+    gradient: surface.value.gradient,
+  });
+  if (!derivative.ok) return derivative;
   const step = 0.4;
   const tangentPlaneAtStep =
-    field(state.x, state.y) + step * directionalDerivative;
-  const z0 = field(state.x, state.y);
+    surface.value.value + step * derivative.value.value;
   const contourClassification =
-    Math.abs(directionalDerivative) < 0.05
+    Math.abs(derivative.value.value) < 0.05
       ? "level"
-      : directionalDerivative > 0
+      : derivative.value.value > 0
         ? "uphill"
         : "downhill";
   return ok({
     state,
-    gradient: gradient.value,
-    z0,
-    directionalDerivative,
-    unitDirection,
+    gradient: surface.value.gradient,
+    z0: surface.value.value,
+    directionalDerivative: derivative.value.value,
+    unitDirection: derivative.value.unitDirection,
     tangentPlaneAtStep,
     contourClassification,
   });

@@ -1,0 +1,5 @@
+labels:
+  sourceChargeMicroC: Source charge
+  testChargeNanoC: Test charge
+  separationCm: Separation
+  angleDegrees: Position angle

@@ -6,14 +6,28 @@ import {
 } from "@paideia/linear-algebra";
 import {
   err,
+  degrees,
+  hertz,
   joules,
+  metres,
+  metresPerSecond,
   ok,
+  radiansPerSecond,
+  seconds,
   type Brand,
+  type Degrees,
+  type Hertz,
   type Joules,
   type KernelResult,
+  type Metres,
+  type MetresPerSecond,
+  type RadiansPerSecond,
+  type Seconds,
 } from "@paideia/shared";
 
 export const coulombConstantVacuum = 8.99e9;
+export const speedOfLightVacuumMetresPerSecond = 299_792_458;
+export const vacuumImpedanceOhms = 376.730313668;
 
 export const electromagnetismTolerance = {
   default: 1e-9,
@@ -24,6 +38,15 @@ export const electromagnetismTolerance = {
 export type Coulombs = Brand<number, "Coulombs">;
 export type Volts = Brand<number, "Volts">;
 export type NewtonsPerCoulomb = Brand<number, "NewtonsPerCoulomb">;
+export type Teslas = Brand<number, "Teslas">;
+export type Webers = Brand<number, "Webers">;
+export type WebersPerSecond = Brand<number, "WebersPerSecond">;
+export type SquareMetres = Brand<number, "SquareMetres">;
+export type Ohms = Brand<number, "Ohms">;
+export type Amps = Brand<number, "Amps">;
+export type VoltsPerMetre = Brand<number, "VoltsPerMetre">;
+export type RadiansPerMetre = Brand<number, "RadiansPerMetre">;
+export type WattsPerSquareMetre = Brand<number, "WattsPerSquareMetre">;
 
 export interface PointChargeElectricFieldInput {
   readonly sourceChargeCoulombs: Coulombs;
@@ -64,10 +87,70 @@ export interface PointChargeModel {
   readonly separationMetres: number;
 }
 
+export type LenzOpposition = "oppose-increase" | "oppose-decrease" | "no-change";
+
+export interface UniformFluxInductionInput {
+  readonly turns: number;
+  readonly loopAreaSquareMetres: SquareMetres;
+  readonly initialFieldTeslas: Teslas;
+  readonly finalFieldTeslas: Teslas;
+  readonly angleToNormalDegrees: Degrees;
+  readonly durationSeconds: Seconds;
+  readonly circuitResistanceOhms: Ohms;
+}
+
+export interface UniformFluxInductionModel {
+  readonly initialFluxWebers: Webers;
+  readonly finalFluxWebers: Webers;
+  readonly fluxChangeWebers: Webers;
+  readonly fluxRateWebersPerSecond: WebersPerSecond;
+  readonly inducedEmfVolts: Volts;
+  readonly inducedEmfMagnitudeVolts: Volts;
+  readonly inducedCurrentAmps: Amps;
+  readonly lenzOpposition: LenzOpposition;
+  readonly inducedFieldDirection: "into-page" | "out-of-page" | "none";
+  readonly interpretation: string;
+}
+
+export interface ElectromagneticWaveInput {
+  readonly frequencyHertz: Hertz;
+  readonly electricFieldAmplitudeVoltsPerMetre: VoltsPerMetre;
+  readonly relativePermittivity: number;
+  readonly relativePermeability: number;
+}
+
+export interface ElectromagneticWaveModel {
+  readonly speedMetresPerSecond: MetresPerSecond;
+  readonly wavelengthMetres: Metres;
+  readonly periodSeconds: Seconds;
+  readonly angularFrequencyRadPerSecond: RadiansPerSecond;
+  readonly waveNumberRadPerMetre: RadiansPerMetre;
+  readonly electricFieldAmplitudeVoltsPerMetre: VoltsPerMetre;
+  readonly magneticFieldAmplitudeTesla: Teslas;
+  readonly mediumImpedanceOhms: Ohms;
+  readonly averageIntensityWattsPerSquareMetre: WattsPerSquareMetre;
+  readonly spectrumBand: string;
+  readonly interpretation: string;
+}
+
 export const coulombs = (value: number): Coulombs => value as Coulombs;
 export const volts = (value: number): Volts => value as Volts;
 export const newtonsPerCoulomb = (value: number): NewtonsPerCoulomb =>
   value as NewtonsPerCoulomb;
+export const teslas = (value: number): Teslas => value as Teslas;
+export const webers = (value: number): Webers => value as Webers;
+export const webersPerSecond = (value: number): WebersPerSecond =>
+  value as WebersPerSecond;
+export const squareMetres = (value: number): SquareMetres => value as SquareMetres;
+export const ohms = (value: number): Ohms => value as Ohms;
+export const amps = (value: number): Amps => value as Amps;
+export const voltsPerMetre = (value: number): VoltsPerMetre =>
+  value as VoltsPerMetre;
+export const radiansPerMetre = (value: number): RadiansPerMetre =>
+  value as RadiansPerMetre;
+export const wattsPerSquareMetre = (value: number): WattsPerSquareMetre =>
+  value as WattsPerSquareMetre;
+export { degrees, hertz, metres, metresPerSecond, radiansPerSecond, seconds };
 
 const finite = (value: number, label: string): KernelResult<void> =>
   Number.isFinite(value)
@@ -78,6 +161,26 @@ const finiteDerived = (value: number, label: string): KernelResult<void> =>
   Number.isFinite(value)
     ? ok(undefined)
     : err("numerical-instability", `${label} must be finite after computation; got ${value}`);
+
+const finitePositive = (value: number, label: string): KernelResult<void> =>
+  Number.isFinite(value) && value > 0
+    ? ok(undefined)
+    : err("precondition-violated", `${label} must be finite and positive; got ${value}`);
+
+const finiteNonNegative = (value: number, label: string): KernelResult<void> =>
+  Number.isFinite(value) && value >= 0
+    ? ok(undefined)
+    : err("precondition-violated", `${label} must be finite and non-negative; got ${value}`);
+
+const spectrumBandForFrequency = (frequencyHertz: Hertz): string => {
+  if (frequencyHertz < 3e9) return "radio";
+  if (frequencyHertz < 3e12) return "microwave";
+  if (frequencyHertz < 4.3e14) return "infrared";
+  if (frequencyHertz < 7.5e14) return "visible";
+  if (frequencyHertz < 3e16) return "ultraviolet";
+  if (frequencyHertz < 3e19) return "x-ray";
+  return "gamma ray";
+};
 
 const validRadius = (
   radiusMetres: number,
@@ -195,5 +298,148 @@ export const pointChargeModel = (
     potentialEnergyJoules: potentialEnergy.value,
     potentialVolts: potential.value,
     separationMetres: distance.value,
+  });
+};
+
+export const uniformFluxInductionModel = (
+  input: UniformFluxInductionInput,
+): KernelResult<UniformFluxInductionModel> => {
+  const turns = finitePositive(input.turns, "turns");
+  if (!turns.ok) return turns;
+  if (!Number.isInteger(input.turns)) {
+    return err("precondition-violated", `turns must be an integer; got ${input.turns}`);
+  }
+  const area = finitePositive(input.loopAreaSquareMetres, "loopAreaSquareMetres");
+  if (!area.ok) return area;
+  const initialField = finite(input.initialFieldTeslas, "initialFieldTeslas");
+  if (!initialField.ok) return initialField;
+  const finalField = finite(input.finalFieldTeslas, "finalFieldTeslas");
+  if (!finalField.ok) return finalField;
+  const angle = finite(input.angleToNormalDegrees, "angleToNormalDegrees");
+  if (!angle.ok) return angle;
+  if (input.angleToNormalDegrees < 0 || input.angleToNormalDegrees > 90) {
+    return err(
+      "precondition-violated",
+      `angleToNormalDegrees must be between 0 and 90; got ${input.angleToNormalDegrees}`,
+    );
+  }
+  const duration = finitePositive(input.durationSeconds, "durationSeconds");
+  if (!duration.ok) return duration;
+  const resistance = finiteNonNegative(input.circuitResistanceOhms, "circuitResistanceOhms");
+  if (!resistance.ok) return resistance;
+
+  const projection = Math.cos((input.angleToNormalDegrees * Math.PI) / 180);
+  const initialFlux =
+    input.initialFieldTeslas * input.loopAreaSquareMetres * projection;
+  const finalFlux = input.finalFieldTeslas * input.loopAreaSquareMetres * projection;
+  const fluxChange = finalFlux - initialFlux;
+  const fluxRate = fluxChange / input.durationSeconds;
+  const inducedEmf = -input.turns * fluxRate;
+  const inducedEmfMagnitude = Math.abs(inducedEmf);
+  const inducedCurrent =
+    input.circuitResistanceOhms === 0
+      ? 0
+      : inducedEmfMagnitude / input.circuitResistanceOhms;
+
+  for (const [value, label] of [
+    [initialFlux, "initialFluxWebers"],
+    [finalFlux, "finalFluxWebers"],
+    [fluxChange, "fluxChangeWebers"],
+    [fluxRate, "fluxRateWebersPerSecond"],
+    [inducedEmf, "inducedEmfVolts"],
+    [inducedEmfMagnitude, "inducedEmfMagnitudeVolts"],
+    [inducedCurrent, "inducedCurrentAmps"],
+  ] as const) {
+    const computed = finiteDerived(value, label);
+    if (!computed.ok) return computed;
+  }
+
+  const lenzOpposition: LenzOpposition =
+    fluxChange > 0 ? "oppose-increase" : fluxChange < 0 ? "oppose-decrease" : "no-change";
+  const inducedFieldDirection =
+    fluxChange > 0 ? "into-page" : fluxChange < 0 ? "out-of-page" : "none";
+  const interpretation =
+    fluxChange > 0
+      ? "flux through the loop is increasing, so the induced field opposes that increase"
+      : fluxChange < 0
+        ? "flux through the loop is decreasing, so the induced field tries to preserve it"
+        : "flux through the loop is unchanged, so no induction is required";
+
+  return ok({
+    finalFluxWebers: webers(finalFlux),
+    fluxChangeWebers: webers(fluxChange),
+    fluxRateWebersPerSecond: webersPerSecond(fluxRate),
+    inducedCurrentAmps: amps(inducedCurrent),
+    inducedEmfMagnitudeVolts: volts(inducedEmfMagnitude),
+    inducedEmfVolts: volts(inducedEmf),
+    inducedFieldDirection,
+    initialFluxWebers: webers(initialFlux),
+    interpretation,
+    lenzOpposition,
+  });
+};
+
+export const electromagneticWaveModel = (
+  input: ElectromagneticWaveInput,
+): KernelResult<ElectromagneticWaveModel> => {
+  const frequency = finitePositive(input.frequencyHertz, "frequencyHertz");
+  if (!frequency.ok) return frequency;
+  const electricField = finitePositive(
+    input.electricFieldAmplitudeVoltsPerMetre,
+    "electricFieldAmplitudeVoltsPerMetre",
+  );
+  if (!electricField.ok) return electricField;
+  const relativePermittivity = finitePositive(
+    input.relativePermittivity,
+    "relativePermittivity",
+  );
+  if (!relativePermittivity.ok) return relativePermittivity;
+  const relativePermeability = finitePositive(
+    input.relativePermeability,
+    "relativePermeability",
+  );
+  if (!relativePermeability.ok) return relativePermeability;
+
+  const refractiveIndex = Math.sqrt(input.relativePermittivity * input.relativePermeability);
+  const speed = speedOfLightVacuumMetresPerSecond / refractiveIndex;
+  const wavelength = speed / input.frequencyHertz;
+  const period = 1 / input.frequencyHertz;
+  const angularFrequency = 2 * Math.PI * input.frequencyHertz;
+  const waveNumber = (2 * Math.PI) / wavelength;
+  const mediumImpedance =
+    vacuumImpedanceOhms * Math.sqrt(input.relativePermeability / input.relativePermittivity);
+  const magneticFieldAmplitude =
+    input.electricFieldAmplitudeVoltsPerMetre / speed;
+  const averageIntensity =
+    (input.electricFieldAmplitudeVoltsPerMetre ** 2) / (2 * mediumImpedance);
+
+  for (const [value, label] of [
+    [speed, "speedMetresPerSecond"],
+    [wavelength, "wavelengthMetres"],
+    [period, "periodSeconds"],
+    [angularFrequency, "angularFrequencyRadPerSecond"],
+    [waveNumber, "waveNumberRadPerMetre"],
+    [mediumImpedance, "mediumImpedanceOhms"],
+    [magneticFieldAmplitude, "magneticFieldAmplitudeTesla"],
+    [averageIntensity, "averageIntensityWattsPerSquareMetre"],
+  ] as const) {
+    const computed = finiteDerived(value, label);
+    if (!computed.ok) return computed;
+  }
+
+  const spectrumBand = spectrumBandForFrequency(input.frequencyHertz);
+  return ok({
+    angularFrequencyRadPerSecond: radiansPerSecond(angularFrequency),
+    averageIntensityWattsPerSquareMetre: wattsPerSquareMetre(averageIntensity),
+    electricFieldAmplitudeVoltsPerMetre: input.electricFieldAmplitudeVoltsPerMetre,
+    interpretation:
+      `Maxwell coupling predicts a transverse ${spectrumBand} wave: changing electric fields sustain magnetic fields and both travel at the medium wave speed.`,
+    magneticFieldAmplitudeTesla: teslas(magneticFieldAmplitude),
+    mediumImpedanceOhms: ohms(mediumImpedance),
+    periodSeconds: seconds(period),
+    spectrumBand,
+    speedMetresPerSecond: metresPerSecond(speed),
+    waveNumberRadPerMetre: radiansPerMetre(waveNumber),
+    wavelengthMetres: metres(wavelength),
   });
 };

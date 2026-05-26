@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 960 540">
+  <title id="title">Maxwell equations fallback</title>
+  <desc id="desc">Static summary of electromagnetic wave equations.</desc>
+  <rect width="960" height="540" fill="#f8fafc"/>
+  <rect x="70" y="70" width="820" height="400" rx="20" fill="#ffffff" stroke="#cbd5e1" stroke-width="4"/>
+  <text x="112" y="142" fill="#0f172a" font-family="Arial, sans-serif" font-size="44" font-weight="700">Maxwell equations create EM waves</text>
+  <text x="112" y="205" fill="#334155" font-family="Arial, sans-serif" font-size="31">Changing E creates B circulation</text>
+  <text x="112" y="255" fill="#334155" font-family="Arial, sans-serif" font-size="31">Changing B creates E circulation</text>
+  <text x="112" y="305" fill="#334155" font-family="Arial, sans-serif" font-size="31">v = c / sqrt(epsilon_r mu_r)</text>
+  <text x="112" y="355" fill="#334155" font-family="Arial, sans-serif" font-size="31">lambda = v / f, B0 = E0 / v</text>
+  <path d="M612 360 C 650 250 688 250 726 360 S 802 470 840 360" fill="none" stroke="#2563eb" stroke-width="10" stroke-linecap="round"/>
+  <path d="M612 360 C 650 470 688 470 726 360 S 802 250 840 360" fill="none" stroke="#dc2626" stroke-width="10" stroke-linecap="round"/>
+</svg>
