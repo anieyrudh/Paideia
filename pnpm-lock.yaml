@@ -1354,6 +1354,9 @@ importers:
       '@paideia/vector-calculus':
         specifier: workspace:*
         version: link:../../../core/vector-calculus
+      '@paideia/waves':
+        specifier: workspace:*
+        version: link:../../../core/waves
     devDependencies:
       '@types/react':
         specifier: ^18.3.0
