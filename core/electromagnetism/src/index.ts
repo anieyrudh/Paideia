@@ -14,6 +14,7 @@ import {
 } from "@paideia/shared";
 
 export const coulombConstantVacuum = 8.99e9;
+export const vacuumPermittivityFaradsPerMetre = 8.8541878128e-12;
 
 export const electromagnetismTolerance = {
   default: 1e-9,
@@ -24,6 +25,7 @@ export const electromagnetismTolerance = {
 export type Coulombs = Brand<number, "Coulombs">;
 export type Volts = Brand<number, "Volts">;
 export type NewtonsPerCoulomb = Brand<number, "NewtonsPerCoulomb">;
+export type Farads = Brand<number, "Farads">;
 
 export interface PointChargeElectricFieldInput {
   readonly sourceChargeCoulombs: Coulombs;
@@ -64,10 +66,26 @@ export interface PointChargeModel {
   readonly separationMetres: number;
 }
 
+export interface ParallelPlateCapacitorInput {
+  readonly plateAreaSquareMetres: number;
+  readonly plateSeparationMetres: number;
+  readonly dielectricConstant: number;
+  readonly voltageVolts: Volts;
+}
+
+export interface ParallelPlateCapacitorModel {
+  readonly capacitanceFarads: Farads;
+  readonly chargeCoulombs: Coulombs;
+  readonly energyJoules: Joules;
+  readonly electricFieldVoltsPerMetre: number;
+  readonly energyDensityJoulesPerCubicMetre: number;
+}
+
 export const coulombs = (value: number): Coulombs => value as Coulombs;
 export const volts = (value: number): Volts => value as Volts;
 export const newtonsPerCoulomb = (value: number): NewtonsPerCoulomb =>
   value as NewtonsPerCoulomb;
+export const farads = (value: number): Farads => value as Farads;
 
 const finite = (value: number, label: string): KernelResult<void> =>
   Number.isFinite(value)
@@ -78,6 +96,11 @@ const finiteDerived = (value: number, label: string): KernelResult<void> =>
   Number.isFinite(value)
     ? ok(undefined)
     : err("numerical-instability", `${label} must be finite after computation; got ${value}`);
+
+const finitePositive = (value: number, label: string): KernelResult<void> =>
+  Number.isFinite(value) && value > 0
+    ? ok(undefined)
+    : err("precondition-violated", `${label} must be finite and positive; got ${value}`);
 
 const validRadius = (
   radiusMetres: number,
@@ -195,5 +218,52 @@ export const pointChargeModel = (
     potentialEnergyJoules: potentialEnergy.value,
     potentialVolts: potential.value,
     separationMetres: distance.value,
+  });
+};
+
+export const parallelPlateCapacitorModel = (
+  input: ParallelPlateCapacitorInput,
+): KernelResult<ParallelPlateCapacitorModel> => {
+  const area = finitePositive(input.plateAreaSquareMetres, "plateAreaSquareMetres");
+  if (!area.ok) return area;
+  const separation = finitePositive(input.plateSeparationMetres, "plateSeparationMetres");
+  if (!separation.ok) return separation;
+  const dielectric = finitePositive(input.dielectricConstant, "dielectricConstant");
+  if (!dielectric.ok) return dielectric;
+  const voltage = finite(input.voltageVolts, "voltageVolts");
+  if (!voltage.ok) return voltage;
+
+  const capacitance =
+    (input.dielectricConstant *
+      vacuumPermittivityFaradsPerMetre *
+      input.plateAreaSquareMetres) /
+    input.plateSeparationMetres;
+  const charge = capacitance * input.voltageVolts;
+  const energy = 0.5 * capacitance * input.voltageVolts * input.voltageVolts;
+  const electricField = input.voltageVolts / input.plateSeparationMetres;
+  const energyDensity =
+    0.5 *
+    input.dielectricConstant *
+    vacuumPermittivityFaradsPerMetre *
+    electricField *
+    electricField;
+
+  for (const [value, label] of [
+    [capacitance, "capacitanceFarads"],
+    [charge, "chargeCoulombs"],
+    [energy, "energyJoules"],
+    [electricField, "electricFieldVoltsPerMetre"],
+    [energyDensity, "energyDensityJoulesPerCubicMetre"],
+  ] as const) {
+    const finiteValue = finiteDerived(value, label);
+    if (!finiteValue.ok) return finiteValue;
+  }
+
+  return ok({
+    capacitanceFarads: farads(capacitance),
+    chargeCoulombs: coulombs(charge),
+    electricFieldVoltsPerMetre: electricField,
+    energyDensityJoulesPerCubicMetre: energyDensity,
+    energyJoules: joules(energy),
   });
 };

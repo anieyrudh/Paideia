@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Static dielectric capacitor diagram</title>
+  <desc id="desc">Annotated capacitor plate diagram showing area, separation, dielectric constant, field, charge, and energy equations.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <rect x="50" y="42" width="332" height="238" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+  <rect x="116" y="82" width="22" height="150" fill="#2563eb"/>
+  <rect x="292" y="82" width="22" height="150" fill="#dc2626"/>
+  <rect x="174" y="94" width="80" height="126" rx="8" fill="#fb923c" opacity="0.55" stroke="#c2410c"/>
+  <g stroke="#64748b" stroke-width="2" stroke-dasharray="8 8">
+    <line x1="148" y1="108" x2="282" y2="108"/>
+    <line x1="148" y1="132" x2="282" y2="132"/>
+    <line x1="148" y1="156" x2="282" y2="156"/>
+    <line x1="148" y1="180" x2="282" y2="180"/>
+    <line x1="148" y1="204" x2="282" y2="204"/>
+  </g>
+  <text x="92" y="72" fill="#2563eb" font-family="Arial, sans-serif" font-size="18" font-weight="700">- plate</text>
+  <text x="276" y="72" fill="#dc2626" font-family="Arial, sans-serif" font-size="18" font-weight="700">+ plate</text>
+  <text x="170" y="252" fill="#9a3412" font-family="Arial, sans-serif" font-size="18" font-weight="700">dielectric kappa</text>
+  <line x1="138" y1="258" x2="314" y2="258" stroke="#0f172a" stroke-width="2" marker-end="url(#arrow)" marker-start="url(#arrow)"/>
+  <text x="188" y="286" fill="#0f172a" font-family="Arial, sans-serif" font-size="16">gap d</text>
+  <text x="410" y="86" fill="#0f172a" font-family="Arial, sans-serif" font-size="22" font-weight="700">Parallel-plate model</text>
+  <text x="410" y="126" fill="#0f172a" font-family="Arial, sans-serif" font-size="20">C = kappa epsilon0 A / d</text>
+  <text x="410" y="166" fill="#0f172a" font-family="Arial, sans-serif" font-size="20">Q = C V</text>
+  <text x="410" y="206" fill="#0f172a" font-family="Arial, sans-serif" font-size="20">U = 1/2 C V^2</text>
+  <text x="410" y="246" fill="#0f172a" font-family="Arial, sans-serif" font-size="20">E = V / d</text>
+  <text x="58" y="324" fill="#334155" font-family="Arial, sans-serif" font-size="18">Changing material changes capacitance; changing voltage or gap changes field.</text>
+  <defs>
+    <marker id="arrow" markerHeight="8" markerWidth="8" orient="auto" refX="4" refY="4">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#0f172a"/>
+    </marker>
+  </defs>
+</svg>

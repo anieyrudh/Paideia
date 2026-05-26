@@ -17,3 +17,4 @@ export { default as NewsvendorCriticalFractile } from "./newsvendor-critical-fra
 export { default as ConfusionMatrixThresholds } from "./confusion-matrix-thresholds.js";
 export { default as MarkovChainSteadyState } from "./markov-chain-steady-state.js";
 export { default as FairnessThresholdAudit } from "./fairness-threshold-audit.js";
+export { default as CapacitorWithDielectric } from "./capacitor-with-dielectric.js";

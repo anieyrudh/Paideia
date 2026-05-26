@@ -4,8 +4,10 @@ import { approxEqual } from "@paideia/shared";
 import {
   coulombs,
   electricForceOnCharge,
+  parallelPlateCapacitorModel,
   pointChargeElectricField,
   pointChargeModel,
+  volts,
 } from "./index.js";
 
 describe("point-charge electromagnetism", () => {
@@ -111,5 +113,57 @@ describe("point-charge electromagnetism", () => {
       ),
       { seed: 20260521, numRuns: 80 },
     );
+  });
+});
+
+describe("parallel-plate capacitor electromagnetism", () => {
+  it("computes dielectric capacitance, charge, field, and stored energy", () => {
+    const model = parallelPlateCapacitorModel({
+      dielectricConstant: 4,
+      plateAreaSquareMetres: 0.02,
+      plateSeparationMetres: 0.001,
+      voltageVolts: volts(12),
+    });
+
+    expect(model.ok).toBe(true);
+    if (!model.ok) throw new Error(model.error.message);
+    expect(approxEqual(model.value.capacitanceFarads, 7.08335025024e-10, 1e-21)).toBe(true);
+    expect(approxEqual(model.value.chargeCoulombs, 8.500020300288e-9, 1e-20)).toBe(true);
+    expect(approxEqual(model.value.energyJoules, 5.1000121801728e-8, 1e-19)).toBe(true);
+    expect(model.value.electricFieldVoltsPerMetre).toBe(12000);
+  });
+
+  it("scales capacitance and energy linearly with dielectric constant at fixed geometry and voltage", () => {
+    const air = parallelPlateCapacitorModel({
+      dielectricConstant: 1,
+      plateAreaSquareMetres: 0.015,
+      plateSeparationMetres: 0.0008,
+      voltageVolts: volts(9),
+    });
+    const inserted = parallelPlateCapacitorModel({
+      dielectricConstant: 3.5,
+      plateAreaSquareMetres: 0.015,
+      plateSeparationMetres: 0.0008,
+      voltageVolts: volts(9),
+    });
+
+    expect(air.ok).toBe(true);
+    expect(inserted.ok).toBe(true);
+    if (!air.ok || !inserted.ok) throw new Error("Expected valid dielectric capacitor models.");
+    expect(approxEqual(inserted.value.capacitanceFarads / air.value.capacitanceFarads, 3.5, 1e-12)).toBe(true);
+    expect(approxEqual(inserted.value.energyJoules / air.value.energyJoules, 3.5, 1e-12)).toBe(true);
+  });
+
+  it("rejects non-positive geometry or dielectric values", () => {
+    const model = parallelPlateCapacitorModel({
+      dielectricConstant: 0,
+      plateAreaSquareMetres: 0.02,
+      plateSeparationMetres: 0.001,
+      voltageVolts: volts(12),
+    });
+
+    expect(model.ok).toBe(false);
+    if (model.ok) throw new Error("Expected dielectric constant to be rejected.");
+    expect(model.error.code).toBe("precondition-violated");
   });
 });
