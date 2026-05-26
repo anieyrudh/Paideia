@@ -48,7 +48,8 @@
     "./polymers-and-plastic-waste-management": "./src/polymers-and-plastic-waste-management.tsx",
     "./electrochemistry-and-batteries": "./src/electrochemistry-and-batteries.tsx",
     "./solar-energy-and-band-theory": "./src/solar-energy-and-band-theory.tsx",
-    "./water-quality-and-treatment": "./src/water-quality-and-treatment.tsx"
+    "./water-quality-and-treatment": "./src/water-quality-and-treatment.tsx",
+    "./biodiversity-loss-and-land-use": "./src/biodiversity-loss-and-land-use.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -69,7 +70,6 @@
     "@paideia/fluid-mechanics": "workspace:*",
     "@paideia/graph-algorithms": "workspace:*",
     "@paideia/graph-layout": "workspace:*",
-    "@paideia/fluid-mechanics": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/materials": "workspace:*",
     "@paideia/mechanics": "workspace:*",
