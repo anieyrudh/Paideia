@@ -3,9 +3,15 @@ import fc from "fast-check";
 import { approxEqual } from "@paideia/shared";
 import {
   coulombs,
+  degrees,
   electricForceOnCharge,
+  ohms,
   pointChargeElectricField,
   pointChargeModel,
+  seconds,
+  squareMetres,
+  teslas,
+  uniformFluxInductionModel,
 } from "./index.js";
 
 describe("point-charge electromagnetism", () => {
@@ -111,5 +117,70 @@ describe("point-charge electromagnetism", () => {
       ),
       { seed: 20260521, numRuns: 80 },
     );
+  });
+});
+
+describe("uniform flux induction", () => {
+  it("computes Faraday emf and Lenz opposition for increasing flux", () => {
+    const model = uniformFluxInductionModel({
+      angleToNormalDegrees: degrees(0),
+      circuitResistanceOhms: ohms(5),
+      durationSeconds: seconds(0.2),
+      finalFieldTeslas: teslas(0.8),
+      initialFieldTeslas: teslas(0.2),
+      loopAreaSquareMetres: squareMetres(0.03),
+      turns: 40,
+    });
+
+    expect(model.ok).toBe(true);
+    if (!model.ok) throw new Error(model.error.message);
+    expect(approxEqual(model.value.initialFluxWebers, 0.006, 1e-12)).toBe(true);
+    expect(approxEqual(model.value.finalFluxWebers, 0.024, 1e-12)).toBe(true);
+    expect(approxEqual(model.value.inducedEmfVolts, -3.6, 1e-12)).toBe(true);
+    expect(approxEqual(model.value.inducedCurrentAmps, 0.72, 1e-12)).toBe(true);
+    expect(model.value.lenzOpposition).toBe("oppose-increase");
+    expect(model.value.inducedFieldDirection).toBe("into-page");
+  });
+
+  it("uses the angle to the loop normal in the flux projection", () => {
+    const faceOn = uniformFluxInductionModel({
+      angleToNormalDegrees: degrees(0),
+      circuitResistanceOhms: ohms(10),
+      durationSeconds: seconds(0.5),
+      finalFieldTeslas: teslas(0.4),
+      initialFieldTeslas: teslas(0.1),
+      loopAreaSquareMetres: squareMetres(0.02),
+      turns: 10,
+    });
+    const tilted = uniformFluxInductionModel({
+      angleToNormalDegrees: degrees(60),
+      circuitResistanceOhms: ohms(10),
+      durationSeconds: seconds(0.5),
+      finalFieldTeslas: teslas(0.4),
+      initialFieldTeslas: teslas(0.1),
+      loopAreaSquareMetres: squareMetres(0.02),
+      turns: 10,
+    });
+
+    expect(faceOn.ok).toBe(true);
+    expect(tilted.ok).toBe(true);
+    if (!faceOn.ok || !tilted.ok) throw new Error("Expected valid induction models.");
+    expect(approxEqual(tilted.value.inducedEmfMagnitudeVolts / faceOn.value.inducedEmfMagnitudeVolts, 0.5, 1e-12)).toBe(true);
+  });
+
+  it("rejects invalid turns and timing", () => {
+    const model = uniformFluxInductionModel({
+      angleToNormalDegrees: degrees(0),
+      circuitResistanceOhms: ohms(5),
+      durationSeconds: seconds(0),
+      finalFieldTeslas: teslas(0.8),
+      initialFieldTeslas: teslas(0.2),
+      loopAreaSquareMetres: squareMetres(0.03),
+      turns: 40,
+    });
+
+    expect(model.ok).toBe(false);
+    if (model.ok) throw new Error("Expected zero duration to be rejected.");
+    expect(model.error.code).toBe("precondition-violated");
   });
 });

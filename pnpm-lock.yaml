@@ -865,6 +865,22 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
+  core/sequence:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
   core/shared:
     devDependencies:
       typescript:
@@ -1284,6 +1300,9 @@ importers:
       '@paideia/dynamical-systems':
         specifier: workspace:*
         version: link:../../../core/dynamical-systems
+      '@paideia/electromagnetism':
+        specifier: workspace:*
+        version: link:../../../core/electromagnetism
       '@paideia/graph-algorithms':
         specifier: workspace:*
         version: link:../../../core/graph-algorithms

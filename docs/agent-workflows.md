@@ -25,7 +25,8 @@ folder before it knows the task.
 | Claude Code | `AGENTS.md` | `.claude/skills/<task>/SKILL.md` | This mirrors `.agents/skills` for Claude. |
 | Cursor | `AGENTS.md` | `.cursor/rules/*.mdc` only when editing matching files | Cursor rules are short reminders, not the full spec. |
 | Any agent building a lesson | `docs/container-spec.md` | target `container.yaml` and this guide | The container spec is the source of truth. |
-| Any agent changing reusable code | target `core/<module>/AGENTS.md` | `.agents/skills/new-kernel/SKILL.md` | Each core module owns its public contract. |
+| Any agent changing existing reusable code | target `core/<module>/AGENTS.md` | `.agents/skills/new-kernel/SKILL.md` | Each core module owns its public contract. |
+| Any agent creating a missing kernel contract | `docs/agents/kernel-wave-runbook.md` | `.agents/skills/new-kernel/SKILL.md` | Missing contracts must be designed before implementation. |
 
 Canonical sources:
 
@@ -33,6 +34,7 @@ Canonical sources:
 | --- | --- |
 | `docs/container-spec.md` | The lesson/container shape. |
 | `docs/agent-workflows.md` | Task router and copy-paste prompts. |
+| `docs/agents/kernel-wave-runbook.md` | Contract-first process for missing `core/<kernel>/AGENTS.md`. |
 | `.agents/skills/` | Main skill bodies. |
 | `.claude/skills/` | Mirror of `.agents/skills/`. |
 | `.codex/agents/` and `.claude/agents/` | Reviewer role wrappers. |

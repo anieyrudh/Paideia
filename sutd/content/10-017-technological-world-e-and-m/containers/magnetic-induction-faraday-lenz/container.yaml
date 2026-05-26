@@ -1,0 +1,122 @@
+schema_version: "1.0.0"
+id: magnetic-induction-faraday-lenz
+aliases:
+  - electromagnetic induction
+  - Faraday law
+  - Lenz law
+branch: sutd
+subject: 10-017-technological-world-e-and-m
+level: "Undergraduate"
+module: "10.017 Technological World: Electricity and Magnetism"
+title: "Magnetic Induction: Faraday-Lenz"
+one_line_summary: "Predict the direction and size of induced emf from a changing magnetic flux through a coil."
+syllabus_ref: "SUTD 10.017 / electromagnetic induction, Faraday's law, and Lenz's law"
+prerequisites:
+  - magnetic-fields
+  - magnetic-flux
+  - electric-potential
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A coil sees magnetic flux out of the page increasing. What direction should the induced field point?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Into the page, because Lenz's law opposes the increase in outward flux."
+      - "Out of the page, because the coil always reinforces the applied change."
+      - "There is no induced field because the coil area is fixed."
+      - "The direction cannot be predicted from flux change."
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: pickup-coil-design
+    prompt: |
+      Design a pickup coil that sees field change from 50 mT to 450 mT in 0.25 s and produces at least 100 mV without exceeding 25 mA through its load. Choose turns, area, and resistance, then explain the Lenz direction.
+    surface_form: "pickup coil design from changing magnetic flux"
+    same_concept_check: "The context changes from a classroom coil to a pickup sensor, but the learner still applies Phi = BA cos(theta), emf = -N Delta Phi / Delta t, and I = |emf| / R."
+    rubric_path: problem-solving/pickup-coil-design.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Built SUTD 10.017 Faraday-Lenz product slice with prediction-gated induction simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-26"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-26"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Lenz's law opposes magnetic field itself"
+    description: "Learners may say the induced field always points against the applied field instead of opposing the change in flux."
+    evidence_source: "OpenStax College Physics 2e, electromagnetic induction chapter."
+    surface_in_predict: true
+  - name: "No motion means no induction"
+    description: "Learners may miss that changing field strength induces emf even when the coil area is fixed."
+    evidence_source: "Halliday, Resnick, and Walker, Fundamentals of Physics, 2018."
+    surface_in_predict: true
+sources:
+  - citation: "OpenStax. College Physics 2e, Chapter 23: Electromagnetic Induction, AC Circuits, and Electrical Technologies. OpenStax, 2022."
+    publication_year: 2022
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "Halliday, D., Resnick, R., and Walker, J. Fundamentals of Physics. 11th ed. Wiley, 2018."
+    publication_year: 2018
+    license: "Publisher copyright"
+    seab_alignment: n/a
+  - citation: "Griffiths, D. J. Introduction to Electrodynamics. 4th ed. Cambridge University Press, 2017."
+    publication_year: 2017
+    license: "Publisher copyright"
+    seab_alignment: n/a
+language: en
