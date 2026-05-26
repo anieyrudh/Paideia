@@ -30,7 +30,8 @@
     "./fairness-threshold-audit": "./src/fairness-threshold-audit.tsx",
     "./determinant-and-trace": "./src/determinant-and-trace.tsx",
     "./eigenvalues-and-eigenvectors": "./src/eigenvalues-and-eigenvectors.tsx",
-    "./linear-transformations": "./src/linear-transformations.tsx"
+    "./linear-transformations": "./src/linear-transformations.tsx",
+    "./gaussian-elimination-and-linear-systems": "./src/gaussian-elimination-and-linear-systems.tsx"
   },
   "scripts": {
     "build": "tsc -b",
