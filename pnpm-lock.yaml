@@ -1320,6 +1320,9 @@ importers:
       '@paideia/ui-sim':
         specifier: workspace:*
         version: link:../../../core/ui-sim
+      '@paideia/vector-calculus':
+        specifier: workspace:*
+        version: link:../../../core/vector-calculus
     devDependencies:
       '@types/react':
         specifier: ^18.3.0

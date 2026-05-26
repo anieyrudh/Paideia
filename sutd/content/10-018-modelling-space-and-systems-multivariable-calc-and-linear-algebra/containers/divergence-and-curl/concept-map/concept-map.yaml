@@ -1,0 +1,36 @@
+schema_version: "1.0.0"
+concept_id: divergence-and-curl
+prerequisites:
+  - id: vector-fields
+    title: "Vector Fields"
+    relationship: "Divergence and curl are computed from vector-field components."
+    status: planned
+  - id: partial-derivatives
+    title: "Partial Derivatives"
+    relationship: "Both diagnostics use component-wise partial derivatives."
+    status: available
+downstream:
+  - id: greens-theorem
+    title: "Green's Theorem"
+    relationship: "Curl connects closed circulation to an area integral."
+    status: planned
+  - id: fluid-flow-modelling
+    title: "Fluid Flow Modelling"
+    relationship: "Divergence and curl classify local compressibility and spin."
+    status: planned
+siblings:
+  - id: line-integrals-and-conservative-vector-fields
+    title: "Line Integrals and Conservative Vector Fields"
+    relationship: "Curl helps diagnose whether line-integral path independence is plausible."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: magnitude-equals-divergence
+      label: "Large arrows mean large divergence"
+    - id: curl-needs-circles
+      label: "Curl requires circular streamlines"
+  edges:
+    - from: magnitude-equals-divergence
+      to: curl-needs-circles
+      label: "both substitute visual impression for local derivative tests"
+mermaid_source: graph.mmd

@@ -1,0 +1,5 @@
+state_labels:
+  field-kind: "Vector field"
+  sample-x: "Sample x"
+  sample-y: "Sample y"
+  strength: "Field strength"

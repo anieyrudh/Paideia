@@ -1,0 +1,55 @@
+id: divergence-and-curl
+title: "Divergence and Curl"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/vector-calculus
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    For the field F = <-y, x>, which local diagnostic is nonzero at the origin?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Curl is nonzero while divergence is zero"
+      - "Divergence is nonzero while curl is zero"
+      - "Both divergence and curl are zero"
+      - "Both divergence and curl are negative"
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: field-kind
+      label: "Vector field"
+      kind: selector
+      kernel_binding: state.fieldKind
+    - id: sample-x
+      label: "Sample x"
+      kind: slider
+      kernel_binding: state.sampleX
+      bounds: { min: -1.5, max: 1.5, step: 0.25 }
+    - id: sample-y
+      label: "Sample y"
+      kind: slider
+      kernel_binding: state.sampleY
+      bounds: { min: -1.5, max: 1.5, step: 0.25 }
+    - id: strength
+      label: "Field strength"
+      kind: slider
+      kernel_binding: state.strength
+      bounds: { min: 0.5, max: 2, step: 0.25 }
+observe:
+  renderers:
+    - id: divergence-curl-readout
+      module: "@paideia/sutd-sims/divergence-and-curl"
+      symbol: DivergenceAndCurl
+      props_binding: |
+        Show field arrows, selected sample point, divergence, curl, and local source/spin interpretation.
+explain:
+  prompt: |
+    Explain why divergence measures local source strength while curl measures local rotation.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Large arrows automatically mean large divergence"
+    - "Curl means the whole field must move in circles"
