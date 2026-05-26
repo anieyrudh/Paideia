@@ -32,6 +32,7 @@
     "./determinant-and-trace": "./src/determinant-and-trace.tsx",
     "./eigenvalues-and-eigenvectors": "./src/eigenvalues-and-eigenvectors.tsx",
     "./linear-transformations": "./src/linear-transformations.tsx",
+    "./divergence-and-curl": "./src/divergence-and-curl.tsx",
     "./line-integrals-and-conservative-vector-fields": "./src/line-integrals-and-conservative-vector-fields.tsx",
     "./double-and-triple-integrals": "./src/double-and-triple-integrals.tsx",
     "./partial-derivatives-and-gradient": "./src/partial-derivatives-and-gradient.tsx",
