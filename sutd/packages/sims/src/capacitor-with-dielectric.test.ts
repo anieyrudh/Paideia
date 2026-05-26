@@ -62,7 +62,7 @@ describe("capacitor with dielectric sim", () => {
     expect(approxEqual(evidence.value.model.capacitanceFarads, 2.125005075072e-10, 1e-21)).toBe(true);
     expect(approxEqual(evidence.value.model.chargeCoulombs, 2.5500060900864e-9, 1e-20)).toBe(true);
     expect(approxEqual(evidence.value.model.energyJoules, 1.53000365405184e-8, 1e-19)).toBe(true);
-    expect(evidence.value.model.electricFieldVoltsPerMetre).toBe(12000);
+    expect(approxEqual(evidence.value.model.electricFieldVoltsPerMetre, 12000, 1e-9)).toBe(true);
   });
 
   it("scales linearly with dielectric constant at fixed geometry and voltage", () => {

@@ -1,0 +1,10 @@
+flowchart TD
+  gradient["Partial derivatives and gradient"] --> lagrange["Lagrange multiplier condition"]
+  levels["Level sets"] --> constraint["Constraint curve g(x,y)=c"]
+  constraint --> normal["Constraint normal gradient"]
+  gradient --> objective["Objective gradient"]
+  objective --> lagrange
+  normal --> lagrange
+  lagrange --> sensitivity["Lambda as sensitivity"]
+  lagrange --> design["Constrained engineering design"]
+  misconception["Lambda is the answer"] -. correction .-> sensitivity

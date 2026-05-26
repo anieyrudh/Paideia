@@ -1,0 +1,66 @@
+id: gaussian-elimination-and-linear-systems
+title: "Gaussian Elimination and Linear Systems"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/linear-algebra
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    For the system 2x + y = 5 and x - y = 1, what does Gaussian elimination produce?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "A unique solution at x = 2, y = 1"
+      - "No solution because the lines are parallel"
+      - "Infinitely many solutions because the equations are identical"
+      - "A unique solution at x = 1, y = 2"
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: a-coeff
+      label: "Row 1 x coefficient"
+      kind: slider
+      kernel_binding: state.a
+      bounds: { min: -4, max: 4, step: 0.5 }
+    - id: b-coeff
+      label: "Row 1 y coefficient"
+      kind: slider
+      kernel_binding: state.b
+      bounds: { min: -4, max: 4, step: 0.5 }
+    - id: c-coeff
+      label: "Row 2 x coefficient"
+      kind: slider
+      kernel_binding: state.c
+      bounds: { min: -4, max: 4, step: 0.5 }
+    - id: d-coeff
+      label: "Row 2 y coefficient"
+      kind: slider
+      kernel_binding: state.d
+      bounds: { min: -4, max: 4, step: 0.5 }
+    - id: e-rhs
+      label: "Row 1 right side"
+      kind: slider
+      kernel_binding: state.e
+      bounds: { min: -8, max: 8, step: 0.5 }
+    - id: f-rhs
+      label: "Row 2 right side"
+      kind: slider
+      kernel_binding: state.f
+      bounds: { min: -8, max: 8, step: 0.5 }
+observe:
+  renderers:
+    - id: gaussian-elimination-readout
+      module: "@paideia/sutd-sims/gaussian-elimination-and-linear-systems"
+      symbol: GaussianEliminationAndLinearSystems
+      props_binding: |
+        Show augmented matrix, row operation, echelon form, determinant, and solution classification.
+explain:
+  prompt: |
+    Explain how a pivot exposes whether a 2 by 2 linear system has one solution, no solution, or infinitely many solutions.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Elimination changes the solution set"
+    - "Zero determinant always means no solution"

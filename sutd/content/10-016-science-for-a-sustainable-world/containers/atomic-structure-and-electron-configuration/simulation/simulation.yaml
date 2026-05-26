@@ -1,0 +1,44 @@
+id: atomic-structure-and-electron-configuration
+title: "Atomic Structure and Electron Configuration Lab"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/prediction-gate
+  - core/chemistry
+  - core/ui-sim
+predict:
+  prompt: |
+    Carbon has atomic number 6. Before reveal, which shell distribution is neutral carbon?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "2, 4"
+      - "2, 8, 6"
+      - "6 in the first shell"
+      - "1s2 2s2 2p6"
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: atomic-number
+      label: Atomic number Z
+      kind: slider
+      kernel_binding: state.atomicNumber
+      bounds:
+        min: 1
+        max: 20
+        step: 1
+observe:
+  renderers:
+    - id: configuration-diagram
+      module: "@paideia/sutd-sims/atomic-structure-and-electron-configuration"
+      symbol: AtomicStructureAndElectronConfiguration
+      props_binding: |
+        Show shell filling, subshell notation, and valence-electron interpretation.
+explain:
+  prompt: |
+    Explain how atomic number fixes electron count in a neutral atom and how shell filling predicts valence electrons.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - Atomic mass determines electron count
+    - All electrons occupy the first shell

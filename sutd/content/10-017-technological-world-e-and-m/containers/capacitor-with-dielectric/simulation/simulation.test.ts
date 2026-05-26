@@ -35,7 +35,16 @@ test.describe("Capacitor with Dielectric", () => {
 
   test("manipulation changes visible capacitance", async ({ page }) => {
     await page.getByRole("button", { name: "Prepare dielectric model" }).click();
-    await page.getByRole("slider", { name: "Dielectric constant" }).fill("6");
+    await page.getByRole("slider", { name: "Dielectric constant" }).evaluate((element) => {
+      const input = element as HTMLInputElement;
+      const valueSetter = Object.getOwnPropertyDescriptor(
+        HTMLInputElement.prototype,
+        "value",
+      )?.set;
+      valueSetter?.call(input, "6");
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      input.dispatchEvent(new Event("change", { bubbles: true }));
+    });
     await page.getByRole("button", { name: "Reveal dielectric readout" }).click();
     await page
       .getByRole("radio", {

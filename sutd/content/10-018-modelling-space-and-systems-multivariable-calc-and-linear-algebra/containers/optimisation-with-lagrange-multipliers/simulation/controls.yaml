@@ -1,0 +1,44 @@
+controls:
+  - id: angle-degrees
+    label: "Constraint point angle"
+    kind: slider
+    default: 40
+    min: 0
+    max: 360
+    step: 5
+    unit: degrees
+  - id: radius-x
+    label: "x resource radius"
+    kind: slider
+    default: 3
+    min: 1
+    max: 4
+    step: 0.1
+  - id: radius-y
+    label: "y resource radius"
+    kind: slider
+    default: 2
+    min: 1
+    max: 4
+    step: 0.1
+  - id: linear-x
+    label: "x benefit"
+    kind: slider
+    default: 4
+    min: 0.5
+    max: 6
+    step: 0.1
+  - id: linear-y
+    label: "y benefit"
+    kind: slider
+    default: 3
+    min: 0.5
+    max: 6
+    step: 0.1
+  - id: curvature
+    label: "diminishing returns"
+    kind: slider
+    default: 0.45
+    min: 0.1
+    max: 1.2
+    step: 0.05

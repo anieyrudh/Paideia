@@ -21,39 +21,53 @@ import GeneratedSim17ALevelPhysicsScalarsAndVectorsResultantMagnitude from "@pai
 import GeneratedSim18ALevelPhysicsThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
 import GeneratedSim19ALevelPhysicsWavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
 import GeneratedSim20ALevelPhysicsWorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
-import GeneratedSim21Sutd10017TechnologicalWorldEAndMCapacitorWithDielectricCapacitorWithDielectric from "@paideia/sutd-sims/capacitor-with-dielectric";
-import GeneratedSim22SutdAsdLoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
-import GeneratedSim23SutdAsdShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
-import GeneratedSim24SutdAsdStructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
-import GeneratedSim25SutdCsdDynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
-import GeneratedSim26SutdCsdGraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim27SutdCsdRecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
-import GeneratedSim28SutdDaiConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
-import GeneratedSim29SutdDaiFairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
-import GeneratedSim30SutdDaiTrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim31SutdEpdBodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim32SutdEpdPidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim33SutdEpdSignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
-import GeneratedSim34SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim35SutdEsdMarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
-import GeneratedSim36SutdEsdNewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim37SutdFreshmoreBayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim38SutdFreshmoreEigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim39SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim40SutdSmtFourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
-import GeneratedSim41SutdSmtLinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim42SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
-import GeneratedSim43SharedCsGradientDescentLandscapeLossSurfaceStepper from "@paideia/shared-sims/gradient-descent-landscape";
-import GeneratedSim44SharedCsGraphAlgorithmExplorerGraphAlgorithmExplorer from "@paideia/shared-sims/graph-algorithm-explorer";
-import GeneratedSim45SharedMathBayesUpdatingBayesUpdating from "@paideia/shared-sims/bayes-updating";
-import GeneratedSim46SharedMathCentralLimitTheoremCltSampler from "@paideia/shared-sims/central-limit-theorem";
-import GeneratedSim47SharedMathEigenvectorTransformationsEigenvectorTransformations from "@paideia/shared-sims/eigenvector-transformations";
-import GeneratedSim48SharedMathHypothesisTestDecisionHypothesisTestDecision from "@paideia/shared-sims/hypothesis-test-decision";
-import GeneratedSim49SharedMathLinearProgrammingFeasibleRegionLpFeasibleRegion from "@paideia/shared-sims/linear-programming-feasible-region";
-import GeneratedSim50SharedMathOdePhasePortraitOdePhasePortrait from "@paideia/shared-sims/ode-phase-portrait";
-import GeneratedSim51SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab from "@paideia/shared-sims/circuit-phasor-reasoning";
-import GeneratedSim52SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
-import GeneratedSim53SharedSystemsPidBodeBuilderPidBodeBuilder from "@paideia/shared-sims/pid-bode-builder";
+import GeneratedSim21Sutd10016ScienceForASustainableWorldAtomicStructureAndElectronConfigurationAtomicStructureAndElectronConfiguration from "@paideia/sutd-sims/atomic-structure-and-electron-configuration";
+import GeneratedSim22Sutd10017TechnologicalWorldEAndMCapacitorWithDielectricCapacitorWithDielectric from "@paideia/sutd-sims/capacitor-with-dielectric";
+import GeneratedSim23Sutd10017TechnologicalWorldEAndMCoulombSLawAndDiscreteChargeFieldsCoulombFieldVectorLab from "@paideia/sutd-sims/coulomb-s-law-and-discrete-charge-fields";
+import GeneratedSim24Sutd10017TechnologicalWorldEAndMMagneticInductionFaradayLenzMagneticInductionFaradayLenz from "@paideia/sutd-sims/magnetic-induction-faraday-lenz";
+import GeneratedSim25Sutd10017TechnologicalWorldEAndMMaxwellEquationsAndEmWavesMaxwellEquationsAndEmWaves from "@paideia/sutd-sims/maxwell-equations-and-em-waves";
+import GeneratedSim26Sutd10017TechnologicalWorldEAndMRlcCircuitAndResonanceRlcCircuitAndResonance from "@paideia/sutd-sims/rlc-circuit-and-resonance";
+import GeneratedSim27Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraDeterminantAndTraceDeterminantAndTrace from "@paideia/sutd-sims/determinant-and-trace";
+import GeneratedSim28Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraDivergenceAndCurlDivergenceAndCurl from "@paideia/sutd-sims/divergence-and-curl";
+import GeneratedSim29Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraDoubleAndTripleIntegralsDoubleAndTripleIntegrals from "@paideia/sutd-sims/double-and-triple-integrals";
+import GeneratedSim30Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraEigenvaluesAndEigenvectorsEigenvaluesAndEigenvectors from "@paideia/sutd-sims/eigenvalues-and-eigenvectors";
+import GeneratedSim31Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraGaussianEliminationAndLinearSystemsGaussianEliminationAndLinearSystems from "@paideia/sutd-sims/gaussian-elimination-and-linear-systems";
+import GeneratedSim32Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraLineIntegralsAndConservativeVectorFieldsLineIntegralsAndConservativeVectorFields from "@paideia/sutd-sims/line-integrals-and-conservative-vector-fields";
+import GeneratedSim33Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraLinearTransformationsLinearTransformations from "@paideia/sutd-sims/linear-transformations";
+import GeneratedSim34Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraOptimisationWithLagrangeMultipliersOptimisationWithLagrangeMultipliers from "@paideia/sutd-sims/optimisation-with-lagrange-multipliers";
+import GeneratedSim35Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraPartialDerivativesAndGradientPartialDerivativesAndGradient from "@paideia/sutd-sims/partial-derivatives-and-gradient";
+import GeneratedSim36SutdAsdLoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
+import GeneratedSim37SutdAsdShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
+import GeneratedSim38SutdAsdStructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
+import GeneratedSim39SutdCsdDynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
+import GeneratedSim40SutdCsdGraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
+import GeneratedSim41SutdCsdRecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
+import GeneratedSim42SutdDaiConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
+import GeneratedSim43SutdDaiFairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
+import GeneratedSim44SutdDaiTrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim45SutdEpdBodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim46SutdEpdPidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim47SutdEpdSignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
+import GeneratedSim48SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim49SutdEsdMarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
+import GeneratedSim50SutdEsdNewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim51SutdFreshmoreBayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim52SutdFreshmoreEigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim53SutdFreshmoreVectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim54SutdSmtFourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
+import GeneratedSim55SutdSmtLinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim56SutdSmtOdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim57SharedCsGradientDescentLandscapeLossSurfaceStepper from "@paideia/shared-sims/gradient-descent-landscape";
+import GeneratedSim58SharedCsGraphAlgorithmExplorerGraphAlgorithmExplorer from "@paideia/shared-sims/graph-algorithm-explorer";
+import GeneratedSim59SharedMathBayesUpdatingBayesUpdating from "@paideia/shared-sims/bayes-updating";
+import GeneratedSim60SharedMathCentralLimitTheoremCltSampler from "@paideia/shared-sims/central-limit-theorem";
+import GeneratedSim61SharedMathEigenvectorTransformationsEigenvectorTransformations from "@paideia/shared-sims/eigenvector-transformations";
+import GeneratedSim62SharedMathHypothesisTestDecisionHypothesisTestDecision from "@paideia/shared-sims/hypothesis-test-decision";
+import GeneratedSim63SharedMathLinearProgrammingFeasibleRegionLpFeasibleRegion from "@paideia/shared-sims/linear-programming-feasible-region";
+import GeneratedSim64SharedMathOdePhasePortraitOdePhasePortrait from "@paideia/shared-sims/ode-phase-portrait";
+import GeneratedSim65SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab from "@paideia/shared-sims/circuit-phasor-reasoning";
+import GeneratedSim66SharedPhysicsFreeBodyDiagramMechanicsForceBalance from "@paideia/shared-sims/free-body-diagram-mechanics";
+import GeneratedSim67SharedSystemsPidBodeBuilderPidBodeBuilder from "@paideia/shared-sims/pid-bode-builder";
 
 export interface SimHarnessEntry {
   readonly id: string;
@@ -167,170 +181,240 @@ export const simRegistry = {
     title: "Energy Transfer Lab",
     Component: GeneratedSim20ALevelPhysicsWorkEnergyPowerEnergyTransferLab,
   },
+  "sutd/10-016-science-for-a-sustainable-world/atomic-structure-and-electron-configuration/atomic-structure-and-electron-configuration": {
+    id: "sutd/10-016-science-for-a-sustainable-world/atomic-structure-and-electron-configuration/atomic-structure-and-electron-configuration",
+    title: "Atomic Structure and Electron Configuration Lab",
+    Component: GeneratedSim21Sutd10016ScienceForASustainableWorldAtomicStructureAndElectronConfigurationAtomicStructureAndElectronConfiguration,
+  },
   "sutd/10-017-technological-world-e-and-m/capacitor-with-dielectric/capacitor-with-dielectric": {
     id: "sutd/10-017-technological-world-e-and-m/capacitor-with-dielectric/capacitor-with-dielectric",
     title: "Capacitor with Dielectric",
-    Component: GeneratedSim21Sutd10017TechnologicalWorldEAndMCapacitorWithDielectricCapacitorWithDielectric,
+    Component: GeneratedSim22Sutd10017TechnologicalWorldEAndMCapacitorWithDielectricCapacitorWithDielectric,
+  },
+  "sutd/10-017-technological-world-e-and-m/coulomb-s-law-and-discrete-charge-fields/coulomb-field-vector-lab": {
+    id: "sutd/10-017-technological-world-e-and-m/coulomb-s-law-and-discrete-charge-fields/coulomb-field-vector-lab",
+    title: "Coulomb Field Vector Lab",
+    Component: GeneratedSim23Sutd10017TechnologicalWorldEAndMCoulombSLawAndDiscreteChargeFieldsCoulombFieldVectorLab,
+  },
+  "sutd/10-017-technological-world-e-and-m/magnetic-induction-faraday-lenz/magnetic-induction-faraday-lenz": {
+    id: "sutd/10-017-technological-world-e-and-m/magnetic-induction-faraday-lenz/magnetic-induction-faraday-lenz",
+    title: "Magnetic Induction: Faraday-Lenz",
+    Component: GeneratedSim24Sutd10017TechnologicalWorldEAndMMagneticInductionFaradayLenzMagneticInductionFaradayLenz,
+  },
+  "sutd/10-017-technological-world-e-and-m/maxwell-equations-and-em-waves/maxwell-equations-and-em-waves": {
+    id: "sutd/10-017-technological-world-e-and-m/maxwell-equations-and-em-waves/maxwell-equations-and-em-waves",
+    title: "Maxwell Equations and EM Waves",
+    Component: GeneratedSim25Sutd10017TechnologicalWorldEAndMMaxwellEquationsAndEmWavesMaxwellEquationsAndEmWaves,
+  },
+  "sutd/10-017-technological-world-e-and-m/rlc-circuit-and-resonance/rlc-circuit-and-resonance": {
+    id: "sutd/10-017-technological-world-e-and-m/rlc-circuit-and-resonance/rlc-circuit-and-resonance",
+    title: "RLC Circuit and Resonance",
+    Component: GeneratedSim26Sutd10017TechnologicalWorldEAndMRlcCircuitAndResonanceRlcCircuitAndResonance,
+  },
+  "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/determinant-and-trace/determinant-and-trace": {
+    id: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/determinant-and-trace/determinant-and-trace",
+    title: "Determinant and Trace Lab",
+    Component: GeneratedSim27Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraDeterminantAndTraceDeterminantAndTrace,
+  },
+  "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/divergence-and-curl/divergence-and-curl": {
+    id: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/divergence-and-curl/divergence-and-curl",
+    title: "Divergence and Curl",
+    Component: GeneratedSim28Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraDivergenceAndCurlDivergenceAndCurl,
+  },
+  "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/double-and-triple-integrals/double-and-triple-integrals": {
+    id: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/double-and-triple-integrals/double-and-triple-integrals",
+    title: "Double and Triple Integrals Lab",
+    Component: GeneratedSim29Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraDoubleAndTripleIntegralsDoubleAndTripleIntegrals,
+  },
+  "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/eigenvalues-and-eigenvectors/eigenvalues-and-eigenvectors": {
+    id: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/eigenvalues-and-eigenvectors/eigenvalues-and-eigenvectors",
+    title: "Eigenvalue and Eigenvector Lab",
+    Component: GeneratedSim30Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraEigenvaluesAndEigenvectorsEigenvaluesAndEigenvectors,
+  },
+  "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/gaussian-elimination-and-linear-systems/gaussian-elimination-and-linear-systems": {
+    id: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/gaussian-elimination-and-linear-systems/gaussian-elimination-and-linear-systems",
+    title: "Gaussian Elimination and Linear Systems",
+    Component: GeneratedSim31Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraGaussianEliminationAndLinearSystemsGaussianEliminationAndLinearSystems,
+  },
+  "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/line-integrals-and-conservative-vector-fields/line-integrals-and-conservative-vector-fields": {
+    id: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/line-integrals-and-conservative-vector-fields/line-integrals-and-conservative-vector-fields",
+    title: "Line Integrals and Conservative Vector Fields",
+    Component: GeneratedSim32Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraLineIntegralsAndConservativeVectorFieldsLineIntegralsAndConservativeVectorFields,
+  },
+  "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/linear-transformations/linear-transformations": {
+    id: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/linear-transformations/linear-transformations",
+    title: "Linear Transformation Classifier",
+    Component: GeneratedSim33Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraLinearTransformationsLinearTransformations,
+  },
+  "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/optimisation-with-lagrange-multipliers/optimisation-with-lagrange-multipliers": {
+    id: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/optimisation-with-lagrange-multipliers/optimisation-with-lagrange-multipliers",
+    title: "Lagrange Multipliers Lab",
+    Component: GeneratedSim34Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraOptimisationWithLagrangeMultipliersOptimisationWithLagrangeMultipliers,
+  },
+  "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/partial-derivatives-and-gradient/partial-derivatives-and-gradient": {
+    id: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/partial-derivatives-and-gradient/partial-derivatives-and-gradient",
+    title: "Partial Derivatives and Gradient Lab",
+    Component: GeneratedSim35Sutd10018ModellingSpaceAndSystemsMultivariableCalcAndLinearAlgebraPartialDerivativesAndGradientPartialDerivativesAndGradient,
   },
   "sutd/asd/load-path-and-daylight-tradeoff/load-path-and-daylight-tradeoff": {
     id: "sutd/asd/load-path-and-daylight-tradeoff/load-path-and-daylight-tradeoff",
     title: "Load Path and Daylight Tradeoff Explorer",
-    Component: GeneratedSim22SutdAsdLoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
+    Component: GeneratedSim36SutdAsdLoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
   },
   "sutd/asd/shading-daylight-heat-gain/shading-daylight-heat-gain": {
     id: "sutd/asd/shading-daylight-heat-gain/shading-daylight-heat-gain",
     title: "Shading, Daylight, and Heat Gain",
-    Component: GeneratedSim23SutdAsdShadingDaylightHeatGainShadingDaylightHeatGain,
+    Component: GeneratedSim37SutdAsdShadingDaylightHeatGainShadingDaylightHeatGain,
   },
   "sutd/asd/structural-load-path-diagram/structural-load-path-diagram": {
     id: "sutd/asd/structural-load-path-diagram/structural-load-path-diagram",
     title: "Structural Load Path Diagram",
-    Component: GeneratedSim24SutdAsdStructuralLoadPathDiagramStructuralLoadPathDiagram,
+    Component: GeneratedSim38SutdAsdStructuralLoadPathDiagramStructuralLoadPathDiagram,
   },
   "sutd/csd/dynamic-programming-state-recursion/dynamic-programming-state-recursion": {
     id: "sutd/csd/dynamic-programming-state-recursion/dynamic-programming-state-recursion",
     title: "Dynamic Programming State Recursion",
-    Component: GeneratedSim25SutdCsdDynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
+    Component: GeneratedSim39SutdCsdDynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
   },
   "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths": {
     id: "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths",
     title: "Graph Search and Shortest Paths",
-    Component: GeneratedSim26SutdCsdGraphSearchAndShortestPathsGraphSearchAndShortestPaths,
+    Component: GeneratedSim40SutdCsdGraphSearchAndShortestPathsGraphSearchAndShortestPaths,
   },
   "sutd/csd/recursion-tree-complexity/recursion-tree-complexity": {
     id: "sutd/csd/recursion-tree-complexity/recursion-tree-complexity",
     title: "Recursion Tree Complexity Lab",
-    Component: GeneratedSim27SutdCsdRecursionTreeComplexityRecursionTreeComplexity,
+    Component: GeneratedSim41SutdCsdRecursionTreeComplexityRecursionTreeComplexity,
   },
   "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds": {
     id: "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds",
     title: "Confusion Matrix Threshold Explorer",
-    Component: GeneratedSim28SutdDaiConfusionMatrixThresholdsConfusionMatrixThresholds,
+    Component: GeneratedSim42SutdDaiConfusionMatrixThresholdsConfusionMatrixThresholds,
   },
   "sutd/dai/fairness-threshold-audit/fairness-threshold-audit": {
     id: "sutd/dai/fairness-threshold-audit/fairness-threshold-audit",
     title: "Fairness Threshold Audit Lab",
-    Component: GeneratedSim29SutdDaiFairnessThresholdAuditFairnessThresholdAudit,
+    Component: GeneratedSim43SutdDaiFairnessThresholdAuditFairnessThresholdAudit,
   },
   "sutd/dai/trust-calibration/trust-calibration": {
     id: "sutd/dai/trust-calibration/trust-calibration",
     title: "Trust Calibration Explorer",
-    Component: GeneratedSim30SutdDaiTrustCalibrationTrustCalibration,
+    Component: GeneratedSim44SutdDaiTrustCalibrationTrustCalibration,
   },
   "sutd/epd/bode-stability-margin/bode-stability-margin": {
     id: "sutd/epd/bode-stability-margin/bode-stability-margin",
     title: "Bode Margin Reader",
-    Component: GeneratedSim31SutdEpdBodeStabilityMarginBodeStabilityMargin,
+    Component: GeneratedSim45SutdEpdBodeStabilityMarginBodeStabilityMargin,
   },
   "sutd/epd/pid-step-response/pid-step-response": {
     id: "sutd/epd/pid-step-response/pid-step-response",
     title: "PID Step Response Explorer",
-    Component: GeneratedSim32SutdEpdPidStepResponsePidStepResponse,
+    Component: GeneratedSim46SutdEpdPidStepResponsePidStepResponse,
   },
   "sutd/epd/signal-filter-frequency-response/signal-filter-frequency-response": {
     id: "sutd/epd/signal-filter-frequency-response/signal-filter-frequency-response",
     title: "RC Filter Frequency Response Lab",
-    Component: GeneratedSim33SutdEpdSignalFilterFrequencyResponseSignalFilterFrequencyResponse,
+    Component: GeneratedSim47SutdEpdSignalFilterFrequencyResponseSignalFilterFrequencyResponse,
   },
   "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region": {
     id: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
     title: "Linear Programming Feasible Region Explorer",
-    Component: GeneratedSim34SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+    Component: GeneratedSim48SutdEsdLinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
   },
   "sutd/esd/markov-chain-steady-state/markov-chain-steady-state": {
     id: "sutd/esd/markov-chain-steady-state/markov-chain-steady-state",
     title: "Markov Chain Steady-State Lab",
-    Component: GeneratedSim35SutdEsdMarkovChainSteadyStateMarkovChainSteadyState,
+    Component: GeneratedSim49SutdEsdMarkovChainSteadyStateMarkovChainSteadyState,
   },
   "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile": {
     id: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
     title: "Newsvendor Critical Fractile Explorer",
-    Component: GeneratedSim36SutdEsdNewsvendorCriticalFractileNewsvendorCriticalFractile,
+    Component: GeneratedSim50SutdEsdNewsvendorCriticalFractileNewsvendorCriticalFractile,
   },
   "sutd/freshmore/bayes-updating/bayes-updating": {
     id: "sutd/freshmore/bayes-updating/bayes-updating",
     title: "Bayes Updating Explorer",
-    Component: GeneratedSim37SutdFreshmoreBayesUpdatingBayesUpdating,
+    Component: GeneratedSim51SutdFreshmoreBayesUpdatingBayesUpdating,
   },
   "sutd/freshmore/eigenvector-transformations/eigenvector-transformations": {
     id: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
     title: "Eigenvector Direction Lab",
-    Component: GeneratedSim38SutdFreshmoreEigenvectorTransformationsEigenvectorTransformations,
+    Component: GeneratedSim52SutdFreshmoreEigenvectorTransformationsEigenvectorTransformations,
   },
   "sutd/freshmore/vector-transformations/vector-transformations": {
     id: "sutd/freshmore/vector-transformations/vector-transformations",
     title: "2D Matrix-Vector Transformation Explorer",
-    Component: GeneratedSim39SutdFreshmoreVectorTransformationsVectorTransformations,
+    Component: GeneratedSim53SutdFreshmoreVectorTransformationsVectorTransformations,
   },
   "sutd/smt/fourier-mode-superposition/fourier-mode-superposition": {
     id: "sutd/smt/fourier-mode-superposition/fourier-mode-superposition",
     title: "Fourier Mode Superposition Lab",
-    Component: GeneratedSim40SutdSmtFourierModeSuperpositionFourierModeSuperposition,
+    Component: GeneratedSim54SutdSmtFourierModeSuperpositionFourierModeSuperposition,
   },
   "sutd/smt/linear-system-stability/linear-system-stability": {
     id: "sutd/smt/linear-system-stability/linear-system-stability",
     title: "Linear System Stability Lab",
-    Component: GeneratedSim41SutdSmtLinearSystemStabilityLinearSystemStability,
+    Component: GeneratedSim55SutdSmtLinearSystemStabilityLinearSystemStability,
   },
   "sutd/smt/ode-phase-portrait/ode-phase-portrait": {
     id: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
     title: "ODE Phase Portrait Explorer",
-    Component: GeneratedSim42SutdSmtOdePhasePortraitOdePhasePortrait,
+    Component: GeneratedSim56SutdSmtOdePhasePortraitOdePhasePortrait,
   },
   "shared/cs/gradient-descent-landscape/loss-surface-stepper": {
     id: "shared/cs/gradient-descent-landscape/loss-surface-stepper",
     title: "Loss Surface Stepper",
-    Component: GeneratedSim43SharedCsGradientDescentLandscapeLossSurfaceStepper,
+    Component: GeneratedSim57SharedCsGradientDescentLandscapeLossSurfaceStepper,
   },
   "shared/cs/graph-algorithm-explorer/graph-algorithm-explorer": {
     id: "shared/cs/graph-algorithm-explorer/graph-algorithm-explorer",
     title: "Graph Algorithm Explorer",
-    Component: GeneratedSim44SharedCsGraphAlgorithmExplorerGraphAlgorithmExplorer,
+    Component: GeneratedSim58SharedCsGraphAlgorithmExplorerGraphAlgorithmExplorer,
   },
   "shared/math/bayes-updating/bayes-updating": {
     id: "shared/math/bayes-updating/bayes-updating",
     title: "Bayes Updating Explorer",
-    Component: GeneratedSim45SharedMathBayesUpdatingBayesUpdating,
+    Component: GeneratedSim59SharedMathBayesUpdatingBayesUpdating,
   },
   "shared/math/central-limit-theorem/clt-sampler": {
     id: "shared/math/central-limit-theorem/clt-sampler",
     title: "Central Limit Theorem Sampler",
-    Component: GeneratedSim46SharedMathCentralLimitTheoremCltSampler,
+    Component: GeneratedSim60SharedMathCentralLimitTheoremCltSampler,
   },
   "shared/math/eigenvector-transformations/eigenvector-transformations": {
     id: "shared/math/eigenvector-transformations/eigenvector-transformations",
     title: "Eigenvector Direction Lab",
-    Component: GeneratedSim47SharedMathEigenvectorTransformationsEigenvectorTransformations,
+    Component: GeneratedSim61SharedMathEigenvectorTransformationsEigenvectorTransformations,
   },
   "shared/math/hypothesis-test-decision/hypothesis-test-decision": {
     id: "shared/math/hypothesis-test-decision/hypothesis-test-decision",
     title: "Hypothesis Test Decision Lab",
-    Component: GeneratedSim48SharedMathHypothesisTestDecisionHypothesisTestDecision,
+    Component: GeneratedSim62SharedMathHypothesisTestDecisionHypothesisTestDecision,
   },
   "shared/math/linear-programming-feasible-region/lp-feasible-region": {
     id: "shared/math/linear-programming-feasible-region/lp-feasible-region",
     title: "LP Feasible Region Visualiser",
-    Component: GeneratedSim49SharedMathLinearProgrammingFeasibleRegionLpFeasibleRegion,
+    Component: GeneratedSim63SharedMathLinearProgrammingFeasibleRegionLpFeasibleRegion,
   },
   "shared/math/ode-phase-portrait/ode-phase-portrait": {
     id: "shared/math/ode-phase-portrait/ode-phase-portrait",
     title: "ODE Phase Portrait Explorer",
-    Component: GeneratedSim50SharedMathOdePhasePortraitOdePhasePortrait,
+    Component: GeneratedSim64SharedMathOdePhasePortraitOdePhasePortrait,
   },
   "shared/physics/circuit-phasor-reasoning/circuit-phasor-lab": {
     id: "shared/physics/circuit-phasor-reasoning/circuit-phasor-lab",
     title: "Circuit Phasor Lab",
-    Component: GeneratedSim51SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab,
+    Component: GeneratedSim65SharedPhysicsCircuitPhasorReasoningCircuitPhasorLab,
   },
   "shared/physics/free-body-diagram-mechanics/force-balance": {
     id: "shared/physics/free-body-diagram-mechanics/force-balance",
     title: "Force Balance Explorer",
-    Component: GeneratedSim52SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
+    Component: GeneratedSim66SharedPhysicsFreeBodyDiagramMechanicsForceBalance,
   },
   "shared/systems/pid-bode-builder/pid-bode-builder": {
     id: "shared/systems/pid-bode-builder/pid-bode-builder",
     title: "PID Tuner and Bode Builder",
-    Component: GeneratedSim53SharedSystemsPidBodeBuilderPidBodeBuilder,
+    Component: GeneratedSim67SharedSystemsPidBodeBuilderPidBodeBuilder,
   }
 } satisfies Record<string, SimHarnessEntry>;
 

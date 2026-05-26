@@ -1,0 +1,29 @@
+presets:
+  - id: upper-triangular
+    label: "Upper-triangular (real distinct)"
+    state:
+      a11: 3
+      a12: 1
+      a21: 0
+      a22: 2
+  - id: repeated-eigenvalue
+    label: "Repeated eigenvalue (shear)"
+    state:
+      a11: 2
+      a12: 1
+      a21: 0
+      a22: 2
+  - id: complex-conjugate
+    label: "Complex conjugate (rotation)"
+    state:
+      a11: 0
+      a12: -1
+      a21: 1
+      a22: 0
+  - id: symmetric-orthogonal
+    label: "Symmetric (orthogonal eigenspaces)"
+    state:
+      a11: 4
+      a12: 1
+      a21: 1
+      a22: 2

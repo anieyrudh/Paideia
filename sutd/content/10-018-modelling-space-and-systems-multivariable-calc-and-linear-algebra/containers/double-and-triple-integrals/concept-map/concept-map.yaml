@@ -1,0 +1,35 @@
+schema_version: "1.0.0"
+concept_id: double-and-triple-integrals
+title: "Double and Triple Integrals Concept Map"
+prerequisites:
+  - id: single-variable-integration
+    title: "Single-variable integration"
+    relationship: "Multiple integrals extend accumulation from intervals to regions."
+  - id: regions-and-bounds
+    title: "Regions and bounds"
+    relationship: "Bounds encode the geometry of the area or volume."
+downstream:
+  - id: line-integrals-and-conservative-vector-fields
+    title: "Line integrals and conservative vector fields"
+    relationship: "Accumulation over regions prepares path and field accumulation."
+  - id: divergence-and-curl
+    title: "Divergence and curl"
+    relationship: "Flux and local source reasoning build on area and volume accumulation."
+siblings:
+  - id: partial-derivatives-and-gradient
+    title: "Partial derivatives and gradient"
+    relationship: "Both use multivariable coordinate reasoning."
+misconception_graph:
+  nodes:
+    - id: double-integral-only-area
+      label: "double integrals only compute area"
+    - id: bounds-independent
+      label: "bounds are independent of order"
+  edges:
+    - from: double-integral-only-area
+      to: double-and-triple-integrals
+      label: "integrand is density"
+    - from: bounds-independent
+      to: double-and-triple-integrals
+      label: "bounds describe region"
+mermaid_source: graph.mmd

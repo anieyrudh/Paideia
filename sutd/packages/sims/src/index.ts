@@ -17,4 +17,15 @@ export { default as NewsvendorCriticalFractile } from "./newsvendor-critical-fra
 export { default as ConfusionMatrixThresholds } from "./confusion-matrix-thresholds.js";
 export { default as MarkovChainSteadyState } from "./markov-chain-steady-state.js";
 export { default as FairnessThresholdAudit } from "./fairness-threshold-audit.js";
-export { default as CapacitorWithDielectric } from "./capacitor-with-dielectric.js";
+export { default as DeterminantAndTrace } from "./determinant-and-trace.js";
+export { default as EigenvaluesAndEigenvectors } from "./eigenvalues-and-eigenvectors.js";
+export { default as LinearTransformations } from "./linear-transformations.js";
+export { default as GaussianEliminationAndLinearSystems } from "./gaussian-elimination-and-linear-systems.js";
+export { default as DivergenceAndCurl } from "./divergence-and-curl.js";
+export { default as LineIntegralsAndConservativeVectorFields } from "./line-integrals-and-conservative-vector-fields.js";
+export { default as DoubleAndTripleIntegrals } from "./double-and-triple-integrals.js";
+export { default as PartialDerivativesAndGradient } from "./partial-derivatives-and-gradient.js";
+export { default as OptimisationWithLagrangeMultipliers } from "./optimisation-with-lagrange-multipliers.js";
+export { default as MaxwellEquationsAndEmWaves } from "./maxwell-equations-and-em-waves.js";
+export { default as RlcCircuitAndResonance } from "./rlc-circuit-and-resonance.js";
+export { default as CoulombsLawAndDiscreteChargeFields } from "./coulomb-s-law-and-discrete-charge-fields.js";

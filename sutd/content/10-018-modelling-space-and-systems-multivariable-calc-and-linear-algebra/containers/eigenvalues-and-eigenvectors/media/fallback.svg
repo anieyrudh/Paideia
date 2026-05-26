@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Eigenvalues and eigenvectors fallback visual</title>
+  <desc id="desc">Characteristic polynomial parabola with eigenvalue roots, plus eigenspace lines.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <g stroke="#dbe4ee" stroke-width="1">
+    <path d="M80 180H560"/>
+    <path d="M320 30V330"/>
+  </g>
+  <path d="M120 60 Q320 360 520 60" stroke="#7c3aed" stroke-width="4" fill="none"/>
+  <circle cx="260" cy="180" r="8" fill="#2563eb"/>
+  <circle cx="380" cy="180" r="8" fill="#059669"/>
+  <text x="240" y="220" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="16" font-weight="700">lambda_1 = 2</text>
+  <text x="360" y="220" fill="#065f46" font-family="Arial, sans-serif" font-size="16" font-weight="700">lambda_2 = 3</text>
+  <text x="120" y="80" fill="#5b21b6" font-family="Arial, sans-serif" font-size="16" font-weight="700">y = lambda^2 - T lambda + D</text>
+  <text x="52" y="54" fill="#0f172a" font-family="Arial, sans-serif" font-size="30" font-weight="700">Eigenvalues &amp; eigenvectors</text>
+  <text x="52" y="88" fill="#475569" font-family="Arial, sans-serif" font-size="18">Roots of the characteristic polynomial give eigenvalues; (A - lambda I) v = 0 gives eigenvectors.</text>
+</svg>

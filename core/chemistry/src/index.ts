@@ -69,12 +69,45 @@ export interface NernstInput {
   readonly temperatureKelvins?: Kelvins;
 }
 
+export interface ElectronSubshellOccupancy {
+  readonly label: string;
+  readonly principalShell: number;
+  readonly orbital: "s" | "p" | "d" | "f";
+  readonly electrons: number;
+  readonly capacity: number;
+}
+
+export interface ElectronShellOccupancy {
+  readonly shell: number;
+  readonly electrons: number;
+  readonly capacity: number;
+}
+
+export interface ElectronConfiguration {
+  readonly atomicNumber: number;
+  readonly totalElectrons: number;
+  readonly subshells: readonly ElectronSubshellOccupancy[];
+  readonly shells: readonly ElectronShellOccupancy[];
+  readonly notation: string;
+  readonly valenceElectrons: number;
+}
+
 const gasConstantLitreAtmosphere = 0.082057;
 const gasConstantJoules = 8.31446261815324;
 const faradayConstant = 96485.33212;
 const waterIonProduct25C = 1e-14;
 const waterPKw25C = 14;
 const defaultNernstTemperatureKelvins = 298.15;
+const aufbauOrder: readonly Omit<ElectronSubshellOccupancy, "electrons">[] = [
+  { label: "1s", principalShell: 1, orbital: "s", capacity: 2 },
+  { label: "2s", principalShell: 2, orbital: "s", capacity: 2 },
+  { label: "2p", principalShell: 2, orbital: "p", capacity: 6 },
+  { label: "3s", principalShell: 3, orbital: "s", capacity: 2 },
+  { label: "3p", principalShell: 3, orbital: "p", capacity: 6 },
+  { label: "4s", principalShell: 4, orbital: "s", capacity: 2 },
+  { label: "3d", principalShell: 3, orbital: "d", capacity: 10 },
+  { label: "4p", principalShell: 4, orbital: "p", capacity: 6 },
+];
 
 export const moles = (value: number): KernelResult<Moles> =>
   nonNegativeFinite(value, "moles").ok
@@ -116,6 +149,58 @@ export const volts = (value: number): KernelResult<Volts> => {
     return err("out-of-domain", `volts must be finite, got ${value}`);
   }
   return ok(value as Volts);
+};
+
+export const electronConfiguration = (
+  atomicNumber: number,
+): KernelResult<ElectronConfiguration> => {
+  if (!Number.isInteger(atomicNumber) || atomicNumber < 1 || atomicNumber > 36) {
+    return err(
+      "out-of-domain",
+      `atomicNumber must be an integer from 1 to 36 for the first-year Aufbau model, got ${atomicNumber}`,
+    );
+  }
+
+  let remaining = atomicNumber;
+  const subshells: ElectronSubshellOccupancy[] = [];
+  const shellMap = new Map<number, { electrons: number; capacity: number }>();
+
+  for (const subshell of aufbauOrder) {
+    if (remaining <= 0) break;
+    const electrons = Math.min(remaining, subshell.capacity);
+    remaining -= electrons;
+    subshells.push(Object.freeze({ ...subshell, electrons }));
+
+    const shell = shellMap.get(subshell.principalShell) ?? {
+      electrons: 0,
+      capacity: 0,
+    };
+    shell.electrons += electrons;
+    shell.capacity += subshell.capacity;
+    shellMap.set(subshell.principalShell, shell);
+  }
+
+  const shells = [...shellMap.entries()]
+    .sort(([a], [b]) => a - b)
+    .map(([shell, occupancy]) =>
+      Object.freeze({
+        shell,
+        electrons: occupancy.electrons,
+        capacity: shell === 1 ? 2 : shell === 2 ? 8 : occupancy.capacity,
+      }),
+    );
+  const outerShell = shells.at(-1);
+
+  return ok(
+    Object.freeze({
+      atomicNumber,
+      totalElectrons: atomicNumber,
+      subshells: Object.freeze(subshells),
+      shells: Object.freeze(shells),
+      notation: subshells.map((subshell) => `${subshell.label}${subshell.electrons}`).join(" "),
+      valenceElectrons: outerShell?.electrons ?? 0,
+    }),
+  );
 };
 
 export const parseFormula = (formula: string): KernelResult<ParsedFormula> => {

@@ -1,0 +1,31 @@
+presets:
+  - id: default
+    label: "Increasing outward flux"
+    state:
+      turns: 40
+      loopAreaSquareCentimetres: 120
+      initialFieldMilliTeslas: 100
+      finalFieldMilliTeslas: 500
+      angleToNormalDegrees: 0
+      durationMilliseconds: 300
+      resistanceOhms: 8
+  - id: tilted-loop
+    label: "Tilted loop"
+    state:
+      turns: 40
+      loopAreaSquareCentimetres: 120
+      initialFieldMilliTeslas: 100
+      finalFieldMilliTeslas: 500
+      angleToNormalDegrees: 60
+      durationMilliseconds: 300
+      resistanceOhms: 8
+  - id: decreasing-flux
+    label: "Decreasing outward flux"
+    state:
+      turns: 60
+      loopAreaSquareCentimetres: 150
+      initialFieldMilliTeslas: 650
+      finalFieldMilliTeslas: 150
+      angleToNormalDegrees: 0
+      durationMilliseconds: 500
+      resistanceOhms: 12

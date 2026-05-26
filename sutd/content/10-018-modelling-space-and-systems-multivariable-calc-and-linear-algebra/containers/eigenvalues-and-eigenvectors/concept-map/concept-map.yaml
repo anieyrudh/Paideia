@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: eigenvalues-and-eigenvectors
+prerequisites:
+  - id: determinant-and-trace
+    title: "Determinant and Trace"
+    relationship: "The characteristic polynomial uses T and D as coefficients."
+    status: available
+  - id: vector-transformations
+    title: "Vector Transformations"
+    relationship: "Eigenvectors are directions left unchanged in direction by the transformation."
+    status: available
+downstream:
+  - id: diagonalisation
+    title: "Diagonalisation"
+    relationship: "Independent eigenvectors form a basis where A acts as a diagonal scale matrix."
+    status: planned
+  - id: linear-system-stability
+    title: "Linear System Stability"
+    relationship: "Stability of 2D linear systems is decided by the eigenvalue signs and real parts."
+    status: available
+  - id: principal-component-analysis
+    title: "Principal Component Analysis"
+    relationship: "PCA finds eigenvectors of a covariance matrix."
+    status: planned
+siblings:
+  - id: characteristic-polynomial
+    title: "Characteristic Polynomial"
+    relationship: "Same root-finding step from a different vantage."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: diagonal-equals-eigen
+      label: "Eigenvalues are always the diagonal entries"
+    - id: complex-eigen-rejected
+      label: "Complex eigenvalues mean the matrix is wrong"
+    - id: zero-vector-eigen
+      label: "Zero vector counts as an eigenvector"
+  edges:
+    - from: diagonal-equals-eigen
+      to: complex-eigen-rejected
+      label: "both skip the characteristic polynomial"
+    - from: zero-vector-eigen
+      to: diagonal-equals-eigen
+      label: "weakens the non-zero condition"
+mermaid_source: graph.mmd

@@ -1,0 +1,8 @@
+state_labels:
+  surfaceKind: "Surface"
+  x: "Point x"
+  y: "Point y"
+  directionDegrees: "Test direction angle"
+  xCurvature: "x curvature"
+  yCurvature: "y curvature"
+  coupling: "xy coupling"

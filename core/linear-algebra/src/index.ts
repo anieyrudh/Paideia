@@ -18,6 +18,15 @@ export interface EigenvectorCheck2 {
   readonly isEigenvector: boolean;
 }
 
+export interface GaussianElimination2 {
+  readonly augmentedStart: readonly [readonly [number, number, number], readonly [number, number, number]];
+  readonly rowEchelon: readonly [readonly [number, number, number], readonly [number, number, number]];
+  readonly solution: Vector2 | null;
+  readonly determinant: number;
+  readonly classification: "unique" | "parallel" | "dependent";
+  readonly steps: readonly string[];
+}
+
 export const linearAlgebraTolerance = {
   default: 1e-10,
   zero: 1e-12,
@@ -68,6 +77,72 @@ export const matrix2 = (
   c: number,
   d: number,
 ): KernelResult<Matrix2> => ensureFiniteMatrix2([[a, b], [c, d]], "Matrix");
+
+export const gaussianElimination2 = (
+  matrix: Matrix2,
+  rhs: Vector2,
+): KernelResult<GaussianElimination2> => {
+  const validMatrix = validateMatrix2(matrix, "matrix");
+  if (!validMatrix.ok) return validMatrix;
+  const validRhs = validateVector2(rhs, "rhs");
+  if (!validRhs.ok) return validRhs;
+  const [[a, b], [c, d]] = matrix;
+  const [e, f] = rhs;
+  const determinant = a * d - b * c;
+  const start: GaussianElimination2["augmentedStart"] = [[a, b, e], [c, d, f]];
+  const steps: string[] = ["Write the augmented matrix [A|b]."];
+  if (Math.abs(a) <= linearAlgebraTolerance.zero) {
+    if (Math.abs(c) <= linearAlgebraTolerance.zero) {
+      return ok({
+        augmentedStart: start,
+        rowEchelon: start,
+        solution: null,
+        determinant,
+        classification: Math.abs(b * f - d * e) <= linearAlgebraTolerance.loose ? "dependent" : "parallel",
+        steps: [...steps, "No usable first-column pivot; classify from the remaining row relation."],
+      });
+    }
+    const swapped: GaussianElimination2["augmentedStart"] = [[c, d, f], [a, b, e]];
+    steps.push("Swap rows to move a nonzero pivot into row 1.");
+    return eliminateWithPivot(swapped, determinant, steps);
+  }
+  return eliminateWithPivot(start, determinant, steps);
+};
+
+const eliminateWithPivot = (
+  augmented: GaussianElimination2["augmentedStart"],
+  determinant: number,
+  steps: readonly string[],
+): KernelResult<GaussianElimination2> => {
+  const [[a, b, e], [c, d, f]] = augmented;
+  const factor = c / a;
+  const row2: readonly [number, number, number] = [0, d - factor * b, f - factor * e];
+  const rowEchelon: GaussianElimination2["rowEchelon"] = [[a, b, e], row2];
+  const nextSteps = [...steps, `Use R2 <- R2 - (${factor.toFixed(3)})R1 to clear the first column.`];
+  if (Math.abs(row2[1]) <= linearAlgebraTolerance.zero) {
+    const classification = Math.abs(row2[2]) <= linearAlgebraTolerance.loose ? "dependent" : "parallel";
+    return ok({
+      augmentedStart: augmented,
+      rowEchelon,
+      solution: null,
+      determinant,
+      classification,
+      steps: [...nextSteps, classification === "dependent" ? "Rows collapse to the same line." : "Rows contradict, so the lines are parallel."],
+    });
+  }
+  const y = row2[2] / row2[1];
+  const x = (e - b * y) / a;
+  return ensureFiniteVector2([x, y], "solution").ok
+    ? ok({
+        augmentedStart: augmented,
+        rowEchelon,
+        solution: [x, y],
+        determinant,
+        classification: "unique",
+        steps: [...nextSteps, "Back-substitute from row 2, then row 1."],
+      })
+    : err("numerical-instability", "Gaussian elimination produced a non-finite solution");
+};
 
 export const add2 = (
   left: Vector2,

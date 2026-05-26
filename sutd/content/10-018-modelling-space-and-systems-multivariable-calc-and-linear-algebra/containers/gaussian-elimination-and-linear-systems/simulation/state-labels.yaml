@@ -1,0 +1,7 @@
+state_labels:
+  a-coeff: "Row 1 x coefficient"
+  b-coeff: "Row 1 y coefficient"
+  c-coeff: "Row 2 x coefficient"
+  d-coeff: "Row 2 y coefficient"
+  e-rhs: "Row 1 right side"
+  f-rhs: "Row 2 right side"

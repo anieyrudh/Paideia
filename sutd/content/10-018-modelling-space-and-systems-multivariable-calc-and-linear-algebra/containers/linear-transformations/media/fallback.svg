@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Linear transformations fallback visual</title>
+  <desc id="desc">A 2D grid showing standard basis vectors (dashed) and their images under rotation, scaling, shear, and reflection.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <g stroke="#dbe4ee" stroke-width="1">
+    <path d="M60 300H580"/>
+    <path d="M320 40V330"/>
+  </g>
+  <path d="M320 300L380 300" stroke="#94a3b8" stroke-width="4" stroke-dasharray="10 7"/>
+  <path d="M320 300L320 240" stroke="#94a3b8" stroke-width="4" stroke-dasharray="10 7"/>
+  <path d="M320 300L320 180" stroke="#2563eb" stroke-width="6" stroke-linecap="round"/>
+  <path d="M320 300L240 300" stroke="#059669" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="320" cy="300" r="7" fill="#0f172a"/>
+  <text x="330" y="175" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="16" font-weight="700">T(e_1)</text>
+  <text x="180" y="296" fill="#065f46" font-family="Arial, sans-serif" font-size="16" font-weight="700">T(e_2)</text>
+  <text x="52" y="54" fill="#0f172a" font-family="Arial, sans-serif" font-size="30" font-weight="700">Linear transformations</text>
+  <text x="52" y="88" fill="#475569" font-family="Arial, sans-serif" font-size="18">Read where the basis lands; the columns of A are T(e_1) and T(e_2).</text>
+  <g font-family="Arial, sans-serif" font-size="15">
+    <rect x="420" y="220" width="180" height="90" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="432" y="246" fill="#0f172a" font-weight="700">Class diagnostic</text>
+    <text x="432" y="270" fill="#334155">scaling - diagonal</text>
+    <text x="432" y="290" fill="#334155">rotation - cos/sin pattern</text>
+    <text x="432" y="306" fill="#334155">shear - one fixed axis</text>
+  </g>
+</svg>

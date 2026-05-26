@@ -1,0 +1,22 @@
+presets:
+  - id: vortex
+    label: Vortex
+    state:
+      fieldKind: vortex
+      sampleX: 0
+      sampleY: 0
+      strength: 1
+  - id: source
+    label: Source
+    state:
+      fieldKind: source
+      sampleX: 0
+      sampleY: 0
+      strength: 1
+  - id: sink
+    label: Sink
+    state:
+      fieldKind: sink
+      sampleX: 0
+      sampleY: 0
+      strength: 1

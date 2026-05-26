@@ -1,0 +1,41 @@
+schema_version: "1.0.0"
+concept_id: atomic-structure-and-electron-configuration
+prerequisites:
+  - id: atoms-and-elements
+    title: "Atoms and Elements"
+    relationship: "Elements are identified by proton count."
+    status: planned
+  - id: electric-charge
+    title: "Electric Charge"
+    relationship: "Neutral atoms balance positive protons with negative electrons."
+    status: planned
+downstream:
+  - id: chemical-bonding-and-intermolecular-forces
+    title: "Chemical Bonding and Intermolecular Forces"
+    relationship: "Valence electrons explain ionic and covalent bonding tendencies."
+    status: planned
+  - id: electrochemistry-and-batteries
+    title: "Electrochemistry and Batteries"
+    relationship: "Ion formation and electron transfer rely on atomic electron structure."
+    status: planned
+siblings:
+  - id: periodic-table-trends
+    title: "Periodic Table Trends"
+    relationship: "Repeated valence patterns create group trends."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: mass-as-electron-count
+      label: "Mass number gives electron count"
+    - id: first-shell-overfill
+      label: "All electrons occupy the first shell"
+    - id: valence-inner-confusion
+      label: "Inner electrons are valence electrons"
+  edges:
+    - from: mass-as-electron-count
+      to: first-shell-overfill
+      label: "both misread what atomic number controls"
+    - from: first-shell-overfill
+      to: valence-inner-confusion
+      label: "weak shell model hides the outer-shell distinction"
+mermaid_source: graph.mmd
