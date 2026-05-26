@@ -1,7 +1,7 @@
 # core/optimization · agent contract
 
 ## What this module is
-The deterministic optimization kernel for educational sims. It owns finite-difference gradient-descent traces over scalar landscapes, clipped linear-programming feasible regions, and one-period discrete newsvendor critical-fractile analysis. It returns pure data only: no rendering, no React state, no persistence, and no branch-specific behaviour.
+The deterministic optimization kernel for educational sims. It owns finite-difference gradient-descent traces over scalar landscapes, clipped linear-programming feasible regions, constrained 2D Lagrange-multiplier evidence, and one-period discrete newsvendor critical-fractile analysis. It returns pure data only: no rendering, no React state, no persistence, and no branch-specific behaviour.
 
 ## Public interface
 Exports from `@paideia/optimization`:
@@ -14,6 +14,8 @@ Exports from `@paideia/optimization`:
 - `LinearObjective = { cx: number; cy: number; direction: 'min' | 'max' }`
 - `FeasibleRegion = { domain: Rect; constraints: readonly LinearConstraint[]; vertices: readonly Point2[] }`
 - `LinearProgramSolution = { point: Point2; value: number; activeConstraints: readonly number[] }`
+- `LagrangeMultiplierInput2D = { angleDegrees: number; radiusX: number; radiusY: number; linearX: number; linearY: number; curvature: number }`
+- `LagrangeMultiplierEvidence2D = { point: Point2; objectiveValue: number; constraintValue: number; objectiveGradient: Point2; constraintGradient: Point2; lambda: number; residual: number; tangentDerivative: number; sensitivity: 'x-resource' | 'y-resource' | 'balanced' }`
 - `OrderQuantityUnits = Brand<number, 'OrderQuantityUnits'>`
 - `CostSgdPerUnit = Brand<number, 'CostSgdPerUnit'>`
 - `ExpectedCostSgd = Brand<number, 'ExpectedCostSgd'>`
@@ -28,6 +30,7 @@ Exports from `@paideia/optimization`:
 - `gradientDescent(f: Function3D, start: Point2, opts?: GradientDescentOptions): KernelResult<GradientDescentTrace>`
 - `linearFeasibleRegion(constraints: readonly LinearConstraint[], domain: Rect): KernelResult<FeasibleRegion>`
 - `optimizeLinearObjective(region: FeasibleRegion, objective: LinearObjective): KernelResult<LinearProgramSolution>`
+- `lagrangeMultiplierEvidence2D(input: LagrangeMultiplierInput2D): KernelResult<LagrangeMultiplierEvidence2D>`
 - `newsvendorCriticalFractile(input: NewsvendorInput): KernelResult<NewsvendorAnalysis>`
 
 ## Invariants the caller must preserve
@@ -36,6 +39,7 @@ Exports from `@paideia/optimization`:
 - `domain` and LP `Rect` bounds are finite and ordered with `min < max`.
 - Linear constraints use finite coefficients and at least one of `a` or `b` is non-zero.
 - LP feasible regions are clipped to the caller-supplied domain. This module does not claim an unbounded mathematical optimum outside that domain.
+- Lagrange multiplier evidence uses positive finite ellipse radii, finite linear objective coefficients, and non-negative finite curvature.
 - Newsvendor distributions are finite, non-empty, and validated by `core/probability-stats` with probabilities summing to 1.
 - Newsvendor underage and overage costs are finite, non-negative, and not both zero; `quantityStep` is positive and bounded so cost-curve generation cannot allocate pathological arrays.
 
@@ -48,7 +52,7 @@ Exports from `@paideia/optimization`:
 - Does **not** memoise sampled function values across calls.
 
 ## When to consider this module
-Use `core/optimization` when a simulation needs a canonical gradient-descent path over a 2D landscape, a clipped 2D linear-programming feasible polygon, a linear objective optimum over that polygon, or a one-period newsvendor critical-fractile decision over a discrete demand distribution. If a sim is about to hand-roll gradient steps, LP corner checks, or critical-ratio inventory logic, use this module instead.
+Use `core/optimization` when a simulation needs a canonical gradient-descent path over a 2D landscape, a clipped 2D linear-programming feasible polygon, a linear objective optimum over that polygon, a 2D Lagrange-multiplier diagnostic on an ellipse constraint, or a one-period newsvendor critical-fractile decision over a discrete demand distribution. If a sim is about to hand-roll gradient steps, LP corner checks, Lagrange residual checks, or critical-ratio inventory logic, use this module instead.
 
 ## Extension protocol
 1. Open a `core-change-proposal` issue naming every current consumer (optimization, ML, ESD, and IB Math AI sims).
@@ -63,4 +67,4 @@ Use `core/optimization` when a simulation needs a canonical gradient-descent pat
 - Treating a viewport-clipped LP solution as a proof about an unbounded real-world model.
 
 ## How the Anieyrudh Filter reads this module
-The Filter probes that **visual claims about optimization match the kernel trace and corner solution**. A descent animation must move through the points returned by `gradientDescent`; an LP visualizer must shade exactly the polygon from `linearFeasibleRegion`; an optimum badge must cite `optimizeLinearObjective` rather than re-checking corners in UI code.
+The Filter probes that **visual claims about optimization match the kernel trace and corner solution**. A descent animation must move through the points returned by `gradientDescent`; an LP visualizer must shade exactly the polygon from `linearFeasibleRegion`; an optimum badge must cite `optimizeLinearObjective` rather than re-checking corners in UI code; a constrained-optimum visual must use `lagrangeMultiplierEvidence2D` rather than recomputing gradients in the React surface.

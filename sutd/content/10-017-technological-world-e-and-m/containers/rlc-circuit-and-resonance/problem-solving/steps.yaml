@@ -1,0 +1,29 @@
+steps:
+  - id: convert-units
+    title: "Convert component values"
+    prompt: "Convert millihenrys and microfarads into henrys and farads."
+    expected: "Use L_H = L_mH / 1000 and C_F = C_microF x 10^-6."
+  - id: compute-reactances
+    title: "Compute reactances"
+    prompt: "Calculate X_L and X_C at the drive frequency."
+    expected: "X_L = 2 pi f L and X_C = 1 / (2 pi f C)."
+  - id: combine-impedance
+    title: "Combine series impedance"
+    prompt: "Form the real and imaginary parts of total impedance."
+    expected: "Z = R + j(X_L - X_C)."
+  - id: calculate-current
+    title: "Calculate current"
+    prompt: "Use the impedance magnitude to find RMS current."
+    expected: "I_RMS = V_RMS / sqrt(R^2 + (X_L - X_C)^2)."
+  - id: tune-resonance
+    title: "Tune resonance"
+    prompt: "If the target frequency is specified, solve f0 = 1 / (2 pi sqrt(LC))."
+    expected: "Rearrange for the missing L or C, then check X_L = X_C."
+  - id: interpret-bandwidth
+    title: "Interpret Q and bandwidth"
+    prompt: "Explain whether the circuit is broadly or sharply tuned."
+    expected: "Use Q = (1 / R) sqrt(L / C) and bandwidth = f0 / Q."
+  - id: misconception-check
+    title: "Check the physical claim"
+    prompt: "Explain why resonance does not make total impedance zero."
+    expected: "Reactance cancels, but resistance remains and limits current."

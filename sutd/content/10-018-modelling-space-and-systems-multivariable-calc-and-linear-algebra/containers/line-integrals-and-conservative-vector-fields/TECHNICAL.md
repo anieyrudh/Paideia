@@ -124,20 +124,21 @@ pnpm graph:generate
 
 ## Anieyrudh Filter pass
 
-Date: TBD
+Date: 2026-05-26
 Filter version: aniegpt v1.0
 
 ### P0 issues
 
-- No generated Filter output recorded yet.
+- None after repair. The simulation keeps reusable vector-field and line-integral computation in `core/vector-calculus`, gates revealed evidence through prediction commit, and avoids branch-specific logic.
 
 ### P1 issues
 
-- No generated P1 disposition recorded yet.
+- Runtime dependency drift: `simulation.yaml` declared `core/prediction-gate` but `runtime.yaml` omitted `@paideia/prediction-gate`; fixed by adding the dependency.
+- Embed scoring coverage: added an assertion for the `evidenceRevealed` flag so lifecycle regressions are visible in tests.
 
 ### High-bandwidth questions surfaced
 
-- None recorded.
+- No high-bandwidth questions.
 
 ## Iteration log
 

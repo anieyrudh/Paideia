@@ -1,0 +1,64 @@
+id: rlc-circuit-and-resonance
+title: "RLC Circuit and Resonance"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/shared
+  - core/content-schema
+  - core/sim-runtime
+  - core/circuits
+  - core/prediction-gate
+  - core/ui-sim
+manipulate:
+  controls:
+    - id: frequency
+      label: "Drive frequency"
+      kind: slider
+      kernel_binding: state.frequencyHertz
+      bounds: { min: 20, max: 240, step: 1 }
+    - id: resistance
+      label: "Resistance"
+      kind: slider
+      kernel_binding: state.resistanceOhms
+      bounds: { min: 5, max: 80, step: 1 }
+    - id: inductance
+      label: "Inductance"
+      kind: slider
+      kernel_binding: state.inductanceMilliHenrys
+      bounds: { min: 20, max: 300, step: 5 }
+    - id: capacitance
+      label: "Capacitance"
+      kind: slider
+      kernel_binding: state.capacitanceMicroFarads
+      bounds: { min: 20, max: 300, step: 5 }
+    - id: source-voltage
+      label: "Source voltage"
+      kind: slider
+      kernel_binding: state.sourceVoltageRmsVolts
+      bounds: { min: 2, max: 24, step: 0.5 }
+predict:
+  prompt: |
+    A series RLC circuit is driven at its resonant frequency. What happens to the net reactance and RMS current?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Net reactance is near zero, so impedance is mostly resistance and current is largest."
+      - "Inductive reactance becomes infinite, so current is zero."
+      - "Capacitive reactance disappears, so voltage across the capacitor is zero."
+      - "Resistance cancels reactance, so total impedance is zero."
+    correct_index: 0
+  rationale_required: true
+observe:
+  renderers:
+    - id: rlc-resonance-readout
+      module: "@paideia/sutd-sims/rlc-circuit-and-resonance"
+      symbol: RlcCircuitAndResonance
+      props_binding: |
+        Show series RLC schematic, reactance balance, resonant frequency, current, Q, bandwidth, formula substitution, units, and interpretation.
+explain:
+  prompt: |
+    Why does resonance maximise current without making total impedance zero?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Resonance means zero impedance."
+    - "The larger reactance always gives larger current."
+    - "High Q is always better."

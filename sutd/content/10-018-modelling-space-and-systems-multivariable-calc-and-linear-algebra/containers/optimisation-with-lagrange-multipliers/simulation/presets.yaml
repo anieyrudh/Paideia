@@ -1,0 +1,28 @@
+presets:
+  - id: balanced-budget
+    label: "Balanced resource budget"
+    state:
+      angleDegrees: 40
+      radiusX: 3
+      radiusY: 2
+      linearX: 4
+      linearY: 3
+      curvature: 0.45
+  - id: x-heavy-benefit
+    label: "x-heavy benefit"
+    state:
+      angleDegrees: 20
+      radiusX: 3.5
+      radiusY: 1.8
+      linearX: 5.5
+      linearY: 2
+      curvature: 0.4
+  - id: y-scarce-resource
+    label: "y-scarce resource"
+    state:
+      angleDegrees: 70
+      radiusX: 2.5
+      radiusY: 1.3
+      linearX: 3
+      linearY: 4.8
+      curvature: 0.5

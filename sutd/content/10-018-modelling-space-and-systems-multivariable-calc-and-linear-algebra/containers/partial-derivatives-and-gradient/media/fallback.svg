@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Static gradient formula panel</title>
+  <desc id="desc">A static fallback showing the gradient formula and a contour-normal arrow.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <rect x="36" y="36" width="568" height="288" rx="8" fill="#f8fafc" stroke="#d6dde8"/>
+  <text x="70" y="92" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#111827">Gradient local model</text>
+  <text x="70" y="142" font-family="Arial, sans-serif" font-size="24" fill="#0f172a">∇f(x,y)=⟨fₓ(x,y), fᵧ(x,y)⟩</text>
+  <text x="70" y="184" font-family="Arial, sans-serif" font-size="21" fill="#334155">Dᵤf = ∇f · u</text>
+  <g transform="translate(445 185)">
+    <ellipse rx="92" ry="38" fill="none" stroke="#60a5fa" stroke-width="4"/>
+    <ellipse rx="132" ry="58" fill="none" stroke="#f59e0b" stroke-width="4"/>
+    <circle r="8" fill="#111827"/>
+    <path d="M0 0 L70 -70" stroke="#0f766e" stroke-width="9" stroke-linecap="round"/>
+    <path d="M70 -70 l-10 28 l-17 -20 z" fill="#0f766e"/>
+  </g>
+  <text x="70" y="248" font-family="Arial, sans-serif" font-size="19" fill="#475569">Contours hold height constant; the gradient points across them.</text>
+</svg>

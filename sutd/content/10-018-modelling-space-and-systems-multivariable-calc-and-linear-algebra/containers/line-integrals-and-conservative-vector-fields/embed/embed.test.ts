@@ -6,7 +6,9 @@ describe("line-integrals embed API", () => {
     const loaded = load();
     const resumed = resume({ ...loaded, fieldKind: "rotational" });
     expect(saveState(resumed)).toEqual(resumed);
+    expect(score(loaded).evidenceRevealed).toBe(true);
     expect(score(loaded).pathIndependenceRecognised).toBe(true);
+    expect(score(resumed).evidenceRevealed).toBe(true);
     expect(score(resumed).pathIndependenceRecognised).toBe(false);
   });
 });
