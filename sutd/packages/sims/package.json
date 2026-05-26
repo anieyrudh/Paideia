@@ -33,6 +33,7 @@
     "./eigenvalues-and-eigenvectors": "./src/eigenvalues-and-eigenvectors.tsx",
     "./linear-transformations": "./src/linear-transformations.tsx",
     "./partial-derivatives-and-gradient": "./src/partial-derivatives-and-gradient.tsx",
+    "./optimisation-with-lagrange-multipliers": "./src/optimisation-with-lagrange-multipliers.tsx",
     "./maxwell-equations-and-em-waves": "./src/maxwell-equations-and-em-waves.tsx",
     "./rlc-circuit-and-resonance": "./src/rlc-circuit-and-resonance.tsx",
     "./coulomb-s-law-and-discrete-charge-fields": "./src/coulomb-s-law-and-discrete-charge-fields.tsx"

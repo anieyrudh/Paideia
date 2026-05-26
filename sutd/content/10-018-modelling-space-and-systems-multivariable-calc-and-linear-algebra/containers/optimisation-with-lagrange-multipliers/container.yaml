@@ -1,0 +1,121 @@
+schema_version: "1.0.0"
+id: optimisation-with-lagrange-multipliers
+aliases:
+  - Lagrange multipliers
+  - constrained optimisation
+  - constrained extrema
+branch: sutd
+subject: "10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra"
+level: "Undergraduate"
+module: "10.018 Modelling Space and Systems"
+title: "Optimisation with Lagrange Multipliers"
+one_line_summary: "Use gradient alignment to identify constrained optima and interpret the multiplier as a resource sensitivity."
+syllabus_ref: "SUTD 10.018 Modelling Space and Systems / constrained optimisation and Lagrange multipliers"
+prerequisites:
+  - partial-derivatives-and-gradient
+  - level-sets
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    At a constrained optimum, what relationship should hold between the objective gradient and the constraint gradient?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "They are parallel, so the objective has no first-order gain along the constraint"
+      - "They are perpendicular, so the objective crosses the constraint"
+      - "The objective gradient must be zero everywhere on the constraint"
+      - "The multiplier is the optimum value of the objective"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: packaging-material-budget
+    prompt: |
+      A package design has a profit objective and a fixed material-budget constraint. Use Lagrange multipliers to decide when no feasible first-order move improves profit.
+    surface_form: "engineering design constrained optimisation"
+    same_concept_check: "The setting changes from an abstract ellipse to a design budget, but the method is still matching objective and constraint gradients and interpreting lambda."
+    rubric_path: problem-solving/packaging-material-budget.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Built SUTD 10.018 Lagrange multipliers product slice with prediction-gated constrained-optimisation lab."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-26"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-26"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "The multiplier is the answer"
+    description: "Learners may report lambda as the optimum value, instead of interpreting it as sensitivity to the constraint."
+    evidence_source: "Stewart Calculus, Lagrange multipliers section."
+    surface_in_predict: true
+  - name: "Gradients should be perpendicular"
+    description: "Learners may confuse the tangent direction with the constraint normal and expect objective and constraint gradients to be perpendicular."
+    evidence_source: "MIT OCW 18.02SC constrained optimisation notes."
+    surface_in_predict: true
+sources:
+  - citation: "Stewart, J. Calculus: Early Transcendentals. 8th ed. Cengage, 2015."
+    publication_year: 2015
+    license: "Publisher copyright"
+    seab_alignment: n/a
+  - citation: "MIT OpenCourseWare. 18.02SC Multivariable Calculus, Unit 2: Lagrange Multipliers."
+    publication_year: 2010
+    license: "CC BY-NC-SA 4.0"
+    seab_alignment: n/a
+  - citation: "SUTD. 10.018 Modelling Space and Systems course topic list."
+    publication_year: 2026
+    license: "Institutional syllabus reference"
+    seab_alignment: n/a
+language: en
