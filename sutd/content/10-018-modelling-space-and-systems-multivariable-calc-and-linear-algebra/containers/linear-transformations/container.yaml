@@ -92,8 +92,8 @@ misconceptions:
     evidence_source: "SUTD 10.018 linear algebra study aids."
     surface_in_predict: true
 sources:
-  - citation: "SUTD 10.018 Modelling Space and Systems learning outcomes for matrices and linear transformations."
-    url: "https://www.sutd.edu.sg"
+  - citation: "SUTD 10.018 Modelling Space and Systems course page, learning objectives for modelling and systems."
+    url: "https://www.sutd.edu.sg/course/10-018-modelling-space-and-systems"
     publication_year: 2026
     license: "Public website"
     seab_alignment: n/a

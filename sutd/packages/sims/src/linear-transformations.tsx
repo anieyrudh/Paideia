@@ -218,6 +218,12 @@ const classificationLabel = (kind: Classification): string => {
   }
 };
 
+const orientationLabel = (det: number): string => {
+  if (det > TOLERANCE) return "orientation preserved";
+  if (det < -TOLERANCE) return "orientation flipped";
+  return "orientation undefined";
+};
+
 export const linearTransformationEvidence = (
   state: LinearTransformationState,
 ): KernelResult<LinearTransformationEvidence> => {
@@ -251,13 +257,6 @@ export const linearTransformationEvidence = (
     col2Length.value,
     columnDot.value,
   );
-  if (
-    classification === "anisotropic-scaling" &&
-    Math.abs(state.a11 - state.a22) < TOLERANCE &&
-    Math.abs(state.a11) > TOLERANCE
-  ) {
-    // Degenerate: equal diagonal -> uniform; already handled by perpendicular && equalLength.
-  }
   return ok({
     matrix: matrix.value,
     trace: trace.value,
@@ -463,7 +462,7 @@ const ObserveStage = () => {
           </div>
           <div>
             <dt>Determinant</dt>
-            <dd>{fmt(det)}; {det >= 0 ? "orientation preserved" : "orientation flipped"}</dd>
+            <dd>{fmt(det)}; {orientationLabel(det)}</dd>
           </div>
           <div>
             <dt>Trace</dt>

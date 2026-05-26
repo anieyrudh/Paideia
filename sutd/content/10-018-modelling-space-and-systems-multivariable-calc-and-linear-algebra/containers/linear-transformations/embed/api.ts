@@ -4,6 +4,7 @@ export interface ContainerEmbedState {
 
 export interface ContainerEmbedTheme {
   readonly colorScheme: "light" | "dark";
+  /** Reserved for future shell-level accent styling; current embeds sync only colorScheme. */
   readonly accentColor?: string;
 }
 

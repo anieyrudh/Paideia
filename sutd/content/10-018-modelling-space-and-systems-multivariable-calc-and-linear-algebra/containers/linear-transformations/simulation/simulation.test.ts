@@ -40,6 +40,7 @@ test.describe("Linear Transformations", () => {
     await page.getByRole("slider", { name: "Bottom-left entry c" }).fill("0");
     await page.getByRole("slider", { name: "Bottom-right entry d" }).fill("0.5");
     await page.getByRole("button", { name: "Reveal classifier evidence" }).click();
+    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
     await page
       .getByRole("radio", {
         name: "Anisotropic scaling; both basis vectors stretched differently",
@@ -55,6 +56,7 @@ test.describe("Linear Transformations", () => {
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await page.getByRole("button", { name: "Set up classifier check" }).click();
     await page.getByRole("button", { name: "Reveal classifier evidence" }).click();
+    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
     await page
       .getByRole("radio", {
         name: "Pure rotation by 90 degrees counter-clockwise; area preserved, orientation preserved",
