@@ -1,0 +1,32 @@
+steps:
+  - id: set-orientation
+    title: "Set the flux direction"
+    prompt: "Choose the positive loop normal and state what positive flux means."
+    checks:
+      - "The same orientation is used for initial and final flux."
+      - "Direction language is separated from magnitude."
+  - id: convert-units
+    title: "Convert to SI units"
+    prompt: "Write B in T, A in m^2, time in s, and resistance in ohm."
+    checks:
+      - "mT is divided by 1000."
+      - "cm^2 is divided by 10000."
+      - "ms is divided by 1000."
+  - id: compute-flux-change
+    title: "Compute flux change"
+    prompt: "Use Phi = BA cos(theta) for initial and final flux."
+    checks:
+      - "The angle is between field and loop normal."
+      - "Delta Phi is final minus initial."
+  - id: compute-emf-current
+    title: "Compute emf and current"
+    prompt: "Use emf = -N Delta Phi / Delta t and I = |emf| / R."
+    checks:
+      - "The emf sign is kept for Lenz interpretation."
+      - "Current magnitude uses the absolute emf."
+  - id: interpret-lenz
+    title: "Interpret Lenz direction"
+    prompt: "Name whether the induced magnetic effect opposes an increase or decrease in flux."
+    checks:
+      - "The answer opposes the flux change, not the field label alone."
+      - "More turns changes magnitude, not the opposition rule."

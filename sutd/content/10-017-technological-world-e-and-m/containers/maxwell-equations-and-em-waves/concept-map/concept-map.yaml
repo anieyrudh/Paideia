@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: maxwell-equations-and-em-waves
+prerequisites:
+  - id: electric-fields
+    title: "Electric Fields"
+    relationship: "Maxwell's equations include electric flux and changing electric fields."
+    status: available
+  - id: magnetic-fields
+    title: "Magnetic Fields"
+    relationship: "EM waves couple electric and magnetic field components."
+    status: available
+  - id: faraday-law
+    title: "Faraday Induction"
+    relationship: "Changing magnetic flux creates circulating electric fields."
+    status: planned
+downstream:
+  - id: optics
+    title: "Refraction and Optics"
+    relationship: "Wave speed and wavelength changes explain refraction."
+    status: planned
+  - id: antennas
+    title: "Antennas and Radiation"
+    relationship: "Accelerating charges launch electromagnetic waves."
+    status: planned
+siblings:
+  - id: electromagnetic-spectrum
+    title: "Electromagnetic Spectrum"
+    relationship: "Frequency and wavelength classify radio, visible, ultraviolet, and x-ray bands."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: needs-wire-current
+      label: "EM waves require wire current everywhere"
+    - id: separate-waves
+      label: "Electric and magnetic waves are separate"
+    - id: faster-in-glass
+      label: "Higher permittivity makes the wave faster"
+  edges:
+    - from: needs-wire-current
+      to: separate-waves
+      label: "both miss Maxwell field coupling"
+    - from: faster-in-glass
+      to: separate-waves
+      label: "both detach wave speed from field-medium equations"
+mermaid_source: graph.mmd

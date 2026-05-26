@@ -7,8 +7,7 @@ density is
 \rho(x,y)=1+x+0.5y
 ```
 
-kg/m². Find the total mass. Then extend the result to a box of height \(h=0.4\)
-m with the same density through height.
+kg/m². Find the total mass of the plate.
 
 ## Solution Sketch
 
@@ -28,8 +27,9 @@ Then:
 M=\int_0^3(4+y)\,dy=16.5\text{ kg}
 ```
 
-For constant height, the volume accumulation is \(0.4M=6.6\) kg if the density
-is interpreted per square metre and repeated uniformly through height.
+Because \(\rho\) is an areal density, the double integral already returns the
+plate mass in kg. A volume version would need a separate volumetric density in
+kg/m³ before multiplying by height.
 
 ## Rubric
 

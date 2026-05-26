@@ -1,0 +1,5 @@
+runtime:
+  package: "@paideia/sutd-sims/maxwell-equations-and-em-waves"
+  component: MaxwellEquationsAndEmWaves
+  package_id: "sutd/10-017-technological-world-e-and-m/maxwell-equations-and-em-waves"
+  prediction_gate: true

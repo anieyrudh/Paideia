@@ -20,7 +20,11 @@ export const createEmbed = (): ContainerEmbedApi => {
     },
     syncTheme(theme: ContainerEmbedTheme): void {
       target?.setAttribute("data-paideia-theme", theme.colorScheme);
-      if (theme.accentColor !== undefined) target?.setAttribute("data-paideia-accent", theme.accentColor);
+      if (theme.accentColor !== undefined) {
+        target?.setAttribute("data-paideia-accent", theme.accentColor);
+      } else {
+        target?.removeAttribute("data-paideia-accent");
+      }
     },
     destroy(): void {
       target?.removeAttribute("data-paideia-container");

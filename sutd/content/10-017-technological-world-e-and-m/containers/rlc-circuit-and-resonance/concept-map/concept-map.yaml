@@ -1,0 +1,32 @@
+schema_version: "1.0.0"
+concept_id: rlc-circuit-and-resonance
+prerequisites:
+  - id: ac-current
+    title: "AC current"
+    relationship: "RMS voltage and current are sinusoidal steady-state quantities."
+    status: planned
+  - id: impedance
+    title: "Impedance"
+    relationship: "Resistance and reactance combine as a complex opposition to current."
+    status: planned
+downstream:
+  - id: filters
+    title: "Frequency filters"
+    relationship: "Resonance selects or rejects a narrow band of frequencies."
+    status: planned
+siblings:
+  - id: circuit-phasor-reasoning
+    title: "Circuit Phasor Reasoning"
+    relationship: "Phasor diagrams explain lead/lag behaviour."
+    status: available
+misconception_graph:
+  nodes:
+    - id: zero-impedance
+      label: "Resonance means zero impedance"
+    - id: bigger-reactance
+      label: "Bigger reactance means bigger current"
+  edges:
+    - from: zero-impedance
+      to: bigger-reactance
+      label: "Both confuse reactance with impedance magnitude."
+mermaid_source: graph.mmd
