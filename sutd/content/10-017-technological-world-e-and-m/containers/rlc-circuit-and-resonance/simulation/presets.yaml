@@ -1,0 +1,25 @@
+presets:
+  - id: near-resonance
+    label: "Near resonance"
+    state:
+      sourceVoltageRmsVolts: 10
+      resistanceOhms: 20
+      inductanceMilliHenrys: 100
+      capacitanceMicroFarads: 100
+      frequencyHertz: 50
+  - id: below-resonance
+    label: "Below resonance"
+    state:
+      sourceVoltageRmsVolts: 10
+      resistanceOhms: 20
+      inductanceMilliHenrys: 100
+      capacitanceMicroFarads: 100
+      frequencyHertz: 30
+  - id: high-q
+    label: "High Q"
+    state:
+      sourceVoltageRmsVolts: 10
+      resistanceOhms: 8
+      inductanceMilliHenrys: 160
+      capacitanceMicroFarads: 60
+      frequencyHertz: 51

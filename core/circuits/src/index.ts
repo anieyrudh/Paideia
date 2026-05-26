@@ -91,6 +91,29 @@ export interface SeriesAcCircuitSolution {
   readonly reactivePowerVars: number;
 }
 
+export interface SeriesRlcResonanceInput {
+  readonly sourceVoltageRmsVolts: number;
+  readonly resistanceOhms: number;
+  readonly inductanceHenrys: number;
+  readonly capacitanceFarads: number;
+  readonly frequencyHertz: number;
+}
+
+export interface SeriesRlcResonanceModel {
+  readonly resonantFrequencyHertz: number;
+  readonly angularFrequencyRadPerSec: number;
+  readonly inductiveReactanceOhms: number;
+  readonly capacitiveReactanceOhms: number;
+  readonly netReactanceOhms: number;
+  readonly impedanceMagnitudeOhms: number;
+  readonly currentRmsAmps: number;
+  readonly currentPhaseRadians: number;
+  readonly powerFactor: number;
+  readonly qualityFactor: number;
+  readonly bandwidthHertz: number;
+  readonly interpretation: string;
+}
+
 export interface ResistorElement {
   readonly kind: "resistor";
   readonly id: CircuitElementId;
@@ -411,6 +434,68 @@ export const solveSeriesAcCircuit = (
     Number.isFinite(solution.reactivePowerVars)
     ? ok(solution)
     : err("numerical-instability", "Series AC circuit solution must be finite");
+};
+
+export const seriesRlcResonanceModel = (
+  input: SeriesRlcResonanceInput,
+): KernelResult<SeriesRlcResonanceModel> => {
+  const sourceVoltage = positiveFinite(input.sourceVoltageRmsVolts, "sourceVoltageRmsVolts");
+  if (!sourceVoltage.ok) return sourceVoltage;
+  const resistance = positiveResistance(input.resistanceOhms);
+  if (!resistance.ok) return resistance;
+  const inductance = positiveFinite(input.inductanceHenrys, "inductanceHenrys");
+  if (!inductance.ok) return inductance;
+  const capacitance = positiveFinite(input.capacitanceFarads, "capacitanceFarads");
+  if (!capacitance.ok) return capacitance;
+  const frequency = positiveFinite(input.frequencyHertz, "frequencyHertz");
+  if (!frequency.ok) return frequency;
+
+  const solution = solveSeriesAcCircuit({
+    sourceVoltageRmsVolts: sourceVoltage.value,
+    frequencyHertz: frequency.value,
+    elements: [
+      { kind: "resistor", resistanceOhms: resistance.value },
+      { kind: "inductor", inductanceHenrys: inductance.value },
+      { kind: "capacitor", capacitanceFarads: capacitance.value },
+    ],
+  });
+  if (!solution.ok) return solution;
+
+  const angularFrequencyRadPerSec = 2 * Math.PI * frequency.value;
+  const inductiveReactanceOhms = angularFrequencyRadPerSec * inductance.value;
+  const capacitiveReactanceOhms = 1 / (angularFrequencyRadPerSec * capacitance.value);
+  const netReactanceOhms = inductiveReactanceOhms - capacitiveReactanceOhms;
+  const resonantFrequencyHertz =
+    1 / (2 * Math.PI * Math.sqrt(inductance.value * capacitance.value));
+  const qualityFactor =
+    (1 / resistance.value) * Math.sqrt(inductance.value / capacitance.value);
+  const bandwidthHertz = resonantFrequencyHertz / qualityFactor;
+  const detuningRatio = (frequency.value - resonantFrequencyHertz) / resonantFrequencyHertz;
+  const interpretation =
+    Math.abs(detuningRatio) < 0.03
+      ? "near resonance: inductive and capacitive reactance nearly cancel, so current is high"
+      : netReactanceOhms > 0
+        ? "above resonance: inductive reactance dominates, so current lags the source voltage"
+        : "below resonance: capacitive reactance dominates, so current leads the source voltage";
+
+  const model: SeriesRlcResonanceModel = {
+    angularFrequencyRadPerSec,
+    bandwidthHertz,
+    capacitiveReactanceOhms,
+    currentPhaseRadians: solution.value.currentPhaseRadians,
+    currentRmsAmps: solution.value.currentRmsAmps,
+    impedanceMagnitudeOhms: solution.value.impedanceMagnitudeOhms,
+    inductiveReactanceOhms,
+    interpretation,
+    netReactanceOhms,
+    powerFactor: solution.value.powerFactor,
+    qualityFactor,
+    resonantFrequencyHertz,
+  };
+
+  return Object.values(model).every((value) => typeof value === "string" || Number.isFinite(value))
+    ? ok(model)
+    : err("numerical-instability", "Series RLC resonance model must be finite");
 };
 
 const elementEndpoints = (
