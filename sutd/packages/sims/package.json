@@ -23,6 +23,7 @@
     "./trust-calibration": "./src/trust-calibration.tsx",
     "./vector-transformations": "./src/vector-transformations.tsx",
     "./bayes-updating": "./src/bayes-updating.tsx",
+    "./magnetic-induction-faraday-lenz": "./src/magnetic-induction-faraday-lenz.tsx",
     "./eigenvector-transformations": "./src/eigenvector-transformations.tsx",
     "./newsvendor-critical-fractile": "./src/newsvendor-critical-fractile.tsx",
     "./confusion-matrix-thresholds": "./src/confusion-matrix-thresholds.tsx",
