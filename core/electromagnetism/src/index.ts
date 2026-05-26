@@ -7,17 +7,27 @@ import {
 import {
   err,
   degrees,
+  hertz,
   joules,
+  metres,
+  metresPerSecond,
   ok,
+  radiansPerSecond,
   seconds,
   type Brand,
   type Degrees,
+  type Hertz,
   type Joules,
   type KernelResult,
+  type Metres,
+  type MetresPerSecond,
+  type RadiansPerSecond,
   type Seconds,
 } from "@paideia/shared";
 
 export const coulombConstantVacuum = 8.99e9;
+export const speedOfLightVacuumMetresPerSecond = 299_792_458;
+export const vacuumImpedanceOhms = 376.730313668;
 
 export const electromagnetismTolerance = {
   default: 1e-9,
@@ -34,6 +44,9 @@ export type WebersPerSecond = Brand<number, "WebersPerSecond">;
 export type SquareMetres = Brand<number, "SquareMetres">;
 export type Ohms = Brand<number, "Ohms">;
 export type Amps = Brand<number, "Amps">;
+export type VoltsPerMetre = Brand<number, "VoltsPerMetre">;
+export type RadiansPerMetre = Brand<number, "RadiansPerMetre">;
+export type WattsPerSquareMetre = Brand<number, "WattsPerSquareMetre">;
 
 export interface PointChargeElectricFieldInput {
   readonly sourceChargeCoulombs: Coulombs;
@@ -99,6 +112,27 @@ export interface UniformFluxInductionModel {
   readonly interpretation: string;
 }
 
+export interface ElectromagneticWaveInput {
+  readonly frequencyHertz: Hertz;
+  readonly electricFieldAmplitudeVoltsPerMetre: VoltsPerMetre;
+  readonly relativePermittivity: number;
+  readonly relativePermeability: number;
+}
+
+export interface ElectromagneticWaveModel {
+  readonly speedMetresPerSecond: MetresPerSecond;
+  readonly wavelengthMetres: Metres;
+  readonly periodSeconds: Seconds;
+  readonly angularFrequencyRadPerSecond: RadiansPerSecond;
+  readonly waveNumberRadPerMetre: RadiansPerMetre;
+  readonly electricFieldAmplitudeVoltsPerMetre: VoltsPerMetre;
+  readonly magneticFieldAmplitudeTesla: Teslas;
+  readonly mediumImpedanceOhms: Ohms;
+  readonly averageIntensityWattsPerSquareMetre: WattsPerSquareMetre;
+  readonly spectrumBand: string;
+  readonly interpretation: string;
+}
+
 export const coulombs = (value: number): Coulombs => value as Coulombs;
 export const volts = (value: number): Volts => value as Volts;
 export const newtonsPerCoulomb = (value: number): NewtonsPerCoulomb =>
@@ -110,7 +144,13 @@ export const webersPerSecond = (value: number): WebersPerSecond =>
 export const squareMetres = (value: number): SquareMetres => value as SquareMetres;
 export const ohms = (value: number): Ohms => value as Ohms;
 export const amps = (value: number): Amps => value as Amps;
-export { degrees, seconds };
+export const voltsPerMetre = (value: number): VoltsPerMetre =>
+  value as VoltsPerMetre;
+export const radiansPerMetre = (value: number): RadiansPerMetre =>
+  value as RadiansPerMetre;
+export const wattsPerSquareMetre = (value: number): WattsPerSquareMetre =>
+  value as WattsPerSquareMetre;
+export { degrees, hertz, metres, metresPerSecond, radiansPerSecond, seconds };
 
 const finite = (value: number, label: string): KernelResult<void> =>
   Number.isFinite(value)
@@ -131,6 +171,16 @@ const finiteNonNegative = (value: number, label: string): KernelResult<void> =>
   Number.isFinite(value) && value >= 0
     ? ok(undefined)
     : err("precondition-violated", `${label} must be finite and non-negative; got ${value}`);
+
+const spectrumBandForFrequency = (frequencyHertz: Hertz): string => {
+  if (frequencyHertz < 3e9) return "radio";
+  if (frequencyHertz < 3e12) return "microwave";
+  if (frequencyHertz < 4.3e14) return "infrared";
+  if (frequencyHertz < 7.5e14) return "visible";
+  if (frequencyHertz < 3e16) return "ultraviolet";
+  if (frequencyHertz < 3e19) return "x-ray";
+  return "gamma ray";
+};
 
 const validRadius = (
   radiusMetres: number,
@@ -326,5 +376,70 @@ export const uniformFluxInductionModel = (
     initialFluxWebers: webers(initialFlux),
     interpretation,
     lenzOpposition,
+  });
+};
+
+export const electromagneticWaveModel = (
+  input: ElectromagneticWaveInput,
+): KernelResult<ElectromagneticWaveModel> => {
+  const frequency = finitePositive(input.frequencyHertz, "frequencyHertz");
+  if (!frequency.ok) return frequency;
+  const electricField = finitePositive(
+    input.electricFieldAmplitudeVoltsPerMetre,
+    "electricFieldAmplitudeVoltsPerMetre",
+  );
+  if (!electricField.ok) return electricField;
+  const relativePermittivity = finitePositive(
+    input.relativePermittivity,
+    "relativePermittivity",
+  );
+  if (!relativePermittivity.ok) return relativePermittivity;
+  const relativePermeability = finitePositive(
+    input.relativePermeability,
+    "relativePermeability",
+  );
+  if (!relativePermeability.ok) return relativePermeability;
+
+  const refractiveIndex = Math.sqrt(input.relativePermittivity * input.relativePermeability);
+  const speed = speedOfLightVacuumMetresPerSecond / refractiveIndex;
+  const wavelength = speed / input.frequencyHertz;
+  const period = 1 / input.frequencyHertz;
+  const angularFrequency = 2 * Math.PI * input.frequencyHertz;
+  const waveNumber = (2 * Math.PI) / wavelength;
+  const mediumImpedance =
+    vacuumImpedanceOhms * Math.sqrt(input.relativePermeability / input.relativePermittivity);
+  const magneticFieldAmplitude =
+    input.electricFieldAmplitudeVoltsPerMetre / speed;
+  const averageIntensity =
+    (input.electricFieldAmplitudeVoltsPerMetre ** 2) / (2 * mediumImpedance);
+
+  for (const [value, label] of [
+    [speed, "speedMetresPerSecond"],
+    [wavelength, "wavelengthMetres"],
+    [period, "periodSeconds"],
+    [angularFrequency, "angularFrequencyRadPerSecond"],
+    [waveNumber, "waveNumberRadPerMetre"],
+    [mediumImpedance, "mediumImpedanceOhms"],
+    [magneticFieldAmplitude, "magneticFieldAmplitudeTesla"],
+    [averageIntensity, "averageIntensityWattsPerSquareMetre"],
+  ] as const) {
+    const computed = finiteDerived(value, label);
+    if (!computed.ok) return computed;
+  }
+
+  const spectrumBand = spectrumBandForFrequency(input.frequencyHertz);
+  return ok({
+    angularFrequencyRadPerSecond: radiansPerSecond(angularFrequency),
+    averageIntensityWattsPerSquareMetre: wattsPerSquareMetre(averageIntensity),
+    electricFieldAmplitudeVoltsPerMetre: input.electricFieldAmplitudeVoltsPerMetre,
+    interpretation:
+      `Maxwell coupling predicts a transverse ${spectrumBand} wave: changing electric fields sustain magnetic fields and both travel at the medium wave speed.`,
+    magneticFieldAmplitudeTesla: teslas(magneticFieldAmplitude),
+    mediumImpedanceOhms: ohms(mediumImpedance),
+    periodSeconds: seconds(period),
+    spectrumBand,
+    speedMetresPerSecond: metresPerSecond(speed),
+    waveNumberRadPerMetre: radiansPerMetre(waveNumber),
+    wavelengthMetres: metres(wavelength),
   });
 };
