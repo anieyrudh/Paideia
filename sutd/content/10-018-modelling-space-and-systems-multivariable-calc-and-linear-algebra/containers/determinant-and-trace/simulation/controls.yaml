@@ -1,0 +1,29 @@
+controls:
+  - id: a11
+    label: "Top-left entry a"
+    kind: slider
+    default: 3
+    min: -4
+    max: 4
+    step: 0.5
+  - id: a12
+    label: "Top-right entry b"
+    kind: slider
+    default: 1
+    min: -4
+    max: 4
+    step: 0.5
+  - id: a21
+    label: "Bottom-left entry c"
+    kind: slider
+    default: 0
+    min: -4
+    max: 4
+    step: 0.5
+  - id: a22
+    label: "Bottom-right entry d"
+    kind: slider
+    default: 2
+    min: -4
+    max: 4
+    step: 0.5

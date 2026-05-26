@@ -4,10 +4,16 @@ import {
   combineParallel,
   combineSeries,
   elementId,
+  farads,
+  henrys,
+  hertz,
   nodeId,
+  ohms,
   ohmsLaw,
+  seriesRlcResonanceModel,
   solveSeriesAcCircuit,
   solveDcCircuit,
+  volts,
   voltageDivider,
   type CircuitElementId,
   type CircuitNodeId,
@@ -189,6 +195,25 @@ describe("@paideia/circuits", () => {
     });
     expect(emptyCircuit.ok).toBe(false);
     if (!emptyCircuit.ok) expect(emptyCircuit.error.code).toBe("precondition-violated");
+  });
+
+  it("models series RLC resonance evidence", () => {
+    const result = seriesRlcResonanceModel({
+      sourceVoltageRmsVolts: volts(10),
+      resistanceOhms: ohms(20),
+      inductanceHenrys: henrys(0.1),
+      capacitanceFarads: farads(100e-6),
+      frequencyHertz: hertz(50.32921210448704),
+    });
+
+    expect(result.ok).toBe(true);
+    if (!result.ok) throw new Error(result.error.message);
+    expectApprox(result.value.resonantFrequencyHertz, 50.32921210448704, circuitTolerance.loose);
+    expectApprox(result.value.netReactanceOhms, 0, circuitTolerance.loose);
+    expectApprox(result.value.impedanceMagnitudeOhms, 20, circuitTolerance.loose);
+    expectApprox(result.value.currentRmsAmps, 0.5, circuitTolerance.loose);
+    expectApprox(result.value.qualityFactor, 1.5811388300841898, circuitTolerance.loose);
+    expect(result.value.interpretation).toContain("near resonance");
   });
 
   it("returns complete zero results for all-reference zero-current circuits", () => {

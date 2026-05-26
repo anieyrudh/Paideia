@@ -1,3 +1,10 @@
+import type {
+  ContainerEmbedApi,
+  ContainerEmbedScore,
+  ContainerEmbedState,
+  ContainerEmbedTheme,
+} from "./api.js";
+
 export type {
   ContainerEmbedApi,
   ContainerEmbedScore,
@@ -13,7 +20,7 @@ export const createEmbedApi = (): ContainerEmbedApi => {
       state = { predictionCommitted: false };
     },
     saveState(): ContainerEmbedState {
-      return state;
+      return { ...state };
     },
     score(): ContainerEmbedScore {
       return {

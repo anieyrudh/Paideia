@@ -203,11 +203,30 @@ tracked in the build queue with required kernels:
 | DAI | `sutd.dai.fairness-threshold-audit` | reviewed | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/annotation`, `core/prediction-gate`, `core/ui-sim` |
 | SMT | `sutd.smt.fourier-mode-superposition` | reviewed | `core/sim-runtime`, `core/numerical-math`, `core/charting`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
 
+Latest SUTD wave landed:
+
+| Cluster | Queue ID | Status |
+| --- | --- | --- |
+| 10.017 E and M | `sutd.10-017-technological-world-e-and-m.coulomb-s-law-and-discrete-charge-fields` | reviewed |
+| 10.017 E and M | `sutd.10-017-technological-world-e-and-m.magnetic-induction-faraday-lenz` | reviewed |
+| 10.017 E and M | `sutd.10-017-technological-world-e-and-m.rlc-circuit-and-resonance` | reviewed |
+| 10.017 E and M | `sutd.10-017-technological-world-e-and-m.maxwell-equations-and-em-waves` | reviewed |
+| 10.018 Modelling Space and Systems | `sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.partial-derivatives-and-gradient` | reviewed |
+| 10.018 Modelling Space and Systems | `sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.optimisation-with-lagrange-multipliers` | reviewed |
+| 10.018 Modelling Space and Systems | `sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.double-and-triple-integrals` | reviewed |
+| 10.018 Modelling Space and Systems | `sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.line-integrals-and-conservative-vector-fields` | reviewed |
+| 10.018 Modelling Space and Systems | `sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.divergence-and-curl` | reviewed |
+| 10.018 Modelling Space and Systems | `sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.gaussian-elimination-and-linear-systems` | reviewed |
+
 Next SUTD candidates in order:
 
-No SUTD entries are currently promoted after the May 22, 2026 shared-core
-bridge wave. Promote the next pillar candidates in `container-build-queue.yaml`
-before launching more agents.
+| Queue ID | Status | Note |
+| --- | --- | --- |
+| `sutd.10-017-technological-world-e-and-m.capacitor-with-dielectric` | in-build | Active PR #194. |
+| `sutd.10-016-science-for-a-sustainable-world.atomic-structure-and-electron-configuration` | in-build | Active PR #192. |
+| `sutd.10-017-technological-world-e-and-m.gauss-law-for-symmetric-distributions` | blocked | Needs `core/electromagnetism` Gauss-law helpers; see issue #211. |
+| `sutd.10-016-science-for-a-sustainable-world.chemical-bonding-and-intermolecular-forces` | ready-for-build | Next chemistry/sustainability candidate after atomic structure lands. |
+| `sutd.10-016-science-for-a-sustainable-world.thermochemistry-and-equilibrium` | ready-for-build | Requires chemistry, thermodynamics, charting, prediction gate, UI sim. |
 
 ### Build Queue Discipline
 
@@ -279,7 +298,7 @@ Build these first because they unlock the most reuse.
 | IB IA / EE | Research question generator, source pack builder, uncertainty lab |
 | ESD systems | Markov chains, queueing, newsvendor, bullwhip |
 
-### P2: Specialized, Advanced, And Humanities
+### P2: Specialized And Advanced
 
 | Area | Examples |
 | --- | --- |
@@ -287,7 +306,6 @@ Build these first because they unlock the most reuse.
 | DAI | Human-centred AI, trust calibration, AI evaluation |
 | SMT | Acoustics, spiking neurons, quantum confinement |
 | IB Arts | Comparative study builder, process portfolio logger |
-| History / GP / TOK | OPVL, argument maps, historiography lens tools |
 
 ## Curriculum Views
 
@@ -330,7 +348,6 @@ Initial focus:
 - A-Level Chemistry.
 - A-Level Biology.
 - A-Level Computing.
-- Economics and GP later as structured reasoning containers.
 
 First useful A-Level sequence:
 

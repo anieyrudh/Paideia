@@ -142,6 +142,33 @@ describe("electron configuration", () => {
     expect(electronConfiguration(37).ok).toBe(false);
     expect(electronConfiguration(8.5).ok).toBe(false);
   });
+
+  it("preserves shell bookkeeping invariants across the supported domain", () => {
+    const seed = 10016;
+
+    fc.assert(
+      fc.property(fc.integer({ min: 1, max: 36 }), (atomicNumber) => {
+        const result = electronConfiguration(atomicNumber);
+
+        expect(result.ok, `seed=${seed}, atomicNumber=${atomicNumber}`).toBe(true);
+        if (!result.ok) {
+          throw new Error(`expected electronConfiguration to accept ${atomicNumber}`);
+        }
+
+        const shellTotal = result.value.shells.reduce(
+          (total, shell) => total + shell.electrons,
+          0,
+        );
+
+        expect(result.value.notation.length).toBeGreaterThan(0);
+        expect(shellTotal).toBe(result.value.totalElectrons);
+        expect(result.value.totalElectrons).toBe(atomicNumber);
+        expect(result.value.valenceElectrons).toBeGreaterThanOrEqual(0);
+        expect(result.value.valenceElectrons).toBeLessThanOrEqual(8);
+      }),
+      { seed },
+    );
+  });
 });
 
 describe("stoichiometry", () => {

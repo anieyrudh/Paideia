@@ -1,0 +1,19 @@
+steps:
+  - id: trace-determinant
+    prompt: "What are T and D for this matrix?"
+    expected_action: "Compute tr A and det A."
+  - id: discriminant
+    prompt: "How many real eigenvalues should there be?"
+    expected_action: "Compute T^2 - 4D and classify the eigenvalue type."
+  - id: solve-roots
+    prompt: "What are the eigenvalues?"
+    expected_action: "Solve lambda^2 - T lambda + D = 0 using the quadratic formula."
+  - id: eigenspace
+    prompt: "What direction goes with each real eigenvalue?"
+    expected_action: "Solve (A - lambda I) v = 0 for each real eigenvalue and pick a non-zero solution."
+  - id: verify
+    prompt: "Does A v match lambda v?"
+    expected_action: "Plug back in to confirm the eigenpair."
+  - id: interpret
+    prompt: "What does the result mean for A?"
+    expected_action: "Describe whether A diagonalises in real coordinates or acts as a rotation-plus-scaling."

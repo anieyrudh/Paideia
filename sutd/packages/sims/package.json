@@ -23,12 +23,25 @@
     "./trust-calibration": "./src/trust-calibration.tsx",
     "./vector-transformations": "./src/vector-transformations.tsx",
     "./bayes-updating": "./src/bayes-updating.tsx",
+    "./magnetic-induction-faraday-lenz": "./src/magnetic-induction-faraday-lenz.tsx",
     "./eigenvector-transformations": "./src/eigenvector-transformations.tsx",
     "./newsvendor-critical-fractile": "./src/newsvendor-critical-fractile.tsx",
     "./confusion-matrix-thresholds": "./src/confusion-matrix-thresholds.tsx",
     "./markov-chain-steady-state": "./src/markov-chain-steady-state.tsx",
     "./fairness-threshold-audit": "./src/fairness-threshold-audit.tsx",
-    "./atomic-structure-and-electron-configuration": "./src/atomic-structure-and-electron-configuration.tsx"
+    "./atomic-structure-and-electron-configuration": "./src/atomic-structure-and-electron-configuration.tsx",
+    "./determinant-and-trace": "./src/determinant-and-trace.tsx",
+    "./eigenvalues-and-eigenvectors": "./src/eigenvalues-and-eigenvectors.tsx",
+    "./linear-transformations": "./src/linear-transformations.tsx",
+    "./gaussian-elimination-and-linear-systems": "./src/gaussian-elimination-and-linear-systems.tsx",
+    "./divergence-and-curl": "./src/divergence-and-curl.tsx",
+    "./line-integrals-and-conservative-vector-fields": "./src/line-integrals-and-conservative-vector-fields.tsx",
+    "./double-and-triple-integrals": "./src/double-and-triple-integrals.tsx",
+    "./partial-derivatives-and-gradient": "./src/partial-derivatives-and-gradient.tsx",
+    "./optimisation-with-lagrange-multipliers": "./src/optimisation-with-lagrange-multipliers.tsx",
+    "./maxwell-equations-and-em-waves": "./src/maxwell-equations-and-em-waves.tsx",
+    "./rlc-circuit-and-resonance": "./src/rlc-circuit-and-resonance.tsx",
+    "./coulomb-s-law-and-discrete-charge-fields": "./src/coulomb-s-law-and-discrete-charge-fields.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -45,6 +58,7 @@
     "@paideia/circuits": "workspace:*",
     "@paideia/control-systems": "workspace:*",
     "@paideia/dynamical-systems": "workspace:*",
+    "@paideia/electromagnetism": "workspace:*",
     "@paideia/graph-algorithms": "workspace:*",
     "@paideia/graph-layout": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
@@ -56,7 +70,8 @@
     "@paideia/probability-stats": "workspace:*",
     "@paideia/shared": "workspace:*",
     "@paideia/sim-runtime": "workspace:*",
-    "@paideia/ui-sim": "workspace:*"
+    "@paideia/ui-sim": "workspace:*",
+    "@paideia/vector-calculus": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18"
@@ -64,6 +79,7 @@
   "devDependencies": {
     "@types/react": "^18.3.0",
     "@types/react-dom": "^18.3.0",
+    "fast-check": "^3.23.2",
     "jsdom": "^25.0.0",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",

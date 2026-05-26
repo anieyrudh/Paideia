@@ -23,9 +23,11 @@ describe("atomic-structure-and-electron-configuration embed contract", () => {
       predictionCommitted: true,
       score: 1,
     });
+    const committedSnapshot = api.saveState();
 
     api.syncTheme({ colorScheme: "dark", accentColor: "#2563eb" });
     api.destroy();
+    expect(committedSnapshot).toEqual({ predictionCommitted: true });
     expect(api.saveState()).toEqual({ predictionCommitted: false });
   });
 });

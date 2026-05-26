@@ -1,0 +1,24 @@
+# Mindmap
+
+- Eigenvalues and eigenvectors
+  - Characteristic polynomial
+    - lambda^2 - T lambda + D = 0
+    - Roots via the quadratic formula
+    - Discriminant T^2 - 4D classifies eigenvalues
+  - Eigenvector for each real lambda
+    - Solve (A - lambda I) v = 0
+    - Eigenspace is a line through the origin
+    - Pick any non-zero direction on the line
+  - Complex case
+    - Conjugate pair lambda = alpha plus or minus i beta
+    - Encodes rotation by arg(lambda) and scaling by |lambda|
+    - No real invariant line in 2D
+  - Misconceptions
+    - Diagonal entries pretend to be eigenvalues
+    - Complex eigenvalues seen as wrong
+    - Zero vector treated as eigenvector
+  - Transfers
+    - Diagonalisation
+    - 2D linear stability
+    - Principal components
+    - Modal vibration analysis

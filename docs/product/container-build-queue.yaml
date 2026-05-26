@@ -1091,6 +1091,856 @@ entries:
       concept_cluster: SMT mathematical modelling
       target_container_kind: curriculum-wrapper
 
+  - id: sutd.10-016-science-for-a-sustainable-world.atomic-structure-and-electron-configuration
+    title: "Atomic Structure and Electron Configuration"
+    priority: P1
+    status: in-build
+    cluster: SUTD 10.016 Science for a Sustainable World
+    discipline: chemistry-sustainability
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.016 Science for a Sustainable World"]
+        syllabus_refs: ["Atomic structure and electron configuration"]
+    simulation_type: interactive-concept-model
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: []
+      downstream: []
+      misconceptions: []
+    kernel_dependencies: [core/chemistry, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-016-science-for-a-sustainable-world/containers/atomic-structure-and-electron-configuration
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.016 Science for a Sustainable World
+      target_container_kind: subject-specific
+
+  - id: sutd.10-016-science-for-a-sustainable-world.chemical-bonding-and-intermolecular-forces
+    title: "Chemical Bonding and Intermolecular Forces"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.016 Science for a Sustainable World
+    discipline: chemistry-sustainability
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.016 Science for a Sustainable World"]
+        syllabus_refs: ["Chemical bonding and intermolecular forces"]
+    simulation_type: interactive-concept-model
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [atomic structure]
+      downstream: [materials properties]
+      misconceptions: [stronger intermolecular forces are the same as stronger bonds]
+    kernel_dependencies: [core/chemistry, core/materials, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-016-science-for-a-sustainable-world/containers/chemical-bonding-and-intermolecular-forces
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.016 Science for a Sustainable World
+      target_container_kind: subject-specific
+
+  - id: sutd.10-016-science-for-a-sustainable-world.thermochemistry-and-equilibrium
+    title: "Thermochemistry and Equilibrium"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.016 Science for a Sustainable World
+    discipline: chemistry-sustainability
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.016 Science for a Sustainable World"]
+        syllabus_refs: ["Thermochemistry and equilibrium"]
+    simulation_type: equilibrium-energy-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [enthalpy, reversible reactions]
+      downstream: [battery chemistry, process design]
+      misconceptions: [equilibrium means equal amounts]
+    kernel_dependencies: [core/chemistry, core/thermodynamics, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-016-science-for-a-sustainable-world/containers/thermochemistry-and-equilibrium
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.016 Science for a Sustainable World
+      target_container_kind: subject-specific
+
+  - id: sutd.10-016-science-for-a-sustainable-world.polymers-and-plastic-waste-management
+    title: "Polymers and Plastic Waste Management"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.016 Science for a Sustainable World
+    discipline: chemistry-sustainability
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.016 Science for a Sustainable World"]
+        syllabus_refs: ["Polymers and plastic waste management"]
+    simulation_type: polymer-materials-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [chemical bonding, materials properties]
+      downstream: [life-cycle assessment]
+      misconceptions: [all plastics recycle the same way]
+    kernel_dependencies: [core/chemistry, core/materials, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-016-science-for-a-sustainable-world/containers/polymers-and-plastic-waste-management
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.016 Science for a Sustainable World
+      target_container_kind: subject-specific
+
+  - id: sutd.10-016-science-for-a-sustainable-world.electrochemistry-and-batteries
+    title: "Electrochemistry and Batteries"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.016 Science for a Sustainable World
+    discipline: chemistry-sustainability
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.016 Science for a Sustainable World"]
+        syllabus_refs: ["Electrochemistry and batteries"]
+    simulation_type: cell-potential-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [redox, electric potential]
+      downstream: [energy storage]
+      misconceptions: [electrons travel through the electrolyte]
+    kernel_dependencies: [core/chemistry, core/circuits, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-016-science-for-a-sustainable-world/containers/electrochemistry-and-batteries
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.016 Science for a Sustainable World
+      target_container_kind: subject-specific
+
+  - id: sutd.10-016-science-for-a-sustainable-world.solar-energy-and-band-theory
+    title: "Solar Energy and Band Theory"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.016 Science for a Sustainable World
+    discipline: chemistry-sustainability
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.016 Science for a Sustainable World"]
+        syllabus_refs: ["Solar energy and band theory"]
+    simulation_type: band-gap-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [atomic orbitals, energy levels]
+      downstream: [photovoltaics]
+      misconceptions: [larger band gap always means better solar cell]
+    kernel_dependencies: [core/materials, core/electromagnetism, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-016-science-for-a-sustainable-world/containers/solar-energy-and-band-theory
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.016 Science for a Sustainable World
+      target_container_kind: subject-specific
+
+  - id: sutd.10-016-science-for-a-sustainable-world.water-quality-and-treatment
+    title: "Water Quality and Treatment"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.016 Science for a Sustainable World
+    discipline: chemistry-sustainability
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.016 Science for a Sustainable World"]
+        syllabus_refs: ["Water quality and treatment"]
+    simulation_type: treatment-process-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [concentration, reaction rates]
+      downstream: [environmental systems]
+      misconceptions: [clear water is always safe water]
+    kernel_dependencies: [core/chemistry, core/fluid-mechanics, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-016-science-for-a-sustainable-world/containers/water-quality-and-treatment
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.016 Science for a Sustainable World
+      target_container_kind: subject-specific
+
+  - id: sutd.10-016-science-for-a-sustainable-world.biodiversity-loss-and-land-use
+    title: "Biodiversity Loss and Land Use"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.016 Science for a Sustainable World
+    discipline: sustainability-systems
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.016 Science for a Sustainable World"]
+        syllabus_refs: ["Biodiversity loss and land use"]
+    simulation_type: population-system-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [rates of change, feedback loops]
+      downstream: [ecosystem services]
+      misconceptions: [small land-use changes have only small effects]
+    kernel_dependencies: [core/dynamical-systems, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-016-science-for-a-sustainable-world/containers/biodiversity-loss-and-land-use
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.016 Science for a Sustainable World
+      target_container_kind: subject-specific
+
+  - id: sutd.10-017-technological-world-e-and-m.coulomb-s-law-and-discrete-charge-fields
+    title: "Coulomb's Law and Discrete Charge Fields"
+    priority: P1
+    status: reviewed
+    cluster: SUTD 10.017 Technological World, E and M
+    discipline: electromagnetism
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.017 Technological World, E and M"]
+        syllabus_refs: ["Coulomb's law and discrete charge fields"]
+    simulation_type: field-vector-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [vectors, inverse-square laws]
+      downstream: [Gauss law]
+      misconceptions: [field strength is the same as force on every charge]
+    kernel_dependencies: [core/electromagnetism, core/plotting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-017-technological-world-e-and-m/containers/coulomb-s-law-and-discrete-charge-fields
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.017 Technological World, E and M
+      target_container_kind: subject-specific
+
+  - id: sutd.10-017-technological-world-e-and-m.gauss-law-for-symmetric-distributions
+    title: "Gauss Law for Symmetric Distributions"
+    priority: P1
+    status: blocked
+    cluster: SUTD 10.017 Technological World, E and M
+    discipline: electromagnetism
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.017 Technological World, E and M"]
+        syllabus_refs: ["Gauss law for symmetric distributions"]
+    simulation_type: flux-surface-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [electric flux, symmetry]
+      downstream: [capacitors]
+      misconceptions: [Gauss law only works for spheres]
+    kernel_dependencies: [core/electromagnetism, core/plotting, core/prediction-gate, core/ui-sim]
+    blocked_on_issue: 211
+    blocked_on_kernel_dependencies: [core/electromagnetism]
+    blocked_reason: "core/electromagnetism lacks Gauss-law symmetric distribution helpers; see #211."
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-017-technological-world-e-and-m/containers/gauss-law-for-symmetric-distributions
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.017 Technological World, E and M
+      target_container_kind: subject-specific
+
+  - id: sutd.10-017-technological-world-e-and-m.capacitor-with-dielectric
+    title: "Capacitor with Dielectric"
+    priority: P1
+    status: in-build
+    cluster: SUTD 10.017 Technological World, E and M
+    discipline: electromagnetism
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.017 Technological World, E and M"]
+        syllabus_refs: ["Capacitor with dielectric"]
+    simulation_type: capacitor-dielectric-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [Gauss law, capacitance]
+      downstream: [RLC circuits]
+      misconceptions: [dielectrics add free charge to plates]
+    kernel_dependencies: [core/electromagnetism, core/circuits, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-017-technological-world-e-and-m/containers/capacitor-with-dielectric
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.017 Technological World, E and M
+      target_container_kind: subject-specific
+
+  - id: sutd.10-017-technological-world-e-and-m.magnetic-induction-faraday-lenz
+    title: "Magnetic Induction, Faraday, and Lenz"
+    priority: P1
+    status: reviewed
+    cluster: SUTD 10.017 Technological World, E and M
+    discipline: electromagnetism
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.017 Technological World, E and M"]
+        syllabus_refs: ["Magnetic induction, Faraday, and Lenz"]
+    simulation_type: induction-flux-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [magnetic flux, circuits]
+      downstream: [AC generation]
+      misconceptions: [Lenz law is a separate force law]
+    kernel_dependencies: [core/electromagnetism, core/circuits, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-017-technological-world-e-and-m/containers/magnetic-induction-faraday-lenz
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.017 Technological World, E and M
+      target_container_kind: subject-specific
+
+  - id: sutd.10-017-technological-world-e-and-m.rlc-circuit-and-resonance
+    title: "RLC Circuit and Resonance"
+    priority: P1
+    status: reviewed
+    cluster: SUTD 10.017 Technological World, E and M
+    discipline: electromagnetism
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.017 Technological World, E and M"]
+        syllabus_refs: ["RLC circuit and resonance"]
+    simulation_type: resonance-response-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [capacitors, inductors, sinusoidal forcing]
+      downstream: [filters, Bode plots]
+      misconceptions: [resonance always means instability]
+    kernel_dependencies: [core/circuits, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-017-technological-world-e-and-m/containers/rlc-circuit-and-resonance
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.017 Technological World, E and M
+      target_container_kind: subject-specific
+
+  - id: sutd.10-017-technological-world-e-and-m.maxwell-equations-and-em-waves
+    title: "Maxwell Equations and EM Waves"
+    priority: P1
+    status: reviewed
+    cluster: SUTD 10.017 Technological World, E and M
+    discipline: electromagnetism
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.017 Technological World, E and M"]
+        syllabus_refs: ["Maxwell equations and EM waves"]
+    simulation_type: em-wave-coupling-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [Faraday law, Ampere-Maxwell law]
+      downstream: [signals and antennas]
+      misconceptions: [electric and magnetic waves are independent waves]
+    kernel_dependencies: [core/electromagnetism, core/waves, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-017-technological-world-e-and-m/containers/maxwell-equations-and-em-waves
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.017 Technological World, E and M
+      target_container_kind: subject-specific
+
+  - id: sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.partial-derivatives-and-gradient
+    title: "Partial Derivatives and Gradient"
+    priority: P1
+    status: reviewed
+    cluster: SUTD 10.018 Modelling Space and Systems
+    discipline: math-linear-algebra
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.018 Modelling Space and Systems"]
+        syllabus_refs: ["Partial derivatives and gradient"]
+    simulation_type: surface-gradient-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [single-variable derivatives, contour plots]
+      downstream: [optimization, vector calculus]
+      misconceptions: [the gradient points along a contour]
+    kernel_dependencies: [core/vector-calculus, core/plotting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/partial-derivatives-and-gradient
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.018 Modelling Space and Systems
+      target_container_kind: subject-specific
+
+  - id: sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.optimisation-with-lagrange-multipliers
+    title: "Optimisation with Lagrange Multipliers"
+    priority: P1
+    status: reviewed
+    cluster: SUTD 10.018 Modelling Space and Systems
+    discipline: math-linear-algebra
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.018 Modelling Space and Systems"]
+        syllabus_refs: ["Optimisation with Lagrange multipliers"]
+    simulation_type: constrained-optimization-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [gradient, level sets]
+      downstream: [engineering design optimization]
+      misconceptions: [the multiplier is the answer, not a sensitivity]
+    kernel_dependencies: [core/optimization, core/vector-calculus, core/plotting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/optimisation-with-lagrange-multipliers
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.018 Modelling Space and Systems
+      target_container_kind: subject-specific
+
+  - id: sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.double-and-triple-integrals
+    title: "Double and Triple Integrals"
+    priority: P1
+    status: reviewed
+    cluster: SUTD 10.018 Modelling Space and Systems
+    discipline: math-linear-algebra
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.018 Modelling Space and Systems"]
+        syllabus_refs: ["Double and triple integrals"]
+    simulation_type: volume-accumulation-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [single-variable integration, regions]
+      downstream: [mass, probability density, flux]
+      misconceptions: [the bounds are independent of the chosen order]
+    kernel_dependencies: [core/vector-calculus, core/numerical-math, core/plotting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/double-and-triple-integrals
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.018 Modelling Space and Systems
+      target_container_kind: subject-specific
+
+  - id: sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.line-integrals-and-conservative-vector-fields
+    title: "Line Integrals and Conservative Vector Fields"
+    priority: P1
+    status: reviewed
+    cluster: SUTD 10.018 Modelling Space and Systems
+    discipline: math-linear-algebra
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.018 Modelling Space and Systems"]
+        syllabus_refs: ["Line integrals and conservative vector fields"]
+    simulation_type: vector-field-path-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [gradient, parameterized curves]
+      downstream: [work-energy, potential functions]
+      misconceptions: [path independence holds for every vector field]
+    kernel_dependencies: [core/vector-calculus, core/plotting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/line-integrals-and-conservative-vector-fields
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.018 Modelling Space and Systems
+      target_container_kind: subject-specific
+
+  - id: sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.divergence-and-curl
+    title: "Divergence and Curl"
+    priority: P1
+    status: reviewed
+    cluster: SUTD 10.018 Modelling Space and Systems
+    discipline: math-linear-algebra
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.018 Modelling Space and Systems"]
+        syllabus_refs: ["Divergence and curl"]
+    simulation_type: vector-field-diagnostic-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [partial derivatives, vector fields]
+      downstream: [Maxwell equations, fluid flow]
+      misconceptions: [curl means circular motion everywhere]
+    kernel_dependencies: [core/vector-calculus, core/plotting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/divergence-and-curl
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.018 Modelling Space and Systems
+      target_container_kind: subject-specific
+
+  - id: sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.gaussian-elimination-and-linear-systems
+    title: "Gaussian Elimination and Linear Systems"
+    priority: P1
+    status: reviewed
+    cluster: SUTD 10.018 Modelling Space and Systems
+    discipline: math-linear-algebra
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.018 Modelling Space and Systems"]
+        syllabus_refs: ["Gaussian elimination and linear systems"]
+    simulation_type: row-reduction-trace-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [matrices, systems of equations]
+      downstream: [inverse matrices, least squares]
+      misconceptions: [row swaps change the solution set]
+    kernel_dependencies: [core/linear-algebra, core/algorithm-trace, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/gaussian-elimination-and-linear-systems
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.018 Modelling Space and Systems
+      target_container_kind: subject-specific
+
+  - id: sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.determinant-and-trace
+    title: "Determinant and Trace"
+    priority: P1
+    status: reviewed
+    cluster: SUTD 10.018 Modelling Space and Systems
+    discipline: math-linear-algebra
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.018 Modelling Space and Systems"]
+        syllabus_refs: ["Determinant and trace"]
+    simulation_type: matrix-invariant-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [matrices, linear transformations]
+      downstream: [eigenvalues]
+      misconceptions: [determinant and trace describe the full transformation]
+    kernel_dependencies: [core/linear-algebra, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/determinant-and-trace
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.018 Modelling Space and Systems
+      target_container_kind: subject-specific
+
+  - id: sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.eigenvalues-and-eigenvectors
+    title: "Eigenvalues and Eigenvectors"
+    priority: P1
+    status: reviewed
+    cluster: SUTD 10.018 Modelling Space and Systems
+    discipline: math-linear-algebra
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.018 Modelling Space and Systems"]
+        syllabus_refs: ["Eigenvalues and eigenvectors"]
+    simulation_type: eigenpair-classifier-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [linear transformations, determinant and trace]
+      downstream: [diagonalisation, stability]
+      misconceptions: [every vector is an eigenvector after scaling]
+    kernel_dependencies: [core/linear-algebra, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/eigenvalues-and-eigenvectors
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.018 Modelling Space and Systems
+      target_container_kind: subject-specific
+
+  - id: sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.linear-transformations
+    title: "Linear Transformations"
+    priority: P1
+    status: reviewed
+    cluster: SUTD 10.018 Modelling Space and Systems
+    discipline: math-linear-algebra
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.018 Modelling Space and Systems"]
+        syllabus_refs: ["Linear transformations"]
+    simulation_type: transformation-classifier-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [matrices, vectors]
+      downstream: [eigenvalues and eigenvectors]
+      misconceptions: [linear transformations always preserve length]
+    kernel_dependencies: [core/linear-algebra, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/linear-transformations
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.018 Modelling Space and Systems
+      target_container_kind: subject-specific
+
+  - id: sutd.10-019-science-and-technology-for-healthcare.cell-structure-and-the-membrane
+    title: "Cell Structure and the Membrane"
+    priority: P1
+    status: blocked
+    cluster: SUTD 10.019 Science and Technology for Healthcare
+    discipline: biology-healthcare
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.019 Science and Technology for Healthcare"]
+        syllabus_refs: ["Cell structure and the membrane"]
+    simulation_type: membrane-transport-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [cell anatomy, concentration gradients]
+      downstream: [cell signalling]
+      misconceptions: [the membrane is only a passive barrier]
+    kernel_dependencies: [core/prediction-gate, core/ui-sim]
+    blocked_on_kernel_dependencies: [core/membrane-transport, core/cell-geometry]
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/10-019-science-and-technology-for-healthcare/containers/cell-structure-and-the-membrane
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.019 Science and Technology for Healthcare
+      target_container_kind: subject-specific
+
+  - id: sutd.10-019-science-and-technology-for-healthcare.protein-folding-and-function
+    title: "Protein Folding and Function"
+    priority: P1
+    status: blocked
+    cluster: SUTD 10.019 Science and Technology for Healthcare
+    discipline: biology-healthcare
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.019 Science and Technology for Healthcare"]
+        syllabus_refs: ["Protein folding and function"]
+    simulation_type: protein-folding-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [amino acids, bonding]
+      downstream: [enzyme function, disease]
+      misconceptions: [sequence alone explains every fold without environment]
+    kernel_dependencies: [core/prediction-gate, core/ui-sim]
+    blocked_on_kernel_dependencies: [core/protein-structure]
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/10-019-science-and-technology-for-healthcare/containers/protein-folding-and-function
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.019 Science and Technology for Healthcare
+      target_container_kind: subject-specific
+
+  - id: sutd.10-019-science-and-technology-for-healthcare.gene-expression-dna-to-rna-to-protein
+    title: "Gene Expression, DNA to RNA to Protein"
+    priority: P1
+    status: blocked
+    cluster: SUTD 10.019 Science and Technology for Healthcare
+    discipline: biology-healthcare
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.019 Science and Technology for Healthcare"]
+        syllabus_refs: ["Gene expression, DNA to RNA to protein"]
+    simulation_type: gene-expression-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [DNA, RNA, proteins]
+      downstream: [cell signalling, cancer genetics]
+      misconceptions: [one gene always makes one fixed protein amount]
+    kernel_dependencies: [core/prediction-gate, core/ui-sim]
+    blocked_on_kernel_dependencies: [core/gene-regulatory-network, core/sequence]
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/10-019-science-and-technology-for-healthcare/containers/gene-expression-dna-to-rna-to-protein
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.019 Science and Technology for Healthcare
+      target_container_kind: subject-specific
+
+  - id: sutd.10-019-science-and-technology-for-healthcare.cell-signalling-pathways
+    title: "Cell Signalling Pathways"
+    priority: P1
+    status: blocked
+    cluster: SUTD 10.019 Science and Technology for Healthcare
+    discipline: biology-healthcare
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.019 Science and Technology for Healthcare"]
+        syllabus_refs: ["Cell signalling pathways"]
+    simulation_type: pathway-cascade-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [cell membrane, receptors]
+      downstream: [immune response, cancer therapy]
+      misconceptions: [signals are simple one-step switches]
+    kernel_dependencies: [core/dynamical-systems, core/prediction-gate, core/ui-sim]
+    blocked_on_kernel_dependencies: [core/signal-pathway]
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/10-019-science-and-technology-for-healthcare/containers/cell-signalling-pathways
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.019 Science and Technology for Healthcare
+      target_container_kind: subject-specific
+
+  - id: sutd.10-019-science-and-technology-for-healthcare.cell-cycle-and-mitosis-meiosis
+    title: "Cell Cycle and Mitosis Meiosis"
+    priority: P1
+    status: blocked
+    cluster: SUTD 10.019 Science and Technology for Healthcare
+    discipline: biology-healthcare
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.019 Science and Technology for Healthcare"]
+        syllabus_refs: ["Cell cycle and mitosis meiosis"]
+    simulation_type: checkpoint-cycle-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [DNA replication, chromosomes]
+      downstream: [cancer genetics]
+      misconceptions: [mitosis and meiosis have the same output]
+    kernel_dependencies: [core/prediction-gate, core/ui-sim]
+    blocked_on_kernel_dependencies: [core/cell-cycle]
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/10-019-science-and-technology-for-healthcare/containers/cell-cycle-and-mitosis-meiosis
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.019 Science and Technology for Healthcare
+      target_container_kind: subject-specific
+
+  - id: sutd.10-019-science-and-technology-for-healthcare.immune-system-and-vaccines
+    title: "Immune System and Vaccines"
+    priority: P1
+    status: blocked
+    cluster: SUTD 10.019 Science and Technology for Healthcare
+    discipline: biology-healthcare
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.019 Science and Technology for Healthcare"]
+        syllabus_refs: ["Immune system and vaccines"]
+    simulation_type: immune-response-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [cell signalling, proteins]
+      downstream: [public health, therapy design]
+      misconceptions: [vaccines instantly eliminate infection risk]
+    kernel_dependencies: [core/dynamical-systems, core/prediction-gate, core/ui-sim]
+    blocked_on_kernel_dependencies: [core/immunology]
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/10-019-science-and-technology-for-healthcare/containers/immune-system-and-vaccines
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.019 Science and Technology for Healthcare
+      target_container_kind: subject-specific
+
+  - id: sutd.10-019-science-and-technology-for-healthcare.cancer-genetics-and-therapy
+    title: "Cancer Genetics and Therapy"
+    priority: P1
+    status: blocked
+    cluster: SUTD 10.019 Science and Technology for Healthcare
+    discipline: biology-healthcare
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.019 Science and Technology for Healthcare"]
+        syllabus_refs: ["Cancer genetics and therapy"]
+    simulation_type: clonal-evolution-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [gene expression, cell cycle]
+      downstream: [precision medicine]
+      misconceptions: [one mutation alone explains every cancer]
+    kernel_dependencies: [core/dynamical-systems, core/prediction-gate, core/ui-sim]
+    blocked_on_kernel_dependencies: [core/oncogenetics, core/treatment-response]
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/10-019-science-and-technology-for-healthcare/containers/cancer-genetics-and-therapy
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.019 Science and Technology for Healthcare
+      target_container_kind: subject-specific
+
   - id: sutd.freshmore.bayes-updating
     title: "Bayes Updating"
     priority: P0

@@ -1,0 +1,7 @@
+state_labels:
+  angleDegrees: "Constraint point angle"
+  radiusX: "x resource radius"
+  radiusY: "y resource radius"
+  linearX: "x benefit"
+  linearY: "y benefit"
+  curvature: "diminishing returns"

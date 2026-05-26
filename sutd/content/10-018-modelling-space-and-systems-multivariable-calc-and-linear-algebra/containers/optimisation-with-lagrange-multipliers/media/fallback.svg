@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Static Lagrange multiplier formula</title>
+  <desc id="desc">A static formula panel for the Lagrange multiplier condition.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <rect x="36" y="36" width="568" height="288" rx="8" fill="#f8fafc" stroke="#d6dde8"/>
+  <text x="70" y="96" font-family="Arial, sans-serif" font-size="30" font-weight="700" fill="#111827">Constrained optimum</text>
+  <text x="70" y="150" font-family="Arial, sans-serif" font-size="28" fill="#0f172a">∇f(x,y)=λ∇g(x,y)</text>
+  <text x="70" y="198" font-family="Arial, sans-serif" font-size="21" fill="#334155">No feasible tangent move improves f to first order.</text>
+  <text x="70" y="246" font-family="Arial, sans-serif" font-size="19" fill="#475569">λ is sensitivity to the constraint, not the optimum value.</text>
+</svg>

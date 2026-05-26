@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Double and triple integral accumulation</title>
+  <desc id="desc">A gridded rectangle with stacked layers representing area and volume accumulation.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <g transform="translate(330 95)">
+    <rect x="34" y="-28" width="180" height="120" fill="#ecfeff" stroke="#0891b2" stroke-width="5"/>
+    <rect x="17" y="-10" width="180" height="120" fill="#ecfeff" stroke="#0891b2" stroke-width="5" opacity="0.75"/>
+    <rect width="180" height="120" fill="#ecfeff" stroke="#0891b2" stroke-width="5" opacity="0.9"/>
+    <g stroke="#cbd5e1">
+      <path d="M45 0v120M90 0v120M135 0v120M0 30h180M0 60h180M0 90h180"/>
+    </g>
+    <rect x="45" y="30" width="45" height="30" fill="#7c3aed" opacity="0.35"/>
+    <rect x="90" y="60" width="45" height="30" fill="#7c3aed" opacity="0.45"/>
+  </g>
+  <text x="48" y="78" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#111827">Double and triple integrals</text>
+  <text x="48" y="122" font-family="Arial, sans-serif" font-size="22" fill="#475569">Accumulate density over area, then stack through volume</text>
+</svg>

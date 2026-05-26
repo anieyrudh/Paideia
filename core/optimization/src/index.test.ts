@@ -5,6 +5,7 @@ import { normalizeDistribution } from "@paideia/probability-stats";
 import {
   costSgdPerUnit,
   gradientDescent,
+  lagrangeMultiplierEvidence2D,
   linearFeasibleRegion,
   newsvendorCriticalFractile,
   optimizationTolerance,
@@ -221,6 +222,52 @@ describe("@paideia/optimization", () => {
 
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.error.code).toBe("precondition-violated");
+  });
+
+  it("computes Lagrange multiplier evidence for an ellipse constraint", () => {
+    const evidence = lagrangeMultiplierEvidence2D({
+      angleDegrees: 45,
+      curvature: 0.5,
+      linearX: 4,
+      linearY: 1,
+      radiusX: 2,
+      radiusY: 2,
+    });
+
+    expect(evidence.ok).toBe(true);
+    if (!evidence.ok) return;
+
+    expect(evidence.value.constraintValue).toBeCloseTo(1, 10);
+    expect(evidence.value.point[0]).toBeCloseTo(Math.SQRT2, 10);
+    expect(evidence.value.point[1]).toBeCloseTo(Math.SQRT2, 10);
+    expect(evidence.value.constraintGradient[0]).toBeCloseTo(Math.SQRT2 / 2, 10);
+    expect(evidence.value.constraintGradient[1]).toBeCloseTo(Math.SQRT2 / 2, 10);
+    expect(Number.isFinite(evidence.value.lambda)).toBe(true);
+    expect(evidence.value.residual).toBeGreaterThanOrEqual(0);
+  });
+
+  it("rejects malformed Lagrange multiplier inputs", () => {
+    const badRadius = lagrangeMultiplierEvidence2D({
+      angleDegrees: 0,
+      curvature: 0.5,
+      linearX: 4,
+      linearY: 1,
+      radiusX: 0,
+      radiusY: 2,
+    });
+    expect(badRadius.ok).toBe(false);
+    if (!badRadius.ok) expect(badRadius.error.code).toBe("precondition-violated");
+
+    const badCurvature = lagrangeMultiplierEvidence2D({
+      angleDegrees: 0,
+      curvature: -0.1,
+      linearX: 4,
+      linearY: 1,
+      radiusX: 2,
+      radiusY: 2,
+    });
+    expect(badCurvature.ok).toBe(false);
+    if (!badCurvature.ok) expect(badCurvature.error.code).toBe("precondition-violated");
   });
 
   it("rejects non-finite objective values before returning a solution", () => {

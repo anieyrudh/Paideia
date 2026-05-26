@@ -1,0 +1,105 @@
+schema_version: "1.0.0"
+id: gaussian-elimination-and-linear-systems
+aliases:
+  - row-reduction
+  - linear-system-pivots
+branch: sutd
+subject: 10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra
+level: "Freshmore"
+module: "Modelling Space and Systems: Multivariable Calculus and Linear Algebra"
+title: "Gaussian Elimination and Linear Systems"
+one_line_summary: "Use row operations and pivots to classify a 2 by 2 linear system as unique, parallel, or dependent."
+syllabus_ref: "SUTD 10.018 Modelling Space and Systems / Linear Algebra"
+prerequisites:
+  - matrices
+  - linear-equations
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    For the system 2x + y = 5 and x - y = 1, what does Gaussian elimination produce?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "A unique solution at x = 2, y = 1"
+      - "No solution because the lines are parallel"
+      - "Infinitely many solutions because the equations are identical"
+      - "A unique solution at x = 1, y = 2"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: constraint-intersection
+    prompt: |
+      Two design constraints form a 2 by 2 linear system. Use row reduction to decide whether the design has one feasible setting, no feasible setting, or a whole line of settings.
+    surface_form: "engineering constraint solving"
+    same_concept_check: "Same concept: pivots classify the solution set of simultaneous linear constraints."
+    rubric_path: problem-solving/constraint-intersection.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Built SUTD 10.018 gaussian-elimination-and-linear-systems product slice."
+authors: ["Codex"]
+advisor_signoffs: []
+misconceptions:
+  - name: "Elimination changes the solution set"
+    description: "Learners may think row operations alter the original equations rather than preserving their common solution set."
+    evidence_source: "OpenStax Linear Algebra, systems of equations."
+    surface_in_predict: true
+  - name: "Zero determinant always means no solution"
+    description: "Learners may miss that zero determinant can mean either no solution or infinitely many solutions depending on the augmented row."
+    evidence_source: "Strang, Introduction to Linear Algebra."
+    surface_in_predict: true
+sources:
+  - citation: "SUTD 10.018 Modelling Space and Systems course page."
+    url: "https://www.sutd.edu.sg/course/10-018-modelling-space-and-systems"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+  - citation: "OpenStax, Linear Algebra, Systems of Linear Equations."
+    url: "https://openstax.org/details/books/linear-algebra"
+    publication_year: 2024
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+language: en

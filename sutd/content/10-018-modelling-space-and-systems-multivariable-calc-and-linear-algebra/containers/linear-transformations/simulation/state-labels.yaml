@@ -1,0 +1,13 @@
+state_labels:
+  a11:
+    label: "Top-left entry a"
+    meaning: "x-component of T(e_1)."
+  a12:
+    label: "Top-right entry b"
+    meaning: "x-component of T(e_2)."
+  a21:
+    label: "Bottom-left entry c"
+    meaning: "y-component of T(e_1)."
+  a22:
+    label: "Bottom-right entry d"
+    meaning: "y-component of T(e_2)."
