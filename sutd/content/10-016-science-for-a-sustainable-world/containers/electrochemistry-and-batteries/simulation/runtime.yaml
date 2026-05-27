@@ -1,0 +1,6 @@
+runtime:
+  package: "@paideia/sutd-sims"
+  export: ElectrochemistryAndBatteries
+  route: "/sutd/10-016-science-for-a-sustainable-world/electrochemistry-and-batteries"
+  harness_id: "sutd/10-016-science-for-a-sustainable-world/electrochemistry-and-batteries/electrochemistry-and-batteries"
+  prediction_gate: true

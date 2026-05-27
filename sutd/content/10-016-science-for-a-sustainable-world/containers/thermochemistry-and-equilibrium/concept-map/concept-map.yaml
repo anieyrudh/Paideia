@@ -1,0 +1,41 @@
+schema_version: "1.0.0"
+concept_id: thermochemistry-and-equilibrium
+prerequisites:
+  - id: chemical-bonding-and-intermolecular-forces
+    title: "Chemical Bonding and Intermolecular Forces"
+    relationship: "Bond changes and particle attractions shape reaction energetics."
+    status: planned
+  - id: concentration-and-moles
+    title: "Concentration and Moles"
+    relationship: "Equilibrium quotients use concentration terms."
+    status: planned
+downstream:
+  - id: electrochemistry-and-batteries
+    title: "Electrochemistry and Batteries"
+    relationship: "Cell behaviour depends on reaction energetics and equilibrium composition."
+    status: planned
+  - id: water-quality-and-treatment
+    title: "Water Quality and Treatment"
+    relationship: "Treatment processes use equilibria and heat-sensitive rates."
+    status: planned
+siblings:
+  - id: solar-energy-and-band-theory
+    title: "Solar Energy and Band Theory"
+    relationship: "Energy transfer reasoning supports materials and solar conversion topics."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: exothermic-product-favoured
+      label: "Exothermic means product-favoured"
+    - id: equilibrium-equal-amounts
+      label: "Equilibrium means equal amounts"
+    - id: heat-composition-confusion
+      label: "Temperature change proves composition"
+  edges:
+    - from: exothermic-product-favoured
+      to: heat-composition-confusion
+      label: "both overuse heat evidence"
+    - from: equilibrium-equal-amounts
+      to: heat-composition-confusion
+      label: "both misread equilibrium evidence"
+mermaid_source: graph.mmd

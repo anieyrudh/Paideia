@@ -1,0 +1,15 @@
+steps:
+  - id: compare-rates
+    label: "Compare conversion and restoration"
+    formula: "net pressure = c - r"
+  - id: project-habitat
+    label: "Project habitat"
+    formula: "dH/dt = -cH + r(100-H)"
+  - id: species-area
+    label: "Convert habitat to biodiversity index"
+    formula: "B = 100(H_t/H_0)^z"
+  - id: interpret-risk
+    label: "Interpret risk"
+    checks:
+      - "Do not assume small annual changes stay small."
+      - "Do not judge restoration without conversion."

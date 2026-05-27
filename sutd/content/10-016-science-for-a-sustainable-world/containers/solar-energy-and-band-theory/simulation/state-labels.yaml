@@ -1,0 +1,8 @@
+labels:
+  wavelengthNanometres: "Photon wavelength"
+  bandGapElectronVolts: "Semiconductor band gap"
+  irradianceWattsPerSquareMetre: "Irradiance"
+readouts:
+  photonEnergyElectronVolts: "Photon energy"
+  absorbed: "Absorption verdict"
+  thermalisedFraction: "Thermalised fraction"
