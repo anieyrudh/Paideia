@@ -51,17 +51,8 @@ manipulate:
   controls:
     - id: preset-selection
       label: Sequence preset
-      kind: select
+      kind: selector
       kernel_binding: state.presetId
-      options:
-        - id: poly-leu
-          label: Poly-leucine (hydrophobic)
-        - id: poly-lys
-          label: Poly-lysine (hydrophilic)
-        - id: bacteriorhodopsin-fragment
-          label: Membrane helix fragment
-        - id: cytosolic-mixed
-          label: Cytosolic mixed-charge
     - id: window-size
       label: Window size W
       kind: slider
@@ -147,26 +138,3 @@ Filter version: aniegpt v1.0 (builder self-audit; awaiting reviewer pass)
 ## Iteration log
 
 - 2026-05-27: Scaffolded the container under `sutd/content/10-019-science-and-technology-for-healthcare/containers/protein-folding-and-function/`. Built the React simulation in `sutd/packages/sims/src/protein-folding-and-function.tsx`, consuming the merged `@paideia/protein-structure` kernel (`aminoAcidLetter`, `aminoAcidProperties`, `kyteDoolittleHydropathy`, `chargeClass`, `hydropathyProfile`). Added 5 vitest cases (`protein-folding-and-function.test.ts`) plus a Playwright simulation test. Wired into `@paideia/sutd-sims` (`src/index.ts`, `package.json`, `tsconfig.json`). Generated container docs and refreshed SUTD shell + sim-harness graph.
-
-## Validation log (2026-05-27)
-
-| Check | Result |
-| --- | --- |
-| `pnpm install` | OK |
-| `pnpm container:validate <path>` | passed (77 containers OK) |
-| `pnpm container:docs <path>` | regenerated README.md and TECHNICAL.md |
-| `pnpm graph:generate` / `pnpm graph:check` | clean (45 SUTD containers) |
-| `pnpm -F @paideia/sutd-sims build` | clean (after fixing `kind: "selector"` typo, see below) |
-| `pnpm -F @paideia/sutd-sims test` | **170/170 passed across 64 test files** (incl. 5 new vitest cases for `foldingEvidence`) |
-| `pnpm typecheck` | clean across all workspaces |
-| `pnpm lint` | clean across all workspaces |
-| `pnpm boundary` | 1494 modules, 2567 deps, no violations |
-| `pnpm license:check` | All 84 production deps compatible |
-| `pnpm roadmap:validate` | 84 queue entries OK; this container's status moved `ready-for-build` → `in-build` |
-| `pnpm agent:validate` | OK |
-
-## Environment notes
-
-- First build attempt used `kind: "select"` in both the React spec and `simulation/simulation.yaml`; the `core/content-schema` enum expects `kind: "selector"`. Fixed in both files; the error message from `container:docs` ("Expected 'slider' | 'stepper' | …, received 'select'") was directly actionable.
-- Stale `dist/` artifacts from a sibling container 1 branch surfaced as a vitest test-discovery failure (`dist/cell-structure-and-the-membrane.test.js`); removing the stale `dist/` files cleared it. The same gap appeared earlier in this batch's kernel session; flagging it again so future branches can scope a `dist/` clean as part of branch setup.
-- Workspace-wide `pnpm test` (Playwright) remains environment-blocked on `chromium_headless_shell` not being provisioned in the sandbox; the per-package vitest surface is green and the container-level Playwright suite will run on CI.
