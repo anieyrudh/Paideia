@@ -1,0 +1,12 @@
+runtime:
+  pmoe_t:
+    - predict
+    - manipulate
+    - observe
+    - explain
+    - transfer
+  integration:
+    method: closed-form dielectric capacitor kernel
+    dt: n/a
+    steps: n/a
+  reveal_requires_prediction: true

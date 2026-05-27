@@ -1,0 +1,109 @@
+schema_version: "1.0.0"
+id: linear-transformations
+aliases:
+  - linear-map-classifier
+  - matrix-as-linear-map
+branch: sutd
+subject: 10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra
+level: "Freshmore"
+module: "Modelling Space and Systems: Multivariable Calculus and Linear Algebra"
+title: "Linear Transformations"
+one_line_summary: "Classify a 2D linear transformation as scaling, rotation, reflection, shear, or a composite by reading where it sends the standard basis."
+syllabus_ref: "SUTD 10.018 Modelling Space and Systems / Linear Algebra"
+prerequisites:
+  - matrices
+  - vector-transformations
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    Matrix A = [[0, -1], [1, 0]]. Before reveal, which classification best describes this linear transformation?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Pure rotation by 90 degrees counter-clockwise; area preserved, orientation preserved"
+      - "Reflection across the x-axis; orientation flipped"
+      - "Horizontal shear; area preserved, orientation preserved"
+      - "Anisotropic scaling; both basis vectors stretched differently"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: composite-decomposition
+    prompt: |
+      A = [[2, 0], [0, 2]] composed with [[cos(theta), -sin(theta)], [sin(theta), cos(theta)]] for theta = 30 degrees. Decompose the composite into the order "scale then rotate" and explain how the determinant, trace, and basis images change between scaling, rotating, and the composite.
+    surface_form: "graphics pipeline transform decomposition"
+    same_concept_check: "Same concept: a linear transformation is determined by its action on the standard basis, so composites read off as products of basis images."
+    rubric_path: problem-solving/composite-decomposition.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Scaffolded SUTD 10.018 linear-transformations container."
+authors: ["Codex"]
+advisor_signoffs: []
+misconceptions:
+  - name: "Linear transformations always preserve length"
+    description: "Learners may confuse linear with rigid; only rotations and reflections preserve length, while scalings and shears change it."
+    evidence_source: "Strang, Introduction to Linear Algebra."
+    surface_in_predict: true
+  - name: "Rotation matrices have nonzero diagonal entries only"
+    description: "Learners may try to identify rotation from the diagonal alone, missing that the off-diagonal cosine/sine encodes the angle."
+    evidence_source: "SUTD 10.018 linear algebra study aids."
+    surface_in_predict: true
+sources:
+  - citation: "SUTD 10.018 Modelling Space and Systems course page, learning objectives for modelling and systems."
+    url: "https://www.sutd.edu.sg/course/10-018-modelling-space-and-systems"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+  - citation: "Strang, Introduction to Linear Algebra, linear transformations and matrices chapters."
+    publication_year: 2016
+    license: "Textbook reference"
+    seab_alignment: n/a
+  - citation: "OpenStax, Linear Algebra, Linear Transformations."
+    url: "https://openstax.org/details/books/linear-algebra"
+    publication_year: 2024
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+language: en

@@ -1,0 +1,10 @@
+runtime:
+  package: "@paideia/sutd-sims"
+  module: "@paideia/sutd-sims/gaussian-elimination-and-linear-systems"
+  component: GaussianEliminationAndLinearSystems
+  kernel_dependencies:
+    - "@paideia/linear-algebra"
+    - "@paideia/prediction-gate"
+    - "@paideia/sim-runtime"
+    - "@paideia/ui-sim"
+  browser_required: true

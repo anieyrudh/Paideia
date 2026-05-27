@@ -1,6 +1,8 @@
 # @paideia/electromagnetism
 
-Pure point-charge electromagnetism helpers for simulations.
+Pure electromagnetism helpers for simulations: point charges, ideal dielectric
+capacitors, Gauss-law symmetric flux surfaces, uniform-flux induction, and
+electromagnetic waves.
 
 ```ts
 import { coulombs, pointChargeModel } from "@paideia/electromagnetism";
@@ -17,5 +19,23 @@ if (model.ok) {
 }
 ```
 
-All public inputs use SI units: coulombs, metres, newtons per coulomb, volts,
-and joules. The package performs no rendering and has no branch-specific logic.
+```ts
+import {
+  coulombs,
+  gaussLawSymmetricFieldModel,
+} from "@paideia/electromagnetism";
+
+const gaussianSphere = gaussLawSymmetricFieldModel({
+  symmetry: "spherical",
+  enclosedChargeCoulombs: coulombs(2e-9),
+  radiusMetres: 0.2,
+});
+
+if (gaussianSphere.ok) {
+  console.log(gaussianSphere.value.electricFluxVoltsMetres);
+}
+```
+
+All public inputs use SI units: coulombs, metres, square metres, newtons per
+coulomb, volts, joules, and volt-metres for electric flux. The package performs
+no rendering and has no branch-specific logic.

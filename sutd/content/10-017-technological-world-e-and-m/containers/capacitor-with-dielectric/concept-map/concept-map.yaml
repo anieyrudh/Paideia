@@ -1,0 +1,60 @@
+schema_version: "1.0.0"
+concept_id: capacitor-with-dielectric
+title: "Capacitor with Dielectric Concept Map"
+nodes:
+  - id: electric-field
+    label: "Electric field"
+    kind: prerequisite
+    relationship: "The field between plates is approximated by E = V / d."
+  - id: electric-potential
+    label: "Electric potential"
+    kind: prerequisite
+    relationship: "Voltage measures energy per unit charge moved between plates."
+  - id: capacitance
+    label: "Capacitance"
+    kind: prerequisite
+    relationship: "Capacitance is charge stored per volt, C = Q / V."
+  - id: dielectric-polarisation
+    label: "Dielectric polarisation"
+    kind: core
+    relationship: "Bound charges in the dielectric reduce the field per unit free charge."
+  - id: plate-geometry
+    label: "Plate geometry"
+    kind: core
+    relationship: "Area and separation set the geometry factor A / d."
+  - id: capacitance-formula
+    label: "C = kappa epsilon0 A / d"
+    kind: core
+    relationship: "Material and geometry combine to set capacitance."
+  - id: charge-energy
+    label: "Charge and stored energy"
+    kind: outcome
+    relationship: "At fixed voltage, Q = CV and U = 1/2 CV^2 scale with capacitance."
+  - id: sensor-design
+    label: "Capacitive sensor design"
+    kind: downstream
+    relationship: "The same equations choose area, dielectric, gap, and safe field strength."
+edges:
+  - from: electric-field
+    to: plate-geometry
+  - from: electric-potential
+    to: capacitance
+  - from: capacitance
+    to: capacitance-formula
+  - from: dielectric-polarisation
+    to: capacitance-formula
+  - from: plate-geometry
+    to: capacitance-formula
+  - from: capacitance-formula
+    to: charge-energy
+  - from: charge-energy
+    to: sensor-design
+misconceptions:
+  - id: dielectric-blocks-field
+    statement: "A dielectric blocks the field completely."
+    correction: "It polarises and changes the field per unit free charge; it is not a perfect shield."
+    surfaced_in: predict
+  - id: voltage-only-energy
+    statement: "Voltage alone sets stored energy."
+    correction: "At fixed voltage, stored energy still changes when capacitance changes."
+    surfaced_in: observe

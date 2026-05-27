@@ -1,0 +1,36 @@
+schema_version: "1.0.0"
+concept_id: gaussian-elimination-and-linear-systems
+prerequisites:
+  - id: matrices
+    title: "Matrices"
+    relationship: "The system is represented as an augmented matrix."
+    status: available
+  - id: linear-equations
+    title: "Linear Equations"
+    relationship: "Each row represents one linear constraint."
+    status: planned
+downstream:
+  - id: matrix-inverse
+    title: "Matrix Inverse"
+    relationship: "Invertibility depends on pivots in elimination."
+    status: planned
+  - id: linear-transformations
+    title: "Linear Transformations"
+    relationship: "Solving Ax=b asks for the input vector mapped to b."
+    status: available
+siblings:
+  - id: determinant-and-trace
+    title: "Determinant and Trace"
+    relationship: "The determinant summarises whether pivots can exist."
+    status: available
+misconception_graph:
+  nodes:
+    - id: row-ops-change-solution
+      label: "Row operations change the solution"
+    - id: zero-det-no-solution
+      label: "Zero determinant always means no solution"
+  edges:
+    - from: row-ops-change-solution
+      to: zero-det-no-solution
+      label: "both misread echelon form as a different problem"
+mermaid_source: graph.mmd

@@ -1,0 +1,13 @@
+state_labels:
+  a11:
+    label: "Top-left entry a"
+    meaning: "First column x-component of the 2x2 matrix."
+  a12:
+    label: "Top-right entry b"
+    meaning: "Second column x-component of the 2x2 matrix."
+  a21:
+    label: "Bottom-left entry c"
+    meaning: "First column y-component of the 2x2 matrix."
+  a22:
+    label: "Bottom-right entry d"
+    meaning: "Second column y-component of the 2x2 matrix."

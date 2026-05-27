@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 320 180">
+  <title id="title">Capacitor with Dielectric thumbnail</title>
+  <desc id="desc">Parallel capacitor plates with an orange dielectric slab and labelled field lines.</desc>
+  <rect width="320" height="180" fill="#f8fafc"/>
+  <rect x="42" y="28" width="236" height="124" rx="10" fill="#e2e8f0" stroke="#94a3b8"/>
+  <rect x="84" y="48" width="16" height="84" fill="#2563eb"/>
+  <rect x="220" y="48" width="16" height="84" fill="#dc2626"/>
+  <rect x="132" y="54" width="56" height="72" rx="6" fill="#fb923c" opacity="0.62" stroke="#c2410c"/>
+  <g stroke="#475569" stroke-width="2" stroke-dasharray="5 7">
+    <line x1="108" y1="62" x2="212" y2="62"/>
+    <line x1="108" y1="78" x2="212" y2="78"/>
+    <line x1="108" y1="94" x2="212" y2="94"/>
+    <line x1="108" y1="110" x2="212" y2="110"/>
+    <line x1="108" y1="126" x2="212" y2="126"/>
+  </g>
+  <text x="36" y="166" fill="#0f172a" font-family="Arial, sans-serif" font-size="18" font-weight="700">Dielectric raises capacitance</text>
+  <text x="139" y="96" fill="#7c2d12" font-family="Arial, sans-serif" font-size="16" font-weight="700">kappa</text>
+</svg>

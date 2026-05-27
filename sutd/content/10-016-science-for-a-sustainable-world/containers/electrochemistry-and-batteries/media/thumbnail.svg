@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
+  <title id="title">Electrochemistry battery voltage thumbnail</title>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <rect x="100" y="120" width="340" height="110" rx="24" fill="#e2e8f0"/>
+  <rect x="100" y="120" width="250" height="110" rx="24" fill="#2563eb"/>
+  <rect x="448" y="152" width="36" height="48" rx="8" fill="#64748b"/>
+  <path d="M128 278h330" stroke="#0f766e" stroke-width="18" stroke-linecap="round"/>
+  <text x="96" y="72" fill="#0f172a" font-family="Arial, sans-serif" font-size="34" font-weight="700">Nernst voltage</text>
+</svg>

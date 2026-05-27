@@ -1,0 +1,21 @@
+steps:
+  - id: declare-objective-constraint
+    title: "Declare objective and constraint"
+    learner_action: "Write f(x,y) and g(x,y)=c."
+    success_criteria: "The objective and feasible set match the problem statement."
+  - id: compute-gradients
+    title: "Compute both gradients"
+    learner_action: "Find ∇f and ∇g."
+    success_criteria: "Both vectors use the correct partial derivatives."
+  - id: set-lagrange-condition
+    title: "Set the multiplier equations"
+    learner_action: "Write ∇f=λ∇g plus the constraint."
+    success_criteria: "The equation system has the unknowns x, y, and λ."
+  - id: solve-candidates
+    title: "Solve candidate points"
+    learner_action: "Solve the system and evaluate candidates."
+    success_criteria: "The best feasible candidate is selected."
+  - id: interpret-lambda
+    title: "Interpret lambda"
+    learner_action: "Explain lambda as marginal value of relaxing the constraint."
+    success_criteria: "Lambda is not reported as the objective value."

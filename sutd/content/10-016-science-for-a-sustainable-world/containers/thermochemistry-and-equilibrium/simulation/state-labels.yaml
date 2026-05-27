@@ -1,0 +1,13 @@
+labels:
+  finalTemperatureCelsius:
+    label: Final temperature
+    unit: C
+    description: "Final water-sample temperature after heat transfer."
+  productConcentration:
+    label: Product concentration
+    unit: mol/L
+    description: "Simplified product concentration for Qc."
+  reactantConcentration:
+    label: Reactant concentration
+    unit: mol/L
+    description: "Simplified reactant concentration for Qc."

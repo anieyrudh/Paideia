@@ -1,0 +1,102 @@
+schema_version: "1.0.0"
+id: biodiversity-loss-and-land-use
+aliases: [habitat-loss-feedback, species-area-land-use]
+branch: sutd
+subject: 10-016-science-for-a-sustainable-world
+level: "Freshmore"
+module: "Science for a Sustainable World"
+title: "Biodiversity Loss and Land Use"
+one_line_summary: "Model how repeated land-use conversion and restoration change intact habitat and biodiversity risk."
+syllabus_ref: "SUTD 10.016 Science for a Sustainable World / Biodiversity loss and land use"
+prerequisites: [rates-of-change, feedback-loops]
+aid_types: [simulation, transfer-problem, misconception-audit]
+predict_at: package-level
+package_predict:
+  prompt: |
+    A land-use plan converts a small extra fraction of habitat every year. What is the main biodiversity risk?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Small annual land-use changes can compound into large habitat and species losses"
+      - "Small land-use changes can only cause small biodiversity changes"
+      - "Restoration is unnecessary if some habitat remains"
+      - "Species sensitivity does not change land-use impact"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: coastal-land-use-plan
+    prompt: |
+      A coastal region proposes 2.5% annual habitat conversion and 1.0% annual restoration. Use the habitat and species-area model to decide whether the plan keeps biodiversity risk low.
+    surface_form: "regional land-use planning"
+    same_concept_check: "Same concept: compare conversion and restoration as rates, then translate habitat loss into biodiversity index change."
+    rubric_path: problem-solving/coastal-land-use-plan.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Scaffolded SUTD 10.016 biodiversity-loss-and-land-use container."
+authors: ["Codex"]
+advisor_signoffs: []
+misconceptions:
+  - name: "Small land-use changes have only small effects"
+    description: "Learners may miss compounding annual conversion and nonlinear species-area response."
+    evidence_source: "Island biogeography and species-area references."
+    surface_in_predict: true
+  - name: "Restoration can be judged without conversion"
+    description: "Learners may evaluate restoration in isolation instead of comparing it to ongoing conversion pressure."
+    evidence_source: "IPBES biodiversity assessment."
+    surface_in_predict: true
+sources:
+  - citation: "IPBES Global Assessment Report on Biodiversity and Ecosystem Services."
+    url: "https://ipbes.net/global-assessment"
+    publication_year: 2019
+    license: "Public report"
+    seab_alignment: n/a
+  - citation: "MacArthur and Wilson, The Theory of Island Biogeography."
+    publication_year: 1967
+    license: "Textbook reference"
+    seab_alignment: n/a
+  - citation: "SUTD 10.016 Science for a Sustainable World course page."
+    url: "https://www.sutd.edu.sg/course/10-016-science-for-a-sustainable-world"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+language: en

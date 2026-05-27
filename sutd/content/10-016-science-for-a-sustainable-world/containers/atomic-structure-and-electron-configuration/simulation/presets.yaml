@@ -1,0 +1,13 @@
+presets:
+  - id: carbon
+    label: Carbon
+    state:
+      atomicNumber: 6
+  - id: sodium
+    label: Sodium
+    state:
+      atomicNumber: 11
+  - id: chlorine
+    label: Chlorine
+    state:
+      atomicNumber: 17

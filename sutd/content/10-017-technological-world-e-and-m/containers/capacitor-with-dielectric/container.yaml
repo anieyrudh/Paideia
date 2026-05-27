@@ -1,0 +1,122 @@
+schema_version: "1.0.0"
+id: capacitor-with-dielectric
+aliases:
+  - dielectric capacitor
+  - parallel plate capacitor
+  - capacitance with dielectric
+branch: sutd
+subject: 10-017-technological-world-e-and-m
+level: "Undergraduate"
+module: "10.017 Technological World: Electricity and Magnetism"
+title: "Capacitor with Dielectric"
+one_line_summary: "Predict how a dielectric changes capacitance, charge, electric field, and stored energy in a parallel-plate capacitor."
+syllabus_ref: "SUTD 10.017 / capacitors, dielectric materials, and electric energy storage"
+prerequisites:
+  - electric-potential
+  - electric-field
+  - capacitance
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A dielectric slab is inserted fully between charged parallel plates while plate area, spacing, and voltage stay fixed. What should happen to capacitance and stored energy?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Both capacitance and stored energy increase in proportion to the dielectric constant."
+      - "Capacitance increases, but stored energy stays fixed because voltage is fixed."
+      - "Both decrease because the dielectric blocks the electric field."
+      - "Only charge changes; capacitance is a property of the battery."
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: sensor-pad-dielectric-choice
+    prompt: |
+      A capacitive sensor pad must reach at least 600 pF while keeping field strength below 20 kV/m. Choose plate area, gap, applied voltage, and dielectric constant, then justify which constraints are controlled by geometry and which are controlled by material.
+    surface_form: "capacitive sensor material and geometry choice"
+    same_concept_check: "The context changes from an ideal lab capacitor to a sensor pad, but the learner still applies C = kappa epsilon0 A / d, Q = CV, U = 1/2 CV^2, and E = V/d."
+    rubric_path: problem-solving/sensor-pad-dielectric-choice.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Built SUTD 10.017 dielectric capacitor product slice with prediction-gated simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-26"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-26"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "A dielectric blocks the field completely"
+    description: "Learners may treat the slab as a perfect shield instead of a polarizable material that reduces the field per unit free charge."
+    evidence_source: "Griffiths, Introduction to Electrodynamics, 2017."
+    surface_in_predict: true
+  - name: "Voltage alone sets stored energy"
+    description: "Learners may miss that at fixed voltage, changing capacitance changes both charge and energy."
+    evidence_source: "Halliday, Resnick, and Walker, Fundamentals of Physics, 2018."
+    surface_in_predict: true
+sources:
+  - citation: "Griffiths, D. J. Introduction to Electrodynamics. 4th ed. Cambridge University Press, 2017."
+    publication_year: 2017
+    license: "Publisher copyright"
+    seab_alignment: n/a
+  - citation: "Halliday, D., Resnick, R., and Walker, J. Fundamentals of Physics. 11th ed. Wiley, 2018."
+    publication_year: 2018
+    license: "Publisher copyright"
+    seab_alignment: n/a
+  - citation: "MIT OpenCourseWare. 8.02SC Physics II: Electricity and Magnetism, capacitors and dielectrics materials."
+    publication_year: 2011
+    license: "CC BY-NC-SA 4.0"
+    seab_alignment: n/a
+language: en

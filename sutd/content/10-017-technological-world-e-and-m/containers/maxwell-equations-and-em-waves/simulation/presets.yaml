@@ -1,0 +1,15 @@
+presets:
+  - id: visible-vacuum
+    label: Visible wave in vacuum
+    state:
+      frequencyTeraHertz: 600
+      electricFieldVoltsPerMetre: 12
+      relativePermittivity: 1
+      relativePermeability: 1
+  - id: glass
+    label: Slower wave in glass
+    state:
+      frequencyTeraHertz: 500
+      electricFieldVoltsPerMetre: 12
+      relativePermittivity: 2.25
+      relativePermeability: 1

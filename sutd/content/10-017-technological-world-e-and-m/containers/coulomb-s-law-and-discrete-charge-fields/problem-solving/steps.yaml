@@ -1,0 +1,11 @@
+steps:
+  - id: convert-units
+    label: Convert all values to SI units
+  - id: compute-field
+    label: Compute electric field from source charge and separation
+  - id: set-field-direction
+    label: Use source-charge sign to set field direction
+  - id: compute-force
+    label: Multiply field by test charge to get force
+  - id: interpret
+    label: Compare field direction with force direction

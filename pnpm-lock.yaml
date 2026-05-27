@@ -183,6 +183,22 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
+  core/a11y:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
   core/algorithm-trace:
     dependencies:
       '@paideia/shared':
@@ -224,12 +240,60 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
+  core/argument-graph:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
   core/bkt:
     dependencies:
       '@paideia/shared':
         specifier: workspace:*
         version: link:../shared
     devDependencies:
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/cell-geometry:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/cell-cycle:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
       typescript:
         specifier: ^5.6.0
         version: 5.9.3
@@ -256,12 +320,44 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
+  core/chemistry:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
   core/circuits:
     dependencies:
       '@paideia/shared':
         specifier: workspace:*
         version: link:../shared
     devDependencies:
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/comparator:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
       typescript:
         specifier: ^5.6.0
         version: 5.9.3
@@ -291,6 +387,38 @@ importers:
         specifier: workspace:*
         version: link:../shared
     devDependencies:
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/corpus:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/digital-logic:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
       typescript:
         specifier: ^5.6.0
         version: 5.9.3
@@ -346,6 +474,38 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
+  core/finance:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/fluid-mechanics:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
   core/fsrs:
     dependencies:
       '@paideia/shared':
@@ -374,6 +534,38 @@ importers:
         specifier: workspace:*
         version: link:../shared
     devDependencies:
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/functional-dependencies:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/gene-regulatory-network:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
       typescript:
         specifier: ^5.6.0
         version: 5.9.3
@@ -419,6 +611,54 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
+  core/heat-transfer:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/immunology:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/indexing-query-cost:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
   core/linear-algebra:
     dependencies:
       '@paideia/shared':
@@ -432,7 +672,55 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
+  core/map-layers:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/materials:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
   core/mechanics:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/membrane-transport:
     dependencies:
       '@paideia/shared':
         specifier: workspace:*
@@ -473,12 +761,60 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
+  core/model-evaluation:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/molecule:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
   core/numerical-math:
     dependencies:
       '@paideia/shared':
         specifier: workspace:*
         version: link:../shared
     devDependencies:
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/oncogenetics:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
       typescript:
         specifier: ^5.6.0
         version: 5.9.3
@@ -577,8 +913,104 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
+  core/protein-structure:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/queueing-systems:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/relational-data:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/scheduling:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/sequence:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
   core/shared:
     devDependencies:
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/signal-pathway:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
       typescript:
         specifier: ^5.6.0
         version: 5.9.3
@@ -623,6 +1055,54 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
+  core/structural-analysis:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/systems-dynamics:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/thermodynamics:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
   core/three-scene:
     dependencies:
       '@paideia/shared':
@@ -654,6 +1134,22 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
+  core/time-series:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
   core/timeline:
     dependencies:
       '@paideia/shared':
@@ -666,6 +1162,69 @@ importers:
       react:
         specifier: ^18.3.0
         version: 18.3.1
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/transactions:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/treatment-response:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/ui-app:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      '@testing-library/react':
+        specifier: ^16.1.0
+        version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@18.3.7(@types/react@18.3.28))(@types/react@18.3.28)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@types/react':
+        specifier: ^18.3.0
+        version: 18.3.28
+      '@types/react-dom':
+        specifier: ^18.3.0
+        version: 18.3.7(@types/react@18.3.28)
+      jsdom:
+        specifier: ^25.0.0
+        version: 25.0.1
+      react:
+        specifier: ^18.3.0
+        version: 18.3.1
+      react-dom:
+        specifier: ^18.3.0
+        version: 18.3.1(react@18.3.1)
       typescript:
         specifier: ^5.6.0
         version: 5.9.3
@@ -710,6 +1269,38 @@ importers:
         specifier: workspace:*
         version: link:../shared
     devDependencies:
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/vector-calculus:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/waves:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
       typescript:
         specifier: ^5.6.0
         version: 5.9.3
@@ -841,6 +1432,9 @@ importers:
       '@paideia/charting':
         specifier: workspace:*
         version: link:../../../core/charting
+      '@paideia/chemistry':
+        specifier: workspace:*
+        version: link:../../../core/chemistry
       '@paideia/circuits':
         specifier: workspace:*
         version: link:../../../core/circuits
@@ -853,6 +1447,12 @@ importers:
       '@paideia/dynamical-systems':
         specifier: workspace:*
         version: link:../../../core/dynamical-systems
+      '@paideia/electromagnetism':
+        specifier: workspace:*
+        version: link:../../../core/electromagnetism
+      '@paideia/fluid-mechanics':
+        specifier: workspace:*
+        version: link:../../../core/fluid-mechanics
       '@paideia/graph-algorithms':
         specifier: workspace:*
         version: link:../../../core/graph-algorithms
@@ -862,9 +1462,15 @@ importers:
       '@paideia/linear-algebra':
         specifier: workspace:*
         version: link:../../../core/linear-algebra
+      '@paideia/materials':
+        specifier: workspace:*
+        version: link:../../../core/materials
       '@paideia/mechanics':
         specifier: workspace:*
         version: link:../../../core/mechanics
+      '@paideia/molecule':
+        specifier: workspace:*
+        version: link:../../../core/molecule
       '@paideia/numerical-math':
         specifier: workspace:*
         version: link:../../../core/numerical-math
@@ -886,9 +1492,18 @@ importers:
       '@paideia/sim-runtime':
         specifier: workspace:*
         version: link:../../../core/sim-runtime
+      '@paideia/thermodynamics':
+        specifier: workspace:*
+        version: link:../../../core/thermodynamics
       '@paideia/ui-sim':
         specifier: workspace:*
         version: link:../../../core/ui-sim
+      '@paideia/vector-calculus':
+        specifier: workspace:*
+        version: link:../../../core/vector-calculus
+      '@paideia/waves':
+        specifier: workspace:*
+        version: link:../../../core/waves
     devDependencies:
       '@types/react':
         specifier: ^18.3.0
@@ -896,6 +1511,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.3.0
         version: 18.3.7(@types/react@18.3.28)
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
       jsdom:
         specifier: ^25.0.0
         version: 25.0.1

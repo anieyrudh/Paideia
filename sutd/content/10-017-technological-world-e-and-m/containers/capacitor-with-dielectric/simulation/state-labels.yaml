@@ -1,0 +1,17 @@
+state_labels:
+  dielectricConstant:
+    label: "Dielectric constant"
+    unit: kappa
+    description: "Relative permittivity of the material between plates."
+  plateAreaSquareCentimetres:
+    label: "Plate area"
+    unit: cm^2
+    description: "Overlap area of the two plates."
+  plateSeparationMillimetres:
+    label: "Plate separation"
+    unit: mm
+    description: "Distance between plates."
+  voltageVolts:
+    label: "Applied voltage"
+    unit: V
+    description: "Potential difference held across the plates."

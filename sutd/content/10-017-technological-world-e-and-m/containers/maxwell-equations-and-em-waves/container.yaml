@@ -1,0 +1,118 @@
+schema_version: "1.0.0"
+id: maxwell-equations-and-em-waves
+aliases:
+  - Maxwell equations
+  - electromagnetic waves
+  - displacement current
+branch: sutd
+subject: 10-017-technological-world-e-and-m
+level: "Undergraduate"
+module: "10.017 Technological World: Electricity and Magnetism"
+title: "Maxwell Equations and EM Waves"
+one_line_summary: "Connect Maxwell's displacement current to transverse electromagnetic wave speed, wavelength, and field amplitudes."
+syllabus_ref: "SUTD 10.017 / Maxwell equations and electromagnetic waves"
+prerequisites:
+  - electric-fields
+  - magnetic-fields
+  - faraday-law
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A changing electric field crosses empty space. What does Maxwell's correction predict next?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "It sustains a changing magnetic field, allowing a transverse electromagnetic wave to propagate."
+      - "It needs a wire current, so no wave can travel in vacuum."
+      - "It produces only a static electric field with no magnetic component."
+      - "It travels faster in glass because the medium has larger permittivity."
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: glass-wavelength
+    prompt: |
+      A 500 THz electromagnetic wave has wavelength 600 nm in vacuum and 400 nm in a glass slab. Estimate the refractive index and wave speed in the slab.
+    surface_form: "infer medium properties from wavelength change"
+    same_concept_check: "The context changes from field coupling to optics, but the learner still uses v = f lambda and v = c / n."
+    rubric_path: problem-solving/glass-wavelength.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Built SUTD 10.017 Maxwell equations and EM waves product slice."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-26"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-26"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "EM waves require conduction current everywhere"
+    description: "Learners may miss that Maxwell's displacement current term lets a changing electric field source magnetic circulation in vacuum."
+    evidence_source: "OpenStax University Physics Volume 2, electromagnetic waves chapter."
+    surface_in_predict: true
+  - name: "Electric and magnetic waves are separate waves"
+    description: "Learners may treat E and B as independent signals rather than perpendicular components of one coupled wave."
+    evidence_source: "Griffiths, Introduction to Electrodynamics, 4th ed."
+    surface_in_predict: true
+sources:
+  - citation: "OpenStax. University Physics Volume 2, Chapter 16: Electromagnetic Waves. OpenStax, 2016."
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "Griffiths, D. J. Introduction to Electrodynamics. 4th ed. Pearson, 2013."
+    publication_year: 2013
+    license: "Publisher copyright"
+    seab_alignment: n/a
+language: en

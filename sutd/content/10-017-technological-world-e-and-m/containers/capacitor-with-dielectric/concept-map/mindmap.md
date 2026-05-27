@@ -1,0 +1,24 @@
+# Capacitor with Dielectric Mindmap
+
+- Capacitor with dielectric
+  - Prerequisites
+    - Electric field as force-per-charge and voltage gradient
+    - Electric potential as energy per charge
+    - Capacitance as charge per volt
+  - Core mechanism
+    - Bound charges polarise inside the dielectric
+    - Polarisation reduces field per unit free charge
+    - More free charge can be stored at the same voltage
+  - Formula chain
+    - `C = kappa epsilon0 A / d`
+    - `Q = CV`
+    - `U = 1/2 CV^2`
+    - `E = V / d`
+  - Design tradeoffs
+    - Larger area raises capacitance
+    - Smaller gap raises capacitance but raises field strength
+    - Larger dielectric constant raises capacitance without changing geometry
+  - Misconceptions
+    - Dielectric as a perfect blocker
+    - Battery as the source of capacitance
+    - Fixed voltage as fixed energy

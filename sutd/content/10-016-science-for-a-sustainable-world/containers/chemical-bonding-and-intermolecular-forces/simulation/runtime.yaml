@@ -1,0 +1,7 @@
+runtime:
+  renderer: react
+  package: "@paideia/sutd-sims/chemical-bonding-and-intermolecular-forces"
+  entry: simulation/index.tsx
+  state:
+    scenario: sodium-chloride
+  persistence: local

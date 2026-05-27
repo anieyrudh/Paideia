@@ -1,0 +1,27 @@
+# Magnetic Induction Faraday-Lenz Mindmap
+
+- Magnetic induction
+  - Magnetic flux
+    - Field strength `B`
+    - Area `A`
+    - Orientation `cos(theta)`
+  - Faraday's law
+    - More turns raise emf
+    - Faster flux change raises emf
+    - Sign records the chosen loop orientation
+  - Lenz's law
+    - Opposes flux change
+    - Increasing outward flux induces inward magnetic effect
+    - Decreasing outward flux induces outward magnetic effect
+  - Circuit readout
+    - `I = |emf| / R`
+    - Resistance affects current, not emf
+  - Applications
+    - Pickups
+    - Generators
+    - Wireless power
+    - Induction braking
+  - Misconceptions
+    - Opposing field instead of opposing change
+    - Requiring physical motion
+    - Treating turns as a direction switch

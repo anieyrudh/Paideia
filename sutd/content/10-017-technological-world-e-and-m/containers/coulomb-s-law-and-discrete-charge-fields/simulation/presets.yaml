@@ -1,0 +1,13 @@
+presets:
+  - id: attraction
+    label: Attraction
+    state: { sourceChargeMicroC: 0.5, testChargeNanoC: -20, separationCm: 15, angleDegrees: 0 }
+  - id: repulsion
+    label: Repulsion
+    state: { sourceChargeMicroC: 0.5, testChargeNanoC: 20, separationCm: 15, angleDegrees: 0 }
+  - id: negative-source
+    label: Negative source
+    state: { sourceChargeMicroC: -0.6, testChargeNanoC: 15, separationCm: 12, angleDegrees: 45 }
+  - id: far-point
+    label: Far point
+    state: { sourceChargeMicroC: 0.8, testChargeNanoC: -10, separationCm: 24, angleDegrees: 120 }
