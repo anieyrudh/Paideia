@@ -1,0 +1,57 @@
+id: cell-signalling-pathways
+title: "Cascade Propagation Lab"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/signal-pathway
+  - core/dynamical-systems
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    A simple cascade goes ligand -> receptor -> kinase -> transcription factor with every edge an activator at unit weight. As the ligand signal rises smoothly from 0 to 1, what is the shape of the transcription-factor response?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "A sigmoidal saturating curve, steepest near the receptor's threshold and flat above it."
+      - "A perfectly linear curve from 0 to 1."
+      - "An exponential blow-up to infinity."
+      - "A step function exactly at ligand = 0.5 regardless of threshold."
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: ligand-level
+      label: "Ligand input"
+      kind: slider
+      kernel_binding: state.ligandLevel
+      bounds: { min: 0, max: 1, step: 0.05 }
+    - id: phosphatase-level
+      label: "Phosphatase inhibitor"
+      kind: slider
+      kernel_binding: state.phosphataseLevel
+      bounds: { min: 0, max: 1, step: 0.05 }
+    - id: receptor-threshold
+      label: "Receptor threshold"
+      kind: slider
+      kernel_binding: state.receptorThreshold
+      bounds: { min: 0, max: 1, step: 0.05 }
+    - id: sensitivity
+      label: "Per-node sensitivity"
+      kind: slider
+      kernel_binding: state.sensitivity
+      bounds: { min: 1, max: 16, step: 1 }
+observe:
+  renderers:
+    - id: cascade-readout
+      module: "@paideia/sutd-sims/cell-signalling-pathways"
+      symbol: CellSignallingPathways
+      props_binding: |
+        Show the DAG diagram with node levels and edge weights, the per-node activation values, and the transcription-factor response curve as ligand is swept.
+explain:
+  prompt: |
+    Explain why raising the phosphatase signal can switch off the transcription factor even when the ligand is at full strength.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Cascade responses are linear"
+    - "Inhibitors only reduce by addition"

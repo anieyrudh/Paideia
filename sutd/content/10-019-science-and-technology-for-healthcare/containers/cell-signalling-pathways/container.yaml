@@ -1,0 +1,109 @@
+schema_version: "1.0.0"
+id: cell-signalling-pathways
+aliases:
+  - cascade-propagation-lab
+  - ligand-receptor-kinase-tf
+branch: sutd
+subject: 10-019-science-and-technology-for-healthcare
+level: "Freshmore"
+module: "Science and Technology for Healthcare"
+title: "Cell Signalling Pathways"
+one_line_summary: "Trace a ligand signal through a four-stage cascade and watch how saturating activations and inhibitor edges shape the transcription-factor output."
+syllabus_ref: "SUTD 10.019 Science and Technology for Healthcare / Cell signalling pathways"
+prerequisites:
+  - cell-structure-and-the-membrane
+  - hill-activation-function
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A simple cascade goes ligand -> receptor -> kinase -> transcription factor with every edge an activator at unit weight. As the ligand signal rises smoothly from 0 to 1, what is the shape of the transcription-factor response?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "A sigmoidal saturating curve, steepest near the receptor's threshold and flat above it."
+      - "A perfectly linear curve from 0 to 1."
+      - "An exponential blow-up to infinity."
+      - "A step function exactly at ligand = 0.5 regardless of threshold."
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: inhibitor-knockdown
+    prompt: |
+      In a ligand -> receptor -> kinase -> transcription-factor cascade, an inhibitor edge from a parallel phosphatase reduces the kinase output. Walk through how raising the phosphatase signal from 0 to 1 shifts the transcription-factor response, and why the cascade can switch off even with the ligand at full strength.
+    surface_form: "kinase / phosphatase balance"
+    same_concept_check: "Same concept: each downstream node sees the activator minus inhibitor sum through a saturating response; raising the inhibitor lowers the effective input and the output drops."
+    rubric_path: problem-solving/inhibitor-knockdown.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-27"
+      author: "Codex"
+      summary: "Built SUTD 10.019 cell-signalling-pathways v2 container with cascade lab."
+authors: ["Codex"]
+advisor_signoffs: []
+misconceptions:
+  - name: "Cascade responses are linear"
+    description: "Learners may assume each stage scales linearly with input; the saturating activations make the steady-state response sigmoidal."
+    evidence_source: "Alon, An Introduction to Systems Biology."
+    surface_in_predict: true
+  - name: "Inhibitors only reduce by addition"
+    description: "Learners may treat an inhibitor as a simple subtraction; in reality it lowers the effective input to a saturating response, which can flip the downstream verdict abruptly."
+    evidence_source: "Hille, Ionic Channels of Excitable Membranes (analogous switching behaviour)."
+    surface_in_predict: true
+sources:
+  - citation: "SUTD 10.019 Science and Technology for Healthcare module page (public)."
+    url: "https://www.sutd.edu.sg/course/10-019-science-and-technology-for-healthcare"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+  - citation: "Alon, U. An Introduction to Systems Biology: Design Principles of Biological Circuits, 2nd ed., Chapman & Hall/CRC, 2019. Used as a textbook reference; no copyrighted text reproduced."
+    publication_year: 2019
+    license: "Textbook reference"
+    seab_alignment: n/a
+  - citation: "OpenStax. Biology 2e, Chapter 9 Cell Communication (CC BY 4.0)."
+    url: "https://openstax.org/details/books/biology-2e"
+    publication_year: 2024
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+language: en

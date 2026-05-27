@@ -1,0 +1,13 @@
+state_labels:
+  ligandLevel:
+    label: "Ligand input"
+    meaning: "Normalised external signal in [0, 1]."
+  phosphataseLevel:
+    label: "Phosphatase inhibitor"
+    meaning: "Normalised inhibitor signal acting on the kinase node, in [0, 1]."
+  receptorThreshold:
+    label: "Receptor threshold"
+    meaning: "Half-max input for the receptor's logistic response."
+  sensitivity:
+    label: "Per-node sensitivity"
+    meaning: "Logistic slope k applied at every node in the cascade."
