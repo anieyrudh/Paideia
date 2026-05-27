@@ -1,0 +1,33 @@
+presets:
+  - id: resting-neuron
+    label: "Resting neuron (K-dominant)"
+    state:
+      permeabilityK: 1
+      permeabilityNa: 0.04
+      permeabilityCl: 0.45
+      outsideK: 4
+      radiusMicrometres: 5
+  - id: depolarised
+    label: "Depolarised (Na-permeable)"
+    state:
+      permeabilityK: 1
+      permeabilityNa: 0.9
+      permeabilityCl: 0.45
+      outsideK: 4
+      radiusMicrometres: 5
+  - id: high-bath-potassium
+    label: "High bath [K+]"
+    state:
+      permeabilityK: 1
+      permeabilityNa: 0.04
+      permeabilityCl: 0.45
+      outsideK: 12
+      radiusMicrometres: 5
+  - id: large-cell
+    label: "Large cell (slow equilibration)"
+    state:
+      permeabilityK: 1
+      permeabilityNa: 0.04
+      permeabilityCl: 0.45
+      outsideK: 4
+      radiusMicrometres: 18

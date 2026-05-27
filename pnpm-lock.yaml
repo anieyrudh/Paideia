@@ -269,7 +269,7 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
-  core/cell-geometry:
+  core/cell-cycle:
     dependencies:
       '@paideia/shared':
         specifier: workspace:*
@@ -285,7 +285,7 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
-  core/cell-cycle:
+  core/cell-geometry:
     dependencies:
       '@paideia/shared':
         specifier: workspace:*
@@ -1429,6 +1429,9 @@ importers:
       '@paideia/annotation':
         specifier: workspace:*
         version: link:../../../core/annotation
+      '@paideia/cell-geometry':
+        specifier: workspace:*
+        version: link:../../../core/cell-geometry
       '@paideia/charting':
         specifier: workspace:*
         version: link:../../../core/charting
@@ -1468,6 +1471,9 @@ importers:
       '@paideia/mechanics':
         specifier: workspace:*
         version: link:../../../core/mechanics
+      '@paideia/membrane-transport':
+        specifier: workspace:*
+        version: link:../../../core/membrane-transport
       '@paideia/molecule':
         specifier: workspace:*
         version: link:../../../core/molecule
