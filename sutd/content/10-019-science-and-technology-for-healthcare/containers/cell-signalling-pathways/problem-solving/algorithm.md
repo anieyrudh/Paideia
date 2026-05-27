@@ -7,4 +7,4 @@
 5. For each non-source node `i`, compute the effective input `input_i = sum(w * x_upstream over activators) - sum(w * x_upstream over inhibitors)`.
 6. Apply the logistic response `y_i = 1 / (1 + exp(-k * (input_i - theta_i)))` and clamp to `[0, 1]`.
 7. Read the sink-node value as the cascade output. Interpret in plain language: is it "on", "off", or in the steep transition band?
-8. Repeat with a perturbed input (e.g. doubled ligand or raised inhibitor) to characterise the response surface.
+8. Repeat with a perturbed input or edge weight (e.g. doubled ligand, raised inhibitor, or weakened middle edge) to characterise the response surface.

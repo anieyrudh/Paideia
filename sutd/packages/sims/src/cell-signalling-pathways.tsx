@@ -36,11 +36,11 @@ export const cellSignallingSpec: TSimulationSpec = {
   title: "Cascade Propagation Lab",
   interaction_type: "diagram-builder",
   kernel_deps: [
+    "core/content-schema",
+    "core/shared",
     "core/sim-runtime",
     "core/signal-pathway",
-    "core/dynamical-systems",
     "core/prediction-gate",
-    "core/ui-sim",
   ],
   predict: {
     prompt:
@@ -78,7 +78,7 @@ export const cellSignallingSpec: TSimulationSpec = {
   },
   explain: {
     prompt:
-      "Explain why raising the phosphatase signal can switch off the transcription factor even when the ligand is at full strength.",
+      "If the kinase input sits near its threshold, what do you expect a small inhibitory signal to do to the transcription-factor output?",
     socratic: true,
     expected_misconceptions_surfaced: [
       "Cascade responses are linear",
@@ -196,7 +196,7 @@ export const cascadeEvidence = (
     const branded = nodeId(id);
     if (!branded.ok) return 0;
     const v = outputs.get(branded.value);
-    return v === undefined ? 0 : (v as unknown as number);
+    return v === undefined ? 0 : v;
   };
   const tf = get("tf");
   // Build a response curve: sweep ligand from 0 to 1, fix the other controls.
@@ -215,7 +215,7 @@ export const cascadeEvidence = (
       continue;
     }
     const sweptTf = swept.value.outputs.get(sweptTfId.value);
-    responseCurve.push({ ligand: sweep, tf: sweptTf === undefined ? 0 : (sweptTf as unknown as number) });
+    responseCurve.push({ ligand: sweep, tf: sweptTf === undefined ? 0 : sweptTf });
   }
   return ok({
     ligand: get("ligand"),
@@ -373,6 +373,7 @@ const verdictLabel = (kind: CascadeEvidence["verdict"]): string => {
 };
 
 const ObserveStage = () => {
+  const stage = useStage();
   const state = currentState(useSimState<Partial<CascadeState>>());
   const evidence = cascadeEvidence(state);
   if (!evidence.ok) {
@@ -421,6 +422,7 @@ const ObserveStage = () => {
         <p className="formula-note">
           The TF response curve to ligand is sigmoidal; the operating point is marked with the red dot. Raising the phosphatase shifts the kinase's effective input down and can flip the TF off.
         </p>
+        <button type="button" onClick={() => stage.advance()}>Explain the threshold</button>
       </section>
     </section>
   );
@@ -430,10 +432,17 @@ const ExplainStage = () => {
   const stage = useStage();
   return (
     <section aria-label="Transfer prompt" className="sutd-formula-card">
-      <p className="meta-line">Transfer</p>
-      <h2>Inhibitor knockdown</h2>
+      <p className="meta-line">Explain</p>
+      <h2>Why can a small inhibitor flip the output?</h2>
       <p>
-        With the ligand at full strength, sweep the phosphatase from 0 to 1 and explain why the cascade switches the transcription factor off rather than dimming it proportionally.
+        If the kinase input sits near its threshold, what do you expect a small inhibitory signal to do to the transcription-factor output?
+      </p>
+      <p>
+        Use the diagram to connect three ideas: activators and inhibitors combine before the node response, the response is steep near the threshold, and the downstream transcription factor inherits the kinase state.
+      </p>
+      <h3>Transfer challenge</h3>
+      <p>
+        A wound-healing assay uses a paracrine growth-factor cascade with a weaker receptor-to-kinase edge and no phosphatase branch. Decide whether adding more growth factor still helps once the receptor step is already saturated.
       </p>
       <button type="button" onClick={() => stage.reset()}>Try another cascade</button>
     </section>

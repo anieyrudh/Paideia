@@ -28,7 +28,7 @@ Saturation is the kernel idea. A single saturating stage gives a sigmoid. Stacki
 - Mindmap: `concept-map/mindmap.md`
 - Problem-solving algorithm: `problem-solving/algorithm.md`
 - Transfer problems:
-  - `problem-solving/inhibitor-knockdown.md` - kinase / phosphatase balance
+  - `problem-solving/paracrine-growth-factor-threshold.md` - paracrine growth-factor threshold reasoning
 
 ## Citations and provenance
 

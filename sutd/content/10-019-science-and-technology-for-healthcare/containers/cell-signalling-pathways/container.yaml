@@ -63,12 +63,12 @@ concept_map:
   mindmap: concept-map/mindmap.md
   mermaid: concept-map/graph.mmd
 transfer_problems:
-  - id: inhibitor-knockdown
+  - id: paracrine-growth-factor-threshold
     prompt: |
-      In a ligand -> receptor -> kinase -> transcription-factor cascade, an inhibitor edge from a parallel phosphatase reduces the kinase output. Walk through how raising the phosphatase signal from 0 to 1 shifts the transcription-factor response, and why the cascade can switch off even with the ligand at full strength.
-    surface_form: "kinase / phosphatase balance"
-    same_concept_check: "Same concept: each downstream node sees the activator minus inhibitor sum through a saturating response; raising the inhibitor lowers the effective input and the output drops."
-    rubric_path: problem-solving/inhibitor-knockdown.md
+      In a wound-healing assay, a cell secretes a paracrine growth factor that activates receptor -> kinase -> transcription factor. There is no phosphatase branch, but the receptor-to-kinase edge is weak (weight 0.4) and the kinase threshold is 0.5. Compare growth-factor levels 0.4 and 1.0, then decide whether adding more growth factor can overcome the weak middle edge once the receptor is already saturated.
+    surface_form: "paracrine growth-factor threshold reasoning"
+    same_concept_check: "Same concept: each downstream node sees a weighted upstream signal through a saturating threshold response; a weak middle edge can keep the sink below threshold even when the source is high."
+    rubric_path: problem-solving/paracrine-growth-factor-threshold.md
 assessments: []
 status: draft
 authoring:

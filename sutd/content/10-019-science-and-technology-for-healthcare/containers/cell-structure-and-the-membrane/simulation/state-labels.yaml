@@ -1,0 +1,16 @@
+state_labels:
+  permeabilityK:
+    label: "K+ relative permeability"
+    meaning: "Fraction of the membrane's permeability budget that lets potassium cross."
+  permeabilityNa:
+    label: "Na+ relative permeability"
+    meaning: "Fraction of the membrane's permeability budget that lets sodium cross."
+  permeabilityCl:
+    label: "Cl- relative permeability"
+    meaning: "Fraction of the membrane's permeability budget that lets chloride cross."
+  outsideK:
+    label: "[K+] outside"
+    meaning: "Potassium concentration in the bath, in millimolar."
+  radiusMicrometres:
+    label: "Cell radius"
+    meaning: "Spherical-cell radius in micrometres; sets surface area, volume, and SA:V."

@@ -17,11 +17,11 @@
 
 | Sim | Module | Symbols / role |
 |---|---|---|
+| cell-signalling-pathways | `core/content-schema` | Declared in `simulation/simulation.yaml` |
+| cell-signalling-pathways | `core/shared` | Declared in `simulation/simulation.yaml` |
 | cell-signalling-pathways | `core/sim-runtime` | Declared in `simulation/simulation.yaml` |
 | cell-signalling-pathways | `core/signal-pathway` | Declared in `simulation/simulation.yaml` |
-| cell-signalling-pathways | `core/dynamical-systems` | Declared in `simulation/simulation.yaml` |
 | cell-signalling-pathways | `core/prediction-gate` | Declared in `simulation/simulation.yaml` |
-| cell-signalling-pathways | `core/ui-sim` | Declared in `simulation/simulation.yaml` |
 
 ## SimulationSpec (frozen)
 
@@ -32,11 +32,11 @@ id: cell-signalling-pathways
 title: Cascade Propagation Lab
 interaction_type: diagram-builder
 kernel_deps:
+  - core/content-schema
+  - core/shared
   - core/sim-runtime
   - core/signal-pathway
-  - core/dynamical-systems
   - core/prediction-gate
-  - core/ui-sim
 predict:
   prompt: |
     A simple cascade goes ligand -> receptor -> kinase -> transcription factor with every edge an activator at unit weight. As the ligand signal rises smoothly from 0 to 1, what is the shape of the transcription-factor response?
@@ -92,7 +92,7 @@ observe:
         Show the DAG diagram with node levels and edge weights, the per-node activation values, and the transcription-factor response curve as ligand is swept.
 explain:
   prompt: |
-    Explain why raising the phosphatase signal can switch off the transcription factor even when the ligand is at full strength.
+    If the kinase input sits near its threshold, what do you expect a small inhibitory signal to do to the transcription-factor output?
   socratic: true
   expected_misconceptions_surfaced:
     - Cascade responses are linear
@@ -127,15 +127,20 @@ pnpm graph:generate
 ## Anieyrudh Filter pass
 
 Date: 2026-05-27
-Filter version: aniegpt v1.0 (builder self-audit; awaiting reviewer pass)
+Filter version: aniegpt v1.0 (builder self-audit plus local sim-architect review)
 
 ### P0 issues
 
-- None observed. Container shape validates (77 containers OK). Prediction gate is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and the React reveal is gated by `SimRuntime` + the `predict` spec. The revealed state renders a cascade graph SVG (per-node activation as fill saturation, activator vs inhibitor edges colour-coded) plus a TF response curve as ligand sweeps — a real visual model. Cascade propagation, node validation, and topological sort all go through `core/signal-pathway` (`propagate`, `nodeId`, `edgeWeight`, `signalLevel`); no DAG traversal or logistic math inlined. No clinical claims.
+- Resolved: container shape validates (80 containers OK). Prediction gate is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and the React reveal is gated by `SimRuntime` + the `predict` spec. The revealed state renders a cascade graph SVG (per-node activation as fill saturation, activator vs inhibitor edges colour-coded) plus a TF response curve as ligand sweeps — a real visual model.
+- Resolved: cascade propagation, node validation, and topological sort all go through `core/signal-pathway` (`propagate`, `nodeId`, `edgeWeight`, `signalLevel`); no DAG traversal or logistic math is implemented in the React sim. Formula text is display-only.
+- Resolved: merge conflict markers in the SUTD sim package were removed during the main-branch integration pass before validation.
 
 ### P1 issues
 
-- Formula colours pair `input_i` (blue) with the activator/inhibitor edge colouring, and `y_i = sigma(...)` (orange) with the legend entry. Substitution shows ligand, phosphatase, receptor, kinase, and TF values plus the effective-input arithmetic for the kinase. Manipulation visibly retargets the node-fill colours and shifts the operating-point dot on the response curve; the Playwright test asserts the phosphatase-knockdown switches the TF off. No P1 outstanding.
+- Resolved: formula colours pair `input_i` (blue) with the activator/inhibitor edge colouring, and `y_i = sigma(...)` (orange) with the legend entry. Substitution shows ligand, phosphatase, receptor, kinase, and TF values plus the effective-input arithmetic for the kinase. Manipulation visibly retargets the node-fill colours and shifts the operating-point dot on the response curve; the Playwright test asserts the phosphatase control switches the TF off.
+- Resolved: `simulation.yaml` now declares the imported contract kernels (`core/content-schema`, `core/shared`, `core/sim-runtime`, `core/signal-pathway`, and prediction-gate contract) and no longer declares unused `core/dynamical-systems` / `core/ui-sim`.
+- Resolved: the transfer problem is now a paracrine growth-factor threshold case with no phosphatase branch and a weak middle edge, so it tests the same weighted-threshold idea in a different surface form.
+- Resolved: public helper code no longer uses `as unknown as number` casts to display branded `SignalLevel` values.
 
 ### P2 follow-ups (deferred)
 
@@ -151,24 +156,3 @@ Filter version: aniegpt v1.0 (builder self-audit; awaiting reviewer pass)
 ## Iteration log
 
 - 2026-05-27: Scaffolded the container. Built `sutd/packages/sims/src/cell-signalling-pathways.tsx`, consuming the merged `@paideia/signal-pathway` kernel (`propagate`, `nodeId`, `edgeWeight`, `signalLevel`). Added 6 vitest cases (`cell-signalling-pathways.test.ts`) and a Playwright simulation test. Wired into `@paideia/sutd-sims`.
-
-## Validation log (2026-05-27)
-
-| Check | Result |
-| --- | --- |
-| `pnpm install` | OK |
-| `pnpm container:validate <path>` | passed (77 containers OK) |
-| `pnpm container:docs <path>` | regenerated README.md and TECHNICAL.md |
-| `pnpm graph:generate` / `pnpm graph:check` | clean (45 SUTD containers) |
-| `pnpm -F @paideia/sutd-sims build` | clean |
-| `pnpm -F @paideia/sutd-sims test` | **170/170 passed across 64 test files** (incl. 6 new vitest cases for `cascadeEvidence`) |
-| `pnpm typecheck` | clean across all workspaces |
-| `pnpm lint` | clean across all workspaces |
-| `pnpm boundary` | 1494 modules, 2566 deps, no violations |
-| `pnpm license:check` | All 84 production deps compatible |
-| `pnpm roadmap:validate` | 84 queue entries OK; this container's status moved `ready-for-build` → `in-build` |
-| `pnpm agent:validate` | OK |
-
-## Environment notes
-
-- Workspace-wide `pnpm test` (Playwright) remains environment-blocked on Chromium not being provisioned in the sandbox; the per-package vitest surface is green.

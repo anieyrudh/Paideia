@@ -1,0 +1,47 @@
+schema_version: "1.0.0"
+concept_id: gene-expression-dna-to-rna-to-protein
+prerequisites:
+  - id: sequence-and-codon-table
+    title: "Sequence and Codon Table"
+    relationship: "Transcription/translation primitives operate on validated sequences and the standard codon table."
+    status: available
+  - id: hill-activation-function
+    title: "Hill Activation Function"
+    relationship: "Inducer concentration enters transcription as a Hill term."
+    status: available
+downstream:
+  - id: cell-signalling-pathways
+    title: "Cell Signalling Pathways"
+    relationship: "Many signalling outputs are transcription factors that gate gene expression."
+    status: planned
+  - id: cancer-genetics-and-therapy
+    title: "Cancer Genetics and Therapy"
+    relationship: "Driver mutations often shift transcription rates of oncogenes/tumour suppressors."
+    status: planned
+  - id: protein-folding-and-function
+    title: "Protein Folding and Function"
+    relationship: "The protein produced by translation must fold to function."
+    status: available
+siblings:
+  - id: protein-folding-and-function
+    title: "Protein Folding and Function"
+    relationship: "Translation outputs the sequence the folding container starts from."
+    status: available
+misconception_graph:
+  nodes:
+    - id: inducer-immediate
+      label: "Inducer immediately increases protein"
+    - id: hill-linear
+      label: "Hill responses are linear"
+    - id: equal-expression
+      label: "All cells express all genes equally"
+    - id: one-codon-per-amino
+      label: "Each codon has exactly one amino acid"
+  edges:
+    - from: inducer-immediate
+      to: hill-linear
+      label: "both ignore the kinetic structure"
+    - from: equal-expression
+      to: inducer-immediate
+      label: "both ignore regulation"
+mermaid_source: graph.mmd

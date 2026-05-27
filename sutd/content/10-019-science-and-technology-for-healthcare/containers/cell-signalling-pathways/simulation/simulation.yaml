@@ -2,11 +2,11 @@ id: cell-signalling-pathways
 title: "Cascade Propagation Lab"
 interaction_type: diagram-builder
 kernel_deps:
+  - core/content-schema
+  - core/shared
   - core/sim-runtime
   - core/signal-pathway
-  - core/dynamical-systems
   - core/prediction-gate
-  - core/ui-sim
 predict:
   prompt: |
     A simple cascade goes ligand -> receptor -> kinase -> transcription factor with every edge an activator at unit weight. As the ligand signal rises smoothly from 0 to 1, what is the shape of the transcription-factor response?
@@ -50,7 +50,7 @@ observe:
         Show the DAG diagram with node levels and edge weights, the per-node activation values, and the transcription-factor response curve as ligand is swept.
 explain:
   prompt: |
-    Explain why raising the phosphatase signal can switch off the transcription factor even when the ligand is at full strength.
+    If the kinase input sits near its threshold, what do you expect a small inhibitory signal to do to the transcription-factor output?
   socratic: true
   expected_misconceptions_surfaced:
     - "Cascade responses are linear"

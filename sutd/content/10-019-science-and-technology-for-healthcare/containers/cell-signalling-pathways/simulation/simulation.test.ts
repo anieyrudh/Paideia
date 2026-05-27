@@ -34,6 +34,9 @@ test.describe("Cell Signalling Pathways", () => {
     await expect(observation).toContainText("transcription factor");
     await expect(page.getByLabel("LaTeX formula source")).toContainText("\\sigma");
     await expect(page.getByLabel("Formula legend")).toContainText("logistic");
+    await page.getByRole("button", { name: "Explain the threshold" }).click();
+    await expect(page.getByRole("heading", { name: "Why can a small inhibitor flip the output?" })).toBeVisible();
+    await expect(page.getByText("Transfer challenge")).toBeVisible();
   });
 
   test("raising the phosphatase inhibitor switches off the transcription factor", async ({ page }) => {
