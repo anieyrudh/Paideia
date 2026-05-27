@@ -21,10 +21,10 @@ predict_at: package-level
 package_predict:
   prompt: |
     A clone has 3 driver mutations with per-driver fitness advantage s = 0.1. After 20 cell generations starting from size 10, what is the clone size relative to a passenger-only clone (drivers = 0) starting from the same size?
-  commit_format:
-    kind: multiple-choice
-    options:
-      - "About 9700; the ratio is (1.1)^3^20 because each driver multiplies fitness per generation."
+    commit_format:
+      kind: multiple-choice
+      options:
+      - "About 304x baseline, so about 3045 cells from a starting size of 10."
       - "About 60; ratio is 3 * 20 because effects add."
       - "About 200; ratio is 20 because only generations matter."
       - "Exactly 1; drivers do not change cell number."
@@ -63,12 +63,12 @@ concept_map:
   mindmap: concept-map/mindmap.md
   mermaid: concept-map/graph.mmd
 transfer_problems:
-  - id: resistance-shifts-ic50
+  - id: disinfection-window-shift
     prompt: |
-      A clone with driver count 3 (per-driver advantage 0.1) starts with size 10 and grows over 20 generations. At the same time, a Hill-shaped therapy with IC50 = 10 and n = 2 acts on each clone. Walk through how a 4x resistance factor changes the effective IC50 and the dose required for 90 percent response.
-    surface_form: "resistance-shifted dose-response"
-    same_concept_check: "Same concept: driver-driven growth is multiplicative per generation; resistance multiplies the effective IC50; the dose for a target response scales with effective IC50."
-    rubric_path: problem-solving/resistance-shifts-ic50.md
+      A lab bioreactor has a rare fast-growing contaminant subpopulation with 2 beneficial mutations, per-mutation advantage 0.08, and starting size 50. A disinfectant has IC50 = 8 and Hill coefficient n = 2, but the contaminant has a 3x resistance factor. After 15 generations, compare the contaminant size with a neutral subpopulation, then decide whether a 90 percent response stays below a safety dose of 40.
+    surface_form: "bioreactor disinfection safety window"
+    same_concept_check: "Same concept: advantageous mutations compound population size over generations; resistance multiplies effective IC50; the target-response dose must stay below a safety limit."
+    rubric_path: problem-solving/disinfection-window-shift.md
 assessments: []
 status: draft
 authoring:

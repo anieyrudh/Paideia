@@ -50,12 +50,12 @@ export const cancerSpec: TSimulationSpec = {
   title: "Clonal Growth and Dose-Response Lab",
   interaction_type: "diagram-builder",
   kernel_deps: [
+    "core/content-schema",
+    "core/shared",
     "core/sim-runtime",
     "core/oncogenetics",
     "core/treatment-response",
-    "core/dynamical-systems",
     "core/prediction-gate",
-    "core/ui-sim",
   ],
   predict: {
     prompt:
@@ -63,7 +63,7 @@ export const cancerSpec: TSimulationSpec = {
     commit_format: {
       kind: "multiple-choice",
       options: [
-        "About 9700; the ratio is (1.1)^3^20 because each driver multiplies fitness per generation.",
+        "About 304x baseline, so about 3045 cells from a starting size of 10.",
         "About 60; ratio is 3 * 20 because effects add.",
         "About 200; ratio is 20 because only generations matter.",
         "Exactly 1; drivers do not change cell number.",
@@ -167,8 +167,8 @@ export const cancerEvidence = (raw: CancerState): KernelResult<CancerEvidence> =
     generations: raw.generations,
   });
   if (!baseline.ok) return baseline;
-  const clonalSize = clonal.value as unknown as number;
-  const baselineSize = baseline.value as unknown as number;
+  const clonalSize = clonal.value;
+  const baselineSize = baseline.value;
   const ratio = baselineSize === 0 ? 0 : clonalSize / baselineSize;
 
   const baseIc50 = ic50(raw.ic50);
@@ -182,7 +182,7 @@ export const cancerEvidence = (raw: CancerState): KernelResult<CancerEvidence> =
     resistanceFactor: resistance.value,
   });
   if (!effectiveIc50Result.ok) return effectiveIc50Result;
-  const effIc50 = effectiveIc50Result.value as unknown as number;
+  const effIc50 = effectiveIc50Result.value;
 
   const responseAt2xIC50Input = dose(2 * raw.ic50);
   if (!responseAt2xIC50Input.ok) return responseAt2xIC50Input;
@@ -217,7 +217,7 @@ export const cancerEvidence = (raw: CancerState): KernelResult<CancerEvidence> =
       generations: g,
     });
     if (!stepResult.ok) continue;
-    growthCurve.push({ generation: g, size: stepResult.value as unknown as number });
+    growthCurve.push({ generation: g, size: stepResult.value });
   }
   // Dose-response curves.
   const samples = 20;
@@ -229,20 +229,20 @@ export const cancerEvidence = (raw: CancerState): KernelResult<CancerEvidence> =
     const dBrand = dose(d);
     if (!dBrand.ok) continue;
     const sus = hillDoseResponse({ dose: dBrand.value, ic50: baseIc50.value, hillCoefficient: hill.value });
-    if (sus.ok) susCurve.push({ dose: d, response: sus.value as unknown as number });
+    if (sus.ok) susCurve.push({ dose: d, response: sus.value });
     const res = hillDoseResponse({ dose: dBrand.value, ic50: effectiveIc50Result.value, hillCoefficient: hill.value });
-    if (res.ok) resCurve.push({ dose: d, response: res.value as unknown as number });
+    if (res.ok) resCurve.push({ dose: d, response: res.value });
   }
 
   return ok({
-    clonalFitness: fitness.value as unknown as number,
+    clonalFitness: fitness.value,
     clonalSizeAfterG: clonalSize,
     baselineSize,
     clonalRatio: ratio,
     effectiveIc50: effIc50,
-    doseFor90Susceptible: dose90Sus.value as unknown as number,
-    doseFor90Resistant: dose90Res.value as unknown as number,
-    responseAt2xIC50: responseAt2xIC50Result.value as unknown as number,
+    doseFor90Susceptible: dose90Sus.value,
+    doseFor90Resistant: dose90Res.value,
+    responseAt2xIC50: responseAt2xIC50Result.value,
     growthCurve,
     doseCurveSusceptible: susCurve,
     doseCurveResistant: resCurve,
@@ -369,6 +369,7 @@ const DoseResponsePlot = ({ evidence }: { readonly evidence: CancerEvidence }) =
 };
 
 const ObserveStage = () => {
+  const stage = useStage();
   const state = currentState(useSimState<Partial<CancerState>>());
   const evidence = cancerEvidence(state);
   if (!evidence.ok) {
@@ -420,6 +421,7 @@ const ObserveStage = () => {
         <p className="formula-note">
           Educational only. The dose required for a target response scales linearly with the resistance factor; once that exceeds the toxic dose, the therapeutic window collapses.
         </p>
+        <button type="button" onClick={() => stage.advance()}>Explain resistance shift</button>
       </section>
     </section>
   );

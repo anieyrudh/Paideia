@@ -7,7 +7,7 @@
 
 Watch driver mutations compound into clonal growth, then see how a Hill-shaped dose-response curve and a resistance factor change the apparent response. Educational only.
 
-Driver mutations compound. A single driver multiplies fitness by `1 + s`; the cell with two drivers carries `(1 + s)^2`; with `k` drivers, `(1 + s)^k`. Over `g` generations the size multiplies by `F^g`. Even small `s` like 0.1 compounds dramatically: three drivers over twenty generations multiplies size by `(1.1)^3^20 \approx 9700`.
+Driver mutations compound. A single driver multiplies fitness by `1 + s`; the cell with two drivers carries `(1 + s)^2`; with `k` drivers, `(1 + s)^k`. Over `g` generations the size multiplies by `F^g`. Even small `s` like 0.1 compounds dramatically: three drivers over twenty generations gives `F = (1.1)^3 = 1.331`, so the relative size is `1.331^20 \approx 304x`. From a starting size of 10, that is about 3045 cells versus 10 baseline cells.
 
 ## What the student does
 
@@ -28,7 +28,7 @@ Driver mutations compound. A single driver multiplies fitness by `1 + s`; the ce
 - Mindmap: `concept-map/mindmap.md`
 - Problem-solving algorithm: `problem-solving/algorithm.md`
 - Transfer problems:
-  - `problem-solving/resistance-shifts-ic50.md` - resistance-shifted dose-response
+  - `problem-solving/disinfection-window-shift.md` - bioreactor disinfection safety window
 
 ## Citations and provenance
 

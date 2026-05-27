@@ -52,7 +52,7 @@ Larger `f` lifts the effective IC50 and pushes the required dose higher. The **t
 
 ## First-Principles Explanation
 
-Driver mutations compound. A single driver multiplies fitness by `1 + s`; the cell with two drivers carries `(1 + s)^2`; with `k` drivers, `(1 + s)^k`. Over `g` generations the size multiplies by `F^g`. Even small `s` like 0.1 compounds dramatically: three drivers over twenty generations multiplies size by `(1.1)^3^20 \approx 9700`.
+Driver mutations compound. A single driver multiplies fitness by `1 + s`; the cell with two drivers carries `(1 + s)^2`; with `k` drivers, `(1 + s)^k`. Over `g` generations the size multiplies by `F^g`. Even small `s` like 0.1 compounds dramatically: three drivers over twenty generations gives `F = (1.1)^3 = 1.331`, so the relative size is `1.331^20 \approx 304x`. From a starting size of 10, that is about 3045 cells versus 10 baseline cells.
 
 The Hill dose-response curve says response is sigmoidal in dose. Near zero, response is roughly proportional to `d^n / K^n`. At `d = K`, response is exactly 0.5. Above `d = K`, response saturates toward 1. Resistance shifts the entire curve to the right by a factor `f`; the dose to reach the same `R*` scales by the same `f`.
 

@@ -19,12 +19,12 @@ test.describe("Cancer Genetics and Therapy", () => {
 
     await page
       .getByRole("radio", {
-        name: "About 9700; the ratio is (1.1)^3^20 because each driver multiplies fitness per generation.",
+        name: "About 304x baseline, so about 3045 cells from a starting size of 10.",
       })
       .check();
     await page
       .getByLabel("Rationale")
-      .fill("Fitness compounds per generation; 1.1^60 is about 9700.");
+      .fill("Fitness compounds per generation; ((1.1)^3)^20 is about 304x baseline.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
 
     const observation = page.getByRole("region", { name: "Observation unlocked" });
@@ -33,6 +33,8 @@ test.describe("Cancer Genetics and Therapy", () => {
     await expect(observation).toContainText("dose");
     await expect(page.getByLabel("LaTeX formula source")).toContainText("1+s");
     await expect(page.getByLabel("Formula legend")).toContainText("IC50");
+    await page.getByRole("button", { name: "Explain resistance shift" }).click();
+    await expect(page.getByRole("heading", { name: "Resistance shifts the IC50" })).toBeVisible();
   });
 
   test("raising resistance factor pushes the required dose up", async ({ page }) => {
@@ -41,7 +43,7 @@ test.describe("Cancer Genetics and Therapy", () => {
     await page.getByRole("button", { name: "Reveal clonal and dose-response evidence" }).click();
     await page
       .getByRole("radio", {
-        name: "About 9700; the ratio is (1.1)^3^20 because each driver multiplies fitness per generation.",
+        name: "About 304x baseline, so about 3045 cells from a starting size of 10.",
       })
       .check();
     await page.getByLabel("Rationale").fill("Resistance multiplies effective IC50.");
@@ -55,7 +57,7 @@ test.describe("Cancer Genetics and Therapy", () => {
     await page.getByRole("button", { name: "Reveal clonal and dose-response evidence" }).click();
     await page
       .getByRole("radio", {
-        name: "About 9700; the ratio is (1.1)^3^20 because each driver multiplies fitness per generation.",
+        name: "About 304x baseline, so about 3045 cells from a starting size of 10.",
       })
       .check();
     await page.getByLabel("Rationale").fill("Drivers compound fitness.");

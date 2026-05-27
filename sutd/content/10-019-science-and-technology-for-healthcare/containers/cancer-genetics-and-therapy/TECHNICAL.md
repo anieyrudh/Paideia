@@ -17,12 +17,12 @@
 
 | Sim | Module | Symbols / role |
 |---|---|---|
+| cancer-genetics-and-therapy | `core/content-schema` | Declared in `simulation/simulation.yaml` |
+| cancer-genetics-and-therapy | `core/shared` | Declared in `simulation/simulation.yaml` |
 | cancer-genetics-and-therapy | `core/sim-runtime` | Declared in `simulation/simulation.yaml` |
 | cancer-genetics-and-therapy | `core/oncogenetics` | Declared in `simulation/simulation.yaml` |
 | cancer-genetics-and-therapy | `core/treatment-response` | Declared in `simulation/simulation.yaml` |
-| cancer-genetics-and-therapy | `core/dynamical-systems` | Declared in `simulation/simulation.yaml` |
 | cancer-genetics-and-therapy | `core/prediction-gate` | Declared in `simulation/simulation.yaml` |
-| cancer-genetics-and-therapy | `core/ui-sim` | Declared in `simulation/simulation.yaml` |
 
 ## SimulationSpec (frozen)
 
@@ -33,19 +33,19 @@ id: cancer-genetics-and-therapy
 title: Clonal Growth and Dose-Response Lab
 interaction_type: diagram-builder
 kernel_deps:
+  - core/content-schema
+  - core/shared
   - core/sim-runtime
   - core/oncogenetics
   - core/treatment-response
-  - core/dynamical-systems
   - core/prediction-gate
-  - core/ui-sim
 predict:
   prompt: |
     A clone has 3 driver mutations with per-driver fitness advantage s = 0.1. After 20 cell generations starting from size 10, what is the clone size relative to a passenger-only clone (drivers = 0) starting from the same size?
   commit_format:
     kind: multiple-choice
     options:
-      - About 9700; the ratio is (1.1)^3^20 because each driver multiplies fitness per generation.
+      - About 304x baseline, so about 3045 cells from a starting size of 10.
       - About 60; ratio is 3 * 20 because effects add.
       - About 200; ratio is 20 because only generations matter.
       - Exactly 1; drivers do not change cell number.
@@ -145,15 +145,23 @@ pnpm graph:generate
 ## Anieyrudh Filter pass
 
 Date: 2026-05-27
-Filter version: aniegpt v1.0 (builder self-audit; awaiting reviewer pass)
+Filter version: aniegpt v1.0 (builder self-audit plus local container-auditor review)
 
 ### P0 issues
 
-- None observed. Container shape validates (77 containers OK). Prediction gate is declared and asserted in Playwright. Reveal renders an SVG clonal-growth log plot and a dose-response plot with the resistance-shifted curve dashed — a real visual model. All math goes through `core/oncogenetics` (`relativeFitness`, `clonalGrowthAfterGenerations`, `mutationCount`, `fitnessAdvantage`, `cellPopulationSize`) and `core/treatment-response` (`hillDoseResponse`, `effectiveIC50`, `doseAtResponse`, `ic50`, `dose`, `hillCoefficient`, `resistanceFactor`, `responseFraction`); no Hill or fitness compound formulas inlined. The container is **educational only** and the concept-card, problem-solving rubric, and TECHNICAL all repeat the no-diagnosis / no-treatment-recommendation disclaimer.
+- Resolved: container shape validates. Prediction gate is declared and asserted in Playwright. Reveal renders an SVG clonal-growth log plot and a dose-response plot with the resistance-shifted curve dashed — a real visual model.
+- Resolved: all math goes through `core/oncogenetics` (`relativeFitness`, `clonalGrowthAfterGenerations`, `mutationCount`, `fitnessAdvantage`, `cellPopulationSize`) and `core/treatment-response` (`hillDoseResponse`, `effectiveIC50`, `doseAtResponse`, `ic50`, `dose`, `hillCoefficient`, `resistanceFactor`, `responseFraction`); no Hill or fitness compound formulas are implemented in the React sim. Formula text is display-only.
+- Resolved: the container is educational only and the concept-card, problem-solving rubric, and TECHNICAL all repeat the no-diagnosis / no-treatment-recommendation disclaimer.
 
 ### P1 issues
 
-- Formula colours pair `F` and `N(g)` with the red growth curve, `R` with the solid susceptible curve, and `IC50_eff` with the purple dashed resistant curve. Substitution shows all inputs and the computed `F`, `N(g)`, `IC50_eff`, dose for 90 percent response (susceptible and resistant). Manipulation visibly retargets both plots when the user changes drivers, fitness advantage, generations, IC50, Hill coefficient, or resistance factor; the Playwright resistance test asserts the "effective IC50" reading appears in the reveal. No P1 outstanding.
+- Resolved: formula colours pair `F` and `N(g)` with the red growth curve, `R` with the solid susceptible curve, and `IC50_eff` with the purple dashed resistant curve. Substitution shows all inputs and the computed `F`, `N(g)`, `IC50_eff`, dose for 90 percent response (susceptible and resistant).
+- Resolved: manipulation visibly retargets both plots when the user changes drivers, fitness advantage, generations, IC50, Hill coefficient, or resistance factor; the Playwright resistance test asserts the "effective IC50" reading appears in the reveal.
+- Resolved: the prediction answer and teaching text now use the correct compound calculation: `F = (1.1)^3 = 1.331`, `F^20 ~= 304x baseline`, or about 3045 cells from a starting size of 10.
+- Resolved: `simulation.yaml` now declares the imported contract kernels (`core/content-schema`, `core/shared`, `core/sim-runtime`, `core/oncogenetics`, `core/treatment-response`, and prediction-gate contract) and no longer declares unused `core/dynamical-systems` / `core/ui-sim`.
+- Resolved: public helper code no longer uses `as unknown as number` casts to display branded oncogenetics / dose-response values.
+- Resolved: the transfer problem now uses a bioreactor disinfection safety-window surface with different parameters and a safety-limit decision instead of mirroring the cancer-lab slider state.
+- Resolved: the revealed observation now includes an explicit button into the explain stage, and the Playwright test asserts that path.
 
 ### P2 follow-ups (deferred)
 
@@ -169,24 +177,3 @@ Filter version: aniegpt v1.0 (builder self-audit; awaiting reviewer pass)
 ## Iteration log
 
 - 2026-05-27: Scaffolded the container. Built `sutd/packages/sims/src/cancer-genetics-and-therapy.tsx`, consuming the merged `@paideia/oncogenetics` and `@paideia/treatment-response` kernels. Added 5 vitest cases (`cancer-genetics-and-therapy.test.ts`) and a Playwright simulation test. Wired into `@paideia/sutd-sims`.
-
-## Validation log (2026-05-27)
-
-| Check | Result |
-| --- | --- |
-| `pnpm install` | OK |
-| `pnpm container:validate <path>` | passed (77 containers OK) |
-| `pnpm container:docs <path>` | regenerated README.md and TECHNICAL.md |
-| `pnpm graph:generate` / `pnpm graph:check` | clean (45 SUTD containers) |
-| `pnpm -F @paideia/sutd-sims build` | clean |
-| `pnpm -F @paideia/sutd-sims test` | **170/170 passed across 64 test files** (incl. 5 new vitest cases for `cancerEvidence`) |
-| `pnpm typecheck` | clean across all workspaces |
-| `pnpm lint` | clean across all workspaces |
-| `pnpm boundary` | 1494 modules, 2568 deps, no violations |
-| `pnpm license:check` | All 84 production deps compatible |
-| `pnpm roadmap:validate` | 84 queue entries OK; this container's status moved `ready-for-build` → `in-build` |
-| `pnpm agent:validate` | OK |
-
-## Environment notes
-
-- Workspace-wide `pnpm test` (Playwright) remains environment-blocked on Chromium not being provisioned in the sandbox; the per-package vitest surface is green.
