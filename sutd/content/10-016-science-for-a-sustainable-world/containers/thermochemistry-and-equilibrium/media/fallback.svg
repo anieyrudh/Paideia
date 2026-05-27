@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Thermochemistry fallback visual</title>
+  <desc id="desc">A static comparison of heat evidence and equilibrium composition evidence.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <text x="48" y="56" font-family="Arial" font-size="26" font-weight="700" fill="#0f172a">Two evidence streams</text>
+  <rect x="64" y="104" width="220" height="132" rx="12" fill="#dbeafe"/>
+  <text x="174" y="150" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#1e3a8a">Heat transfer</text>
+  <text x="174" y="188" text-anchor="middle" font-family="Arial" font-size="18" fill="#1e3a8a">q = mc Delta T</text>
+  <rect x="356" y="104" width="220" height="132" rx="12" fill="#dcfce7"/>
+  <text x="466" y="150" text-anchor="middle" font-family="Arial" font-size="20" font-weight="700" fill="#14532d">Composition</text>
+  <text x="466" y="188" text-anchor="middle" font-family="Arial" font-size="18" fill="#14532d">Qc = products/reactants</text>
+  <text x="68" y="294" font-family="Arial" font-size="18" fill="#334155">Temperature evidence does not replace concentration evidence.</text>
+</svg>

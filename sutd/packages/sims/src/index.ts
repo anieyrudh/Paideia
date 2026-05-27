@@ -30,3 +30,4 @@ export { default as MaxwellEquationsAndEmWaves } from "./maxwell-equations-and-e
 export { default as RlcCircuitAndResonance } from "./rlc-circuit-and-resonance.js";
 export { default as CoulombsLawAndDiscreteChargeFields } from "./coulomb-s-law-and-discrete-charge-fields.js";
 export { default as ChemicalBondingAndIntermolecularForces } from "./chemical-bonding-and-intermolecular-forces.js";
+export { default as ThermochemistryAndEquilibrium } from "./thermochemistry-and-equilibrium.js";

@@ -1342,6 +1342,9 @@ importers:
       '@paideia/sim-runtime':
         specifier: workspace:*
         version: link:../../../core/sim-runtime
+      '@paideia/thermodynamics':
+        specifier: workspace:*
+        version: link:../../../core/thermodynamics
       '@paideia/ui-sim':
         specifier: workspace:*
         version: link:../../../core/ui-sim
