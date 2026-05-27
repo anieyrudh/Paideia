@@ -1738,7 +1738,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.cell-structure-and-the-membrane
     title: "Cell Structure and the Membrane"
     priority: P1
-    status: ready-for-build
+    status: in-build
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
