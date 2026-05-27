@@ -7,7 +7,7 @@ probability approximation, and closed-form clonal growth.
 ## Exports
 
 - `MutationCount`, `FitnessAdvantage`, `MutationRatePerCellDivision`, `CellPopulationSize`, `RelativeFitness`, `HitProbability`
-- `CloneState`, `MultiHitInput`, `ClonalGrowthInput`, `CompareClonalGrowthResult`
+- `CloneState`, `MultiHitInput`, `ClonalGrowthInput`
 - `mutationCount`, `fitnessAdvantage`, `mutationRate`, `cellPopulationSize`
 - `relativeFitness`, `multiHitProbability`
 - `clonalGrowthAfterGenerations`, `compareClonalGrowth`

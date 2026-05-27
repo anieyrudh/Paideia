@@ -1,0 +1,50 @@
+id: solar-energy-and-band-theory
+title: "Photon Energy and Band Gap"
+interaction_type: comparative-matrix
+kernel_deps:
+  - core/sim-runtime
+  - core/prediction-gate
+  - core/waves
+  - core/ui-sim
+predict:
+  prompt: "A photon has less energy than a semiconductor band gap. What happens in the simple band model?"
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "It is absorbed efficiently"
+      - "It cannot excite an electron across the gap"
+      - "It creates two electrons"
+      - "It makes voltage independent of material"
+    correct_index: 1
+  rationale_required: true
+manipulate:
+  controls:
+    - id: wavelength-nanometres
+      label: "Photon wavelength"
+      kind: slider
+      kernel_binding: state.wavelengthNanometres
+      bounds: { min: 350, max: 1100, step: 10 }
+    - id: band-gap-electron-volts
+      label: "Semiconductor band gap"
+      kind: slider
+      kernel_binding: state.bandGapElectronVolts
+      bounds: { min: 0.8, max: 2.2, step: 0.05 }
+    - id: irradiance-watts-per-square-metre
+      label: "Irradiance"
+      kind: slider
+      kernel_binding: state.irradianceWattsPerSquareMetre
+      bounds: { min: 200, max: 1000, step: 50 }
+observe:
+  renderers:
+    - id: solar-band-readout
+      module: "@paideia/sutd-sims/solar-energy-and-band-theory"
+      symbol: SolarEnergyAndBandTheory
+      props_binding: |
+        Show photon energy, band gap threshold, absorbed/not absorbed verdict, and thermalisation losses.
+explain:
+  prompt: |
+    Explain why a solar cell material has to balance absorbing enough photons against losing excess photon energy as heat.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Higher-energy photons always make proportionally more electrical energy"
+    - "Any light colour can excite any semiconductor"

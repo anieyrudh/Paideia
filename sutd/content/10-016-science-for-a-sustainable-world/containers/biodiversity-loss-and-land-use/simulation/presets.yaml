@@ -1,0 +1,15 @@
+presets:
+  - id: compounding-conversion
+    label: "Compounding conversion"
+    state:
+      habitatPercent: 80
+      conversionPercentPerYear: 2
+      restorationPercentPerYear: 0.5
+      sensitivity: 1.4
+  - id: restoration-match
+    label: "Restoration nearly matches conversion"
+    state:
+      habitatPercent: 80
+      conversionPercentPerYear: 1
+      restorationPercentPerYear: 1
+      sensitivity: 1.1

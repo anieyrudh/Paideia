@@ -26,6 +26,7 @@ Exports from `@paideia/waves`:
 - `type StandingWaveInput`
 - `type BeatInput`
 - `waveKinematics(input: WaveKinematicsInput): KernelResult<WaveKinematicsResult>`
+- `photonEnergy(input: PhotonEnergyInput): KernelResult<PhotonEnergyResult>`
 - `transverseWaveAt(input: WaveSampleInput): KernelResult<WaveSample>`
 - `transverseWaveTrace(input: WaveTraceInput): KernelResult<readonly WaveTracePoint[]>`
 - `superposeAt(input: SuperpositionInput): KernelResult<SuperpositionSample>`
@@ -61,9 +62,10 @@ Exports from `@paideia/waves`:
 
 ## When to consider this module
 Use `core/waves` when a simulation needs canonical values for wave speed,
-period, angular frequency, wave number, sinusoidal displacement, superposition,
-standing waves, beats, or path-difference interference. If a sim is about to
-inline `v = f lambda`, `T = 1/f`, `y = A sin(kx - omega t)`, or two-source
+period, angular frequency, wave number, photon energy from wavelength,
+sinusoidal displacement, superposition, standing waves, beats, or
+path-difference interference. If a sim is about to inline `v = f lambda`,
+`T = 1/f`, `E = hc/lambda`, `y = A sin(kx - omega t)`, or two-source
 phase/intensity formulae, use this module instead.
 
 ## Extension protocol

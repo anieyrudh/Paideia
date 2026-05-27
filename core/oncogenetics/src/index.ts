@@ -198,7 +198,13 @@ export const multiHitProbability = (
       "requiredDriverHits must be >= 1.",
     );
   }
-  if (n.value === 0 || g.value === 0) {
+  if (g.value === 0) {
+    return err(
+      "precondition-violated",
+      "generations must be >= 1 for multiHitProbability.",
+    );
+  }
+  if (n.value === 0) {
     return ok(0 as HitProbability);
   }
   const perCellPerGeneration = Math.pow(mu.value, k.value);
@@ -270,7 +276,7 @@ export const clonalGrowthAfterGenerations = (
   return ok(Math.max(0, finite.value) as CellPopulationSize);
 };
 
-export interface CompareClonalGrowthResult {
+interface CompareClonalGrowthResult {
   readonly aSize: CellPopulationSize;
   readonly bSize: CellPopulationSize;
   readonly ratio: number;

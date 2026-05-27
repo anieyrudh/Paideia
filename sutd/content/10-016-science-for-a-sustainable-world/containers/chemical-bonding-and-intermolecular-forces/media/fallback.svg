@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Chemical bonding fallback visual</title>
+  <desc id="desc">A static chart linking electronegativity difference to bond class and intermolecular forces.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <text x="48" y="54" font-family="Arial" font-size="26" font-weight="700" fill="#0f172a">From bond class to particle attraction</text>
+  <rect x="64" y="102" width="150" height="120" rx="12" fill="#dbeafe"/>
+  <text x="139" y="144" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700" fill="#1e3a8a">Mostly ionic</text>
+  <text x="139" y="178" text-anchor="middle" font-family="Arial" font-size="15" fill="#1e3a8a">ion-ion attraction</text>
+  <rect x="245" y="102" width="150" height="120" rx="12" fill="#fef3c7"/>
+  <text x="320" y="144" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700" fill="#92400e">Polar covalent</text>
+  <text x="320" y="178" text-anchor="middle" font-family="Arial" font-size="15" fill="#92400e">dipoles or H bonding</text>
+  <rect x="426" y="102" width="150" height="120" rx="12" fill="#dcfce7"/>
+  <text x="501" y="144" text-anchor="middle" font-family="Arial" font-size="18" font-weight="700" fill="#14532d">Nonpolar</text>
+  <text x="501" y="178" text-anchor="middle" font-family="Arial" font-size="15" fill="#14532d">London dispersion</text>
+  <text x="64" y="282" font-family="Arial" font-size="20" fill="#0f172a">Formula: Delta EN = |EN_A - EN_B|</text>
+</svg>

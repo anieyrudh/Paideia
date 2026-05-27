@@ -1,0 +1,56 @@
+id: polymers-and-plastic-waste-management
+title: Polymers and Plastic Waste Management Lab
+interaction_type: decision-matrix
+kernel_deps:
+  - core/sim-runtime
+  - core/prediction-gate
+  - core/materials
+  - core/ui-sim
+predict:
+  prompt: |
+    For a lightweight reusable food container, which evidence should be checked before choosing a polymer?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - Only the recycling symbol
+      - Strength, density, embodied carbon, and collection pathway
+      - Only whether it is labelled biodegradable
+      - Only the cheapest resin price
+    correct_index: 1
+  rationale_required: true
+manipulate:
+  controls:
+    - id: performance-goal
+      label: Selection goal
+      kind: selector
+      kernel_binding: state.performanceGoal
+    - id: collection-rate-percent
+      label: Collected for recovery
+      kind: slider
+      kernel_binding: state.collectionRatePercent
+      bounds:
+        min: 0
+        max: 100
+        step: 5
+    - id: reuse-cycles
+      label: Reuse cycles
+      kind: slider
+      kernel_binding: state.reuseCycles
+      bounds:
+        min: 1
+        max: 20
+        step: 1
+observe:
+  renderers:
+    - id: polymer-decision-evidence
+      module: "@paideia/sutd-sims/polymers-and-plastic-waste-management"
+      symbol: PolymersAndPlasticWasteManagement
+      props_binding: |
+        Rank candidate polymers and connect collection rate to residual waste.
+explain:
+  prompt: |
+    Explain why polymer selection is a trade-off between useful material properties and end-of-life system design.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - Biodegradable always means lowest impact
+    - A recycling symbol guarantees recovery

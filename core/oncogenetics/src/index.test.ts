@@ -73,16 +73,15 @@ describe("relativeFitness", () => {
 });
 
 describe("multiHitProbability", () => {
-  it("returns 0 when generations is zero", () => {
-    const p = unwrap(
-      multiHitProbability({
-        populationSize: cps(1e8),
-        mutationRate: mr(1e-6),
-        requiredDriverHits: mc(2),
-        generations: 0,
-      }),
-    );
-    expect(p as number).toBeCloseTo(0, 12);
+  it("rejects zero generations", () => {
+    const result = multiHitProbability({
+      populationSize: cps(1e8),
+      mutationRate: mr(1e-6),
+      requiredDriverHits: mc(2),
+      generations: 0,
+    });
+    expect(result.ok).toBe(false);
+    if (!result.ok) expect(result.error.code).toBe("precondition-violated");
   });
 
   it("returns 0 when populationSize is zero", () => {

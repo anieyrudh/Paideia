@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Solar band gap thumbnail</title>
+  <desc id="desc">Sunlight arrow crossing a semiconductor band gap diagram.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <circle cx="108" cy="96" r="42" fill="#fbbf24"/>
+  <g stroke="#f59e0b" stroke-width="8" stroke-linecap="round">
+    <path d="M108 26v-18"/>
+    <path d="M108 184v-18"/>
+    <path d="M38 96H20"/>
+    <path d="M196 96h-18"/>
+    <path d="M58 46 46 34"/>
+    <path d="M170 158 158 146"/>
+    <path d="M158 46 170 34"/>
+    <path d="M46 158 58 146"/>
+  </g>
+  <path d="M180 110 C250 92 300 128 354 108" fill="none" stroke="#1b7f5f" stroke-width="10"/>
+  <path d="M354 108 330 96 336 124Z" fill="#1b7f5f"/>
+  <rect x="260" y="66" width="320" height="226" rx="18" fill="#ffffff" stroke="#d8dee9" stroke-width="3"/>
+  <line x1="316" y1="232" x2="532" y2="232" stroke="#395b82" stroke-width="10"/>
+  <line x1="316" y1="132" x2="532" y2="132" stroke="#88419d" stroke-width="10"/>
+  <line x1="424" y1="232" x2="424" y2="132" stroke="#88419d" stroke-width="5"/>
+  <text x="444" y="188" font-family="Inter, Arial, sans-serif" font-size="28" fill="#5e2d72">E_g</text>
+  <text x="304" y="322" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700" fill="#172033">Photon threshold</text>
+</svg>

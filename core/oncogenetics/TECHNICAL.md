@@ -2,7 +2,7 @@
 
 ## Public Interface Summary
 
-Six branded numerics, four input record types and one output record, four
+Six branded numerics, three input record types, four
 constructors, and four operations (`relativeFitness`, `multiHitProbability`,
 `clonalGrowthAfterGenerations`, `compareClonalGrowth`).
 
@@ -18,7 +18,7 @@ catches.
 | `MutationRatePerCellDivision` in `[0, 1]` | Constructor + boundary re-validation. |
 | `RelativeFitness >= 1` | Computed as `(1 + s)^k` for `s ≥ 0`, `k ≥ 0`, then asserted; any floating-point edge that drops below 1 returns `numerical-instability`. |
 | `multiHitProbability` in `[0, 1]` | Final `clamp01`; computed via `1 - exp(trials · log(1 - p))` for numerical stability at small `p`. |
-| `multiHitProbability` requires `requiredDriverHits >= 1` | Explicit guard returns `precondition-violated`. |
+| `multiHitProbability` requires `requiredDriverHits >= 1` and `generations >= 1` | Explicit guards return `precondition-violated`. |
 | `compareClonalGrowth` requires positive reference size | Explicit guard returns `out-of-domain`. |
 | `clonalGrowthAfterGenerations` cannot return a negative size | Final `Math.max(0, ...)` after the multiplicative growth. |
 
