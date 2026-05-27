@@ -35,7 +35,11 @@ export const createContainerEmbed = (): ContainerEmbedApi => {
     resume(nextState: ContainerEmbedState): void {
       state = cloneState(nextState);
     },
-    syncTheme(theme: ContainerEmbedTheme): void {
+    syncTheme(theme?: ContainerEmbedTheme | null): void {
+      if (!theme?.colorScheme) {
+        targetElement?.removeAttribute("data-paideia-theme");
+        return;
+      }
       targetElement?.setAttribute("data-paideia-theme", theme.colorScheme);
     },
     destroy(): void {

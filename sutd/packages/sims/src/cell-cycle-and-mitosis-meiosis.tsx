@@ -41,7 +41,14 @@ export const cellCycleSpec: TSimulationSpec = {
   id: "cell-cycle-and-mitosis-meiosis",
   title: "Cell Cycle Phase Wheel",
   interaction_type: "diagram-builder",
-  kernel_deps: ["core/content-schema", "core/shared", "core/sim-runtime", "core/cell-cycle", "core/prediction-gate"],
+  kernel_deps: [
+    "core/content-schema",
+    "core/shared",
+    "core/sim-runtime",
+    "core/cell-cycle",
+    "core/prediction-gate",
+    "core/ui-sim",
+  ],
   predict: {
     prompt:
       "A diploid cell at M phase with replicated DNA divides via mitosis. Before reveal, what are the two daughter cells' ploidy and DNA-content multiplier?",
@@ -148,6 +155,8 @@ export const cycleEvidence = (raw: CycleState): KernelResult<CycleEvidence> => {
           checkpoint: spindleNext.value.checkpoint,
           advanced: spindleNext.value.advanced,
         });
+      } else {
+        return err(spindleNext.error.code, spindleNext.error.message, spindleNext.error.cause);
       }
       break;
     }

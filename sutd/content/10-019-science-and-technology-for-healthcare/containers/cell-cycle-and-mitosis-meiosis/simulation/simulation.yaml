@@ -7,6 +7,7 @@ kernel_deps:
   - core/sim-runtime
   - core/cell-cycle
   - core/prediction-gate
+  - core/ui-sim
 predict:
   prompt: |
     A diploid cell at M phase with replicated DNA divides via mitosis. Before reveal, what are the two daughter cells' ploidy and DNA-content multiplier?

@@ -3,7 +3,7 @@ export interface ContainerEmbedState {
 }
 
 export interface ContainerEmbedTheme {
-  readonly colorScheme: "light" | "dark";
+  readonly colorScheme?: "light" | "dark" | null;
   readonly accentColor?: string;
 }
 
@@ -18,6 +18,6 @@ export interface ContainerEmbedApi {
   saveState(): ContainerEmbedState;
   score(): ContainerEmbedScore;
   resume(state: ContainerEmbedState): void;
-  syncTheme(theme: ContainerEmbedTheme): void;
+  syncTheme(theme?: ContainerEmbedTheme | null): void;
   destroy(): void;
 }

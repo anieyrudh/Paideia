@@ -22,6 +22,7 @@
 | cell-cycle-and-mitosis-meiosis | `core/sim-runtime` | Declared in `simulation/simulation.yaml` |
 | cell-cycle-and-mitosis-meiosis | `core/cell-cycle` | Declared in `simulation/simulation.yaml` |
 | cell-cycle-and-mitosis-meiosis | `core/prediction-gate` | Declared in `simulation/simulation.yaml` |
+| cell-cycle-and-mitosis-meiosis | `core/ui-sim` | Declared in `simulation/simulation.yaml` |
 
 ## SimulationSpec (frozen)
 
@@ -37,6 +38,7 @@ kernel_deps:
   - core/sim-runtime
   - core/cell-cycle
   - core/prediction-gate
+  - core/ui-sim
 predict:
   prompt: |
     A diploid cell at M phase with replicated DNA divides via mitosis. Before reveal, what are the two daughter cells' ploidy and DNA-content multiplier?
@@ -127,9 +129,10 @@ Filter version: aniegpt v1.0 (builder self-audit plus local container-auditor re
 
 - Resolved: formula colours pair `ploidy` (blue swatch) and `DNA content` (orange swatch) in the legend with the wheel and daughter readout. Substitution shows the parent's `n` and `dnaContent`, the chosen division mode, and the daughters' per-cell summary.
 - Resolved: manipulation visibly retargets the active wheel arc when the cell parks at G1 (DNA damaged) or G0 (no nutrients), and the daughter list changes between two diploids and four haploids depending on `divisionMode`.
-- Resolved: `simulation.yaml` now declares the imported contract kernels (`core/content-schema`, `core/shared`, `core/sim-runtime`, `core/cell-cycle`, and prediction-gate contract) and no longer declares unused `core/ui-sim`.
+- Resolved: `simulation.yaml` now declares the imported contract kernels plus the runtime UI contract (`core/content-schema`, `core/shared`, `core/sim-runtime`, `core/cell-cycle`, `core/prediction-gate`, `core/ui-sim`).
 - Resolved: public helper code no longer uses `as unknown as number` casts to display branded `Ploidy` / `DnaContent` values.
 - Resolved: the revealed observation now includes an explicit button into the explain stage, and the Playwright test asserts that path.
+- Resolved: CodeRabbit P1 review follow-up widened `syncTheme` to clear host theme attributes, added property coverage over checkpoint states, removed the package barrel export, and propagates spindle checkpoint kernel errors instead of silently continuing.
 
 ### P2 follow-ups (deferred)
 

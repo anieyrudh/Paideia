@@ -41,6 +41,8 @@ test.describe("Cell Cycle and Mitosis / Meiosis", () => {
     await page.getByRole("button", { name: "Set up cell cycle" }).click();
     await page.getByRole("checkbox", { name: "DNA damaged" }).check();
     await page.getByRole("button", { name: "Reveal division outcome" }).click();
+    const observation = page.getByRole("region", { name: "Observation unlocked" });
+    await expect(observation).not.toBeVisible();
     await page
       .getByRole("radio", {
         name: "Two diploid (n = 2) G1 daughters, each with DNA content 1 (unreplicated).",
@@ -48,13 +50,14 @@ test.describe("Cell Cycle and Mitosis / Meiosis", () => {
       .check();
     await page.getByLabel("Rationale").fill("G1/S checkpoint fails on damage.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-    const observation = page.getByRole("region", { name: "Observation unlocked" });
     await expect(observation).toContainText("G1/S");
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await page.getByRole("button", { name: "Set up cell cycle" }).click();
     await page.getByRole("button", { name: "Reveal division outcome" }).click();
+    const observation = page.getByRole("region", { name: "Observation unlocked" });
+    await expect(observation).not.toBeVisible();
     await page
       .getByRole("radio", {
         name: "Two diploid (n = 2) G1 daughters, each with DNA content 1 (unreplicated).",
@@ -62,7 +65,7 @@ test.describe("Cell Cycle and Mitosis / Meiosis", () => {
       .check();
     await page.getByLabel("Rationale").fill("Mitosis preserves ploidy.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-    await page.getByRole("region", { name: "Observation unlocked" }).waitFor();
+    await observation.waitFor();
     const results = await new AxeBuilder({ page }).analyze();
     const seriousOrCritical = results.violations.filter(
       (v) => v.impact === "critical" || v.impact === "serious",

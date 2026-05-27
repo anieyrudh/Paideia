@@ -1,6 +1,9 @@
+import fc from "fast-check";
 import { describe, expect, it } from "vitest";
 
 import { cycleEvidence } from "./cell-cycle-and-mitosis-meiosis.js";
+
+type DivisionMode = "mitosis" | "meiosis";
 
 describe("cycleEvidence", () => {
   it("produces two diploid daughters from a happy mitosis cycle", () => {
@@ -16,8 +19,8 @@ describe("cycleEvidence", () => {
     expect(result.value.finalCell.phase).toBe("M");
     expect(result.value.daughters).toHaveLength(2);
     for (const daughter of result.value.daughters) {
-      expect(daughter.ploidy as unknown as number).toBe(2);
-      expect(daughter.dnaContent as unknown as number).toBe(1);
+      expect(daughter.ploidy).toBe(2);
+      expect(daughter.dnaContent).toBe(1);
     }
   });
 
@@ -33,8 +36,8 @@ describe("cycleEvidence", () => {
     if (!result.ok) return;
     expect(result.value.daughters).toHaveLength(4);
     for (const daughter of result.value.daughters) {
-      expect(daughter.ploidy as unknown as number).toBe(1);
-      expect(daughter.dnaContent as unknown as number).toBe(1);
+      expect(daughter.ploidy).toBe(1);
+      expect(daughter.dnaContent).toBe(1);
     }
   });
 
@@ -79,5 +82,48 @@ describe("cycleEvidence", () => {
       divisionMode: "binary-fission" as unknown as "mitosis",
     });
     expect(result.ok).toBe(false);
+  });
+
+  it("preserves phase and daughter-cell invariants across checkpoint states", () => {
+    try {
+      fc.assert(
+        fc.property(
+          fc.boolean(),
+          fc.boolean(),
+          fc.boolean(),
+          fc.boolean(),
+          fc.constantFrom<DivisionMode>("mitosis", "meiosis"),
+          (dnaDamaged, replicationComplete, chromosomesAligned, nutrientsSufficient, divisionMode) => {
+            const result = cycleEvidence({
+              dnaDamaged,
+              replicationComplete,
+              chromosomesAligned,
+              nutrientsSufficient,
+              divisionMode,
+            });
+            expect(result.ok).toBe(true);
+            if (!result.ok) return;
+            expect(["G0", "G1", "S", "G2", "M"]).toContain(result.value.finalCell.phase);
+            expect(result.value.daughters).toHaveLength(
+              result.value.finalCell.phase === "M" &&
+                result.value.finalCell.dnaContent === 2 &&
+                chromosomesAligned
+                ? divisionMode === "mitosis"
+                  ? 2
+                  : 4
+                : 0,
+            );
+            for (const daughter of result.value.daughters) {
+              expect(daughter.dnaContent).toBe(1);
+              expect(daughter.ploidy).toBe(divisionMode === "mitosis" ? 2 : 1);
+            }
+          },
+        ),
+        { seed: 123456, numRuns: 200 },
+      );
+    } catch (error) {
+      console.error("cycleEvidence property failed with fast-check seed 123456", error);
+      throw error;
+    }
   });
 });

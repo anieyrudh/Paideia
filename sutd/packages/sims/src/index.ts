@@ -41,4 +41,3 @@ export { default as CellSignallingPathways, cascadeEvidence } from "./cell-signa
 export { default as CellStructureAndTheMembrane, membraneEvidence } from "./cell-structure-and-the-membrane.js";
 export { default as ProteinFoldingAndFunction, foldingEvidence } from "./protein-folding-and-function.js";
 export { default as GeneExpressionDnaToRnaToProtein, geneExpressionEvidence } from "./gene-expression-dna-to-rna-to-protein.js";
-export { default as CellCycleAndMitosisMeiosis, cycleEvidence } from "./cell-cycle-and-mitosis-meiosis.js";
