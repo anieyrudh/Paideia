@@ -1,6 +1,6 @@
 # Paideia Container Roadmap
 
-This document is the curriculum-wide build map for Paideia containers across SUTD, Singapore A-Levels, IB, and cross-curriculum shared concepts.
+This document is the curriculum-wide build map for Paideia containers across SUTD, Singapore A-Levels, and cross-curriculum shared concepts.
 
 The goal is not to duplicate content per curriculum. Paideia should build reusable theory containers first, then wrap them for curriculum-specific syllabus, assessment, and learner-path requirements.
 
@@ -10,9 +10,9 @@ Build by **concept cluster**, not by administrative course.
 
 A concept container should be reusable whenever the underlying idea is shared. For example:
 
-- Bayes theorem can serve SUTD probability, A-Level probability, IB Math AI, psychology research methods, and AI/ML.
+- Bayes theorem can serve SUTD probability, A-Level probability, and AI/ML.
 - Eigenvectors can serve SUTD linear algebra, control, PCA, vibrations, graphics, and data science.
-- Graph algorithms can serve SUTD ISTD, ESD networks, A-Level Computing, IB Math AI, and IB Computer Science.
+- Graph algorithms can serve SUTD ISTD, ESD networks, and A-Level Computing.
 
 Curriculum folders should mostly provide wrappers, mappings, assessments, local sequencing, and local examples.
 
@@ -38,10 +38,10 @@ Every container should be tagged on these axes:
 
 | Axis | Examples |
 | --- | --- |
-| Curriculum | `shared`, `sutd`, `alevel`, `ib` |
-| Discipline | `math`, `physics`, `chemistry`, `biology`, `cs`, `econ`, `history`, `psych`, `design`, `architecture`, `systems` |
+| Curriculum | `shared`, `sutd`, `alevel` |
+| Discipline | `math`, `physics`, `chemistry`, `biology`, `cs`, `econ`, `design`, `architecture`, `systems` |
 | Function | `simulation`, `visualizer`, `concept-map`, `mindmap`, `assessment`, `notebook-lab`, `argument-builder`, `tutor` |
-| Level | `freshmore`, `undergrad-core`, `undergrad-advanced`, `a-level-h1`, `a-level-h2`, `ib-sl`, `ib-hl`, `postgrad` |
+| Level | `freshmore`, `undergrad-core`, `undergrad-advanced`, `a-level-h1`, `a-level-h2`, `postgrad` |
 | Reuse status | `shared-core`, `curriculum-wrapper`, `subject-specific`, `assessment-only` |
 | Priority | `P0`, `P1`, `P2` |
 
@@ -54,7 +54,6 @@ shared.probability.bayes-updating
 shared.linear-algebra.eigenvectors
 sutd.epd.control.pid-step-response
 alevel.physics.waves.interference
-ib.tok.personal-vs-shared-knowledge
 ```
 
 Implementation package names can stay runtime-focused:
@@ -449,7 +448,7 @@ Recommended registry fields:
 | `priority` | `P0`, `P1`, or `P2` |
 | `cluster` | Shared concept cluster |
 | `curricula` | Curricula served |
-| `module_mappings` | SUTD module, A-Level syllabus, IB group/course links |
+| `module_mappings` | SUTD module and A-Level syllabus links |
 | `simulation_type` | Main interactive form |
 | `problem_solving_elements` | Required strategy/procedure support |
 | `concept_map_needs` | Prerequisites, downstream concepts, misconception graph |
