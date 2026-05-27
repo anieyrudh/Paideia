@@ -1,0 +1,16 @@
+steps:
+  - id: compare-en
+    title: "Compare electronegativity"
+    prompt: "Compute or estimate the difference between bonded atoms."
+  - id: classify-bond
+    title: "Classify the bond"
+    prompt: "Use the difference to decide ionic, polar covalent, or nonpolar covalent character."
+  - id: check-shape
+    title: "Check molecular shape"
+    prompt: "Decide whether polar bond dipoles cancel."
+  - id: identify-force
+    title: "Identify particle attraction"
+    prompt: "Name the strongest attraction between particles."
+  - id: connect-property
+    title: "Connect to a property"
+    prompt: "Use the attraction to explain a physical property or sustainability-relevant behaviour."

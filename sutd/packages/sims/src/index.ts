@@ -29,3 +29,4 @@ export { default as OptimisationWithLagrangeMultipliers } from "./optimisation-w
 export { default as MaxwellEquationsAndEmWaves } from "./maxwell-equations-and-em-waves.js";
 export { default as RlcCircuitAndResonance } from "./rlc-circuit-and-resonance.js";
 export { default as CoulombsLawAndDiscreteChargeFields } from "./coulomb-s-law-and-discrete-charge-fields.js";
+export { default as ChemicalBondingAndIntermolecularForces } from "./chemical-bonding-and-intermolecular-forces.js";
