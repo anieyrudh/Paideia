@@ -1738,7 +1738,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.cell-structure-and-the-membrane
     title: "Cell Structure and the Membrane"
     priority: P1
-    status: ready-for-build
+    status: in-build
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1766,7 +1766,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.protein-folding-and-function
     title: "Protein Folding and Function"
     priority: P1
-    status: ready-for-build
+    status: in-build
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1794,7 +1794,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.gene-expression-dna-to-rna-to-protein
     title: "Gene Expression, DNA to RNA to Protein"
     priority: P1
-    status: ready-for-build
+    status: in-build
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1822,7 +1822,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.cell-signalling-pathways
     title: "Cell Signalling Pathways"
     priority: P1
-    status: ready-for-build
+    status: in-build
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific

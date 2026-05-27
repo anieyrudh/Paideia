@@ -1,0 +1,23 @@
+# Mindmap
+
+- Cell structure and the membrane
+  - Membrane as a selectively permeable surface
+    - Different ions, different permeabilities
+    - Nernst potential per ion
+    - Resting voltage settles near the highest-permeability ion's Nernst
+  - Key equations
+    - Nernst: `E = (RT/zF) ln(C_out / C_in)`
+    - GHK: weighted-permeability log ratio of monovalent ions
+    - Fick: `J = P (C_out - C_in)`, sets the rate of approach
+  - Geometry
+    - Sphere: `S = 4 pi r^2`, `V = (4/3) pi r^3`, `SA:V = 3/r`
+    - Small cells equilibrate faster
+  - Misconceptions
+    - Passive barrier
+    - Voltage from volume
+    - Polar molecules cannot cross
+    - Pumps and channels are the same
+  - Transfer
+    - Action potentials
+    - Renal tubule reabsorption
+    - Organelle Donnan equilibria

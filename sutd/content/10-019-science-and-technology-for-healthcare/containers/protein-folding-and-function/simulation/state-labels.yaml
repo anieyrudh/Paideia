@@ -1,0 +1,10 @@
+state_labels:
+  presetId:
+    label: "Sequence preset"
+    meaning: "Identifier of the chosen example peptide; the actual sequence is loaded from a frozen presets table."
+  windowSize:
+    label: "Window size"
+    meaning: "Width of the centred sliding window used to compute the hydropathy mean."
+  hydrophobicThreshold:
+    label: "Hydrophobic threshold"
+    meaning: "Mean Kyte-Doolittle value above which a window is classified hydrophobic."

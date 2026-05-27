@@ -1,0 +1,25 @@
+presets:
+  - id: poly-leu
+    label: "Poly-leucine (hydrophobic)"
+    state:
+      presetId: poly-leu
+      windowSize: 9
+      hydrophobicThreshold: 1.6
+  - id: poly-lys
+    label: "Poly-lysine (hydrophilic)"
+    state:
+      presetId: poly-lys
+      windowSize: 9
+      hydrophobicThreshold: 1.6
+  - id: bacteriorhodopsin-fragment
+    label: "Membrane helix fragment"
+    state:
+      presetId: bacteriorhodopsin-fragment
+      windowSize: 9
+      hydrophobicThreshold: 1.6
+  - id: cytosolic-mixed
+    label: "Cytosolic mixed-charge"
+    state:
+      presetId: cytosolic-mixed
+      windowSize: 9
+      hydrophobicThreshold: 1.6

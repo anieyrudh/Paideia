@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 320 180">
+  <title id="title">Central dogma thumbnail</title>
+  <desc id="desc">Three coloured chains - DNA codons, RNA codons, and protein residues - stacked with arrows.</desc>
+  <rect width="320" height="180" fill="#f8fafc"/>
+  <text x="20" y="32" fill="#0f172a" font-family="Arial, sans-serif" font-size="19" font-weight="700">Central dogma</text>
+  <text x="14" y="74" fill="#0f172a" font-family="Arial, sans-serif" font-size="11" font-weight="600">DNA</text>
+  <g font-family="Arial, sans-serif" font-size="11" font-weight="700" text-anchor="middle">
+    <rect x="50" y="60" width="42" height="22" fill="#1e3a8a"/><text x="71" y="76" fill="#fff">ATG</text>
+    <rect x="98" y="60" width="42" height="22" fill="#1e3a8a"/><text x="119" y="76" fill="#fff">GAA</text>
+    <rect x="146" y="60" width="42" height="22" fill="#1e3a8a"/><text x="167" y="76" fill="#fff">CTG</text>
+    <rect x="194" y="60" width="42" height="22" fill="#1e3a8a"/><text x="215" y="76" fill="#fff">TTC</text>
+    <rect x="242" y="60" width="42" height="22" fill="#1e3a8a"/><text x="263" y="76" fill="#fff">TAA</text>
+  </g>
+  <text x="14" y="116" fill="#0f172a" font-family="Arial, sans-serif" font-size="11" font-weight="600">mRNA</text>
+  <g font-family="Arial, sans-serif" font-size="11" font-weight="700" text-anchor="middle">
+    <rect x="50" y="100" width="42" height="22" fill="#2563eb"/><text x="71" y="116" fill="#fff">AUG</text>
+    <rect x="98" y="100" width="42" height="22" fill="#2563eb"/><text x="119" y="116" fill="#fff">GAA</text>
+    <rect x="146" y="100" width="42" height="22" fill="#2563eb"/><text x="167" y="116" fill="#fff">CUG</text>
+    <rect x="194" y="100" width="42" height="22" fill="#2563eb"/><text x="215" y="116" fill="#fff">UUC</text>
+    <rect x="242" y="100" width="42" height="22" fill="#2563eb"/><text x="263" y="116" fill="#fff">UAA</text>
+  </g>
+  <text x="14" y="158" fill="#0f172a" font-family="Arial, sans-serif" font-size="11" font-weight="600">protein</text>
+  <g font-family="Arial, sans-serif" font-size="13" font-weight="700" text-anchor="middle">
+    <circle cx="71" cy="150" r="11" fill="#f59e0b"/><text x="71" y="154" fill="#fff">M</text>
+    <circle cx="119" cy="150" r="11" fill="#dc2626"/><text x="119" y="154" fill="#fff">E</text>
+    <circle cx="167" cy="150" r="11" fill="#2563eb"/><text x="167" y="154" fill="#fff">L</text>
+    <circle cx="215" cy="150" r="11" fill="#2563eb"/><text x="215" y="154" fill="#fff">F</text>
+    <circle cx="263" cy="150" r="11" fill="#475569"/><text x="263" y="154" fill="#fff">*</text>
+  </g>
+</svg>
