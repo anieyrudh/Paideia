@@ -14,6 +14,7 @@
     { "path": "./core/argument-graph" },
     { "path": "./core/corpus" },
     { "path": "./core/sequence" },
+    { "path": "./core/cell-cycle" },
     { "path": "./core/signal-pathway" },
     { "path": "./core/gene-regulatory-network" },
     { "path": "./core/protein-structure" },
