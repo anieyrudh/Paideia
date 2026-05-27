@@ -102,6 +102,32 @@ than a TypeScript kernel. `core/docs-templates` is template-only.
 | `queueing-systems` | `@paideia/queueing-systems` | Little's Law, queue utilisation, wait estimates, and simple service-system tradeoffs. | [`AGENTS.md`](../core/queueing-systems/AGENTS.md) |
 | `scheduling` | `@paideia/scheduling` | FCFS, SPT, EDD, critical-ratio, lateness, and schedule comparison logic. | [`AGENTS.md`](../core/scheduling/AGENTS.md) |
 
+## Biology Kernel Acceptance Boundaries
+
+Broad biology kernels are acceptable only when they expose narrow,
+deterministic primitives that branch containers can compose into learner
+experiences. The current planned set is `cell-geometry`, `protein-structure`,
+`gene-regulatory-network`, `signal-pathway`, `cell-cycle`, `immunology`,
+`oncogenetics`, and `treatment-response`.
+
+Accept a biology kernel when it:
+
+- Defines a small public API in `core/<kernel>/AGENTS.md` before implementation.
+- Returns pure data through deterministic functions and `KernelResult` errors.
+- Owns reusable validation, scoring, state transitions, or quantitative biology
+  calculations that would otherwise be duplicated across containers.
+- Keeps medical, diagnostic, treatment-selection, dosing, prognosis, and patient
+  advice out of scope; healthcare containers may teach mechanisms, not provide
+  guidance for real cases.
+- Avoids broad simulators, hidden global state, stochastic defaults, learned
+  model calls, or branch-specific labels and syllabus presets.
+- Adds no runtime GPL, AGPL, LGPL, proprietary, Commons Clause, or unclear
+  dependencies; reference-only sources must stay out of bundled runtime code.
+
+Container authors should compose these kernels into prediction-gated,
+student-facing simulations. They should not inline reusable biology logic in a
+container or widen a kernel to satisfy one branch's wording.
+
 ## Build-Time Assets
 
 | Module | Package | Owns | Contract |
