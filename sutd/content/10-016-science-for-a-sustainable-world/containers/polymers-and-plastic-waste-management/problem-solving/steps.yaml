@@ -1,0 +1,11 @@
+steps:
+  - id: define-service
+    prompt: "Define the container service and required evidence."
+  - id: choose-index
+    prompt: "Select a material index that matches the service."
+  - id: rank-materials
+    prompt: "Rank polymer candidates using strength, density, and embodied carbon."
+  - id: estimate-waste
+    prompt: "Use collection rate and reuse cycles to estimate residual waste."
+  - id: justify-route
+    prompt: "Recommend reuse, recycling, composting, or rejection with evidence."

@@ -44,7 +44,8 @@
     "./coulomb-s-law-and-discrete-charge-fields": "./src/coulomb-s-law-and-discrete-charge-fields.tsx",
     "./capacitor-with-dielectric": "./src/capacitor-with-dielectric.tsx",
     "./chemical-bonding-and-intermolecular-forces": "./src/chemical-bonding-and-intermolecular-forces.tsx",
-    "./thermochemistry-and-equilibrium": "./src/thermochemistry-and-equilibrium.tsx"
+    "./thermochemistry-and-equilibrium": "./src/thermochemistry-and-equilibrium.tsx",
+    "./polymers-and-plastic-waste-management": "./src/polymers-and-plastic-waste-management.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -65,6 +66,7 @@
     "@paideia/graph-algorithms": "workspace:*",
     "@paideia/graph-layout": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
+    "@paideia/materials": "workspace:*",
     "@paideia/mechanics": "workspace:*",
     "@paideia/molecule": "workspace:*",
     "@paideia/numerical-math": "workspace:*",

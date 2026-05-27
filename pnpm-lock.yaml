@@ -1315,6 +1315,9 @@ importers:
       '@paideia/linear-algebra':
         specifier: workspace:*
         version: link:../../../core/linear-algebra
+      '@paideia/materials':
+        specifier: workspace:*
+        version: link:../../../core/materials
       '@paideia/mechanics':
         specifier: workspace:*
         version: link:../../../core/mechanics

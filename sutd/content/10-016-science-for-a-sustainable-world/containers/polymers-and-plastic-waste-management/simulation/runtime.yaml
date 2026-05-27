@@ -1,0 +1,6 @@
+runtime:
+  package: "@paideia/sutd-sims"
+  export: PolymersAndPlasticWasteManagement
+  route: "/sutd/10-016-science-for-a-sustainable-world/polymers-and-plastic-waste-management"
+  harness_id: "sutd/10-016-science-for-a-sustainable-world/polymers-and-plastic-waste-management/polymers-and-plastic-waste-management"
+  prediction_gate: true
