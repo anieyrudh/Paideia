@@ -46,7 +46,8 @@
     "./chemical-bonding-and-intermolecular-forces": "./src/chemical-bonding-and-intermolecular-forces.tsx",
     "./thermochemistry-and-equilibrium": "./src/thermochemistry-and-equilibrium.tsx",
     "./polymers-and-plastic-waste-management": "./src/polymers-and-plastic-waste-management.tsx",
-    "./electrochemistry-and-batteries": "./src/electrochemistry-and-batteries.tsx"
+    "./electrochemistry-and-batteries": "./src/electrochemistry-and-batteries.tsx",
+    "./solar-energy-and-band-theory": "./src/solar-energy-and-band-theory.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -79,7 +80,8 @@
     "@paideia/sim-runtime": "workspace:*",
     "@paideia/thermodynamics": "workspace:*",
     "@paideia/ui-sim": "workspace:*",
-    "@paideia/vector-calculus": "workspace:*"
+    "@paideia/vector-calculus": "workspace:*",
+    "@paideia/waves": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18"
