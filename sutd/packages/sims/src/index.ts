@@ -34,3 +34,4 @@ export { default as ThermochemistryAndEquilibrium } from "./thermochemistry-and-
 export { default as PolymersAndPlasticWasteManagement } from "./polymers-and-plastic-waste-management.js";
 export { default as ElectrochemistryAndBatteries } from "./electrochemistry-and-batteries.js";
 export { default as SolarEnergyAndBandTheory } from "./solar-energy-and-band-theory.js";
+export { default as WaterQualityAndTreatment } from "./water-quality-and-treatment.js";

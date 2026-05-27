@@ -6,41 +6,42 @@ import GeneratedSim2ElectrochemistryAndBatteriesElectrochemistryAndBatteries fro
 import GeneratedSim3PolymersAndPlasticWasteManagementPolymersAndPlasticWasteManagement from "@paideia/sutd-sims/polymers-and-plastic-waste-management";
 import GeneratedSim4SolarEnergyAndBandTheorySolarEnergyAndBandTheory from "@paideia/sutd-sims/solar-energy-and-band-theory";
 import GeneratedSim5ThermochemistryAndEquilibriumThermochemistryAndEquilibrium from "@paideia/sutd-sims/thermochemistry-and-equilibrium";
-import GeneratedSim6CapacitorWithDielectricCapacitorWithDielectric from "@paideia/sutd-sims/capacitor-with-dielectric";
-import GeneratedSim7CoulombSLawAndDiscreteChargeFieldsCoulombFieldVectorLab from "@paideia/sutd-sims/coulomb-s-law-and-discrete-charge-fields";
-import GeneratedSim8MagneticInductionFaradayLenzMagneticInductionFaradayLenz from "@paideia/sutd-sims/magnetic-induction-faraday-lenz";
-import GeneratedSim9MaxwellEquationsAndEmWavesMaxwellEquationsAndEmWaves from "@paideia/sutd-sims/maxwell-equations-and-em-waves";
-import GeneratedSim10RlcCircuitAndResonanceRlcCircuitAndResonance from "@paideia/sutd-sims/rlc-circuit-and-resonance";
-import GeneratedSim11DeterminantAndTraceDeterminantAndTrace from "@paideia/sutd-sims/determinant-and-trace";
-import GeneratedSim12DivergenceAndCurlDivergenceAndCurl from "@paideia/sutd-sims/divergence-and-curl";
-import GeneratedSim13DoubleAndTripleIntegralsDoubleAndTripleIntegrals from "@paideia/sutd-sims/double-and-triple-integrals";
-import GeneratedSim14EigenvaluesAndEigenvectorsEigenvaluesAndEigenvectors from "@paideia/sutd-sims/eigenvalues-and-eigenvectors";
-import GeneratedSim15GaussianEliminationAndLinearSystemsGaussianEliminationAndLinearSystems from "@paideia/sutd-sims/gaussian-elimination-and-linear-systems";
-import GeneratedSim16LineIntegralsAndConservativeVectorFieldsLineIntegralsAndConservativeVectorFields from "@paideia/sutd-sims/line-integrals-and-conservative-vector-fields";
-import GeneratedSim17LinearTransformationsLinearTransformations from "@paideia/sutd-sims/linear-transformations";
-import GeneratedSim18OptimisationWithLagrangeMultipliersOptimisationWithLagrangeMultipliers from "@paideia/sutd-sims/optimisation-with-lagrange-multipliers";
-import GeneratedSim19PartialDerivativesAndGradientPartialDerivativesAndGradient from "@paideia/sutd-sims/partial-derivatives-and-gradient";
-import GeneratedSim20LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
-import GeneratedSim21ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
-import GeneratedSim22StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
-import GeneratedSim23DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
-import GeneratedSim24GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim25RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
-import GeneratedSim26ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
-import GeneratedSim27FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
-import GeneratedSim28TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim29BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim30PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim31SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
-import GeneratedSim32LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim33MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
-import GeneratedSim34NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim35BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim36EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim37VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim38FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
-import GeneratedSim39LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim40OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim6WaterQualityAndTreatmentWaterQualityAndTreatment from "@paideia/sutd-sims/water-quality-and-treatment";
+import GeneratedSim7CapacitorWithDielectricCapacitorWithDielectric from "@paideia/sutd-sims/capacitor-with-dielectric";
+import GeneratedSim8CoulombSLawAndDiscreteChargeFieldsCoulombFieldVectorLab from "@paideia/sutd-sims/coulomb-s-law-and-discrete-charge-fields";
+import GeneratedSim9MagneticInductionFaradayLenzMagneticInductionFaradayLenz from "@paideia/sutd-sims/magnetic-induction-faraday-lenz";
+import GeneratedSim10MaxwellEquationsAndEmWavesMaxwellEquationsAndEmWaves from "@paideia/sutd-sims/maxwell-equations-and-em-waves";
+import GeneratedSim11RlcCircuitAndResonanceRlcCircuitAndResonance from "@paideia/sutd-sims/rlc-circuit-and-resonance";
+import GeneratedSim12DeterminantAndTraceDeterminantAndTrace from "@paideia/sutd-sims/determinant-and-trace";
+import GeneratedSim13DivergenceAndCurlDivergenceAndCurl from "@paideia/sutd-sims/divergence-and-curl";
+import GeneratedSim14DoubleAndTripleIntegralsDoubleAndTripleIntegrals from "@paideia/sutd-sims/double-and-triple-integrals";
+import GeneratedSim15EigenvaluesAndEigenvectorsEigenvaluesAndEigenvectors from "@paideia/sutd-sims/eigenvalues-and-eigenvectors";
+import GeneratedSim16GaussianEliminationAndLinearSystemsGaussianEliminationAndLinearSystems from "@paideia/sutd-sims/gaussian-elimination-and-linear-systems";
+import GeneratedSim17LineIntegralsAndConservativeVectorFieldsLineIntegralsAndConservativeVectorFields from "@paideia/sutd-sims/line-integrals-and-conservative-vector-fields";
+import GeneratedSim18LinearTransformationsLinearTransformations from "@paideia/sutd-sims/linear-transformations";
+import GeneratedSim19OptimisationWithLagrangeMultipliersOptimisationWithLagrangeMultipliers from "@paideia/sutd-sims/optimisation-with-lagrange-multipliers";
+import GeneratedSim20PartialDerivativesAndGradientPartialDerivativesAndGradient from "@paideia/sutd-sims/partial-derivatives-and-gradient";
+import GeneratedSim21LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
+import GeneratedSim22ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
+import GeneratedSim23StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
+import GeneratedSim24DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
+import GeneratedSim25GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
+import GeneratedSim26RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
+import GeneratedSim27ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
+import GeneratedSim28FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
+import GeneratedSim29TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim30BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim31PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim32SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
+import GeneratedSim33LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim34MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
+import GeneratedSim35NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim36BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim37EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim38VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim39FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
+import GeneratedSim40LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim41OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -148,6 +149,15 @@ export const knowledgeGraph = {
     subject: "10-016-science-for-a-sustainable-world",
     level: "Freshmore",
     module: "10.016 Science for a Sustainable World",
+    status: "draft",
+  },
+  {
+    id: "sutd/10-016-science-for-a-sustainable-world/water-quality-and-treatment",
+    conceptId: "water-quality-and-treatment",
+    title: "Water Quality and Treatment",
+    subject: "10-016-science-for-a-sustainable-world",
+    level: "Freshmore",
+    module: "Science for a Sustainable World",
     status: "draft",
   },
   {
@@ -498,6 +508,10 @@ export const knowledgeGraph = {
   { from: "sutd/10-016-science-for-a-sustainable-world/thermochemistry-and-equilibrium", to: "sutd/10-016-science-for-a-sustainable-world/electrochemistry-and-batteries", kind: "downstream" },
   { from: "sutd/10-016-science-for-a-sustainable-world/thermochemistry-and-equilibrium", to: "sutd/10-016-science-for-a-sustainable-world/water-quality-and-treatment", kind: "downstream" },
   { from: "sutd/10-016-science-for-a-sustainable-world/thermochemistry-and-equilibrium", to: "sutd/10-016-science-for-a-sustainable-world/solar-energy-and-band-theory", kind: "sibling" },
+  { from: "sutd/10-016-science-for-a-sustainable-world/concentration", to: "sutd/10-016-science-for-a-sustainable-world/water-quality-and-treatment", kind: "prerequisite" },
+  { from: "sutd/10-016-science-for-a-sustainable-world/reaction-rates", to: "sutd/10-016-science-for-a-sustainable-world/water-quality-and-treatment", kind: "prerequisite" },
+  { from: "sutd/10-016-science-for-a-sustainable-world/water-quality-and-treatment", to: "sutd/10-016-science-for-a-sustainable-world/environmental-systems", kind: "downstream" },
+  { from: "sutd/10-016-science-for-a-sustainable-world/water-quality-and-treatment", to: "sutd/10-016-science-for-a-sustainable-world/thermochemistry-and-equilibrium", kind: "sibling" },
   { from: "sutd/10-017-technological-world-e-and-m/vectors", to: "sutd/10-017-technological-world-e-and-m/coulomb-s-law-and-discrete-charge-fields", kind: "prerequisite" },
   { from: "sutd/10-017-technological-world-e-and-m/inverse-square-laws", to: "sutd/10-017-technological-world-e-and-m/coulomb-s-law-and-discrete-charge-fields", kind: "prerequisite" },
   { from: "sutd/10-017-technological-world-e-and-m/coulomb-s-law-and-discrete-charge-fields", to: "sutd/10-017-technological-world-e-and-m/gauss-law-for-symmetric-distributions", kind: "downstream" },
@@ -984,6 +998,58 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/10-016-science-for-a-sustainable-world/water-quality-and-treatment",
+    branch: "sutd",
+    subject: "10 016 Science For A Sustainable World",
+    level: "Freshmore",
+    module: "Science for a Sustainable World",
+    title: "Water Quality and Treatment",
+    summary: "Evaluate a water treatment train by combining turbidity removal, CT disinfection, pH banding, and filter-flow evidence.",
+    syllabusRef: "SUTD 10.016 Science for a Sustainable World / Water quality and treatment",
+    status: "draft",
+    packageId: "water-quality-and-treatment",
+    simId: "water-quality-and-treatment",
+    predictPrompt: "The water looks clear after filtration, but disinfection contact time is very low. What is the safest claim?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Clear water is always safe water",
+      "More chemical dose can replace contact time",
+    ],
+    transferProblem: "A temporary treatment unit produces clear-looking water but has high flow, low contact time, and pH 9.1. Decide which evidence blocks release and which control should change first.",
+    firstPrinciples: "Particles, pathogens, and dissolved chemical conditions are different hazards. Filtration can make water look clear while microbial risk remains. Disinfection depends on the product of disinfectant concentration and contact time:",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "Compute finished turbidity",
+      "Compute CT exposure",
+      "Check pH band",
+      "Combine evidence",
+    ],
+    prerequisites: [
+      "Concentration",
+      "Reaction Rates",
+    ],
+    downstream: [
+      "Environmental Systems",
+    ],
+    siblings: [
+      "Thermochemistry and Equilibrium",
+    ],
+    sims: [
+      {
+        id: "water-quality-and-treatment",
+        harnessId: "sutd/10-016-science-for-a-sustainable-world/water-quality-and-treatment/water-quality-and-treatment",
+        title: "Water Treatment Train",
+        interactionType: "systems-flow-diagram",
+        component: GeneratedSim6WaterQualityAndTreatmentWaterQualityAndTreatment,
+      },
+    ],
+  },
+  {
     id: "sutd/10-017-technological-world-e-and-m/capacitor-with-dielectric",
     branch: "sutd",
     subject: "10 017 Technological World E And M",
@@ -1025,7 +1091,7 @@ export const containers = [
         harnessId: "sutd/10-017-technological-world-e-and-m/capacitor-with-dielectric/capacitor-with-dielectric",
         title: "Capacitor with Dielectric",
         interactionType: "diagram-builder",
-        component: GeneratedSim6CapacitorWithDielectricCapacitorWithDielectric,
+        component: GeneratedSim7CapacitorWithDielectricCapacitorWithDielectric,
       },
     ],
   },
@@ -1077,7 +1143,7 @@ export const containers = [
         harnessId: "sutd/10-017-technological-world-e-and-m/coulomb-s-law-and-discrete-charge-fields/coulomb-field-vector-lab",
         title: "Coulomb Field Vector Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim7CoulombSLawAndDiscreteChargeFieldsCoulombFieldVectorLab,
+        component: GeneratedSim8CoulombSLawAndDiscreteChargeFieldsCoulombFieldVectorLab,
       },
     ],
   },
@@ -1123,7 +1189,7 @@ export const containers = [
         harnessId: "sutd/10-017-technological-world-e-and-m/magnetic-induction-faraday-lenz/magnetic-induction-faraday-lenz",
         title: "Magnetic Induction: Faraday-Lenz",
         interactionType: "diagram-builder",
-        component: GeneratedSim8MagneticInductionFaradayLenzMagneticInductionFaradayLenz,
+        component: GeneratedSim9MagneticInductionFaradayLenzMagneticInductionFaradayLenz,
       },
     ],
   },
@@ -1179,7 +1245,7 @@ export const containers = [
         harnessId: "sutd/10-017-technological-world-e-and-m/maxwell-equations-and-em-waves/maxwell-equations-and-em-waves",
         title: "Maxwell Equations and EM Waves",
         interactionType: "diagram-builder",
-        component: GeneratedSim9MaxwellEquationsAndEmWavesMaxwellEquationsAndEmWaves,
+        component: GeneratedSim10MaxwellEquationsAndEmWavesMaxwellEquationsAndEmWaves,
       },
     ],
   },
@@ -1234,7 +1300,7 @@ export const containers = [
         harnessId: "sutd/10-017-technological-world-e-and-m/rlc-circuit-and-resonance/rlc-circuit-and-resonance",
         title: "RLC Circuit and Resonance",
         interactionType: "diagram-builder",
-        component: GeneratedSim10RlcCircuitAndResonanceRlcCircuitAndResonance,
+        component: GeneratedSim11RlcCircuitAndResonanceRlcCircuitAndResonance,
       },
     ],
   },
@@ -1290,7 +1356,7 @@ export const containers = [
         harnessId: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/determinant-and-trace/determinant-and-trace",
         title: "Determinant and Trace Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim11DeterminantAndTraceDeterminantAndTrace,
+        component: GeneratedSim12DeterminantAndTraceDeterminantAndTrace,
       },
     ],
   },
@@ -1343,7 +1409,7 @@ export const containers = [
         harnessId: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/divergence-and-curl/divergence-and-curl",
         title: "Divergence and Curl",
         interactionType: "diagram-builder",
-        component: GeneratedSim12DivergenceAndCurlDivergenceAndCurl,
+        component: GeneratedSim13DivergenceAndCurlDivergenceAndCurl,
       },
     ],
   },
@@ -1391,7 +1457,7 @@ export const containers = [
         harnessId: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/double-and-triple-integrals/double-and-triple-integrals",
         title: "Double and Triple Integrals Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim13DoubleAndTripleIntegralsDoubleAndTripleIntegrals,
+        component: GeneratedSim14DoubleAndTripleIntegralsDoubleAndTripleIntegrals,
       },
     ],
   },
@@ -1447,7 +1513,7 @@ export const containers = [
         harnessId: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/eigenvalues-and-eigenvectors/eigenvalues-and-eigenvectors",
         title: "Eigenvalue and Eigenvector Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim14EigenvaluesAndEigenvectorsEigenvaluesAndEigenvectors,
+        component: GeneratedSim15EigenvaluesAndEigenvectorsEigenvaluesAndEigenvectors,
       },
     ],
   },
@@ -1500,7 +1566,7 @@ export const containers = [
         harnessId: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/gaussian-elimination-and-linear-systems/gaussian-elimination-and-linear-systems",
         title: "Gaussian Elimination and Linear Systems",
         interactionType: "diagram-builder",
-        component: GeneratedSim15GaussianEliminationAndLinearSystemsGaussianEliminationAndLinearSystems,
+        component: GeneratedSim16GaussianEliminationAndLinearSystemsGaussianEliminationAndLinearSystems,
       },
     ],
   },
@@ -1554,7 +1620,7 @@ export const containers = [
         harnessId: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/line-integrals-and-conservative-vector-fields/line-integrals-and-conservative-vector-fields",
         title: "Line Integrals and Conservative Vector Fields",
         interactionType: "diagram-builder",
-        component: GeneratedSim16LineIntegralsAndConservativeVectorFieldsLineIntegralsAndConservativeVectorFields,
+        component: GeneratedSim17LineIntegralsAndConservativeVectorFieldsLineIntegralsAndConservativeVectorFields,
       },
     ],
   },
@@ -1610,7 +1676,7 @@ export const containers = [
         harnessId: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/linear-transformations/linear-transformations",
         title: "Linear Transformation Classifier",
         interactionType: "diagram-builder",
-        component: GeneratedSim17LinearTransformationsLinearTransformations,
+        component: GeneratedSim18LinearTransformationsLinearTransformations,
       },
     ],
   },
@@ -1658,7 +1724,7 @@ export const containers = [
         harnessId: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/optimisation-with-lagrange-multipliers/optimisation-with-lagrange-multipliers",
         title: "Lagrange Multipliers Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim18OptimisationWithLagrangeMultipliersOptimisationWithLagrangeMultipliers,
+        component: GeneratedSim19OptimisationWithLagrangeMultipliersOptimisationWithLagrangeMultipliers,
       },
     ],
   },
@@ -1698,7 +1764,7 @@ export const containers = [
         harnessId: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/partial-derivatives-and-gradient/partial-derivatives-and-gradient",
         title: "Partial Derivatives and Gradient Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim19PartialDerivativesAndGradientPartialDerivativesAndGradient,
+        component: GeneratedSim20PartialDerivativesAndGradientPartialDerivativesAndGradient,
       },
     ],
   },
@@ -1764,7 +1830,7 @@ export const containers = [
         harnessId: "sutd/asd/load-path-and-daylight-tradeoff/load-path-and-daylight-tradeoff",
         title: "Load Path and Daylight Tradeoff Explorer",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim20LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
+        component: GeneratedSim21LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
       },
     ],
   },
@@ -1821,7 +1887,7 @@ export const containers = [
         harnessId: "sutd/asd/shading-daylight-heat-gain/shading-daylight-heat-gain",
         title: "Shading, Daylight, and Heat Gain",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim21ShadingDaylightHeatGainShadingDaylightHeatGain,
+        component: GeneratedSim22ShadingDaylightHeatGainShadingDaylightHeatGain,
       },
     ],
   },
@@ -1888,7 +1954,7 @@ export const containers = [
         harnessId: "sutd/asd/structural-load-path-diagram/structural-load-path-diagram",
         title: "Structural Load Path Diagram",
         interactionType: "diagram-builder",
-        component: GeneratedSim22StructuralLoadPathDiagramStructuralLoadPathDiagram,
+        component: GeneratedSim23StructuralLoadPathDiagramStructuralLoadPathDiagram,
       },
     ],
   },
@@ -1934,7 +2000,7 @@ export const containers = [
         harnessId: "sutd/csd/dynamic-programming-state-recursion/dynamic-programming-state-recursion",
         title: "Dynamic Programming State Recursion",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim23DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
+        component: GeneratedSim24DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
       },
     ],
   },
@@ -1984,7 +2050,7 @@ export const containers = [
         harnessId: "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths",
         title: "Graph Search and Shortest Paths",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim24GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
+        component: GeneratedSim25GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
       },
     ],
   },
@@ -2034,7 +2100,7 @@ export const containers = [
         harnessId: "sutd/csd/recursion-tree-complexity/recursion-tree-complexity",
         title: "Recursion Tree Complexity Lab",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim25RecursionTreeComplexityRecursionTreeComplexity,
+        component: GeneratedSim26RecursionTreeComplexityRecursionTreeComplexity,
       },
     ],
   },
@@ -2099,7 +2165,7 @@ export const containers = [
         harnessId: "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds",
         title: "Confusion Matrix Threshold Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim26ConfusionMatrixThresholdsConfusionMatrixThresholds,
+        component: GeneratedSim27ConfusionMatrixThresholdsConfusionMatrixThresholds,
       },
     ],
   },
@@ -2157,7 +2223,7 @@ export const containers = [
         harnessId: "sutd/dai/fairness-threshold-audit/fairness-threshold-audit",
         title: "Fairness Threshold Audit Lab",
         interactionType: "decision-matrix",
-        component: GeneratedSim27FairnessThresholdAuditFairnessThresholdAudit,
+        component: GeneratedSim28FairnessThresholdAuditFairnessThresholdAudit,
       },
     ],
   },
@@ -2210,7 +2276,7 @@ export const containers = [
         harnessId: "sutd/dai/trust-calibration/trust-calibration",
         title: "Trust Calibration Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim28TrustCalibrationTrustCalibration,
+        component: GeneratedSim29TrustCalibrationTrustCalibration,
       },
     ],
   },
@@ -2276,7 +2342,7 @@ export const containers = [
         harnessId: "sutd/epd/bode-stability-margin/bode-stability-margin",
         title: "Bode Margin Reader",
         interactionType: "comparative-matrix",
-        component: GeneratedSim29BodeStabilityMarginBodeStabilityMargin,
+        component: GeneratedSim30BodeStabilityMarginBodeStabilityMargin,
       },
     ],
   },
@@ -2330,7 +2396,7 @@ export const containers = [
         harnessId: "sutd/epd/pid-step-response/pid-step-response",
         title: "PID Step Response Explorer",
         interactionType: "comparative-matrix",
-        component: GeneratedSim30PidStepResponsePidStepResponse,
+        component: GeneratedSim31PidStepResponsePidStepResponse,
       },
     ],
   },
@@ -2388,7 +2454,7 @@ export const containers = [
         harnessId: "sutd/epd/signal-filter-frequency-response/signal-filter-frequency-response",
         title: "RC Filter Frequency Response Lab",
         interactionType: "comparative-matrix",
-        component: GeneratedSim31SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
+        component: GeneratedSim32SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
       },
     ],
   },
@@ -2432,7 +2498,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim32LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim33LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -2494,7 +2560,7 @@ export const containers = [
         harnessId: "sutd/esd/markov-chain-steady-state/markov-chain-steady-state",
         title: "Markov Chain Steady-State Lab",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim33MarkovChainSteadyStateMarkovChainSteadyState,
+        component: GeneratedSim34MarkovChainSteadyStateMarkovChainSteadyState,
       },
     ],
   },
@@ -2560,7 +2626,7 @@ export const containers = [
         harnessId: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
         title: "Newsvendor Critical Fractile Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim34NewsvendorCriticalFractileNewsvendorCriticalFractile,
+        component: GeneratedSim35NewsvendorCriticalFractileNewsvendorCriticalFractile,
       },
     ],
   },
@@ -2623,7 +2689,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim35BayesUpdatingBayesUpdating,
+        component: GeneratedSim36BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -2677,7 +2743,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim36EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim37EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -2729,7 +2795,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim37VectorTransformationsVectorTransformations,
+        component: GeneratedSim38VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -2775,7 +2841,7 @@ export const containers = [
         harnessId: "sutd/smt/fourier-mode-superposition/fourier-mode-superposition",
         title: "Fourier Mode Superposition Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim38FourierModeSuperpositionFourierModeSuperposition,
+        component: GeneratedSim39FourierModeSuperpositionFourierModeSuperposition,
       },
     ],
   },
@@ -2832,7 +2898,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim39LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim40LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -2898,7 +2964,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim40OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim41OdePhasePortraitOdePhasePortrait,
       },
     ],
   }
