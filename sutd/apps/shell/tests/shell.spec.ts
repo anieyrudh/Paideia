@@ -4,6 +4,7 @@ test("renders the first SUTD curriculum wrapper container", async ({ page }) => 
   await page.goto("/");
 
   await expect(page.getByRole("heading", { name: "SUTD Learning Map" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "All curricula" })).toHaveAttribute("href", "../");
   const status = page.getByLabel("SUTD shell status");
   await expect(status).toContainText("7");
   await expect(status.getByText("interactive concepts", { exact: true })).toBeVisible();
@@ -28,6 +29,14 @@ test("renders the first SUTD curriculum wrapper container", async ({ page }) => 
 
   await page.getByRole("button", { name: /SMT/ }).click();
   await expect(page.getByRole("heading", { name: "ODE Phase Portrait" })).toBeVisible();
+});
+
+test("links back to the all-curricula page", async ({ page }) => {
+  await page.goto("/#sutd/epd/pid-step-response");
+
+  await page.getByRole("link", { name: "All curricula" }).click();
+
+  await expect(page).toHaveURL(/\/$/);
 });
 
 test("maps concept clusters across all SUTD pillars", async ({ page }) => {

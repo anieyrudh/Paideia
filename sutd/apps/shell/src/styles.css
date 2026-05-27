@@ -40,6 +40,29 @@ button {
   padding: 1.4rem;
 }
 
+.global-nav {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.global-nav a {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-weight: 900;
+  min-height: 42px;
+  padding: 0.58rem 0.9rem;
+  text-decoration: none;
+}
+
+.global-nav a:hover,
+.global-nav a:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  outline: 3px solid rgba(15, 107, 104, 0.18);
+  outline-offset: 2px;
+}
+
 .hero,
 .workspace {
   border: 1px solid var(--line);
@@ -311,12 +334,38 @@ button {
 
 .sutd-sim-controls,
 .sutd-formula-card,
-.sutd-result-card {
+.sutd-result-card,
+.formula-panel,
+.vector-stage {
   background: var(--surface);
   border: 1px solid var(--line);
   display: grid;
   gap: 0.75rem;
   padding: 1rem;
+}
+
+.vector-stage--product {
+  background: #f8fbfa;
+}
+
+.formula-panel--product {
+  background:
+    radial-gradient(circle at top right, rgba(197, 138, 26, 0.24), transparent 12rem),
+    linear-gradient(135deg, #10201a, #173b31);
+  color: #fffdf7;
+}
+
+.formula-panel--product p {
+  color: rgba(255, 253, 247, 0.84);
+}
+
+.lab-kicker {
+  color: #dcecea;
+  font-size: 0.76rem;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+  margin: 0;
+  text-transform: uppercase;
 }
 
 .sutd-sim-controls button,
@@ -347,21 +396,38 @@ button {
   margin: 0;
 }
 
-.sutd-result-grid div {
+.sutd-result-grid div,
+.result-readout div {
   border-top: 2px solid var(--accent);
   padding-top: 0.6rem;
 }
 
-.sutd-result-grid dt {
+.sutd-result-grid dt,
+.result-readout dt {
   color: var(--muted);
   font-size: 0.84rem;
 }
 
-.sutd-result-grid dd {
+.sutd-result-grid dd,
+.result-readout dd {
   color: var(--accent);
   font-size: 1.5rem;
   font-weight: 900;
   margin: 0;
+}
+
+.result-readout {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  margin: 0;
+}
+
+.result-readout--cards div {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 2px solid var(--accent);
+  padding: 0.7rem;
 }
 
 .formula-code {
