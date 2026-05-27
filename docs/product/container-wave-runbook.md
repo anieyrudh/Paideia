@@ -95,42 +95,66 @@ Reviewers should lead with P0/P1 findings:
 
 Merge only when P0 is zero and P1 is resolved or explicitly deferred in `TECHNICAL.md`.
 
-## Current Four-Track Wave
+## Current Healthcare Wave
 
 | Track | Queue id | Starting status | Required kernels |
 | --- | --- | --- | --- |
-| A-Level Physics | `alevel.physics.momentum` | `reviewed` | `core/sim-runtime`, `core/mechanics`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
-| A-Level Physics | `alevel.physics.waves` | `reviewed` | `core/sim-runtime`, `core/function-eval`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
-| Shared physics | `shared.physics.free-body-diagram-mechanics` | `reviewed` | `core/sim-runtime`, `core/mechanics`, `core/linear-algebra`, `core/prediction-gate`, `core/ui-sim` |
-| Shared circuits | `shared.circuits.circuit-phasor-reasoning` | `ready-for-build` | `core/circuits`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| SUTD 10.019 | `sutd.10-019-science-and-technology-for-healthcare.cell-structure-and-the-membrane` | `ready-for-build` | `core/membrane-transport`, `core/cell-geometry`, `core/prediction-gate`, `core/ui-sim` |
+| SUTD 10.019 | `sutd.10-019-science-and-technology-for-healthcare.protein-folding-and-function` | `ready-for-build` | `core/protein-structure`, `core/prediction-gate`, `core/ui-sim` |
+| SUTD 10.019 | `sutd.10-019-science-and-technology-for-healthcare.gene-expression-dna-to-rna-to-protein` | `ready-for-build` | `core/gene-regulatory-network`, `core/sequence`, `core/prediction-gate`, `core/ui-sim` |
+| SUTD 10.019 | `sutd.10-019-science-and-technology-for-healthcare.cell-signalling-pathways` | `ready-for-build` | `core/signal-pathway`, `core/dynamical-systems`, `core/prediction-gate`, `core/ui-sim` |
+| SUTD 10.019 | `sutd.10-019-science-and-technology-for-healthcare.cell-cycle-and-mitosis-meiosis` | `ready-for-build` | `core/cell-cycle`, `core/prediction-gate`, `core/ui-sim` |
+| SUTD 10.019 | `sutd.10-019-science-and-technology-for-healthcare.immune-system-and-vaccines` | `ready-for-build` | `core/immunology`, `core/dynamical-systems`, `core/prediction-gate`, `core/ui-sim` |
+| SUTD 10.019 | `sutd.10-019-science-and-technology-for-healthcare.cancer-genetics-and-therapy` | `ready-for-build` | `core/oncogenetics`, `core/treatment-response`, `core/dynamical-systems`, `core/prediction-gate`, `core/ui-sim` |
 
 Build these as separate PRs. If several are active at once, merge one, sync the others with `main`, regenerate graph, rerun full checks, then merge the next.
 
-## Next Reserve Wave
+Healthcare simulations must be framed as concept models, not medical advice. Cite
+biology sources carefully, avoid treatment recommendations, and keep
+student-facing copy focused on mechanisms, assumptions, and limits.
 
-These entries are approved for assignment after the current four-track wave has active workers. They are still one-container-per-PR builds and must be claimed by exactly one branch before implementation starts.
+## Completed Reserve Wave
+
+These entries have already landed and remain here as a compact reference for
+agents looking for nearby product-quality examples.
 
 | Track | Queue id | Starting status | Required kernels |
 | --- | --- | --- | --- |
-| Shared probability | `shared.probability.bayes-updating` | `ready-for-build` | `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
-| Shared probability | `shared.probability.central-limit-theorem` | `ready-for-build` | `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
-| Shared math | `shared.linear-algebra.eigenvector-transformations` | `ready-for-build` | `core/sim-runtime`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
-| Shared math | `shared.dynamical-systems.ode-phase-portrait` | `ready-for-build` | `core/sim-runtime`, `core/dynamical-systems`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
-| Shared optimisation | `shared.optimization.gradient-descent-landscape` | `ready-for-build` | `core/optimization`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+| Shared probability | `shared.probability.bayes-updating` | `reviewed` | `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| Shared probability | `shared.probability.central-limit-theorem` | `reviewed` | `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| Shared math | `shared.linear-algebra.eigenvector-transformations` | `reviewed` | `core/sim-runtime`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+| Shared math | `shared.dynamical-systems.ode-phase-portrait` | `reviewed` | `core/sim-runtime`, `core/dynamical-systems`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+| Shared optimisation | `shared.optimization.gradient-descent-landscape` | `reviewed` | `core/optimization`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
 | A-Level Physics | `alevel.physics.circuits` | `reviewed` | `core/sim-runtime`, `core/circuits`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 | A-Level Math | `alevel.math.probability-statistics` | `reviewed` | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 
-## SUTD Next Wave
+## Completed SUTD Wave
 
-These SUTD curriculum-wrapper entries are ready for the SUTD production loop. They are intentionally `sutd.*` entries, not shared-core builds; shared-core work remains in the reserve wave above.
+These SUTD curriculum-wrapper entries have landed and are useful exemplars for
+curriculum-specific containers.
 
 | Track | Queue id | Starting status | Required kernels |
 | --- | --- | --- | --- |
 | Freshmore probability | `sutd.freshmore.bayes-updating` | `reviewed` | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
 | Freshmore linear algebra | `sutd.freshmore.eigenvector-transformations` | `reviewed` | `core/sim-runtime`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
 | EPD control | `sutd.epd.bode-stability-margin` | `reviewed` | `core/sim-runtime`, `core/control-systems`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
-| ESD stochastic optimisation | `sutd.esd.newsvendor-critical-fractile` | `ready-for-build` | `core/sim-runtime`, `core/probability-stats`, `core/optimization`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
-| CSD algorithms | `sutd.csd.dynamic-programming-state-recursion` | `ready-for-build` | `core/sim-runtime`, `core/algorithm-trace`, `core/graph-layout`, `core/prediction-gate`, `core/ui-sim` |
-| ASD environmental systems | `sutd.asd.shading-daylight-heat-gain` | `ready-for-build` | `core/sim-runtime`, `core/linear-algebra`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
-| DAI human-centred AI | `sutd.dai.confusion-matrix-thresholds` | `ready-for-build` | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/annotation`, `core/prediction-gate`, `core/ui-sim` |
-| SMT modelling | `sutd.smt.linear-system-stability` | `ready-for-build` | `core/sim-runtime`, `core/dynamical-systems`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+| ESD stochastic optimisation | `sutd.esd.newsvendor-critical-fractile` | `reviewed` | `core/sim-runtime`, `core/probability-stats`, `core/optimization`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| CSD algorithms | `sutd.csd.dynamic-programming-state-recursion` | `reviewed` | `core/sim-runtime`, `core/algorithm-trace`, `core/graph-layout`, `core/prediction-gate`, `core/ui-sim` |
+| ASD environmental systems | `sutd.asd.shading-daylight-heat-gain` | `reviewed` | `core/sim-runtime`, `core/linear-algebra`, `core/charting`, `core/prediction-gate`, `core/ui-sim` |
+| DAI human-centred AI | `sutd.dai.confusion-matrix-thresholds` | `reviewed` | `core/sim-runtime`, `core/probability-stats`, `core/charting`, `core/annotation`, `core/prediction-gate`, `core/ui-sim` |
+| SMT modelling | `sutd.smt.linear-system-stability` | `reviewed` | `core/sim-runtime`, `core/dynamical-systems`, `core/linear-algebra`, `core/plotting`, `core/prediction-gate`, `core/ui-sim` |
+
+## Next Kernel Reserve Wave
+
+Do not build these kernels unless a concrete queue row needs them. When assigned,
+use the one-kernel-per-PR workflow in `docs/agents/kernel-wave-runbook.md`.
+
+| Domain | Kernel candidates | Trigger |
+| --- | --- | --- |
+| ML | `core/ml-basics`, `core/regression`, `core/classification` | Broader ML model-training or decision-boundary containers |
+| Fairness | `core/fairness-metrics` | DAI fairness containers beyond confusion-threshold visualisation |
+| SQL | `core/sql-lab` or `core/query-engine` | SQL parsing/execution rows |
+| Operations | `core/inventory-models` | Supply-chain and inventory optimisation rows |
+| Chemistry | `core/reaction-kinetics`, `core/equilibrium` | Advanced chemistry rows that exceed existing `core/chemistry` |
+| Physics media | `core/optics`, `core/acoustics` | Optics or acoustics rows that exceed `core/waves` |
+| Architecture | `core/daylight-geometry`, `core/spatial-analysis` | ASD daylight/spatial-analysis rows |

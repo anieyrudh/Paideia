@@ -742,7 +742,7 @@ entries:
   - id: ib.tok.knowledge-framework-explorer
     title: "TOK Knowledge Framework Explorer"
     priority: P0
-    status: planned
+    status: deferred
     cluster: IB core
     discipline: psych
     reuse_status: subject-specific
