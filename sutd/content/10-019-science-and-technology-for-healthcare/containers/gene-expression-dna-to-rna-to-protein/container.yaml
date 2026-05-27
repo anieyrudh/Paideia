@@ -1,0 +1,114 @@
+schema_version: "1.0.0"
+id: gene-expression-dna-to-rna-to-protein
+aliases:
+  - central-dogma-lab
+  - transcription-translation-rates
+branch: sutd
+subject: 10-019-science-and-technology-for-healthcare
+level: "Freshmore"
+module: "Science and Technology for Healthcare"
+title: "Gene Expression: DNA to RNA to Protein"
+one_line_summary: "Trace a short DNA segment through transcription and translation, then watch how a regulator's concentration changes steady-state mRNA and protein levels."
+syllabus_ref: "SUTD 10.019 Science and Technology for Healthcare / Gene expression"
+prerequisites:
+  - sequence-and-codon-table
+  - hill-activation-function
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A gene's promoter is activated by an inducer. As inducer concentration rises from zero to far above the half-max, what happens to the steady-state mRNA and protein levels at fixed translation and degradation rates?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Both rise toward a saturating plateau set by the maximum transcription rate and the per-molecule decay constants."
+      - "Both rise linearly without limit."
+      - "mRNA rises but protein stays at baseline."
+      - "Protein rises immediately while mRNA stays at baseline."
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: lac-operon-style-induction
+    prompt: |
+      A lac-operon-style promoter has a basal transcription rate of 0.01 per second, a maximum of 1 per second, mRNA decay 0.1 per second, translation rate 2 per mRNA per second, and protein decay 0.05 per second. Walk through how an inducer at threshold gives mRNA steady state ~5 micromolar and protein steady state ~200 micromolar.
+    surface_form: "lac-operon-style steady-state calculation"
+    same_concept_check: "Same concept: regulator concentration enters the Hill term, which scales transcription; steady states follow from setting dM/dt and dP/dt to zero."
+    rubric_path: problem-solving/lac-operon-style-induction.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-27"
+      author: "Codex"
+      summary: "Built SUTD 10.019 gene-expression-dna-to-rna-to-protein v2 container with central-dogma sim."
+authors: ["Codex"]
+advisor_signoffs: []
+misconceptions:
+  - name: "Inducer increases protein without delay"
+    description: "Learners may treat protein production as instantaneous, ignoring the mRNA intermediate and its finite decay time."
+    evidence_source: "Alon, An Introduction to Systems Biology; SUTD 10.019 freshmore module."
+    surface_in_predict: true
+  - name: "Hill responses are linear"
+    description: "Learners may approximate the Hill activation as proportional to inducer concentration, missing the saturating plateau."
+    evidence_source: "Hill, J. Physiol. 1910 (origin of the Hill equation)."
+    surface_in_predict: true
+sources:
+  - citation: "SUTD 10.019 Science and Technology for Healthcare module page (public)."
+    url: "https://www.sutd.edu.sg/course/10-019-science-and-technology-for-healthcare"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+  - citation: "Alon, U. An Introduction to Systems Biology: Design Principles of Biological Circuits, 2nd ed., Chapman & Hall/CRC, 2019 (textbook reference, no copyrighted text reproduced)."
+    publication_year: 2019
+    license: "Textbook reference"
+    seab_alignment: n/a
+  - citation: "OpenStax. Biology 2e, Chapter 16 Gene Expression (CC BY 4.0)."
+    url: "https://openstax.org/details/books/biology-2e"
+    publication_year: 2024
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "NCBI standard genetic code (translation table 1). Public-domain biological reference."
+    url: "https://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi?mode=t#SG1"
+    publication_year: 2024
+    license: "Public-domain reference data"
+    seab_alignment: n/a
+language: en

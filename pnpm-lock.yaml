@@ -269,7 +269,7 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
-  core/cell-geometry:
+  core/cell-cycle:
     dependencies:
       '@paideia/shared':
         specifier: workspace:*
@@ -285,7 +285,7 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
-  core/cell-cycle:
+  core/cell-geometry:
     dependencies:
       '@paideia/shared':
         specifier: workspace:*
@@ -1453,6 +1453,9 @@ importers:
       '@paideia/fluid-mechanics':
         specifier: workspace:*
         version: link:../../../core/fluid-mechanics
+      '@paideia/gene-regulatory-network':
+        specifier: workspace:*
+        version: link:../../../core/gene-regulatory-network
       '@paideia/graph-algorithms':
         specifier: workspace:*
         version: link:../../../core/graph-algorithms
@@ -1486,6 +1489,9 @@ importers:
       '@paideia/probability-stats':
         specifier: workspace:*
         version: link:../../../core/probability-stats
+      '@paideia/sequence':
+        specifier: workspace:*
+        version: link:../../../core/sequence
       '@paideia/shared':
         specifier: workspace:*
         version: link:../../../core/shared

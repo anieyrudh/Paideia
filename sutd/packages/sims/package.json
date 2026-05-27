@@ -50,7 +50,8 @@
     "./electrochemistry-and-batteries": "./src/electrochemistry-and-batteries.tsx",
     "./solar-energy-and-band-theory": "./src/solar-energy-and-band-theory.tsx",
     "./water-quality-and-treatment": "./src/water-quality-and-treatment.tsx",
-    "./biodiversity-loss-and-land-use": "./src/biodiversity-loss-and-land-use.tsx"
+    "./biodiversity-loss-and-land-use": "./src/biodiversity-loss-and-land-use.tsx",
+    "./gene-expression-dna-to-rna-to-protein": "./src/gene-expression-dna-to-rna-to-protein.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -74,8 +75,10 @@
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/materials": "workspace:*",
     "@paideia/mechanics": "workspace:*",
+    "@paideia/gene-regulatory-network": "workspace:*",
     "@paideia/molecule": "workspace:*",
     "@paideia/numerical-math": "workspace:*",
+    "@paideia/sequence": "workspace:*",
     "@paideia/optimization": "workspace:*",
     "@paideia/plotting": "workspace:*",
     "@paideia/prediction-gate": "workspace:*",

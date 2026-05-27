@@ -1,0 +1,23 @@
+# Mindmap
+
+- Gene expression: DNA to RNA to protein
+  - Central dogma
+    - Transcription: DNA -> mRNA (T -> U)
+    - Translation: codons -> amino acids
+    - Standard genetic code (NCBI table 1)
+  - Regulation
+    - Hill activation: R = I^n / (K^n + I^n)
+    - Transcription rate: alpha_0 + (alpha_max - alpha_0) R
+    - Translation rate: k_tr per mRNA
+  - Steady states
+    - M* = transcription / k_M
+    - P* = k_tr M* / k_P
+  - Misconceptions
+    - Inducer immediately raises protein
+    - Hill is linear
+    - All cells express equally
+    - One codon -> one amino acid
+  - Transfer
+    - Synthetic-biology toggle switches
+    - Cancer driver mutations
+    - Developmental gene networks
