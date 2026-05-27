@@ -50,7 +50,8 @@
     "./electrochemistry-and-batteries": "./src/electrochemistry-and-batteries.tsx",
     "./solar-energy-and-band-theory": "./src/solar-energy-and-band-theory.tsx",
     "./water-quality-and-treatment": "./src/water-quality-and-treatment.tsx",
-    "./biodiversity-loss-and-land-use": "./src/biodiversity-loss-and-land-use.tsx"
+    "./biodiversity-loss-and-land-use": "./src/biodiversity-loss-and-land-use.tsx",
+    "./protein-folding-and-function": "./src/protein-folding-and-function.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -76,6 +77,7 @@
     "@paideia/mechanics": "workspace:*",
     "@paideia/molecule": "workspace:*",
     "@paideia/numerical-math": "workspace:*",
+    "@paideia/protein-structure": "workspace:*",
     "@paideia/optimization": "workspace:*",
     "@paideia/plotting": "workspace:*",
     "@paideia/prediction-gate": "workspace:*",

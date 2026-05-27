@@ -1,0 +1,47 @@
+schema_version: "1.0.0"
+concept_id: protein-folding-and-function
+prerequisites:
+  - id: amino-acid-properties
+    title: "Amino Acid Properties"
+    relationship: "Per-residue hydropathy, charge, and polarity drive folding energetics."
+    status: planned
+  - id: chemical-bonding-and-intermolecular-forces
+    title: "Chemical Bonding and Intermolecular Forces"
+    relationship: "Backbone hydrogen bonds, side-chain dispersion, and ionic interactions stabilise folds."
+    status: available
+downstream:
+  - id: cell-signalling-pathways
+    title: "Cell Signalling Pathways"
+    relationship: "Receptor and kinase folds shape pathway specificity."
+    status: planned
+  - id: gene-expression-dna-to-rna-to-protein
+    title: "Gene Expression"
+    relationship: "Translation produces the linear sequence the fold derives from."
+    status: planned
+  - id: membrane-protein-topology
+    title: "Membrane Protein Topology"
+    relationship: "Hydropathy windowing flags candidate transmembrane segments."
+    status: planned
+siblings:
+  - id: cell-structure-and-the-membrane
+    title: "Cell Structure and the Membrane"
+    relationship: "Transmembrane proteins live in the same bilayer the membrane container models."
+    status: available
+misconception_graph:
+  nodes:
+    - id: sequence-determines-fold
+      label: "Sequence alone determines fold"
+    - id: hydropathy-equals-structure
+      label: "Hydropathy alone predicts secondary structure"
+    - id: folding-is-instant
+      label: "All proteins fold in seconds"
+    - id: misfolding-is-rare
+      label: "Misfolding is rare"
+  edges:
+    - from: sequence-determines-fold
+      to: folding-is-instant
+      label: "both ignore folding pathway complexity"
+    - from: hydropathy-equals-structure
+      to: sequence-determines-fold
+      label: "both overstate one-to-one prediction"
+mermaid_source: graph.mmd
