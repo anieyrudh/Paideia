@@ -1738,7 +1738,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.cell-structure-and-the-membrane
     title: "Cell Structure and the Membrane"
     priority: P1
-    status: blocked
+    status: ready-for-build
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1753,8 +1753,7 @@ entries:
       prerequisites: [cell anatomy, concentration gradients]
       downstream: [cell signalling]
       misconceptions: [the membrane is only a passive barrier]
-    kernel_dependencies: [core/prediction-gate, core/ui-sim]
-    blocked_on_kernel_dependencies: [core/membrane-transport, core/cell-geometry]
+    kernel_dependencies: [core/membrane-transport, core/cell-geometry, core/prediction-gate, core/ui-sim]
     repo_package_name: sutd-sims
     estimated_effort: H
     repo:
@@ -1767,7 +1766,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.protein-folding-and-function
     title: "Protein Folding and Function"
     priority: P1
-    status: blocked
+    status: ready-for-build
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1782,8 +1781,7 @@ entries:
       prerequisites: [amino acids, bonding]
       downstream: [enzyme function, disease]
       misconceptions: [sequence alone explains every fold without environment]
-    kernel_dependencies: [core/prediction-gate, core/ui-sim]
-    blocked_on_kernel_dependencies: [core/protein-structure]
+    kernel_dependencies: [core/protein-structure, core/prediction-gate, core/ui-sim]
     repo_package_name: sutd-sims
     estimated_effort: H
     repo:
@@ -1796,7 +1794,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.gene-expression-dna-to-rna-to-protein
     title: "Gene Expression, DNA to RNA to Protein"
     priority: P1
-    status: blocked
+    status: ready-for-build
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1811,8 +1809,7 @@ entries:
       prerequisites: [DNA, RNA, proteins]
       downstream: [cell signalling, cancer genetics]
       misconceptions: [one gene always makes one fixed protein amount]
-    kernel_dependencies: [core/prediction-gate, core/ui-sim]
-    blocked_on_kernel_dependencies: [core/gene-regulatory-network, core/sequence]
+    kernel_dependencies: [core/gene-regulatory-network, core/sequence, core/prediction-gate, core/ui-sim]
     repo_package_name: sutd-sims
     estimated_effort: H
     repo:
@@ -1825,7 +1822,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.cell-signalling-pathways
     title: "Cell Signalling Pathways"
     priority: P1
-    status: blocked
+    status: ready-for-build
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1840,8 +1837,7 @@ entries:
       prerequisites: [cell membrane, receptors]
       downstream: [immune response, cancer therapy]
       misconceptions: [signals are simple one-step switches]
-    kernel_dependencies: [core/dynamical-systems, core/prediction-gate, core/ui-sim]
-    blocked_on_kernel_dependencies: [core/signal-pathway]
+    kernel_dependencies: [core/signal-pathway, core/dynamical-systems, core/prediction-gate, core/ui-sim]
     repo_package_name: sutd-sims
     estimated_effort: H
     repo:
@@ -1854,7 +1850,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.cell-cycle-and-mitosis-meiosis
     title: "Cell Cycle and Mitosis Meiosis"
     priority: P1
-    status: blocked
+    status: ready-for-build
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1869,8 +1865,7 @@ entries:
       prerequisites: [DNA replication, chromosomes]
       downstream: [cancer genetics]
       misconceptions: [mitosis and meiosis have the same output]
-    kernel_dependencies: [core/prediction-gate, core/ui-sim]
-    blocked_on_kernel_dependencies: [core/cell-cycle]
+    kernel_dependencies: [core/cell-cycle, core/prediction-gate, core/ui-sim]
     repo_package_name: sutd-sims
     estimated_effort: H
     repo:
@@ -1883,7 +1878,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.immune-system-and-vaccines
     title: "Immune System and Vaccines"
     priority: P1
-    status: blocked
+    status: ready-for-build
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1898,8 +1893,7 @@ entries:
       prerequisites: [cell signalling, proteins]
       downstream: [public health, therapy design]
       misconceptions: [vaccines instantly eliminate infection risk]
-    kernel_dependencies: [core/dynamical-systems, core/prediction-gate, core/ui-sim]
-    blocked_on_kernel_dependencies: [core/immunology]
+    kernel_dependencies: [core/immunology, core/dynamical-systems, core/prediction-gate, core/ui-sim]
     repo_package_name: sutd-sims
     estimated_effort: H
     repo:
@@ -1912,7 +1906,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.cancer-genetics-and-therapy
     title: "Cancer Genetics and Therapy"
     priority: P1
-    status: blocked
+    status: ready-for-build
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1927,8 +1921,7 @@ entries:
       prerequisites: [gene expression, cell cycle]
       downstream: [precision medicine]
       misconceptions: [one mutation alone explains every cancer]
-    kernel_dependencies: [core/dynamical-systems, core/prediction-gate, core/ui-sim]
-    blocked_on_kernel_dependencies: [core/oncogenetics, core/treatment-response]
+    kernel_dependencies: [core/oncogenetics, core/treatment-response, core/dynamical-systems, core/prediction-gate, core/ui-sim]
     repo_package_name: sutd-sims
     estimated_effort: H
     repo:
