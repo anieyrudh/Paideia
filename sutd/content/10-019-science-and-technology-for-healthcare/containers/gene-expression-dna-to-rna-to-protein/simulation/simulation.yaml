@@ -2,11 +2,12 @@ id: gene-expression-dna-to-rna-to-protein
 title: "Central Dogma Lab"
 interaction_type: diagram-builder
 kernel_deps:
+  - core/content-schema
+  - core/shared
   - core/sim-runtime
   - core/gene-regulatory-network
   - core/sequence
   - core/prediction-gate
-  - core/ui-sim
 predict:
   prompt: |
     A gene's promoter is activated by an inducer. As inducer concentration rises from zero to far above the half-max, what happens to the steady-state mRNA and protein levels at fixed translation and degradation rates?
@@ -49,7 +50,7 @@ observe:
         Show the DNA, mRNA, and protein chains; the Hill activation curve with the active operating point; and the steady-state mRNA and protein levels.
 explain:
   prompt: |
-    Explain why doubling inducer concentration does not double protein level once you are above the half-max threshold.
+    If the inducer is already well above the half-max threshold, what would you expect to happen when the inducer is doubled again?
   socratic: true
   expected_misconceptions_surfaced:
     - "Inducer increases protein without delay"

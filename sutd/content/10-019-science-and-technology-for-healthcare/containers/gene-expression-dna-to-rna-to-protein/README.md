@@ -7,7 +7,7 @@
 
 Trace a short DNA segment through transcription and translation, then watch how a regulator's concentration changes steady-state mRNA and protein levels.
 
-Every step in the central dogma is a chemical reaction with a rate and a half-life. Steady-state levels are the balance between supply and decay. The Hill function expresses how a single regulator scales transcription supply.
+Every step in the central dogma is a chemical reaction with a rate and a half-life. The DNA-to-RNA-to-protein chain tells you **what** sequence is made; the expression kinetics tells you **how much** mRNA and protein are present once production and decay balance.
 
 ## What the student does
 
@@ -28,7 +28,7 @@ Every step in the central dogma is a chemical reaction with a rate and a half-li
 - Mindmap: `concept-map/mindmap.md`
 - Problem-solving algorithm: `problem-solving/algorithm.md`
 - Transfer problems:
-  - `problem-solving/lac-operon-style-induction.md` - lac-operon-style steady-state calculation
+  - `problem-solving/biosensor-reporter-saturation.md` - diagnostic biosensor reporter dose-response
 
 ## Citations and provenance
 

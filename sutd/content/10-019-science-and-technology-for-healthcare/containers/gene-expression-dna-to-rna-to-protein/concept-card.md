@@ -16,9 +16,17 @@ status: draft
 
 # Gene Expression: DNA to RNA to Protein
 
-The central dogma says that genetic information flows from DNA to RNA to protein in linear, ordered steps. **Transcription** copies a DNA template into messenger RNA by replacing thymine with uracil. **Translation** reads the mRNA three letters at a time through the standard genetic code and produces a polypeptide.
+The central dogma says that genetic information flows from DNA to RNA to protein in ordered steps. A gene is stored as DNA. During **transcription**, RNA polymerase reads the template strand and builds a complementary messenger RNA. In this container the displayed presets are the **coding strand**, so the mRNA has the same letter order except that thymine `T` is written as uracil `U`. During **translation**, the ribosome reads the mRNA three letters at a time through the standard genetic code and produces a polypeptide.
 
-Layer on top of these two steps a kinetics view. Transcription is gated by a regulator (often an activator or repressor protein) whose effect we describe with a Hill function:
+## First-Principles Explanation
+
+Every step in the central dogma is a chemical reaction with a rate and a half-life. The DNA-to-RNA-to-protein chain tells you **what** sequence is made; the expression kinetics tells you **how much** mRNA and protein are present once production and decay balance.
+
+The reading frame and codon table are universal (with rare exceptions). A point mutation in coding-strand DNA propagates into mRNA unchanged except for the `T -> U` swap; translation reads it in groups of three and may produce a different amino acid or stop. The downstream protein sequence is the central pedagogical artifact.
+
+Regulation adds a control layer. A promoter can be activated by an inducer: low inducer leaves most promoters off, threshold inducer makes the response steep, and high inducer eventually saturates because transcription cannot exceed a maximum rate.
+
+We describe that regulator with a Hill function:
 
 ```latex
 R = \frac{[I]^n}{K^n + [I]^n}
@@ -33,12 +41,6 @@ where `[I]` is the inducer concentration, `K` is the half-max threshold, and `n`
 ```
 
 At steady state, `dM/dt = 0` gives `M^* = transcription / k_M`, and `dP/dt = 0` gives `P^* = k_{tr} M^* / k_P`. Raising the inducer raises `R`, which raises transcription, which raises both steady states — but only up to a saturating plateau set by `alpha_max`.
-
-## First-Principles Explanation
-
-Every step in the central dogma is a chemical reaction with a rate and a half-life. Steady-state levels are the balance between supply and decay. The Hill function expresses how a single regulator scales transcription supply.
-
-The reading frame and codon table are universal (with rare exceptions). A point mutation in DNA propagates through transcription unchanged except for the T→U swap; translation reads it in groups of three and may produce a different amino acid (or a stop). The downstream protein sequence is the central pedagogical artifact.
 
 ## Canonical Example
 

@@ -2018,8 +2018,8 @@ export const containers = [
       "Inducer increases protein without delay",
       "Hill responses are linear",
     ],
-    transferProblem: "A lac-operon-style promoter has a basal transcription rate of 0.01 per second, a maximum of 1 per second, mRNA decay 0.1 per second, translation rate 2 per mRNA per second, and protein decay 0.05 per second. Walk through how an inducer at threshold gives mRNA steady state ~5 micromolar and protein steady state ~200 micromolar.",
-    firstPrinciples: "Every step in the central dogma is a chemical reaction with a rate and a half-life. Steady-state levels are the balance between supply and decay. The Hill function expresses how a single regulator scales transcription supply.",
+    transferProblem: "A fluorescence biosensor uses a reporter gene with basal transcription rate 0.02 per second, maximum transcription rate 0.6 per second, mRNA decay 0.08 per second, translation rate 1.2 per second per micromolar mRNA, protein decay 0.04 per second, Hill coefficient 3, and half-max threshold 2.5 micromolar. Compare inducer doses of 2.5 micromolar and 8 micromolar. Decide whether the higher dose gives a proportional fluorescence increase or mostly nudges a saturated plateau.",
+    firstPrinciples: "Every step in the central dogma is a chemical reaction with a rate and a half-life. The DNA-to-RNA-to-protein chain tells you what sequence is made; the expression kinetics tells you how much mRNA and protein are present once production and decay balance.",
     keyDefinitions: [],
     canonicalExamples: [],
     problemSolvingSteps: [

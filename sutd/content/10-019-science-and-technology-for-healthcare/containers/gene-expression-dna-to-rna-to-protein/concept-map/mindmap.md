@@ -17,6 +17,7 @@
     - Hill is linear
     - All cells express equally
     - One codon -> one amino acid
+    - evidence notes: concept-map/misconceptions.md
   - Transfer
     - Synthetic-biology toggle switches
     - Cancer driver mutations

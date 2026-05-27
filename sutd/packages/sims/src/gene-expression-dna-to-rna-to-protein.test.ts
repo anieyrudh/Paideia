@@ -75,7 +75,7 @@ describe("geneExpressionEvidence", () => {
 
   it("rejects unknown preset", () => {
     const result = geneExpressionEvidence({
-      dnaPresetId: "made-up" as unknown as "methionine-start",
+      dnaPresetId: "made-up",
       inducerConcentration: 1,
       hillCoefficient: 2,
       hillThreshold: 1,

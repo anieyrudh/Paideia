@@ -34,6 +34,9 @@ test.describe("Gene Expression DNA to RNA to Protein", () => {
     await expect(observation).toContainText("M");
     await expect(page.getByLabel("LaTeX formula source")).toContainText("dM");
     await expect(page.getByLabel("Formula legend")).toContainText("transcription");
+    await page.getByRole("button", { name: "Explain the plateau" }).click();
+    await expect(page.getByRole("heading", { name: "Why does the curve flatten?" })).toBeVisible();
+    await expect(page.getByText("Transfer challenge")).toBeVisible();
   });
 
   test("point mutation preset changes the translated protein", async ({ page }) => {

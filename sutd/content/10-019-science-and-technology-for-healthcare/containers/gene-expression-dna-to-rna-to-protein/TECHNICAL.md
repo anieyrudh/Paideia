@@ -17,11 +17,12 @@
 
 | Sim | Module | Symbols / role |
 |---|---|---|
+| gene-expression-dna-to-rna-to-protein | `core/content-schema` | Declared in `simulation/simulation.yaml` |
+| gene-expression-dna-to-rna-to-protein | `core/shared` | Declared in `simulation/simulation.yaml` |
 | gene-expression-dna-to-rna-to-protein | `core/sim-runtime` | Declared in `simulation/simulation.yaml` |
 | gene-expression-dna-to-rna-to-protein | `core/gene-regulatory-network` | Declared in `simulation/simulation.yaml` |
 | gene-expression-dna-to-rna-to-protein | `core/sequence` | Declared in `simulation/simulation.yaml` |
 | gene-expression-dna-to-rna-to-protein | `core/prediction-gate` | Declared in `simulation/simulation.yaml` |
-| gene-expression-dna-to-rna-to-protein | `core/ui-sim` | Declared in `simulation/simulation.yaml` |
 
 ## SimulationSpec (frozen)
 
@@ -32,11 +33,12 @@ id: gene-expression-dna-to-rna-to-protein
 title: Central Dogma Lab
 interaction_type: diagram-builder
 kernel_deps:
+  - core/content-schema
+  - core/shared
   - core/sim-runtime
   - core/gene-regulatory-network
   - core/sequence
   - core/prediction-gate
-  - core/ui-sim
 predict:
   prompt: |
     A gene's promoter is activated by an inducer. As inducer concentration rises from zero to far above the half-max, what happens to the steady-state mRNA and protein levels at fixed translation and degradation rates?
@@ -88,7 +90,7 @@ observe:
         Show the DNA, mRNA, and protein chains; the Hill activation curve with the active operating point; and the steady-state mRNA and protein levels.
 explain:
   prompt: |
-    Explain why doubling inducer concentration does not double protein level once you are above the half-max threshold.
+    If the inducer is already well above the half-max threshold, what would you expect to happen when the inducer is doubled again?
   socratic: true
   expected_misconceptions_surfaced:
     - Inducer increases protein without delay
@@ -123,15 +125,22 @@ pnpm graph:generate
 ## Anieyrudh Filter pass
 
 Date: 2026-05-27
-Filter version: aniegpt v1.0 (builder self-audit; awaiting reviewer pass)
+Filter version: aniegpt v1.0 (builder self-audit plus local sim-architect/pedagogy review)
 
 ### P0 issues
 
-- None observed. Container shape validates (77 containers OK). Prediction gate is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and the React reveal is gated by `SimRuntime` + the `predict` spec. The revealed state renders three coloured codon/residue rows (DNA, mRNA, protein) plus a Hill activation curve with the live operating point — a real visual model. All transcription/translation goes through `core/sequence` (`dna`, `rna`, `transcribe`, `translate`) and all regulator math through `core/gene-regulatory-network` (`applyRegulator`, `transcriptionRate`, `molarConcentration`, `hillCoefficient`, `rateConstant`); no codon table or Hill formula inlined. No clinical claims. No new runtime deps; `pnpm license:check` reports 84 production deps compatible.
+- Resolved: container shape validates (79 containers OK). Prediction gate is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and the React reveal is gated by `SimRuntime` + the `predict` spec. The revealed state renders three coloured codon/residue rows (DNA, mRNA, protein) plus a Hill activation curve with the live operating point — a real visual model.
+- Resolved: all transcription/translation goes through `core/sequence` (`dna`, `transcribe`, `translate`) and all regulator/expression math goes through `core/gene-regulatory-network` (`applyRegulator`, `transcriptionRate`, `stepGeneExpression`, `expressionDerivatives`, branded constructors). The React surface no longer inlines Hill power math or steady-state equations.
+- Resolved: the concept card and algorithm now distinguish template-strand transcription from this container's coding-strand presets, so `T -> U` is scoped correctly.
+- Resolved: transfer moved from a lac-operon clone to a fluorescence biosensor reporter problem with different surface form, parameters, and interpretation.
+- Resolved: misconception evidence lives in `concept-map/misconceptions.md`, the established validator-safe location for a misconception audit artifact.
 
 ### P1 issues
 
-- Formula colours pair `R` (blue) with the Hill curve and `alpha` (orange) with the transcription-rate legend entry. Substitution shows all kinetic parameters and the computed steady states for the current operating point. Manipulation visibly changes the protein chain on the mutation preset and shifts the operating-point marker on the Hill curve; the Playwright manipulation test exercises the point mutation. No P1 outstanding.
+- Resolved: formula colours pair `R` (blue) with the Hill curve and `alpha` (orange) with the transcription-rate legend entry. Substitution shows all kinetic parameters and the computed steady states for the current operating point. Manipulation visibly changes the protein chain on the mutation preset and shifts the operating-point marker on the Hill curve; the Playwright manipulation test exercises the point mutation.
+- Resolved: the Explain stage is explicit and Socratic ("Why does the curve flatten?") before the transfer challenge; the simulation test now clicks through to it.
+- Resolved: package evidence types use branded sequence/rate/concentration outputs instead of public bare numbers where the kernels provide brands.
+- Resolved: no serious or critical axe violations after reveal in the container Playwright test.
 
 ### P2 follow-ups (deferred)
 
@@ -141,7 +150,7 @@ Filter version: aniegpt v1.0 (builder self-audit; awaiting reviewer pass)
 
 ### High-bandwidth questions surfaced
 
-- The kinetic parameters (`alpha_0`, `alpha_max`, `k_tr`, `k_M`, `k_P`) are hard-coded for a single canonical example. Should they be sliders too? Today they are baked in to keep the sim focused on regulator response; the lac-operon transfer problem walks through one explicit parameter choice in `problem-solving/lac-operon-style-induction.md`.
+- The kinetic parameters (`alpha_0`, `alpha_max`, `k_tr`, `k_M`, `k_P`) are hard-coded for a single canonical example. Should they be sliders too? Today they are baked in to keep the sim focused on regulator response; the biosensor transfer problem changes those constants in `problem-solving/biosensor-reporter-saturation.md`.
 - The two DNA presets share the first four codons; learners may not notice the mutation visually. A future tweak could highlight the differing codon.
 
 ## Iteration log

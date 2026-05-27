@@ -63,12 +63,12 @@ concept_map:
   mindmap: concept-map/mindmap.md
   mermaid: concept-map/graph.mmd
 transfer_problems:
-  - id: lac-operon-style-induction
+  - id: biosensor-reporter-saturation
     prompt: |
-      A lac-operon-style promoter has a basal transcription rate of 0.01 per second, a maximum of 1 per second, mRNA decay 0.1 per second, translation rate 2 per mRNA per second, and protein decay 0.05 per second. Walk through how an inducer at threshold gives mRNA steady state ~5 micromolar and protein steady state ~200 micromolar.
-    surface_form: "lac-operon-style steady-state calculation"
-    same_concept_check: "Same concept: regulator concentration enters the Hill term, which scales transcription; steady states follow from setting dM/dt and dP/dt to zero."
-    rubric_path: problem-solving/lac-operon-style-induction.md
+      A fluorescence biosensor uses a reporter gene with basal transcription rate 0.02 per second, maximum transcription rate 0.6 per second, mRNA decay 0.08 per second, translation rate 1.2 per second per micromolar mRNA, protein decay 0.04 per second, Hill coefficient 3, and half-max threshold 2.5 micromolar. Compare inducer doses of 2.5 micromolar and 8 micromolar. Decide whether the higher dose gives a proportional fluorescence increase or mostly nudges a saturated plateau.
+    surface_form: "diagnostic biosensor reporter dose-response"
+    same_concept_check: "Same concept: regulator concentration enters the Hill term, which scales transcription; mRNA and reporter-protein steady states follow from production balancing decay."
+    rubric_path: problem-solving/biosensor-reporter-saturation.md
 assessments: []
 status: draft
 authoring:

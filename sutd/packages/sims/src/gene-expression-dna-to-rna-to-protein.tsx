@@ -1,14 +1,26 @@
 import type { TSimulationSpec } from "@paideia/content-schema";
 import {
   applyRegulator,
+  expressionDerivatives,
   hillCoefficient,
   molarConcentration,
   rateConstant,
-  regulationFactor,
+  stepGeneExpression,
   transcriptionRate,
   type ExpressionParams,
+  type ExpressionState as KineticExpressionState,
+  type MolarConcentration,
+  type RateConstant,
+  type RegulationFactor,
 } from "@paideia/gene-regulatory-network";
-import { dna, transcribe, translate } from "@paideia/sequence";
+import {
+  dna,
+  transcribe,
+  translate,
+  type DnaSequence,
+  type ProteinSequence,
+  type RnaSequence,
+} from "@paideia/sequence";
 import { err, ok, type ConceptPackageId, type KernelResult } from "@paideia/shared";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
 
@@ -21,14 +33,21 @@ type ExpressionState = {
   readonly hillThreshold: number;
 };
 
+type ExpressionInput = {
+  readonly dnaPresetId: unknown;
+  readonly inducerConcentration: unknown;
+  readonly hillCoefficient: unknown;
+  readonly hillThreshold: unknown;
+};
+
 type ExpressionEvidence = {
-  readonly dnaSequence: string;
-  readonly rnaSequence: string;
-  readonly proteinSequence: string;
-  readonly regulationFraction: number;
-  readonly transcriptionRatePerSecond: number;
-  readonly steadyStateMrna: number;
-  readonly steadyStateProtein: number;
+  readonly dnaSequence: DnaSequence;
+  readonly rnaSequence: RnaSequence;
+  readonly proteinSequence: ProteinSequence;
+  readonly regulationFraction: RegulationFactor;
+  readonly transcriptionRatePerSecond: RateConstant;
+  readonly steadyStateMrna: MolarConcentration;
+  readonly steadyStateProtein: MolarConcentration;
 };
 
 export const geneExpressionPackageId =
@@ -39,7 +58,7 @@ const PRESET_DNA: Readonly<Record<DnaPresetId, string>> = Object.freeze({
   "mutation-elf-to-ely": "ATGGAACTGTTCTAT",
 });
 
-// Kinetic parameters (textbook lac-operon-style).
+// Kinetic parameters for the canonical inducible-promoter example.
 const ALPHA_0 = 0.01; // per second, basal transcription
 const ALPHA_MAX = 1; // per second, maximum transcription
 const K_TR = 2; // per second per mRNA, translation rate
@@ -71,11 +90,12 @@ export const geneExpressionSpec: TSimulationSpec = {
   title: "Central Dogma Lab",
   interaction_type: "diagram-builder",
   kernel_deps: [
+    "core/content-schema",
+    "core/shared",
     "core/sim-runtime",
     "core/gene-regulatory-network",
     "core/sequence",
     "core/prediction-gate",
-    "core/ui-sim",
   ],
   predict: {
     prompt:
@@ -136,7 +156,7 @@ export const geneExpressionSpec: TSimulationSpec = {
   },
   explain: {
     prompt:
-      "Explain why doubling inducer concentration does not double protein level once you are above the half-max threshold.",
+      "If the inducer is already well above the half-max threshold, what would you expect to happen when the inducer is doubled again?",
     socratic: true,
     expected_misconceptions_surfaced: [
       "Inducer increases protein without delay",
@@ -167,13 +187,55 @@ const currentState = (state: Partial<ExpressionState>): ExpressionState => ({
   hillThreshold: clamp(state.hillThreshold ?? defaults.hillThreshold, 0.1, 5),
 });
 
+const regulatorFor = (
+  inducerConcentration: number,
+  thresholdValue: number,
+  hillValue: number,
+): KernelResult<RegulationFactor> => {
+  const inducer = molarConcentration(inducerConcentration);
+  if (!inducer.ok) return inducer;
+  const threshold = molarConcentration(thresholdValue);
+  if (!threshold.ok) return threshold;
+  const nCoef = hillCoefficient(hillValue);
+  if (!nCoef.ok) return nCoef;
+  return applyRegulator({
+    kind: "activator",
+    inducer: inducer.value,
+    threshold: threshold.value,
+    hillCoefficient: nCoef.value,
+  });
+};
+
+const settleExpression = (
+  params: ExpressionParams,
+  regulation: RegulationFactor,
+): KernelResult<KineticExpressionState> => {
+  const zero = molarConcentration(0);
+  if (!zero.ok) return zero;
+  let state: KineticExpressionState = {
+    mRna: zero.value,
+    protein: zero.value,
+  };
+  for (let step = 0; step < 4000; step += 1) {
+    const next = stepGeneExpression(state, params, regulation, 0.05);
+    if (!next.ok) return next;
+    state = next.value;
+  }
+  const derivatives = expressionDerivatives(state, params, regulation);
+  if (!derivatives.ok) return derivatives;
+  return ok(state);
+};
+
 export const geneExpressionEvidence = (
-  raw: ExpressionState,
+  raw: ExpressionInput,
 ): KernelResult<ExpressionEvidence> => {
   if (!isPresetId(raw.dnaPresetId)) {
     return err("precondition-violated", `Unknown DNA preset "${String(raw.dnaPresetId)}".`);
   }
   if (
+    typeof raw.inducerConcentration !== "number" ||
+    typeof raw.hillCoefficient !== "number" ||
+    typeof raw.hillThreshold !== "number" ||
     !Number.isFinite(raw.inducerConcentration) ||
     !Number.isFinite(raw.hillCoefficient) ||
     !Number.isFinite(raw.hillThreshold)
@@ -188,40 +250,28 @@ export const geneExpressionEvidence = (
   const proteinSeq = translate(rnaSeq.value);
   if (!proteinSeq.ok) return proteinSeq;
 
-  const inducer = molarConcentration(raw.inducerConcentration);
-  if (!inducer.ok) return inducer;
-  const threshold = molarConcentration(raw.hillThreshold);
-  if (!threshold.ok) return threshold;
-  const nCoef = hillCoefficient(raw.hillCoefficient);
-  if (!nCoef.ok) return nCoef;
-
-  const regulation = applyRegulator({
-    kind: "activator",
-    inducer: inducer.value,
-    threshold: threshold.value,
-    hillCoefficient: nCoef.value,
-  });
+  const regulation = regulatorFor(
+    raw.inducerConcentration,
+    raw.hillThreshold,
+    raw.hillCoefficient,
+  );
   if (!regulation.ok) return regulation;
-  const regulationFraction = regulation.value as unknown as number;
-  const brandedRegulation = regulationFactor(regulationFraction);
-  if (!brandedRegulation.ok) return brandedRegulation;
 
   const params = expressionParams();
   if (!params.ok) return params;
-  const transcription = transcriptionRate(params.value, brandedRegulation.value);
+  const transcription = transcriptionRate(params.value, regulation.value);
   if (!transcription.ok) return transcription;
-  const transcriptionValue = transcription.value as unknown as number;
-  const steadyMrna = transcriptionValue / K_M;
-  const steadyProtein = (K_TR * steadyMrna) / K_P;
+  const steady = settleExpression(params.value, regulation.value);
+  if (!steady.ok) return steady;
 
   return ok({
-    dnaSequence: dnaSeq.value as unknown as string,
-    rnaSequence: rnaSeq.value as unknown as string,
-    proteinSequence: proteinSeq.value as unknown as string,
-    regulationFraction,
-    transcriptionRatePerSecond: transcriptionValue,
-    steadyStateMrna: steadyMrna,
-    steadyStateProtein: steadyProtein,
+    dnaSequence: dnaSeq.value,
+    rnaSequence: rnaSeq.value,
+    proteinSequence: proteinSeq.value,
+    regulationFraction: regulation.value,
+    transcriptionRatePerSecond: transcription.value,
+    steadyStateMrna: steady.value.mRna,
+    steadyStateProtein: steady.value.protein,
   });
 };
 
@@ -386,10 +436,8 @@ const HillCurve = ({
   const points: number[][] = [];
   for (let i = 0; i <= samples; i += 1) {
     const x = (i / samples) * xMax;
-    const r =
-      Math.pow(x, hillCoefficientValue) /
-      (Math.pow(threshold, hillCoefficientValue) + Math.pow(x, hillCoefficientValue));
-    points.push([x, r]);
+    const r = regulatorFor(x, threshold, hillCoefficientValue);
+    points.push([x, r.ok ? r.value : 0]);
   }
   const width = 220;
   const height = 120;
@@ -411,6 +459,8 @@ const HillCurve = ({
       <line x1={padding} x2={padding} y1={yScale(0)} y2={yScale(1)} stroke="#94a3b8" />
       <polyline fill="none" points={polyline} stroke="#2563eb" strokeWidth="3" />
       <circle cx={xScale(inducer)} cy={yScale(fraction)} fill="#dc2626" r="5" />
+      <text x={width / 2} y={height - 4} fill="#475569" fontFamily="Arial, sans-serif" fontSize="10" textAnchor="middle">inducer [I] (uM)</text>
+      <text fill="#475569" fontFamily="Arial, sans-serif" fontSize="10" textAnchor="middle" transform={`translate(9 ${height / 2}) rotate(-90)`}>regulator factor R</text>
       <text x={padding + 8} y={padding + 12} fill="#475569" fontFamily="Arial, sans-serif" fontSize="11">R = {fraction.toFixed(2)}</text>
     </svg>
   );
@@ -425,6 +475,7 @@ const splitIntoCodons = (sequence: string): ReadonlyArray<string> => {
 };
 
 const ObserveStage = () => {
+  const stage = useStage();
   const state = currentState(useSimState<Partial<ExpressionState>>());
   const evidence = geneExpressionEvidence(state);
   if (!evidence.ok) {
@@ -484,6 +535,7 @@ const ObserveStage = () => {
         <p className="formula-note">
           The Hill response is sigmoidal: below K the curve is almost linear, near K it is steepest, and above ~3K it saturates. The protein steady state inherits that shape.
         </p>
+        <button type="button" onClick={() => stage.advance()}>Explain the plateau</button>
       </section>
     </section>
   );
@@ -493,9 +545,18 @@ const ExplainStage = () => {
   const stage = useStage();
   return (
     <section aria-label="Transfer prompt" className="sutd-formula-card">
-      <p className="meta-line">Transfer</p>
-      <h2>Lac-operon-style induction</h2>
-      <p>Walk through how an inducer at threshold gives M* ~ 5 uM and P* ~ 200 uM, and why doubling inducer well above K only modestly raises P*.</p>
+      <p className="meta-line">Explain</p>
+      <h2>Why does the curve flatten?</h2>
+      <p>
+        If the inducer is already well above the half-max threshold, what would you expect to happen when the inducer is doubled again?
+      </p>
+      <p>
+        Use the graph to connect three ideas: regulator occupancy approaches R = 1, transcription cannot exceed alpha_max, and protein level settles where production balances decay.
+      </p>
+      <h3>Transfer challenge</h3>
+      <p>
+        A fluorescence reporter in a diagnostic biosensor uses different rate constants and a different threshold. Decide whether a dose increase changes the reporter strongly or only nudges a saturated plateau.
+      </p>
       <button type="button" onClick={() => stage.reset()}>Try another regulator</button>
     </section>
   );
