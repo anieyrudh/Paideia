@@ -1,0 +1,47 @@
+schema_version: "1.0.0"
+concept_id: cell-cycle-and-mitosis-meiosis
+prerequisites:
+  - id: cell-structure-and-the-membrane
+    title: "Cell Structure and the Membrane"
+    relationship: "The membrane is the physical container being divided."
+    status: available
+  - id: gene-expression-dna-to-rna-to-protein
+    title: "Gene Expression"
+    relationship: "Cyclin and CDK expression drive the phase transitions."
+    status: available
+downstream:
+  - id: cancer-genetics-and-therapy
+    title: "Cancer Genetics and Therapy"
+    relationship: "Loss-of-checkpoint mutations underlie tumour progression."
+    status: planned
+  - id: immune-system-and-vaccines
+    title: "Immune System and Vaccines"
+    relationship: "Clonal expansion of B and T cells uses mitosis."
+    status: planned
+  - id: protein-folding-and-function
+    title: "Protein Folding and Function"
+    relationship: "Checkpoint proteins (e.g. p53) must fold correctly."
+    status: available
+siblings:
+  - id: cell-signalling-pathways
+    title: "Cell Signalling Pathways"
+    relationship: "Mitogenic signalling drives the G1/S decision."
+    status: available
+misconception_graph:
+  nodes:
+    - id: mitosis-halves
+      label: "Mitosis halves chromosome number"
+    - id: clock-based-cycle
+      label: "Checkpoints are time-based"
+    - id: dna-content-equals-ploidy
+      label: "DNA content always equals ploidy"
+    - id: meiosis-on-haploid
+      label: "Meiosis works on haploid cells too"
+  edges:
+    - from: mitosis-halves
+      to: dna-content-equals-ploidy
+      label: "both ignore the DNA-content/ploidy distinction"
+    - from: clock-based-cycle
+      to: mitosis-halves
+      label: "both ignore checkpoint-conditional control"
+mermaid_source: graph.mmd

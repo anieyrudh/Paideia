@@ -26,6 +26,7 @@
     { "path": "../../../core/probability-stats" },
     { "path": "../../../core/shared" },
     { "path": "../../../core/sim-runtime" },
-    { "path": "../../../core/ui-sim" }
+    { "path": "../../../core/ui-sim" },
+    { "path": "../../../core/cell-cycle" }
   ]
 }

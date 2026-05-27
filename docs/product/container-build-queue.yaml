@@ -1850,7 +1850,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.cell-cycle-and-mitosis-meiosis
     title: "Cell Cycle and Mitosis Meiosis"
     priority: P1
-    status: ready-for-build
+    status: in-build
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Cell cycle wheel fallback visual</title>
+  <desc id="desc">Phase wheel with checkpoint markers, parent cell, and daughter outcomes for mitosis vs meiosis.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <text x="40" y="44" fill="#0f172a" font-family="Arial, sans-serif" font-size="26" font-weight="700">Cell cycle, mitosis, meiosis</text>
+  <text x="40" y="70" fill="#475569" font-family="Arial, sans-serif" font-size="15">Checkpoints gate transitions; mitosis preserves ploidy; meiosis halves it.</text>
+  <g transform="translate(180, 220)">
+    <circle cx="0" cy="0" r="80" fill="none" stroke="#cbd5e1" stroke-width="8"/>
+    <path d="M 0 -80 A 80 80 0 0 1 80 0" fill="none" stroke="#2563eb" stroke-width="8"/>
+    <path d="M 80 0 A 80 80 0 0 1 0 80" fill="none" stroke="#059669" stroke-width="8"/>
+    <path d="M 0 80 A 80 80 0 0 1 -80 0" fill="none" stroke="#f59e0b" stroke-width="8"/>
+    <path d="M -80 0 A 80 80 0 0 1 0 -80" fill="none" stroke="#7c3aed" stroke-width="8"/>
+    <text x="40" y="-44" fill="#1e3a8a" font-family="Arial, sans-serif" font-size="14" font-weight="700">G1</text>
+    <text x="40" y="56" fill="#065f46" font-family="Arial, sans-serif" font-size="14" font-weight="700">S</text>
+    <text x="-48" y="56" fill="#b45309" font-family="Arial, sans-serif" font-size="14" font-weight="700">G2</text>
+    <text x="-48" y="-44" fill="#5b21b6" font-family="Arial, sans-serif" font-size="14" font-weight="700">M</text>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="12">
+    <rect x="340" y="120" width="280" height="80" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="356" y="142" fill="#0f172a" font-weight="700">Mitosis</text>
+    <text x="356" y="162" fill="#334155">2 daughters, n preserved, dnaContent 1</text>
+    <text x="356" y="182" fill="#334155">From diploid parent: two diploid daughters</text>
+    <rect x="340" y="220" width="280" height="80" fill="#ffffff" stroke="#cbd5e1"/>
+    <text x="356" y="242" fill="#0f172a" font-weight="700">Meiosis</text>
+    <text x="356" y="262" fill="#334155">4 daughters, ploidy halved (requires even n)</text>
+    <text x="356" y="282" fill="#334155">From diploid parent: four haploid gametes</text>
+  </g>
+</svg>

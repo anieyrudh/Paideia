@@ -1,0 +1,22 @@
+steps:
+  - id: current-phase
+    prompt: "What phase is the cell in?"
+    expected_action: "State the phase plus the ploidy and DNA-content multiplier."
+  - id: checkpoint-conditions
+    prompt: "What are the active checkpoint conditions?"
+    expected_action: "List DNA damage, replication, alignment, nutrients with true/false."
+  - id: relevant-checkpoint
+    prompt: "Which checkpoint gates this transition?"
+    expected_action: "Pick G1/S, G2/M, or Spindle (or the G0 nutrient gate)."
+  - id: evaluate
+    prompt: "Does the checkpoint pass?"
+    expected_action: "Evaluate the checkpoint; if it fails, list the failing conditions and stay in the current phase."
+  - id: advance
+    prompt: "If it passes, what is the next phase and state?"
+    expected_action: "Apply the transition: S -> G2 doubles DNA content; division resets it to 1."
+  - id: divide
+    prompt: "If at M with replicated DNA, mitosis or meiosis?"
+    expected_action: "Choose mitosis (2 daughters, ploidy preserved) or meiosis (4 daughters, ploidy halved); reject meiosis on odd ploidy."
+  - id: interpret
+    prompt: "What do the daughter cells look like?"
+    expected_action: "State each daughter's phase, ploidy, DNA content, and divisions count."

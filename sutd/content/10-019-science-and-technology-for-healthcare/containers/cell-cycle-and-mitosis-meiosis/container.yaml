@@ -1,0 +1,109 @@
+schema_version: "1.0.0"
+id: cell-cycle-and-mitosis-meiosis
+aliases:
+  - cell-cycle-state-machine
+  - phase-and-checkpoint-lab
+branch: sutd
+subject: 10-019-science-and-technology-for-healthcare
+level: "Freshmore"
+module: "Science and Technology for Healthcare"
+title: "Cell Cycle and Mitosis / Meiosis"
+one_line_summary: "Walk a cell through G1, S, G2, M phases under checkpoint conditions, then run mitosis or meiosis and compare daughter ploidy and DNA content."
+syllabus_ref: "SUTD 10.019 Science and Technology for Healthcare / Cell cycle and mitosis/meiosis"
+prerequisites:
+  - cell-structure-and-the-membrane
+  - gene-expression-dna-to-rna-to-protein
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A diploid cell at M phase with replicated DNA divides via mitosis. Before reveal, what are the two daughter cells' ploidy and DNA-content multiplier?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Two diploid (n = 2) G1 daughters, each with DNA content 1 (unreplicated)."
+      - "Two haploid (n = 1) gametes, each with DNA content 1."
+      - "Four haploid gametes, each with DNA content 1."
+      - "Two diploid daughters, each with DNA content 2 (still replicated)."
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: damaged-dna-arrest
+    prompt: |
+      A G1 diploid cell encounters DNA damage. Walk through which checkpoints fail, why the cell does not enter S phase, and how toggling the "DNA damaged" flag changes the cell's trajectory across the wheel.
+    surface_form: "G1/S checkpoint arrest"
+    same_concept_check: "Same concept: checkpoints gate transitions; a failed checkpoint pins the cell in its current phase."
+    rubric_path: problem-solving/damaged-dna-arrest.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-27"
+      author: "Codex"
+      summary: "Built SUTD 10.019 cell-cycle-and-mitosis-meiosis v2 container with phase wheel."
+authors: ["Codex"]
+advisor_signoffs: []
+misconceptions:
+  - name: "Mitosis halves chromosome number"
+    description: "Learners may confuse mitosis (preserves ploidy) with meiosis (halves ploidy)."
+    evidence_source: "OpenStax Biology, Cell Reproduction chapter."
+    surface_in_predict: true
+  - name: "Checkpoints are time-based"
+    description: "Learners may believe phase transitions happen on a clock, not in response to molecular conditions."
+    evidence_source: "Alberts et al., Molecular Biology of the Cell (referenced)."
+    surface_in_predict: true
+sources:
+  - citation: "SUTD 10.019 Science and Technology for Healthcare module page (public)."
+    url: "https://www.sutd.edu.sg/course/10-019-science-and-technology-for-healthcare"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+  - citation: "OpenStax. Biology 2e, Chapter 10 Cell Reproduction (CC BY 4.0)."
+    url: "https://openstax.org/details/books/biology-2e"
+    publication_year: 2024
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "Alberts, B. et al. Molecular Biology of the Cell. 6th ed., Garland Science, 2014. Used as a textbook reference; no copyrighted text reproduced."
+    publication_year: 2014
+    license: "Textbook reference"
+    seab_alignment: n/a
+language: en

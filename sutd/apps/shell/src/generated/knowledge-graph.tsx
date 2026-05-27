@@ -23,27 +23,28 @@ import GeneratedSim19LineIntegralsAndConservativeVectorFieldsLineIntegralsAndCon
 import GeneratedSim20LinearTransformationsLinearTransformations from "@paideia/sutd-sims/linear-transformations";
 import GeneratedSim21OptimisationWithLagrangeMultipliersOptimisationWithLagrangeMultipliers from "@paideia/sutd-sims/optimisation-with-lagrange-multipliers";
 import GeneratedSim22PartialDerivativesAndGradientPartialDerivativesAndGradient from "@paideia/sutd-sims/partial-derivatives-and-gradient";
-import GeneratedSim23LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
-import GeneratedSim24ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
-import GeneratedSim25StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
-import GeneratedSim26DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
-import GeneratedSim27GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim28RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
-import GeneratedSim29ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
-import GeneratedSim30FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
-import GeneratedSim31TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim32BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim33PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim34SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
-import GeneratedSim35LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim36MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
-import GeneratedSim37NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim38BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim39EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim40VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim41FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
-import GeneratedSim42LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim43OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim23CellCycleAndMitosisMeiosisCellCycleAndMitosisMeiosis from "@paideia/sutd-sims/cell-cycle-and-mitosis-meiosis";
+import GeneratedSim24LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
+import GeneratedSim25ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
+import GeneratedSim26StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
+import GeneratedSim27DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
+import GeneratedSim28GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
+import GeneratedSim29RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
+import GeneratedSim30ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
+import GeneratedSim31FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
+import GeneratedSim32TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim33BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim34PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim35SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
+import GeneratedSim36LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim37MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
+import GeneratedSim38NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim39BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim40EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim41VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim42FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
+import GeneratedSim43LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim44OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -305,6 +306,15 @@ export const knowledgeGraph = {
     level: "Undergraduate",
     module: "10.018 Modelling Space and Systems",
     status: "reviewed",
+  },
+  {
+    id: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis",
+    conceptId: "cell-cycle-and-mitosis-meiosis",
+    title: "Cell Cycle and Mitosis / Meiosis",
+    subject: "10-019-science-and-technology-for-healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    status: "draft",
   },
   {
     id: "sutd/asd/load-path-and-daylight-tradeoff",
@@ -594,6 +604,12 @@ export const knowledgeGraph = {
   { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/optimisation-with-lagrange-multipliers", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/engineering-design-optimisation", kind: "downstream" },
   { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/optimisation-with-lagrange-multipliers", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/constrained-economics", kind: "downstream" },
   { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/optimisation-with-lagrange-multipliers", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/partial-derivatives-and-gradient", kind: "sibling" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane", to: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein", to: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", to: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", to: "sutd/10-019-science-and-technology-for-healthcare/immune-system-and-vaccines", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", to: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", to: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways", kind: "sibling" },
   { from: "sutd/asd/force-equilibrium", to: "sutd/asd/load-path-and-daylight-tradeoff", kind: "prerequisite" },
   { from: "sutd/asd/vectors", to: "sutd/asd/load-path-and-daylight-tradeoff", kind: "prerequisite" },
   { from: "sutd/asd/ratio-reasoning", to: "sutd/asd/load-path-and-daylight-tradeoff", kind: "prerequisite" },
@@ -1893,6 +1909,63 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis",
+    branch: "sutd",
+    subject: "10 019 Science And Technology For Healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    title: "Cell Cycle and Mitosis / Meiosis",
+    summary: "Walk a cell through G1, S, G2, M phases under checkpoint conditions, then run mitosis or meiosis and compare daughter ploidy and DNA content.",
+    syllabusRef: "SUTD 10.019 Science and Technology for Healthcare / Cell cycle and mitosis/meiosis",
+    status: "draft",
+    packageId: "cell-cycle-and-mitosis-meiosis",
+    simId: "cell-cycle-and-mitosis-meiosis",
+    predictPrompt: "A diploid cell at M phase with replicated DNA divides via mitosis. Before reveal, what are the two daughter cells' ploidy and DNA-content multiplier?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Mitosis halves chromosome number",
+      "Checkpoints are time-based",
+    ],
+    transferProblem: "A G1 diploid cell encounters DNA damage. Walk through which checkpoints fail, why the cell does not enter S phase, and how toggling the \"DNA damaged\" flag changes the cell's trajectory across the wheel.",
+    firstPrinciples: "The cell cycle is a finite-state machine. Phase advances are conditional on checkpoint inputs; division is the special M-phase exit that produces fresh cells. Tracking ploidy and DNA content separately distinguishes a freshly replicated diploid (n = 2, dnaContent = 2) from a newly born diploid daughter (n = 2, dnaContent = 1) and from a haploid gamete (n = 1, dnaContent = 1). Confusing these three is the most common pedagogical pitfall.",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "What phase is the cell in?",
+      "What are the active checkpoint conditions?",
+      "Which checkpoint gates this transition?",
+      "Does the checkpoint pass?",
+      "If it passes, what is the next phase and state?",
+      "If at M with replicated DNA, mitosis or meiosis?",
+      "What do the daughter cells look like?",
+    ],
+    prerequisites: [
+      "Cell Structure and the Membrane",
+      "Gene Expression",
+    ],
+    downstream: [
+      "Cancer Genetics and Therapy",
+      "Immune System and Vaccines",
+      "Protein Folding and Function",
+    ],
+    siblings: [
+      "Cell Signalling Pathways",
+    ],
+    sims: [
+      {
+        id: "cell-cycle-and-mitosis-meiosis",
+        harnessId: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis/cell-cycle-and-mitosis-meiosis",
+        title: "Cell Cycle Phase Wheel",
+        interactionType: "diagram-builder",
+        component: GeneratedSim23CellCycleAndMitosisMeiosisCellCycleAndMitosisMeiosis,
+      },
+    ],
+  },
+  {
     id: "sutd/asd/load-path-and-daylight-tradeoff",
     branch: "sutd",
     subject: "Asd",
@@ -1954,7 +2027,7 @@ export const containers = [
         harnessId: "sutd/asd/load-path-and-daylight-tradeoff/load-path-and-daylight-tradeoff",
         title: "Load Path and Daylight Tradeoff Explorer",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim23LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
+        component: GeneratedSim24LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
       },
     ],
   },
@@ -2011,7 +2084,7 @@ export const containers = [
         harnessId: "sutd/asd/shading-daylight-heat-gain/shading-daylight-heat-gain",
         title: "Shading, Daylight, and Heat Gain",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim24ShadingDaylightHeatGainShadingDaylightHeatGain,
+        component: GeneratedSim25ShadingDaylightHeatGainShadingDaylightHeatGain,
       },
     ],
   },
@@ -2078,7 +2151,7 @@ export const containers = [
         harnessId: "sutd/asd/structural-load-path-diagram/structural-load-path-diagram",
         title: "Structural Load Path Diagram",
         interactionType: "diagram-builder",
-        component: GeneratedSim25StructuralLoadPathDiagramStructuralLoadPathDiagram,
+        component: GeneratedSim26StructuralLoadPathDiagramStructuralLoadPathDiagram,
       },
     ],
   },
@@ -2124,7 +2197,7 @@ export const containers = [
         harnessId: "sutd/csd/dynamic-programming-state-recursion/dynamic-programming-state-recursion",
         title: "Dynamic Programming State Recursion",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim26DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
+        component: GeneratedSim27DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
       },
     ],
   },
@@ -2174,7 +2247,7 @@ export const containers = [
         harnessId: "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths",
         title: "Graph Search and Shortest Paths",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim27GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
+        component: GeneratedSim28GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
       },
     ],
   },
@@ -2224,7 +2297,7 @@ export const containers = [
         harnessId: "sutd/csd/recursion-tree-complexity/recursion-tree-complexity",
         title: "Recursion Tree Complexity Lab",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim28RecursionTreeComplexityRecursionTreeComplexity,
+        component: GeneratedSim29RecursionTreeComplexityRecursionTreeComplexity,
       },
     ],
   },
@@ -2289,7 +2362,7 @@ export const containers = [
         harnessId: "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds",
         title: "Confusion Matrix Threshold Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim29ConfusionMatrixThresholdsConfusionMatrixThresholds,
+        component: GeneratedSim30ConfusionMatrixThresholdsConfusionMatrixThresholds,
       },
     ],
   },
@@ -2347,7 +2420,7 @@ export const containers = [
         harnessId: "sutd/dai/fairness-threshold-audit/fairness-threshold-audit",
         title: "Fairness Threshold Audit Lab",
         interactionType: "decision-matrix",
-        component: GeneratedSim30FairnessThresholdAuditFairnessThresholdAudit,
+        component: GeneratedSim31FairnessThresholdAuditFairnessThresholdAudit,
       },
     ],
   },
@@ -2400,7 +2473,7 @@ export const containers = [
         harnessId: "sutd/dai/trust-calibration/trust-calibration",
         title: "Trust Calibration Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim31TrustCalibrationTrustCalibration,
+        component: GeneratedSim32TrustCalibrationTrustCalibration,
       },
     ],
   },
@@ -2466,7 +2539,7 @@ export const containers = [
         harnessId: "sutd/epd/bode-stability-margin/bode-stability-margin",
         title: "Bode Margin Reader",
         interactionType: "comparative-matrix",
-        component: GeneratedSim32BodeStabilityMarginBodeStabilityMargin,
+        component: GeneratedSim33BodeStabilityMarginBodeStabilityMargin,
       },
     ],
   },
@@ -2520,7 +2593,7 @@ export const containers = [
         harnessId: "sutd/epd/pid-step-response/pid-step-response",
         title: "PID Step Response Explorer",
         interactionType: "comparative-matrix",
-        component: GeneratedSim33PidStepResponsePidStepResponse,
+        component: GeneratedSim34PidStepResponsePidStepResponse,
       },
     ],
   },
@@ -2578,7 +2651,7 @@ export const containers = [
         harnessId: "sutd/epd/signal-filter-frequency-response/signal-filter-frequency-response",
         title: "RC Filter Frequency Response Lab",
         interactionType: "comparative-matrix",
-        component: GeneratedSim34SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
+        component: GeneratedSim35SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
       },
     ],
   },
@@ -2622,7 +2695,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim35LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim36LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -2684,7 +2757,7 @@ export const containers = [
         harnessId: "sutd/esd/markov-chain-steady-state/markov-chain-steady-state",
         title: "Markov Chain Steady-State Lab",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim36MarkovChainSteadyStateMarkovChainSteadyState,
+        component: GeneratedSim37MarkovChainSteadyStateMarkovChainSteadyState,
       },
     ],
   },
@@ -2750,7 +2823,7 @@ export const containers = [
         harnessId: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
         title: "Newsvendor Critical Fractile Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim37NewsvendorCriticalFractileNewsvendorCriticalFractile,
+        component: GeneratedSim38NewsvendorCriticalFractileNewsvendorCriticalFractile,
       },
     ],
   },
@@ -2813,7 +2886,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim38BayesUpdatingBayesUpdating,
+        component: GeneratedSim39BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -2867,7 +2940,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim39EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim40EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -2919,7 +2992,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim40VectorTransformationsVectorTransformations,
+        component: GeneratedSim41VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -2965,7 +3038,7 @@ export const containers = [
         harnessId: "sutd/smt/fourier-mode-superposition/fourier-mode-superposition",
         title: "Fourier Mode Superposition Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim41FourierModeSuperpositionFourierModeSuperposition,
+        component: GeneratedSim42FourierModeSuperpositionFourierModeSuperposition,
       },
     ],
   },
@@ -3022,7 +3095,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim42LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim43LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -3088,7 +3161,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim43OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim44OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

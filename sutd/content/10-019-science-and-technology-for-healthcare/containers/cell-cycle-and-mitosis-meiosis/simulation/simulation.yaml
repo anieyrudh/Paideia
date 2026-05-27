@@ -1,0 +1,56 @@
+id: cell-cycle-and-mitosis-meiosis
+title: "Cell Cycle Phase Wheel"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/cell-cycle
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    A diploid cell at M phase with replicated DNA divides via mitosis. Before reveal, what are the two daughter cells' ploidy and DNA-content multiplier?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Two diploid (n = 2) G1 daughters, each with DNA content 1 (unreplicated)."
+      - "Two haploid (n = 1) gametes, each with DNA content 1."
+      - "Four haploid gametes, each with DNA content 1."
+      - "Two diploid daughters, each with DNA content 2 (still replicated)."
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: dna-damaged
+      label: "DNA damaged"
+      kind: toggle
+      kernel_binding: state.dnaDamaged
+    - id: replication-complete
+      label: "Replication complete"
+      kind: toggle
+      kernel_binding: state.replicationComplete
+    - id: chromosomes-aligned
+      label: "Chromosomes aligned"
+      kind: toggle
+      kernel_binding: state.chromosomesAligned
+    - id: nutrients-sufficient
+      label: "Nutrients sufficient"
+      kind: toggle
+      kernel_binding: state.nutrientsSufficient
+    - id: division-mode
+      label: "Division mode"
+      kind: selector
+      kernel_binding: state.divisionMode
+observe:
+  renderers:
+    - id: cell-cycle-readout
+      module: "@paideia/sutd-sims/cell-cycle-and-mitosis-meiosis"
+      symbol: CellCycleAndMitosisMeiosis
+      props_binding: |
+        Show the phase wheel with the current phase highlighted, the active checkpoint status, the DNA content and ploidy of the parent cell, and the daughter cells produced after a chosen division.
+explain:
+  prompt: |
+    Explain why mitosis and meiosis produce different daughter-cell ploidy from the same M-phase replicated parent.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Mitosis halves chromosome number"
+    - "Checkpoints are time-based"
