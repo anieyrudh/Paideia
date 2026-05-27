@@ -4,15 +4,11 @@ import {
   hillCoefficient,
   molarConcentration,
   rateConstant,
+  regulationFactor,
   transcriptionRate,
-  type RegulationFactor,
+  type ExpressionParams,
 } from "@paideia/gene-regulatory-network";
-import {
-  dna,
-  rna,
-  transcribe,
-  translate,
-} from "@paideia/sequence";
+import { dna, transcribe, translate } from "@paideia/sequence";
 import { err, ok, type ConceptPackageId, type KernelResult } from "@paideia/shared";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
 
@@ -49,6 +45,26 @@ const ALPHA_MAX = 1; // per second, maximum transcription
 const K_TR = 2; // per second per mRNA, translation rate
 const K_M = 0.1; // per second, mRNA decay
 const K_P = 0.05; // per second, protein decay
+
+const expressionParams = (): KernelResult<ExpressionParams> => {
+  const basalTranscriptionRate = rateConstant(ALPHA_0);
+  if (!basalTranscriptionRate.ok) return basalTranscriptionRate;
+  const maxTranscriptionRate = rateConstant(ALPHA_MAX);
+  if (!maxTranscriptionRate.ok) return maxTranscriptionRate;
+  const translationRatePerMrna = rateConstant(K_TR);
+  if (!translationRatePerMrna.ok) return translationRatePerMrna;
+  const mRnaDegradationRate = rateConstant(K_M);
+  if (!mRnaDegradationRate.ok) return mRnaDegradationRate;
+  const proteinDegradationRate = rateConstant(K_P);
+  if (!proteinDegradationRate.ok) return proteinDegradationRate;
+  return ok({
+    basalTranscriptionRate: basalTranscriptionRate.value,
+    maxTranscriptionRate: maxTranscriptionRate.value,
+    translationRatePerMrna: translationRatePerMrna.value,
+    mRnaDegradationRate: mRnaDegradationRate.value,
+    proteinDegradationRate: proteinDegradationRate.value,
+  });
+};
 
 export const geneExpressionSpec: TSimulationSpec = {
   id: "gene-expression-dna-to-rna-to-protein",
@@ -171,13 +187,8 @@ export const geneExpressionEvidence = (
   if (!rnaSeq.ok) return rnaSeq;
   const proteinSeq = translate(rnaSeq.value);
   if (!proteinSeq.ok) return proteinSeq;
-  // Re-validate the produced rna to keep the brand pipeline tight.
-  const rebrand = rna(rnaSeq.value as unknown as string);
-  if (!rebrand.ok) return rebrand;
 
-  // Use a safe positive inducer concentration even at zero (Hill returns 0 there).
-  const inducerEffective = Math.max(1e-9, raw.inducerConcentration);
-  const inducer = molarConcentration(inducerEffective);
+  const inducer = molarConcentration(raw.inducerConcentration);
   if (!inducer.ok) return inducer;
   const threshold = molarConcentration(raw.hillThreshold);
   if (!threshold.ok) return threshold;
@@ -191,61 +202,13 @@ export const geneExpressionEvidence = (
     hillCoefficient: nCoef.value,
   });
   if (!regulation.ok) return regulation;
-  const regulationFraction =
-    raw.inducerConcentration === 0 ? 0 : (regulation.value as unknown as number);
+  const regulationFraction = regulation.value as unknown as number;
+  const brandedRegulation = regulationFactor(regulationFraction);
+  if (!brandedRegulation.ok) return brandedRegulation;
 
-  const params = {
-    basalTranscriptionRate: rateConstant(ALPHA_0).ok
-      ? (rateConstant(ALPHA_0) as Extract<
-          ReturnType<typeof rateConstant>,
-          { ok: true }
-        >).value
-      : null,
-    maxTranscriptionRate: rateConstant(ALPHA_MAX).ok
-      ? (rateConstant(ALPHA_MAX) as Extract<
-          ReturnType<typeof rateConstant>,
-          { ok: true }
-        >).value
-      : null,
-    translationRatePerMrna: rateConstant(K_TR).ok
-      ? (rateConstant(K_TR) as Extract<
-          ReturnType<typeof rateConstant>,
-          { ok: true }
-        >).value
-      : null,
-    mRnaDegradationRate: rateConstant(K_M).ok
-      ? (rateConstant(K_M) as Extract<
-          ReturnType<typeof rateConstant>,
-          { ok: true }
-        >).value
-      : null,
-    proteinDegradationRate: rateConstant(K_P).ok
-      ? (rateConstant(K_P) as Extract<
-          ReturnType<typeof rateConstant>,
-          { ok: true }
-        >).value
-      : null,
-  };
-  if (
-    params.basalTranscriptionRate === null ||
-    params.maxTranscriptionRate === null ||
-    params.translationRatePerMrna === null ||
-    params.mRnaDegradationRate === null ||
-    params.proteinDegradationRate === null
-  ) {
-    return err("numerical-instability", "Failed to construct rate constants.");
-  }
-
-  const transcription = transcriptionRate(
-    {
-      basalTranscriptionRate: params.basalTranscriptionRate,
-      maxTranscriptionRate: params.maxTranscriptionRate,
-      translationRatePerMrna: params.translationRatePerMrna,
-      mRnaDegradationRate: params.mRnaDegradationRate,
-      proteinDegradationRate: params.proteinDegradationRate,
-    },
-    (raw.inducerConcentration === 0 ? 0 : regulationFraction) as unknown as RegulationFactor,
-  );
+  const params = expressionParams();
+  if (!params.ok) return params;
+  const transcription = transcriptionRate(params.value, brandedRegulation.value);
   if (!transcription.ok) return transcription;
   const transcriptionValue = transcription.value as unknown as number;
   const steadyMrna = transcriptionValue / K_M;

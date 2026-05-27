@@ -1,0 +1,19 @@
+steps:
+  - id: identify-ions
+    prompt: "Which ions are mobile across this membrane?"
+    expected_action: "List the major monovalent species with their per-side concentrations."
+  - id: per-ion-nernst
+    prompt: "What is each ion's Nernst potential at 37 degC?"
+    expected_action: "Compute E_K, E_Na, E_Cl with the Nernst equation."
+  - id: rank-permeability
+    prompt: "Which ion's channel is most open?"
+    expected_action: "Rank P_K, P_Na, P_Cl; identify the dominant permeability."
+  - id: ghk
+    prompt: "What does the GHK equation give?"
+    expected_action: "Plug the permeabilities and concentrations into the GHK formula."
+  - id: geometry
+    prompt: "How fast does the bath equilibrate?"
+    expected_action: "Use the cell's SA:V and a Fick diffusion-time estimate."
+  - id: interpret
+    prompt: "What does this mean for the cell?"
+    expected_action: "Describe whether the cell sits near E_K, near E_Na, or in between, and what would shift it."

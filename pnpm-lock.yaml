@@ -1429,6 +1429,9 @@ importers:
       '@paideia/annotation':
         specifier: workspace:*
         version: link:../../../core/annotation
+      '@paideia/cell-geometry':
+        specifier: workspace:*
+        version: link:../../../core/cell-geometry
       '@paideia/charting':
         specifier: workspace:*
         version: link:../../../core/charting
@@ -1471,6 +1474,9 @@ importers:
       '@paideia/mechanics':
         specifier: workspace:*
         version: link:../../../core/mechanics
+      '@paideia/membrane-transport':
+        specifier: workspace:*
+        version: link:../../../core/membrane-transport
       '@paideia/molecule':
         specifier: workspace:*
         version: link:../../../core/molecule
@@ -1489,6 +1495,9 @@ importers:
       '@paideia/probability-stats':
         specifier: workspace:*
         version: link:../../../core/probability-stats
+      '@paideia/protein-structure':
+        specifier: workspace:*
+        version: link:../../../core/protein-structure
       '@paideia/sequence':
         specifier: workspace:*
         version: link:../../../core/sequence

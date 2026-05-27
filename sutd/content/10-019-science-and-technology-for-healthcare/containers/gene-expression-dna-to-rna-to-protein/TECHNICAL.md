@@ -147,25 +147,3 @@ Filter version: aniegpt v1.0 (builder self-audit; awaiting reviewer pass)
 ## Iteration log
 
 - 2026-05-27: Scaffolded the container under `sutd/content/10-019-science-and-technology-for-healthcare/containers/gene-expression-dna-to-rna-to-protein/`. Built the React simulation in `sutd/packages/sims/src/gene-expression-dna-to-rna-to-protein.tsx`, consuming the merged `@paideia/sequence` (`dna`, `rna`, `transcribe`, `translate`) and `@paideia/gene-regulatory-network` (`applyRegulator`, `transcriptionRate`, etc.) kernels. Added 7 vitest cases (`gene-expression-dna-to-rna-to-protein.test.ts`) and a Playwright simulation test. Wired the sim into `@paideia/sutd-sims`.
-
-## Validation log (2026-05-27)
-
-| Check | Result |
-| --- | --- |
-| `pnpm install` | OK |
-| `pnpm container:validate <path>` | passed (77 containers OK) |
-| `pnpm container:docs <path>` | regenerated README.md and TECHNICAL.md |
-| `pnpm graph:generate` / `pnpm graph:check` | clean (45 SUTD containers) |
-| `pnpm -F @paideia/sutd-sims build` | clean (after the polyline `undefined`-array-element fix described below) |
-| `pnpm -F @paideia/sutd-sims test` | **174/174 passed across 64 test files** (incl. 7 new vitest cases for `geneExpressionEvidence`) |
-| `pnpm typecheck` | clean across all workspaces |
-| `pnpm lint` | clean across all workspaces |
-| `pnpm boundary` | 1494 modules, 2568 deps, no violations |
-| `pnpm license:check` | All 84 production deps compatible |
-| `pnpm roadmap:validate` | 84 queue entries OK; this container's status moved `ready-for-build` → `in-build` |
-| `pnpm agent:validate` | OK |
-
-## Environment notes
-
-- First `tsc -b` flagged `Argument of type 'number | undefined'` on a destructured `points.map(([x, y]) => ...)` because `noUncheckedIndexedAccess` is enabled at the project root. Fixed with `?? 0` fallbacks inside the map callback. Worth flagging to future agents that tuple destructuring from `number[][]` triggers this even when the tuple is constructed locally.
-- Workspace-wide `pnpm test` (Playwright) remains environment-blocked on Chromium not being provisioned in the sandbox; the per-package vitest surface is green.
