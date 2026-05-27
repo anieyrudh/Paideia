@@ -1,0 +1,16 @@
+state_labels:
+  dnaDamaged:
+    label: "DNA damaged"
+    meaning: "Boolean flag for the damage sensor; if true, G1/S and G2/M fail."
+  replicationComplete:
+    label: "Replication complete"
+    meaning: "Boolean flag; false keeps the cell in S phase and fails G2/M."
+  chromosomesAligned:
+    label: "Chromosomes aligned"
+    meaning: "Boolean flag for the spindle assembly checkpoint; false blocks M progression."
+  nutrientsSufficient:
+    label: "Nutrients sufficient"
+    meaning: "Boolean flag; required for G1/S and to leave G0."
+  divisionMode:
+    label: "Division mode"
+    meaning: "Which division to run when the cell reaches M: mitosis or meiosis."

@@ -1,0 +1,33 @@
+presets:
+  - id: happy-cycle
+    label: "Happy cycle (advance freely)"
+    state:
+      dnaDamaged: false
+      replicationComplete: true
+      chromosomesAligned: true
+      nutrientsSufficient: true
+      divisionMode: mitosis
+  - id: damaged-arrest
+    label: "DNA damaged (G1/S arrest)"
+    state:
+      dnaDamaged: true
+      replicationComplete: true
+      chromosomesAligned: true
+      nutrientsSufficient: true
+      divisionMode: mitosis
+  - id: nutrient-starved
+    label: "Nutrient-starved (G0 hold)"
+    state:
+      dnaDamaged: false
+      replicationComplete: true
+      chromosomesAligned: true
+      nutrientsSufficient: false
+      divisionMode: mitosis
+  - id: meiosis-default
+    label: "Meiosis from diploid"
+    state:
+      dnaDamaged: false
+      replicationComplete: true
+      chromosomesAligned: true
+      nutrientsSufficient: true
+      divisionMode: meiosis

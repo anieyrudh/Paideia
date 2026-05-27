@@ -1429,6 +1429,9 @@ importers:
       '@paideia/annotation':
         specifier: workspace:*
         version: link:../../../core/annotation
+      '@paideia/cell-cycle':
+        specifier: workspace:*
+        version: link:../../../core/cell-cycle
       '@paideia/cell-geometry':
         specifier: workspace:*
         version: link:../../../core/cell-geometry

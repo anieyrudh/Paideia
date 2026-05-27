@@ -1,0 +1,26 @@
+# Mindmap
+
+- Cell cycle and mitosis/meiosis
+  - Phases
+    - G0 (quiescent)
+    - G1 (growth)
+    - S (DNA synthesis)
+    - G2 (further growth)
+    - M (mitosis or meiosis)
+  - Checkpoints
+    - G1/S: no DNA damage, sufficient nutrients
+    - G2/M: replication complete, no damage
+    - Spindle: chromosomes aligned
+  - Division outcomes
+    - Mitosis: 2 daughters, ploidy preserved, DNA content 1
+    - Meiosis: 4 daughters, ploidy halved, DNA content 1
+    - Meiosis requires even-ploidy parent
+  - Misconceptions
+    - Mitosis halves chromosomes
+    - Cycle is time-based
+    - DNA content = ploidy
+    - Meiosis works on haploid cells
+  - Transfer
+    - Cancer p53 checkpoint loss
+    - Gametogenesis
+    - Stem-cell cycle control

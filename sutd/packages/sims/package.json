@@ -54,7 +54,8 @@
     "./cell-structure-and-the-membrane": "./src/cell-structure-and-the-membrane.tsx",
     "./protein-folding-and-function": "./src/protein-folding-and-function.tsx",
     "./gene-expression-dna-to-rna-to-protein": "./src/gene-expression-dna-to-rna-to-protein.tsx",
-    "./cell-signalling-pathways": "./src/cell-signalling-pathways.tsx"
+    "./cell-signalling-pathways": "./src/cell-signalling-pathways.tsx",
+    "./cell-cycle-and-mitosis-meiosis": "./src/cell-cycle-and-mitosis-meiosis.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -78,6 +79,7 @@
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/materials": "workspace:*",
     "@paideia/mechanics": "workspace:*",
+    "@paideia/cell-cycle": "workspace:*",
     "@paideia/cell-geometry": "workspace:*",
     "@paideia/gene-regulatory-network": "workspace:*",
     "@paideia/membrane-transport": "workspace:*",
