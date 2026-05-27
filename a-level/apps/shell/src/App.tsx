@@ -427,6 +427,7 @@ export const App = () => {
           </span>
         </a>
         <div className="topbar-actions">
+          <a href="../">All curricula</a>
           <a href={`#${encodeURIComponent(active.id)}`} onClick={scrollWithinActiveContainer("lab")}>
             Start lab
           </a>
