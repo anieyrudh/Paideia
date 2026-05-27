@@ -1122,7 +1122,7 @@ entries:
   - id: sutd.10-016-science-for-a-sustainable-world.chemical-bonding-and-intermolecular-forces
     title: "Chemical Bonding and Intermolecular Forces"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.016 Science for a Sustainable World
     discipline: chemistry-sustainability
     reuse_status: subject-specific
@@ -1150,7 +1150,7 @@ entries:
   - id: sutd.10-016-science-for-a-sustainable-world.thermochemistry-and-equilibrium
     title: "Thermochemistry and Equilibrium"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.016 Science for a Sustainable World
     discipline: chemistry-sustainability
     reuse_status: subject-specific
@@ -1178,7 +1178,7 @@ entries:
   - id: sutd.10-016-science-for-a-sustainable-world.polymers-and-plastic-waste-management
     title: "Polymers and Plastic Waste Management"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.016 Science for a Sustainable World
     discipline: chemistry-sustainability
     reuse_status: subject-specific
@@ -1206,7 +1206,7 @@ entries:
   - id: sutd.10-016-science-for-a-sustainable-world.electrochemistry-and-batteries
     title: "Electrochemistry and Batteries"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.016 Science for a Sustainable World
     discipline: chemistry-sustainability
     reuse_status: subject-specific
@@ -1234,7 +1234,7 @@ entries:
   - id: sutd.10-016-science-for-a-sustainable-world.solar-energy-and-band-theory
     title: "Solar Energy and Band Theory"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.016 Science for a Sustainable World
     discipline: chemistry-sustainability
     reuse_status: subject-specific
@@ -1262,7 +1262,7 @@ entries:
   - id: sutd.10-016-science-for-a-sustainable-world.water-quality-and-treatment
     title: "Water Quality and Treatment"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.016 Science for a Sustainable World
     discipline: chemistry-sustainability
     reuse_status: subject-specific
@@ -1290,7 +1290,7 @@ entries:
   - id: sutd.10-016-science-for-a-sustainable-world.biodiversity-loss-and-land-use
     title: "Biodiversity Loss and Land Use"
     priority: P1
-    status: ready-for-build
+    status: reviewed
     cluster: SUTD 10.016 Science for a Sustainable World
     discipline: sustainability-systems
     reuse_status: subject-specific
@@ -1346,7 +1346,7 @@ entries:
   - id: sutd.10-017-technological-world-e-and-m.gauss-law-for-symmetric-distributions
     title: "Gauss Law for Symmetric Distributions"
     priority: P1
-    status: in-build
+    status: reviewed
     cluster: SUTD 10.017 Technological World, E and M
     discipline: electromagnetism
     reuse_status: subject-specific
