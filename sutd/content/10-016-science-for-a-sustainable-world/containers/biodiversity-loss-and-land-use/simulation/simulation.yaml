@@ -1,0 +1,56 @@
+id: biodiversity-loss-and-land-use
+title: "Habitat Loss Feedback Lab"
+interaction_type: systems-flow-diagram
+kernel_deps:
+  - core/sim-runtime
+  - core/prediction-gate
+  - core/dynamical-systems
+  - core/charting
+  - core/ui-sim
+predict:
+  prompt: "A land-use plan converts a small extra fraction of habitat every year. What is the main biodiversity risk?"
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Small annual land-use changes can compound into large habitat and species losses"
+      - "Small land-use changes can only cause small biodiversity changes"
+      - "Restoration is unnecessary if some habitat remains"
+      - "Species sensitivity does not change land-use impact"
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: habitat-percent
+      label: "Starting intact habitat"
+      kind: slider
+      kernel_binding: state.habitatPercent
+      bounds: { min: 20, max: 100, step: 5 }
+    - id: conversion-percent-per-year
+      label: "Land-use conversion"
+      kind: slider
+      kernel_binding: state.conversionPercentPerYear
+      bounds: { min: 0, max: 6, step: 0.25 }
+    - id: restoration-percent-per-year
+      label: "Restoration"
+      kind: slider
+      kernel_binding: state.restorationPercentPerYear
+      bounds: { min: 0, max: 4, step: 0.25 }
+    - id: sensitivity
+      label: "Species sensitivity"
+      kind: slider
+      kernel_binding: state.sensitivity
+      bounds: { min: 0.6, max: 2.2, step: 0.1 }
+observe:
+  renderers:
+    - id: biodiversity-readout
+      module: "@paideia/sutd-sims/biodiversity-loss-and-land-use"
+      symbol: BiodiversityLossAndLandUse
+      props_binding: |
+        Show coupled habitat and biodiversity trajectories, species-area formula evidence, and tipping-risk readout.
+explain:
+  prompt: |
+    Explain why repeated small land-use changes can produce nonlinear biodiversity loss through habitat area and species sensitivity.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Small land-use changes have only small effects"
+    - "Restoration rate can be judged without comparing it to conversion rate"

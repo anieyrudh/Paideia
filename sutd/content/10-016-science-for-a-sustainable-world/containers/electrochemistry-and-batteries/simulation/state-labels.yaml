@@ -1,0 +1,8 @@
+state_labels:
+  standardPotentialVolts: "Standard potential"
+  reactionQuotient: "Reaction quotient"
+  electronCount: "Electrons transferred"
+readouts:
+  cellPotentialVolts: "Cell voltage"
+  voltageDropVolts: "Voltage drop"
+  spontaneity: "Battery state"
