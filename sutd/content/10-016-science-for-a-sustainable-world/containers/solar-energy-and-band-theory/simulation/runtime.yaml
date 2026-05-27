@@ -1,0 +1,6 @@
+runtime:
+  route: "/?sim=sutd/10-016-science-for-a-sustainable-world/solar-energy-and-band-theory/solar-energy-and-band-theory"
+  package: "@paideia/sutd-sims"
+  export: SolarEnergyAndBandTheory
+  requires_prediction_commit: true
+  visual_model: svg-band-diagram

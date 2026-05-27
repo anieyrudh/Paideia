@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Gauss law fallback visual</title>
+  <desc id="desc">Three matched Gaussian surfaces for spherical, cylindrical, and planar charge symmetry.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <g transform="translate(48 56)">
+    <circle cx="88" cy="104" r="62" fill="none" stroke="#2563eb" stroke-width="5" stroke-dasharray="9 8"/>
+    <circle cx="88" cy="104" r="15" fill="#dc2626"/>
+    <text x="88" y="204" fill="#0f172a" font-family="sans-serif" font-size="18" font-weight="700" text-anchor="middle">sphere</text>
+  </g>
+  <g transform="translate(238 54)">
+    <ellipse cx="46" cy="106" rx="24" ry="66" fill="none" stroke="#2563eb" stroke-width="4"/>
+    <ellipse cx="154" cy="106" rx="24" ry="66" fill="none" stroke="#2563eb" stroke-width="4"/>
+    <path d="M46 40 C82 18 118 18 154 40 M46 172 C82 194 118 194 154 172" fill="none" stroke="#2563eb" stroke-width="5" stroke-dasharray="9 8"/>
+    <line x1="100" y1="40" x2="100" y2="172" stroke="#dc2626" stroke-linecap="round" stroke-width="8"/>
+    <text x="100" y="206" fill="#0f172a" font-family="sans-serif" font-size="18" font-weight="700" text-anchor="middle">cylinder</text>
+  </g>
+  <g transform="translate(464 56)">
+    <rect x="34" y="62" width="100" height="88" fill="none" stroke="#2563eb" stroke-width="5" stroke-dasharray="9 8"/>
+    <line x1="84" y1="28" x2="84" y2="184" stroke="#dc2626" stroke-linecap="round" stroke-width="8"/>
+    <text x="84" y="204" fill="#0f172a" font-family="sans-serif" font-size="18" font-weight="700" text-anchor="middle">pillbox</text>
+  </g>
+  <text x="48" y="310" fill="#0f172a" font-family="sans-serif" font-size="24" font-weight="700">Choose the surface that matches the symmetry.</text>
+</svg>

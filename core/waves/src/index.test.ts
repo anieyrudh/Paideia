@@ -5,6 +5,7 @@ import {
   beatsAt,
   interferenceIntensity,
   phaseDifference,
+  photonEnergy,
   standingWaveAt,
   superposeAt,
   transverseWaveAt,
@@ -83,6 +84,17 @@ describe("@paideia/waves kinematics", () => {
         },
       ),
     );
+  });
+
+  it("computes photon energy from wavelength", () => {
+    const energy = expectOk(photonEnergy({ wavelengthMetres: metres(500e-9) }));
+
+    expect(energy.frequencyHertz).toBeCloseTo(5.99584916e14, 6);
+    expect(energy.energyElectronVolts).toBeCloseTo(2.48, 2);
+  });
+
+  it("rejects invalid photon wavelengths", () => {
+    expectErrCode(photonEnergy({ wavelengthMetres: metres(0) }), "precondition-violated");
   });
 });
 

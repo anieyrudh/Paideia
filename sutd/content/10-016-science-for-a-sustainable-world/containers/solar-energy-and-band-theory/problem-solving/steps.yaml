@@ -1,0 +1,21 @@
+steps:
+  - id: extract
+    label: "Extract wavelength and band gap"
+    checks:
+      - "Wavelength is in metres or nanometres."
+      - "Band gap is in electron volts."
+  - id: compute-photon-energy
+    label: "Compute photon energy"
+    formula: "E_photon = hc/lambda"
+    checks:
+      - "Shorter wavelength gives larger energy."
+  - id: compare-gap
+    label: "Compare with the band gap"
+    formula: "E_photon >= E_g"
+    checks:
+      - "Below-gap photons are not productively absorbed."
+  - id: interpret-losses
+    label: "Interpret useful energy and thermalisation"
+    formula: "E_excess = E_photon - E_g"
+    checks:
+      - "Only above-gap excess is counted as heat loss in the simple model."

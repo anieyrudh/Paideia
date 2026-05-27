@@ -15,6 +15,7 @@
     { "path": "./core/corpus" },
     { "path": "./core/sequence" },
     { "path": "./core/cell-geometry" },
+    { "path": "./core/membrane-transport" },
     { "path": "./core/molecule" },
     { "path": "./core/probability-stats" },
     { "path": "./core/uncertainty-propagation" },

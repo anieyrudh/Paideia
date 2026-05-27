@@ -1,0 +1,15 @@
+steps:
+  - id: clarify
+    label: "Compute finished turbidity"
+    formula: "C_out = C_in(1-r)"
+  - id: disinfect
+    label: "Compute CT exposure"
+    formula: "CT = C_chlorine t"
+  - id: check-ph
+    label: "Check pH band"
+    formula: "6.5 <= pH <= 8.5"
+  - id: combine
+    label: "Combine evidence"
+    checks:
+      - "Do not use visual clarity as the only release criterion."
+      - "Treat failed CT or pH evidence as a blocker."

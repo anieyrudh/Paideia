@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
+  <title id="title">Polymer ranking and recovery pathway thumbnail</title>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <rect x="72" y="72" width="170" height="210" rx="24" fill="#2563eb" opacity="0.88"/>
+  <rect x="102" y="112" width="110" height="34" rx="10" fill="#dbeafe"/>
+  <path d="M392 92h96l34 58-34 58h-96l-34-58z" fill="#0f766e" opacity="0.9"/>
+  <path d="M430 235c52 0 94-22 94-50h42c0 53-61 92-136 92z" fill="#d97706"/>
+  <text x="72" y="328" fill="#0f172a" font-family="Arial, sans-serif" font-size="28" font-weight="700">Polymer choice + waste route</text>
+</svg>

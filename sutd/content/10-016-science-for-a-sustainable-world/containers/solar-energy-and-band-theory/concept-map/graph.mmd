@@ -1,0 +1,10 @@
+flowchart TD
+  wavelength["Wavelength lambda"] -->|E = hc/lambda| photon["Photon energy"]
+  bandgap["Band gap E_g"] --> threshold["Absorption threshold"]
+  photon --> threshold
+  threshold -->|met| pair["Electron-hole pair"]
+  threshold -->|not met| pass["Below-gap photon"]
+  photon --> excess["Excess above E_g"]
+  excess --> heat["Thermalisation loss"]
+  bandgap --> material["Solar material selection"]
+  heat --> material
