@@ -1346,7 +1346,7 @@ entries:
   - id: sutd.10-017-technological-world-e-and-m.gauss-law-for-symmetric-distributions
     title: "Gauss Law for Symmetric Distributions"
     priority: P1
-    status: ready-for-build
+    status: in-build
     cluster: SUTD 10.017 Technological World, E and M
     discipline: electromagnetism
     reuse_status: subject-specific

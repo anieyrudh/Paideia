@@ -44,7 +44,8 @@
     "./coulomb-s-law-and-discrete-charge-fields": "./src/coulomb-s-law-and-discrete-charge-fields.tsx",
     "./capacitor-with-dielectric": "./src/capacitor-with-dielectric.tsx",
     "./chemical-bonding-and-intermolecular-forces": "./src/chemical-bonding-and-intermolecular-forces.tsx",
-    "./thermochemistry-and-equilibrium": "./src/thermochemistry-and-equilibrium.tsx"
+    "./thermochemistry-and-equilibrium": "./src/thermochemistry-and-equilibrium.tsx",
+    "./gauss-law-for-symmetric-distributions": "./src/gauss-law-for-symmetric-distributions.tsx"
   },
   "scripts": {
     "build": "tsc -b",
