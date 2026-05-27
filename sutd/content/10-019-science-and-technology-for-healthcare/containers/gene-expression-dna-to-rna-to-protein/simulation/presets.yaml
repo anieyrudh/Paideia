@@ -1,0 +1,29 @@
+presets:
+  - id: methionine-start
+    label: "Methionine start (M E L F *)"
+    state:
+      dnaPresetId: methionine-start
+      inducerConcentration: 1
+      hillCoefficient: 2
+      hillThreshold: 1
+  - id: mutation-elf-to-ely
+    label: "Point mutation (M E L F -> M E L F Y)"
+    state:
+      dnaPresetId: mutation-elf-to-ely
+      inducerConcentration: 1
+      hillCoefficient: 2
+      hillThreshold: 1
+  - id: hi-cooperativity
+    label: "Cooperative regulator (n = 4)"
+    state:
+      dnaPresetId: methionine-start
+      inducerConcentration: 1
+      hillCoefficient: 4
+      hillThreshold: 1
+  - id: low-inducer
+    label: "Below threshold (I = 0.2)"
+    state:
+      dnaPresetId: methionine-start
+      inducerConcentration: 0.2
+      hillCoefficient: 2
+      hillThreshold: 1

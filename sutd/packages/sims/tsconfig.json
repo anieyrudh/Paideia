@@ -29,6 +29,8 @@
     { "path": "../../../core/ui-sim" },
     { "path": "../../../core/membrane-transport" },
     { "path": "../../../core/cell-geometry" },
-    { "path": "../../../core/protein-structure" }
+    { "path": "../../../core/protein-structure" },
+    { "path": "../../../core/gene-regulatory-network" },
+    { "path": "../../../core/sequence" }
   ]
 }

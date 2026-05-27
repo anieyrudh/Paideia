@@ -39,3 +39,4 @@ export { default as WaterQualityAndTreatment } from "./water-quality-and-treatme
 export { default as BiodiversityLossAndLandUse } from "./biodiversity-loss-and-land-use.js";
 export { default as CellStructureAndTheMembrane, membraneEvidence } from "./cell-structure-and-the-membrane.js";
 export { default as ProteinFoldingAndFunction, foldingEvidence } from "./protein-folding-and-function.js";
+export { default as GeneExpressionDnaToRnaToProtein, geneExpressionEvidence } from "./gene-expression-dna-to-rna-to-protein.js";
