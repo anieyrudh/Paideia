@@ -1,0 +1,57 @@
+id: immune-system-and-vaccines
+title: "Herd Immunity Lab"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/immunology
+  - core/dynamical-systems
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    A pathogen has basic reproduction number R0 = 4. Vaccinating 60 percent of the population gives them perfect immunity. Before reveal, what is the effective reproduction number Re and does the outbreak grow or shrink?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Re = 1.6, outbreak still grows because Re > 1 and the herd-immunity threshold is 75 percent."
+      - "Re = 4, vaccination does nothing for the rest of the population."
+      - "Re = 0, outbreak halts immediately because some fraction is vaccinated."
+      - "Re = 0.4, outbreak shrinks because vaccination always halves R0."
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: r-zero
+      label: "Basic reproduction number R0"
+      kind: slider
+      kernel_binding: state.r0
+      bounds: { min: 1.1, max: 18, step: 0.1 }
+    - id: vaccination-coverage
+      label: "Vaccination coverage"
+      kind: slider
+      kernel_binding: state.coverage
+      bounds: { min: 0, max: 1, step: 0.01 }
+    - id: waning-rate
+      label: "Waning rate (per day)"
+      kind: slider
+      kernel_binding: state.waningRate
+      bounds: { min: 0, max: 0.05, step: 0.001 }
+    - id: days-since-vaccination
+      label: "Days since vaccination"
+      kind: slider
+      kernel_binding: state.daysSinceVaccination
+      bounds: { min: 0, max: 400, step: 5 }
+observe:
+  renderers:
+    - id: immunity-readout
+      module: "@paideia/sutd-sims/immune-system-and-vaccines"
+      symbol: ImmuneSystemAndVaccines
+      props_binding: |
+        Show the herd-immunity threshold p* compared with the effective vaccinated fraction; the effective reproduction number Re; the waning curve over time; and the verdict (containment vs growth).
+explain:
+  prompt: |
+    Explain why crossing the herd-immunity threshold makes the outbreak shrink, and why waning reverses that without revaccination.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Any vaccination coverage stops an outbreak"
+    - "Herd immunity protects unvaccinated forever"

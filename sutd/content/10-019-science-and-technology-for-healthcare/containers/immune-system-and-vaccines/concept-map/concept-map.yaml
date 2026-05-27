@@ -1,0 +1,47 @@
+schema_version: "1.0.0"
+concept_id: immune-system-and-vaccines
+prerequisites:
+  - id: hill-activation-function
+    title: "Hill Activation Function"
+    relationship: "Booster response uses a Hill shape in dose."
+    status: available
+  - id: probability-fractions
+    title: "Probability Fractions"
+    relationship: "Vaccination coverage and herd-immunity threshold are population fractions."
+    status: available
+downstream:
+  - id: cell-signalling-pathways
+    title: "Cell Signalling Pathways"
+    relationship: "Immune signalling triggers adaptive responses."
+    status: available
+  - id: cancer-genetics-and-therapy
+    title: "Cancer Genetics and Therapy"
+    relationship: "Immunotherapy uses antibodies and immune checkpoints."
+    status: planned
+  - id: sir-models
+    title: "SIR Compartmental Models"
+    relationship: "Re drops out of the SIR system at steady-state vaccination."
+    status: planned
+siblings:
+  - id: cell-cycle-and-mitosis-meiosis
+    title: "Cell Cycle and Mitosis/Meiosis"
+    relationship: "B and T cell clonal expansion uses mitosis."
+    status: available
+misconception_graph:
+  nodes:
+    - id: partial-coverage-enough
+      label: "Any vaccination coverage stops an outbreak"
+    - id: binary-specificity
+      label: "Antigen-antibody specificity is binary"
+    - id: immunity-permanent
+      label: "Vaccinated immunity never wanes"
+    - id: forever-protection
+      label: "Herd immunity protects unvaccinated forever"
+  edges:
+    - from: partial-coverage-enough
+      to: forever-protection
+      label: "both ignore the threshold"
+    - from: binary-specificity
+      to: immunity-permanent
+      label: "both ignore time-varying weakening"
+mermaid_source: graph.mmd

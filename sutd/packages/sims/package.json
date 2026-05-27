@@ -50,7 +50,8 @@
     "./electrochemistry-and-batteries": "./src/electrochemistry-and-batteries.tsx",
     "./solar-energy-and-band-theory": "./src/solar-energy-and-band-theory.tsx",
     "./water-quality-and-treatment": "./src/water-quality-and-treatment.tsx",
-    "./biodiversity-loss-and-land-use": "./src/biodiversity-loss-and-land-use.tsx"
+    "./biodiversity-loss-and-land-use": "./src/biodiversity-loss-and-land-use.tsx",
+    "./immune-system-and-vaccines": "./src/immune-system-and-vaccines.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -74,6 +75,7 @@
     "@paideia/linear-algebra": "workspace:*",
     "@paideia/materials": "workspace:*",
     "@paideia/mechanics": "workspace:*",
+    "@paideia/immunology": "workspace:*",
     "@paideia/molecule": "workspace:*",
     "@paideia/numerical-math": "workspace:*",
     "@paideia/optimization": "workspace:*",

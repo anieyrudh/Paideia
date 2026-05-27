@@ -1,0 +1,13 @@
+state_labels:
+  r0:
+    label: "Basic reproduction number"
+    meaning: "Average new infections per case in a fully susceptible population."
+  coverage:
+    label: "Vaccination coverage"
+    meaning: "Fraction of the population that received the vaccine at day 0."
+  waningRate:
+    label: "Waning rate"
+    meaning: "Exponential decay rate of immunity, per day."
+  daysSinceVaccination:
+    label: "Days since vaccination"
+    meaning: "Elapsed time used in the waning calculation."
