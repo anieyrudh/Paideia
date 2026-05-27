@@ -1,0 +1,24 @@
+controls:
+  - id: performance-goal
+    label: Selection goal
+    kind: selector
+    options:
+      - specific-strength
+      - low-carbon-strength
+      - low-carbon-stiffness
+    default: low-carbon-strength
+  - id: collection-rate-percent
+    label: Collected for recovery
+    kind: slider
+    min: 0
+    max: 100
+    step: 5
+    default: 55
+    unit: "%"
+  - id: reuse-cycles
+    label: Reuse cycles
+    kind: slider
+    min: 1
+    max: 20
+    step: 1
+    default: 5

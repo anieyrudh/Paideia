@@ -1,0 +1,9 @@
+runtime:
+  renderer: react
+  package: "@paideia/sutd-sims/thermochemistry-and-equilibrium"
+  entry: simulation/index.tsx
+  state:
+    finalTemperatureCelsius: 45
+    productConcentration: 1.2
+    reactantConcentration: 0.4
+  persistence: local

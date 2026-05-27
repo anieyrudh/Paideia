@@ -1,0 +1,6 @@
+runtime:
+  route: "/?sim=sutd/10-016-science-for-a-sustainable-world/biodiversity-loss-and-land-use/biodiversity-loss-and-land-use"
+  package: "@paideia/sutd-sims"
+  export: BiodiversityLossAndLandUse
+  requires_prediction_commit: true
+  visual_model: habitat-biodiversity-trajectory

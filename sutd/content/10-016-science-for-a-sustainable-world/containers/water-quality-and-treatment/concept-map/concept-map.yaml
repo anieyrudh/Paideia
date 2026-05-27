@@ -1,0 +1,37 @@
+schema_version: "1.0.0"
+concept_id: water-quality-and-treatment
+prerequisites:
+  - id: concentration
+    title: "Concentration"
+    relationship: "Disinfectant dose and contaminant load are concentration measures."
+    status: planned
+  - id: reaction-rates
+    title: "Reaction Rates"
+    relationship: "Contact time controls how much disinfection can occur."
+    status: planned
+downstream:
+  - id: environmental-systems
+    title: "Environmental Systems"
+    relationship: "Treatment choices affect health, ecosystems, and infrastructure."
+    status: planned
+siblings:
+  - id: thermochemistry-and-equilibrium
+    title: "Thermochemistry and Equilibrium"
+    relationship: "pH and chemical equilibria constrain treatment conditions."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: clear-safe
+      label: "Clear water is always safe water"
+    - id: dose-replaces-time
+      label: "Dose replaces contact time"
+    - id: ph-irrelevant
+      label: "pH is irrelevant"
+  edges:
+    - from: clear-safe
+      to: dose-replaces-time
+      label: "both reduce treatment to one visible or single-number cue"
+    - from: ph-irrelevant
+      to: clear-safe
+      label: "both ignore invisible chemistry"
+mermaid_source: graph.mmd
