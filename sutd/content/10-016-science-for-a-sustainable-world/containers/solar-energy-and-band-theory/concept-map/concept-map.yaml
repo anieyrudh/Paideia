@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: solar-energy-and-band-theory
+prerequisites:
+  - id: atomic-structure-and-electron-configuration
+    title: "Atomic Structure and Electron Configuration"
+    relationship: "Electronic energy levels motivate bands in solids."
+    status: planned
+  - id: chemical-bonding-and-intermolecular-forces
+    title: "Chemical Bonding and Intermolecular Forces"
+    relationship: "Bonding and lattice structure determine material electronic behaviour."
+    status: planned
+  - id: electrochemistry-and-batteries
+    title: "Electrochemistry and Batteries"
+    relationship: "Energy conversion vocabulary connects photovoltaic and battery systems."
+    status: planned
+downstream:
+  - id: sustainable-energy-systems
+    title: "Sustainable Energy Systems"
+    relationship: "Band-gap trade-offs feed solar-panel design choices."
+    status: planned
+  - id: lifecycle-analysis
+    title: "Lifecycle Analysis"
+    relationship: "Material efficiency affects downstream sustainability evaluation."
+    status: planned
+siblings:
+  - id: thermochemistry-and-equilibrium
+    title: "Thermochemistry and Equilibrium"
+    relationship: "Thermal losses connect photon absorption to heat management."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: all-light-absorbs
+      label: "Any light colour can excite any semiconductor"
+    - id: excess-always-useful
+      label: "Higher-energy photons always make proportionally more electricity"
+    - id: brightness-beats-threshold
+      label: "More irradiance solves below-gap absorption"
+  edges:
+    - from: all-light-absorbs
+      to: brightness-beats-threshold
+      label: "both ignore the photon-energy threshold"
+    - from: excess-always-useful
+      to: all-light-absorbs
+      label: "both miss the material band-gap comparison"
+mermaid_source: graph.mmd

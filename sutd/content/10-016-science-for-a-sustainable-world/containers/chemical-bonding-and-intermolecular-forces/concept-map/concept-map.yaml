@@ -1,0 +1,41 @@
+schema_version: "1.0.0"
+concept_id: chemical-bonding-and-intermolecular-forces
+prerequisites:
+  - id: atomic-structure-and-electron-configuration
+    title: "Atomic Structure and Electron Configuration"
+    relationship: "Valence electrons explain why atoms transfer or share electrons."
+    status: planned
+  - id: periodic-table-trends
+    title: "Periodic Table Trends"
+    relationship: "Electronegativity trends support bond classification."
+    status: planned
+downstream:
+  - id: polymers-and-plastic-waste-management
+    title: "Polymers and Plastic Waste Management"
+    relationship: "Polymer properties depend on covalent chains and attractions between chains."
+    status: planned
+  - id: water-quality-and-treatment
+    title: "Water Quality and Treatment"
+    relationship: "Solubility and adsorption depend on particle-level attractions."
+    status: planned
+siblings:
+  - id: thermochemistry-and-equilibrium
+    title: "Thermochemistry and Equilibrium"
+    relationship: "Bond breaking and forming are central to reaction energetics."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: imf-as-intramolecular
+      label: "Intermolecular forces are bonds inside molecules"
+    - id: polar-bond-equals-polar-molecule
+      label: "Every polar bond makes a polar molecule"
+    - id: ionic-molecules
+      label: "Ionic solids are separate molecules"
+  edges:
+    - from: imf-as-intramolecular
+      to: polar-bond-equals-polar-molecule
+      label: "both mix levels of structure"
+    - from: ionic-molecules
+      to: imf-as-intramolecular
+      label: "both confuse particle models"
+mermaid_source: graph.mmd

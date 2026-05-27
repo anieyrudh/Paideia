@@ -1,0 +1,41 @@
+schema_version: "1.0.0"
+concept_id: electrochemistry-and-batteries
+prerequisites:
+  - id: thermochemistry-and-equilibrium
+    title: "Thermochemistry and Equilibrium"
+    relationship: "Reaction quotient reasoning carries into Nernst voltage."
+    status: planned
+  - id: chemical-bonding-and-intermolecular-forces
+    title: "Chemical Bonding and Intermolecular Forces"
+    relationship: "Redox reactions depend on electron transfer and species stability."
+    status: planned
+downstream:
+  - id: solar-energy-and-band-theory
+    title: "Solar Energy and Band Theory"
+    relationship: "Both connect energy levels to useful electrical work."
+    status: planned
+  - id: water-quality-and-treatment
+    title: "Water Quality and Treatment"
+    relationship: "Electrochemical sensors and treatment reactions use redox potentials."
+    status: planned
+siblings:
+  - id: thermochemistry-and-equilibrium
+    title: "Thermochemistry and Equilibrium"
+    relationship: "Both use reaction quotient evidence."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: fixed-battery-voltage
+      label: "Battery voltage is fixed"
+    - id: products-add-voltage
+      label: "Product build-up adds voltage"
+    - id: electron-count-does-not-matter
+      label: "Electron count does not matter"
+  edges:
+    - from: fixed-battery-voltage
+      to: products-add-voltage
+      label: "both ignore the reaction quotient"
+    - from: electron-count-does-not-matter
+      to: fixed-battery-voltage
+      label: "both hide the Nernst correction"
+mermaid_source: graph.mmd

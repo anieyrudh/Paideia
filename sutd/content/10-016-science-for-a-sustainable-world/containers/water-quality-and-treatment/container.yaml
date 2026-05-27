@@ -1,0 +1,110 @@
+schema_version: "1.0.0"
+id: water-quality-and-treatment
+aliases:
+  - water-treatment-train
+  - turbidity-disinfection-ct
+branch: sutd
+subject: 10-016-science-for-a-sustainable-world
+level: "Freshmore"
+module: "Science for a Sustainable World"
+title: "Water Quality and Treatment"
+one_line_summary: "Evaluate a water treatment train by combining turbidity removal, CT disinfection, pH banding, and filter-flow evidence."
+syllabus_ref: "SUTD 10.016 Science for a Sustainable World / Water quality and treatment"
+prerequisites:
+  - concentration
+  - reaction-rates
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    The water looks clear after filtration, but disinfection contact time is very low. What is the safest claim?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Clear water is automatically safe to drink"
+      - "Low turbidity helps, but pathogen risk still needs disinfection evidence"
+      - "Chlorine dose alone is enough even with zero contact time"
+      - "pH has no effect on water treatment decisions"
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: emergency-water-treatment
+    prompt: |
+      A temporary treatment unit produces clear-looking water but has high flow, low contact time, and pH 9.1. Decide which evidence blocks release and which control should change first.
+    surface_form: "emergency treatment plant commissioning"
+    same_concept_check: "Same concept: clarity, CT disinfection, pH, and flow evidence must be checked together."
+    rubric_path: problem-solving/emergency-water-treatment.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Scaffolded SUTD 10.016 water-quality-and-treatment container."
+authors: ["Codex"]
+advisor_signoffs: []
+misconceptions:
+  - name: "Clear water is always safe water"
+    description: "Learners may treat low turbidity as sufficient, missing microbial and pH evidence."
+    evidence_source: "WHO drinking-water quality guidance."
+    surface_in_predict: true
+  - name: "More chemical dose can replace contact time"
+    description: "Learners may ignore that CT combines disinfectant concentration and time."
+    evidence_source: "US EPA disinfection profiling guidance."
+    surface_in_predict: true
+sources:
+  - citation: "World Health Organization, Guidelines for Drinking-water Quality."
+    url: "https://www.who.int/publications/i/item/9789241549950"
+    publication_year: 2017
+    license: "Public guidance"
+    seab_alignment: n/a
+  - citation: "US EPA, Disinfection Profiling and Benchmarking Guidance Manual."
+    url: "https://www.epa.gov/dwreginfo/disinfection-profiling-and-benchmarking-guidance-manual"
+    publication_year: 2020
+    license: "Public domain guidance"
+    seab_alignment: n/a
+  - citation: "SUTD 10.016 Science for a Sustainable World course page."
+    url: "https://www.sutd.edu.sg/course/10-016-science-for-a-sustainable-world"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+language: en

@@ -1,0 +1,8 @@
+state_labels:
+  performanceGoal: "Selection goal"
+  collectionRatePercent: "Collected for recovery"
+  reuseCycles: "Reuse cycles"
+readouts:
+  selectedName: "Top candidate"
+  landfillFraction: "Unrecovered fraction"
+  avoidedItems: "Single-use items avoided"

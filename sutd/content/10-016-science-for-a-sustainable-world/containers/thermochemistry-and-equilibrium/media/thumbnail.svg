@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180" role="img" aria-labelledby="title desc">
+  <title id="title">Thermochemistry thumbnail</title>
+  <desc id="desc">A heat curve and equilibrium quotient readout.</desc>
+  <rect width="320" height="180" fill="#f8fafc"/>
+  <text x="24" y="34" font-family="Arial" font-size="18" font-weight="700" fill="#0f172a">Thermochemistry + equilibrium</text>
+  <path d="M48 128 C90 58 134 58 176 98 S240 126 272 54" fill="none" stroke="#2563eb" stroke-width="5"/>
+  <circle cx="48" cy="128" r="8" fill="#0f766e"/>
+  <circle cx="272" cy="54" r="8" fill="#d97706"/>
+  <text x="48" y="158" font-family="Arial" font-size="14" fill="#334155">q = mc Delta T</text>
+  <text x="198" y="158" font-family="Arial" font-size="14" fill="#334155">Qc = products / reactants</text>
+</svg>

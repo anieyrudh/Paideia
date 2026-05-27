@@ -1,0 +1,10 @@
+labels:
+  habitatPercent: "Starting intact habitat"
+  conversionPercentPerYear: "Land-use conversion"
+  restorationPercentPerYear: "Restoration"
+  sensitivity: "Species sensitivity"
+readouts:
+  finalHabitatPercent: "Final habitat"
+  finalBiodiversityIndex: "Biodiversity index"
+  biodiversityLossPercent: "Biodiversity loss"
+  tippingRisk: "Tipping risk"

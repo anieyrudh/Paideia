@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Polymer waste management fallback</title>
+  <desc id="desc">A polymer container, material index chart, and recovery arrow.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <circle cx="174" cy="176" r="86" fill="#dbeafe"/>
+  <rect x="136" y="110" width="76" height="128" rx="18" fill="#2563eb"/>
+  <rect x="312" y="104" width="200" height="30" fill="#94a3b8"/>
+  <rect x="312" y="160" width="145" height="30" fill="#0f766e"/>
+  <rect x="312" y="216" width="176" height="30" fill="#d97706"/>
+  <path d="M474 286c52 0 94-24 94-54h34c0 54-58 90-128 90z" fill="#16a34a"/>
+</svg>

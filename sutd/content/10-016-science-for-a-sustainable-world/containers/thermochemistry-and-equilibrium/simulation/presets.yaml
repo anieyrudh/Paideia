@@ -1,0 +1,13 @@
+presets:
+  - id: warming-product-rich
+    label: Warming, product-rich
+    state:
+      finalTemperatureCelsius: 45
+      productConcentration: 1.2
+      reactantConcentration: 0.4
+  - id: cooling-reactant-rich
+    label: Cooling, reactant-rich
+    state:
+      finalTemperatureCelsius: 22
+      productConcentration: 0.3
+      reactantConcentration: 1.4
