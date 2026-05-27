@@ -1,0 +1,29 @@
+presets:
+  - id: linear-cascade-on
+    label: "Linear cascade, ligand on"
+    state:
+      ligandLevel: 1
+      phosphataseLevel: 0
+      receptorThreshold: 0.1
+      sensitivity: 8
+  - id: linear-cascade-off
+    label: "Linear cascade, ligand off"
+    state:
+      ligandLevel: 0
+      phosphataseLevel: 0
+      receptorThreshold: 0.1
+      sensitivity: 8
+  - id: inhibitor-knockdown
+    label: "Phosphatase knockdown"
+    state:
+      ligandLevel: 1
+      phosphataseLevel: 0.9
+      receptorThreshold: 0.1
+      sensitivity: 8
+  - id: switch-like
+    label: "Switch-like (k=16)"
+    state:
+      ligandLevel: 0.6
+      phosphataseLevel: 0
+      receptorThreshold: 0.5
+      sensitivity: 16

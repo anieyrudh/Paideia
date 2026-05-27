@@ -53,7 +53,8 @@
     "./biodiversity-loss-and-land-use": "./src/biodiversity-loss-and-land-use.tsx",
     "./cell-structure-and-the-membrane": "./src/cell-structure-and-the-membrane.tsx",
     "./protein-folding-and-function": "./src/protein-folding-and-function.tsx",
-    "./gene-expression-dna-to-rna-to-protein": "./src/gene-expression-dna-to-rna-to-protein.tsx"
+    "./gene-expression-dna-to-rna-to-protein": "./src/gene-expression-dna-to-rna-to-protein.tsx",
+    "./cell-signalling-pathways": "./src/cell-signalling-pathways.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -82,6 +83,7 @@
     "@paideia/membrane-transport": "workspace:*",
     "@paideia/molecule": "workspace:*",
     "@paideia/numerical-math": "workspace:*",
+    "@paideia/signal-pathway": "workspace:*",
     "@paideia/protein-structure": "workspace:*",
     "@paideia/sequence": "workspace:*",
     "@paideia/optimization": "workspace:*",

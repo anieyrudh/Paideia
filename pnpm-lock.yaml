@@ -1504,6 +1504,9 @@ importers:
       '@paideia/shared':
         specifier: workspace:*
         version: link:../../../core/shared
+      '@paideia/signal-pathway':
+        specifier: workspace:*
+        version: link:../../../core/signal-pathway
       '@paideia/sim-runtime':
         specifier: workspace:*
         version: link:../../../core/sim-runtime

@@ -1,0 +1,22 @@
+steps:
+  - id: list-nodes
+    prompt: "What are the nodes and their thresholds?"
+    expected_action: "List ligand, receptor, kinase, transcription factor (and any helpers) with their threshold values."
+  - id: list-edges
+    prompt: "Which edges are activators and which are inhibitors?"
+    expected_action: "Annotate edges with activator/inhibitor labels and weights."
+  - id: acyclic-check
+    prompt: "Is the graph acyclic?"
+    expected_action: "Verify there are no feedback loops; if there are, switch to a time-resolved kernel."
+  - id: topological-order
+    prompt: "What is the correct order of evaluation?"
+    expected_action: "Topologically sort the nodes."
+  - id: evaluate-effective-input
+    prompt: "What is each node's effective input?"
+    expected_action: "Sum activator weights times upstream level minus inhibitor weights times upstream level."
+  - id: apply-logistic
+    prompt: "What is each node's output?"
+    expected_action: "Apply the logistic response with the node's threshold and the global sensitivity k."
+  - id: interpret
+    prompt: "What does the cascade output mean?"
+    expected_action: "Read the sink node; classify the cell as on / off / threshold-band; perturb to see the response surface."
