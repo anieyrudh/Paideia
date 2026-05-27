@@ -1,0 +1,13 @@
+runtime:
+  route: sutd/10-017-technological-world-e-and-m/gauss-law-for-symmetric-distributions/gauss-law-flux-surface-lab
+  pmoe_t:
+    - predict
+    - manipulate
+    - observe
+    - explain
+    - transfer
+  integration:
+    method: closed-form Gauss-law symmetry model
+    dt: n/a
+    steps: n/a
+  reveal_requires_prediction: true

@@ -1,0 +1,9 @@
+controls:
+  - id: scenario
+    label: Bonding case
+    kind: selector
+    options:
+      - sodium-chloride
+      - water
+      - carbon-dioxide
+    default: sodium-chloride

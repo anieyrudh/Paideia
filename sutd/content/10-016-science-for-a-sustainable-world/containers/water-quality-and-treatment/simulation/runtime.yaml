@@ -1,0 +1,6 @@
+runtime:
+  route: "/?sim=sutd/10-016-science-for-a-sustainable-world/water-quality-and-treatment/water-quality-and-treatment"
+  package: "@paideia/sutd-sims"
+  export: WaterQualityAndTreatment
+  requires_prediction_commit: true
+  visual_model: treatment-train-and-line-chart

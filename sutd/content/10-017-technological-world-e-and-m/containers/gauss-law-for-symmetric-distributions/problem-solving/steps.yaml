@@ -1,0 +1,19 @@
+steps:
+  - id: identify-symmetry
+    prompt: "Which charge symmetry is present?"
+    expected_action: "Classify the source as spherical, cylindrical, or planar before choosing a surface."
+  - id: choose-surface
+    prompt: "Which Gaussian surface makes the field constant on the useful area?"
+    expected_action: "Choose a sphere, cylinder, or pillbox and state which faces contribute flux."
+  - id: enclosed-charge
+    prompt: "What charge is enclosed?"
+    expected_action: "Compute Q_enc from total charge, lambda L, or sigma A_face."
+  - id: effective-area
+    prompt: "What effective area receives normal flux?"
+    expected_action: "Use 4 pi r^2, 2 pi r L, or 2 A_face."
+  - id: solve
+    prompt: "What are flux and field strength?"
+    expected_action: "Apply Phi_E = Q_enc / epsilon0 and E = Q_enc / (epsilon0 A_G) with units."
+  - id: interpret
+    prompt: "What does the sign and magnitude mean?"
+    expected_action: "Explain outward or inward flux and connect area changes to field strength."

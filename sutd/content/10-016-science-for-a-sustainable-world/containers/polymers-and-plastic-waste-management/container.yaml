@@ -1,0 +1,123 @@
+schema_version: "1.0.0"
+id: polymers-and-plastic-waste-management
+aliases:
+  - polymers
+  - plastic waste
+  - polymer selection
+branch: sutd
+subject: 10-016-science-for-a-sustainable-world
+level: "Freshmore"
+module: "10.016 Science for a Sustainable World"
+title: "Polymers and Plastic Waste Management"
+one_line_summary: "Rank polymer options using material indices, then connect the choice to reuse and recovery pathways."
+syllabus_ref: "SUTD 10.016 Science for a Sustainable World / polymers and plastic waste management"
+prerequisites:
+  - chemical-bonding-and-intermolecular-forces
+  - thermochemistry-and-equilibrium
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    For a lightweight reusable food container, which evidence should be checked before choosing a polymer?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Only the recycling symbol"
+      - "Strength, density, embodied carbon, and collection pathway"
+      - "Only whether it is labelled biodegradable"
+      - "Only the cheapest resin price"
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: campus-food-container
+    prompt: |
+      A campus canteen wants to replace single-use takeaway containers. Compare material evidence and recovery-system evidence before recommending reuse, recycling, or composting.
+    surface_form: "campus food container"
+    same_concept_check: "Same concept: material selection and waste management must be evaluated together."
+    rubric_path: problem-solving/campus-food-container.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Built initial SUTD 10.016 polymers and plastic waste management product slice with prediction gate and material-index simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-26"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-26"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Biodegradable always means lowest impact"
+    description: "Learners may ignore collection, composting conditions, reuse cycles, and material performance when a polymer has a biodegradable label."
+    evidence_source: "UNEP single-use plastics guidance and OECD plastics outlook."
+    surface_in_predict: true
+  - name: "Recycling symbol guarantees recovery"
+    description: "Learners may treat the resin identification code as proof that a product will be recovered in the local system."
+    evidence_source: "US EPA plastic materials management guidance."
+    surface_in_predict: true
+sources:
+  - citation: "United Nations Environment Programme. Single-use plastics: A roadmap for sustainability."
+    url: "https://www.unep.org/resources/report/single-use-plastics-roadmap-sustainability"
+    publication_year: 2018
+    license: "Public report"
+    seab_alignment: n/a
+  - citation: "OECD. Global Plastics Outlook: Economic Drivers, Environmental Impacts and Policy Options."
+    url: "https://www.oecd.org/environment/plastics/"
+    publication_year: 2022
+    license: "Public report"
+    seab_alignment: n/a
+  - citation: "US EPA. Plastics: Material-Specific Data."
+    url: "https://www.epa.gov/facts-and-figures-about-materials-waste-and-recycling/plastics-material-specific-data"
+    publication_year: 2025
+    license: "Public website"
+    seab_alignment: n/a
+language: en

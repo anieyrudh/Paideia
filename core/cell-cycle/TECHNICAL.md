@@ -3,9 +3,8 @@
 ## Public Interface Summary
 
 Two enum-like literal types (`Phase`, `CheckpointName`), two branded numerics
-(`Ploidy`, `DnaContentMultiplier`), five record types (`CellState`,
-`CheckpointConditions`, `CheckpointStatus`, `InitialCellOptions`,
-`PhaseAdvanceResult`), two validating constructors, three pure helpers
+(`Ploidy`, `DnaContentMultiplier`), three record types (`CellState`,
+`CheckpointConditions`, `CheckpointStatus`), two validating constructors, three pure helpers
 (`initialCell`, `evaluateCheckpoint`, `attemptPhaseAdvance`), and two
 division operations (`divideMitosis`, `divideMeiosis`).
 

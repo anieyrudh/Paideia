@@ -1,0 +1,41 @@
+schema_version: "1.0.0"
+concept_id: polymers-and-plastic-waste-management
+prerequisites:
+  - id: chemical-bonding-and-intermolecular-forces
+    title: "Chemical Bonding and Intermolecular Forces"
+    relationship: "Polymer properties arise from molecular structure and intermolecular interactions."
+    status: planned
+  - id: thermochemistry-and-equilibrium
+    title: "Thermochemistry and Equilibrium"
+    relationship: "Embodied-carbon and process choices require energy and reaction-system reasoning."
+    status: planned
+downstream:
+  - id: water-quality-and-treatment
+    title: "Water Quality and Treatment"
+    relationship: "Plastic leakage and microplastics become water-treatment constraints."
+    status: planned
+  - id: biodiversity-loss-and-land-use
+    title: "Biodiversity Loss and Land Use"
+    relationship: "Plastic waste pathways affect habitats and land-use decisions."
+    status: planned
+siblings:
+  - id: electrochemistry-and-batteries
+    title: "Electrochemistry and Batteries"
+    relationship: "Both require material selection plus end-of-life system design."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: biodegradable-always-low-impact
+      label: "Biodegradable always means lowest impact"
+    - id: recycling-symbol-guarantees-recovery
+      label: "Recycling symbol guarantees recovery"
+    - id: strength-alone-decides
+      label: "Strength alone decides sustainability"
+  edges:
+    - from: biodegradable-always-low-impact
+      to: recycling-symbol-guarantees-recovery
+      label: "both treat labels as sufficient evidence"
+    - from: strength-alone-decides
+      to: biodegradable-always-low-impact
+      label: "both ignore the full system boundary"
+mermaid_source: graph.mmd

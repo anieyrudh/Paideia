@@ -1,0 +1,12 @@
+labels:
+  rawTurbidityNtu: "Raw turbidity"
+  filterRemovalPercent: "Coagulation and filtration removal"
+  chlorineMgPerLitre: "Free chlorine dose"
+  contactMinutes: "Contact time"
+  pH: "pH"
+  filterVelocityMetresPerSecond: "Filter approach velocity"
+readouts:
+  finishedTurbidityNtu: "Finished turbidity"
+  ctMgMinutesPerLitre: "CT"
+  remainingPathogenLog10: "Remaining pathogen load"
+  pHStatus: "pH band"

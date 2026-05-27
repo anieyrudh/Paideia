@@ -1,0 +1,118 @@
+schema_version: "1.0.0"
+id: thermochemistry-and-equilibrium
+aliases:
+  - thermochemistry
+  - chemical equilibrium
+  - reaction quotient
+branch: sutd
+subject: 10-016-science-for-a-sustainable-world
+level: "Freshmore"
+module: "10.016 Science for a Sustainable World"
+title: "Thermochemistry and Equilibrium"
+one_line_summary: "Separate heat-transfer evidence from equilibrium-composition evidence using q = mc Delta T and reaction quotient Q."
+syllabus_ref: "SUTD 10.016 Science for a Sustainable World / thermochemistry and equilibrium"
+prerequisites:
+  - chemical-bonding-and-intermolecular-forces
+  - concentration-and-moles
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A 100 g water sample warms from 25 C to 45 C. Is heat absorbed or released by the water sample?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "absorbed by the sample"
+      - "released by the sample"
+      - "no heat transfer"
+      - "cannot be related to temperature"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: hand-warmer-equilibrium
+    prompt: |
+      A reusable hand warmer releases heat while crystallising. Explain what the temperature change shows, what concentration data would show, and why the heat sign alone does not prove equilibrium position.
+    surface_form: "reusable hand warmer"
+    same_concept_check: "Same concept: heat transfer and equilibrium composition are related but distinct evidence streams."
+    rubric_path: problem-solving/hand-warmer-equilibrium.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Built initial SUTD 10.016 thermochemistry and equilibrium product slice with prediction gate and formula-backed simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-26"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-26"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Exothermic means product-favoured"
+    description: "Learners may use heat direction alone to infer equilibrium composition, ignoring concentration ratios and equilibrium constants."
+    evidence_source: "OpenStax Chemistry 2e thermochemistry and equilibrium chapters."
+    surface_in_predict: true
+  - name: "Equilibrium means equal amounts"
+    description: "Learners may think equilibrium requires equal reactant and product concentrations instead of stable forward and reverse rates."
+    evidence_source: "OpenStax Chemistry 2e equilibrium chapter."
+    surface_in_predict: true
+sources:
+  - citation: "OpenStax. Chemistry 2e, Thermochemistry and Equilibrium chapters."
+    url: "https://openstax.org/details/books/chemistry-2e"
+    publication_year: 2019
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "SUTD. 10.016 Science for a Sustainable World module context."
+    url: "https://www.sutd.edu.sg"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+language: en

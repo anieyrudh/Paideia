@@ -86,7 +86,7 @@ export const dnaContentMultiplier = (
 // Initial cell
 // ──────────────────────────────────────────────────────────────────────────
 
-export interface InitialCellOptions {
+interface InitialCellOptions {
   readonly ploidy?: Ploidy;
   readonly phase?: Phase;
 }
@@ -168,7 +168,7 @@ const ensureValidState = (
   return ok(state);
 };
 
-export interface PhaseAdvanceResult {
+interface PhaseAdvanceResult {
   readonly next: CellState;
   readonly advanced: boolean;
   readonly checkpoint: CheckpointStatus | null;

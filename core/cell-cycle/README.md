@@ -8,7 +8,7 @@ Spindle), and ploidy + DNA-content bookkeeping across mitosis and meiosis.
 
 - `Phase`, `CheckpointName`
 - `Ploidy`, `DnaContentMultiplier`
-- `CellState`, `CheckpointConditions`, `CheckpointStatus`, `InitialCellOptions`, `PhaseAdvanceResult`
+- `CellState`, `CheckpointConditions`, `CheckpointStatus`
 - `ploidy`, `dnaContentMultiplier`
 - `initialCell`, `evaluateCheckpoint`
 - `attemptPhaseAdvance`, `divideMitosis`, `divideMeiosis`

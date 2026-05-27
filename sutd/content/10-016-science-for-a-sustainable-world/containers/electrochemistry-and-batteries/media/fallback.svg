@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Battery fallback</title>
+  <desc id="desc">A battery icon with a voltage bar and reaction quotient arrow.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <rect x="110" y="124" width="330" height="112" rx="24" fill="#dbeafe"/>
+  <rect x="110" y="124" width="230" height="112" rx="24" fill="#2563eb"/>
+  <rect x="448" y="158" width="34" height="44" rx="6" fill="#64748b"/>
+  <path d="M174 282h260" stroke="#d97706" stroke-width="16" stroke-linecap="round"/>
+</svg>
