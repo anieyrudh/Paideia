@@ -1,0 +1,19 @@
+steps:
+  - id: residue-properties
+    prompt: "Which residues are hydrophobic, polar, or charged?"
+    expected_action: "Annotate each residue with its Kyte-Doolittle hydropathy and charge class."
+  - id: choose-window
+    prompt: "What window width should you use?"
+    expected_action: "Pick W = 9 for general intuition or W = 19 to favour transmembrane helices."
+  - id: slide-window
+    prompt: "What is the mean hydropathy at each centre residue?"
+    expected_action: "Compute the windowed mean across the sequence."
+  - id: classify-regions
+    prompt: "Which centres are hydrophobic, neutral, or hydrophilic?"
+    expected_action: "Apply the +1.6 / -0.5 thresholds; identify the longest contiguous hydrophobic run."
+  - id: contextualise
+    prompt: "Is this protein cytosolic or membrane-resident?"
+    expected_action: "Use known protein context to interpret a hydrophobic plateau as core packing or as a transmembrane segment."
+  - id: report
+    prompt: "What does the profile suggest and what does it NOT decide?"
+    expected_action: "State the candidate region(s) and explicitly call out the limits: environment, chaperones, fold multiplicity."

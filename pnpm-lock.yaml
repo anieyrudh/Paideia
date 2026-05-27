@@ -1492,6 +1492,9 @@ importers:
       '@paideia/probability-stats':
         specifier: workspace:*
         version: link:../../../core/probability-stats
+      '@paideia/protein-structure':
+        specifier: workspace:*
+        version: link:../../../core/protein-structure
       '@paideia/shared':
         specifier: workspace:*
         version: link:../../../core/shared

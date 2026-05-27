@@ -38,3 +38,4 @@ export { default as SolarEnergyAndBandTheory } from "./solar-energy-and-band-the
 export { default as WaterQualityAndTreatment } from "./water-quality-and-treatment.js";
 export { default as BiodiversityLossAndLandUse } from "./biodiversity-loss-and-land-use.js";
 export { default as CellStructureAndTheMembrane, membraneEvidence } from "./cell-structure-and-the-membrane.js";
+export { default as ProteinFoldingAndFunction, foldingEvidence } from "./protein-folding-and-function.js";

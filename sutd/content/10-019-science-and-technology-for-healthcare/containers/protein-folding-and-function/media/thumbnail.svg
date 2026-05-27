@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 320 180">
+  <title id="title">Hydropathy profile thumbnail</title>
+  <desc id="desc">A short residue chain coloured by hydropathy with a sliding-window hydropathy plot above it.</desc>
+  <rect width="320" height="180" fill="#f8fafc"/>
+  <polyline points="20,110 50,80 80,55 110,60 140,70 170,95 200,110 230,115 260,100 290,90" fill="none" stroke="#2563eb" stroke-width="3"/>
+  <line x1="20" y1="100" x2="290" y2="100" stroke="#94a3b8" stroke-dasharray="4 4" stroke-width="1"/>
+  <g font-family="Arial, sans-serif" font-size="11" font-weight="700" text-anchor="middle">
+    <circle cx="40" cy="150" r="9" fill="#dc2626"/><text x="40" y="153" fill="#fff">K</text>
+    <circle cx="68" cy="150" r="9" fill="#2563eb"/><text x="68" y="153" fill="#fff">L</text>
+    <circle cx="96" cy="150" r="9" fill="#2563eb"/><text x="96" y="153" fill="#fff">L</text>
+    <circle cx="124" cy="150" r="9" fill="#2563eb"/><text x="124" y="153" fill="#fff">L</text>
+    <circle cx="152" cy="150" r="9" fill="#f59e0b"/><text x="152" y="153" fill="#fff">A</text>
+    <circle cx="180" cy="150" r="9" fill="#dc2626"/><text x="180" y="153" fill="#fff">D</text>
+    <circle cx="208" cy="150" r="9" fill="#059669"/><text x="208" y="153" fill="#fff">S</text>
+    <circle cx="236" cy="150" r="9" fill="#dc2626"/><text x="236" y="153" fill="#fff">R</text>
+    <circle cx="264" cy="150" r="9" fill="#2563eb"/><text x="264" y="153" fill="#fff">I</text>
+  </g>
+  <text x="20" y="32" fill="#0f172a" font-family="Arial, sans-serif" font-size="19" font-weight="700">Hydropathy profile</text>
+  <text x="20" y="52" fill="#475569" font-family="Arial, sans-serif" font-size="13">Window-9 Kyte-Doolittle mean</text>
+</svg>

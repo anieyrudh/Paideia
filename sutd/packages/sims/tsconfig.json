@@ -28,6 +28,7 @@
     { "path": "../../../core/sim-runtime" },
     { "path": "../../../core/ui-sim" },
     { "path": "../../../core/membrane-transport" },
-    { "path": "../../../core/cell-geometry" }
+    { "path": "../../../core/cell-geometry" },
+    { "path": "../../../core/protein-structure" }
   ]
 }
