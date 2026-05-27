@@ -27,8 +27,11 @@ Status meanings:
 | Simulation runtime and UI composition | `core/sim-runtime`, `core/ui-sim`, `core/three-scene` |
 | General computation and visuals | `core/function-eval`, `core/numerical-math`, `core/plotting`, `core/charting`, `core/graph-layout`, `core/timeline`, `core/annotation`, `core/mind-map` |
 | Learning state | `core/fsrs`, `core/bkt` |
-| Maths and engineering | `core/linear-algebra`, `core/dynamical-systems`, `core/optimization`, `core/mechanics`, `core/circuits`, `core/control-systems`, `core/electromagnetism`, `core/dimensional-analysis`, `core/uncertainty-propagation` |
-| Probability and algorithms | `core/probability-stats`, `core/graph-algorithms`, `core/algorithm-trace` |
+| Maths and engineering | `core/linear-algebra`, `core/dynamical-systems`, `core/optimization`, `core/mechanics`, `core/circuits`, `core/control-systems`, `core/electromagnetism`, `core/dimensional-analysis`, `core/uncertainty-propagation`, `core/vector-calculus`, `core/waves`, `core/thermodynamics`, `core/heat-transfer`, `core/fluid-mechanics`, `core/structural-analysis` |
+| Probability, algorithms, and data systems | `core/probability-stats`, `core/graph-algorithms`, `core/algorithm-trace`, `core/queueing-systems`, `core/scheduling`, `core/relational-data`, `core/functional-dependencies`, `core/indexing-query-cost`, `core/transactions` |
+| Chemistry and materials | `core/chemistry`, `core/materials`, `core/molecule` |
+| Biology and healthcare | `core/sequence`, `core/membrane-transport`, `core/cell-geometry`, `core/protein-structure`, `core/gene-regulatory-network`, `core/signal-pathway`, `core/cell-cycle`, `core/immunology`, `core/oncogenetics`, `core/treatment-response` |
+| Evaluation and business models | `core/model-evaluation`, `core/finance` |
 
 ## Domain Readiness
 
@@ -42,31 +45,30 @@ Status meanings:
 | Circuits and electromagnetism | A-Level Physics, SUTD Electronics | `ready` | Extend `core/circuits` and `core/electromagnetism` as containers demand |
 | Graph algorithms and CS basics | SUTD CSD | `ready` | Extend `core/graph-algorithms` and `core/algorithm-trace` for DP/sorting/runtime visualisers |
 | Dimensional analysis and uncertainty | A-Level Physics foundations | `ready` | Extend `core/uncertainty-propagation` for correlated uncertainty |
-| Thermodynamics and energy systems | SUTD 10.023, A-Level thermal physics | `kernel-needed` | `core/thermodynamics`, `core/heat-transfer`, `core/energy-systems` |
-| Fluid mechanics | SUTD 30.103 | `kernel-needed` | `core/fluid-mechanics` |
-| Waves, optics, acoustics | A-Level waves/oscillations, SMT, DSIS | `kernel-needed` | `core/waves`, `core/optics`, `core/acoustics`, with reuse from `core/numerical-math` |
-| Chemistry | Future A-Level chemistry and SUTD healthcare chemistry-adjacent topics | `kernel-needed` | `core/chemistry`, `core/reaction-kinetics`, `core/equilibrium`, `core/molecule` |
-| Biology and healthcare systems | SUTD 10.019 | `design-needed` | Decide split between visual pathway models, `core/biology-systems`, `core/genetics`, and `core/cell-signalling` |
+| Thermodynamics and energy systems | SUTD 10.023, A-Level thermal physics | `ready` | Extend `core/thermodynamics` / `core/heat-transfer` only when a container exposes an energy-system gap |
+| Fluid mechanics | SUTD 30.103 | `ready` | Extend `core/fluid-mechanics` for turbulence, pump curves, or compressible-flow gaps |
+| Waves, optics, acoustics | A-Level waves/oscillations, SMT, DSIS | `ready` | `core/waves` covers wave containers; add `core/optics` or `core/acoustics` only for optics/acoustics-specific rows |
+| Chemistry | Future A-Level chemistry and SUTD healthcare chemistry-adjacent topics | `ready` | `core/chemistry`, `core/materials`, and `core/molecule` cover current rows; add reaction kinetics or equilibrium only when needed |
+| Biology and healthcare systems | SUTD 10.019 | `ready` | Current healthcare rows are covered by `core/sequence`, `core/membrane-transport`, `core/cell-geometry`, `core/protein-structure`, `core/gene-regulatory-network`, `core/signal-pathway`, `core/cell-cycle`, `core/immunology`, `core/oncogenetics`, and `core/treatment-response` |
 | Machine learning | SUTD 50.007, Analytics Edge | `kernel-needed` | `core/ml-basics`, `core/regression`, `core/classification`, `core/model-selection` |
-| Databases and SQL | SUTD 50.043, DBA SQL row | `kernel-needed` | `core/sql-lab` or `core/query-engine` |
-| Finance and accounting-style models | SUTD DBA finance rows | `kernel-needed` | `core/finance-math`; A-Level POA/MOB are out of scope |
-| Operations and queueing | SUTD MSO, ESD systems | `kernel-needed` | `core/queueing`, `core/inventory-models`, `core/scheduling` |
-| Architecture and daylighting | SUTD ASD | `kernel-needed` | `core/structural-analysis`, `core/daylight-geometry`, `core/spatial-analysis` |
-| AI trust and evaluation | SUTD DAI | `kernel-needed` | `core/classification`, `core/fairness-metrics`, `core/evaluation-metrics` |
+| Databases and SQL | SUTD 50.043, DBA SQL row | `ready` | `core/relational-data`, `core/functional-dependencies`, `core/indexing-query-cost`, and `core/transactions` cover relational models; add `core/sql-lab` only for SQL parsing/execution rows |
+| Finance and accounting-style models | SUTD DBA finance rows | `ready` | `core/finance` covers current finance models; A-Level POA/MOB are out of scope |
+| Operations and queueing | SUTD MSO, ESD systems | `ready` | `core/queueing-systems` and `core/scheduling` cover queue/schedule rows; add inventory models when a queue row requires them |
+| Architecture and daylighting | SUTD ASD | `ready` | `core/structural-analysis` covers current structural rows; add `core/daylight-geometry` or `core/spatial-analysis` for daylight/spatial rows |
+| AI trust and evaluation | SUTD DAI | `ready` | `core/model-evaluation`, `core/probability-stats`, and `core/annotation` cover current evaluation rows; add fairness/classification kernels only when needed |
 
 ## Recommended Foundation Build Order
 
 Build foundations in this order so the largest number of containers become
 safe to assign:
 
-1. `core/waves` and `core/thermodynamics`.
-2. `core/heat-transfer` and `core/fluid-mechanics`.
-3. `core/ml-basics`, `core/regression`, and `core/classification`.
-4. `core/queueing`, `core/inventory-models`, and `core/scheduling`.
-5. `core/chemistry`, `core/reaction-kinetics`, and `core/equilibrium`.
-6. `core/biology-systems`, `core/genetics`, and `core/cell-signalling`.
-7. `core/sql-lab`, `core/finance-math`, and domain-specific SUTD business analytics kernels.
-8. `core/structural-analysis`, `core/daylight-geometry`, and `core/spatial-analysis`.
+1. `core/ml-basics`, `core/regression`, and `core/classification` for broader ML containers.
+2. `core/fairness-metrics` for deeper DAI fairness containers.
+3. `core/sql-lab` or `core/query-engine` for SQL execution containers.
+4. `core/inventory-models` for inventory and supply-chain containers.
+5. `core/reaction-kinetics` and `core/equilibrium` for advanced chemistry containers.
+6. `core/optics` and `core/acoustics` for optics/acoustics-specific containers.
+7. `core/daylight-geometry` and `core/spatial-analysis` for deeper ASD daylight/spatial containers.
 
 Each foundation should follow the normal kernel workflow:
 
