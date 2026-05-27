@@ -1,0 +1,50 @@
+id: protein-folding-and-function
+title: "Hydropathy Folding Lab"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/protein-structure
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    A short peptide is L L L L L L L L (eight leucines). The window-9 hydropathy classifier reports "hydrophobic" for every centre residue. Before reveal, which statement best describes the peptide's fold in aqueous solution?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "It collapses into a hydrophobic cluster; the fold also depends on chain length, environment, and chaperones."
+      - "It folds uniquely into a beta sheet because the sequence is hydrophobic."
+      - "It cannot fold because all residues are identical."
+      - "The hydropathy profile predicts the exact 3D structure."
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: preset-selection
+      label: "Sequence preset"
+      kind: selector
+      kernel_binding: state.presetId
+    - id: window-size
+      label: "Window size W"
+      kind: slider
+      kernel_binding: state.windowSize
+      bounds: { min: 3, max: 11, step: 2 }
+    - id: hydrophobic-threshold
+      label: "Hydrophobic threshold"
+      kind: slider
+      kernel_binding: state.hydrophobicThreshold
+      bounds: { min: 0.5, max: 3, step: 0.1 }
+observe:
+  renderers:
+    - id: hydropathy-profile-readout
+      module: "@paideia/sutd-sims/protein-folding-and-function"
+      symbol: ProteinFoldingAndFunction
+      props_binding: |
+        Show the residue chain coloured by hydropathy, the windowed-mean hydropathy profile as a line plot, the candidate-region counts (hydrophobic / hydrophilic / neutral), and the longest contiguous hydrophobic run.
+explain:
+  prompt: |
+    Explain why a hydropathy plateau is necessary but not sufficient evidence for a transmembrane helix.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Sequence alone determines fold"
+    - "Hydropathy alone predicts secondary structure"

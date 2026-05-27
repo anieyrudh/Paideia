@@ -1,0 +1,47 @@
+schema_version: "1.0.0"
+concept_id: cell-signalling-pathways
+prerequisites:
+  - id: cell-structure-and-the-membrane
+    title: "Cell Structure and the Membrane"
+    relationship: "Receptors live in the bilayer; signalling starts at the membrane."
+    status: available
+  - id: hill-activation-function
+    title: "Hill Activation Function"
+    relationship: "Per-stage saturating responses are a logistic-Hill variant."
+    status: available
+downstream:
+  - id: gene-expression-dna-to-rna-to-protein
+    title: "Gene Expression"
+    relationship: "Transcription-factor output gates the next layer of regulation."
+    status: available
+  - id: cell-cycle-and-mitosis-meiosis
+    title: "Cell Cycle and Mitosis/Meiosis"
+    relationship: "Mitogenic signalling drives the G1/S decision."
+    status: planned
+  - id: cancer-genetics-and-therapy
+    title: "Cancer Genetics and Therapy"
+    relationship: "Many cancer driver mutations rewire signalling cascades."
+    status: planned
+siblings:
+  - id: cell-structure-and-the-membrane
+    title: "Cell Structure and the Membrane"
+    relationship: "Both treat the membrane as a decision-making surface."
+    status: available
+misconception_graph:
+  nodes:
+    - id: linear-cascade
+      label: "Cascade responses are linear"
+    - id: inhibitor-subtracts-output
+      label: "Inhibitors only reduce by addition"
+    - id: equal-weights
+      label: "All edges have equal weight"
+    - id: cycles-same-as-dag
+      label: "Cycles work the same as DAGs"
+  edges:
+    - from: linear-cascade
+      to: equal-weights
+      label: "both ignore saturating shape"
+    - from: inhibitor-subtracts-output
+      to: linear-cascade
+      label: "both ignore where inhibition enters"
+mermaid_source: graph.mmd

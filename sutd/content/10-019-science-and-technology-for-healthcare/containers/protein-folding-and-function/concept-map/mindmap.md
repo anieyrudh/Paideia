@@ -1,0 +1,23 @@
+# Mindmap
+
+- Protein folding and function
+  - Primary sequence
+    - 20 amino acids with hydropathy, charge, polarity
+    - Backbone connects residues, side chains drive interactions
+  - Hydropathy lens
+    - Kyte-Doolittle table (-4.5 .. +4.5)
+    - Sliding window mean over W residues
+    - Region labels: hydrophobic / neutral / hydrophilic
+  - Folding determinants
+    - Sequence biases the energy landscape
+    - Environment (water vs lipid bilayer)
+    - Chaperones and translation kinetics
+  - Misconceptions
+    - Sequence uniquely determines fold
+    - Hydropathy = secondary structure
+    - Folding is instant
+    - Misfolding is rare
+  - Transfer
+    - Transmembrane segment detection
+    - Signal-sequence recognition
+    - Membrane-protein design

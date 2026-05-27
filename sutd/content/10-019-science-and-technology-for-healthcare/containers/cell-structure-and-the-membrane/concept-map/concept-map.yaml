@@ -1,0 +1,50 @@
+schema_version: "1.0.0"
+concept_id: cell-structure-and-the-membrane
+prerequisites:
+  - id: cell-anatomy
+    title: "Cell Anatomy"
+    relationship: "Membrane is the boundary structure that separates cytoplasm from the bath."
+    status: planned
+  - id: concentration-gradients
+    title: "Concentration Gradients"
+    relationship: "Each ion's gradient is the energy reservoir that the membrane channels can release."
+    status: planned
+downstream:
+  - id: cell-signalling-pathways
+    title: "Cell Signalling Pathways"
+    relationship: "Receptor and second-messenger cascades start at the membrane."
+    status: planned
+  - id: cell-cycle-and-mitosis-meiosis
+    title: "Cell Cycle and Mitosis/Meiosis"
+    relationship: "Cell-cycle progression depends on membrane-bound signal reception."
+    status: planned
+  - id: action-potential
+    title: "Action Potential"
+    relationship: "Time-resolved GHK with voltage-gated channels."
+    status: planned
+siblings:
+  - id: cell-signalling-pathways
+    title: "Cell Signalling Pathways"
+    relationship: "Both treat the membrane as a decision-making surface."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: passive-barrier
+      label: "The membrane is only a passive barrier"
+    - id: voltage-from-volume
+      label: "Resting voltage depends on cell volume"
+    - id: polar-cannot-cross
+      label: "Polar molecules cannot cross at all"
+    - id: pumps-equal-channels
+      label: "Pumps and channels are interchangeable"
+  edges:
+    - from: passive-barrier
+      to: voltage-from-volume
+      label: "both ignore selective permeability"
+    - from: polar-cannot-cross
+      to: passive-barrier
+      label: "denying selectivity reinforces the barrier view"
+    - from: pumps-equal-channels
+      to: passive-barrier
+      label: "conflating mechanisms obscures permeability"
+mermaid_source: graph.mmd

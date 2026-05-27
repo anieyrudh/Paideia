@@ -1,0 +1,36 @@
+controls:
+  - id: potassium-permeability
+    label: "K+ relative permeability"
+    kind: slider
+    default: 1
+    min: 0
+    max: 1
+    step: 0.05
+  - id: sodium-permeability
+    label: "Na+ relative permeability"
+    kind: slider
+    default: 0.04
+    min: 0
+    max: 1
+    step: 0.05
+  - id: chloride-permeability
+    label: "Cl- relative permeability"
+    kind: slider
+    default: 0.45
+    min: 0
+    max: 1
+    step: 0.05
+  - id: outside-potassium
+    label: "[K+] outside (mM)"
+    kind: slider
+    default: 4
+    min: 1
+    max: 20
+    step: 0.5
+  - id: cell-radius
+    label: "Cell radius (micrometres)"
+    kind: slider
+    default: 5
+    min: 1
+    max: 20
+    step: 0.5

@@ -1,0 +1,62 @@
+id: cell-structure-and-the-membrane
+title: "Membrane Transport Lab"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/membrane-transport
+  - core/cell-geometry
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    A cell sits in a bath where [K+] outside is much lower than [K+] inside. The membrane is far more permeable to K+ than to Na+ or Cl-. Before reveal, what best describes the resting membrane potential?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Strongly negative inside, close to the K+ Nernst potential"
+      - "Strongly positive inside, close to the Na+ Nernst potential"
+      - "Exactly zero, because the membrane is impermeable to most ions"
+      - "Random, because resting potential depends only on cell volume"
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: potassium-permeability
+      label: "K+ relative permeability"
+      kind: slider
+      kernel_binding: state.permeabilityK
+      bounds: { min: 0, max: 1, step: 0.05 }
+    - id: sodium-permeability
+      label: "Na+ relative permeability"
+      kind: slider
+      kernel_binding: state.permeabilityNa
+      bounds: { min: 0, max: 1, step: 0.05 }
+    - id: chloride-permeability
+      label: "Cl- relative permeability"
+      kind: slider
+      kernel_binding: state.permeabilityCl
+      bounds: { min: 0, max: 1, step: 0.05 }
+    - id: outside-potassium
+      label: "[K+] outside (mM)"
+      kind: slider
+      kernel_binding: state.outsideK
+      bounds: { min: 1, max: 20, step: 0.5 }
+    - id: cell-radius
+      label: "Cell radius (micrometres)"
+      kind: slider
+      kernel_binding: state.radiusMicrometres
+      bounds: { min: 1, max: 20, step: 0.5 }
+observe:
+  renderers:
+    - id: membrane-transport-readout
+      module: "@paideia/sutd-sims/cell-structure-and-the-membrane"
+      symbol: CellStructureAndTheMembrane
+      props_binding: |
+        Show the membrane diagram with per-ion permeability bars, the GHK resting voltage readout, the K+ Nernst potential for comparison, surface-area-to-volume ratio, and an estimated equilibration time for K+.
+explain:
+  prompt: |
+    Explain why a permeability change (not a concentration change) is what flips the resting voltage from near the K+ Nernst potential toward zero or positive.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "The membrane is only a passive barrier"
+    - "Resting voltage depends on cell volume"

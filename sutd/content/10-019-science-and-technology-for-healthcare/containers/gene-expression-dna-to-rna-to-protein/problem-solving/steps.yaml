@@ -1,0 +1,22 @@
+steps:
+  - id: identify-sequence
+    prompt: "What is the DNA segment and its reading frame?"
+    expected_action: "Write the DNA in one-letter code, mark frame 0/1/2."
+  - id: transcribe
+    prompt: "What is the mRNA?"
+    expected_action: "Replace T with U; preserve length."
+  - id: translate
+    prompt: "What is the protein?"
+    expected_action: "Walk codons in groups of three through the standard genetic code; emit * for stops."
+  - id: apply-hill
+    prompt: "Where on the Hill curve is the cell?"
+    expected_action: "Compute R = I^n / (K^n + I^n) and report a regime label (off / threshold / saturated)."
+  - id: transcription-rate
+    prompt: "What is the instantaneous transcription rate?"
+    expected_action: "alpha = alpha_0 + (alpha_max - alpha_0) R."
+  - id: steady-states
+    prompt: "What are mRNA and protein steady states?"
+    expected_action: "M* = alpha / k_M; P* = k_tr * M* / k_P."
+  - id: interpret
+    prompt: "What does this mean for the cell?"
+    expected_action: "State whether the gene is off, in dose-response, or saturated; describe the time scale of approach."

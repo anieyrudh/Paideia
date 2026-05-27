@@ -1,0 +1,10 @@
+graph TD
+  CSM["Cell structure and the membrane"] --> CSP["Cell signalling pathways"]
+  HAF["Hill activation function"] --> CSP
+  CSP --> GEX["Gene expression"]
+  CSP --> CCM["Cell cycle and mitosis/meiosis"]
+  CSP --> CGT["Cancer genetics and therapy"]
+  M1["Cascade is linear"] -.-> CSP
+  M2["Inhibitor only subtracts"] -.-> CSP
+  M3["All edges have equal weight"] -.-> CSP
+  M4["Cycles same as DAGs"] -.-> CSP
