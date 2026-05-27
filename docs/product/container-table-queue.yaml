@@ -1,0 +1,2975 @@
+# Generated from PAIDEIA_CONTAINER_TABLES_V2.md.
+# Do not use this file as a freehand content spec; use it as the claim queue.
+# Builders should claim exactly one ready-for-build item per branch and PR.
+
+version: 1
+generated_from: PAIDEIA_CONTAINER_TABLES_V2.md
+generated_on: "2026-05-24"
+entry_count: 197
+status_counts:
+  planned: 185
+  ready-for-build: 12
+status_policy:
+  planned: "Backlog item copied from the reference table; not assigned yet."
+  ready-for-build: "Small starter wave approved for one-container-per-PR builds."
+  in-build: "Claimed on a branch; keep scoped to one queue item."
+  reviewed: "Merged and locally smoke-tested."
+  blocked: "Needs maintainer decision, missing kernel, or shared-core placement."
+starter_wave_note: "Only the entries marked ready-for-build should be assigned now. Everything else remains planned until promoted by maintainers."
+
+entries:
+  - queue_id: "alevel.physics.physical-quantities-and-units"
+    status: "ready-for-build"
+    concept_title: "Physical Quantities and Units"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/physical-quantities-and-units"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.scalars-and-vectors"
+    status: "planned"
+    concept_title: "Scalars and Vectors"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/scalars-and-vectors"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.resolving-vectors"
+    status: "ready-for-build"
+    concept_title: "Resolving Vectors"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/resolving-vectors"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.kinematics-in-1d"
+    status: "ready-for-build"
+    concept_title: "Kinematics in 1D"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/kinematics-in-1d"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.projectile-motion"
+    status: "ready-for-build"
+    concept_title: "Projectile Motion"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/projectile-motion"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.forces-and-equilibrium"
+    status: "ready-for-build"
+    concept_title: "Forces and Equilibrium"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/forces-and-equilibrium"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.work-energy-power"
+    status: "ready-for-build"
+    concept_title: "Work, Energy, Power"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/work-energy-power"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.momentum-and-impulse"
+    status: "planned"
+    concept_title: "Momentum and Impulse"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/momentum-and-impulse"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.circular-motion"
+    status: "planned"
+    concept_title: "Circular Motion"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/circular-motion"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.gravitational-fields"
+    status: "planned"
+    concept_title: "Gravitational Fields"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/gravitational-fields"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.circuits"
+    status: "planned"
+    concept_title: "Circuits"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/circuits"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.capacitance"
+    status: "planned"
+    concept_title: "Capacitance"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/capacitance"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.electric-fields"
+    status: "planned"
+    concept_title: "Electric Fields"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/electric-fields"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.magnetic-fields"
+    status: "planned"
+    concept_title: "Magnetic Fields"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/magnetic-fields"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.alternating-current"
+    status: "planned"
+    concept_title: "Alternating Current"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/alternating-current"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.oscillations"
+    status: "planned"
+    concept_title: "Oscillations"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/oscillations"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.waves-and-superposition"
+    status: "planned"
+    concept_title: "Waves and Superposition"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/waves-and-superposition"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.thermal-physics"
+    status: "planned"
+    concept_title: "Thermal Physics"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/thermal-physics"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.nuclear-physics"
+    status: "planned"
+    concept_title: "Nuclear Physics"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/nuclear-physics"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.photoelectric-effect"
+    status: "planned"
+    concept_title: "Photoelectric Effect"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/photoelectric-effect"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.physics.particle-in-a-box"
+    status: "planned"
+    concept_title: "Particle in a Box"
+    curriculum: "a-level"
+    subject: "physics"
+    domain: "A-Level Physics"
+    source_table: "Table 1: A-Level Physics - Existing + Gaps"
+    target_path: "a-level/content/physics/containers/particle-in-a-box"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.mathematics.probability-and-statistics-overview"
+    status: "planned"
+    concept_title: "Probability & Statistics (overview)"
+    curriculum: "a-level"
+    subject: "mathematics"
+    domain: "A-Level Mathematics"
+    source_table: "Table 2: A-Level Mathematics - Existing + Gaps"
+    target_path: "a-level/content/mathematics/containers/probability-and-statistics-overview"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.mathematics.normal-distribution"
+    status: "ready-for-build"
+    concept_title: "Normal Distribution"
+    curriculum: "a-level"
+    subject: "mathematics"
+    domain: "A-Level Mathematics"
+    source_table: "Table 2: A-Level Mathematics - Existing + Gaps"
+    target_path: "a-level/content/mathematics/containers/normal-distribution"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.mathematics.hypothesis-testing"
+    status: "ready-for-build"
+    concept_title: "Hypothesis Testing"
+    curriculum: "a-level"
+    subject: "mathematics"
+    domain: "A-Level Mathematics"
+    source_table: "Table 2: A-Level Mathematics - Existing + Gaps"
+    target_path: "a-level/content/mathematics/containers/hypothesis-testing"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.mathematics.confidence-intervals"
+    status: "planned"
+    concept_title: "Confidence Intervals"
+    curriculum: "a-level"
+    subject: "mathematics"
+    domain: "A-Level Mathematics"
+    source_table: "Table 2: A-Level Mathematics - Existing + Gaps"
+    target_path: "a-level/content/mathematics/containers/confidence-intervals"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.mathematics.differentiation-foundations"
+    status: "planned"
+    concept_title: "Differentiation Foundations"
+    curriculum: "a-level"
+    subject: "mathematics"
+    domain: "A-Level Mathematics"
+    source_table: "Table 2: A-Level Mathematics - Existing + Gaps"
+    target_path: "a-level/content/mathematics/containers/differentiation-foundations"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.mathematics.integration-as-accumulation"
+    status: "planned"
+    concept_title: "Integration as Accumulation"
+    curriculum: "a-level"
+    subject: "mathematics"
+    domain: "A-Level Mathematics"
+    source_table: "Table 2: A-Level Mathematics - Existing + Gaps"
+    target_path: "a-level/content/mathematics/containers/integration-as-accumulation"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.mathematics.complex-numbers"
+    status: "planned"
+    concept_title: "Complex Numbers"
+    curriculum: "a-level"
+    subject: "mathematics"
+    domain: "A-Level Mathematics"
+    source_table: "Table 2: A-Level Mathematics - Existing + Gaps"
+    target_path: "a-level/content/mathematics/containers/complex-numbers"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.mathematics.vectors-in-3d"
+    status: "planned"
+    concept_title: "Vectors in 3D"
+    curriculum: "a-level"
+    subject: "mathematics"
+    domain: "A-Level Mathematics"
+    source_table: "Table 2: A-Level Mathematics - Existing + Gaps"
+    target_path: "a-level/content/mathematics/containers/vectors-in-3d"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.mathematics.sequences-and-series"
+    status: "planned"
+    concept_title: "Sequences and Series"
+    curriculum: "a-level"
+    subject: "mathematics"
+    domain: "A-Level Mathematics"
+    source_table: "Table 2: A-Level Mathematics - Existing + Gaps"
+    target_path: "a-level/content/mathematics/containers/sequences-and-series"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "alevel.mathematics.first-order-odes"
+    status: "planned"
+    concept_title: "First-Order ODEs"
+    curriculum: "a-level"
+    subject: "mathematics"
+    domain: "A-Level Mathematics"
+    source_table: "Table 2: A-Level Mathematics - Existing + Gaps"
+    target_path: "a-level/content/mathematics/containers/first-order-odes"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-016-science-for-a-sustainable-world.atomic-structure-and-electron-configuration"
+    status: "planned"
+    concept_title: "Atomic Structure and Electron Configuration"
+    curriculum: "sutd"
+    subject: "10-016-science-for-a-sustainable-world"
+    domain: "SUTD 10.016 - Science for a Sustainable World"
+    source_table: "Table 8: SUTD 10.016 - Science for a Sustainable World"
+    target_path: "sutd/content/10-016-science-for-a-sustainable-world/containers/atomic-structure-and-electron-configuration"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-016-science-for-a-sustainable-world.chemical-bonding-and-intermolecular-forces"
+    status: "planned"
+    concept_title: "Chemical Bonding and Intermolecular Forces"
+    curriculum: "sutd"
+    subject: "10-016-science-for-a-sustainable-world"
+    domain: "SUTD 10.016 - Science for a Sustainable World"
+    source_table: "Table 8: SUTD 10.016 - Science for a Sustainable World"
+    target_path: "sutd/content/10-016-science-for-a-sustainable-world/containers/chemical-bonding-and-intermolecular-forces"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-016-science-for-a-sustainable-world.thermochemistry-and-equilibrium"
+    status: "planned"
+    concept_title: "Thermochemistry and Equilibrium"
+    curriculum: "sutd"
+    subject: "10-016-science-for-a-sustainable-world"
+    domain: "SUTD 10.016 - Science for a Sustainable World"
+    source_table: "Table 8: SUTD 10.016 - Science for a Sustainable World"
+    target_path: "sutd/content/10-016-science-for-a-sustainable-world/containers/thermochemistry-and-equilibrium"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-016-science-for-a-sustainable-world.polymers-and-plastic-waste-management"
+    status: "planned"
+    concept_title: "Polymers and Plastic Waste Management"
+    curriculum: "sutd"
+    subject: "10-016-science-for-a-sustainable-world"
+    domain: "SUTD 10.016 - Science for a Sustainable World"
+    source_table: "Table 8: SUTD 10.016 - Science for a Sustainable World"
+    target_path: "sutd/content/10-016-science-for-a-sustainable-world/containers/polymers-and-plastic-waste-management"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-016-science-for-a-sustainable-world.electrochemistry-and-batteries"
+    status: "planned"
+    concept_title: "Electrochemistry and Batteries"
+    curriculum: "sutd"
+    subject: "10-016-science-for-a-sustainable-world"
+    domain: "SUTD 10.016 - Science for a Sustainable World"
+    source_table: "Table 8: SUTD 10.016 - Science for a Sustainable World"
+    target_path: "sutd/content/10-016-science-for-a-sustainable-world/containers/electrochemistry-and-batteries"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-016-science-for-a-sustainable-world.solar-energy-and-band-theory"
+    status: "planned"
+    concept_title: "Solar Energy and Band Theory"
+    curriculum: "sutd"
+    subject: "10-016-science-for-a-sustainable-world"
+    domain: "SUTD 10.016 - Science for a Sustainable World"
+    source_table: "Table 8: SUTD 10.016 - Science for a Sustainable World"
+    target_path: "sutd/content/10-016-science-for-a-sustainable-world/containers/solar-energy-and-band-theory"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-016-science-for-a-sustainable-world.water-quality-and-treatment"
+    status: "planned"
+    concept_title: "Water Quality and Treatment"
+    curriculum: "sutd"
+    subject: "10-016-science-for-a-sustainable-world"
+    domain: "SUTD 10.016 - Science for a Sustainable World"
+    source_table: "Table 8: SUTD 10.016 - Science for a Sustainable World"
+    target_path: "sutd/content/10-016-science-for-a-sustainable-world/containers/water-quality-and-treatment"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-016-science-for-a-sustainable-world.biodiversity-loss-and-land-use"
+    status: "planned"
+    concept_title: "Biodiversity Loss and Land Use"
+    curriculum: "sutd"
+    subject: "10-016-science-for-a-sustainable-world"
+    domain: "SUTD 10.016 - Science for a Sustainable World"
+    source_table: "Table 8: SUTD 10.016 - Science for a Sustainable World"
+    target_path: "sutd/content/10-016-science-for-a-sustainable-world/containers/biodiversity-loss-and-land-use"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-017-technological-world-e-and-m.coulomb-s-law-and-discrete-charge-fields"
+    status: "planned"
+    concept_title: "Coulomb's Law and Discrete Charge Fields"
+    curriculum: "sutd"
+    subject: "10-017-technological-world-e-and-m"
+    domain: "SUTD 10.017 - Technological World (E&M)"
+    source_table: "Table 9: SUTD 10.017 - Technological World (E&M)"
+    target_path: "sutd/content/10-017-technological-world-e-and-m/containers/coulomb-s-law-and-discrete-charge-fields"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-017-technological-world-e-and-m.gauss-law-for-symmetric-distributions"
+    status: "planned"
+    concept_title: "Gauss Law for Symmetric Distributions"
+    curriculum: "sutd"
+    subject: "10-017-technological-world-e-and-m"
+    domain: "SUTD 10.017 - Technological World (E&M)"
+    source_table: "Table 9: SUTD 10.017 - Technological World (E&M)"
+    target_path: "sutd/content/10-017-technological-world-e-and-m/containers/gauss-law-for-symmetric-distributions"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-017-technological-world-e-and-m.capacitor-with-dielectric"
+    status: "planned"
+    concept_title: "Capacitor with Dielectric"
+    curriculum: "sutd"
+    subject: "10-017-technological-world-e-and-m"
+    domain: "SUTD 10.017 - Technological World (E&M)"
+    source_table: "Table 9: SUTD 10.017 - Technological World (E&M)"
+    target_path: "sutd/content/10-017-technological-world-e-and-m/containers/capacitor-with-dielectric"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-017-technological-world-e-and-m.magnetic-induction-faraday-lenz"
+    status: "planned"
+    concept_title: "Magnetic Induction (Faraday-Lenz)"
+    curriculum: "sutd"
+    subject: "10-017-technological-world-e-and-m"
+    domain: "SUTD 10.017 - Technological World (E&M)"
+    source_table: "Table 9: SUTD 10.017 - Technological World (E&M)"
+    target_path: "sutd/content/10-017-technological-world-e-and-m/containers/magnetic-induction-faraday-lenz"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-017-technological-world-e-and-m.rlc-circuit-and-resonance"
+    status: "planned"
+    concept_title: "RLC Circuit and Resonance"
+    curriculum: "sutd"
+    subject: "10-017-technological-world-e-and-m"
+    domain: "SUTD 10.017 - Technological World (E&M)"
+    source_table: "Table 9: SUTD 10.017 - Technological World (E&M)"
+    target_path: "sutd/content/10-017-technological-world-e-and-m/containers/rlc-circuit-and-resonance"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-017-technological-world-e-and-m.maxwell-equations-and-em-waves"
+    status: "planned"
+    concept_title: "Maxwell Equations and EM Waves"
+    curriculum: "sutd"
+    subject: "10-017-technological-world-e-and-m"
+    domain: "SUTD 10.017 - Technological World (E&M)"
+    source_table: "Table 9: SUTD 10.017 - Technological World (E&M)"
+    target_path: "sutd/content/10-017-technological-world-e-and-m/containers/maxwell-equations-and-em-waves"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.partial-derivatives-and-gradient"
+    status: "planned"
+    concept_title: "Partial Derivatives and Gradient"
+    curriculum: "sutd"
+    subject: "10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra"
+    domain: "SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    source_table: "Table 10: SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    target_path: "sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/partial-derivatives-and-gradient"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.optimisation-with-lagrange-multipliers"
+    status: "planned"
+    concept_title: "Optimisation with Lagrange Multipliers"
+    curriculum: "sutd"
+    subject: "10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra"
+    domain: "SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    source_table: "Table 10: SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    target_path: "sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/optimisation-with-lagrange-multipliers"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.double-and-triple-integrals"
+    status: "planned"
+    concept_title: "Double and Triple Integrals"
+    curriculum: "sutd"
+    subject: "10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra"
+    domain: "SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    source_table: "Table 10: SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    target_path: "sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/double-and-triple-integrals"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.line-integrals-and-conservative-vector-fields"
+    status: "planned"
+    concept_title: "Line Integrals and Conservative Vector Fields"
+    curriculum: "sutd"
+    subject: "10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra"
+    domain: "SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    source_table: "Table 10: SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    target_path: "sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/line-integrals-and-conservative-vector-fields"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.divergence-and-curl"
+    status: "planned"
+    concept_title: "Divergence and Curl"
+    curriculum: "sutd"
+    subject: "10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra"
+    domain: "SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    source_table: "Table 10: SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    target_path: "sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/divergence-and-curl"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.gaussian-elimination-and-linear-systems"
+    status: "planned"
+    concept_title: "Gaussian Elimination and Linear Systems"
+    curriculum: "sutd"
+    subject: "10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra"
+    domain: "SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    source_table: "Table 10: SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    target_path: "sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/gaussian-elimination-and-linear-systems"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.determinant-and-trace"
+    status: "planned"
+    concept_title: "Determinant and Trace"
+    curriculum: "sutd"
+    subject: "10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra"
+    domain: "SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    source_table: "Table 10: SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    target_path: "sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/determinant-and-trace"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.eigenvalues-and-eigenvectors"
+    status: "planned"
+    concept_title: "Eigenvalues and Eigenvectors"
+    curriculum: "sutd"
+    subject: "10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra"
+    domain: "SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    source_table: "Table 10: SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    target_path: "sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/eigenvalues-and-eigenvectors"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.linear-transformations"
+    status: "planned"
+    concept_title: "Linear Transformations"
+    curriculum: "sutd"
+    subject: "10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra"
+    domain: "SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    source_table: "Table 10: SUTD 10.018 - Modelling Space and Systems (Multivariable Calc + Linear Algebra)"
+    target_path: "sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/linear-transformations"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-019-science-and-technology-for-healthcare.cell-structure-and-the-membrane"
+    status: "planned"
+    concept_title: "Cell Structure and the Membrane"
+    curriculum: "sutd"
+    subject: "10-019-science-and-technology-for-healthcare"
+    domain: "SUTD 10.019 - Science & Technology for Healthcare"
+    source_table: "Table 11: SUTD 10.019 - Science & Technology for Healthcare"
+    target_path: "sutd/content/10-019-science-and-technology-for-healthcare/containers/cell-structure-and-the-membrane"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-019-science-and-technology-for-healthcare.protein-folding-and-function"
+    status: "planned"
+    concept_title: "Protein Folding and Function"
+    curriculum: "sutd"
+    subject: "10-019-science-and-technology-for-healthcare"
+    domain: "SUTD 10.019 - Science & Technology for Healthcare"
+    source_table: "Table 11: SUTD 10.019 - Science & Technology for Healthcare"
+    target_path: "sutd/content/10-019-science-and-technology-for-healthcare/containers/protein-folding-and-function"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-019-science-and-technology-for-healthcare.gene-expression-dna-to-rna-to-protein"
+    status: "planned"
+    concept_title: "Gene Expression: DNA  to  RNA  to  Protein"
+    curriculum: "sutd"
+    subject: "10-019-science-and-technology-for-healthcare"
+    domain: "SUTD 10.019 - Science & Technology for Healthcare"
+    source_table: "Table 11: SUTD 10.019 - Science & Technology for Healthcare"
+    target_path: "sutd/content/10-019-science-and-technology-for-healthcare/containers/gene-expression-dna-to-rna-to-protein"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-019-science-and-technology-for-healthcare.cell-signalling-pathways"
+    status: "planned"
+    concept_title: "Cell Signalling Pathways"
+    curriculum: "sutd"
+    subject: "10-019-science-and-technology-for-healthcare"
+    domain: "SUTD 10.019 - Science & Technology for Healthcare"
+    source_table: "Table 11: SUTD 10.019 - Science & Technology for Healthcare"
+    target_path: "sutd/content/10-019-science-and-technology-for-healthcare/containers/cell-signalling-pathways"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-019-science-and-technology-for-healthcare.cell-cycle-and-mitosis-meiosis"
+    status: "planned"
+    concept_title: "Cell Cycle and Mitosis / Meiosis"
+    curriculum: "sutd"
+    subject: "10-019-science-and-technology-for-healthcare"
+    domain: "SUTD 10.019 - Science & Technology for Healthcare"
+    source_table: "Table 11: SUTD 10.019 - Science & Technology for Healthcare"
+    target_path: "sutd/content/10-019-science-and-technology-for-healthcare/containers/cell-cycle-and-mitosis-meiosis"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-019-science-and-technology-for-healthcare.immune-system-and-vaccines"
+    status: "planned"
+    concept_title: "Immune System and Vaccines"
+    curriculum: "sutd"
+    subject: "10-019-science-and-technology-for-healthcare"
+    domain: "SUTD 10.019 - Science & Technology for Healthcare"
+    source_table: "Table 11: SUTD 10.019 - Science & Technology for Healthcare"
+    target_path: "sutd/content/10-019-science-and-technology-for-healthcare/containers/immune-system-and-vaccines"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-019-science-and-technology-for-healthcare.cancer-genetics-and-therapy"
+    status: "planned"
+    concept_title: "Cancer Genetics and Therapy"
+    curriculum: "sutd"
+    subject: "10-019-science-and-technology-for-healthcare"
+    domain: "SUTD 10.019 - Science & Technology for Healthcare"
+    source_table: "Table 11: SUTD 10.019 - Science & Technology for Healthcare"
+    target_path: "sutd/content/10-019-science-and-technology-for-healthcare/containers/cancer-genetics-and-therapy"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-022-modelling-uncertainty.conditional-probability-and-bayes"
+    status: "ready-for-build"
+    concept_title: "Conditional Probability and Bayes"
+    curriculum: "sutd"
+    subject: "10-022-modelling-uncertainty"
+    domain: "SUTD 10.022 - Modelling Uncertainty"
+    source_table: "Table 12: SUTD 10.022 - Modelling Uncertainty"
+    target_path: "sutd/content/10-022-modelling-uncertainty/containers/conditional-probability-and-bayes"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-022-modelling-uncertainty.discrete-rvs-geometric-binomial-poisson"
+    status: "planned"
+    concept_title: "Discrete RVs: Geometric, Binomial, Poisson"
+    curriculum: "sutd"
+    subject: "10-022-modelling-uncertainty"
+    domain: "SUTD 10.022 - Modelling Uncertainty"
+    source_table: "Table 12: SUTD 10.022 - Modelling Uncertainty"
+    target_path: "sutd/content/10-022-modelling-uncertainty/containers/discrete-rvs-geometric-binomial-poisson"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-022-modelling-uncertainty.continuous-rvs-uniform-exponential"
+    status: "planned"
+    concept_title: "Continuous RVs: Uniform, Exponential"
+    curriculum: "sutd"
+    subject: "10-022-modelling-uncertainty"
+    domain: "SUTD 10.022 - Modelling Uncertainty"
+    source_table: "Table 12: SUTD 10.022 - Modelling Uncertainty"
+    target_path: "sutd/content/10-022-modelling-uncertainty/containers/continuous-rvs-uniform-exponential"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-022-modelling-uncertainty.joint-and-marginal-distributions"
+    status: "planned"
+    concept_title: "Joint and Marginal Distributions"
+    curriculum: "sutd"
+    subject: "10-022-modelling-uncertainty"
+    domain: "SUTD 10.022 - Modelling Uncertainty"
+    source_table: "Table 12: SUTD 10.022 - Modelling Uncertainty"
+    target_path: "sutd/content/10-022-modelling-uncertainty/containers/joint-and-marginal-distributions"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-022-modelling-uncertainty.central-limit-theorem"
+    status: "ready-for-build"
+    concept_title: "Central Limit Theorem"
+    curriculum: "sutd"
+    subject: "10-022-modelling-uncertainty"
+    domain: "SUTD 10.022 - Modelling Uncertainty"
+    source_table: "Table 12: SUTD 10.022 - Modelling Uncertainty"
+    target_path: "sutd/content/10-022-modelling-uncertainty/containers/central-limit-theorem"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-022-modelling-uncertainty.linear-regression"
+    status: "planned"
+    concept_title: "Linear Regression"
+    curriculum: "sutd"
+    subject: "10-022-modelling-uncertainty"
+    domain: "SUTD 10.022 - Modelling Uncertainty"
+    source_table: "Table 12: SUTD 10.022 - Modelling Uncertainty"
+    target_path: "sutd/content/10-022-modelling-uncertainty/containers/linear-regression"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-022-modelling-uncertainty.maximum-likelihood-estimation"
+    status: "planned"
+    concept_title: "Maximum Likelihood Estimation"
+    curriculum: "sutd"
+    subject: "10-022-modelling-uncertainty"
+    domain: "SUTD 10.022 - Modelling Uncertainty"
+    source_table: "Table 12: SUTD 10.022 - Modelling Uncertainty"
+    target_path: "sutd/content/10-022-modelling-uncertainty/containers/maximum-likelihood-estimation"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-023-designing-energy-systems.heat-transfer-modes"
+    status: "ready-for-build"
+    concept_title: "Heat Transfer Modes"
+    curriculum: "sutd"
+    subject: "10-023-designing-energy-systems"
+    domain: "SUTD 10.023 - Designing Energy Systems"
+    source_table: "Table 13: SUTD 10.023 - Designing Energy Systems"
+    target_path: "sutd/content/10-023-designing-energy-systems/containers/heat-transfer-modes"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-023-designing-energy-systems.open-systems-energy-balance"
+    status: "planned"
+    concept_title: "Open Systems Energy Balance"
+    curriculum: "sutd"
+    subject: "10-023-designing-energy-systems"
+    domain: "SUTD 10.023 - Designing Energy Systems"
+    source_table: "Table 13: SUTD 10.023 - Designing Energy Systems"
+    target_path: "sutd/content/10-023-designing-energy-systems/containers/open-systems-energy-balance"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-023-designing-energy-systems.entropy-and-carnot-efficiency"
+    status: "planned"
+    concept_title: "Entropy and Carnot Efficiency"
+    curriculum: "sutd"
+    subject: "10-023-designing-energy-systems"
+    domain: "SUTD 10.023 - Designing Energy Systems"
+    source_table: "Table 13: SUTD 10.023 - Designing Energy Systems"
+    target_path: "sutd/content/10-023-designing-energy-systems/containers/entropy-and-carnot-efficiency"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-023-designing-energy-systems.exergy-and-system-optimisation"
+    status: "planned"
+    concept_title: "Exergy and System Optimisation"
+    curriculum: "sutd"
+    subject: "10-023-designing-energy-systems"
+    domain: "SUTD 10.023 - Designing Energy Systems"
+    source_table: "Table 13: SUTD 10.023 - Designing Energy Systems"
+    target_path: "sutd/content/10-023-designing-energy-systems/containers/exergy-and-system-optimisation"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-023-designing-energy-systems.photovoltaics-and-iv-curve"
+    status: "planned"
+    concept_title: "Photovoltaics and IV Curve"
+    curriculum: "sutd"
+    subject: "10-023-designing-energy-systems"
+    domain: "SUTD 10.023 - Designing Energy Systems"
+    source_table: "Table 13: SUTD 10.023 - Designing Energy Systems"
+    target_path: "sutd/content/10-023-designing-energy-systems/containers/photovoltaics-and-iv-curve"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.10-023-designing-energy-systems.battery-sizing-and-solar-placement"
+    status: "planned"
+    concept_title: "Battery Sizing and Solar Placement"
+    curriculum: "sutd"
+    subject: "10-023-designing-energy-systems"
+    domain: "SUTD 10.023 - Designing Energy Systems"
+    source_table: "Table 13: SUTD 10.023 - Designing Energy Systems"
+    target_path: "sutd/content/10-023-designing-energy-systems/containers/battery-sizing-and-solar-placement"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-001-structures-and-materials.load-paths-and-free-body-diagrams"
+    status: "planned"
+    concept_title: "Load Paths and Free-Body Diagrams"
+    curriculum: "sutd"
+    subject: "30-001-structures-and-materials"
+    domain: "SUTD 30.001 - Structures & Materials"
+    source_table: "Table 14: SUTD 30.001 - Structures & Materials"
+    target_path: "sutd/content/30-001-structures-and-materials/containers/load-paths-and-free-body-diagrams"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-001-structures-and-materials.stress-strain-and-material-behaviour"
+    status: "planned"
+    concept_title: "Stress-Strain and Material Behaviour"
+    curriculum: "sutd"
+    subject: "30-001-structures-and-materials"
+    domain: "SUTD 30.001 - Structures & Materials"
+    source_table: "Table 14: SUTD 30.001 - Structures & Materials"
+    target_path: "sutd/content/30-001-structures-and-materials/containers/stress-strain-and-material-behaviour"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-001-structures-and-materials.statically-indeterminate-structures"
+    status: "planned"
+    concept_title: "Statically Indeterminate Structures"
+    curriculum: "sutd"
+    subject: "30-001-structures-and-materials"
+    domain: "SUTD 30.001 - Structures & Materials"
+    source_table: "Table 14: SUTD 30.001 - Structures & Materials"
+    target_path: "sutd/content/30-001-structures-and-materials/containers/statically-indeterminate-structures"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-001-structures-and-materials.combined-loading"
+    status: "planned"
+    concept_title: "Combined Loading"
+    curriculum: "sutd"
+    subject: "30-001-structures-and-materials"
+    domain: "SUTD 30.001 - Structures & Materials"
+    source_table: "Table 14: SUTD 30.001 - Structures & Materials"
+    target_path: "sutd/content/30-001-structures-and-materials/containers/combined-loading"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-001-structures-and-materials.fea-as-design-validation"
+    status: "planned"
+    concept_title: "FEA as Design Validation"
+    curriculum: "sutd"
+    subject: "30-001-structures-and-materials"
+    domain: "SUTD 30.001 - Structures & Materials"
+    source_table: "Table 14: SUTD 30.001 - Structures & Materials"
+    target_path: "sutd/content/30-001-structures-and-materials/containers/fea-as-design-validation"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-001-structures-and-materials.material-selection-and-failure"
+    status: "planned"
+    concept_title: "Material Selection and Failure"
+    curriculum: "sutd"
+    subject: "30-001-structures-and-materials"
+    domain: "SUTD 30.001 - Structures & Materials"
+    source_table: "Table 14: SUTD 30.001 - Structures & Materials"
+    target_path: "sutd/content/30-001-structures-and-materials/containers/material-selection-and-failure"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-103-fluid-mechanics.fluid-properties-and-reynolds-number"
+    status: "planned"
+    concept_title: "Fluid Properties and Reynolds Number"
+    curriculum: "sutd"
+    subject: "30-103-fluid-mechanics"
+    domain: "SUTD 30.103 - Fluid Mechanics"
+    source_table: "Table 15: SUTD 30.103 - Fluid Mechanics"
+    target_path: "sutd/content/30-103-fluid-mechanics/containers/fluid-properties-and-reynolds-number"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-103-fluid-mechanics.hydrostatics-and-buoyancy"
+    status: "planned"
+    concept_title: "Hydrostatics and Buoyancy"
+    curriculum: "sutd"
+    subject: "30-103-fluid-mechanics"
+    domain: "SUTD 30.103 - Fluid Mechanics"
+    source_table: "Table 15: SUTD 30.103 - Fluid Mechanics"
+    target_path: "sutd/content/30-103-fluid-mechanics/containers/hydrostatics-and-buoyancy"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-103-fluid-mechanics.bernoulli-equation"
+    status: "planned"
+    concept_title: "Bernoulli Equation"
+    curriculum: "sutd"
+    subject: "30-103-fluid-mechanics"
+    domain: "SUTD 30.103 - Fluid Mechanics"
+    source_table: "Table 15: SUTD 30.103 - Fluid Mechanics"
+    target_path: "sutd/content/30-103-fluid-mechanics/containers/bernoulli-equation"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-103-fluid-mechanics.control-volume-analysis"
+    status: "planned"
+    concept_title: "Control Volume Analysis"
+    curriculum: "sutd"
+    subject: "30-103-fluid-mechanics"
+    domain: "SUTD 30.103 - Fluid Mechanics"
+    source_table: "Table 15: SUTD 30.103 - Fluid Mechanics"
+    target_path: "sutd/content/30-103-fluid-mechanics/containers/control-volume-analysis"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-103-fluid-mechanics.navier-stokes-and-viscous-flow"
+    status: "planned"
+    concept_title: "Navier-Stokes and Viscous Flow"
+    curriculum: "sutd"
+    subject: "30-103-fluid-mechanics"
+    domain: "SUTD 30.103 - Fluid Mechanics"
+    source_table: "Table 15: SUTD 30.103 - Fluid Mechanics"
+    target_path: "sutd/content/30-103-fluid-mechanics/containers/navier-stokes-and-viscous-flow"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-103-fluid-mechanics.laminar-vs-turbulent-pipe-flow"
+    status: "planned"
+    concept_title: "Laminar vs Turbulent Pipe Flow"
+    curriculum: "sutd"
+    subject: "30-103-fluid-mechanics"
+    domain: "SUTD 30.103 - Fluid Mechanics"
+    source_table: "Table 15: SUTD 30.103 - Fluid Mechanics"
+    target_path: "sutd/content/30-103-fluid-mechanics/containers/laminar-vs-turbulent-pipe-flow"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-103-fluid-mechanics.microfluidic-devices"
+    status: "planned"
+    concept_title: "Microfluidic Devices"
+    curriculum: "sutd"
+    subject: "30-103-fluid-mechanics"
+    domain: "SUTD 30.103 - Fluid Mechanics"
+    source_table: "Table 15: SUTD 30.103 - Fluid Mechanics"
+    target_path: "sutd/content/30-103-fluid-mechanics/containers/microfluidic-devices"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.dsis-signals-and-systems-control.laplace-transform-and-lti-systems"
+    status: "planned"
+    concept_title: "Laplace Transform and LTI Systems"
+    curriculum: "sutd"
+    subject: "dsis-signals-and-systems-control"
+    domain: "SUTD DSIS - Signals & Systems / Control"
+    source_table: "Table 16: SUTD DSIS - Signals & Systems / Control"
+    target_path: "sutd/content/dsis-signals-and-systems-control/containers/laplace-transform-and-lti-systems"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.dsis-signals-and-systems-control.convolution-and-transfer-function"
+    status: "planned"
+    concept_title: "Convolution and Transfer Function"
+    curriculum: "sutd"
+    subject: "dsis-signals-and-systems-control"
+    domain: "SUTD DSIS - Signals & Systems / Control"
+    source_table: "Table 16: SUTD DSIS - Signals & Systems / Control"
+    target_path: "sutd/content/dsis-signals-and-systems-control/containers/convolution-and-transfer-function"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.dsis-signals-and-systems-control.mathematical-modelling-of-physical-systems"
+    status: "planned"
+    concept_title: "Mathematical Modelling of Physical Systems"
+    curriculum: "sutd"
+    subject: "dsis-signals-and-systems-control"
+    domain: "SUTD DSIS - Signals & Systems / Control"
+    source_table: "Table 16: SUTD DSIS - Signals & Systems / Control"
+    target_path: "sutd/content/dsis-signals-and-systems-control/containers/mathematical-modelling-of-physical-systems"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.dsis-signals-and-systems-control.first-and-second-order-systems"
+    status: "planned"
+    concept_title: "First and Second Order Systems"
+    curriculum: "sutd"
+    subject: "dsis-signals-and-systems-control"
+    domain: "SUTD DSIS - Signals & Systems / Control"
+    source_table: "Table 16: SUTD DSIS - Signals & Systems / Control"
+    target_path: "sutd/content/dsis-signals-and-systems-control/containers/first-and-second-order-systems"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.dsis-signals-and-systems-control.block-diagrams-and-feedback"
+    status: "planned"
+    concept_title: "Block Diagrams and Feedback"
+    curriculum: "sutd"
+    subject: "dsis-signals-and-systems-control"
+    domain: "SUTD DSIS - Signals & Systems / Control"
+    source_table: "Table 16: SUTD DSIS - Signals & Systems / Control"
+    target_path: "sutd/content/dsis-signals-and-systems-control/containers/block-diagrams-and-feedback"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.dsis-signals-and-systems-control.pid-controllers"
+    status: "planned"
+    concept_title: "PID Controllers"
+    curriculum: "sutd"
+    subject: "dsis-signals-and-systems-control"
+    domain: "SUTD DSIS - Signals & Systems / Control"
+    source_table: "Table 16: SUTD DSIS - Signals & Systems / Control"
+    target_path: "sutd/content/dsis-signals-and-systems-control/containers/pid-controllers"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.dsis-signals-and-systems-control.stability-and-routh-criterion"
+    status: "planned"
+    concept_title: "Stability and Routh Criterion"
+    curriculum: "sutd"
+    subject: "dsis-signals-and-systems-control"
+    domain: "SUTD DSIS - Signals & Systems / Control"
+    source_table: "Table 16: SUTD DSIS - Signals & Systems / Control"
+    target_path: "sutd/content/dsis-signals-and-systems-control/containers/stability-and-routh-criterion"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.dsis-signals-and-systems-control.root-locus"
+    status: "planned"
+    concept_title: "Root Locus"
+    curriculum: "sutd"
+    subject: "dsis-signals-and-systems-control"
+    domain: "SUTD DSIS - Signals & Systems / Control"
+    source_table: "Table 16: SUTD DSIS - Signals & Systems / Control"
+    target_path: "sutd/content/dsis-signals-and-systems-control/containers/root-locus"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.dsis-signals-and-systems-control.frequency-domain-and-bode-plots"
+    status: "planned"
+    concept_title: "Frequency Domain and Bode Plots"
+    curriculum: "sutd"
+    subject: "dsis-signals-and-systems-control"
+    domain: "SUTD DSIS - Signals & Systems / Control"
+    source_table: "Table 16: SUTD DSIS - Signals & Systems / Control"
+    target_path: "sutd/content/dsis-signals-and-systems-control/containers/frequency-domain-and-bode-plots"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.dsis-signals-and-systems-control.state-space-and-full-state-feedback"
+    status: "planned"
+    concept_title: "State Space and Full State Feedback"
+    curriculum: "sutd"
+    subject: "dsis-signals-and-systems-control"
+    domain: "SUTD DSIS - Signals & Systems / Control"
+    source_table: "Table 16: SUTD DSIS - Signals & Systems / Control"
+    target_path: "sutd/content/dsis-signals-and-systems-control/containers/state-space-and-full-state-feedback"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.electronics-3-x.digital-electronics"
+    status: "planned"
+    concept_title: "Digital Electronics"
+    curriculum: "sutd"
+    subject: "electronics-3-x"
+    domain: "SUTD Electronics (3.x)"
+    source_table: "Table 17: SUTD Electronics (3.x)"
+    target_path: "sutd/content/electronics-3-x/containers/digital-electronics"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.electronics-3-x.circuit-basics-ohm-and-kirchhoff"
+    status: "planned"
+    concept_title: "Circuit Basics: Ohm + Kirchhoff"
+    curriculum: "sutd"
+    subject: "electronics-3-x"
+    domain: "SUTD Electronics (3.x)"
+    source_table: "Table 17: SUTD Electronics (3.x)"
+    target_path: "sutd/content/electronics-3-x/containers/circuit-basics-ohm-and-kirchhoff"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.electronics-3-x.linear-network-analysis"
+    status: "planned"
+    concept_title: "Linear Network Analysis"
+    curriculum: "sutd"
+    subject: "electronics-3-x"
+    domain: "SUTD Electronics (3.x)"
+    source_table: "Table 17: SUTD Electronics (3.x)"
+    target_path: "sutd/content/electronics-3-x/containers/linear-network-analysis"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.electronics-3-x.sinusoidal-ac-analysis"
+    status: "planned"
+    concept_title: "Sinusoidal AC Analysis"
+    curriculum: "sutd"
+    subject: "electronics-3-x"
+    domain: "SUTD Electronics (3.x)"
+    source_table: "Table 17: SUTD Electronics (3.x)"
+    target_path: "sutd/content/electronics-3-x/containers/sinusoidal-ac-analysis"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.electronics-3-x.diodes"
+    status: "planned"
+    concept_title: "Diodes"
+    curriculum: "sutd"
+    subject: "electronics-3-x"
+    domain: "SUTD Electronics (3.x)"
+    source_table: "Table 17: SUTD Electronics (3.x)"
+    target_path: "sutd/content/electronics-3-x/containers/diodes"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.electronics-3-x.op-amps-intro-and-applications"
+    status: "planned"
+    concept_title: "Op-Amps: Intro and Applications"
+    curriculum: "sutd"
+    subject: "electronics-3-x"
+    domain: "SUTD Electronics (3.x)"
+    source_table: "Table 17: SUTD Electronics (3.x)"
+    target_path: "sutd/content/electronics-3-x/containers/op-amps-intro-and-applications"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.electronics-3-x.mosfet-as-amplifier-and-switch"
+    status: "planned"
+    concept_title: "MOSFET as Amplifier and Switch"
+    curriculum: "sutd"
+    subject: "electronics-3-x"
+    domain: "SUTD Electronics (3.x)"
+    source_table: "Table 17: SUTD Electronics (3.x)"
+    target_path: "sutd/content/electronics-3-x/containers/mosfet-as-amplifier-and-switch"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.electronics-3-x.transients"
+    status: "planned"
+    concept_title: "Transients"
+    curriculum: "sutd"
+    subject: "electronics-3-x"
+    domain: "SUTD Electronics (3.x)"
+    source_table: "Table 17: SUTD Electronics (3.x)"
+    target_path: "sutd/content/electronics-3-x/containers/transients"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-100-computational-and-data-driven-engineering.analytical-ode-methods"
+    status: "planned"
+    concept_title: "Analytical ODE Methods"
+    curriculum: "sutd"
+    subject: "30-100-computational-and-data-driven-engineering"
+    domain: "SUTD 30.100 - Computational + Data-Driven Engineering"
+    source_table: "Table 18: SUTD 30.100 - Computational + Data-Driven Engineering"
+    target_path: "sutd/content/30-100-computational-and-data-driven-engineering/containers/analytical-ode-methods"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-100-computational-and-data-driven-engineering.numerical-methods-for-ode-ivps"
+    status: "planned"
+    concept_title: "Numerical Methods for ODE IVPs"
+    curriculum: "sutd"
+    subject: "30-100-computational-and-data-driven-engineering"
+    domain: "SUTD 30.100 - Computational + Data-Driven Engineering"
+    source_table: "Table 18: SUTD 30.100 - Computational + Data-Driven Engineering"
+    target_path: "sutd/content/30-100-computational-and-data-driven-engineering/containers/numerical-methods-for-ode-ivps"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-100-computational-and-data-driven-engineering.boundary-value-problems-and-pde-methods"
+    status: "planned"
+    concept_title: "Boundary Value Problems and PDE Methods"
+    curriculum: "sutd"
+    subject: "30-100-computational-and-data-driven-engineering"
+    domain: "SUTD 30.100 - Computational + Data-Driven Engineering"
+    source_table: "Table 18: SUTD 30.100 - Computational + Data-Driven Engineering"
+    target_path: "sutd/content/30-100-computational-and-data-driven-engineering/containers/boundary-value-problems-and-pde-methods"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-100-computational-and-data-driven-engineering.neural-networks-for-engineering"
+    status: "planned"
+    concept_title: "Neural Networks for Engineering"
+    curriculum: "sutd"
+    subject: "30-100-computational-and-data-driven-engineering"
+    domain: "SUTD 30.100 - Computational + Data-Driven Engineering"
+    source_table: "Table 18: SUTD 30.100 - Computational + Data-Driven Engineering"
+    target_path: "sutd/content/30-100-computational-and-data-driven-engineering/containers/neural-networks-for-engineering"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-100-computational-and-data-driven-engineering.monte-carlo-and-anova"
+    status: "planned"
+    concept_title: "Monte Carlo and ANOVA"
+    curriculum: "sutd"
+    subject: "30-100-computational-and-data-driven-engineering"
+    domain: "SUTD 30.100 - Computational + Data-Driven Engineering"
+    source_table: "Table 18: SUTD 30.100 - Computational + Data-Driven Engineering"
+    target_path: "sutd/content/30-100-computational-and-data-driven-engineering/containers/monte-carlo-and-anova"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.30-100-computational-and-data-driven-engineering.design-of-experiments-and-evolutionary-optimisation"
+    status: "planned"
+    concept_title: "Design of Experiments and Evolutionary Optimisation"
+    curriculum: "sutd"
+    subject: "30-100-computational-and-data-driven-engineering"
+    domain: "SUTD 30.100 - Computational + Data-Driven Engineering"
+    source_table: "Table 18: SUTD 30.100 - Computational + Data-Driven Engineering"
+    target_path: "sutd/content/30-100-computational-and-data-driven-engineering/containers/design-of-experiments-and-evolutionary-optimisation"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-001-information-systems-and-programming-java-and-oop-and-android.java-fundamentals-and-static-typing"
+    status: "planned"
+    concept_title: "Java Fundamentals + Static Typing"
+    curriculum: "sutd"
+    subject: "50-001-information-systems-and-programming-java-and-oop-and-android"
+    domain: "SUTD 50.001 - Information Systems and Programming (Java + OOP + Android)"
+    source_table: "Table 19: SUTD 50.001 - Information Systems and Programming (Java + OOP + Android)"
+    target_path: "sutd/content/50-001-information-systems-and-programming-java-and-oop-and-android/containers/java-fundamentals-and-static-typing"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-001-information-systems-and-programming-java-and-oop-and-android.object-oriented-design-classes-inheritance-polymorphism"
+    status: "planned"
+    concept_title: "Object-Oriented Design (Classes, Inheritance, Polymorphism)"
+    curriculum: "sutd"
+    subject: "50-001-information-systems-and-programming-java-and-oop-and-android"
+    domain: "SUTD 50.001 - Information Systems and Programming (Java + OOP + Android)"
+    source_table: "Table 19: SUTD 50.001 - Information Systems and Programming (Java + OOP + Android)"
+    target_path: "sutd/content/50-001-information-systems-and-programming-java-and-oop-and-android/containers/object-oriented-design-classes-inheritance-polymorphism"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-001-information-systems-and-programming-java-and-oop-and-android.abstract-classes-interfaces-exceptions"
+    status: "planned"
+    concept_title: "Abstract Classes, Interfaces, Exceptions"
+    curriculum: "sutd"
+    subject: "50-001-information-systems-and-programming-java-and-oop-and-android"
+    domain: "SUTD 50.001 - Information Systems and Programming (Java + OOP + Android)"
+    source_table: "Table 19: SUTD 50.001 - Information Systems and Programming (Java + OOP + Android)"
+    target_path: "sutd/content/50-001-information-systems-and-programming-java-and-oop-and-android/containers/abstract-classes-interfaces-exceptions"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-001-information-systems-and-programming-java-and-oop-and-android.object-oriented-design-patterns"
+    status: "planned"
+    concept_title: "Object-Oriented Design Patterns"
+    curriculum: "sutd"
+    subject: "50-001-information-systems-and-programming-java-and-oop-and-android"
+    domain: "SUTD 50.001 - Information Systems and Programming (Java + OOP + Android)"
+    source_table: "Table 19: SUTD 50.001 - Information Systems and Programming (Java + OOP + Android)"
+    target_path: "sutd/content/50-001-information-systems-and-programming-java-and-oop-and-android/containers/object-oriented-design-patterns"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-001-information-systems-and-programming-java-and-oop-and-android.basic-concurrency-threads-race-conditions-synchronization"
+    status: "planned"
+    concept_title: "Basic Concurrency: Threads, Race Conditions, Synchronization"
+    curriculum: "sutd"
+    subject: "50-001-information-systems-and-programming-java-and-oop-and-android"
+    domain: "SUTD 50.001 - Information Systems and Programming (Java + OOP + Android)"
+    source_table: "Table 19: SUTD 50.001 - Information Systems and Programming (Java + OOP + Android)"
+    target_path: "sutd/content/50-001-information-systems-and-programming-java-and-oop-and-android/containers/basic-concurrency-threads-race-conditions-synchronization"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-001-information-systems-and-programming-java-and-oop-and-android.mobile-programming-with-android"
+    status: "planned"
+    concept_title: "Mobile Programming with Android"
+    curriculum: "sutd"
+    subject: "50-001-information-systems-and-programming-java-and-oop-and-android"
+    domain: "SUTD 50.001 - Information Systems and Programming (Java + OOP + Android)"
+    source_table: "Table 19: SUTD 50.001 - Information Systems and Programming (Java + OOP + Android)"
+    target_path: "sutd/content/50-001-information-systems-and-programming-java-and-oop-and-android/containers/mobile-programming-with-android"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-002-computational-structures-digital-logic-to-cpu-to-os.logic-synthesis-and-simplification"
+    status: "planned"
+    concept_title: "Logic Synthesis and Simplification"
+    curriculum: "sutd"
+    subject: "50-002-computational-structures-digital-logic-to-cpu-to-os"
+    domain: "SUTD 50.002 - Computational Structures (Digital Logic to CPU to OS)"
+    source_table: "Table 20: SUTD 50.002 - Computational Structures (Digital Logic  to  CPU  to  OS)"
+    target_path: "sutd/content/50-002-computational-structures-digital-logic-to-cpu-to-os/containers/logic-synthesis-and-simplification"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-002-computational-structures-digital-logic-to-cpu-to-os.sequential-logic-and-finite-state-machines"
+    status: "planned"
+    concept_title: "Sequential Logic + Finite State Machines"
+    curriculum: "sutd"
+    subject: "50-002-computational-structures-digital-logic-to-cpu-to-os"
+    domain: "SUTD 50.002 - Computational Structures (Digital Logic to CPU to OS)"
+    source_table: "Table 20: SUTD 50.002 - Computational Structures (Digital Logic  to  CPU  to  OS)"
+    target_path: "sutd/content/50-002-computational-structures-digital-logic-to-cpu-to-os/containers/sequential-logic-and-finite-state-machines"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-002-computational-structures-digital-logic-to-cpu-to-os.assembly-language-and-the-beta-cpu"
+    status: "planned"
+    concept_title: "Assembly Language and the Beta CPU"
+    curriculum: "sutd"
+    subject: "50-002-computational-structures-digital-logic-to-cpu-to-os"
+    domain: "SUTD 50.002 - Computational Structures (Digital Logic to CPU to OS)"
+    source_table: "Table 20: SUTD 50.002 - Computational Structures (Digital Logic  to  CPU  to  OS)"
+    target_path: "sutd/content/50-002-computational-structures-digital-logic-to-cpu-to-os/containers/assembly-language-and-the-beta-cpu"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-002-computational-structures-digital-logic-to-cpu-to-os.memory-hierarchy-and-caches"
+    status: "planned"
+    concept_title: "Memory Hierarchy and Caches"
+    curriculum: "sutd"
+    subject: "50-002-computational-structures-digital-logic-to-cpu-to-os"
+    domain: "SUTD 50.002 - Computational Structures (Digital Logic to CPU to OS)"
+    source_table: "Table 20: SUTD 50.002 - Computational Structures (Digital Logic  to  CPU  to  OS)"
+    target_path: "sutd/content/50-002-computational-structures-digital-logic-to-cpu-to-os/containers/memory-hierarchy-and-caches"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-002-computational-structures-digital-logic-to-cpu-to-os.virtual-memory"
+    status: "planned"
+    concept_title: "Virtual Memory"
+    curriculum: "sutd"
+    subject: "50-002-computational-structures-digital-logic-to-cpu-to-os"
+    domain: "SUTD 50.002 - Computational Structures (Digital Logic to CPU to OS)"
+    source_table: "Table 20: SUTD 50.002 - Computational Structures (Digital Logic  to  CPU  to  OS)"
+    target_path: "sutd/content/50-002-computational-structures-digital-logic-to-cpu-to-os/containers/virtual-memory"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-004-algorithms.asymptotic-notation-and-complexity"
+    status: "planned"
+    concept_title: "Asymptotic Notation and Complexity"
+    curriculum: "sutd"
+    subject: "50-004-algorithms"
+    domain: "SUTD 50.004 - Algorithms"
+    source_table: "Table 21: SUTD 50.004 - Algorithms"
+    target_path: "sutd/content/50-004-algorithms/containers/asymptotic-notation-and-complexity"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-004-algorithms.sorting-algorithms-comparison-and-linear-time"
+    status: "planned"
+    concept_title: "Sorting Algorithms (Comparison + Linear-Time)"
+    curriculum: "sutd"
+    subject: "50-004-algorithms"
+    domain: "SUTD 50.004 - Algorithms"
+    source_table: "Table 21: SUTD 50.004 - Algorithms"
+    target_path: "sutd/content/50-004-algorithms/containers/sorting-algorithms-comparison-and-linear-time"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-004-algorithms.heaps-and-priority-queues"
+    status: "planned"
+    concept_title: "Heaps and Priority Queues"
+    curriculum: "sutd"
+    subject: "50-004-algorithms"
+    domain: "SUTD 50.004 - Algorithms"
+    source_table: "Table 21: SUTD 50.004 - Algorithms"
+    target_path: "sutd/content/50-004-algorithms/containers/heaps-and-priority-queues"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-004-algorithms.binary-search-trees-and-avl-self-balancing"
+    status: "planned"
+    concept_title: "Binary Search Trees + AVL Self-Balancing"
+    curriculum: "sutd"
+    subject: "50-004-algorithms"
+    domain: "SUTD 50.004 - Algorithms"
+    source_table: "Table 21: SUTD 50.004 - Algorithms"
+    target_path: "sutd/content/50-004-algorithms/containers/binary-search-trees-and-avl-self-balancing"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-004-algorithms.hashing-and-hash-tables"
+    status: "planned"
+    concept_title: "Hashing and Hash Tables"
+    curriculum: "sutd"
+    subject: "50-004-algorithms"
+    domain: "SUTD 50.004 - Algorithms"
+    source_table: "Table 21: SUTD 50.004 - Algorithms"
+    target_path: "sutd/content/50-004-algorithms/containers/hashing-and-hash-tables"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-004-algorithms.graph-search-bfs-dfs-topological-sort"
+    status: "planned"
+    concept_title: "Graph Search: BFS, DFS, Topological Sort"
+    curriculum: "sutd"
+    subject: "50-004-algorithms"
+    domain: "SUTD 50.004 - Algorithms"
+    source_table: "Table 21: SUTD 50.004 - Algorithms"
+    target_path: "sutd/content/50-004-algorithms/containers/graph-search-bfs-dfs-topological-sort"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-004-algorithms.shortest-path-bellman-ford-and-dijkstra"
+    status: "planned"
+    concept_title: "Shortest Path: Bellman-Ford + Dijkstra"
+    curriculum: "sutd"
+    subject: "50-004-algorithms"
+    domain: "SUTD 50.004 - Algorithms"
+    source_table: "Table 21: SUTD 50.004 - Algorithms"
+    target_path: "sutd/content/50-004-algorithms/containers/shortest-path-bellman-ford-and-dijkstra"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-004-algorithms.dynamic-programming"
+    status: "planned"
+    concept_title: "Dynamic Programming"
+    curriculum: "sutd"
+    subject: "50-004-algorithms"
+    domain: "SUTD 50.004 - Algorithms"
+    source_table: "Table 21: SUTD 50.004 - Algorithms"
+    target_path: "sutd/content/50-004-algorithms/containers/dynamic-programming"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-004-algorithms.np-completeness-and-reductions"
+    status: "planned"
+    concept_title: "NP-Completeness and Reductions"
+    curriculum: "sutd"
+    subject: "50-004-algorithms"
+    domain: "SUTD 50.004 - Algorithms"
+    source_table: "Table 21: SUTD 50.004 - Algorithms"
+    target_path: "sutd/content/50-004-algorithms/containers/np-completeness-and-reductions"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-003-elements-of-software-construction.uml-and-software-design"
+    status: "planned"
+    concept_title: "UML and Software Design"
+    curriculum: "sutd"
+    subject: "50-003-elements-of-software-construction"
+    domain: "SUTD 50.003 - Elements of Software Construction"
+    source_table: "Table 22: SUTD 50.003 - Elements of Software Construction"
+    target_path: "sutd/content/50-003-elements-of-software-construction/containers/uml-and-software-design"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-003-elements-of-software-construction.software-testing-blackbox-and-whitebox-and-fault-based"
+    status: "planned"
+    concept_title: "Software Testing: Blackbox + Whitebox + Fault-Based"
+    curriculum: "sutd"
+    subject: "50-003-elements-of-software-construction"
+    domain: "SUTD 50.003 - Elements of Software Construction"
+    source_table: "Table 22: SUTD 50.003 - Elements of Software Construction"
+    target_path: "sutd/content/50-003-elements-of-software-construction/containers/software-testing-blackbox-and-whitebox-and-fault-based"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-003-elements-of-software-construction.test-generation-and-fuzzing"
+    status: "planned"
+    concept_title: "Test Generation and Fuzzing"
+    curriculum: "sutd"
+    subject: "50-003-elements-of-software-construction"
+    domain: "SUTD 50.003 - Elements of Software Construction"
+    source_table: "Table 22: SUTD 50.003 - Elements of Software Construction"
+    target_path: "sutd/content/50-003-elements-of-software-construction/containers/test-generation-and-fuzzing"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-003-elements-of-software-construction.concurrency-threads-safety-synchronization-patterns"
+    status: "planned"
+    concept_title: "Concurrency: Threads, Safety, Synchronization Patterns"
+    curriculum: "sutd"
+    subject: "50-003-elements-of-software-construction"
+    domain: "SUTD 50.003 - Elements of Software Construction"
+    source_table: "Table 22: SUTD 50.003 - Elements of Software Construction"
+    target_path: "sutd/content/50-003-elements-of-software-construction/containers/concurrency-threads-safety-synchronization-patterns"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-003-elements-of-software-construction.tasks-thread-pools-non-blocking-algorithms"
+    status: "planned"
+    concept_title: "Tasks, Thread Pools, Non-Blocking Algorithms"
+    curriculum: "sutd"
+    subject: "50-003-elements-of-software-construction"
+    domain: "SUTD 50.003 - Elements of Software Construction"
+    source_table: "Table 22: SUTD 50.003 - Elements of Software Construction"
+    target_path: "sutd/content/50-003-elements-of-software-construction/containers/tasks-thread-pools-non-blocking-algorithms"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-003-elements-of-software-construction.code-smells-and-refactoring"
+    status: "planned"
+    concept_title: "Code Smells and Refactoring"
+    curriculum: "sutd"
+    subject: "50-003-elements-of-software-construction"
+    domain: "SUTD 50.003 - Elements of Software Construction"
+    source_table: "Table 22: SUTD 50.003 - Elements of Software Construction"
+    target_path: "sutd/content/50-003-elements-of-software-construction/containers/code-smells-and-refactoring"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-005-computer-systems-engineering.process-management-and-scheduling"
+    status: "planned"
+    concept_title: "Process Management and Scheduling"
+    curriculum: "sutd"
+    subject: "50-005-computer-systems-engineering"
+    domain: "SUTD 50.005 - Computer Systems Engineering"
+    source_table: "Table 23: SUTD 50.005 - Computer Systems Engineering"
+    target_path: "sutd/content/50-005-computer-systems-engineering/containers/process-management-and-scheduling"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-005-computer-systems-engineering.synchronization-deadlock-process-coordination"
+    status: "planned"
+    concept_title: "Synchronization, Deadlock, Process Coordination"
+    curriculum: "sutd"
+    subject: "50-005-computer-systems-engineering"
+    domain: "SUTD 50.005 - Computer Systems Engineering"
+    source_table: "Table 23: SUTD 50.005 - Computer Systems Engineering"
+    target_path: "sutd/content/50-005-computer-systems-engineering/containers/synchronization-deadlock-process-coordination"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-005-computer-systems-engineering.file-systems-and-i-o"
+    status: "planned"
+    concept_title: "File Systems and I/O"
+    curriculum: "sutd"
+    subject: "50-005-computer-systems-engineering"
+    domain: "SUTD 50.005 - Computer Systems Engineering"
+    source_table: "Table 23: SUTD 50.005 - Computer Systems Engineering"
+    target_path: "sutd/content/50-005-computer-systems-engineering/containers/file-systems-and-i-o"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-005-computer-systems-engineering.networking-basics-http-sockets-latency-throughput"
+    status: "planned"
+    concept_title: "Networking Basics: HTTP, Sockets, Latency, Throughput"
+    curriculum: "sutd"
+    subject: "50-005-computer-systems-engineering"
+    domain: "SUTD 50.005 - Computer Systems Engineering"
+    source_table: "Table 23: SUTD 50.005 - Computer Systems Engineering"
+    target_path: "sutd/content/50-005-computer-systems-engineering/containers/networking-basics-http-sockets-latency-throughput"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-005-computer-systems-engineering.network-security-cryptography-and-auth-and-attacks"
+    status: "planned"
+    concept_title: "Network Security: Cryptography + Auth + Attacks"
+    curriculum: "sutd"
+    subject: "50-005-computer-systems-engineering"
+    domain: "SUTD 50.005 - Computer Systems Engineering"
+    source_table: "Table 23: SUTD 50.005 - Computer Systems Engineering"
+    target_path: "sutd/content/50-005-computer-systems-engineering/containers/network-security-cryptography-and-auth-and-attacks"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-005-computer-systems-engineering.dns-naming-and-distributed-lookup"
+    status: "planned"
+    concept_title: "DNS, Naming, and Distributed Lookup"
+    curriculum: "sutd"
+    subject: "50-005-computer-systems-engineering"
+    domain: "SUTD 50.005 - Computer Systems Engineering"
+    source_table: "Table 23: SUTD 50.005 - Computer Systems Engineering"
+    target_path: "sutd/content/50-005-computer-systems-engineering/containers/dns-naming-and-distributed-lookup"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-007-machine-learning.supervised-learning-perceptron-and-linear-classification"
+    status: "planned"
+    concept_title: "Supervised Learning: Perceptron + Linear Classification"
+    curriculum: "sutd"
+    subject: "50-007-machine-learning"
+    domain: "SUTD 50.007 - Machine Learning"
+    source_table: "Table 24: SUTD 50.007 - Machine Learning"
+    target_path: "sutd/content/50-007-machine-learning/containers/supervised-learning-perceptron-and-linear-classification"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-007-machine-learning.linear-regression-canonical"
+    status: "planned"
+    concept_title: "Linear Regression (Canonical)"
+    curriculum: "sutd"
+    subject: "50-007-machine-learning"
+    domain: "SUTD 50.007 - Machine Learning"
+    source_table: "Table 24: SUTD 50.007 - Machine Learning"
+    target_path: "sutd/content/50-007-machine-learning/containers/linear-regression-canonical"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-007-machine-learning.logistic-regression"
+    status: "planned"
+    concept_title: "Logistic Regression"
+    curriculum: "sutd"
+    subject: "50-007-machine-learning"
+    domain: "SUTD 50.007 - Machine Learning"
+    source_table: "Table 24: SUTD 50.007 - Machine Learning"
+    target_path: "sutd/content/50-007-machine-learning/containers/logistic-regression"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-007-machine-learning.support-vector-machines-and-kernels"
+    status: "planned"
+    concept_title: "Support Vector Machines + Kernels"
+    curriculum: "sutd"
+    subject: "50-007-machine-learning"
+    domain: "SUTD 50.007 - Machine Learning"
+    source_table: "Table 24: SUTD 50.007 - Machine Learning"
+    target_path: "sutd/content/50-007-machine-learning/containers/support-vector-machines-and-kernels"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-007-machine-learning.neural-networks-canonical"
+    status: "planned"
+    concept_title: "Neural Networks (Canonical)"
+    curriculum: "sutd"
+    subject: "50-007-machine-learning"
+    domain: "SUTD 50.007 - Machine Learning"
+    source_table: "Table 24: SUTD 50.007 - Machine Learning"
+    target_path: "sutd/content/50-007-machine-learning/containers/neural-networks-canonical"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-007-machine-learning.unsupervised-learning-k-means-and-k-medoids"
+    status: "planned"
+    concept_title: "Unsupervised Learning: K-Means + K-Medoids"
+    curriculum: "sutd"
+    subject: "50-007-machine-learning"
+    domain: "SUTD 50.007 - Machine Learning"
+    source_table: "Table 24: SUTD 50.007 - Machine Learning"
+    target_path: "sutd/content/50-007-machine-learning/containers/unsupervised-learning-k-means-and-k-medoids"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-007-machine-learning.gaussian-mixture-models-and-em"
+    status: "planned"
+    concept_title: "Gaussian Mixture Models + EM"
+    curriculum: "sutd"
+    subject: "50-007-machine-learning"
+    domain: "SUTD 50.007 - Machine Learning"
+    source_table: "Table 24: SUTD 50.007 - Machine Learning"
+    target_path: "sutd/content/50-007-machine-learning/containers/gaussian-mixture-models-and-em"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-007-machine-learning.decision-trees-and-random-forests-canonical"
+    status: "planned"
+    concept_title: "Decision Trees and Random Forests (Canonical)"
+    curriculum: "sutd"
+    subject: "50-007-machine-learning"
+    domain: "SUTD 50.007 - Machine Learning"
+    source_table: "Table 24: SUTD 50.007 - Machine Learning"
+    target_path: "sutd/content/50-007-machine-learning/containers/decision-trees-and-random-forests-canonical"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-007-machine-learning.ensemble-methods"
+    status: "planned"
+    concept_title: "Ensemble Methods"
+    curriculum: "sutd"
+    subject: "50-007-machine-learning"
+    domain: "SUTD 50.007 - Machine Learning"
+    source_table: "Table 24: SUTD 50.007 - Machine Learning"
+    target_path: "sutd/content/50-007-machine-learning/containers/ensemble-methods"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-007-machine-learning.dimensionality-reduction-pca-and-autoencoders"
+    status: "planned"
+    concept_title: "Dimensionality Reduction: PCA + Autoencoders"
+    curriculum: "sutd"
+    subject: "50-007-machine-learning"
+    domain: "SUTD 50.007 - Machine Learning"
+    source_table: "Table 24: SUTD 50.007 - Machine Learning"
+    target_path: "sutd/content/50-007-machine-learning/containers/dimensionality-reduction-pca-and-autoencoders"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-007-machine-learning.hidden-markov-models"
+    status: "planned"
+    concept_title: "Hidden Markov Models"
+    curriculum: "sutd"
+    subject: "50-007-machine-learning"
+    domain: "SUTD 50.007 - Machine Learning"
+    source_table: "Table 24: SUTD 50.007 - Machine Learning"
+    target_path: "sutd/content/50-007-machine-learning/containers/hidden-markov-models"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-007-machine-learning.markov-decision-processes-and-reinforcement-learning"
+    status: "planned"
+    concept_title: "Markov Decision Processes + Reinforcement Learning"
+    curriculum: "sutd"
+    subject: "50-007-machine-learning"
+    domain: "SUTD 50.007 - Machine Learning"
+    source_table: "Table 24: SUTD 50.007 - Machine Learning"
+    target_path: "sutd/content/50-007-machine-learning/containers/markov-decision-processes-and-reinforcement-learning"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-043-database-systems.relational-model-and-er-diagrams"
+    status: "planned"
+    concept_title: "Relational Model and ER Diagrams"
+    curriculum: "sutd"
+    subject: "50-043-database-systems"
+    domain: "SUTD 50.043 - Database Systems"
+    source_table: "Table 25: SUTD 50.043 - Database Systems"
+    target_path: "sutd/content/50-043-database-systems/containers/relational-model-and-er-diagrams"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-043-database-systems.sql-fundamentals-and-joins-and-aggregation"
+    status: "planned"
+    concept_title: "SQL Fundamentals + Joins + Aggregation"
+    curriculum: "sutd"
+    subject: "50-043-database-systems"
+    domain: "SUTD 50.043 - Database Systems"
+    source_table: "Table 25: SUTD 50.043 - Database Systems"
+    target_path: "sutd/content/50-043-database-systems/containers/sql-fundamentals-and-joins-and-aggregation"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-043-database-systems.functional-dependencies-and-normalization"
+    status: "planned"
+    concept_title: "Functional Dependencies and Normalization"
+    curriculum: "sutd"
+    subject: "50-043-database-systems"
+    domain: "SUTD 50.043 - Database Systems"
+    source_table: "Table 25: SUTD 50.043 - Database Systems"
+    target_path: "sutd/content/50-043-database-systems/containers/functional-dependencies-and-normalization"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-043-database-systems.indexing-and-query-optimisation"
+    status: "planned"
+    concept_title: "Indexing and Query Optimisation"
+    curriculum: "sutd"
+    subject: "50-043-database-systems"
+    domain: "SUTD 50.043 - Database Systems"
+    source_table: "Table 25: SUTD 50.043 - Database Systems"
+    target_path: "sutd/content/50-043-database-systems/containers/indexing-and-query-optimisation"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-043-database-systems.transactions-acid-concurrency-control"
+    status: "planned"
+    concept_title: "Transactions, ACID, Concurrency Control"
+    curriculum: "sutd"
+    subject: "50-043-database-systems"
+    domain: "SUTD 50.043 - Database Systems"
+    source_table: "Table 25: SUTD 50.043 - Database Systems"
+    target_path: "sutd/content/50-043-database-systems/containers/transactions-acid-concurrency-control"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.50-043-database-systems.big-data-hdfs-and-spark"
+    status: "planned"
+    concept_title: "Big Data: HDFS + Spark"
+    curriculum: "sutd"
+    subject: "50-043-database-systems"
+    domain: "SUTD 50.043 - Database Systems"
+    source_table: "Table 25: SUTD 50.043 - Database Systems"
+    target_path: "sutd/content/50-043-database-systems/containers/big-data-hdfs-and-spark"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-017-probability-and-statistics.moment-generating-functions"
+    status: "planned"
+    concept_title: "Moment Generating Functions"
+    curriculum: "sutd"
+    subject: "40-017-probability-and-statistics"
+    domain: "SUTD 40.017 - Probability and Statistics"
+    source_table: "Table 26: SUTD 40.017 - Probability and Statistics"
+    target_path: "sutd/content/40-017-probability-and-statistics/containers/moment-generating-functions"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-017-probability-and-statistics.conditional-distributions-and-conditional-independence"
+    status: "planned"
+    concept_title: "Conditional Distributions and Conditional Independence"
+    curriculum: "sutd"
+    subject: "40-017-probability-and-statistics"
+    domain: "SUTD 40.017 - Probability and Statistics"
+    source_table: "Table 26: SUTD 40.017 - Probability and Statistics"
+    target_path: "sutd/content/40-017-probability-and-statistics/containers/conditional-distributions-and-conditional-independence"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-017-probability-and-statistics.poisson-process"
+    status: "planned"
+    concept_title: "Poisson Process"
+    curriculum: "sutd"
+    subject: "40-017-probability-and-statistics"
+    domain: "SUTD 40.017 - Probability and Statistics"
+    source_table: "Table 26: SUTD 40.017 - Probability and Statistics"
+    target_path: "sutd/content/40-017-probability-and-statistics/containers/poisson-process"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-017-probability-and-statistics.bayesian-statistics-intro"
+    status: "planned"
+    concept_title: "Bayesian Statistics (Intro)"
+    curriculum: "sutd"
+    subject: "40-017-probability-and-statistics"
+    domain: "SUTD 40.017 - Probability and Statistics"
+    source_table: "Table 26: SUTD 40.017 - Probability and Statistics"
+    target_path: "sutd/content/40-017-probability-and-statistics/containers/bayesian-statistics-intro"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-017-probability-and-statistics.hypothesis-testing-two-sample-t-tests"
+    status: "planned"
+    concept_title: "Hypothesis Testing: Two-Sample, t-tests"
+    curriculum: "sutd"
+    subject: "40-017-probability-and-statistics"
+    domain: "SUTD 40.017 - Probability and Statistics"
+    source_table: "Table 26: SUTD 40.017 - Probability and Statistics"
+    target_path: "sutd/content/40-017-probability-and-statistics/containers/hypothesis-testing-two-sample-t-tests"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-017-probability-and-statistics.chi-squared-and-non-parametric-tests"
+    status: "planned"
+    concept_title: "Chi-Squared and Non-Parametric Tests"
+    curriculum: "sutd"
+    subject: "40-017-probability-and-statistics"
+    domain: "SUTD 40.017 - Probability and Statistics"
+    source_table: "Table 26: SUTD 40.017 - Probability and Statistics"
+    target_path: "sutd/content/40-017-probability-and-statistics/containers/chi-squared-and-non-parametric-tests"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-017-probability-and-statistics.anova-one-way-and-two-way"
+    status: "planned"
+    concept_title: "ANOVA: One-Way + Two-Way"
+    curriculum: "sutd"
+    subject: "40-017-probability-and-statistics"
+    domain: "SUTD 40.017 - Probability and Statistics"
+    source_table: "Table 26: SUTD 40.017 - Probability and Statistics"
+    target_path: "sutd/content/40-017-probability-and-statistics/containers/anova-one-way-and-two-way"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-017-probability-and-statistics.regression-dummy-variables-variable-selection"
+    status: "planned"
+    concept_title: "Regression: Dummy Variables, Variable Selection"
+    curriculum: "sutd"
+    subject: "40-017-probability-and-statistics"
+    domain: "SUTD 40.017 - Probability and Statistics"
+    source_table: "Table 26: SUTD 40.017 - Probability and Statistics"
+    target_path: "sutd/content/40-017-probability-and-statistics/containers/regression-dummy-variables-variable-selection"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-017-probability-and-statistics.bootstrap"
+    status: "planned"
+    concept_title: "Bootstrap"
+    curriculum: "sutd"
+    subject: "40-017-probability-and-statistics"
+    domain: "SUTD 40.017 - Probability and Statistics"
+    source_table: "Table 26: SUTD 40.017 - Probability and Statistics"
+    target_path: "sutd/content/40-017-probability-and-statistics/containers/bootstrap"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-018-heuristics-and-systems-theory.local-search-and-greedy"
+    status: "planned"
+    concept_title: "Local Search and Greedy"
+    curriculum: "sutd"
+    subject: "40-018-heuristics-and-systems-theory"
+    domain: "SUTD 40.018 - Heuristics and Systems Theory"
+    source_table: "Table 27: SUTD 40.018 - Heuristics and Systems Theory"
+    target_path: "sutd/content/40-018-heuristics-and-systems-theory/containers/local-search-and-greedy"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-018-heuristics-and-systems-theory.simulated-annealing"
+    status: "planned"
+    concept_title: "Simulated Annealing"
+    curriculum: "sutd"
+    subject: "40-018-heuristics-and-systems-theory"
+    domain: "SUTD 40.018 - Heuristics and Systems Theory"
+    source_table: "Table 27: SUTD 40.018 - Heuristics and Systems Theory"
+    target_path: "sutd/content/40-018-heuristics-and-systems-theory/containers/simulated-annealing"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-018-heuristics-and-systems-theory.tabu-search"
+    status: "planned"
+    concept_title: "Tabu Search"
+    curriculum: "sutd"
+    subject: "40-018-heuristics-and-systems-theory"
+    domain: "SUTD 40.018 - Heuristics and Systems Theory"
+    source_table: "Table 27: SUTD 40.018 - Heuristics and Systems Theory"
+    target_path: "sutd/content/40-018-heuristics-and-systems-theory/containers/tabu-search"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-018-heuristics-and-systems-theory.genetic-algorithms"
+    status: "planned"
+    concept_title: "Genetic Algorithms"
+    curriculum: "sutd"
+    subject: "40-018-heuristics-and-systems-theory"
+    domain: "SUTD 40.018 - Heuristics and Systems Theory"
+    source_table: "Table 27: SUTD 40.018 - Heuristics and Systems Theory"
+    target_path: "sutd/content/40-018-heuristics-and-systems-theory/containers/genetic-algorithms"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-018-heuristics-and-systems-theory.multi-objective-optimisation-and-nsga-ii"
+    status: "planned"
+    concept_title: "Multi-Objective Optimisation + NSGA-II"
+    curriculum: "sutd"
+    subject: "40-018-heuristics-and-systems-theory"
+    domain: "SUTD 40.018 - Heuristics and Systems Theory"
+    source_table: "Table 27: SUTD 40.018 - Heuristics and Systems Theory"
+    target_path: "sutd/content/40-018-heuristics-and-systems-theory/containers/multi-objective-optimisation-and-nsga-ii"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-018-heuristics-and-systems-theory.particle-swarm-optimisation"
+    status: "planned"
+    concept_title: "Particle Swarm Optimisation"
+    curriculum: "sutd"
+    subject: "40-018-heuristics-and-systems-theory"
+    domain: "SUTD 40.018 - Heuristics and Systems Theory"
+    source_table: "Table 27: SUTD 40.018 - Heuristics and Systems Theory"
+    target_path: "sutd/content/40-018-heuristics-and-systems-theory/containers/particle-swarm-optimisation"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-018-heuristics-and-systems-theory.ant-colony-optimisation"
+    status: "planned"
+    concept_title: "Ant Colony Optimisation"
+    curriculum: "sutd"
+    subject: "40-018-heuristics-and-systems-theory"
+    domain: "SUTD 40.018 - Heuristics and Systems Theory"
+    source_table: "Table 27: SUTD 40.018 - Heuristics and Systems Theory"
+    target_path: "sutd/content/40-018-heuristics-and-systems-theory/containers/ant-colony-optimisation"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-018-heuristics-and-systems-theory.state-space-models-and-system-properties"
+    status: "planned"
+    concept_title: "State-Space Models and System Properties"
+    curriculum: "sutd"
+    subject: "40-018-heuristics-and-systems-theory"
+    domain: "SUTD 40.018 - Heuristics and Systems Theory"
+    source_table: "Table 27: SUTD 40.018 - Heuristics and Systems Theory"
+    target_path: "sutd/content/40-018-heuristics-and-systems-theory/containers/state-space-models-and-system-properties"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-018-heuristics-and-systems-theory.observer-design-and-pole-placement"
+    status: "planned"
+    concept_title: "Observer Design and Pole Placement"
+    curriculum: "sutd"
+    subject: "40-018-heuristics-and-systems-theory"
+    domain: "SUTD 40.018 - Heuristics and Systems Theory"
+    source_table: "Table 27: SUTD 40.018 - Heuristics and Systems Theory"
+    target_path: "sutd/content/40-018-heuristics-and-systems-theory/containers/observer-design-and-pole-placement"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-018-heuristics-and-systems-theory.state-feedback-control-and-lqr"
+    status: "planned"
+    concept_title: "State Feedback Control + LQR"
+    curriculum: "sutd"
+    subject: "40-018-heuristics-and-systems-theory"
+    domain: "SUTD 40.018 - Heuristics and Systems Theory"
+    source_table: "Table 27: SUTD 40.018 - Heuristics and Systems Theory"
+    target_path: "sutd/content/40-018-heuristics-and-systems-theory/containers/state-feedback-control-and-lqr"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.data-and-business-analytics-dba.industry-project-workflow"
+    status: "planned"
+    concept_title: "Industry Project Workflow"
+    curriculum: "sutd"
+    subject: "data-and-business-analytics-dba"
+    domain: "SUTD Data and Business Analytics (DBA)"
+    source_table: "Table 28: SUTD Data and Business Analytics (DBA)"
+    target_path: "sutd/content/data-and-business-analytics-dba/containers/industry-project-workflow"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.data-and-business-analytics-dba.time-series-forecasting"
+    status: "planned"
+    concept_title: "Time-Series Forecasting"
+    curriculum: "sutd"
+    subject: "data-and-business-analytics-dba"
+    domain: "SUTD Data and Business Analytics (DBA)"
+    source_table: "Table 28: SUTD Data and Business Analytics (DBA)"
+    target_path: "sutd/content/data-and-business-analytics-dba/containers/time-series-forecasting"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.data-and-business-analytics-dba.sql-for-analytics-and-database-joins"
+    status: "planned"
+    concept_title: "SQL for Analytics + Database Joins"
+    curriculum: "sutd"
+    subject: "data-and-business-analytics-dba"
+    domain: "SUTD Data and Business Analytics (DBA)"
+    source_table: "Table 28: SUTD Data and Business Analytics (DBA)"
+    target_path: "sutd/content/data-and-business-analytics-dba/containers/sql-for-analytics-and-database-joins"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.data-and-business-analytics-dba.financial-statements-and-ratio-analysis"
+    status: "planned"
+    concept_title: "Financial Statements + Ratio Analysis"
+    curriculum: "sutd"
+    subject: "data-and-business-analytics-dba"
+    domain: "SUTD Data and Business Analytics (DBA)"
+    source_table: "Table 28: SUTD Data and Business Analytics (DBA)"
+    target_path: "sutd/content/data-and-business-analytics-dba/containers/financial-statements-and-ratio-analysis"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.data-and-business-analytics-dba.project-cash-flow-modelling-and-npv"
+    status: "planned"
+    concept_title: "Project Cash Flow Modelling + NPV"
+    curriculum: "sutd"
+    subject: "data-and-business-analytics-dba"
+    domain: "SUTD Data and Business Analytics (DBA)"
+    source_table: "Table 28: SUTD Data and Business Analytics (DBA)"
+    target_path: "sutd/content/data-and-business-analytics-dba/containers/project-cash-flow-modelling-and-npv"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.analytics-edge-ae.predictive-modelling-workflow"
+    status: "planned"
+    concept_title: "Predictive Modelling Workflow"
+    curriculum: "sutd"
+    subject: "analytics-edge-ae"
+    domain: "SUTD Analytics Edge (AE)"
+    source_table: "Table 29: SUTD Analytics Edge (AE)"
+    target_path: "sutd/content/analytics-edge-ae/containers/predictive-modelling-workflow"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.analytics-edge-ae.discrete-choice-multinomial-and-mixed-logit"
+    status: "planned"
+    concept_title: "Discrete Choice: Multinomial + Mixed Logit"
+    curriculum: "sutd"
+    subject: "analytics-edge-ae"
+    domain: "SUTD Analytics Edge (AE)"
+    source_table: "Table 29: SUTD Analytics Edge (AE)"
+    target_path: "sutd/content/analytics-edge-ae/containers/discrete-choice-multinomial-and-mixed-logit"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.analytics-edge-ae.sparsity-and-model-selection"
+    status: "planned"
+    concept_title: "Sparsity and Model Selection"
+    curriculum: "sutd"
+    subject: "analytics-edge-ae"
+    domain: "SUTD Analytics Edge (AE)"
+    source_table: "Table 29: SUTD Analytics Edge (AE)"
+    target_path: "sutd/content/analytics-edge-ae/containers/sparsity-and-model-selection"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.analytics-edge-ae.prescriptive-optimisation-capstone-allocation"
+    status: "planned"
+    concept_title: "Prescriptive Optimisation: Capstone Allocation"
+    curriculum: "sutd"
+    subject: "analytics-edge-ae"
+    domain: "SUTD Analytics Edge (AE)"
+    source_table: "Table 29: SUTD Analytics Edge (AE)"
+    target_path: "sutd/content/analytics-edge-ae/containers/prescriptive-optimisation-capstone-allocation"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.analytics-edge-ae.matrix-factorisation-recommender-systems"
+    status: "planned"
+    concept_title: "Matrix Factorisation (Recommender Systems)"
+    curriculum: "sutd"
+    subject: "analytics-edge-ae"
+    domain: "SUTD Analytics Edge (AE)"
+    source_table: "Table 29: SUTD Analytics Edge (AE)"
+    target_path: "sutd/content/analytics-edge-ae/containers/matrix-factorisation-recommender-systems"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.analytics-edge-ae.censored-data-analysis-survival"
+    status: "planned"
+    concept_title: "Censored Data Analysis (Survival)"
+    curriculum: "sutd"
+    subject: "analytics-edge-ae"
+    domain: "SUTD Analytics Edge (AE)"
+    source_table: "Table 29: SUTD Analytics Edge (AE)"
+    target_path: "sutd/content/analytics-edge-ae/containers/censored-data-analysis-survival"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-012-manufacturing-and-service-operations-mso.forecasting-and-aggregate-planning"
+    status: "planned"
+    concept_title: "Forecasting and Aggregate Planning"
+    curriculum: "sutd"
+    subject: "40-012-manufacturing-and-service-operations-mso"
+    domain: "SUTD 40.012 - Manufacturing and Service Operations (MSO)"
+    source_table: "Table 30: SUTD 40.012 - Manufacturing and Service Operations (MSO)"
+    target_path: "sutd/content/40-012-manufacturing-and-service-operations-mso/containers/forecasting-and-aggregate-planning"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-012-manufacturing-and-service-operations-mso.master-production-schedule-and-mrp"
+    status: "planned"
+    concept_title: "Master Production Schedule + MRP"
+    curriculum: "sutd"
+    subject: "40-012-manufacturing-and-service-operations-mso"
+    domain: "SUTD 40.012 - Manufacturing and Service Operations (MSO)"
+    source_table: "Table 30: SUTD 40.012 - Manufacturing and Service Operations (MSO)"
+    target_path: "sutd/content/40-012-manufacturing-and-service-operations-mso/containers/master-production-schedule-and-mrp"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-012-manufacturing-and-service-operations-mso.scheduling-and-project-management"
+    status: "ready-for-build"
+    concept_title: "Scheduling and Project Management"
+    curriculum: "sutd"
+    subject: "40-012-manufacturing-and-service-operations-mso"
+    domain: "SUTD 40.012 - Manufacturing and Service Operations (MSO)"
+    source_table: "Table 30: SUTD 40.012 - Manufacturing and Service Operations (MSO)"
+    target_path: "sutd/content/40-012-manufacturing-and-service-operations-mso/containers/scheduling-and-project-management"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-012-manufacturing-and-service-operations-mso.inventory-management-eoq-and-newsvendor"
+    status: "planned"
+    concept_title: "Inventory Management: EOQ + Newsvendor"
+    curriculum: "sutd"
+    subject: "40-012-manufacturing-and-service-operations-mso"
+    domain: "SUTD 40.012 - Manufacturing and Service Operations (MSO)"
+    source_table: "Table 30: SUTD 40.012 - Manufacturing and Service Operations (MSO)"
+    target_path: "sutd/content/40-012-manufacturing-and-service-operations-mso/containers/inventory-management-eoq-and-newsvendor"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-012-manufacturing-and-service-operations-mso.markov-chains-and-steady-state"
+    status: "planned"
+    concept_title: "Markov Chains and Steady State"
+    curriculum: "sutd"
+    subject: "40-012-manufacturing-and-service-operations-mso"
+    domain: "SUTD 40.012 - Manufacturing and Service Operations (MSO)"
+    source_table: "Table 30: SUTD 40.012 - Manufacturing and Service Operations (MSO)"
+    target_path: "sutd/content/40-012-manufacturing-and-service-operations-mso/containers/markov-chains-and-steady-state"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
+  - queue_id: "sutd.40-012-manufacturing-and-service-operations-mso.queueing-systems-and-little-s-law"
+    status: "planned"
+    concept_title: "Queueing Systems and Little's Law"
+    curriculum: "sutd"
+    subject: "40-012-manufacturing-and-service-operations-mso"
+    domain: "SUTD 40.012 - Manufacturing and Service Operations (MSO)"
+    source_table: "Table 30: SUTD 40.012 - Manufacturing and Service Operations (MSO)"
+    target_path: "sutd/content/40-012-manufacturing-and-service-operations-mso/containers/queueing-systems-and-little-s-law"
+    sim_worthy: true
+    required_review:
+      - container-shape
+      - pedagogy
+      - visual-simulation
+      - accessibility
+      - sources-license
