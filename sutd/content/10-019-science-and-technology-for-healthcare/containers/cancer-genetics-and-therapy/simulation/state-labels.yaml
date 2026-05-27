@@ -1,0 +1,19 @@
+state_labels:
+  drivers:
+    label: "Driver mutations"
+    meaning: "Count of driver mutations carried by the clone."
+  perDriverAdvantage:
+    label: "Per-driver fitness advantage"
+    meaning: "Multiplicative advantage s; relative fitness is (1 + s)^drivers."
+  generations:
+    label: "Generations"
+    meaning: "Number of cell-cycle generations to simulate."
+  ic50:
+    label: "Therapy IC50"
+    meaning: "Half-maximal effective dose of the modelled therapy."
+  hillCoefficient:
+    label: "Hill coefficient"
+    meaning: "Steepness of the dose-response curve."
+  resistanceFactor:
+    label: "Resistance factor"
+    meaning: "Multiplier on effective IC50 representing acquired resistance."

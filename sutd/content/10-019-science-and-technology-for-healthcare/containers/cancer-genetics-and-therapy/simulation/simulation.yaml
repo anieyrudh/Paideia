@@ -1,0 +1,68 @@
+id: cancer-genetics-and-therapy
+title: "Clonal Growth and Dose-Response Lab"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/oncogenetics
+  - core/treatment-response
+  - core/dynamical-systems
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    A clone has 3 driver mutations with per-driver fitness advantage s = 0.1. After 20 cell generations starting from size 10, what is the clone size relative to a passenger-only clone (drivers = 0) starting from the same size?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "About 9700; the ratio is (1.1)^3^20 because each driver multiplies fitness per generation."
+      - "About 60; ratio is 3 * 20 because effects add."
+      - "About 200; ratio is 20 because only generations matter."
+      - "Exactly 1; drivers do not change cell number."
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: drivers
+      label: "Driver mutations"
+      kind: slider
+      kernel_binding: state.drivers
+      bounds: { min: 0, max: 8, step: 1 }
+    - id: per-driver-advantage
+      label: "Per-driver fitness advantage s"
+      kind: slider
+      kernel_binding: state.perDriverAdvantage
+      bounds: { min: 0, max: 0.5, step: 0.01 }
+    - id: generations
+      label: "Generations"
+      kind: slider
+      kernel_binding: state.generations
+      bounds: { min: 1, max: 40, step: 1 }
+    - id: ic50
+      label: "Therapy IC50"
+      kind: slider
+      kernel_binding: state.ic50
+      bounds: { min: 1, max: 100, step: 1 }
+    - id: hill-coefficient
+      label: "Hill coefficient"
+      kind: slider
+      kernel_binding: state.hillCoefficient
+      bounds: { min: 1, max: 4, step: 1 }
+    - id: resistance-factor
+      label: "Resistance factor"
+      kind: slider
+      kernel_binding: state.resistanceFactor
+      bounds: { min: 1, max: 10, step: 0.1 }
+observe:
+  renderers:
+    - id: cancer-readout
+      module: "@paideia/sutd-sims/cancer-genetics-and-therapy"
+      symbol: CancerGeneticsAndTherapy
+      props_binding: |
+        Show the clonal-growth ratio over generations, the Hill dose-response curve with the resistance-shifted IC50, and the dose required for 90 percent response. Educational only.
+explain:
+  prompt: |
+    Explain why a 4x resistance factor pushes the required dose by exactly 4x for a given Hill curve, and how that interacts with the therapeutic index.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "More drivers always means lower survival immediately"
+    - "Higher dose always works"

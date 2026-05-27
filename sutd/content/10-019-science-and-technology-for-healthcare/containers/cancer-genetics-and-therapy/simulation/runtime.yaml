@@ -1,0 +1,7 @@
+runtime:
+  entry: simulation/index.tsx
+  package: "@paideia/sutd-sims/cancer-genetics-and-therapy"
+  mount_mode: react-component
+  state_model: local
+  persistence: local
+  deterministic: true

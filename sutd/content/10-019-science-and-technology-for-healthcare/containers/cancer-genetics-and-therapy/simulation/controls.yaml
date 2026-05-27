@@ -1,0 +1,43 @@
+controls:
+  - id: drivers
+    label: "Driver mutations"
+    kind: slider
+    default: 3
+    min: 0
+    max: 8
+    step: 1
+  - id: per-driver-advantage
+    label: "Per-driver fitness advantage s"
+    kind: slider
+    default: 0.1
+    min: 0
+    max: 0.5
+    step: 0.01
+  - id: generations
+    label: "Generations"
+    kind: slider
+    default: 20
+    min: 1
+    max: 40
+    step: 1
+  - id: ic50
+    label: "Therapy IC50"
+    kind: slider
+    default: 10
+    min: 1
+    max: 100
+    step: 1
+  - id: hill-coefficient
+    label: "Hill coefficient"
+    kind: slider
+    default: 2
+    min: 1
+    max: 4
+    step: 1
+  - id: resistance-factor
+    label: "Resistance factor"
+    kind: slider
+    default: 1
+    min: 1
+    max: 10
+    step: 0.1

@@ -1,0 +1,22 @@
+steps:
+  - id: identify-clone
+    prompt: "What is the clone's driver count, advantage, size, and elapsed generations?"
+    expected_action: "Read k, s, N, g."
+  - id: compute-fitness
+    prompt: "What is the relative fitness?"
+    expected_action: "Compute F = (1 + s)^k."
+  - id: compute-growth
+    prompt: "What is the clone size after g generations?"
+    expected_action: "Compute N * F^g and compare with the baseline clone."
+  - id: dose-response
+    prompt: "What fraction of cells responds at the chosen dose?"
+    expected_action: "Apply R = d^n / (IC50^n + d^n)."
+  - id: apply-resistance
+    prompt: "How does a resistance factor f shift the curve?"
+    expected_action: "Replace IC50 with f * IC50 before re-evaluating."
+  - id: invert-for-dose
+    prompt: "What dose hits a target response level?"
+    expected_action: "Compute d* = IC50_eff * (R* / (1 - R*))^(1/n)."
+  - id: therapeutic-index
+    prompt: "Is the required dose below the toxic dose?"
+    expected_action: "Compute TI = toxicDose / d*; interpret in plain language."

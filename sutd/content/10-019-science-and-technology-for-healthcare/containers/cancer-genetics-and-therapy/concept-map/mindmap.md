@@ -1,0 +1,24 @@
+# Mindmap
+
+- Cancer genetics and therapy (educational only)
+  - Clonal growth
+    - Driver vs passenger mutations
+    - Fitness multiplier (1 + s)^k
+    - Multi-generation growth ((1+s)^k)^g
+  - Dose-response
+    - Hill curve in dose
+    - IC50 and Hill coefficient n
+    - Inverse: dose for target response
+  - Resistance and therapeutic index
+    - Effective IC50 = base * resistance factor
+    - TI = toxicDose / effectiveDose
+    - Resistance erodes the therapeutic window
+  - Misconceptions
+    - Drivers immediately kill
+    - Higher dose always works
+    - Drivers = passengers
+    - Zero drivers means no growth
+  - Transfer
+    - Drug-screening dose-response
+    - Combination therapy rationale
+    - Evolutionary dynamics of resistance

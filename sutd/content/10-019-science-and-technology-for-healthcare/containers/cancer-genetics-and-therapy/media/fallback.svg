@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Cancer genetics and therapy fallback visual</title>
+  <desc id="desc">Two-panel layout with a clonal-growth-over-generations curve and a dose-response curve plus resistance-shifted variant.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <text x="40" y="44" fill="#0f172a" font-family="Arial, sans-serif" font-size="26" font-weight="700">Cancer genetics and therapy</text>
+  <text x="40" y="70" fill="#475569" font-family="Arial, sans-serif" font-size="15">Educational only. Drivers compound clonal growth; resistance lifts the effective IC50.</text>
+  <rect x="40" y="120" width="260" height="200" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="170" y="140" fill="#0f172a" font-family="Arial, sans-serif" font-size="14" font-weight="700" text-anchor="middle">Clonal growth over generations</text>
+  <line x1="60" x2="280" y1="300" y2="300" stroke="#94a3b8"/>
+  <line x1="60" x2="60" y1="160" y2="300" stroke="#94a3b8"/>
+  <polyline points="60,300 90,295 120,288 150,275 180,255 210,225 240,180 270,128" fill="none" stroke="#dc2626" stroke-width="3"/>
+  <polyline points="60,300 90,300 120,300 150,300 180,300 210,300 240,300 270,300" fill="none" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/>
+  <text x="60" y="320" fill="#475569" font-family="Arial, sans-serif" font-size="11">generations 0 to 20</text>
+  <rect x="340" y="120" width="260" height="200" fill="#ffffff" stroke="#cbd5e1"/>
+  <text x="470" y="140" fill="#0f172a" font-family="Arial, sans-serif" font-size="14" font-weight="700" text-anchor="middle">Hill dose-response</text>
+  <line x1="360" x2="580" y1="300" y2="300" stroke="#94a3b8"/>
+  <line x1="360" x2="360" y1="160" y2="300" stroke="#94a3b8"/>
+  <polyline points="360,295 380,290 400,280 420,260 440,224 460,190 480,170 500,160" fill="none" stroke="#2563eb" stroke-width="3"/>
+  <polyline points="360,300 400,298 440,294 480,280 520,240 560,205" fill="none" stroke="#7c3aed" stroke-width="3" stroke-dasharray="6 4"/>
+  <text x="360" y="320" fill="#475569" font-family="Arial, sans-serif" font-size="11">dose (susceptible solid, resistant dashed)</text>
+</svg>

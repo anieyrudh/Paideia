@@ -1,0 +1,43 @@
+schema_version: "1.0.0"
+concept_id: cancer-genetics-and-therapy
+prerequisites:
+  - id: cell-cycle-and-mitosis-meiosis
+    title: "Cell Cycle and Mitosis/Meiosis"
+    relationship: "Cancer cells divide using the same cycle that drives normal proliferation."
+    status: available
+  - id: hill-activation-function
+    title: "Hill Activation Function"
+    relationship: "Dose-response uses the Hill saturating shape."
+    status: available
+downstream:
+  - id: drug-discovery-screening
+    title: "Drug Discovery Screening"
+    relationship: "Dose-response curves are the throughput readout."
+    status: planned
+  - id: combination-therapy
+    title: "Combination Therapy"
+    relationship: "Multiple resistance profiles broaden the therapeutic window."
+    status: planned
+siblings:
+  - id: cell-cycle-and-mitosis-meiosis
+    title: "Cell Cycle and Mitosis/Meiosis"
+    relationship: "Cell-cycle checkpoint loss is one route to drivers."
+    status: available
+misconception_graph:
+  nodes:
+    - id: drivers-kill
+      label: "More drivers immediately kill cells"
+    - id: higher-dose-always-works
+      label: "Higher dose always works"
+    - id: drivers-equal-passengers
+      label: "Drivers and passengers are equally important"
+    - id: zero-drivers-no-growth
+      label: "A clone with zero drivers cannot grow"
+  edges:
+    - from: drivers-kill
+      to: drivers-equal-passengers
+      label: "both miss the fitness role of drivers"
+    - from: higher-dose-always-works
+      to: drivers-equal-passengers
+      label: "both ignore the therapeutic index"
+mermaid_source: graph.mmd
