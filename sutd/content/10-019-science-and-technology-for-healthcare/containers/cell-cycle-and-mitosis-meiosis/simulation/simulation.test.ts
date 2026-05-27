@@ -33,6 +33,8 @@ test.describe("Cell Cycle and Mitosis / Meiosis", () => {
     await expect(observation).toContainText("Ploidy");
     await expect(page.getByLabel("LaTeX formula source")).toContainText("ploidy");
     await expect(page.getByLabel("Formula legend")).toContainText("DNA content");
+    await page.getByRole("button", { name: "Explain the daughter cells" }).click();
+    await expect(page.getByRole("heading", { name: "DNA damage and G1/S arrest" })).toBeVisible();
   });
 
   test("DNA damaged toggle pins the cell at the G1/S checkpoint", async ({ page }) => {

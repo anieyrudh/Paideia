@@ -17,10 +17,11 @@
 
 | Sim | Module | Symbols / role |
 |---|---|---|
+| cell-cycle-and-mitosis-meiosis | `core/content-schema` | Declared in `simulation/simulation.yaml` |
+| cell-cycle-and-mitosis-meiosis | `core/shared` | Declared in `simulation/simulation.yaml` |
 | cell-cycle-and-mitosis-meiosis | `core/sim-runtime` | Declared in `simulation/simulation.yaml` |
 | cell-cycle-and-mitosis-meiosis | `core/cell-cycle` | Declared in `simulation/simulation.yaml` |
 | cell-cycle-and-mitosis-meiosis | `core/prediction-gate` | Declared in `simulation/simulation.yaml` |
-| cell-cycle-and-mitosis-meiosis | `core/ui-sim` | Declared in `simulation/simulation.yaml` |
 
 ## SimulationSpec (frozen)
 
@@ -31,10 +32,11 @@ id: cell-cycle-and-mitosis-meiosis
 title: Cell Cycle Phase Wheel
 interaction_type: diagram-builder
 kernel_deps:
+  - core/content-schema
+  - core/shared
   - core/sim-runtime
   - core/cell-cycle
   - core/prediction-gate
-  - core/ui-sim
 predict:
   prompt: |
     A diploid cell at M phase with replicated DNA divides via mitosis. Before reveal, what are the two daughter cells' ploidy and DNA-content multiplier?
@@ -113,15 +115,21 @@ pnpm graph:generate
 ## Anieyrudh Filter pass
 
 Date: 2026-05-27
-Filter version: aniegpt v1.0 (builder self-audit; awaiting reviewer pass)
+Filter version: aniegpt v1.0 (builder self-audit plus local container-auditor review)
 
 ### P0 issues
 
-- None observed. Container shape validates (77 containers OK). Prediction gate is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and the React reveal sits behind `SimRuntime` + the `predict` spec. The revealed state renders an SVG phase wheel with the active phase highlighted plus daughter-cell readouts — a real visual model. All state-machine logic goes through `core/cell-cycle` (`initialCell`, `attemptPhaseAdvance`, `divideMitosis`, `divideMeiosis`); no phase switch or ploidy arithmetic inlined. No clinical claims.
+- Resolved: container shape validates. Prediction gate is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and the React reveal sits behind `SimRuntime` + the `predict` spec. The revealed state renders an SVG phase wheel with the active phase highlighted plus daughter-cell readouts — a real visual model.
+- Resolved: all state-machine logic goes through `core/cell-cycle` (`initialCell`, `attemptPhaseAdvance`, `divideMitosis`, `divideMeiosis`); no phase switch or ploidy arithmetic is implemented in the React sim. Formula text is display-only.
+- Resolved: no clinical claims; the container stays at introductory cell-cycle mechanism level.
 
 ### P1 issues
 
-- Formula colours pair `ploidy` (blue swatch) and `DNA content` (orange swatch) in the legend with the wheel and daughter readout. Substitution shows the parent's `n` and `dnaContent`, the chosen division mode, and the daughters' per-cell summary. Manipulation visibly retargets the active wheel arc when the cell parks at G1 (DNA damaged) or G0 (no nutrients), and the daughter list changes between two diploids and four haploids depending on `divisionMode`. No P1 outstanding.
+- Resolved: formula colours pair `ploidy` (blue swatch) and `DNA content` (orange swatch) in the legend with the wheel and daughter readout. Substitution shows the parent's `n` and `dnaContent`, the chosen division mode, and the daughters' per-cell summary.
+- Resolved: manipulation visibly retargets the active wheel arc when the cell parks at G1 (DNA damaged) or G0 (no nutrients), and the daughter list changes between two diploids and four haploids depending on `divisionMode`.
+- Resolved: `simulation.yaml` now declares the imported contract kernels (`core/content-schema`, `core/shared`, `core/sim-runtime`, `core/cell-cycle`, and prediction-gate contract) and no longer declares unused `core/ui-sim`.
+- Resolved: public helper code no longer uses `as unknown as number` casts to display branded `Ploidy` / `DnaContent` values.
+- Resolved: the revealed observation now includes an explicit button into the explain stage, and the Playwright test asserts that path.
 
 ### P2 follow-ups (deferred)
 
@@ -136,24 +144,3 @@ Filter version: aniegpt v1.0 (builder self-audit; awaiting reviewer pass)
 ## Iteration log
 
 - 2026-05-27: Scaffolded the container. Built `sutd/packages/sims/src/cell-cycle-and-mitosis-meiosis.tsx`, consuming the merged `@paideia/cell-cycle` kernel (`initialCell`, `attemptPhaseAdvance`, `divideMitosis`, `divideMeiosis`). Added 6 vitest cases (`cell-cycle-and-mitosis-meiosis.test.ts`) and a Playwright simulation test. Wired into `@paideia/sutd-sims`.
-
-## Validation log (2026-05-27)
-
-| Check | Result |
-| --- | --- |
-| `pnpm install` | OK |
-| `pnpm container:validate <path>` | passed (77 containers OK) |
-| `pnpm container:docs <path>` | regenerated README.md and TECHNICAL.md |
-| `pnpm graph:generate` / `pnpm graph:check` | clean (45 SUTD containers) |
-| `pnpm -F @paideia/sutd-sims build` | clean |
-| `pnpm -F @paideia/sutd-sims test` | **170/170 passed across 64 test files** (incl. 6 new vitest cases for `cycleEvidence`) |
-| `pnpm typecheck` | clean across all workspaces |
-| `pnpm lint` | clean across all workspaces |
-| `pnpm boundary` | 1494 modules, 2567 deps, no violations |
-| `pnpm license:check` | All 84 production deps compatible |
-| `pnpm roadmap:validate` | 84 queue entries OK; this container's status moved `ready-for-build` → `in-build` |
-| `pnpm agent:validate` | OK |
-
-## Environment notes
-
-- Workspace-wide `pnpm test` (Playwright) remains environment-blocked on Chromium not being provisioned in the sandbox; the per-package vitest surface is green.

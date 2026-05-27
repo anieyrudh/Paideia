@@ -41,7 +41,7 @@ export const cellCycleSpec: TSimulationSpec = {
   id: "cell-cycle-and-mitosis-meiosis",
   title: "Cell Cycle Phase Wheel",
   interaction_type: "diagram-builder",
-  kernel_deps: ["core/sim-runtime", "core/cell-cycle", "core/prediction-gate", "core/ui-sim"],
+  kernel_deps: ["core/content-schema", "core/shared", "core/sim-runtime", "core/cell-cycle", "core/prediction-gate"],
   predict: {
     prompt:
       "A diploid cell at M phase with replicated DNA divides via mitosis. Before reveal, what are the two daughter cells' ploidy and DNA-content multiplier?",
@@ -156,7 +156,7 @@ export const cycleEvidence = (raw: CycleState): KernelResult<CycleEvidence> => {
 
   let daughters: ReadonlyArray<CellState> = [];
   let divisionError: string | null = null;
-  if (cell.phase === "M" && (cell.dnaContent as unknown as number) === 2) {
+  if (cell.phase === "M" && cell.dnaContent === 2) {
     if (raw.chromosomesAligned) {
       if (raw.divisionMode === "mitosis") {
         const result = divideMitosis(cell);
@@ -292,6 +292,7 @@ const PhaseWheel = ({ activePhase }: { readonly activePhase: Phase }) => {
 };
 
 const ObserveStage = () => {
+  const stage = useStage();
   const state = currentState(useSimState<Partial<CycleState>>());
   const evidence = cycleEvidence(state);
   if (!evidence.ok) {
@@ -311,8 +312,8 @@ const ObserveStage = () => {
         <PhaseWheel activePhase={value.finalCell.phase} />
         <dl aria-label="Cycle readout" className="sutd-result-grid">
           <div><dt>Final phase</dt><dd>{value.finalCell.phase}</dd></div>
-          <div><dt>Ploidy</dt><dd>n = {value.finalCell.ploidy as unknown as number}</dd></div>
-          <div><dt>DNA content</dt><dd>{value.finalCell.dnaContent as unknown as number} (1 = unreplicated, 2 = replicated)</dd></div>
+          <div><dt>Ploidy</dt><dd>n = {value.finalCell.ploidy}</dd></div>
+          <div><dt>DNA content</dt><dd>{value.finalCell.dnaContent} (1 = unreplicated, 2 = replicated)</dd></div>
           <div><dt>Divisions</dt><dd>{value.finalCell.divisions}</dd></div>
           {lastCheckpoint && (
             <div>
@@ -334,7 +335,7 @@ const ObserveStage = () => {
               <div key={`daughter-${index}`}>
                 <dt>Daughter {index + 1}</dt>
                 <dd>
-                  phase {daughter.phase}; n = {daughter.ploidy as unknown as number}; DNA content {daughter.dnaContent as unknown as number}; divisions {daughter.divisions}
+                  phase {daughter.phase}; n = {daughter.ploidy}; DNA content {daughter.dnaContent}; divisions {daughter.divisions}
                 </dd>
               </div>
             ))}
@@ -362,11 +363,12 @@ n_{\text{daughter}} = n/2, \;
           <div><dt>checkpoint</dt><dd>conditional gate on phase advance</dd></div>
         </dl>
         <p>
-          The parent cell entered with ploidy 2 and DNA content {(value.finalCell.dnaContent as unknown as number)}. {value.divisionMode === "mitosis" ? "Mitosis preserves ploidy: each daughter is diploid with DNA content 1." : "Meiosis halves ploidy: each gamete is haploid with DNA content 1."}
+          The parent cell entered with ploidy 2 and DNA content {value.finalCell.dnaContent}. {value.divisionMode === "mitosis" ? "Mitosis preserves ploidy: each daughter is diploid with DNA content 1." : "Meiosis halves ploidy: each gamete is haploid with DNA content 1."}
         </p>
         <p className="formula-note">
           Checkpoints gate transitions. With the current conditions, the cell {value.finalCell.phase === "M" ? "reached M and divided as configured." : `is parked in ${value.finalCell.phase}.`}
         </p>
+        <button type="button" onClick={() => stage.advance()}>Explain the daughter cells</button>
       </section>
     </section>
   );
