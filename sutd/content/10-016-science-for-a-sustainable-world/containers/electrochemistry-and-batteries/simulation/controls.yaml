@@ -1,0 +1,23 @@
+controls:
+  - id: standard-potential-volts
+    label: Standard potential
+    kind: slider
+    min: 0.2
+    max: 1.5
+    step: 0.05
+    default: 1.1
+    unit: V
+  - id: reaction-quotient
+    label: Reaction quotient
+    kind: slider
+    min: 0.1
+    max: 20
+    step: 0.1
+    default: 1
+  - id: electron-count
+    label: Electrons transferred
+    kind: slider
+    min: 1
+    max: 4
+    step: 1
+    default: 2
