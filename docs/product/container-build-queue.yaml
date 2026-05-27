@@ -1094,7 +1094,7 @@ entries:
   - id: sutd.10-016-science-for-a-sustainable-world.atomic-structure-and-electron-configuration
     title: "Atomic Structure and Electron Configuration"
     priority: P1
-    status: in-build
+    status: reviewed
     cluster: SUTD 10.016 Science for a Sustainable World
     discipline: chemistry-sustainability
     reuse_status: subject-specific
@@ -1346,7 +1346,7 @@ entries:
   - id: sutd.10-017-technological-world-e-and-m.gauss-law-for-symmetric-distributions
     title: "Gauss Law for Symmetric Distributions"
     priority: P1
-    status: blocked
+    status: ready-for-build
     cluster: SUTD 10.017 Technological World, E and M
     discipline: electromagnetism
     reuse_status: subject-specific
@@ -1362,9 +1362,6 @@ entries:
       downstream: [capacitors]
       misconceptions: [Gauss law only works for spheres]
     kernel_dependencies: [core/electromagnetism, core/plotting, core/prediction-gate, core/ui-sim]
-    blocked_on_issue: 211
-    blocked_on_kernel_dependencies: [core/electromagnetism]
-    blocked_reason: "core/electromagnetism lacks Gauss-law symmetric distribution helpers; see #211."
     repo_package_name: sutd-sims
     estimated_effort: M
     repo:
@@ -1377,7 +1374,7 @@ entries:
   - id: sutd.10-017-technological-world-e-and-m.capacitor-with-dielectric
     title: "Capacitor with Dielectric"
     priority: P1
-    status: in-build
+    status: reviewed
     cluster: SUTD 10.017 Technological World, E and M
     discipline: electromagnetism
     reuse_status: subject-specific
