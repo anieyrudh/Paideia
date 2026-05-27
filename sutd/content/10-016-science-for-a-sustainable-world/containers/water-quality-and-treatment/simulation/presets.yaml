@@ -1,0 +1,21 @@
+presets:
+  - id: balanced-train
+    label: "Balanced treatment train"
+    state:
+      rawTurbidityNtu: 80
+      filterRemovalPercent: 95
+      pathogenLog10Count: 5
+      chlorineMgPerLitre: 2
+      contactMinutes: 75
+      pH: 7.2
+      filterVelocityMetresPerSecond: 0.08
+  - id: clear-but-not-disinfected
+    label: "Clear but not disinfected"
+    state:
+      rawTurbidityNtu: 40
+      filterRemovalPercent: 95
+      pathogenLog10Count: 5
+      chlorineMgPerLitre: 0.4
+      contactMinutes: 10
+      pH: 7.4
+      filterVelocityMetresPerSecond: 0.08

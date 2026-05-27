@@ -1,0 +1,11 @@
+steps:
+  - id: identify-cell
+    prompt: "Identify the electrode pair and standard potential."
+  - id: count-electrons
+    prompt: "Use the balanced redox reaction to count transferred electrons."
+  - id: build-q
+    prompt: "Write the reaction quotient from the current composition."
+  - id: compute-voltage
+    prompt: "Use the Nernst equation to compute voltage."
+  - id: interpret-load
+    prompt: "Connect the voltage to battery load and charging state."

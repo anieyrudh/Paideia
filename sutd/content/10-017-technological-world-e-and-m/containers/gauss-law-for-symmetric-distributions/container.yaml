@@ -1,0 +1,126 @@
+schema_version: "1.0.0"
+id: gauss-law-for-symmetric-distributions
+aliases:
+  - gauss law
+  - gaussian surfaces
+  - electric flux symmetry
+branch: sutd
+subject: 10-017-technological-world-e-and-m
+level: "Undergraduate"
+module: "10.017 Technological World: Electricity and Magnetism"
+title: "Gauss Law for Symmetric Distributions"
+one_line_summary: "Predict how enclosed charge sets flux, then choose spherical, cylindrical, or planar Gaussian surfaces to calculate field strength."
+syllabus_ref: "SUTD 10.017 / Gauss law for symmetric distributions"
+prerequisites:
+  - electric-flux
+  - electric-field
+  - symmetry
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A point charge is centered inside a Gaussian sphere. If the sphere radius doubles while the enclosed charge stays fixed, what happens to the total electric flux through the sphere?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The total flux stays the same because it depends only on enclosed charge."
+      - "The total flux doubles because the surface area doubles."
+      - "The total flux falls by a factor of four because the field weakens."
+      - "The total flux becomes zero because the surface is closed."
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: coaxial-cable-field-check
+    prompt: |
+      A long charged conductor in a coaxial cable has line charge density 2.4 nC/m. At radius 0.8 m, choose a Gaussian surface and compute flux through a 1.0 m length and the field magnitude.
+    surface_form: "coaxial cable insulation field check"
+    same_concept_check: "The context changes from ideal symmetry surfaces to an engineering cable, but the learner still uses enclosed charge, effective Gaussian area, and E A_G = Q_enc / epsilon0."
+    rubric_path: problem-solving/coaxial-cable-field-check.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: in-review
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-27"
+      author: "Codex"
+      summary: "Built SUTD 10.017 Gauss-law product slice with prediction-gated flux-surface simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-27"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-27"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Gauss law only works for spheres"
+    description: "Learners may treat the sphere as the law instead of one surface that matches one symmetry class."
+    evidence_source: "Griffiths, Introduction to Electrodynamics, 2017."
+    surface_in_predict: true
+  - name: "Flux is the same as field strength"
+    description: "Learners may miss that total flux can remain fixed while field strength changes with Gaussian area."
+    evidence_source: "Halliday, Resnick, and Walker, Fundamentals of Physics, 2018."
+    surface_in_predict: true
+  - name: "All parts of any closed surface contribute equally"
+    description: "Learners may count end caps or side faces even when the field is tangent or zero-normal there."
+    evidence_source: "MIT OpenCourseWare 8.02SC Electricity and Magnetism."
+    surface_in_predict: false
+sources:
+  - citation: "Griffiths, D. J. Introduction to Electrodynamics. 4th ed. Cambridge University Press, 2017."
+    publication_year: 2017
+    license: "Publisher copyright"
+    seab_alignment: n/a
+  - citation: "Halliday, D., Resnick, R., and Walker, J. Fundamentals of Physics. 11th ed. Wiley, 2018."
+    publication_year: 2018
+    license: "Publisher copyright"
+    seab_alignment: n/a
+  - citation: "MIT OpenCourseWare. 8.02SC Physics II: Electricity and Magnetism, Gauss's Law."
+    publication_year: 2011
+    license: "CC BY-NC-SA 4.0"
+    seab_alignment: n/a
+language: en

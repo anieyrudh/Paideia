@@ -1,0 +1,19 @@
+presets:
+  - id: silicon-red-light
+    label: "Silicon with red light"
+    state:
+      wavelengthNanometres: 650
+      bandGapElectronVolts: 1.1
+      irradianceWattsPerSquareMetre: 800
+  - id: wide-gap-near-infrared
+    label: "Wide gap with near-infrared"
+    state:
+      wavelengthNanometres: 950
+      bandGapElectronVolts: 1.8
+      irradianceWattsPerSquareMetre: 800
+  - id: blue-thermalisation
+    label: "Blue photon thermalisation"
+    state:
+      wavelengthNanometres: 450
+      bandGapElectronVolts: 1.1
+      irradianceWattsPerSquareMetre: 900

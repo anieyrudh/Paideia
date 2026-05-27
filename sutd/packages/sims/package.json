@@ -42,7 +42,15 @@
     "./maxwell-equations-and-em-waves": "./src/maxwell-equations-and-em-waves.tsx",
     "./rlc-circuit-and-resonance": "./src/rlc-circuit-and-resonance.tsx",
     "./coulomb-s-law-and-discrete-charge-fields": "./src/coulomb-s-law-and-discrete-charge-fields.tsx",
-    "./capacitor-with-dielectric": "./src/capacitor-with-dielectric.tsx"
+    "./capacitor-with-dielectric": "./src/capacitor-with-dielectric.tsx",
+    "./chemical-bonding-and-intermolecular-forces": "./src/chemical-bonding-and-intermolecular-forces.tsx",
+    "./thermochemistry-and-equilibrium": "./src/thermochemistry-and-equilibrium.tsx",
+    "./gauss-law-for-symmetric-distributions": "./src/gauss-law-for-symmetric-distributions.tsx",
+    "./polymers-and-plastic-waste-management": "./src/polymers-and-plastic-waste-management.tsx",
+    "./electrochemistry-and-batteries": "./src/electrochemistry-and-batteries.tsx",
+    "./solar-energy-and-band-theory": "./src/solar-energy-and-band-theory.tsx",
+    "./water-quality-and-treatment": "./src/water-quality-and-treatment.tsx",
+    "./biodiversity-loss-and-land-use": "./src/biodiversity-loss-and-land-use.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -60,10 +68,13 @@
     "@paideia/control-systems": "workspace:*",
     "@paideia/dynamical-systems": "workspace:*",
     "@paideia/electromagnetism": "workspace:*",
+    "@paideia/fluid-mechanics": "workspace:*",
     "@paideia/graph-algorithms": "workspace:*",
     "@paideia/graph-layout": "workspace:*",
     "@paideia/linear-algebra": "workspace:*",
+    "@paideia/materials": "workspace:*",
     "@paideia/mechanics": "workspace:*",
+    "@paideia/molecule": "workspace:*",
     "@paideia/numerical-math": "workspace:*",
     "@paideia/optimization": "workspace:*",
     "@paideia/plotting": "workspace:*",
@@ -71,8 +82,10 @@
     "@paideia/probability-stats": "workspace:*",
     "@paideia/shared": "workspace:*",
     "@paideia/sim-runtime": "workspace:*",
+    "@paideia/thermodynamics": "workspace:*",
     "@paideia/ui-sim": "workspace:*",
-    "@paideia/vector-calculus": "workspace:*"
+    "@paideia/vector-calculus": "workspace:*",
+    "@paideia/waves": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18"

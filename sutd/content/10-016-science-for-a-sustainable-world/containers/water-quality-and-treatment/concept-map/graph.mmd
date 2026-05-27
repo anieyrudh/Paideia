@@ -1,0 +1,11 @@
+flowchart TD
+  raw["Raw water hazards"] --> turbidity["Turbidity"]
+  raw --> pathogens["Pathogen load"]
+  raw --> ph["pH"]
+  turbidity --> filter["Clarification and filtration"]
+  filter --> finished["Finished water screen"]
+  pathogens --> ct["CT = chlorine concentration x time"]
+  ct --> finished
+  ph --> finished
+  flow["Filter flow regime"] --> filter
+  clear["Clear water misconception"] -.-> finished
