@@ -33,6 +33,8 @@ test.describe("Immune System and Vaccines", () => {
     await expect(observation).toContainText("threshold");
     await expect(page.getByLabel("LaTeX formula source")).toContainText("R_e");
     await expect(page.getByLabel("Formula legend")).toContainText("herd-immunity");
+    await page.getByRole("button", { name: "Explain booster timing" }).click();
+    await expect(page.getByRole("heading", { name: "Waning immunity and booster cadence" })).toBeVisible();
   });
 
   test("crossing the threshold flips the outbreak verdict", async ({ page }) => {

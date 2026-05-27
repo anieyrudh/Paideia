@@ -2,11 +2,11 @@ id: immune-system-and-vaccines
 title: "Herd Immunity Lab"
 interaction_type: diagram-builder
 kernel_deps:
+  - core/content-schema
+  - core/shared
   - core/sim-runtime
   - core/immunology
-  - core/dynamical-systems
   - core/prediction-gate
-  - core/ui-sim
 predict:
   prompt: |
     A pathogen has basic reproduction number R0 = 4. Vaccinating 60 percent of the population gives them perfect immunity. Before reveal, what is the effective reproduction number Re and does the outbreak grow or shrink?

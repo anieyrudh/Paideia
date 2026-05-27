@@ -35,11 +35,11 @@ export const immunitySpec: TSimulationSpec = {
   title: "Herd Immunity Lab",
   interaction_type: "diagram-builder",
   kernel_deps: [
+    "core/content-schema",
+    "core/shared",
     "core/sim-runtime",
     "core/immunology",
-    "core/dynamical-systems",
     "core/prediction-gate",
-    "core/ui-sim",
   ],
   predict: {
     prompt:
@@ -125,7 +125,7 @@ export const immunityEvidence = (raw: ImmunityState): KernelResult<ImmunityEvide
     days: raw.daysSinceVaccination,
   });
   if (!waned.ok) return waned;
-  const effectiveCoverage = (waned.value as unknown as number);
+  const effectiveCoverage = waned.value;
   const effectiveLevel = immunityLevel(effectiveCoverage);
   if (!effectiveLevel.ok) return effectiveLevel;
   const re = effectiveReproductionNumber({
@@ -137,7 +137,7 @@ export const immunityEvidence = (raw: ImmunityState): KernelResult<ImmunityEvide
   if (raw.r0 > 1) {
     const thresholdResult = herdImmunityThreshold(r0.value);
     if (thresholdResult.ok) {
-      threshold = thresholdResult.value as unknown as number;
+      threshold = thresholdResult.value;
     }
   }
   // Build the waning curve out to 400 days.
@@ -151,15 +151,15 @@ export const immunityEvidence = (raw: ImmunityState): KernelResult<ImmunityEvide
       days,
     });
     if (!sample.ok) continue;
-    curve.push({ days, coverage: sample.value as unknown as number });
+    curve.push({ days, coverage: sample.value });
   }
   return ok({
     r0: raw.r0,
     threshold,
     initialCoverage: raw.coverage,
     effectiveCoverage,
-    effectiveReproductionNumber: re.value as unknown as number,
-    verdict: (re.value as unknown as number) < 1 ? "contained" : "growing",
+    effectiveReproductionNumber: re.value,
+    verdict: re.value < 1 ? "contained" : "growing",
     waningCurve: curve,
   });
 };
@@ -272,6 +272,7 @@ const WaningCurve = ({ evidence, threshold }: { readonly evidence: ImmunityEvide
 };
 
 const ObserveStage = () => {
+  const stage = useStage();
   const state = currentState(useSimState<Partial<ImmunityState>>());
   const evidence = immunityEvidence(state);
   if (!evidence.ok) {
@@ -319,6 +320,7 @@ const ObserveStage = () => {
         <p className="formula-note">
           Re below 1 means the outbreak shrinks. Re above 1 means it grows, even with substantial vaccination, until coverage crosses the threshold.
         </p>
+        <button type="button" onClick={() => stage.advance()}>Explain booster timing</button>
       </section>
     </section>
   );

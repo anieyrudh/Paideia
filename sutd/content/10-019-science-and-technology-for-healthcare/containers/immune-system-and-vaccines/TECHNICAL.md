@@ -17,11 +17,11 @@
 
 | Sim | Module | Symbols / role |
 |---|---|---|
+| immune-system-and-vaccines | `core/content-schema` | Declared in `simulation/simulation.yaml` |
+| immune-system-and-vaccines | `core/shared` | Declared in `simulation/simulation.yaml` |
 | immune-system-and-vaccines | `core/sim-runtime` | Declared in `simulation/simulation.yaml` |
 | immune-system-and-vaccines | `core/immunology` | Declared in `simulation/simulation.yaml` |
-| immune-system-and-vaccines | `core/dynamical-systems` | Declared in `simulation/simulation.yaml` |
 | immune-system-and-vaccines | `core/prediction-gate` | Declared in `simulation/simulation.yaml` |
-| immune-system-and-vaccines | `core/ui-sim` | Declared in `simulation/simulation.yaml` |
 
 ## SimulationSpec (frozen)
 
@@ -32,11 +32,11 @@ id: immune-system-and-vaccines
 title: Herd Immunity Lab
 interaction_type: diagram-builder
 kernel_deps:
+  - core/content-schema
+  - core/shared
   - core/sim-runtime
   - core/immunology
-  - core/dynamical-systems
   - core/prediction-gate
-  - core/ui-sim
 predict:
   prompt: |
     A pathogen has basic reproduction number R0 = 4. Vaccinating 60 percent of the population gives them perfect immunity. Before reveal, what is the effective reproduction number Re and does the outbreak grow or shrink?
@@ -127,15 +127,21 @@ pnpm graph:generate
 ## Anieyrudh Filter pass
 
 Date: 2026-05-27
-Filter version: aniegpt v1.0 (builder self-audit; awaiting reviewer pass)
+Filter version: aniegpt v1.0 (builder self-audit plus local container-auditor review)
 
 ### P0 issues
 
-- None observed. Container shape validates (77 containers OK). Prediction gate is declared and asserted in Playwright. Reveal renders an SVG coverage-vs-threshold bar plus a waning-curve plot with the threshold dashed — a real visual model. All math goes through `core/immunology` (`effectiveReproductionNumber`, `herdImmunityThreshold`, `waneImmunity`, `immunityLevel`, `reproductionNumber`, `decayRate`); no `Re = R0 (1-p)` or `1 - 1/R0` arithmetic inlined. The container is **educational only**: it teaches the SIR-style reasoning and explicitly avoids any clinical claim, diagnosis, patient-specific prediction, or treatment recommendation.
+- Resolved: container shape validates. Prediction gate is declared and asserted in Playwright. Reveal renders an SVG coverage-vs-threshold bar plus a waning-curve plot with the threshold dashed — a real visual model.
+- Resolved: all math goes through `core/immunology` (`effectiveReproductionNumber`, `herdImmunityThreshold`, `waneImmunity`, `immunityLevel`, `reproductionNumber`, `decayRate`); no `Re = R0 (1-p)` or `1 - 1/R0` arithmetic is implemented in the React sim. Formula text is display-only.
+- Resolved: the container is educational only: it teaches SIR-style reasoning and explicitly avoids any clinical claim, diagnosis, patient-specific prediction, or treatment recommendation.
 
 ### P1 issues
 
-- Formula colours pair `Re` (blue) with the coverage bar, `p*` (orange) with the threshold marker, and `p(t)` (purple) with the waning curve. Substitution shows R0, p0, lambda, t, p(t), p* and Re; the verdict line ("contained" vs "growing") translates Re into plain language. Manipulation visibly retargets the coverage bar fill (blue when contained, red when growing), the threshold line slides with R0, and the waning curve flattens or steepens as lambda changes. No P1 outstanding.
+- Resolved: formula colours pair `Re` (blue) with the coverage bar, `p*` (orange) with the threshold marker, and `p(t)` (purple) with the waning curve. Substitution shows R0, p0, lambda, t, p(t), p* and Re; the verdict line ("contained" vs "growing") translates Re into plain language.
+- Resolved: manipulation visibly retargets the coverage bar fill (blue when contained, red when growing), the threshold line slides with R0, and the waning curve flattens or steepens as lambda changes.
+- Resolved: `simulation.yaml` now declares the imported contract kernels (`core/content-schema`, `core/shared`, `core/sim-runtime`, `core/immunology`, and prediction-gate contract) and no longer declares unused `core/dynamical-systems` / `core/ui-sim`.
+- Resolved: public helper code no longer uses `as unknown as number` casts to display branded immunology values.
+- Resolved: the revealed observation now includes an explicit button into the explain stage, and the Playwright test asserts that path.
 
 ### P2 follow-ups (deferred)
 
@@ -151,24 +157,3 @@ Filter version: aniegpt v1.0 (builder self-audit; awaiting reviewer pass)
 ## Iteration log
 
 - 2026-05-27: Scaffolded the container. Built `sutd/packages/sims/src/immune-system-and-vaccines.tsx`, consuming the merged `@paideia/immunology` kernel (`effectiveReproductionNumber`, `herdImmunityThreshold`, `waneImmunity`, etc.). Added 5 vitest cases (`immune-system-and-vaccines.test.ts`) and a Playwright simulation test. Wired into `@paideia/sutd-sims`.
-
-## Validation log (2026-05-27)
-
-| Check | Result |
-| --- | --- |
-| `pnpm install` | OK |
-| `pnpm container:validate <path>` | passed (77 containers OK) |
-| `pnpm container:docs <path>` | regenerated README.md and TECHNICAL.md |
-| `pnpm graph:generate` / `pnpm graph:check` | clean (45 SUTD containers) |
-| `pnpm -F @paideia/sutd-sims build` | clean |
-| `pnpm -F @paideia/sutd-sims test` | **170/170 passed across 64 test files** (incl. 5 new vitest cases for `immunityEvidence`) |
-| `pnpm typecheck` | clean across all workspaces |
-| `pnpm lint` | clean across all workspaces |
-| `pnpm boundary` | 1494 modules, 2566 deps, no violations |
-| `pnpm license:check` | All 84 production deps compatible |
-| `pnpm roadmap:validate` | 84 queue entries OK; this container's status moved `ready-for-build` → `in-build` |
-| `pnpm agent:validate` | OK |
-
-## Environment notes
-
-- Workspace-wide `pnpm test` (Playwright) remains environment-blocked on Chromium not being provisioned in the sandbox; the per-package vitest surface is green.
