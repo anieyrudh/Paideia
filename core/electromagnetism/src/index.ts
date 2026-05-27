@@ -37,9 +37,12 @@ export const electromagnetismTolerance = {
 } as const;
 
 export type Coulombs = Brand<number, "Coulombs">;
+export type CoulombsPerMetre = Brand<number, "CoulombsPerMetre">;
+export type CoulombsPerSquareMetre = Brand<number, "CoulombsPerSquareMetre">;
 export type Volts = Brand<number, "Volts">;
 export type NewtonsPerCoulomb = Brand<number, "NewtonsPerCoulomb">;
 export type Farads = Brand<number, "Farads">;
+export type ElectricFluxVoltsMetres = Brand<number, "ElectricFluxVoltsMetres">;
 export type Teslas = Brand<number, "Teslas">;
 export type Webers = Brand<number, "Webers">;
 export type WebersPerSecond = Brand<number, "WebersPerSecond">;
@@ -105,6 +108,47 @@ export interface ParallelPlateCapacitorModel {
   readonly energyDensityJoulesPerCubicMetre: JoulesPerCubicMetre;
 }
 
+export interface ElectricFluxThroughSurfaceInput {
+  readonly electricFieldVoltsPerMetre: VoltsPerMetre;
+  readonly areaSquareMetres: SquareMetres;
+  readonly angleToNormalDegrees: Degrees;
+}
+
+export interface ElectricFluxFromChargeInput {
+  readonly enclosedChargeCoulombs: Coulombs;
+}
+
+export interface EnclosedChargeFromFluxInput {
+  readonly electricFluxVoltsMetres: ElectricFluxVoltsMetres;
+}
+
+export type GaussLawSymmetricFieldInput =
+  | {
+      readonly symmetry: "spherical";
+      readonly enclosedChargeCoulombs: Coulombs;
+      readonly radiusMetres: number;
+    }
+  | {
+      readonly symmetry: "cylindrical";
+      readonly linearChargeDensityCoulombsPerMetre: CoulombsPerMetre;
+      readonly radiusMetres: number;
+      readonly lengthMetres: number;
+    }
+  | {
+      readonly symmetry: "planar";
+      readonly surfaceChargeDensityCoulombsPerSquareMetre: CoulombsPerSquareMetre;
+      readonly pillboxFaceAreaSquareMetres: SquareMetres;
+    };
+
+export interface GaussLawSymmetricFieldModel {
+  readonly symmetry: GaussLawSymmetricFieldInput["symmetry"];
+  readonly enclosedChargeCoulombs: Coulombs;
+  readonly gaussianAreaSquareMetres: SquareMetres;
+  readonly electricFluxVoltsMetres: ElectricFluxVoltsMetres;
+  readonly electricFieldVoltsPerMetre: VoltsPerMetre;
+  readonly interpretation: string;
+}
+
 export type LenzOpposition = "oppose-increase" | "oppose-decrease" | "no-change";
 
 export interface UniformFluxInductionInput {
@@ -152,10 +196,16 @@ export interface ElectromagneticWaveModel {
 }
 
 export const coulombs = (value: number): Coulombs => value as Coulombs;
+export const coulombsPerMetre = (value: number): CoulombsPerMetre =>
+  value as CoulombsPerMetre;
+export const coulombsPerSquareMetre = (value: number): CoulombsPerSquareMetre =>
+  value as CoulombsPerSquareMetre;
 export const volts = (value: number): Volts => value as Volts;
 export const newtonsPerCoulomb = (value: number): NewtonsPerCoulomb =>
   value as NewtonsPerCoulomb;
 export const farads = (value: number): Farads => value as Farads;
+export const electricFluxVoltsMetres = (value: number): ElectricFluxVoltsMetres =>
+  value as ElectricFluxVoltsMetres;
 export const teslas = (value: number): Teslas => value as Teslas;
 export const webers = (value: number): Webers => value as Webers;
 export const webersPerSecond = (value: number): WebersPerSecond =>
@@ -366,6 +416,167 @@ export const parallelPlateCapacitorModel = (
     electricFieldVoltsPerMetre: voltsPerMetre(electricField),
     energyDensityJoulesPerCubicMetre: joulesPerCubicMetre(energyDensity),
     energyJoules: joules(energy),
+  });
+};
+
+export const electricFluxThroughSurface = (
+  input: ElectricFluxThroughSurfaceInput,
+): KernelResult<ElectricFluxVoltsMetres> => {
+  const field = finite(input.electricFieldVoltsPerMetre, "electricFieldVoltsPerMetre");
+  if (!field.ok) return field;
+  const area = finitePositive(input.areaSquareMetres, "areaSquareMetres");
+  if (!area.ok) return area;
+  const angle = finite(input.angleToNormalDegrees, "angleToNormalDegrees");
+  if (!angle.ok) return angle;
+  if (input.angleToNormalDegrees < 0 || input.angleToNormalDegrees > 180) {
+    return err(
+      "precondition-violated",
+      `angleToNormalDegrees must be between 0 and 180; got ${input.angleToNormalDegrees}`,
+    );
+  }
+
+  const flux =
+    input.electricFieldVoltsPerMetre *
+    input.areaSquareMetres *
+    Math.cos((input.angleToNormalDegrees * Math.PI) / 180);
+  const computed = finiteDerived(flux, "electricFluxVoltsMetres");
+  if (!computed.ok) return computed;
+  return ok(electricFluxVoltsMetres(flux));
+};
+
+export const electricFluxFromEnclosedCharge = (
+  input: ElectricFluxFromChargeInput,
+): KernelResult<ElectricFluxVoltsMetres> => {
+  const charge = finite(input.enclosedChargeCoulombs, "enclosedChargeCoulombs");
+  if (!charge.ok) return charge;
+  const flux = input.enclosedChargeCoulombs / vacuumPermittivityFaradsPerMetre;
+  const computed = finiteDerived(flux, "electricFluxVoltsMetres");
+  if (!computed.ok) return computed;
+  return ok(electricFluxVoltsMetres(flux));
+};
+
+export const enclosedChargeFromElectricFlux = (
+  input: EnclosedChargeFromFluxInput,
+): KernelResult<Coulombs> => {
+  const flux = finite(input.electricFluxVoltsMetres, "electricFluxVoltsMetres");
+  if (!flux.ok) return flux;
+  const charge = input.electricFluxVoltsMetres * vacuumPermittivityFaradsPerMetre;
+  const computed = finiteDerived(charge, "enclosedChargeCoulombs");
+  if (!computed.ok) return computed;
+  return ok(coulombs(charge));
+};
+
+export const gaussLawSymmetricFieldModel = (
+  input: GaussLawSymmetricFieldInput,
+): KernelResult<GaussLawSymmetricFieldModel> => {
+  if (input.symmetry === "spherical") {
+    const charge = finite(input.enclosedChargeCoulombs, "enclosedChargeCoulombs");
+    if (!charge.ok) return charge;
+    const radius = finitePositive(input.radiusMetres, "radiusMetres");
+    if (!radius.ok) return radius;
+
+    const gaussianArea = 4 * Math.PI * input.radiusMetres * input.radiusMetres;
+    const electricField =
+      input.enclosedChargeCoulombs /
+      (vacuumPermittivityFaradsPerMetre * gaussianArea);
+    const flux = electricFluxFromEnclosedCharge({
+      enclosedChargeCoulombs: input.enclosedChargeCoulombs,
+    });
+    if (!flux.ok) return flux;
+
+    const computedField = finiteDerived(electricField, "electricFieldVoltsPerMetre");
+    if (!computedField.ok) return computedField;
+    return ok({
+      electricFieldVoltsPerMetre: voltsPerMetre(electricField),
+      electricFluxVoltsMetres: flux.value,
+      enclosedChargeCoulombs: input.enclosedChargeCoulombs,
+      gaussianAreaSquareMetres: squareMetres(gaussianArea),
+      interpretation:
+        "spherical symmetry makes the field normal and equal on every point of the Gaussian sphere",
+      symmetry: input.symmetry,
+    });
+  }
+
+  if (input.symmetry === "cylindrical") {
+    const density = finite(
+      input.linearChargeDensityCoulombsPerMetre,
+      "linearChargeDensityCoulombsPerMetre",
+    );
+    if (!density.ok) return density;
+    const radius = finitePositive(input.radiusMetres, "radiusMetres");
+    if (!radius.ok) return radius;
+    const length = finitePositive(input.lengthMetres, "lengthMetres");
+    if (!length.ok) return length;
+
+    const enclosedCharge = input.linearChargeDensityCoulombsPerMetre * input.lengthMetres;
+    const gaussianArea = 2 * Math.PI * input.radiusMetres * input.lengthMetres;
+    const electricField =
+      input.linearChargeDensityCoulombsPerMetre /
+      (2 * Math.PI * vacuumPermittivityFaradsPerMetre * input.radiusMetres);
+    const flux = electricFluxFromEnclosedCharge({
+      enclosedChargeCoulombs: coulombs(enclosedCharge),
+    });
+    if (!flux.ok) return flux;
+
+    for (const [value, label] of [
+      [enclosedCharge, "enclosedChargeCoulombs"],
+      [gaussianArea, "gaussianAreaSquareMetres"],
+      [electricField, "electricFieldVoltsPerMetre"],
+    ] as const) {
+      const computed = finiteDerived(value, label);
+      if (!computed.ok) return computed;
+    }
+
+    return ok({
+      electricFieldVoltsPerMetre: voltsPerMetre(electricField),
+      electricFluxVoltsMetres: flux.value,
+      enclosedChargeCoulombs: coulombs(enclosedCharge),
+      gaussianAreaSquareMetres: squareMetres(gaussianArea),
+      interpretation:
+        "cylindrical symmetry sends flux through the curved surface while end caps contribute zero flux",
+      symmetry: input.symmetry,
+    });
+  }
+
+  const density = finite(
+    input.surfaceChargeDensityCoulombsPerSquareMetre,
+    "surfaceChargeDensityCoulombsPerSquareMetre",
+  );
+  if (!density.ok) return density;
+  const faceArea = finitePositive(
+    input.pillboxFaceAreaSquareMetres,
+    "pillboxFaceAreaSquareMetres",
+  );
+  if (!faceArea.ok) return faceArea;
+
+  const enclosedCharge =
+    input.surfaceChargeDensityCoulombsPerSquareMetre * input.pillboxFaceAreaSquareMetres;
+  const gaussianArea = 2 * input.pillboxFaceAreaSquareMetres;
+  const electricField =
+    input.surfaceChargeDensityCoulombsPerSquareMetre /
+    (2 * vacuumPermittivityFaradsPerMetre);
+  const flux = electricFluxFromEnclosedCharge({
+    enclosedChargeCoulombs: coulombs(enclosedCharge),
+  });
+  if (!flux.ok) return flux;
+
+  for (const [value, label] of [
+    [enclosedCharge, "enclosedChargeCoulombs"],
+    [gaussianArea, "gaussianAreaSquareMetres"],
+    [electricField, "electricFieldVoltsPerMetre"],
+  ] as const) {
+    const computed = finiteDerived(value, label);
+    if (!computed.ok) return computed;
+  }
+
+  return ok({
+    electricFieldVoltsPerMetre: voltsPerMetre(electricField),
+    electricFluxVoltsMetres: flux.value,
+    enclosedChargeCoulombs: coulombs(enclosedCharge),
+    gaussianAreaSquareMetres: squareMetres(gaussianArea),
+    interpretation:
+      "planar symmetry splits equal outward flux through both pillbox faces",
+    symmetry: input.symmetry,
   });
 };
 
