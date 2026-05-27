@@ -45,6 +45,7 @@
     "./capacitor-with-dielectric": "./src/capacitor-with-dielectric.tsx",
     "./chemical-bonding-and-intermolecular-forces": "./src/chemical-bonding-and-intermolecular-forces.tsx",
     "./thermochemistry-and-equilibrium": "./src/thermochemistry-and-equilibrium.tsx",
+    "./gauss-law-for-symmetric-distributions": "./src/gauss-law-for-symmetric-distributions.tsx",
     "./polymers-and-plastic-waste-management": "./src/polymers-and-plastic-waste-management.tsx",
     "./electrochemistry-and-batteries": "./src/electrochemistry-and-batteries.tsx",
     "./solar-energy-and-band-theory": "./src/solar-energy-and-band-theory.tsx",

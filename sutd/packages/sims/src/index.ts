@@ -31,6 +31,7 @@ export { default as RlcCircuitAndResonance } from "./rlc-circuit-and-resonance.j
 export { default as CoulombsLawAndDiscreteChargeFields } from "./coulomb-s-law-and-discrete-charge-fields.js";
 export { default as ChemicalBondingAndIntermolecularForces } from "./chemical-bonding-and-intermolecular-forces.js";
 export { default as ThermochemistryAndEquilibrium } from "./thermochemistry-and-equilibrium.js";
+export { default as GaussLawFluxSurfaceLab } from "./gauss-law-for-symmetric-distributions.js";
 export { default as PolymersAndPlasticWasteManagement } from "./polymers-and-plastic-waste-management.js";
 export { default as ElectrochemistryAndBatteries } from "./electrochemistry-and-batteries.js";
 export { default as SolarEnergyAndBandTheory } from "./solar-energy-and-band-theory.js";
