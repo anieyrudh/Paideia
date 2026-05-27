@@ -37,6 +37,7 @@ test.describe("Cell Structure and the Membrane", () => {
 
   test("manipulation shifts the voltage toward Na+ Nernst potential", async ({ page }) => {
     await page.getByRole("button", { name: "Set up membrane bath" }).click();
+    await page.getByRole("slider", { name: "K+ relative permeability" }).fill("0.05");
     await page.getByRole("slider", { name: "Na+ relative permeability" }).fill("0.9");
     await page.getByRole("button", { name: "Reveal resting voltage" }).click();
     await page

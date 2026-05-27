@@ -21,7 +21,7 @@ describe("membraneEvidence", () => {
 
   it("shifts the voltage toward Na+ when Na permeability dominates", () => {
     const result = membraneEvidence({
-      permeabilityK: 1,
+      permeabilityK: 0.05,
       permeabilityNa: 0.9,
       permeabilityCl: 0.45,
       outsideK: 4,
@@ -29,8 +29,8 @@ describe("membraneEvidence", () => {
     });
     expect(result.ok).toBe(true);
     if (!result.ok) return;
-    expect(result.value.restingVoltageMillivolts).toBeGreaterThan(-40);
-    expect(result.value.dominantIon === "Na" || result.value.dominantIon === "K").toBe(true);
+    expect(result.value.restingVoltageMillivolts).toBeGreaterThan(0);
+    expect(result.value.dominantIon).toBe("Na");
   });
 
   it("returns surface-area-to-volume = 3 / radius", () => {
