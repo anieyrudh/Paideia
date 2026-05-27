@@ -1,0 +1,118 @@
+schema_version: "1.0.0"
+id: chemical-bonding-and-intermolecular-forces
+aliases:
+  - chemical bonding
+  - intermolecular forces
+  - electronegativity
+branch: sutd
+subject: 10-016-science-for-a-sustainable-world
+level: "Freshmore"
+module: "10.016 Science for a Sustainable World"
+title: "Chemical Bonding and Intermolecular Forces"
+one_line_summary: "Use electronegativity difference, molecular structure, and particle type to connect bonds inside substances with attractions between particles."
+syllabus_ref: "SUTD 10.016 Science for a Sustainable World / bonding and intermolecular forces"
+prerequisites:
+  - atomic-structure-and-electron-configuration
+  - periodic-table-trends
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    Na has electronegativity 0.93 and Cl has 3.16. What bond class should dominate in sodium chloride?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "mostly ionic"
+      - "nonpolar covalent"
+      - "hydrogen bond inside one molecule"
+      - "metallic only"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: water-carbon-dioxide-boiling-point
+    prompt: |
+      Use bond polarity, molecular shape, and intermolecular forces to explain why water has much stronger particle-level attractions than carbon dioxide.
+    surface_form: "water and carbon dioxide boiling-point comparison"
+    same_concept_check: "Same concept: classify bonds, decide whether molecular polarity cancels, then identify the main attraction between particles."
+    rubric_path: problem-solving/water-carbon-dioxide-boiling-point.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Built initial SUTD 10.016 bonding and intermolecular forces product slice with prediction gate and formula-backed bonding comparison."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-26"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-26"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Intermolecular forces are bonds inside molecules"
+    description: "Learners may confuse covalent bonds within a molecule with attractions between separate particles."
+    evidence_source: "OpenStax Chemistry 2e sections on bonding and intermolecular forces."
+    surface_in_predict: true
+  - name: "Every polar bond makes a polar molecule"
+    description: "Learners may ignore molecular shape and assume polar bonds always create a net molecular dipole."
+    evidence_source: "OpenStax Chemistry 2e molecular polarity discussion."
+    surface_in_predict: true
+sources:
+  - citation: "OpenStax. Chemistry 2e, Chemical Bonding and Molecular Geometry; Liquids and Solids."
+    url: "https://openstax.org/details/books/chemistry-2e"
+    publication_year: 2019
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "SUTD. 10.016 Science for a Sustainable World module context."
+    url: "https://www.sutd.edu.sg"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+language: en

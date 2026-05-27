@@ -1,0 +1,31 @@
+presets:
+  - id: bowl-fastest-increase
+    label: "Bowl, off-centre point"
+    state:
+      surfaceKind: bowl
+      x: 1
+      y: 0.6
+      directionDegrees: 30
+      xCurvature: 1.2
+      yCurvature: 0.8
+      coupling: 0.35
+  - id: saddle-direction-test
+    label: "Saddle with mixed slopes"
+    state:
+      surfaceKind: saddle
+      x: 0.8
+      y: -0.7
+      directionDegrees: 140
+      xCurvature: 1
+      yCurvature: 1.1
+      coupling: -0.25
+  - id: tilted-valley-level-move
+    label: "Tilted valley, near-level move"
+    state:
+      surfaceKind: tilted-valley
+      x: -0.5
+      y: 0.9
+      directionDegrees: 250
+      xCurvature: 1.4
+      yCurvature: 0.9
+      coupling: 0.1

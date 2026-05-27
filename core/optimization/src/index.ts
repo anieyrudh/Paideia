@@ -62,6 +62,27 @@ export interface LinearProgramSolution {
   readonly activeConstraints: readonly number[];
 }
 
+export interface LagrangeMultiplierInput2D {
+  readonly angleDegrees: number;
+  readonly radiusX: number;
+  readonly radiusY: number;
+  readonly linearX: number;
+  readonly linearY: number;
+  readonly curvature: number;
+}
+
+export interface LagrangeMultiplierEvidence2D {
+  readonly point: Point2;
+  readonly objectiveValue: number;
+  readonly constraintValue: number;
+  readonly objectiveGradient: Point2;
+  readonly constraintGradient: Point2;
+  readonly lambda: number;
+  readonly residual: number;
+  readonly tangentDerivative: number;
+  readonly sensitivity: "x-resource" | "y-resource" | "balanced";
+}
+
 export type OrderQuantityUnits = Brand<number, "OrderQuantityUnits">;
 export type CostSgdPerUnit = Brand<number, "CostSgdPerUnit">;
 export type ExpectedCostSgd = Brand<number, "ExpectedCostSgd">;
@@ -184,6 +205,9 @@ const gradientAt = (f: Function3D, point: Point2, h: number): KernelResult<Point
 };
 
 const gradientNorm = ([gx, gy]: Point2): number => Math.hypot(gx, gy);
+
+const dot2 = (left: Point2, right: Point2): number =>
+  left[0] * right[0] + left[1] * right[1];
 
 const makeGradientSample = (
   f: Function3D,
@@ -481,6 +505,91 @@ export const optimizeLinearObjective = (
     point: bestPoint,
     value: bestValue,
     activeConstraints,
+  });
+};
+
+export const lagrangeMultiplierEvidence2D = (
+  input: LagrangeMultiplierInput2D,
+): KernelResult<LagrangeMultiplierEvidence2D> => {
+  for (const [label, value] of [
+    ["angleDegrees", input.angleDegrees],
+    ["radiusX", input.radiusX],
+    ["radiusY", input.radiusY],
+    ["linearX", input.linearX],
+    ["linearY", input.linearY],
+    ["curvature", input.curvature],
+  ] as const) {
+    const valid = finite(value, label);
+    if (!valid.ok) return valid;
+  }
+  if (input.radiusX <= 0 || input.radiusY <= 0) {
+    return err("precondition-violated", "ellipse radii must be positive");
+  }
+  if (input.curvature < 0) {
+    return err("precondition-violated", "curvature must be non-negative");
+  }
+
+  const theta = (input.angleDegrees * Math.PI) / 180;
+  const point: Point2 = [
+    input.radiusX * Math.cos(theta),
+    input.radiusY * Math.sin(theta),
+  ];
+  const objectiveGradient: Point2 = [
+    input.linearX - input.curvature * point[0],
+    input.linearY - input.curvature * point[1],
+  ];
+  const constraintGradient: Point2 = [
+    (2 * point[0]) / (input.radiusX * input.radiusX),
+    (2 * point[1]) / (input.radiusY * input.radiusY),
+  ];
+  const constraintNormSquared = dot2(constraintGradient, constraintGradient);
+  if (constraintNormSquared <= optimizationTolerance.tight) {
+    return err("numerical-instability", "constraint gradient is too small for lambda estimate");
+  }
+
+  const lambda = dot2(objectiveGradient, constraintGradient) / constraintNormSquared;
+  const residualVector: Point2 = [
+    objectiveGradient[0] - lambda * constraintGradient[0],
+    objectiveGradient[1] - lambda * constraintGradient[1],
+  ];
+  const tangent: Point2 = [-constraintGradient[1], constraintGradient[0]];
+  const tangentNorm = gradientNorm(tangent);
+  if (tangentNorm <= optimizationTolerance.tight) {
+    return err("numerical-instability", "constraint tangent is too small");
+  }
+  const unitTangent: Point2 = [tangent[0] / tangentNorm, tangent[1] / tangentNorm];
+  const objectiveValue =
+    input.linearX * point[0] +
+    input.linearY * point[1] -
+    0.5 * input.curvature * (point[0] * point[0] + point[1] * point[1]);
+  const constraintValue =
+    (point[0] * point[0]) / (input.radiusX * input.radiusX) +
+    (point[1] * point[1]) / (input.radiusY * input.radiusY);
+
+  for (const [label, value] of [
+    ["objectiveValue", objectiveValue],
+    ["constraintValue", constraintValue],
+    ["lambda", lambda],
+  ] as const) {
+    const valid = finite(value, label);
+    if (!valid.ok) return valid;
+  }
+
+  return ok({
+    constraintGradient,
+    constraintValue,
+    lambda,
+    objectiveGradient,
+    objectiveValue,
+    point,
+    residual: gradientNorm(residualVector),
+    sensitivity:
+      Math.abs(constraintGradient[0]) > Math.abs(constraintGradient[1]) + 0.1
+        ? "x-resource"
+        : Math.abs(constraintGradient[1]) > Math.abs(constraintGradient[0]) + 0.1
+          ? "y-resource"
+          : "balanced",
+    tangentDerivative: dot2(objectiveGradient, unitTangent),
   });
 };
 

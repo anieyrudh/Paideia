@@ -1,0 +1,35 @@
+schema_version: "1.0.0"
+concept_id: optimisation-with-lagrange-multipliers
+title: "Optimisation with Lagrange Multipliers Concept Map"
+prerequisites:
+  - id: partial-derivatives-and-gradient
+    title: "Partial derivatives and gradient"
+    relationship: "Gradient vectors describe fastest first-order increase."
+  - id: level-sets
+    title: "Level sets"
+    relationship: "Constraint curves are level sets of g(x,y)."
+downstream:
+  - id: engineering-design-optimisation
+    title: "Engineering design optimisation"
+    relationship: "Resource-constrained design uses multiplier sensitivity."
+  - id: constrained-economics
+    title: "Constrained economics"
+    relationship: "Shadow prices are multiplier interpretations."
+siblings:
+  - id: partial-derivatives-and-gradient
+    title: "Partial derivatives and gradient"
+    relationship: "Lagrange multipliers use gradient alignment."
+misconception_graph:
+  nodes:
+    - id: multiplier-is-answer
+      label: "lambda is the optimum value"
+    - id: perpendicular-gradients
+      label: "gradients should be perpendicular"
+  edges:
+    - from: multiplier-is-answer
+      to: optimisation-with-lagrange-multipliers
+      label: "lambda is sensitivity"
+    - from: perpendicular-gradients
+      to: optimisation-with-lagrange-multipliers
+      label: "gradients are parallel"
+mermaid_source: graph.mmd

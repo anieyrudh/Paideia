@@ -1,0 +1,19 @@
+steps:
+  - id: extract-entries
+    prompt: "What are the entries a, b, c, d of the 2x2 matrix?"
+    expected_action: "Identify the top-left, top-right, bottom-left, and bottom-right entries."
+  - id: compute-determinant
+    prompt: "What is the signed area scale factor?"
+    expected_action: "Compute det A = ad - bc and note the sign."
+  - id: compute-trace
+    prompt: "What is the sum of the diagonal entries?"
+    expected_action: "Compute tr A = a + d."
+  - id: discriminant
+    prompt: "Are the eigenvalues real and distinct, repeated, or complex?"
+    expected_action: "Compute T^2 - 4D and classify."
+  - id: stability
+    prompt: "Where does (T, D) land on the trace-determinant plane?"
+    expected_action: "Classify the origin of the linear system using the standard quadrant map."
+  - id: interpret
+    prompt: "What does this mean in the model?"
+    expected_action: "Report area scaling, orientation, eigenvalue sum/product, and stability in plain language."

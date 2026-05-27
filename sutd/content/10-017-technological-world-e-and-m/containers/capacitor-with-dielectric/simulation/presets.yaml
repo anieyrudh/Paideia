@@ -1,0 +1,25 @@
+presets:
+  - id: polymer-film
+    label: "Polymer film"
+    description: "Moderate dielectric constant and thin film for compact capacitance."
+    state:
+      dielectricConstant: 3
+      plateAreaSquareCentimetres: 80
+      plateSeparationMillimetres: 1
+      voltageVolts: 12
+  - id: air-gap-reference
+    label: "Air-gap reference"
+    description: "Same geometry with kappa = 1 to isolate the material effect."
+    state:
+      dielectricConstant: 1
+      plateAreaSquareCentimetres: 80
+      plateSeparationMillimetres: 1
+      voltageVolts: 12
+  - id: ceramic-layer
+    label: "Ceramic layer"
+    description: "Higher dielectric constant gives more capacitance without more area."
+    state:
+      dielectricConstant: 6
+      plateAreaSquareCentimetres: 60
+      plateSeparationMillimetres: 0.8
+      voltageVolts: 9

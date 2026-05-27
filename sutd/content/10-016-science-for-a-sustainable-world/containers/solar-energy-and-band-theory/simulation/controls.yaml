@@ -1,0 +1,25 @@
+controls:
+  - id: wavelengthNanometres
+    label: "Photon wavelength"
+    kind: slider
+    min: 350
+    max: 1100
+    step: 10
+    unit: nm
+    default: 650
+  - id: bandGapElectronVolts
+    label: "Semiconductor band gap"
+    kind: slider
+    min: 0.8
+    max: 2.2
+    step: 0.05
+    unit: eV
+    default: 1.1
+  - id: irradianceWattsPerSquareMetre
+    label: "Irradiance"
+    kind: slider
+    min: 200
+    max: 1000
+    step: 50
+    unit: W/m^2
+    default: 800

@@ -1,0 +1,19 @@
+steps:
+  - id: basis-images
+    prompt: "Where do e_1 and e_2 land?"
+    expected_action: "Read T(e_1) and T(e_2) from the columns of A."
+  - id: rigid-check
+    prompt: "Are the basis images unit length and perpendicular?"
+    expected_action: "Test |T(e_1)| = |T(e_2)| = 1 and T(e_1) . T(e_2) = 0."
+  - id: orientation
+    prompt: "Does the transformation preserve orientation?"
+    expected_action: "Read the sign of det A."
+  - id: classify
+    prompt: "Which canonical class fits best?"
+    expected_action: "Match against scaling, rotation, reflection, shear, or composite."
+  - id: extract-parameters
+    prompt: "What are the angles or scale factors?"
+    expected_action: "Compute the rotation angle from arctan(c / a) for rotations, or the per-axis scale factors for scalings."
+  - id: verify
+    prompt: "Does a non-basis point check out?"
+    expected_action: "Transform (1, 1) and compare with the expected composite output."

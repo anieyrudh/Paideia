@@ -1,0 +1,9 @@
+flowchart TD
+  ac["AC source"] --> impedance["Complex impedance"]
+  resistor["Resistance R"] --> impedance
+  inductor["Inductive reactance XL"] --> net["Net reactance XL - XC"]
+  capacitor["Capacitive reactance XC"] --> net
+  net --> impedance
+  impedance --> current["RMS current"]
+  net --> resonance["Resonance when XL = XC"]
+  resonance --> tuning["Tuned receiver or filter"]

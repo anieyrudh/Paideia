@@ -1,0 +1,35 @@
+controls:
+  - id: field-kind
+    label: Vector field
+    type: select
+    options:
+      - value: conservative
+        label: Conservative gradient field
+      - value: rotational
+        label: Rotational circulation field
+  - id: curve-kind
+    label: Path shape
+    type: select
+    options:
+      - value: direct
+        label: Direct straight path
+      - value: elbow
+        label: Two-leg elbow path
+  - id: end-x
+    label: Endpoint x
+    type: slider
+    min: -2
+    max: 2
+    step: 0.25
+  - id: end-y
+    label: Endpoint y
+    type: slider
+    min: -2
+    max: 2
+    step: 0.25
+  - id: bend
+    label: Elbow height
+    type: slider
+    min: -2
+    max: 2
+    step: 0.25

@@ -1,0 +1,118 @@
+schema_version: "1.0.0"
+id: electrochemistry-and-batteries
+aliases:
+  - electrochemistry
+  - batteries
+  - nernst equation
+branch: sutd
+subject: 10-016-science-for-a-sustainable-world
+level: "Freshmore"
+module: "10.016 Science for a Sustainable World"
+title: "Electrochemistry and Batteries"
+one_line_summary: "Use the Nernst equation to connect reaction composition, electron transfer, and battery voltage."
+syllabus_ref: "SUTD 10.016 Science for a Sustainable World / electrochemistry and batteries"
+prerequisites:
+  - thermochemistry-and-equilibrium
+  - chemical-bonding-and-intermolecular-forces
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    If products build up in a galvanic cell, what happens to the cell voltage?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Voltage increases"
+      - "Voltage decreases"
+      - "Voltage is unrelated to composition"
+      - "Voltage becomes exactly zero"
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: rechargeable-pack-voltage
+    prompt: |
+      A rechargeable battery pack shows lower voltage after sustained discharge. Use the Nernst equation to explain how composition and electron transfer affect voltage, then state what extra safety evidence a battery-management system needs.
+    surface_form: "rechargeable battery pack"
+    same_concept_check: "Same concept: cell voltage depends on electrode chemistry and reaction composition."
+    rubric_path: problem-solving/rechargeable-pack-voltage.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Built initial SUTD 10.016 electrochemistry and batteries product slice with prediction gate and Nernst simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-26"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-26"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Battery voltage is fixed"
+    description: "Learners may think the label voltage is independent of concentration, state of charge, and reaction quotient."
+    evidence_source: "OpenStax Chemistry 2e electrochemistry chapter."
+    surface_in_predict: true
+  - name: "Product build-up adds voltage"
+    description: "Learners may reverse the Nernst sign and predict product build-up always increases voltage."
+    evidence_source: "OpenStax Chemistry 2e electrochemistry chapter."
+    surface_in_predict: true
+sources:
+  - citation: "OpenStax. Chemistry 2e, Electrochemistry chapter."
+    url: "https://openstax.org/details/books/chemistry-2e"
+    publication_year: 2019
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "Battery University. How battery voltage reflects state and load."
+    url: "https://batteryuniversity.com"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+language: en

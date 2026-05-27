@@ -1,0 +1,109 @@
+schema_version: "1.0.0"
+id: eigenvalues-and-eigenvectors
+aliases:
+  - characteristic-polynomial-2x2
+  - eigenpair computation
+branch: sutd
+subject: 10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra
+level: "Freshmore"
+module: "Modelling Space and Systems: Multivariable Calculus and Linear Algebra"
+title: "Eigenvalues and Eigenvectors"
+one_line_summary: "Solve the 2x2 characteristic polynomial from trace and determinant, then locate each eigenvector in the plane."
+syllabus_ref: "SUTD 10.018 Modelling Space and Systems / Linear Algebra"
+prerequisites:
+  - determinant-and-trace
+  - vector-transformations
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    Matrix A = [[3, 1], [0, 2]]. Before reveal, what are its eigenvalues?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "lambda = 3 and lambda = 2 (the diagonal entries, because A is upper-triangular)"
+      - "lambda = 5 and lambda = 6 (read tr and det as eigenvalues)"
+      - "lambda = 1 + i and lambda = 1 - i (complex conjugates)"
+      - "Only one eigenvalue exists for a 2x2 matrix"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: diagonalisation-readiness
+    prompt: |
+      A coupled spring system gives A = [[5, -2], [-2, 2]]. Find both eigenvalues, identify one eigenvector, and explain whether the system can be diagonalised in real coordinates.
+    surface_form: "coupled spring stiffness matrix diagonalisation"
+    same_concept_check: "Same concept: solve lambda^2 - T lambda + D = 0 and locate the eigenspaces from (A - lambda I) v = 0."
+    rubric_path: problem-solving/diagonalisation-readiness.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Scaffolded SUTD 10.018 eigenvalues-and-eigenvectors container."
+authors: ["Codex"]
+advisor_signoffs: []
+misconceptions:
+  - name: "Eigenvalues are always the diagonal entries"
+    description: "Learners may assume the diagonal entries are always the eigenvalues, ignoring the role of off-diagonal coupling."
+    evidence_source: "Strang, Introduction to Linear Algebra."
+    surface_in_predict: true
+  - name: "Complex eigenvalues mean no real behaviour"
+    description: "Learners may dismiss complex eigenvalues as non-physical instead of reading them as a rotation-plus-scaling pair."
+    evidence_source: "Hirsch, Smale, Devaney, Differential Equations and Dynamical Systems."
+    surface_in_predict: true
+sources:
+  - citation: "SUTD 10.018 Modelling Space and Systems learning outcomes for eigenvalues, eigenvectors, and characteristic polynomial."
+    url: "https://www.sutd.edu.sg"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+  - citation: "Strang, Introduction to Linear Algebra, eigenvalues and eigenvectors chapters."
+    publication_year: 2016
+    license: "Textbook reference"
+    seab_alignment: n/a
+  - citation: "OpenStax, Linear Algebra, Eigenvalues and Eigenvectors."
+    url: "https://openstax.org/details/books/linear-algebra"
+    publication_year: 2024
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+language: en

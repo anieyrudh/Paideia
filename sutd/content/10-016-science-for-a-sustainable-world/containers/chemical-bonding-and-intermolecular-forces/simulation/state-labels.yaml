@@ -1,0 +1,4 @@
+labels:
+  scenario:
+    label: Bonding case
+    description: "Particle example used to compare bond class and attraction between particles."

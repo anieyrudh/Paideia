@@ -1,0 +1,58 @@
+schema_version: "1.0.0"
+concept_id: gauss-law-for-symmetric-distributions
+title: "Gauss Law for Symmetric Distributions Concept Map"
+nodes:
+  - id: electric-field
+    label: "Electric field"
+    kind: prerequisite
+    relationship: "Field vectors provide the normal component counted by flux."
+  - id: electric-flux
+    label: "Electric flux"
+    kind: prerequisite
+    relationship: "Flux combines field, area, and orientation through a surface."
+  - id: enclosed-charge
+    label: "Enclosed charge"
+    kind: core
+    relationship: "Net charge inside the closed surface fixes total flux."
+  - id: gaussian-surface
+    label: "Gaussian surface"
+    kind: core
+    relationship: "The chosen closed surface should match the charge symmetry."
+  - id: symmetry-area
+    label: "Effective area"
+    kind: core
+    relationship: "Sphere, cylinder, and pillbox surfaces give different useful areas."
+  - id: gauss-law-field
+    label: "E A_G = Q_enc / epsilon0"
+    kind: core
+    relationship: "Symmetry turns the flux law into a field-strength equation."
+  - id: capacitors
+    label: "Capacitors and conductors"
+    kind: downstream
+    relationship: "Gauss-law field estimates support later capacitor and conductor models."
+edges:
+  - from: electric-field
+    to: electric-flux
+  - from: electric-flux
+    to: gaussian-surface
+  - from: enclosed-charge
+    to: gauss-law-field
+  - from: gaussian-surface
+    to: symmetry-area
+  - from: symmetry-area
+    to: gauss-law-field
+  - from: gauss-law-field
+    to: capacitors
+misconceptions:
+  - id: spheres-only
+    statement: "Gauss law only works for spheres."
+    correction: "The law works for any closed surface; spheres are useful only for spherical symmetry."
+    surfaced_in: predict
+  - id: flux-equals-field
+    statement: "Flux and field strength are the same quantity."
+    correction: "Flux is field times effective area after accounting for orientation."
+    surfaced_in: observe
+  - id: larger-surface-more-flux
+    statement: "A larger Gaussian surface must produce larger total flux."
+    correction: "Total flux is fixed by enclosed charge; area changes the field magnitude when symmetry applies."
+    surfaced_in: predict

@@ -1,0 +1,17 @@
+steps:
+  - id: identify-region
+    title: "Identify the region"
+    learner_action: "Mark the x, y, and z bounds."
+    success_criteria: "Bounds describe the full area or volume without double-counting."
+  - id: identify-density
+    title: "Identify the density"
+    learner_action: "Write the integrand and its units."
+    success_criteria: "The integrand matches the accumulated quantity."
+  - id: set-integral
+    title: "Set up the integral"
+    learner_action: "Write the double or triple integral with the chosen order."
+    success_criteria: "Limits and differentials match the region."
+  - id: evaluate
+    title: "Evaluate and interpret"
+    learner_action: "Compute the value and state what it measures."
+    success_criteria: "The result includes units and a reasonableness check."

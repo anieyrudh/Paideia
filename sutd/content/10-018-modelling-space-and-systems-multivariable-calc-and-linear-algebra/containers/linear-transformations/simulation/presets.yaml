@@ -1,0 +1,29 @@
+presets:
+  - id: rotation-90
+    label: "Rotation 90 degrees"
+    state:
+      a11: 0
+      a12: -1
+      a21: 1
+      a22: 0
+  - id: anisotropic-scale
+    label: "Anisotropic scale (2x, 0.5y)"
+    state:
+      a11: 2
+      a12: 0
+      a21: 0
+      a22: 0.5
+  - id: horizontal-shear
+    label: "Horizontal shear (k = 1)"
+    state:
+      a11: 1
+      a12: 1
+      a21: 0
+      a22: 1
+  - id: reflection-x-axis
+    label: "Reflection across x-axis"
+    state:
+      a11: 1
+      a12: 0
+      a21: 0
+      a22: -1

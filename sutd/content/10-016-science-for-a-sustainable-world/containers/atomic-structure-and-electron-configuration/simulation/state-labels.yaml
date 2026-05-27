@@ -1,0 +1,5 @@
+labels:
+  atomicNumber:
+    label: Atomic number
+    unit: protons
+    description: "Number of protons; for a neutral atom this equals total electrons."

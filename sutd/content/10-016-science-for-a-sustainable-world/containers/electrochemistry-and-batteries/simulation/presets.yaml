@@ -1,0 +1,13 @@
+presets:
+  - id: standard-cell
+    label: Standard cell
+    state:
+      standardPotentialVolts: 1.1
+      reactionQuotient: 1
+      electronCount: 2
+  - id: discharged-cell
+    label: Product-rich discharged cell
+    state:
+      standardPotentialVolts: 1.1
+      reactionQuotient: 18
+      electronCount: 2

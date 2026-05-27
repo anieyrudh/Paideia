@@ -1,55 +1,135 @@
 # Core Module Inventory
 
 Core packages are shared contracts. Branch code consumes them; branch code does
-not copy their logic or fork behavior for one institution.
+not copy their logic, fork behavior for one institution, or inline formulas that
+already belong in a kernel.
 
-## Tier 1: Independent Kernels
+Status as of this inventory: every buildable `core/*/AGENTS.md` contract has a
+workspace package except `core/aniegpt`, which is a prompt/filter asset rather
+than a TypeScript kernel. `core/docs-templates` is template-only.
 
-| Module | Purpose | When to consider | Contract |
+## How To Choose A Core
+
+1. Start with the container's simulation need, not the subject label.
+2. Read the target module's [`AGENTS.md`](../core/) before importing it.
+3. If a sim is about to write reusable math, validation, layout, scheduling, or
+   rendering primitives locally, stop and check this catalogue first.
+4. If no core fits, open a core-change proposal before inventing branch-local
+   behavior.
+
+## Foundation And Governance
+
+| Module | Package | Owns | Contract |
 | --- | --- | --- | --- |
-| `prediction-gate` | Predict-before-reveal gate for PMOE-T sims. | "Use `core/prediction-gate` whenever a simulation has a Predict stage in its PMOE-T arc." | [`AGENTS.md`](../core/prediction-gate/AGENTS.md) |
-| `content-schema` | Zod schemas for packages, sims, assessments, rubrics, and course maps. | "Use `core/content-schema` any time you author, validate, persist, or load a concept package, simulation, assessment, rubric, or course map." | [`AGENTS.md`](../core/content-schema/AGENTS.md) |
-| `shared` | Universal types, branded units, and `KernelResult`. | "Use `core/shared` any time you write a function signature, declare a domain, return a kernel result, or accept a value whose unit matters." | [`AGENTS.md`](../core/shared/AGENTS.md) |
-| `function-eval` | Parse learner or author math expressions into callable functions. | "Use `core/function-eval` whenever a learner or author supplies a math expression as a string and the system needs to call it as a function." | [`AGENTS.md`](../core/function-eval/AGENTS.md) |
-| `plotting` | 2D mathematical function, curve, vector-field, and overlay rendering. | "Use `core/plotting` whenever the visual is a 2D mathematical object." | [`AGENTS.md`](../core/plotting/AGENTS.md) |
-| `numerical-math` | Numerical derivatives, integrals, slopes, sums, approximations, and regressions. | "Use `core/numerical-math` when your sim needs to compute derivatives, integrals, secant/tangent slopes, Riemann sums, Taylor approximations, or simple regressions of a user-supplied function." | [`AGENTS.md`](../core/numerical-math/AGENTS.md) |
-| `uncertainty-propagation` | Measurement uncertainty, relative and percentage uncertainty, arithmetic propagation, and source selection. | "Use `core/uncertainty-propagation` when a sim needs canonical measurement uncertainty, percentage uncertainty, propagated uncertainty through arithmetic, or a repeat-vs-resolution decision." | [`AGENTS.md`](../core/uncertainty-propagation/AGENTS.md) |
-| `dimensional-analysis` | SI base dimensions, derived dimensions, unit fingerprints, compatibility checks, and invalid-equation diagnostics. | "Use `core/dimensional-analysis` when a sim needs to derive units such as speed or acceleration, or reject equations between incompatible physical quantities." | [`AGENTS.md`](../core/dimensional-analysis/AGENTS.md) |
-| `charting` | Quantitative charts over sampled data and rows. | "Use `core/charting` for any quantitative chart over data." | [`AGENTS.md`](../core/charting/AGENTS.md) |
-| `graph-layout` | Node-link layout in 2D or 3D. | "Use `core/graph-layout` when you have nodes and links and need positions on a plane or in 3D." | [`AGENTS.md`](../core/graph-layout/AGENTS.md) |
-| `timeline` | Chronology, parallel lanes, and branching event structures. | "Use `core/timeline` when the sim or page needs a horizontal chronology." | [`AGENTS.md`](../core/timeline/AGENTS.md) |
-| `annotation` | Structured markup over text spans or image regions. | "Use `core/annotation` when a learner must mark up a passage of text or a region of an image with structured tags." | [`AGENTS.md`](../core/annotation/AGENTS.md) |
-| `mind-map` | Rooted hierarchical concept maps. | "Use `core/mind-map` when you want to render or let a learner build a hierarchical outline rooted at a single concept." | [`AGENTS.md`](../core/mind-map/AGENTS.md) |
-| `fsrs` | Spaced-repetition scheduling. | "Use `core/fsrs` whenever you need to decide when to show a learner a given review card next." | [`AGENTS.md`](../core/fsrs/AGENTS.md) |
-| `bkt` | Bayesian knowledge tracing and mastery probability. | "Use `core/bkt` when you need a probability that a learner has mastered a particular concept." | [`AGENTS.md`](../core/bkt/AGENTS.md) |
-| `algorithm-trace` | Stepwise traces for sorting, searching, traversal, and similar algorithms. | "Use `core/algorithm-trace` when a sim needs to show, step by step, how a standard sorting, searching, or traversal algorithm proceeds on a given input." | [`AGENTS.md`](../core/algorithm-trace/AGENTS.md) |
-| `ui-sim` | Shared sim controls such as sliders, toggles, and drag handles. | "Use `core/ui-sim` for every interactive control inside a simulation." | [`AGENTS.md`](../core/ui-sim/AGENTS.md) |
-| `ui-app` | App-shell UI primitives for catalogue and branch apps. | Contract pending; no `core/ui-app/AGENTS.md` exists yet. | Pending |
-| `a11y` | Accessibility helpers and test affordances. | Contract pending; no `core/a11y/AGENTS.md` exists yet. | Pending |
-| `aniegpt` | Canonical Anieyrudh Filter prompt and critique contract. | "Use `core/aniegpt` whenever an agent generates, reviews, or revises any artefact destined for a learner." | [`AGENTS.md`](../core/aniegpt/AGENTS.md) |
+| `shared` | `@paideia/shared` | `KernelResult`, shared branded values, utility types. | [`AGENTS.md`](../core/shared/AGENTS.md) |
+| `content-schema` | `@paideia/content-schema` | Zod schemas for containers, sims, concept maps, metadata, and validation. | [`AGENTS.md`](../core/content-schema/AGENTS.md) |
+| `prediction-gate` | `@paideia/prediction-gate` | Predict-before-reveal persistence and reveal gating. | [`AGENTS.md`](../core/prediction-gate/AGENTS.md) |
+| `aniegpt` | prompt asset | The Anieyrudh Filter prompt and critic contract. | [`AGENTS.md`](../core/aniegpt/AGENTS.md) |
 
-## Tier 2: Dependent
+## Simulation Runtime And UI
 
-| Module | Purpose | When to consider | Contract |
+| Module | Package | Use When | Contract |
 | --- | --- | --- | --- |
-| `sim-runtime` | PMOE-T runtime shell for interactive simulations. | "Use `core/sim-runtime` for every interactive simulation in the monorepo." | [`AGENTS.md`](../core/sim-runtime/AGENTS.md) |
-| `three-scene` | Shared 3D scene boundary for genuinely three-dimensional sims. | "Use `core/three-scene` when the simulation's central object is genuinely three-dimensional." | [`AGENTS.md`](../core/three-scene/AGENTS.md) |
-| `map-layers` | Map and geospatial layer runtime. | Contract pending; no `core/map-layers/AGENTS.md` exists yet. | Pending |
+| `sim-runtime` | `@paideia/sim-runtime` | Mounting the PMOE-T runtime shell for interactive simulations. | [`AGENTS.md`](../core/sim-runtime/AGENTS.md) |
+| `ui-sim` | `@paideia/ui-sim` | Building simulation controls such as sliders, toggles, readouts, and presets. | [`AGENTS.md`](../core/ui-sim/AGENTS.md) |
+| `ui-app` | `@paideia/ui-app` | Building reusable app-shell surfaces such as catalogue search, module tabs, mastery summaries, and route chrome. | [`AGENTS.md`](../core/ui-app/AGENTS.md) |
+| `a11y` | `@paideia/a11y` | Sharing accessibility severity filters, axe helpers, and test affordances. | [`AGENTS.md`](../core/a11y/AGENTS.md) |
 
-## Tier 3: Heavy Or Spec-Gap-Blocked
+## Visualisation And Structure
 
-| Module | Purpose | When to consider | Contract |
+| Module | Package | Use When | Contract |
 | --- | --- | --- | --- |
-| `notebook-runtime` | Code notebook execution surface. | Contract pending; no `core/notebook-runtime/AGENTS.md` exists yet. | Pending |
-| `molecule` | Molecular structure and chemistry visualization. | Contract pending; no `core/molecule/AGENTS.md` exists yet. | Pending |
-| `comparator` | Comparative matrix and side-by-side reasoning helpers. | Contract pending; no `core/comparator/AGENTS.md` exists yet. | Pending |
-| `systems-dynamics` | Systems flow and stock-flow modeling helpers. | Contract pending; no `core/systems-dynamics/AGENTS.md` exists yet. | Pending |
-| `argument-graph` | Argument graph modeling beyond simple graph layout. | Contract pending; no `core/argument-graph/AGENTS.md` exists yet. | Pending |
-| `corpus` | Text corpus analysis and source retrieval helpers. | Contract pending; no `core/corpus/AGENTS.md` exists yet. | Pending |
+| `plotting` | `@paideia/plotting` | Rendering continuous 2D mathematical objects: functions, curves, fields, tangents, and overlays. | [`AGENTS.md`](../core/plotting/AGENTS.md) |
+| `charting` | `@paideia/charting` | Rendering sampled or row-shaped quantitative data: lines, histograms, density curves, and bars. | [`AGENTS.md`](../core/charting/AGENTS.md) |
+| `graph-layout` | `@paideia/graph-layout` | Positioning node-link graphs in 2D or 3D. | [`AGENTS.md`](../core/graph-layout/AGENTS.md) |
+| `three-scene` | `@paideia/three-scene` | Defining the boundary for genuinely 3D scenes. | [`AGENTS.md`](../core/three-scene/AGENTS.md) |
+| `map-layers` | `@paideia/map-layers` | Validating and styling map-shaped coordinate/layer data. | [`AGENTS.md`](../core/map-layers/AGENTS.md) |
+| `timeline` | `@paideia/timeline` | Building chronologies, parallel lanes, and branching event structures. | [`AGENTS.md`](../core/timeline/AGENTS.md) |
+| `annotation` | `@paideia/annotation` | Marking up text spans or image regions with structured tags. | [`AGENTS.md`](../core/annotation/AGENTS.md) |
+| `mind-map` | `@paideia/mind-map` | Rendering or validating rooted hierarchical concept maps. | [`AGENTS.md`](../core/mind-map/AGENTS.md) |
+| `argument-graph` | `@paideia/argument-graph` | Modelling claims, evidence, warrants, rebuttals, and critique paths. | [`AGENTS.md`](../core/argument-graph/AGENTS.md) |
+| `comparator` | `@paideia/comparator` | Comparing designs, policies, options, or cases against explicit criteria. | [`AGENTS.md`](../core/comparator/AGENTS.md) |
+| `corpus` | `@paideia/corpus` | Local source-pack indexing, chunking, search, and citation-safe text retrieval. | [`AGENTS.md`](../core/corpus/AGENTS.md) |
 
-## Build-Time Only
+## Math And Learning Models
 
-| Module | Purpose | When to consider | Contract |
+| Module | Package | Use When | Contract |
 | --- | --- | --- | --- |
-| `scaffolder` | Container and package scaffolding CLI internals. | Build-time module; consumed by `pnpm container:new` and related skills. | Pending |
-| `docs-templates` | Canonical templates copied into new containers. | Build-time module; use when scaffolding or regenerating container docs. | Templates only |
+| `function-eval` | `@paideia/function-eval` | A learner or author supplies a math expression string that must become a callable function. | [`AGENTS.md`](../core/function-eval/AGENTS.md) |
+| `numerical-math` | `@paideia/numerical-math` | Computing derivatives, integrals, slopes, sums, approximations, or simple regressions. | [`AGENTS.md`](../core/numerical-math/AGENTS.md) |
+| `linear-algebra` | `@paideia/linear-algebra` | 2D vector arithmetic, 2x2 matrix transforms, eigen reasoning, and projections. | [`AGENTS.md`](../core/linear-algebra/AGENTS.md) |
+| `vector-calculus` | `@paideia/vector-calculus` | Gradients, directional derivatives, tangent planes, divergence-style field reasoning, and local vector calculus quantities. | [`AGENTS.md`](../core/vector-calculus/AGENTS.md) |
+| `probability-stats` | `@paideia/probability-stats` | Expected value, variance, quantiles, z-scores, Bayes normalisation, threshold metrics, and sampling distributions. | [`AGENTS.md`](../core/probability-stats/AGENTS.md) |
+| `optimization` | `@paideia/optimization` | Gradient-descent paths, linear-programming feasible regions, objective optima, and newsvendor decisions. | [`AGENTS.md`](../core/optimization/AGENTS.md) |
+| `uncertainty-propagation` | `@paideia/uncertainty-propagation` | Measurement uncertainty, percentage uncertainty, and arithmetic uncertainty propagation. | [`AGENTS.md`](../core/uncertainty-propagation/AGENTS.md) |
+| `dimensional-analysis` | `@paideia/dimensional-analysis` | Deriving unit dimensions or rejecting equations between incompatible quantities. | [`AGENTS.md`](../core/dimensional-analysis/AGENTS.md) |
+| `fsrs` | `@paideia/fsrs` | Scheduling the next review card after a learner response. | [`AGENTS.md`](../core/fsrs/AGENTS.md) |
+| `bkt` | `@paideia/bkt` | Estimating concept mastery probability for progression or mastery displays. | [`AGENTS.md`](../core/bkt/AGENTS.md) |
+
+## Algorithms, Systems, And Data
+
+| Module | Package | Use When | Contract |
+| --- | --- | --- | --- |
+| `algorithm-trace` | `@paideia/algorithm-trace` | Showing stepwise sorting, searching, traversal, or traceable algorithm execution. | [`AGENTS.md`](../core/algorithm-trace/AGENTS.md) |
+| `graph-algorithms` | `@paideia/graph-algorithms` | Computing canonical graph traversal, path, and graph reasoning results. | [`AGENTS.md`](../core/graph-algorithms/AGENTS.md) |
+| `digital-logic` | `@paideia/digital-logic` | Evaluating binary gates, truth tables, combinational logic, and simple sequential logic. | [`AGENTS.md`](../core/digital-logic/AGENTS.md) |
+| `relational-data` | `@paideia/relational-data` | Validating tables, joins, projections, selections, and relational examples. | [`AGENTS.md`](../core/relational-data/AGENTS.md) |
+| `functional-dependencies` | `@paideia/functional-dependencies` | Computing closure, keys, dependency implications, and normalisation reasoning. | [`AGENTS.md`](../core/functional-dependencies/AGENTS.md) |
+| `indexing-query-cost` | `@paideia/indexing-query-cost` | Modelling page I/O, simple index choices, and query-cost comparisons. | [`AGENTS.md`](../core/indexing-query-cost/AGENTS.md) |
+| `transactions` | `@paideia/transactions` | Reasoning about schedules, conflicts, serialisability, and transaction traces. | [`AGENTS.md`](../core/transactions/AGENTS.md) |
+| `dynamical-systems` | `@paideia/dynamical-systems` | Stepping ODEs, comparing vector fields, and classifying basic local dynamics. | [`AGENTS.md`](../core/dynamical-systems/AGENTS.md) |
+| `systems-dynamics` | `@paideia/systems-dynamics` | Building causal stock-flow models, feedback loops, and simple system evolution. | [`AGENTS.md`](../core/systems-dynamics/AGENTS.md) |
+| `time-series` | `@paideia/time-series` | Computing moving averages, exponential smoothing, simple forecasts, and time-series diagnostics. | [`AGENTS.md`](../core/time-series/AGENTS.md) |
+| `model-evaluation` | `@paideia/model-evaluation` | Computing classification metrics, confusion matrices, threshold tradeoffs, and model-evaluation summaries. | [`AGENTS.md`](../core/model-evaluation/AGENTS.md) |
+
+## Physical, Engineering, And Applied Kernels
+
+| Module | Package | Use When | Contract |
+| --- | --- | --- | --- |
+| `mechanics` | `@paideia/mechanics` | Shared force, motion, energy, momentum, and equilibrium calculations. | [`AGENTS.md`](../core/mechanics/AGENTS.md) |
+| `electromagnetism` | `@paideia/electromagnetism` | Point-charge fields, potentials, magnetic-force quantities, and related canonical EM calculations. | [`AGENTS.md`](../core/electromagnetism/AGENTS.md) |
+| `circuits` | `@paideia/circuits` | Ohm's law, equivalent resistance, dividers, DC operating points, RLC impedance, and phasors. | [`AGENTS.md`](../core/circuits/AGENTS.md) |
+| `control-systems` | `@paideia/control-systems` | Transfer functions, PID loops, Bode samples, closed-loop response, and step response metrics. | [`AGENTS.md`](../core/control-systems/AGENTS.md) |
+| `waves` | `@paideia/waves` | Wave speed, frequency, wavelength, phase, interference, and simple superposition calculations. | [`AGENTS.md`](../core/waves/AGENTS.md) |
+| `chemistry` | `@paideia/chemistry` | Quantitative chemistry such as moles, concentration, limiting reagents, pH, equilibrium, and thermochemistry primitives. | [`AGENTS.md`](../core/chemistry/AGENTS.md) |
+| `molecule` | `@paideia/molecule` | Local molecule graph validation, formula/mass derivation, bond totals, valence diagnostics, and deterministic 2D layout. | [`AGENTS.md`](../core/molecule/AGENTS.md) |
+| `materials` | `@paideia/materials` | Material property validation, stress/strain inputs, and material selection reasoning. | [`AGENTS.md`](../core/materials/AGENTS.md) |
+| `structural-analysis` | `@paideia/structural-analysis` | Stress, axial response, load paths, and simple structural demand checks. | [`AGENTS.md`](../core/structural-analysis/AGENTS.md) |
+| `fluid-mechanics` | `@paideia/fluid-mechanics` | Reynolds number, pressure loss, buoyancy, continuity, and Bernoulli-style calculations. | [`AGENTS.md`](../core/fluid-mechanics/AGENTS.md) |
+| `heat-transfer` | `@paideia/heat-transfer` | Conduction, convection, heat-rate, and thermal-resistance calculations. | [`AGENTS.md`](../core/heat-transfer/AGENTS.md) |
+| `thermodynamics` | `@paideia/thermodynamics` | Temperature conversion, ideal gas quantities, energy balances, efficiency, and entropy-style primitives. | [`AGENTS.md`](../core/thermodynamics/AGENTS.md) |
+| `finance` | `@paideia/finance` | Present value, NPV, IRR, payback, annuities, and applied finance decisions. | [`AGENTS.md`](../core/finance/AGENTS.md) |
+| `queueing-systems` | `@paideia/queueing-systems` | Little's Law, queue utilisation, wait estimates, and simple service-system tradeoffs. | [`AGENTS.md`](../core/queueing-systems/AGENTS.md) |
+| `scheduling` | `@paideia/scheduling` | FCFS, SPT, EDD, critical-ratio, lateness, and schedule comparison logic. | [`AGENTS.md`](../core/scheduling/AGENTS.md) |
+
+## Biology Kernel Acceptance Boundaries
+
+Broad biology kernels are acceptable only when they expose narrow,
+deterministic primitives that branch containers can compose into learner
+experiences. The current planned set is `cell-geometry`, `protein-structure`,
+`gene-regulatory-network`, `signal-pathway`, `cell-cycle`, `immunology`,
+`oncogenetics`, and `treatment-response`.
+
+Accept a biology kernel when it:
+
+- Defines a small public API in `core/<kernel>/AGENTS.md` before implementation.
+- Returns pure data through deterministic functions and `KernelResult` errors.
+- Owns reusable validation, scoring, state transitions, or quantitative biology
+  calculations that would otherwise be duplicated across containers.
+- Keeps medical, diagnostic, treatment-selection, dosing, prognosis, and patient
+  advice out of scope; healthcare containers may teach mechanisms, not provide
+  guidance for real cases.
+- Avoids broad simulators, hidden global state, stochastic defaults, learned
+  model calls, or branch-specific labels and syllabus presets.
+- Adds no runtime GPL, AGPL, LGPL, proprietary, Commons Clause, or unclear
+  dependencies; reference-only sources must stay out of bundled runtime code.
+
+Container authors should compose these kernels into prediction-gated,
+student-facing simulations. They should not inline reusable biology logic in a
+container or widen a kernel to satisfy one branch's wording.
+
+## Build-Time Assets
+
+| Module | Package | Owns | Contract |
+| --- | --- | --- | --- |
+| `docs-templates` | template files | Canonical files copied into new containers and package docs. | [`core/docs-templates`](../core/docs-templates/) |

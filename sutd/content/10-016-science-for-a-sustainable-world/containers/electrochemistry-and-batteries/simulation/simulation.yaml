@@ -1,0 +1,60 @@
+id: electrochemistry-and-batteries
+title: Electrochemistry and Batteries Lab
+interaction_type: comparative-matrix
+kernel_deps:
+  - core/sim-runtime
+  - core/prediction-gate
+  - core/chemistry
+  - core/ui-sim
+predict:
+  prompt: |
+    If products build up in a galvanic cell, what happens to the cell voltage?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - Voltage increases
+      - Voltage decreases
+      - Voltage is unrelated to composition
+      - Voltage becomes exactly zero
+    correct_index: 1
+  rationale_required: true
+manipulate:
+  controls:
+    - id: standard-potential-volts
+      label: Standard potential
+      kind: slider
+      kernel_binding: state.standardPotentialVolts
+      bounds:
+        min: 0.2
+        max: 1.5
+        step: 0.05
+    - id: reaction-quotient
+      label: Reaction quotient
+      kind: slider
+      kernel_binding: state.reactionQuotient
+      bounds:
+        min: 0.1
+        max: 20
+        step: 0.1
+    - id: electron-count
+      label: Electrons transferred
+      kind: slider
+      kernel_binding: state.electronCount
+      bounds:
+        min: 1
+        max: 4
+        step: 1
+observe:
+  renderers:
+    - id: battery-nernst-evidence
+      module: "@paideia/sutd-sims/electrochemistry-and-batteries"
+      symbol: ElectrochemistryAndBatteries
+      props_binding: |
+        Show Nernst voltage, voltage drop, and battery-load interpretation.
+explain:
+  prompt: |
+    Explain why battery voltage depends on both electrode chemistry and reaction composition.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - A battery has a fixed voltage regardless of concentration
+    - More products always mean more stored energy

@@ -1,0 +1,28 @@
+presets:
+  - id: conservative-direct
+    label: Conservative direct path
+    state:
+      fieldKind: conservative
+      curveKind: direct
+      endX: 2
+      endY: 1
+      bend: 1
+      steps: 96
+  - id: conservative-elbow
+    label: Conservative elbow path
+    state:
+      fieldKind: conservative
+      curveKind: elbow
+      endX: 2
+      endY: 1
+      bend: -1
+      steps: 96
+  - id: rotational-elbow
+    label: Rotational elbow path
+    state:
+      fieldKind: rotational
+      curveKind: elbow
+      endX: 2
+      endY: 1
+      bend: 2
+      steps: 96

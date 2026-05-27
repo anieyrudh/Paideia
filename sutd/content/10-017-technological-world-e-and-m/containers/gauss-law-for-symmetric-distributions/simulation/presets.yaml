@@ -1,0 +1,34 @@
+presets:
+  - id: charged-sphere
+    label: "Centered charge"
+    description: "Spherical Gaussian surface around a centered positive charge."
+    state:
+      symmetry: spherical
+      enclosedChargeNanoCoulombs: 3.2
+      radiusMetres: 0.45
+      linearChargeDensityNanoCoulombsPerMetre: 2
+      lengthMetres: 1.5
+      surfaceChargeDensityNanoCoulombsPerSquareMetre: 1.8
+      faceAreaSquareMetres: 0.4
+  - id: long-line
+    label: "Long charged line"
+    description: "Cylindrical surface around a long line of charge."
+    state:
+      symmetry: cylindrical
+      enclosedChargeNanoCoulombs: 3.2
+      radiusMetres: 0.45
+      linearChargeDensityNanoCoulombsPerMetre: 2
+      lengthMetres: 1.5
+      surfaceChargeDensityNanoCoulombsPerSquareMetre: 1.8
+      faceAreaSquareMetres: 0.4
+  - id: charged-plane
+    label: "Charged plane"
+    description: "Pillbox surface straddling an infinite charged plane."
+    state:
+      symmetry: planar
+      enclosedChargeNanoCoulombs: 3.2
+      radiusMetres: 0.45
+      linearChargeDensityNanoCoulombsPerMetre: 2
+      lengthMetres: 1.5
+      surfaceChargeDensityNanoCoulombsPerSquareMetre: 1.8
+      faceAreaSquareMetres: 0.4
