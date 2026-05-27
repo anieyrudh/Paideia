@@ -269,6 +269,22 @@ importers:
         specifier: ^4.1.7
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
+  core/cell-geometry:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
   core/charting:
     dependencies:
       '@paideia/shared':
@@ -641,6 +657,22 @@ importers:
         version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
 
   core/mechanics:
+    dependencies:
+      '@paideia/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      fast-check:
+        specifier: ^3.23.2
+        version: 3.23.2
+      typescript:
+        specifier: ^5.6.0
+        version: 5.9.3
+      vitest:
+        specifier: ^4.1.7
+        version: 4.1.7(@types/node@22.19.19)(jsdom@25.0.1)(vite@6.4.2(@types/node@22.19.19)(yaml@2.9.0))
+
+  core/membrane-transport:
     dependencies:
       '@paideia/shared':
         specifier: workspace:*
@@ -1322,6 +1354,9 @@ importers:
       '@paideia/electromagnetism':
         specifier: workspace:*
         version: link:../../../core/electromagnetism
+      '@paideia/fluid-mechanics':
+        specifier: workspace:*
+        version: link:../../../core/fluid-mechanics
       '@paideia/graph-algorithms':
         specifier: workspace:*
         version: link:../../../core/graph-algorithms
@@ -1331,9 +1366,15 @@ importers:
       '@paideia/linear-algebra':
         specifier: workspace:*
         version: link:../../../core/linear-algebra
+      '@paideia/materials':
+        specifier: workspace:*
+        version: link:../../../core/materials
       '@paideia/mechanics':
         specifier: workspace:*
         version: link:../../../core/mechanics
+      '@paideia/molecule':
+        specifier: workspace:*
+        version: link:../../../core/molecule
       '@paideia/numerical-math':
         specifier: workspace:*
         version: link:../../../core/numerical-math
@@ -1355,12 +1396,18 @@ importers:
       '@paideia/sim-runtime':
         specifier: workspace:*
         version: link:../../../core/sim-runtime
+      '@paideia/thermodynamics':
+        specifier: workspace:*
+        version: link:../../../core/thermodynamics
       '@paideia/ui-sim':
         specifier: workspace:*
         version: link:../../../core/ui-sim
       '@paideia/vector-calculus':
         specifier: workspace:*
         version: link:../../../core/vector-calculus
+      '@paideia/waves':
+        specifier: workspace:*
+        version: link:../../../core/waves
     devDependencies:
       '@types/react':
         specifier: ^18.3.0

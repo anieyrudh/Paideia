@@ -1,0 +1,32 @@
+schema_version: "1.0.0"
+concept_id: biodiversity-loss-and-land-use
+prerequisites:
+  - id: rates-of-change
+    title: "Rates of Change"
+    relationship: "Annual conversion and restoration are competing rates."
+    status: planned
+  - id: feedback-loops
+    title: "Feedback Loops"
+    relationship: "Habitat loss changes future biodiversity resilience."
+    status: planned
+downstream:
+  - id: ecosystem-services
+    title: "Ecosystem Services"
+    relationship: "Biodiversity loss affects water, food, climate, and cultural services."
+    status: planned
+siblings:
+  - id: water-quality-and-treatment
+    title: "Water Quality and Treatment"
+    relationship: "Land use affects catchment ecology and water quality."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: small-small
+      label: "Small land-use changes have only small effects"
+    - id: restoration-alone
+      label: "Restoration can be judged alone"
+  edges:
+    - from: small-small
+      to: restoration-alone
+      label: "both ignore rate comparison over time"
+mermaid_source: graph.mmd

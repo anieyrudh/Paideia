@@ -1,0 +1,111 @@
+schema_version: "1.0.0"
+id: solar-energy-and-band-theory
+aliases:
+  - photovoltaic-band-gap
+  - photon-energy-threshold
+branch: sutd
+subject: 10-016-science-for-a-sustainable-world
+level: "Freshmore"
+module: "Science for a Sustainable World"
+title: "Solar Energy and Band Theory"
+one_line_summary: "Use photon energy and semiconductor band gaps to explain why solar cell materials absorb some wavelengths and lose excess energy as heat."
+syllabus_ref: "SUTD 10.016 Science for a Sustainable World / energy materials"
+prerequisites:
+  - atomic-structure-and-electron-configuration
+  - chemical-bonding-and-intermolecular-forces
+  - electrochemistry-and-batteries
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A photon has less energy than a semiconductor band gap. What happens in the simple band model?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "It is absorbed efficiently"
+      - "It cannot excite an electron across the gap"
+      - "It creates two electrons"
+      - "It makes voltage independent of material"
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: silicon-solar-panel
+    prompt: |
+      A design team compares blue, red, and near-infrared photons for a silicon solar panel with a 1.1 eV band gap. Decide which photons are absorbed, which are below the gap, and which lose the most excess energy as heat.
+    surface_form: "photovoltaic material selection"
+    same_concept_check: "Same concept: compare E_photon = hc/lambda with E_g before reasoning about useful electrical energy and thermalisation."
+    rubric_path: problem-solving/silicon-solar-panel.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-26"
+      author: "Codex"
+      summary: "Scaffolded SUTD 10.016 solar-energy-and-band-theory container."
+authors: ["Codex"]
+advisor_signoffs: []
+misconceptions:
+  - name: "Higher-energy photons always make proportionally more electrical energy"
+    description: "Learners may assume every electron volt above the gap is useful, missing that excess photon energy is mostly thermalised."
+    evidence_source: "Photovoltaic device physics references."
+    surface_in_predict: true
+  - name: "Any light colour can excite any semiconductor"
+    description: "Learners may ignore the threshold condition and expect below-gap photons to be absorbed by any solar material."
+    evidence_source: "OpenStax quantum and electronic structure chapters."
+    surface_in_predict: true
+sources:
+  - citation: "OpenStax Chemistry 2e, Electronic Structure and Periodic Properties of Elements."
+    url: "https://openstax.org/books/chemistry-2e/pages/6-introduction"
+    publication_year: 2019
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "National Renewable Energy Laboratory, Photovoltaic Cell Basics."
+    url: "https://www.nrel.gov/research/re-photovoltaics.html"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+  - citation: "SUTD 10.016 Science for a Sustainable World course page."
+    url: "https://www.sutd.edu.sg/course/10-016-science-for-a-sustainable-world"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+language: en

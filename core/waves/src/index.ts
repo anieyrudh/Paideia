@@ -1,5 +1,6 @@
 import {
   err,
+  joules,
   metres,
   metresPerSecond,
   ok,
@@ -7,6 +8,7 @@ import {
   radiansPerSecond,
   seconds,
   type Hertz,
+  type Joules,
   type KernelResult,
   type Metres,
   type MetresPerSecond,
@@ -36,6 +38,17 @@ export interface WaveKinematicsResult {
   readonly periodSeconds: Seconds;
   readonly angularFrequencyRadiansPerSecond: RadiansPerSecond;
   readonly waveNumberRadiansPerMetre: RadiansPerMetre;
+}
+
+export interface PhotonEnergyInput {
+  readonly wavelengthMetres: Metres;
+}
+
+export interface PhotonEnergyResult {
+  readonly wavelengthMetres: Metres;
+  readonly frequencyHertz: Hertz;
+  readonly energyJoules: Joules;
+  readonly energyElectronVolts: number;
 }
 
 export interface WaveSampleInput extends WaveKinematicsInput {
@@ -102,6 +115,9 @@ export interface BeatInput {
 
 const maxTraceSamples = 20_001;
 const twoPi = 2 * Math.PI;
+const speedOfLightMetresPerSecond = 299_792_458;
+const planckConstantJouleSeconds = 6.62607015e-34;
+const joulesPerElectronVolt = 1.602176634e-19;
 
 const radiansPerMetre = (value: number): RadiansPerMetre => value as RadiansPerMetre;
 const relativeIntensity = (value: number): RelativeIntensity => value as RelativeIntensity;
@@ -201,6 +217,33 @@ export const waveKinematics = (
     periodSeconds: seconds(periodValue),
     angularFrequencyRadiansPerSecond: radiansPerSecond(angularFrequencyValue),
     waveNumberRadiansPerMetre: radiansPerMetre(waveNumberValue),
+  });
+};
+
+export const photonEnergy = (
+  input: PhotonEnergyInput,
+): KernelResult<PhotonEnergyResult> => {
+  const wavelength = positive(input.wavelengthMetres, "wavelengthMetres");
+  if (!wavelength.ok) return wavelength;
+
+  const frequency = speedOfLightMetresPerSecond / input.wavelengthMetres;
+  const energyJoules = planckConstantJouleSeconds * frequency;
+  const energyElectronVolts = energyJoules / joulesPerElectronVolt;
+
+  for (const [label, value] of [
+    ["frequencyHertz", frequency],
+    ["energyJoules", energyJoules],
+    ["energyElectronVolts", energyElectronVolts],
+  ] as const) {
+    const computed = finiteDerived(value, label);
+    if (!computed.ok) return computed;
+  }
+
+  return ok({
+    wavelengthMetres: input.wavelengthMetres,
+    frequencyHertz: frequency as Hertz,
+    energyJoules: joules(energyJoules),
+    energyElectronVolts,
   });
 };
 

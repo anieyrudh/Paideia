@@ -1,0 +1,7 @@
+flowchart TD
+  conversion["Land-use conversion"] --> habitat["Intact habitat H"]
+  restoration["Restoration"] --> habitat
+  habitat --> species["Biodiversity index B"]
+  sensitivity["Sensitivity z"] --> species
+  species --> services["Ecosystem services"]
+  misconception["Small-change misconception"] -.-> habitat

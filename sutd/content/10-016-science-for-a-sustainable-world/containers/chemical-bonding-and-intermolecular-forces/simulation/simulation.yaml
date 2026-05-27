@@ -1,0 +1,40 @@
+id: chemical-bonding-and-intermolecular-forces
+title: "Chemical Bonding and Intermolecular Forces Lab"
+interaction_type: comparative-matrix
+kernel_deps:
+  - core/sim-runtime
+  - core/prediction-gate
+  - core/molecule
+  - core/ui-sim
+predict:
+  prompt: |
+    Na has electronegativity 0.93 and Cl has 3.16. What bond class should dominate in sodium chloride?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "mostly ionic"
+      - "nonpolar covalent"
+      - "hydrogen bond inside one molecule"
+      - "metallic only"
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: scenario
+      label: Bonding case
+      kind: selector
+      kernel_binding: state.scenario
+observe:
+  renderers:
+    - id: bonding-evidence
+      module: "@paideia/sutd-sims/chemical-bonding-and-intermolecular-forces"
+      symbol: ChemicalBondingAndIntermolecularForces
+      props_binding: |
+        Show electronegativity difference, molecule graph evidence, and intermolecular force interpretation.
+explain:
+  prompt: |
+    Explain how electronegativity difference and molecular polarity connect bond type to intermolecular forces.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - Intermolecular forces are the same as bonds inside a molecule
+    - A polar bond always makes the whole molecule polar

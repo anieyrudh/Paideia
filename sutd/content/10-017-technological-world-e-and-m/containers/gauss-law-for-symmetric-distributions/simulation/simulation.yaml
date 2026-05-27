@@ -1,0 +1,73 @@
+id: gauss-law-flux-surface-lab
+title: "Gauss Law Flux Surface Lab"
+interaction_type: diagram-builder
+kernel_deps:
+  - core/sim-runtime
+  - core/electromagnetism
+  - core/plotting
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+manipulate:
+  controls:
+    - id: symmetry
+      label: "Symmetry"
+      kind: selector
+      kernel_binding: state.symmetry
+    - id: enclosed-charge
+      label: "Enclosed charge"
+      kind: slider
+      kernel_binding: state.enclosedChargeNanoCoulombs
+      bounds: { min: -8, max: 8, step: 0.5 }
+    - id: line-charge-density
+      label: "Line charge density"
+      kind: slider
+      kernel_binding: state.linearChargeDensityNanoCoulombsPerMetre
+      bounds: { min: -8, max: 8, step: 0.5 }
+    - id: surface-charge-density
+      label: "Surface charge density"
+      kind: slider
+      kernel_binding: state.surfaceChargeDensityNanoCoulombsPerSquareMetre
+      bounds: { min: -8, max: 8, step: 0.5 }
+    - id: radius
+      label: "Gaussian radius"
+      kind: slider
+      kernel_binding: state.radiusMetres
+      bounds: { min: 0.15, max: 1.2, step: 0.05 }
+    - id: length
+      label: "Cylinder length"
+      kind: slider
+      kernel_binding: state.lengthMetres
+      bounds: { min: 0.5, max: 3, step: 0.1 }
+    - id: face-area
+      label: "Pillbox face area"
+      kind: slider
+      kernel_binding: state.faceAreaSquareMetres
+      bounds: { min: 0.1, max: 1.5, step: 0.05 }
+predict:
+  prompt: |
+    A point charge is centered inside a Gaussian sphere. If the sphere radius doubles while the enclosed charge stays fixed, what happens to the total electric flux through the sphere?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The total flux stays the same because it depends only on enclosed charge."
+      - "The total flux doubles because the surface area doubles."
+      - "The total flux falls by a factor of four because the field weakens."
+      - "The total flux becomes zero because the surface is closed."
+    correct_index: 0
+  rationale_required: true
+observe:
+  renderers:
+    - id: gauss-law-flux-surface-lab
+      module: "@paideia/sutd-sims/gauss-law-for-symmetric-distributions"
+      symbol: GaussLawFluxSurfaceLab
+      props_binding: |
+        Show Gaussian surface symmetry, flux arrows, field strength, formula substitution, units, legend, and interpretation.
+explain:
+  prompt: |
+    Why does Gauss law become easiest only when symmetry makes the field constant on the chosen surface?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Gauss law only works for spheres."
+    - "Flux is the same as electric field strength."
+    - "A larger Gaussian surface must always give larger flux."

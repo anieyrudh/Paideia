@@ -1,0 +1,15 @@
+labels:
+  symmetry: "Symmetry"
+  enclosedChargeNanoCoulombs: "Enclosed charge"
+  linearChargeDensityNanoCoulombsPerMetre: "Line charge density"
+  surfaceChargeDensityNanoCoulombsPerSquareMetre: "Surface charge density"
+  radiusMetres: "Gaussian radius"
+  lengthMetres: "Cylinder length"
+  faceAreaSquareMetres: "Pillbox face area"
+units:
+  enclosedChargeNanoCoulombs: nC
+  linearChargeDensityNanoCoulombsPerMetre: nC/m
+  surfaceChargeDensityNanoCoulombsPerSquareMetre: nC/m^2
+  radiusMetres: m
+  lengthMetres: m
+  faceAreaSquareMetres: m^2

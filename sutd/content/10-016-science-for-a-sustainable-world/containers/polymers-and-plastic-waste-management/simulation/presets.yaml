@@ -1,0 +1,13 @@
+presets:
+  - id: low-carbon-reuse
+    label: Low-carbon reuse
+    state:
+      performanceGoal: low-carbon-strength
+      collectionRatePercent: 80
+      reuseCycles: 12
+  - id: weak-collection
+    label: Weak collection
+    state:
+      performanceGoal: specific-strength
+      collectionRatePercent: 25
+      reuseCycles: 2

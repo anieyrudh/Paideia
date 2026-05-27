@@ -29,3 +29,11 @@ export { default as OptimisationWithLagrangeMultipliers } from "./optimisation-w
 export { default as MaxwellEquationsAndEmWaves } from "./maxwell-equations-and-em-waves.js";
 export { default as RlcCircuitAndResonance } from "./rlc-circuit-and-resonance.js";
 export { default as CoulombsLawAndDiscreteChargeFields } from "./coulomb-s-law-and-discrete-charge-fields.js";
+export { default as ChemicalBondingAndIntermolecularForces } from "./chemical-bonding-and-intermolecular-forces.js";
+export { default as ThermochemistryAndEquilibrium } from "./thermochemistry-and-equilibrium.js";
+export { default as GaussLawFluxSurfaceLab } from "./gauss-law-for-symmetric-distributions.js";
+export { default as PolymersAndPlasticWasteManagement } from "./polymers-and-plastic-waste-management.js";
+export { default as ElectrochemistryAndBatteries } from "./electrochemistry-and-batteries.js";
+export { default as SolarEnergyAndBandTheory } from "./solar-energy-and-band-theory.js";
+export { default as WaterQualityAndTreatment } from "./water-quality-and-treatment.js";
+export { default as BiodiversityLossAndLandUse } from "./biodiversity-loss-and-land-use.js";
