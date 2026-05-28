@@ -1,0 +1,8 @@
+labels:
+  dataset: "Dataset"
+  outlierShift: "Outlier shift"
+  noiseLevel: "Pattern noise"
+  slope: "Slope"
+  intercept: "Intercept"
+  r2: "R squared"
+  residual: "Residual"

@@ -1010,7 +1010,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.linear-regression"
-    status: "ready-for-build"
+    status: "in-build"
     concept_title: "Linear Regression"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"

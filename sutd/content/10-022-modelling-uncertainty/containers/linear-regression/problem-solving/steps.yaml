@@ -1,0 +1,16 @@
+steps:
+  - id: plot
+    label: "Plot the paired data"
+    success: "Scatter plot shows whether a linear summary is plausible."
+  - id: fit
+    label: "Fit least squares"
+    success: "Slope and intercept come from residual-squared minimisation."
+  - id: residuals
+    label: "Inspect residuals"
+    success: "Residuals are interpreted in y units and checked for systematic pattern."
+  - id: diagnostic
+    label: "Read R squared"
+    success: "R squared is treated as fit strength, not causation proof."
+  - id: transfer
+    label: "Limit the claim"
+    success: "Prediction stays within the observed range and caveats are explicit."

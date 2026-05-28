@@ -1,0 +1,19 @@
+presets:
+  - id: calibrated-sensor
+    label: "calibrated sensor"
+    state:
+      dataset: sensor
+      outlierShift: 0
+      noiseLevel: 0
+  - id: upward-outlier
+    label: "upward outlier"
+    state:
+      dataset: sensor
+      outlierShift: 10
+      noiseLevel: 1
+  - id: noisy-delivery
+    label: "noisy delivery"
+    state:
+      dataset: delivery
+      outlierShift: 5
+      noiseLevel: 4

@@ -1,0 +1,25 @@
+controls:
+  - id: dataset
+    label: "Dataset"
+    type: selector
+    binding: state.dataset
+    options:
+      - sensor
+      - delivery
+      - study
+  - id: outlierShift
+    label: "Outlier shift"
+    type: slider
+    binding: state.outlierShift
+    min: -12
+    max: 12
+    step: 1
+    unit: "dataset y units"
+  - id: noiseLevel
+    label: "Pattern noise"
+    type: slider
+    binding: state.noiseLevel
+    min: 0
+    max: 6
+    step: 1
+    unit: "dataset y units"

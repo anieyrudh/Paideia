@@ -1,0 +1,8 @@
+runtime:
+  package: "@paideia/sutd-sims"
+  export: LinearRegression
+  route: "sutd/10-022-modelling-uncertainty/linear-regression/linear-regression"
+  prediction_gate: true
+  accessibility:
+    axe: true
+    keyboard: true

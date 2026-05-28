@@ -1,0 +1,49 @@
+schema_version: "1.0.0"
+concept_id: linear-regression
+prerequisites:
+  - id: descriptive-statistics
+    title: "Descriptive Statistics"
+    relationship: "Means and variation determine the least-squares slope and intercept."
+    status: planned
+  - id: scatter-plots
+    title: "Scatter Plots"
+    relationship: "The data cloud shows whether a linear summary is plausible."
+    status: planned
+  - id: covariance-and-correlation
+    title: "Covariance and Correlation"
+    relationship: "The sign and strength of association shape the fitted line and R squared."
+    status: planned
+downstream:
+  - id: maximum-likelihood-estimation
+    title: "Maximum Likelihood Estimation"
+    relationship: "Regression can later be framed as estimating parameters under an error model."
+    status: planned
+  - id: model-diagnostics
+    title: "Model Diagnostics"
+    relationship: "Residual patterns motivate richer models or transformed variables."
+    status: planned
+siblings:
+  - id: joint-and-marginal-distributions
+    title: "Joint and Marginal Distributions"
+    relationship: "Both reason about relationships between two variables."
+    status: planned
+  - id: hypothesis-testing
+    title: "Hypothesis Testing"
+    relationship: "Regression coefficients can later be tested with uncertainty models."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: interpolation-line
+      label: "Regression line must pass through every point"
+    - id: causation-proof
+      label: "High R squared proves causation"
+    - id: unchecked-extrapolation
+      label: "The fitted line works far outside the observed range"
+  edges:
+    - from: interpolation-line
+      to: unchecked-extrapolation
+      label: "both over-trust the fitted line"
+    - from: causation-proof
+      to: unchecked-extrapolation
+      label: "both overclaim beyond the fitted association"
+mermaid_source: graph.mmd
