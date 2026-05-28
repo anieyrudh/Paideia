@@ -43,6 +43,7 @@
     { "path": "./core/scheduling" },
     { "path": "./core/vector-calculus" },
     { "path": "./core/time-series" },
+    { "path": "./core/stochastic-processes" },
     { "path": "./core/finance" },
     { "path": "./core/relational-data" },
     { "path": "./core/functional-dependencies" },
