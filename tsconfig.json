@@ -3,6 +3,7 @@
   "references": [
     { "path": "./core/shared" },
     { "path": "./core/content-schema" },
+    { "path": "./core/computer-systems" },
     { "path": "./core/prediction-gate" },
     { "path": "./core/function-eval" },
     { "path": "./core/numerical-math" },
