@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: central-limit-theorem
+prerequisites:
+  - id: random-variables
+    title: "Random Variables"
+    relationship: "The theorem starts from repeated draws of a random variable."
+    status: missing
+  - id: mean-and-variance
+    title: "Mean and Variance"
+    relationship: "The sampling distribution uses the population mean and variance."
+    status: missing
+downstream:
+  - id: confidence-intervals
+    title: "Confidence Intervals"
+    relationship: "Intervals use the sample-mean standard error."
+    status: planned
+  - id: hypothesis-testing
+    title: "Hypothesis Testing"
+    relationship: "Tests compare observed means to a sampling distribution."
+    status: planned
+siblings:
+  - id: probability-statistics
+    title: "Probability and Statistics"
+    relationship: "A broader distribution and inference toolkit."
+    status: available
+  - id: bayes-updating
+    title: "Bayes Updating"
+    relationship: "Another probability concept in the course that updates uncertainty from evidence."
+    status: available
+misconception_graph:
+  nodes:
+    - id: sample-equals-population
+      label: "Sample means keep population shape"
+    - id: larger-samples-change-population
+      label: "Larger samples change the population"
+    - id: sampling-distribution
+      label: "Sampling distribution is a new distribution of statistics"
+  edges:
+    - from: sample-equals-population
+      to: sampling-distribution
+      label: "separate individual observations from sample means"
+    - from: larger-samples-change-population
+      to: sampling-distribution
+      label: "sample size changes the statistic's spread"
+mermaid_source: graph.mmd

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 320 180">
+  <title id="title">Central Limit Theorem thumbnail</title>
+  <desc id="desc">Population bars beside a narrower sampling distribution.</desc>
+  <rect width="320" height="180" fill="#f8fbff"/>
+  <text x="24" y="34" fill="#10201a" font-family="sans-serif" font-size="20" font-weight="700">CLT Sampler</text>
+  <rect x="34" y="112" width="22" height="36" rx="4" fill="#1f5f8b"/>
+  <rect x="64" y="86" width="22" height="62" rx="4" fill="#1f5f8b"/>
+  <rect x="94" y="56" width="22" height="92" rx="4" fill="#1f5f8b"/>
+  <rect x="124" y="122" width="22" height="26" rx="4" fill="#1f5f8b"/>
+  <path d="M185 142 C205 76 239 76 259 142" fill="none" stroke="#6941c6" stroke-width="7" stroke-linecap="round"/>
+  <path d="M175 148 H278" stroke="#667085" stroke-width="2"/>
+</svg>

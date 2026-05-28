@@ -1,0 +1,25 @@
+controls:
+  - id: population-shape
+    label: "Population shape"
+    kind: selector
+    kernel_binding: state.population
+    options:
+      - right-skewed
+      - uniform
+      - two-cluster
+  - id: sample-size
+    label: "Sample size"
+    kind: slider
+    kernel_binding: state.sampleSize
+    min: 2
+    max: 64
+    step: 1
+    unit: draws
+  - id: sample-count
+    label: "Number of samples"
+    kind: slider
+    kernel_binding: state.sampleCount
+    min: 80
+    max: 320
+    step: 20
+    unit: samples

@@ -995,7 +995,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.central-limit-theorem"
-    status: "ready-for-build"
+    status: "in-build"
     concept_title: "Central Limit Theorem"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"
