@@ -58,7 +58,7 @@ The Hill dose-response curve says response is sigmoidal in dose. Near zero, resp
 
 ## Canonical Example
 
-A clone with 3 drivers and `s = 0.1` starts at size 10 and grows for 20 generations: final size `10 * (1.1)^60 \approx 3050`. A passenger-only clone of the same size grows by `(1.0)^60 = 1`, so the ratio is roughly 3050. The driver-driven clone dominates.
+A clone with 3 drivers and `s = 0.1` starts at size 10 and grows for 20 generations: final size `10 * (1.1)^60 \approx 3045`. A passenger-only clone of the same starting size stays near 10 in this simplified comparison, so the ratio is roughly 304x baseline. The driver-driven clone dominates.
 
 A therapy with IC50 = 10 and `n = 2` reaches 90 percent response at `d* = 10 * sqrt(0.9 / 0.1) = 30`. A resistance factor of 4 lifts the effective IC50 to 40, so the same 90 percent response now needs `d* = 40 * sqrt(9) = 120`. If the toxic dose is 60, the therapeutic index `TI = toxicDose / d* = 60/30 = 2` is reasonable in the susceptible case but `TI = 60/120 = 0.5` is no longer above 1 in the resistant case — the dose required for response exceeds the toxic dose.
 
