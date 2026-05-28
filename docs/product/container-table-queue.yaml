@@ -965,7 +965,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.continuous-rvs-uniform-exponential"
-    status: "ready-for-build"
+    status: "in-build"
     concept_title: "Continuous RVs: Uniform, Exponential"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"

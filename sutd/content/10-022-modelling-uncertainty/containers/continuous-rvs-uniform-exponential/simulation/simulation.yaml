@@ -1,0 +1,56 @@
+schema_version: 1.0.0
+id: continuous-density-lab
+title: "Continuous Random Variable Density Lab"
+module: "@paideia/sutd-sims/continuous-rvs-uniform-exponential"
+symbol: ContinuousRvsUniformExponential
+interaction_type: comparative-matrix
+prediction_gate: true
+kernel_deps:
+  - core/content-schema
+  - core/shared
+  - core/probability-stats
+  - core/prediction-gate
+  - core/ui-sim
+manipulate:
+  controls:
+    - id: model
+      label: "Density family"
+      kind: selector
+      kernel_binding: state.model
+    - id: minimum
+      label: "Uniform minimum"
+      kind: slider
+      kernel_binding: state.min
+      bounds: { min: 0, max: 9, step: 0.1 }
+    - id: maximum
+      label: "Uniform maximum"
+      kind: slider
+      kernel_binding: state.max
+      bounds: { min: 0.5, max: 10, step: 0.1 }
+    - id: rate
+      label: "Exponential rate"
+      kind: slider
+      kernel_binding: state.rate
+      bounds: { min: 0.1, max: 2, step: 0.01 }
+    - id: lower-bound
+      label: "Interval lower bound"
+      kind: slider
+      kernel_binding: state.lower
+      bounds: { min: 0, max: 10, step: 0.1 }
+    - id: upper-bound
+      label: "Interval upper bound"
+      kind: slider
+      kernel_binding: state.upper
+      bounds: { min: 0.1, max: 12, step: 0.1 }
+observe:
+  renderers:
+    - id: density-readout
+      module: "@paideia/sutd-sims/continuous-rvs-uniform-exponential"
+      symbol: ContinuousRvsUniformExponential
+      props_binding: "Render PDF curve, interval shading, formula, legend, substitution, mean, variance, probability, units, and interpretation."
+explain:
+  prompt: "Explain why continuous probabilities come from area under a density, not point height."
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Reading a point on the density curve as a probability."
+    - "Treating exponential waiting time like a bounded uniform interval."

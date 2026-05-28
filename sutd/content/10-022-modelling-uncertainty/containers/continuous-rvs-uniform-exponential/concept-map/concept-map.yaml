@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: continuous-rvs-uniform-exponential
+prerequisites:
+  - id: foundational-notation
+    title: "Foundational Probability Notation"
+    relationship: "Continuous density formulas use interval notation and probability symbols."
+    status: available
+  - id: probability-distributions
+    title: "Probability Distributions"
+    relationship: "Uniform and exponential distributions are continuous probability models."
+    status: available
+downstream:
+  - id: joint-and-marginal-distributions
+    title: "Joint and Marginal Distributions"
+    relationship: "Continuous density reasoning extends to multivariable integration."
+    status: planned
+  - id: maximum-likelihood-estimation
+    title: "Maximum Likelihood Estimation"
+    relationship: "Distribution parameters become fitted quantities in likelihood models."
+    status: planned
+siblings:
+  - id: discrete-rvs-geometric-binomial-poisson
+    title: "Discrete RVs: Geometric, Binomial, Poisson"
+    relationship: "Both require model choice before probability calculation."
+    status: planned
+  - id: central-limit-theorem
+    title: "Central Limit Theorem"
+    relationship: "Both reason from distribution shape to probability statements."
+    status: available
+misconception_graph:
+  nodes:
+    - id: density-is-probability
+      label: "Density height is point probability"
+    - id: bounded-waiting-time
+      label: "Waiting time is uniform over the viewed window"
+    - id: area-ignored
+      label: "Interval probability ignores support overlap"
+  edges:
+    - from: density-is-probability
+      to: area-ignored
+      label: "both miss that continuous probability is area"
+    - from: bounded-waiting-time
+      to: density-is-probability
+      label: "both choose a visual interval before checking process assumptions"
+mermaid_source: graph.mmd

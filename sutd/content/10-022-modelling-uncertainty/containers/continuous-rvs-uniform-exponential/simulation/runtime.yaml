@@ -1,0 +1,4 @@
+runtime:
+  package: "@paideia/sutd-sims/continuous-rvs-uniform-exponential"
+  export: ContinuousRvsUniformExponential
+  route_id: "sutd/10-022-modelling-uncertainty/continuous-rvs-uniform-exponential/continuous-density-lab"

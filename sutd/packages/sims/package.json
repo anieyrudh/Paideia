@@ -30,6 +30,7 @@
     "./newsvendor-critical-fractile": "./src/newsvendor-critical-fractile.tsx",
     "./confusion-matrix-thresholds": "./src/confusion-matrix-thresholds.tsx",
     "./scheduling-and-project-management": "./src/scheduling-and-project-management.tsx",
+    "./continuous-rvs-uniform-exponential": "./src/continuous-rvs-uniform-exponential.tsx",
     "./markov-chain-steady-state": "./src/markov-chain-steady-state.tsx",
     "./fairness-threshold-audit": "./src/fairness-threshold-audit.tsx",
     "./discrete-rvs-geometric-binomial-poisson": "./src/discrete-rvs-geometric-binomial-poisson.tsx",

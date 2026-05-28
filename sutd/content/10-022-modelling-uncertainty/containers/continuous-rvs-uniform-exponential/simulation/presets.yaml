@@ -1,0 +1,7 @@
+presets:
+  - id: bounded-lifetime
+    label: "Bounded laboratory lifetime"
+    state: { model: uniform, min: 1, max: 7, rate: 0.4, lower: 2, upper: 5 }
+  - id: waiting-time
+    label: "Waiting time to failure"
+    state: { model: exponential, min: 1, max: 7, rate: 0.5, lower: 1, upper: 4 }
