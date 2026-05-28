@@ -1,0 +1,36 @@
+presets:
+  - id: below-threshold
+    label: "Below threshold (R0 = 4, p = 0.6)"
+    state:
+      r0: 4
+      coverage: 0.6
+      waningRate: 0.005
+      daysSinceVaccination: 0
+  - id: at-threshold
+    label: "At threshold (R0 = 4, p = 0.75)"
+    state:
+      r0: 4
+      coverage: 0.75
+      waningRate: 0.005
+      daysSinceVaccination: 0
+  - id: above-threshold
+    label: "Above threshold (R0 = 4, p = 0.9)"
+    state:
+      r0: 4
+      coverage: 0.9
+      waningRate: 0.005
+      daysSinceVaccination: 0
+  - id: waning-erodes-coverage
+    label: "Waning erodes coverage (200 days)"
+    state:
+      r0: 4
+      coverage: 0.9
+      waningRate: 0.005
+      daysSinceVaccination: 200
+  - id: high-r0
+    label: "Measles-like R0 = 15"
+    state:
+      r0: 15
+      coverage: 0.9
+      waningRate: 0.005
+      daysSinceVaccination: 0

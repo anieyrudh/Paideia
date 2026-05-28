@@ -1,0 +1,22 @@
+# Mindmap
+
+- Cell signalling pathways
+  - Directed acyclic graph of nodes
+    - ligand, receptor, kinase, transcription factor
+    - activator / inhibitor edges with weights
+  - Per-stage saturating response
+    - logistic with threshold and sensitivity
+    - input = sum(activator * x) - sum(inhibitor * x)
+  - Cascade behaviour
+    - Sigmoidal, not linear
+    - Inhibitors can switch downstream nodes off
+    - Stacking stages can sharpen the threshold
+  - Misconceptions
+    - Linear cascade
+    - Inhibitor only subtracts
+    - All edges equal weight
+    - Cycles behave like DAGs
+  - Transfer
+    - MAPK / GPCR signalling
+    - Synthetic-biology toggle switches
+    - Cancer driver mutations rewire the cascade

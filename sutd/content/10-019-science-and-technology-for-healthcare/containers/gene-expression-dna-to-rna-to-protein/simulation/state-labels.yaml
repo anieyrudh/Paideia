@@ -1,0 +1,13 @@
+state_labels:
+  dnaPresetId:
+    label: "DNA preset"
+    meaning: "Identifier of the chosen example DNA segment; the actual sequence is loaded from a frozen presets table."
+  inducerConcentration:
+    label: "Inducer concentration"
+    meaning: "Concentration of the small molecule that activates transcription, in micromolar."
+  hillCoefficient:
+    label: "Hill coefficient"
+    meaning: "Cooperativity of regulator binding; n = 1 is non-cooperative, n >= 2 is switch-like."
+  hillThreshold:
+    label: "Half-max threshold"
+    meaning: "Inducer concentration at which the regulator saturates at 50 percent, in micromolar."

@@ -1,0 +1,113 @@
+schema_version: "1.0.0"
+id: protein-folding-and-function
+aliases:
+  - hydropathy-lab
+  - sequence-versus-fold
+branch: sutd
+subject: 10-019-science-and-technology-for-healthcare
+level: "Freshmore"
+module: "Science and Technology for Healthcare"
+title: "Protein Folding and Function"
+one_line_summary: "Edit a short amino-acid sequence and read its hydropathy profile to see how primary sequence biases the fold without uniquely determining it."
+syllabus_ref: "SUTD 10.019 Science and Technology for Healthcare / Protein folding and function"
+prerequisites:
+  - amino-acid-properties
+  - chemical-bonding-and-intermolecular-forces
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A short peptide is L L L L L L L L (eight leucines). The window-9 hydropathy classifier reports "hydrophobic" for every centre residue. Before reveal, which statement best describes the peptide's fold in aqueous solution?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "It collapses into a hydrophobic cluster; the fold also depends on chain length, environment, and chaperones."
+      - "It folds uniquely into a beta sheet because the sequence is hydrophobic."
+      - "It cannot fold because all residues are identical."
+      - "The hydropathy profile predicts the exact 3D structure."
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: transmembrane-helix-detection
+    prompt: |
+      Given a 20-residue protein sequence, decide whether it contains a candidate transmembrane helix. Use a window-9 Kyte-Doolittle hydropathy profile, the +1.6 hydrophobic threshold, and the role of environment in folding to defend the answer.
+    surface_form: "candidate transmembrane segment detection"
+    same_concept_check: "Same concept: hydropathy windowing flags likely transmembrane segments; environment and chaperones decide the final fold."
+    rubric_path: problem-solving/transmembrane-helix-detection.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-27"
+      author: "Codex"
+      summary: "Built SUTD 10.019 protein-folding-and-function v2 container with hydropathy lab."
+authors: ["Codex"]
+advisor_signoffs: []
+misconceptions:
+  - name: "Sequence alone determines fold"
+    description: "Learners may take Anfinsen's dogma to mean the primary sequence uniquely codes a fold, ignoring environment, ionic strength, chaperones, and the multiplicity of metastable conformers."
+    evidence_source: "OpenStax Biology 2e; Dobson, Protein folding and misfolding (2003)."
+    surface_in_predict: true
+  - name: "Hydropathy alone predicts secondary structure"
+    description: "Learners may equate a high hydropathy window with a definite alpha-helix or beta-sheet, ignoring backbone phi/psi constraints."
+    evidence_source: "Kyte and Doolittle, J. Mol. Biol., 1982."
+    surface_in_predict: true
+sources:
+  - citation: "SUTD 10.019 Science and Technology for Healthcare module page (public)."
+    url: "https://www.sutd.edu.sg/course/10-019-science-and-technology-for-healthcare"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+  - citation: "Kyte, J. and Doolittle, R. F. A simple method for displaying the hydropathic character of a protein. J. Mol. Biol. 157(1):105-132, 1982."
+    publication_year: 1982
+    license: "Scientific-literature reference (table values are facts, not copyrightable)"
+    seab_alignment: n/a
+  - citation: "OpenStax. Biology 2e, Chapter 3 Biological Macromolecules (CC BY 4.0)."
+    url: "https://openstax.org/details/books/biology-2e"
+    publication_year: 2024
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "Dobson, C. M. Protein folding and misfolding. Nature 426, 884-890, 2003. (Reference only; no text reproduced.)"
+    publication_year: 2003
+    license: "Scientific-literature reference"
+    seab_alignment: n/a
+language: en

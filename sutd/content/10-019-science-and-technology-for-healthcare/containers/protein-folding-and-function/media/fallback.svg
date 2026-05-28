@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Protein folding hydropathy fallback visual</title>
+  <desc id="desc">A wider hydropathy plot above a colour-coded residue chain, with hydrophobic and hydrophilic thresholds drawn.</desc>
+  <rect width="640" height="360" fill="#f8fafc"/>
+  <text x="48" y="44" fill="#0f172a" font-family="Arial, sans-serif" font-size="26" font-weight="700">Protein folding and function</text>
+  <text x="48" y="70" fill="#475569" font-family="Arial, sans-serif" font-size="15">Hydropathy windowing predicts where; environment decides what.</text>
+  <rect x="60" y="100" width="520" height="140" fill="#ffffff" stroke="#cbd5e1"/>
+  <line x1="60" y1="170" x2="580" y2="170" stroke="#94a3b8" stroke-dasharray="4 4"/>
+  <line x1="60" y1="130" x2="580" y2="130" stroke="#dc2626" stroke-dasharray="2 4"/>
+  <line x1="60" y1="210" x2="580" y2="210" stroke="#059669" stroke-dasharray="2 4"/>
+  <text x="60" y="125" fill="#dc2626" font-family="Arial, sans-serif" font-size="11">hydrophobic threshold +1.6</text>
+  <text x="60" y="225" fill="#059669" font-family="Arial, sans-serif" font-size="11">hydrophilic threshold -0.5</text>
+  <polyline points="80,200 110,180 140,140 170,115 200,120 230,140 260,165 290,195 320,210 350,205 380,160 410,125 440,118 470,140 500,170 530,190 560,200" fill="none" stroke="#2563eb" stroke-width="3"/>
+  <g font-family="Arial, sans-serif" font-size="12" font-weight="700" text-anchor="middle">
+    <circle cx="80" cy="290" r="11" fill="#dc2626"/><text x="80" y="294" fill="#fff">K</text>
+    <circle cx="110" cy="290" r="11" fill="#dc2626"/><text x="110" y="294" fill="#fff">D</text>
+    <circle cx="140" cy="290" r="11" fill="#2563eb"/><text x="140" y="294" fill="#fff">L</text>
+    <circle cx="170" cy="290" r="11" fill="#2563eb"/><text x="170" y="294" fill="#fff">L</text>
+    <circle cx="200" cy="290" r="11" fill="#2563eb"/><text x="200" y="294" fill="#fff">I</text>
+    <circle cx="230" cy="290" r="11" fill="#2563eb"/><text x="230" y="294" fill="#fff">V</text>
+    <circle cx="260" cy="290" r="11" fill="#f59e0b"/><text x="260" y="294" fill="#fff">A</text>
+    <circle cx="290" cy="290" r="11" fill="#059669"/><text x="290" y="294" fill="#fff">S</text>
+    <circle cx="320" cy="290" r="11" fill="#dc2626"/><text x="320" y="294" fill="#fff">K</text>
+    <circle cx="350" cy="290" r="11" fill="#dc2626"/><text x="350" y="294" fill="#fff">E</text>
+    <circle cx="380" cy="290" r="11" fill="#2563eb"/><text x="380" y="294" fill="#fff">L</text>
+    <circle cx="410" cy="290" r="11" fill="#2563eb"/><text x="410" y="294" fill="#fff">L</text>
+    <circle cx="440" cy="290" r="11" fill="#2563eb"/><text x="440" y="294" fill="#fff">V</text>
+    <circle cx="470" cy="290" r="11" fill="#f59e0b"/><text x="470" y="294" fill="#fff">A</text>
+    <circle cx="500" cy="290" r="11" fill="#059669"/><text x="500" y="294" fill="#fff">T</text>
+    <circle cx="530" cy="290" r="11" fill="#dc2626"/><text x="530" y="294" fill="#fff">R</text>
+    <circle cx="560" cy="290" r="11" fill="#dc2626"/><text x="560" y="294" fill="#fff">D</text>
+  </g>
+  <text x="48" y="340" fill="#475569" font-family="Arial, sans-serif" font-size="13">Blue: hydrophobic. Red: charged. Orange: small nonpolar. Green: polar uncharged.</text>
+</svg>

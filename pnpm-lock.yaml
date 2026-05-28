@@ -1429,6 +1429,12 @@ importers:
       '@paideia/annotation':
         specifier: workspace:*
         version: link:../../../core/annotation
+      '@paideia/cell-cycle':
+        specifier: workspace:*
+        version: link:../../../core/cell-cycle
+      '@paideia/cell-geometry':
+        specifier: workspace:*
+        version: link:../../../core/cell-geometry
       '@paideia/charting':
         specifier: workspace:*
         version: link:../../../core/charting
@@ -1453,12 +1459,18 @@ importers:
       '@paideia/fluid-mechanics':
         specifier: workspace:*
         version: link:../../../core/fluid-mechanics
+      '@paideia/gene-regulatory-network':
+        specifier: workspace:*
+        version: link:../../../core/gene-regulatory-network
       '@paideia/graph-algorithms':
         specifier: workspace:*
         version: link:../../../core/graph-algorithms
       '@paideia/graph-layout':
         specifier: workspace:*
         version: link:../../../core/graph-layout
+      '@paideia/immunology':
+        specifier: workspace:*
+        version: link:../../../core/immunology
       '@paideia/linear-algebra':
         specifier: workspace:*
         version: link:../../../core/linear-algebra
@@ -1468,6 +1480,9 @@ importers:
       '@paideia/mechanics':
         specifier: workspace:*
         version: link:../../../core/mechanics
+      '@paideia/membrane-transport':
+        specifier: workspace:*
+        version: link:../../../core/membrane-transport
       '@paideia/molecule':
         specifier: workspace:*
         version: link:../../../core/molecule
@@ -1489,9 +1504,18 @@ importers:
       '@paideia/probability-stats':
         specifier: workspace:*
         version: link:../../../core/probability-stats
+      '@paideia/protein-structure':
+        specifier: workspace:*
+        version: link:../../../core/protein-structure
+      '@paideia/sequence':
+        specifier: workspace:*
+        version: link:../../../core/sequence
       '@paideia/shared':
         specifier: workspace:*
         version: link:../../../core/shared
+      '@paideia/signal-pathway':
+        specifier: workspace:*
+        version: link:../../../core/signal-pathway
       '@paideia/sim-runtime':
         specifier: workspace:*
         version: link:../../../core/sim-runtime

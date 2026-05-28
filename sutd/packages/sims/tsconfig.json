@@ -27,6 +27,14 @@
     { "path": "../../../core/shared" },
     { "path": "../../../core/sim-runtime" },
     { "path": "../../../core/ui-sim" },
+    { "path": "../../../core/membrane-transport" },
+    { "path": "../../../core/cell-geometry" },
+    { "path": "../../../core/protein-structure" },
+    { "path": "../../../core/gene-regulatory-network" },
+    { "path": "../../../core/sequence" },
+    { "path": "../../../core/signal-pathway" },
+    { "path": "../../../core/cell-cycle" },
+    { "path": "../../../core/immunology" },
     { "path": "../../../core/oncogenetics" },
     { "path": "../../../core/treatment-response" }
   ]

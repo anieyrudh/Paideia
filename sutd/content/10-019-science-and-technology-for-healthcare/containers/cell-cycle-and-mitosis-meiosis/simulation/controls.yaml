@@ -1,0 +1,21 @@
+controls:
+  - id: dna-damaged
+    label: "DNA damaged"
+    kind: toggle
+    default: false
+  - id: replication-complete
+    label: "Replication complete"
+    kind: toggle
+    default: true
+  - id: chromosomes-aligned
+    label: "Chromosomes aligned"
+    kind: toggle
+    default: true
+  - id: nutrients-sufficient
+    label: "Nutrients sufficient"
+    kind: toggle
+    default: true
+  - id: division-mode
+    label: "Division mode"
+    kind: selector
+    default: mitosis

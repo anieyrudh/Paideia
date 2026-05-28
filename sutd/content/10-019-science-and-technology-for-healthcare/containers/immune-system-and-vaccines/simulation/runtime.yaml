@@ -1,0 +1,7 @@
+runtime:
+  entry: simulation/index.tsx
+  package: "@paideia/sutd-sims/immune-system-and-vaccines"
+  mount_mode: react-component
+  state_model: local
+  persistence: local
+  deterministic: true

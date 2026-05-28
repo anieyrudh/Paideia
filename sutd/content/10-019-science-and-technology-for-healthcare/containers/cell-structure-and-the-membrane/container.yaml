@@ -1,0 +1,109 @@
+schema_version: "1.0.0"
+id: cell-structure-and-the-membrane
+aliases:
+  - membrane-transport-lab
+  - selective-permeability
+branch: sutd
+subject: 10-019-science-and-technology-for-healthcare
+level: "Freshmore"
+module: "Science and Technology for Healthcare"
+title: "Cell Structure and the Membrane"
+one_line_summary: "Adjust ion concentrations, permeability, and surface area to see why the membrane is a selective gatekeeper rather than a passive barrier."
+syllabus_ref: "SUTD 10.019 Science and Technology for Healthcare / Cell structure and the membrane"
+prerequisites:
+  - cell-anatomy
+  - concentration-gradients
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A cell sits in a bath where [K+] outside is much lower than [K+] inside. The membrane is far more permeable to K+ than to Na+ or Cl-. Before reveal, what best describes the resting membrane potential?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Strongly negative inside, close to the K+ Nernst potential"
+      - "Strongly positive inside, close to the Na+ Nernst potential"
+      - "Exactly zero, because the membrane is impermeable to most ions"
+      - "Random, because resting potential depends only on cell volume"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: red-blood-cell-tonicity
+    prompt: |
+      A red blood cell with surface area 140 micrometres squared and radius 4 micrometres sits in a saline bath. Walk through how the membrane's permeability to water versus the major ions controls the cell's resting voltage and how a change in the bath would change the flux direction.
+    surface_form: "red blood cell tonicity and resting voltage"
+    same_concept_check: "Same concept: selective permeability picks which ion's Nernst potential dominates the resting voltage; surface-area-to-volume ratio controls how fast the bath equilibrates."
+    rubric_path: problem-solving/red-blood-cell-tonicity.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-27"
+      author: "Codex"
+      summary: "Built SUTD 10.019 cell-structure-and-the-membrane v2 container with membrane-transport sim."
+authors: ["Codex"]
+advisor_signoffs: []
+misconceptions:
+  - name: "The membrane is only a passive barrier"
+    description: "Learners may treat the membrane as a wall instead of as a selectively permeable surface that picks which gradient dominates."
+    evidence_source: "Hille, Ionic Channels of Excitable Membranes; SUTD 10.019 freshmore module."
+    surface_in_predict: true
+  - name: "Resting voltage depends on cell volume"
+    description: "Learners may attribute the resting voltage to mechanical or volumetric properties rather than to permeability-weighted Nernst potentials."
+    evidence_source: "OpenStax Biology, Membrane structure and function."
+    surface_in_predict: true
+sources:
+  - citation: "SUTD 10.019 Science and Technology for Healthcare module page (public)."
+    url: "https://www.sutd.edu.sg/course/10-019-science-and-technology-for-healthcare"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+  - citation: "OpenStax. Biology 2e, Chapter 5 Structure and Function of Plasma Membranes (CC BY 4.0)."
+    url: "https://openstax.org/details/books/biology-2e"
+    publication_year: 2024
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "Hille, B. Ionic Channels of Excitable Membranes, 3rd ed., Sinauer 2001 (textbook reference, no text copied)."
+    publication_year: 2001
+    license: "Textbook reference"
+    seab_alignment: n/a
+language: en

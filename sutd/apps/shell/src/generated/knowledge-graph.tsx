@@ -24,27 +24,33 @@ import GeneratedSim20LinearTransformationsLinearTransformations from "@paideia/s
 import GeneratedSim21OptimisationWithLagrangeMultipliersOptimisationWithLagrangeMultipliers from "@paideia/sutd-sims/optimisation-with-lagrange-multipliers";
 import GeneratedSim22PartialDerivativesAndGradientPartialDerivativesAndGradient from "@paideia/sutd-sims/partial-derivatives-and-gradient";
 import GeneratedSim23CancerGeneticsAndTherapyCancerGeneticsAndTherapy from "@paideia/sutd-sims/cancer-genetics-and-therapy";
-import GeneratedSim24LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
-import GeneratedSim25ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
-import GeneratedSim26StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
-import GeneratedSim27DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
-import GeneratedSim28GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim29RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
-import GeneratedSim30ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
-import GeneratedSim31FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
-import GeneratedSim32TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim33BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim34PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim35SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
-import GeneratedSim36LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim37MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
-import GeneratedSim38NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim39BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim40EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim41VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim42FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
-import GeneratedSim43LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim44OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim24CellCycleAndMitosisMeiosisCellCycleAndMitosisMeiosis from "@paideia/sutd-sims/cell-cycle-and-mitosis-meiosis";
+import GeneratedSim25CellSignallingPathwaysCellSignallingPathways from "@paideia/sutd-sims/cell-signalling-pathways";
+import GeneratedSim26CellStructureAndTheMembraneCellStructureAndTheMembrane from "@paideia/sutd-sims/cell-structure-and-the-membrane";
+import GeneratedSim27GeneExpressionDnaToRnaToProteinGeneExpressionDnaToRnaToProtein from "@paideia/sutd-sims/gene-expression-dna-to-rna-to-protein";
+import GeneratedSim28ImmuneSystemAndVaccinesImmuneSystemAndVaccines from "@paideia/sutd-sims/immune-system-and-vaccines";
+import GeneratedSim29ProteinFoldingAndFunctionProteinFoldingAndFunction from "@paideia/sutd-sims/protein-folding-and-function";
+import GeneratedSim30LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
+import GeneratedSim31ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
+import GeneratedSim32StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
+import GeneratedSim33DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
+import GeneratedSim34GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
+import GeneratedSim35RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
+import GeneratedSim36ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
+import GeneratedSim37FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
+import GeneratedSim38TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim39BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim40PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim41SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
+import GeneratedSim42LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim43MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
+import GeneratedSim44NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim45BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim46EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim47VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim48FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
+import GeneratedSim49LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim50OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -311,6 +317,60 @@ export const knowledgeGraph = {
     id: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy",
     conceptId: "cancer-genetics-and-therapy",
     title: "Cancer Genetics and Therapy",
+    subject: "10-019-science-and-technology-for-healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    status: "draft",
+  },
+  {
+    id: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis",
+    conceptId: "cell-cycle-and-mitosis-meiosis",
+    title: "Cell Cycle and Mitosis / Meiosis",
+    subject: "10-019-science-and-technology-for-healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    status: "draft",
+  },
+  {
+    id: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways",
+    conceptId: "cell-signalling-pathways",
+    title: "Cell Signalling Pathways",
+    subject: "10-019-science-and-technology-for-healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    status: "draft",
+  },
+  {
+    id: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane",
+    conceptId: "cell-structure-and-the-membrane",
+    title: "Cell Structure and the Membrane",
+    subject: "10-019-science-and-technology-for-healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    status: "draft",
+  },
+  {
+    id: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein",
+    conceptId: "gene-expression-dna-to-rna-to-protein",
+    title: "Gene Expression: DNA to RNA to Protein",
+    subject: "10-019-science-and-technology-for-healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    status: "draft",
+  },
+  {
+    id: "sutd/10-019-science-and-technology-for-healthcare/immune-system-and-vaccines",
+    conceptId: "immune-system-and-vaccines",
+    title: "Immune System and Vaccines",
+    subject: "10-019-science-and-technology-for-healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    status: "draft",
+  },
+  {
+    id: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function",
+    conceptId: "protein-folding-and-function",
+    title: "Protein Folding and Function",
     subject: "10-019-science-and-technology-for-healthcare",
     level: "Freshmore",
     module: "Science and Technology for Healthcare",
@@ -609,6 +669,42 @@ export const knowledgeGraph = {
   { from: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy", to: "sutd/10-019-science-and-technology-for-healthcare/drug-discovery-screening", kind: "downstream" },
   { from: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy", to: "sutd/10-019-science-and-technology-for-healthcare/combination-therapy", kind: "downstream" },
   { from: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy", to: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", kind: "sibling" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane", to: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein", to: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", to: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", to: "sutd/10-019-science-and-technology-for-healthcare/immune-system-and-vaccines", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", to: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", to: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways", kind: "sibling" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane", to: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/hill-activation-function", to: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways", to: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways", to: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways", to: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways", to: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane", kind: "sibling" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-anatomy", to: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/concentration-gradients", to: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane", to: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane", to: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane", to: "sutd/10-019-science-and-technology-for-healthcare/action-potential", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane", to: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways", kind: "sibling" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/sequence-and-codon-table", to: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/hill-activation-function", to: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein", to: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein", to: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein", to: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein", to: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function", kind: "sibling" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/hill-activation-function", to: "sutd/10-019-science-and-technology-for-healthcare/immune-system-and-vaccines", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/probability-fractions", to: "sutd/10-019-science-and-technology-for-healthcare/immune-system-and-vaccines", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/immune-system-and-vaccines", to: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/immune-system-and-vaccines", to: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/immune-system-and-vaccines", to: "sutd/10-019-science-and-technology-for-healthcare/sir-models", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/immune-system-and-vaccines", to: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", kind: "sibling" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/amino-acid-properties", to: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/chemical-bonding-and-intermolecular-forces", to: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function", to: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function", to: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function", to: "sutd/10-019-science-and-technology-for-healthcare/membrane-protein-topology", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function", to: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane", kind: "sibling" },
   { from: "sutd/asd/force-equilibrium", to: "sutd/asd/load-path-and-daylight-tradeoff", kind: "prerequisite" },
   { from: "sutd/asd/vectors", to: "sutd/asd/load-path-and-daylight-tradeoff", kind: "prerequisite" },
   { from: "sutd/asd/ratio-reasoning", to: "sutd/asd/load-path-and-daylight-tradeoff", kind: "prerequisite" },
@@ -1919,7 +2015,7 @@ export const containers = [
     status: "draft",
     packageId: "cancer-genetics-and-therapy",
     simId: "cancer-genetics-and-therapy",
-    predictPrompt: "A clone has 3 driver mutations with per-driver fitness advantage s = 0.1. After 20 cell generations starting from size 10, what is the clone size relative to a passenger-only clone (drivers = 0) starting from the same size?",
+    predictPrompt: "A clone has 3 driver mutations with per-driver fitness advantage s = 0.1. After 20 cell generations starting from size 10, what is the clone size relative to a passenger-only clone (drivers = 0) starting from the same size?\ncommit_format:\n  kind: multiple-choice\n  options:\n  - \"About 304x baseline, so about 3045 cells from a starting size of 10.\"\n  - \"About 60; ratio is 3 * 20 because effects add.\"\n  - \"About 200; ratio is 20 because only generations matter.\"\n  - \"Exactly 1; drivers do not change cell number.\"\ncorrect_index: 0",
     aidTypes: [
       "simulation",
       "transfer-problem",
@@ -1929,8 +2025,8 @@ export const containers = [
       "More drivers always means lower survival immediately",
       "Higher dose always works",
     ],
-    transferProblem: "A clone with driver count 3 (per-driver advantage 0.1) starts with size 10 and grows over 20 generations. At the same time, a Hill-shaped therapy with IC50 = 10 and n = 2 acts on each clone. Walk through how a 4x resistance factor changes the effective IC50 and the dose required for 90 percent response.",
-    firstPrinciples: "Driver mutations compound. A single driver multiplies fitness by 1 + s; the cell with two drivers carries (1 + s)^2; with k drivers, (1 + s)^k. Over g generations the size multiplies by F^g. Even small s like 0.1 compounds dramatically: three drivers over twenty generations multiplies size by (1.1)^3^20 \\approx 9700.",
+    transferProblem: "A lab bioreactor has a rare fast-growing contaminant subpopulation with 2 beneficial mutations, per-mutation advantage 0.08, and starting size 50. A disinfectant has IC50 = 8 and Hill coefficient n = 2, but the contaminant has a 3x resistance factor. After 15 generations, compare the contaminant size with a neutral subpopulation, then decide whether a 90 percent response stays below a safety dose of 40.",
+    firstPrinciples: "Driver mutations compound. A single driver multiplies fitness by 1 + s; the cell with two drivers carries (1 + s)^2; with k drivers, (1 + s)^k. Over g generations the size multiplies by F^g. Even small s like 0.1 compounds dramatically: three drivers over twenty generations gives F = (1.1)^3 = 1.331, so the relative size is 1.331^20 \\approx 304x. From a starting size of 10, that is about 3045 cells versus 10 baseline cells.",
     keyDefinitions: [],
     canonicalExamples: [],
     problemSolvingSteps: [
@@ -1960,6 +2056,346 @@ export const containers = [
         title: "Clonal Growth and Dose-Response Lab",
         interactionType: "diagram-builder",
         component: GeneratedSim23CancerGeneticsAndTherapyCancerGeneticsAndTherapy,
+      },
+    ],
+  },
+  {
+    id: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis",
+    branch: "sutd",
+    subject: "10 019 Science And Technology For Healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    title: "Cell Cycle and Mitosis / Meiosis",
+    summary: "Walk a cell through G1, S, G2, M phases under checkpoint conditions, then run mitosis or meiosis and compare daughter ploidy and DNA content.",
+    syllabusRef: "SUTD 10.019 Science and Technology for Healthcare / Cell cycle and mitosis/meiosis",
+    status: "draft",
+    packageId: "cell-cycle-and-mitosis-meiosis",
+    simId: "cell-cycle-and-mitosis-meiosis",
+    predictPrompt: "A diploid cell at M phase with replicated DNA divides via mitosis. Before reveal, what are the two daughter cells' ploidy and DNA-content multiplier?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Mitosis halves chromosome number",
+      "Checkpoints are time-based",
+    ],
+    transferProblem: "A G1 diploid cell encounters DNA damage. Walk through which checkpoints fail, why the cell does not enter S phase, and how toggling the \"DNA damaged\" flag changes the cell's trajectory across the wheel.",
+    firstPrinciples: "The cell cycle is a finite-state machine. Phase advances are conditional on checkpoint inputs; division is the special M-phase exit that produces fresh cells. Tracking ploidy and DNA content separately distinguishes a freshly replicated diploid (n = 2, dnaContent = 2) from a newly born diploid daughter (n = 2, dnaContent = 1) and from a haploid gamete (n = 1, dnaContent = 1). Confusing these three is the most common pedagogical pitfall.",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "What phase is the cell in?",
+      "What are the active checkpoint conditions?",
+      "Which checkpoint gates this transition?",
+      "Does the checkpoint pass?",
+      "If it passes, what is the next phase and state?",
+      "If at M with replicated DNA, mitosis or meiosis?",
+      "What do the daughter cells look like?",
+    ],
+    prerequisites: [
+      "Cell Structure and the Membrane",
+      "Gene Expression",
+    ],
+    downstream: [
+      "Cancer Genetics and Therapy",
+      "Immune System and Vaccines",
+      "Protein Folding and Function",
+    ],
+    siblings: [
+      "Cell Signalling Pathways",
+    ],
+    sims: [
+      {
+        id: "cell-cycle-and-mitosis-meiosis",
+        harnessId: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis/cell-cycle-and-mitosis-meiosis",
+        title: "Cell Cycle Phase Wheel",
+        interactionType: "diagram-builder",
+        component: GeneratedSim24CellCycleAndMitosisMeiosisCellCycleAndMitosisMeiosis,
+      },
+    ],
+  },
+  {
+    id: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways",
+    branch: "sutd",
+    subject: "10 019 Science And Technology For Healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    title: "Cell Signalling Pathways",
+    summary: "Trace a ligand signal through a four-stage cascade and watch how saturating activations and inhibitor edges shape the transcription-factor output.",
+    syllabusRef: "SUTD 10.019 Science and Technology for Healthcare / Cell signalling pathways",
+    status: "draft",
+    packageId: "cell-signalling-pathways",
+    simId: "cell-signalling-pathways",
+    predictPrompt: "A simple cascade goes ligand -> receptor -> kinase -> transcription factor with every edge an activator at unit weight. As the ligand signal rises smoothly from 0 to 1, what is the shape of the transcription-factor response?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Cascade responses are linear",
+      "Inhibitors only reduce by addition",
+    ],
+    transferProblem: "In a wound-healing assay, a cell secretes a paracrine growth factor that activates receptor -> kinase -> transcription factor. There is no phosphatase branch, but the receptor-to-kinase edge is weak (weight 0.4) and the kinase threshold is 0.5. Compare growth-factor levels 0.4 and 1.0, then decide whether adding more growth factor can overcome the weak middle edge once the receptor is already saturated.",
+    firstPrinciples: "Saturation is the kernel idea. A single saturating stage gives a sigmoid. Stacking saturating stages keeps the output bounded but can sharpen the apparent threshold (cascades of n = 1 Hill stages can mimic higher-cooperativity behaviour). Inhibitor edges enter as negative weights into the effective input; raising an inhibitor pulls the effective input below the threshold and can switch a downstream node from \"on\" to \"off\" abruptly.",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "What are the nodes and their thresholds?",
+      "Which edges are activators and which are inhibitors?",
+      "Is the graph acyclic?",
+      "What is the correct order of evaluation?",
+      "What is each node's effective input?",
+      "What is each node's output?",
+      "What does the cascade output mean?",
+    ],
+    prerequisites: [
+      "Cell Structure and the Membrane",
+      "Hill Activation Function",
+    ],
+    downstream: [
+      "Gene Expression",
+      "Cell Cycle and Mitosis/Meiosis",
+      "Cancer Genetics and Therapy",
+    ],
+    siblings: [
+      "Cell Structure and the Membrane",
+    ],
+    sims: [
+      {
+        id: "cell-signalling-pathways",
+        harnessId: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways/cell-signalling-pathways",
+        title: "Cascade Propagation Lab",
+        interactionType: "diagram-builder",
+        component: GeneratedSim25CellSignallingPathwaysCellSignallingPathways,
+      },
+    ],
+  },
+  {
+    id: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane",
+    branch: "sutd",
+    subject: "10 019 Science And Technology For Healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    title: "Cell Structure and the Membrane",
+    summary: "Adjust ion concentrations, permeability, and surface area to see why the membrane is a selective gatekeeper rather than a passive barrier.",
+    syllabusRef: "SUTD 10.019 Science and Technology for Healthcare / Cell structure and the membrane",
+    status: "draft",
+    packageId: "cell-structure-and-the-membrane",
+    simId: "cell-structure-and-the-membrane",
+    predictPrompt: "A cell sits in a bath where [K+] outside is much lower than [K+] inside. The membrane is far more permeable to K+ than to Na+ or Cl-. Before reveal, what best describes the resting membrane potential?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "The membrane is only a passive barrier",
+      "Resting voltage depends on cell volume",
+    ],
+    transferProblem: "A red blood cell with surface area 140 micrometres squared and radius 4 micrometres sits in a saline bath. Walk through how the membrane's permeability to water versus the major ions controls the cell's resting voltage and how a change in the bath would change the flux direction.",
+    firstPrinciples: "A pure concentration gradient stores energy. Letting one ion cross unloads that gradient into electrical work; the voltage builds until the electrical force balances the diffusive force exactly. That equilibrium is the Nernst potential.",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "Which ions are mobile across this membrane?",
+      "What is each ion's Nernst potential at 37 degC?",
+      "Which ion's channel is most open?",
+      "What does the GHK equation give?",
+      "How fast does the bath equilibrate?",
+      "What does this mean for the cell?",
+    ],
+    prerequisites: [
+      "Cell Anatomy",
+      "Concentration Gradients",
+    ],
+    downstream: [
+      "Cell Signalling Pathways",
+      "Cell Cycle and Mitosis/Meiosis",
+      "Action Potential",
+    ],
+    siblings: [
+      "Cell Signalling Pathways",
+    ],
+    sims: [
+      {
+        id: "cell-structure-and-the-membrane",
+        harnessId: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane/cell-structure-and-the-membrane",
+        title: "Membrane Transport Lab",
+        interactionType: "diagram-builder",
+        component: GeneratedSim26CellStructureAndTheMembraneCellStructureAndTheMembrane,
+      },
+    ],
+  },
+  {
+    id: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein",
+    branch: "sutd",
+    subject: "10 019 Science And Technology For Healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    title: "Gene Expression: DNA to RNA to Protein",
+    summary: "Trace a short DNA segment through transcription and translation, then watch how a regulator's concentration changes steady-state mRNA and protein levels.",
+    syllabusRef: "SUTD 10.019 Science and Technology for Healthcare / Gene expression",
+    status: "draft",
+    packageId: "gene-expression-dna-to-rna-to-protein",
+    simId: "gene-expression-dna-to-rna-to-protein",
+    predictPrompt: "A gene's promoter is activated by an inducer. As inducer concentration rises from zero to far above the half-max, what happens to the steady-state mRNA and protein levels at fixed translation and degradation rates?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Inducer increases protein without delay",
+      "Hill responses are linear",
+    ],
+    transferProblem: "A fluorescence biosensor uses a reporter gene with basal transcription rate 0.02 per second, maximum transcription rate 0.6 per second, mRNA decay 0.08 per second, translation rate 1.2 per second per micromolar mRNA, protein decay 0.04 per second, Hill coefficient 3, and half-max threshold 2.5 micromolar. Compare inducer doses of 2.5 micromolar and 8 micromolar. Decide whether the higher dose gives a proportional fluorescence increase or mostly nudges a saturated plateau.",
+    firstPrinciples: "Every step in the central dogma is a chemical reaction with a rate and a half-life. The DNA-to-RNA-to-protein chain tells you what sequence is made; the expression kinetics tells you how much mRNA and protein are present once production and decay balance.",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "What is the DNA segment and its reading frame?",
+      "What is the mRNA?",
+      "What is the protein?",
+      "Where on the Hill curve is the cell?",
+      "What is the instantaneous transcription rate?",
+      "What are mRNA and protein steady states?",
+      "What does this mean for the cell?",
+    ],
+    prerequisites: [
+      "Sequence and Codon Table",
+      "Hill Activation Function",
+    ],
+    downstream: [
+      "Cell Signalling Pathways",
+      "Cancer Genetics and Therapy",
+      "Protein Folding and Function",
+    ],
+    siblings: [
+      "Protein Folding and Function",
+    ],
+    sims: [
+      {
+        id: "gene-expression-dna-to-rna-to-protein",
+        harnessId: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein/gene-expression-dna-to-rna-to-protein",
+        title: "Central Dogma Lab",
+        interactionType: "diagram-builder",
+        component: GeneratedSim27GeneExpressionDnaToRnaToProteinGeneExpressionDnaToRnaToProtein,
+      },
+    ],
+  },
+  {
+    id: "sutd/10-019-science-and-technology-for-healthcare/immune-system-and-vaccines",
+    branch: "sutd",
+    subject: "10 019 Science And Technology For Healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    title: "Immune System and Vaccines",
+    summary: "Compare an antigen-antibody match score with the herd-immunity threshold to see how vaccination fraction, R0, and waning together set the effective reproduction number.",
+    syllabusRef: "SUTD 10.019 Science and Technology for Healthcare / Immune system and vaccines",
+    status: "draft",
+    packageId: "immune-system-and-vaccines",
+    simId: "immune-system-and-vaccines",
+    predictPrompt: "A pathogen has basic reproduction number R0 = 4. Vaccinating 60 percent of the population gives them perfect immunity. Before reveal, what is the effective reproduction number Re and does the outbreak grow or shrink?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Any vaccination coverage stops an outbreak",
+      "Antigen-antibody specificity is binary",
+    ],
+    transferProblem: "A booster vaccine restores immunity to 0.95 right after dosing. Immunity wanes exponentially with rate 0.005 per day. After 200 days, walk through how the effective reproduction number Re evolves for a population with R0 = 5 and 90 percent vaccination coverage at day 0.",
+    firstPrinciples: "The herd-immunity formula comes from setting Re = 1: one infectious person seeds exactly one new infection on average. Above Re = 1 the outbreak grows; below, it shrinks. The threshold scales inversely with R0: more transmissible pathogens need higher coverage. Measles (R0 ~ 15) requires p* ~ 93%; SARS-CoV-2 variants with R0 ~ 5 require p* ~ 80%.",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "What is the pathogen's R0?",
+      "What fraction would have to be immune to push Re to 1?",
+      "What is the population's vaccination coverage today?",
+      "Has immunity waned?",
+      "What is Re?",
+      "Is the outbreak contained?",
+      "What intervention would change the verdict?",
+    ],
+    prerequisites: [
+      "Hill Activation Function",
+      "Probability Fractions",
+    ],
+    downstream: [
+      "Cell Signalling Pathways",
+      "Cancer Genetics and Therapy",
+      "SIR Compartmental Models",
+    ],
+    siblings: [
+      "Cell Cycle and Mitosis/Meiosis",
+    ],
+    sims: [
+      {
+        id: "immune-system-and-vaccines",
+        harnessId: "sutd/10-019-science-and-technology-for-healthcare/immune-system-and-vaccines/immune-system-and-vaccines",
+        title: "Herd Immunity Lab",
+        interactionType: "diagram-builder",
+        component: GeneratedSim28ImmuneSystemAndVaccinesImmuneSystemAndVaccines,
+      },
+    ],
+  },
+  {
+    id: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function",
+    branch: "sutd",
+    subject: "10 019 Science And Technology For Healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    title: "Protein Folding and Function",
+    summary: "Edit a short amino-acid sequence and read its hydropathy profile to see how primary sequence biases the fold without uniquely determining it.",
+    syllabusRef: "SUTD 10.019 Science and Technology for Healthcare / Protein folding and function",
+    status: "draft",
+    packageId: "protein-folding-and-function",
+    simId: "protein-folding-and-function",
+    predictPrompt: "A short peptide is L L L L L L L L (eight leucines). The window-9 hydropathy classifier reports \"hydrophobic\" for every centre residue. Before reveal, which statement best describes the peptide's fold in aqueous solution?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Sequence alone determines fold",
+      "Hydropathy alone predicts secondary structure",
+    ],
+    transferProblem: "Given a 20-residue protein sequence, decide whether it contains a candidate transmembrane helix. Use a window-9 Kyte-Doolittle hydropathy profile, the +1.6 hydrophobic threshold, and the role of environment in folding to defend the answer.",
+    firstPrinciples: "Folding minimises the system's free energy: hydrophobic side chains cluster away from water; polar side chains stay solvated; backbone hydrogen bonds form alpha helices and beta sheets where geometry permits. The hydropathy profile predicts *where* on the chain hydrophobic clustering is likely, not *what* fold appears. Same sequence in a different environment (membrane vs cytosol vs unfolded chaperone interaction) can occupy a different basin.",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "Which residues are hydrophobic, polar, or charged?",
+      "What window width should you use?",
+      "What is the mean hydropathy at each centre residue?",
+      "Which centres are hydrophobic, neutral, or hydrophilic?",
+      "Is this protein cytosolic or membrane-resident?",
+      "What does the profile suggest and what does it NOT decide?",
+    ],
+    prerequisites: [
+      "Amino Acid Properties",
+      "Chemical Bonding and Intermolecular Forces",
+    ],
+    downstream: [
+      "Cell Signalling Pathways",
+      "Gene Expression",
+      "Membrane Protein Topology",
+    ],
+    siblings: [
+      "Cell Structure and the Membrane",
+    ],
+    sims: [
+      {
+        id: "protein-folding-and-function",
+        harnessId: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function/protein-folding-and-function",
+        title: "Hydropathy Folding Lab",
+        interactionType: "diagram-builder",
+        component: GeneratedSim29ProteinFoldingAndFunctionProteinFoldingAndFunction,
       },
     ],
   },
@@ -2025,7 +2461,7 @@ export const containers = [
         harnessId: "sutd/asd/load-path-and-daylight-tradeoff/load-path-and-daylight-tradeoff",
         title: "Load Path and Daylight Tradeoff Explorer",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim24LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
+        component: GeneratedSim30LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
       },
     ],
   },
@@ -2082,7 +2518,7 @@ export const containers = [
         harnessId: "sutd/asd/shading-daylight-heat-gain/shading-daylight-heat-gain",
         title: "Shading, Daylight, and Heat Gain",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim25ShadingDaylightHeatGainShadingDaylightHeatGain,
+        component: GeneratedSim31ShadingDaylightHeatGainShadingDaylightHeatGain,
       },
     ],
   },
@@ -2149,7 +2585,7 @@ export const containers = [
         harnessId: "sutd/asd/structural-load-path-diagram/structural-load-path-diagram",
         title: "Structural Load Path Diagram",
         interactionType: "diagram-builder",
-        component: GeneratedSim26StructuralLoadPathDiagramStructuralLoadPathDiagram,
+        component: GeneratedSim32StructuralLoadPathDiagramStructuralLoadPathDiagram,
       },
     ],
   },
@@ -2195,7 +2631,7 @@ export const containers = [
         harnessId: "sutd/csd/dynamic-programming-state-recursion/dynamic-programming-state-recursion",
         title: "Dynamic Programming State Recursion",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim27DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
+        component: GeneratedSim33DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
       },
     ],
   },
@@ -2245,7 +2681,7 @@ export const containers = [
         harnessId: "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths",
         title: "Graph Search and Shortest Paths",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim28GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
+        component: GeneratedSim34GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
       },
     ],
   },
@@ -2295,7 +2731,7 @@ export const containers = [
         harnessId: "sutd/csd/recursion-tree-complexity/recursion-tree-complexity",
         title: "Recursion Tree Complexity Lab",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim29RecursionTreeComplexityRecursionTreeComplexity,
+        component: GeneratedSim35RecursionTreeComplexityRecursionTreeComplexity,
       },
     ],
   },
@@ -2360,7 +2796,7 @@ export const containers = [
         harnessId: "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds",
         title: "Confusion Matrix Threshold Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim30ConfusionMatrixThresholdsConfusionMatrixThresholds,
+        component: GeneratedSim36ConfusionMatrixThresholdsConfusionMatrixThresholds,
       },
     ],
   },
@@ -2418,7 +2854,7 @@ export const containers = [
         harnessId: "sutd/dai/fairness-threshold-audit/fairness-threshold-audit",
         title: "Fairness Threshold Audit Lab",
         interactionType: "decision-matrix",
-        component: GeneratedSim31FairnessThresholdAuditFairnessThresholdAudit,
+        component: GeneratedSim37FairnessThresholdAuditFairnessThresholdAudit,
       },
     ],
   },
@@ -2471,7 +2907,7 @@ export const containers = [
         harnessId: "sutd/dai/trust-calibration/trust-calibration",
         title: "Trust Calibration Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim32TrustCalibrationTrustCalibration,
+        component: GeneratedSim38TrustCalibrationTrustCalibration,
       },
     ],
   },
@@ -2537,7 +2973,7 @@ export const containers = [
         harnessId: "sutd/epd/bode-stability-margin/bode-stability-margin",
         title: "Bode Margin Reader",
         interactionType: "comparative-matrix",
-        component: GeneratedSim33BodeStabilityMarginBodeStabilityMargin,
+        component: GeneratedSim39BodeStabilityMarginBodeStabilityMargin,
       },
     ],
   },
@@ -2591,7 +3027,7 @@ export const containers = [
         harnessId: "sutd/epd/pid-step-response/pid-step-response",
         title: "PID Step Response Explorer",
         interactionType: "comparative-matrix",
-        component: GeneratedSim34PidStepResponsePidStepResponse,
+        component: GeneratedSim40PidStepResponsePidStepResponse,
       },
     ],
   },
@@ -2649,7 +3085,7 @@ export const containers = [
         harnessId: "sutd/epd/signal-filter-frequency-response/signal-filter-frequency-response",
         title: "RC Filter Frequency Response Lab",
         interactionType: "comparative-matrix",
-        component: GeneratedSim35SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
+        component: GeneratedSim41SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
       },
     ],
   },
@@ -2693,7 +3129,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim36LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim42LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -2755,7 +3191,7 @@ export const containers = [
         harnessId: "sutd/esd/markov-chain-steady-state/markov-chain-steady-state",
         title: "Markov Chain Steady-State Lab",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim37MarkovChainSteadyStateMarkovChainSteadyState,
+        component: GeneratedSim43MarkovChainSteadyStateMarkovChainSteadyState,
       },
     ],
   },
@@ -2821,7 +3257,7 @@ export const containers = [
         harnessId: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
         title: "Newsvendor Critical Fractile Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim38NewsvendorCriticalFractileNewsvendorCriticalFractile,
+        component: GeneratedSim44NewsvendorCriticalFractileNewsvendorCriticalFractile,
       },
     ],
   },
@@ -2884,7 +3320,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim39BayesUpdatingBayesUpdating,
+        component: GeneratedSim45BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -2938,7 +3374,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim40EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim46EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -2990,7 +3426,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim41VectorTransformationsVectorTransformations,
+        component: GeneratedSim47VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -3036,7 +3472,7 @@ export const containers = [
         harnessId: "sutd/smt/fourier-mode-superposition/fourier-mode-superposition",
         title: "Fourier Mode Superposition Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim42FourierModeSuperpositionFourierModeSuperposition,
+        component: GeneratedSim48FourierModeSuperpositionFourierModeSuperposition,
       },
     ],
   },
@@ -3093,7 +3529,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim43LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim49LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -3159,7 +3595,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim44OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim50OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

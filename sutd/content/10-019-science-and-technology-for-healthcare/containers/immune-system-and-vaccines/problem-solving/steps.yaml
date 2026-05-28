@@ -1,0 +1,22 @@
+steps:
+  - id: identify-r0
+    prompt: "What is the pathogen's R0?"
+    expected_action: "Read R0 from the scenario."
+  - id: compute-threshold
+    prompt: "What fraction would have to be immune to push Re to 1?"
+    expected_action: "Compute p* = 1 - 1/R0."
+  - id: identify-coverage
+    prompt: "What is the population's vaccination coverage today?"
+    expected_action: "Read p0 from the scenario."
+  - id: apply-waning
+    prompt: "Has immunity waned?"
+    expected_action: "Compute p(t) = p0 * exp(-lambda * t)."
+  - id: compute-re
+    prompt: "What is Re?"
+    expected_action: "Compute Re = R0 * (1 - p(t))."
+  - id: compare
+    prompt: "Is the outbreak contained?"
+    expected_action: "Compare Re with 1; describe the verdict (contained vs growing)."
+  - id: interpret
+    prompt: "What intervention would change the verdict?"
+    expected_action: "Discuss raising coverage, lowering R0, slowing waning, scheduling boosters."

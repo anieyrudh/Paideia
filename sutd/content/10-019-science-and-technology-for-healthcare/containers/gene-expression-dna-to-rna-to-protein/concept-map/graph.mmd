@@ -1,0 +1,10 @@
+graph TD
+  SCT["Sequence and codon table"] --> GEX["Gene expression DNA to RNA to protein"]
+  HAF["Hill activation function"] --> GEX
+  GEX --> CSP["Cell signalling pathways"]
+  GEX --> CGT["Cancer genetics and therapy"]
+  GEX --> PFF["Protein folding and function"]
+  M1["Inducer = instant protein"] -.-> GEX
+  M2["Hill is linear"] -.-> GEX
+  M3["All cells express equally"] -.-> GEX
+  M4["One codon = one amino acid"] -.-> GEX
