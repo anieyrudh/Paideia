@@ -5330,3 +5330,423 @@ entries:
       workstream: sutd-smt
       concept_cluster: SMT mathematical modelling
       target_container_kind: curriculum-wrapper
+
+  - id: sutd.30-103-fluid-mechanics.navier-stokes-and-viscous-flow
+    title: "Navier-Stokes and Viscous Flow"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 30.103 Fluid Mechanics
+    discipline: fluids
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["30.103 Fluid Mechanics"]
+        syllabus_refs: ["Navier-Stokes and viscous flow"]
+    simulation_type: viscous-flow-profile-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [control-volume analysis, laminar pipe flow]
+      downstream: [microfluidics, boundary layers]
+      misconceptions: [viscosity only matters at low speed]
+    kernel_dependencies: [core/fluid-mechanics, core/charting, core/plotting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/30-103-fluid-mechanics/containers/navier-stokes-and-viscous-flow
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 30.103 Fluid Mechanics
+      target_container_kind: subject-specific
+
+  - id: sutd.30-103-fluid-mechanics.microfluidic-devices
+    title: "Microfluidic Devices"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 30.103 Fluid Mechanics
+    discipline: fluids
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["30.103 Fluid Mechanics"]
+        syllabus_refs: ["Microfluidic devices"]
+    simulation_type: microchannel-flow-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [viscous flow, Reynolds number]
+      downstream: [lab-on-chip design, biomedical devices]
+      misconceptions: [small channels behave like scaled-down pipes only]
+    kernel_dependencies: [core/fluid-mechanics, core/charting, core/plotting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/30-103-fluid-mechanics/containers/microfluidic-devices
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 30.103 Fluid Mechanics
+      target_container_kind: subject-specific
+
+  - id: sutd.electronics-3-x.diodes
+    title: "Diodes"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD Electronics 3.x
+    discipline: electronics
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["Electronics 3.x"]
+        syllabus_refs: ["Diodes"]
+    simulation_type: diode-iv-load-line-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [Ohm's law, circuit basics]
+      downstream: [rectifiers, transistor circuits]
+      misconceptions: [diodes have one fixed voltage drop in every circuit]
+    kernel_dependencies: [core/semiconductor-devices, core/circuits, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/electronics-3-x/containers/diodes
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD Electronics 3.x
+      target_container_kind: subject-specific
+
+  - id: sutd.electronics-3-x.op-amps-intro-and-applications
+    title: "Op-Amps: Intro and Applications"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD Electronics 3.x
+    discipline: electronics
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["Electronics 3.x"]
+        syllabus_refs: ["Operational amplifiers"]
+    simulation_type: op-amp-gain-saturation-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [linear networks, feedback]
+      downstream: [filters, instrumentation amplifiers]
+      misconceptions: [an op-amp can output any voltage]
+    kernel_dependencies: [core/analog-electronics, core/circuits, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/electronics-3-x/containers/op-amps-intro-and-applications
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD Electronics 3.x
+      target_container_kind: subject-specific
+
+  - id: sutd.electronics-3-x.mosfet-as-amplifier-and-switch
+    title: "MOSFET as Amplifier and Switch"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD Electronics 3.x
+    discipline: electronics
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["Electronics 3.x"]
+        syllabus_refs: ["MOSFET amplifier and switch"]
+    simulation_type: mosfet-region-load-line-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [diodes, linear networks]
+      downstream: [digital logic, analog amplification]
+      misconceptions: [MOSFETs are only on or off]
+    kernel_dependencies: [core/semiconductor-devices, core/circuits, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/electronics-3-x/containers/mosfet-as-amplifier-and-switch
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD Electronics 3.x
+      target_container_kind: subject-specific
+
+  - id: sutd.50-004-algorithms.np-completeness-and-reductions
+    title: "NP-Completeness and Reductions"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.004 Algorithms
+    discipline: algorithms
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["50.004 Algorithms"]
+        syllabus_refs: ["NP-completeness and reductions"]
+    simulation_type: verifier-reduction-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [asymptotic complexity, graph algorithms]
+      downstream: [approximation algorithms, optimisation limits]
+      misconceptions: [NP means not polynomial]
+    kernel_dependencies: [core/complexity-theory, core/graph-layout, core/algorithm-trace, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/50-004-algorithms/containers/np-completeness-and-reductions
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.004 Algorithms
+      target_container_kind: subject-specific
+
+  - id: sutd.50-043-database-systems.big-data-hdfs-and-spark
+    title: "Big Data: HDFS + Spark"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.043 Database Systems
+    discipline: databases
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["50.043 Database Systems"]
+        syllabus_refs: ["HDFS and Spark"]
+    simulation_type: distributed-data-layout-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [relational data, indexing, transactions]
+      downstream: [distributed analytics, data engineering]
+      misconceptions: [distributed storage automatically makes every query faster]
+    kernel_dependencies: [core/distributed-data-systems, core/charting, core/graph-layout, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/50-043-database-systems/containers/big-data-hdfs-and-spark
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.043 Database Systems
+      target_container_kind: subject-specific
+
+  - id: sutd.40-017-probability-and-statistics.poisson-process
+    title: "Poisson Process"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 40.017 Probability and Statistics
+    discipline: probability-statistics
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["40.017 Probability and Statistics"]
+        syllabus_refs: ["Poisson process"]
+    simulation_type: poisson-arrivals-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [discrete random variables, exponential distribution]
+      downstream: [queueing models, stochastic processes]
+      misconceptions: [Poisson arrivals are evenly spaced]
+    kernel_dependencies: [core/stochastic-processes, core/probability-stats, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/40-017-probability-and-statistics/containers/poisson-process
+    assignment:
+      workstream: sutd-esd
+      concept_cluster: SUTD 40.017 Probability and Statistics
+      target_container_kind: subject-specific
+
+  - id: sutd.40-017-probability-and-statistics.hypothesis-testing-two-sample-t-tests
+    title: "Hypothesis Testing: Two-Sample, t-tests"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 40.017 Probability and Statistics
+    discipline: probability-statistics
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["40.017 Probability and Statistics"]
+        syllabus_refs: ["Two-sample t-tests"]
+    simulation_type: two-sample-inference-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [sampling distributions, confidence intervals]
+      downstream: [ANOVA, regression]
+      misconceptions: [statistical significance measures effect size]
+    kernel_dependencies: [core/statistical-inference, core/probability-stats, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/40-017-probability-and-statistics/containers/hypothesis-testing-two-sample-t-tests
+    assignment:
+      workstream: sutd-esd
+      concept_cluster: SUTD 40.017 Probability and Statistics
+      target_container_kind: subject-specific
+
+  - id: sutd.50-005-computer-systems-engineering.process-management-and-scheduling
+    title: "Process Management and Scheduling"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.005 Computer Systems Engineering
+    discipline: computer-systems
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["50.005 Computer Systems Engineering"]
+        syllabus_refs: ["Process scheduling"]
+    simulation_type: process-scheduling-gantt-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [program execution, queues]
+      downstream: [deadlock, operating-system scheduling]
+      misconceptions: [shortest jobs always finish first in every scheduler]
+    kernel_dependencies: [core/computer-systems, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-005-computer-systems-engineering/containers/process-management-and-scheduling
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.005 Computer Systems Engineering
+      target_container_kind: subject-specific
+
+  - id: sutd.50-007-machine-learning.linear-regression-canonical
+    title: "Linear Regression (Canonical)"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.007 Machine Learning
+    discipline: machine-learning
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["50.007 Machine Learning"]
+        syllabus_refs: ["Linear regression"]
+    simulation_type: least-squares-fit-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [linear algebra, loss functions]
+      downstream: [logistic regression, model evaluation]
+      misconceptions: [a lower loss always means a better causal model]
+    kernel_dependencies: [core/ml-linear-models, core/model-evaluation, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-007-machine-learning/containers/linear-regression-canonical
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.007 Machine Learning
+      target_container_kind: subject-specific
+
+  - id: sutd.50-007-machine-learning.unsupervised-learning-k-means-and-k-medoids
+    title: "Unsupervised Learning: K-Means + K-Medoids"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.007 Machine Learning
+    discipline: machine-learning
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["50.007 Machine Learning"]
+        syllabus_refs: ["K-means and k-medoids"]
+    simulation_type: clustering-assignment-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [distance metrics, scatter plots]
+      downstream: [mixture models, dimensionality reduction]
+      misconceptions: [clusters are labels discovered with certainty]
+    kernel_dependencies: [core/ml-clustering, core/model-evaluation, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-007-machine-learning/containers/unsupervised-learning-k-means-and-k-medoids
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.007 Machine Learning
+      target_container_kind: subject-specific
+
+  - id: sutd.40-017-probability-and-statistics.conditional-distributions-and-conditional-independence
+    title: "Conditional Distributions and Conditional Independence"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 40.017 Probability and Statistics
+    discipline: probability-statistics
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["40.017 Probability and Statistics"]
+        syllabus_refs: ["Conditional distributions and independence"]
+    simulation_type: conditional-distribution-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [joint distributions, Bayes theorem]
+      downstream: [Bayesian statistics, graphical models]
+      misconceptions: [uncorrelated always means independent]
+    kernel_dependencies: [core/probability-stats, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/40-017-probability-and-statistics/containers/conditional-distributions-and-conditional-independence
+    assignment:
+      workstream: sutd-esd
+      concept_cluster: SUTD 40.017 Probability and Statistics
+      target_container_kind: subject-specific
+
+  - id: sutd.40-017-probability-and-statistics.bayesian-statistics-intro
+    title: "Bayesian Statistics (Intro)"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 40.017 Probability and Statistics
+    discipline: probability-statistics
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["40.017 Probability and Statistics"]
+        syllabus_refs: ["Bayesian statistics introduction"]
+    simulation_type: bayesian-update-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [conditional probability, likelihood]
+      downstream: [Bayesian inference, machine learning]
+      misconceptions: [priors are arbitrary guesses with no role after data]
+    kernel_dependencies: [core/probability-stats, core/statistical-inference, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/40-017-probability-and-statistics/containers/bayesian-statistics-intro
+    assignment:
+      workstream: sutd-esd
+      concept_cluster: SUTD 40.017 Probability and Statistics
+      target_container_kind: subject-specific
+
+  - id: sutd.40-017-probability-and-statistics.regression-dummy-variables-variable-selection
+    title: "Regression: Dummy Variables, Variable Selection"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 40.017 Probability and Statistics
+    discipline: probability-statistics
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["40.017 Probability and Statistics"]
+        syllabus_refs: ["Regression dummy variables and variable selection"]
+    simulation_type: regression-feature-selection-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [linear regression, hypothesis testing]
+      downstream: [model selection, machine learning]
+      misconceptions: [adding variables always improves a model]
+    kernel_dependencies: [core/ml-linear-models, core/statistical-inference, core/model-evaluation, core/charting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/40-017-probability-and-statistics/containers/regression-dummy-variables-variable-selection
+    assignment:
+      workstream: sutd-esd
+      concept_cluster: SUTD 40.017 Probability and Statistics
+      target_container_kind: subject-specific

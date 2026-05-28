@@ -7,8 +7,8 @@ generated_from: PAIDEIA_CONTAINER_TABLES_V2.md
 generated_on: "2026-05-24"
 entry_count: 197
 status_counts:
-  planned: 139
-  ready-for-build: 44
+  planned: 124
+  ready-for-build: 59
   reviewed: 14
 status_policy:
   planned: "Backlog item copied from the reference table; not assigned yet."
@@ -1280,7 +1280,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.30-103-fluid-mechanics.navier-stokes-and-viscous-flow"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Navier-Stokes and Viscous Flow"
     curriculum: "sutd"
     subject: "30-103-fluid-mechanics"
@@ -1310,7 +1310,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.30-103-fluid-mechanics.microfluidic-devices"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Microfluidic Devices"
     curriculum: "sutd"
     subject: "30-103-fluid-mechanics"
@@ -1535,7 +1535,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.electronics-3-x.diodes"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Diodes"
     curriculum: "sutd"
     subject: "electronics-3-x"
@@ -1550,7 +1550,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.electronics-3-x.op-amps-intro-and-applications"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Op-Amps: Intro and Applications"
     curriculum: "sutd"
     subject: "electronics-3-x"
@@ -1565,7 +1565,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.electronics-3-x.mosfet-as-amplifier-and-switch"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "MOSFET as Amplifier and Switch"
     curriculum: "sutd"
     subject: "electronics-3-x"
@@ -1970,7 +1970,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-004-algorithms.np-completeness-and-reductions"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "NP-Completeness and Reductions"
     curriculum: "sutd"
     subject: "50-004-algorithms"
@@ -2075,7 +2075,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-005-computer-systems-engineering.process-management-and-scheduling"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Process Management and Scheduling"
     curriculum: "sutd"
     subject: "50-005-computer-systems-engineering"
@@ -2180,7 +2180,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-007-machine-learning.linear-regression-canonical"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Linear Regression (Canonical)"
     curriculum: "sutd"
     subject: "50-007-machine-learning"
@@ -2240,7 +2240,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-007-machine-learning.unsupervised-learning-k-means-and-k-medoids"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Unsupervised Learning: K-Means + K-Medoids"
     curriculum: "sutd"
     subject: "50-007-machine-learning"
@@ -2420,7 +2420,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-043-database-systems.big-data-hdfs-and-spark"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Big Data: HDFS + Spark"
     curriculum: "sutd"
     subject: "50-043-database-systems"
@@ -2450,7 +2450,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.40-017-probability-and-statistics.conditional-distributions-and-conditional-independence"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Conditional Distributions and Conditional Independence"
     curriculum: "sutd"
     subject: "40-017-probability-and-statistics"
@@ -2465,7 +2465,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.40-017-probability-and-statistics.poisson-process"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Poisson Process"
     curriculum: "sutd"
     subject: "40-017-probability-and-statistics"
@@ -2480,7 +2480,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.40-017-probability-and-statistics.bayesian-statistics-intro"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Bayesian Statistics (Intro)"
     curriculum: "sutd"
     subject: "40-017-probability-and-statistics"
@@ -2495,7 +2495,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.40-017-probability-and-statistics.hypothesis-testing-two-sample-t-tests"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Hypothesis Testing: Two-Sample, t-tests"
     curriculum: "sutd"
     subject: "40-017-probability-and-statistics"
@@ -2540,7 +2540,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.40-017-probability-and-statistics.regression-dummy-variables-variable-selection"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Regression: Dummy Variables, Variable Selection"
     curriculum: "sutd"
     subject: "40-017-probability-and-statistics"
