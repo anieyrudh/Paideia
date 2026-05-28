@@ -24,15 +24,20 @@ This file is the handoff list for external Codex or Claude Code instances. It re
 
 These are not re-promoted because equivalent containers already exist under the reviewed build queue entries.
 
-## Held For Deeper Kernel Or Scope Review
+## Kernel-Available Promotions
 
-- sutd.30-103-fluid-mechanics.navier-stokes-and-viscous-flow
-- sutd.30-103-fluid-mechanics.microfluidic-devices
-- sutd.electronics-3-x.diodes
-- sutd.electronics-3-x.op-amps-intro-and-applications
-- sutd.electronics-3-x.mosfet-as-amplifier-and-switch
-- sutd.50-004-algorithms.np-completeness-and-reductions
-- sutd.50-043-database-systems.big-data-hdfs-and-spark
+These were previously held for deeper kernel or scope review. They are now ready because the reusable kernels landed on main:
+
+- `core/fluid-mechanics` viscous and microfluidic helpers
+- `core/semiconductor-devices`
+- `core/analog-electronics`
+- `core/complexity-theory`
+- `core/distributed-data-systems`
+- `core/statistical-inference`
+- `core/stochastic-processes`
+- `core/ml-linear-models`
+- `core/ml-clustering`
+- `core/computer-systems`
 
 ## Batches
 
@@ -94,3 +99,24 @@ These are not re-promoted because equivalent containers already exist under the 
 - sutd.10-023-designing-energy-systems.exergy-and-system-optimisation
 - sutd.10-023-designing-energy-systems.photovoltaics-and-iv-curve
 - sutd.10-023-designing-energy-systems.battery-sizing-and-solar-placement
+
+### Batch F
+
+- sutd.30-103-fluid-mechanics.navier-stokes-and-viscous-flow
+- sutd.30-103-fluid-mechanics.microfluidic-devices
+- sutd.electronics-3-x.diodes
+- sutd.electronics-3-x.op-amps-intro-and-applications
+- sutd.electronics-3-x.mosfet-as-amplifier-and-switch
+- sutd.50-004-algorithms.np-completeness-and-reductions
+- sutd.50-043-database-systems.big-data-hdfs-and-spark
+- sutd.40-017-probability-and-statistics.poisson-process
+- sutd.40-017-probability-and-statistics.hypothesis-testing-two-sample-t-tests
+- sutd.50-005-computer-systems-engineering.process-management-and-scheduling
+
+### Batch G
+
+- sutd.50-007-machine-learning.linear-regression-canonical
+- sutd.50-007-machine-learning.unsupervised-learning-k-means-and-k-medoids
+- sutd.40-017-probability-and-statistics.conditional-distributions-and-conditional-independence
+- sutd.40-017-probability-and-statistics.bayesian-statistics-intro
+- sutd.40-017-probability-and-statistics.regression-dummy-variables-variable-selection
