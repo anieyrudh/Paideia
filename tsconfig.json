@@ -42,6 +42,7 @@
     { "path": "./core/finance" },
     { "path": "./core/relational-data" },
     { "path": "./core/functional-dependencies" },
+    { "path": "./core/distributed-data-systems" },
     { "path": "./core/indexing-query-cost" },
     { "path": "./core/transactions" },
     { "path": "./core/model-evaluation" },
