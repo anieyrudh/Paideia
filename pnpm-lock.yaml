@@ -1489,6 +1489,9 @@ importers:
       '@paideia/numerical-math':
         specifier: workspace:*
         version: link:../../../core/numerical-math
+      '@paideia/oncogenetics':
+        specifier: workspace:*
+        version: link:../../../core/oncogenetics
       '@paideia/optimization':
         specifier: workspace:*
         version: link:../../../core/optimization
@@ -1519,6 +1522,9 @@ importers:
       '@paideia/thermodynamics':
         specifier: workspace:*
         version: link:../../../core/thermodynamics
+      '@paideia/treatment-response':
+        specifier: workspace:*
+        version: link:../../../core/treatment-response
       '@paideia/ui-sim':
         specifier: workspace:*
         version: link:../../../core/ui-sim

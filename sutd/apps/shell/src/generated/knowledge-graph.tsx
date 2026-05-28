@@ -23,33 +23,34 @@ import GeneratedSim19LineIntegralsAndConservativeVectorFieldsLineIntegralsAndCon
 import GeneratedSim20LinearTransformationsLinearTransformations from "@paideia/sutd-sims/linear-transformations";
 import GeneratedSim21OptimisationWithLagrangeMultipliersOptimisationWithLagrangeMultipliers from "@paideia/sutd-sims/optimisation-with-lagrange-multipliers";
 import GeneratedSim22PartialDerivativesAndGradientPartialDerivativesAndGradient from "@paideia/sutd-sims/partial-derivatives-and-gradient";
-import GeneratedSim23CellCycleAndMitosisMeiosisCellCycleAndMitosisMeiosis from "@paideia/sutd-sims/cell-cycle-and-mitosis-meiosis";
-import GeneratedSim24CellSignallingPathwaysCellSignallingPathways from "@paideia/sutd-sims/cell-signalling-pathways";
-import GeneratedSim25CellStructureAndTheMembraneCellStructureAndTheMembrane from "@paideia/sutd-sims/cell-structure-and-the-membrane";
-import GeneratedSim26GeneExpressionDnaToRnaToProteinGeneExpressionDnaToRnaToProtein from "@paideia/sutd-sims/gene-expression-dna-to-rna-to-protein";
-import GeneratedSim27ImmuneSystemAndVaccinesImmuneSystemAndVaccines from "@paideia/sutd-sims/immune-system-and-vaccines";
-import GeneratedSim28ProteinFoldingAndFunctionProteinFoldingAndFunction from "@paideia/sutd-sims/protein-folding-and-function";
-import GeneratedSim29LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
-import GeneratedSim30ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
-import GeneratedSim31StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
-import GeneratedSim32DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
-import GeneratedSim33GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim34RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
-import GeneratedSim35ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
-import GeneratedSim36FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
-import GeneratedSim37TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim38BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim39PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim40SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
-import GeneratedSim41LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim42MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
-import GeneratedSim43NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim44BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim45EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim46VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim47FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
-import GeneratedSim48LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim49OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim23CancerGeneticsAndTherapyCancerGeneticsAndTherapy from "@paideia/sutd-sims/cancer-genetics-and-therapy";
+import GeneratedSim24CellCycleAndMitosisMeiosisCellCycleAndMitosisMeiosis from "@paideia/sutd-sims/cell-cycle-and-mitosis-meiosis";
+import GeneratedSim25CellSignallingPathwaysCellSignallingPathways from "@paideia/sutd-sims/cell-signalling-pathways";
+import GeneratedSim26CellStructureAndTheMembraneCellStructureAndTheMembrane from "@paideia/sutd-sims/cell-structure-and-the-membrane";
+import GeneratedSim27GeneExpressionDnaToRnaToProteinGeneExpressionDnaToRnaToProtein from "@paideia/sutd-sims/gene-expression-dna-to-rna-to-protein";
+import GeneratedSim28ImmuneSystemAndVaccinesImmuneSystemAndVaccines from "@paideia/sutd-sims/immune-system-and-vaccines";
+import GeneratedSim29ProteinFoldingAndFunctionProteinFoldingAndFunction from "@paideia/sutd-sims/protein-folding-and-function";
+import GeneratedSim30LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
+import GeneratedSim31ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
+import GeneratedSim32StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
+import GeneratedSim33DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
+import GeneratedSim34GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
+import GeneratedSim35RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
+import GeneratedSim36ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
+import GeneratedSim37FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
+import GeneratedSim38TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim39BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim40PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim41SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
+import GeneratedSim42LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim43MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
+import GeneratedSim44NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim45BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim46EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim47VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim48FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
+import GeneratedSim49LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim50OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -311,6 +312,15 @@ export const knowledgeGraph = {
     level: "Undergraduate",
     module: "10.018 Modelling Space and Systems",
     status: "reviewed",
+  },
+  {
+    id: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy",
+    conceptId: "cancer-genetics-and-therapy",
+    title: "Cancer Genetics and Therapy",
+    subject: "10-019-science-and-technology-for-healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    status: "draft",
   },
   {
     id: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis",
@@ -654,6 +664,11 @@ export const knowledgeGraph = {
   { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/optimisation-with-lagrange-multipliers", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/engineering-design-optimisation", kind: "downstream" },
   { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/optimisation-with-lagrange-multipliers", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/constrained-economics", kind: "downstream" },
   { from: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/optimisation-with-lagrange-multipliers", to: "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/partial-derivatives-and-gradient", kind: "sibling" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", to: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/hill-activation-function", to: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy", kind: "prerequisite" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy", to: "sutd/10-019-science-and-technology-for-healthcare/drug-discovery-screening", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy", to: "sutd/10-019-science-and-technology-for-healthcare/combination-therapy", kind: "downstream" },
+  { from: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy", to: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", kind: "sibling" },
   { from: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane", to: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", kind: "prerequisite" },
   { from: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein", to: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", kind: "prerequisite" },
   { from: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis", to: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy", kind: "downstream" },
@@ -1989,6 +2004,62 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy",
+    branch: "sutd",
+    subject: "10 019 Science And Technology For Healthcare",
+    level: "Freshmore",
+    module: "Science and Technology for Healthcare",
+    title: "Cancer Genetics and Therapy",
+    summary: "Watch driver mutations compound into clonal growth, then see how a Hill-shaped dose-response curve and a resistance factor change the apparent response. Educational only.",
+    syllabusRef: "SUTD 10.019 Science and Technology for Healthcare / Cancer genetics and therapy",
+    status: "draft",
+    packageId: "cancer-genetics-and-therapy",
+    simId: "cancer-genetics-and-therapy",
+    predictPrompt: "A clone has 3 driver mutations with per-driver fitness advantage s = 0.1. After 20 cell generations starting from size 10, what is the clone size relative to a passenger-only clone (drivers = 0) starting from the same size?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "More drivers always means lower survival immediately",
+      "Higher dose always works",
+    ],
+    transferProblem: "A lab bioreactor has a rare fast-growing contaminant subpopulation with 2 beneficial mutations, per-mutation advantage 0.08, and starting size 50. A disinfectant has IC50 = 8 and Hill coefficient n = 2, but the contaminant has a 3x resistance factor. After 15 generations, compare the contaminant size with a neutral subpopulation, then decide whether a 90 percent response stays below a safety dose of 40.",
+    firstPrinciples: "Driver mutations compound. A single driver multiplies fitness by 1 + s; the cell with two drivers carries (1 + s)^2; with k drivers, (1 + s)^k. Over g generations the size multiplies by F^g. Even small s like 0.1 compounds dramatically: three drivers over twenty generations gives F = (1.1)^3 = 1.331, so the relative size is 1.331^20 \\approx 304x. From a starting size of 10, that is about 3045 cells versus 10 baseline cells.",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "What is the clone's driver count, advantage, size, and elapsed generations?",
+      "What is the relative fitness?",
+      "What is the clone size after g generations?",
+      "What fraction of cells responds at the chosen dose?",
+      "How does a resistance factor f shift the curve?",
+      "What dose hits a target response level?",
+      "Is the required dose below the toxic dose?",
+    ],
+    prerequisites: [
+      "Cell Cycle and Mitosis/Meiosis",
+      "Hill Activation Function",
+    ],
+    downstream: [
+      "Drug Discovery Screening",
+      "Combination Therapy",
+    ],
+    siblings: [
+      "Cell Cycle and Mitosis/Meiosis",
+    ],
+    sims: [
+      {
+        id: "cancer-genetics-and-therapy",
+        harnessId: "sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy/cancer-genetics-and-therapy",
+        title: "Clonal Growth and Dose-Response Lab",
+        interactionType: "diagram-builder",
+        component: GeneratedSim23CancerGeneticsAndTherapyCancerGeneticsAndTherapy,
+      },
+    ],
+  },
+  {
     id: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis",
     branch: "sutd",
     subject: "10 019 Science And Technology For Healthcare",
@@ -2041,7 +2112,7 @@ export const containers = [
         harnessId: "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis/cell-cycle-and-mitosis-meiosis",
         title: "Cell Cycle Phase Wheel",
         interactionType: "diagram-builder",
-        component: GeneratedSim23CellCycleAndMitosisMeiosisCellCycleAndMitosisMeiosis,
+        component: GeneratedSim24CellCycleAndMitosisMeiosisCellCycleAndMitosisMeiosis,
       },
     ],
   },
@@ -2098,7 +2169,7 @@ export const containers = [
         harnessId: "sutd/10-019-science-and-technology-for-healthcare/cell-signalling-pathways/cell-signalling-pathways",
         title: "Cascade Propagation Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim24CellSignallingPathwaysCellSignallingPathways,
+        component: GeneratedSim25CellSignallingPathwaysCellSignallingPathways,
       },
     ],
   },
@@ -2154,7 +2225,7 @@ export const containers = [
         harnessId: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane/cell-structure-and-the-membrane",
         title: "Membrane Transport Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim25CellStructureAndTheMembraneCellStructureAndTheMembrane,
+        component: GeneratedSim26CellStructureAndTheMembraneCellStructureAndTheMembrane,
       },
     ],
   },
@@ -2211,7 +2282,7 @@ export const containers = [
         harnessId: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein/gene-expression-dna-to-rna-to-protein",
         title: "Central Dogma Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim26GeneExpressionDnaToRnaToProteinGeneExpressionDnaToRnaToProtein,
+        component: GeneratedSim27GeneExpressionDnaToRnaToProteinGeneExpressionDnaToRnaToProtein,
       },
     ],
   },
@@ -2268,7 +2339,7 @@ export const containers = [
         harnessId: "sutd/10-019-science-and-technology-for-healthcare/immune-system-and-vaccines/immune-system-and-vaccines",
         title: "Herd Immunity Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim27ImmuneSystemAndVaccinesImmuneSystemAndVaccines,
+        component: GeneratedSim28ImmuneSystemAndVaccinesImmuneSystemAndVaccines,
       },
     ],
   },
@@ -2324,7 +2395,7 @@ export const containers = [
         harnessId: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function/protein-folding-and-function",
         title: "Hydropathy Folding Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim28ProteinFoldingAndFunctionProteinFoldingAndFunction,
+        component: GeneratedSim29ProteinFoldingAndFunctionProteinFoldingAndFunction,
       },
     ],
   },
@@ -2390,7 +2461,7 @@ export const containers = [
         harnessId: "sutd/asd/load-path-and-daylight-tradeoff/load-path-and-daylight-tradeoff",
         title: "Load Path and Daylight Tradeoff Explorer",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim29LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
+        component: GeneratedSim30LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
       },
     ],
   },
@@ -2447,7 +2518,7 @@ export const containers = [
         harnessId: "sutd/asd/shading-daylight-heat-gain/shading-daylight-heat-gain",
         title: "Shading, Daylight, and Heat Gain",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim30ShadingDaylightHeatGainShadingDaylightHeatGain,
+        component: GeneratedSim31ShadingDaylightHeatGainShadingDaylightHeatGain,
       },
     ],
   },
@@ -2514,7 +2585,7 @@ export const containers = [
         harnessId: "sutd/asd/structural-load-path-diagram/structural-load-path-diagram",
         title: "Structural Load Path Diagram",
         interactionType: "diagram-builder",
-        component: GeneratedSim31StructuralLoadPathDiagramStructuralLoadPathDiagram,
+        component: GeneratedSim32StructuralLoadPathDiagramStructuralLoadPathDiagram,
       },
     ],
   },
@@ -2560,7 +2631,7 @@ export const containers = [
         harnessId: "sutd/csd/dynamic-programming-state-recursion/dynamic-programming-state-recursion",
         title: "Dynamic Programming State Recursion",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim32DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
+        component: GeneratedSim33DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
       },
     ],
   },
@@ -2610,7 +2681,7 @@ export const containers = [
         harnessId: "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths",
         title: "Graph Search and Shortest Paths",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim33GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
+        component: GeneratedSim34GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
       },
     ],
   },
@@ -2660,7 +2731,7 @@ export const containers = [
         harnessId: "sutd/csd/recursion-tree-complexity/recursion-tree-complexity",
         title: "Recursion Tree Complexity Lab",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim34RecursionTreeComplexityRecursionTreeComplexity,
+        component: GeneratedSim35RecursionTreeComplexityRecursionTreeComplexity,
       },
     ],
   },
@@ -2725,7 +2796,7 @@ export const containers = [
         harnessId: "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds",
         title: "Confusion Matrix Threshold Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim35ConfusionMatrixThresholdsConfusionMatrixThresholds,
+        component: GeneratedSim36ConfusionMatrixThresholdsConfusionMatrixThresholds,
       },
     ],
   },
@@ -2783,7 +2854,7 @@ export const containers = [
         harnessId: "sutd/dai/fairness-threshold-audit/fairness-threshold-audit",
         title: "Fairness Threshold Audit Lab",
         interactionType: "decision-matrix",
-        component: GeneratedSim36FairnessThresholdAuditFairnessThresholdAudit,
+        component: GeneratedSim37FairnessThresholdAuditFairnessThresholdAudit,
       },
     ],
   },
@@ -2836,7 +2907,7 @@ export const containers = [
         harnessId: "sutd/dai/trust-calibration/trust-calibration",
         title: "Trust Calibration Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim37TrustCalibrationTrustCalibration,
+        component: GeneratedSim38TrustCalibrationTrustCalibration,
       },
     ],
   },
@@ -2902,7 +2973,7 @@ export const containers = [
         harnessId: "sutd/epd/bode-stability-margin/bode-stability-margin",
         title: "Bode Margin Reader",
         interactionType: "comparative-matrix",
-        component: GeneratedSim38BodeStabilityMarginBodeStabilityMargin,
+        component: GeneratedSim39BodeStabilityMarginBodeStabilityMargin,
       },
     ],
   },
@@ -2956,7 +3027,7 @@ export const containers = [
         harnessId: "sutd/epd/pid-step-response/pid-step-response",
         title: "PID Step Response Explorer",
         interactionType: "comparative-matrix",
-        component: GeneratedSim39PidStepResponsePidStepResponse,
+        component: GeneratedSim40PidStepResponsePidStepResponse,
       },
     ],
   },
@@ -3014,7 +3085,7 @@ export const containers = [
         harnessId: "sutd/epd/signal-filter-frequency-response/signal-filter-frequency-response",
         title: "RC Filter Frequency Response Lab",
         interactionType: "comparative-matrix",
-        component: GeneratedSim40SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
+        component: GeneratedSim41SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
       },
     ],
   },
@@ -3058,7 +3129,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim41LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim42LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -3120,7 +3191,7 @@ export const containers = [
         harnessId: "sutd/esd/markov-chain-steady-state/markov-chain-steady-state",
         title: "Markov Chain Steady-State Lab",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim42MarkovChainSteadyStateMarkovChainSteadyState,
+        component: GeneratedSim43MarkovChainSteadyStateMarkovChainSteadyState,
       },
     ],
   },
@@ -3186,7 +3257,7 @@ export const containers = [
         harnessId: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
         title: "Newsvendor Critical Fractile Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim43NewsvendorCriticalFractileNewsvendorCriticalFractile,
+        component: GeneratedSim44NewsvendorCriticalFractileNewsvendorCriticalFractile,
       },
     ],
   },
@@ -3249,7 +3320,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim44BayesUpdatingBayesUpdating,
+        component: GeneratedSim45BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -3303,7 +3374,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim45EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim46EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -3355,7 +3426,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim46VectorTransformationsVectorTransformations,
+        component: GeneratedSim47VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -3401,7 +3472,7 @@ export const containers = [
         harnessId: "sutd/smt/fourier-mode-superposition/fourier-mode-superposition",
         title: "Fourier Mode Superposition Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim47FourierModeSuperpositionFourierModeSuperposition,
+        component: GeneratedSim48FourierModeSuperpositionFourierModeSuperposition,
       },
     ],
   },
@@ -3458,7 +3529,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim48LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim49LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -3524,7 +3595,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim49OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim50OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

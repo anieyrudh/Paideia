@@ -56,7 +56,8 @@
     "./gene-expression-dna-to-rna-to-protein": "./src/gene-expression-dna-to-rna-to-protein.tsx",
     "./cell-signalling-pathways": "./src/cell-signalling-pathways.tsx",
     "./cell-cycle-and-mitosis-meiosis": "./src/cell-cycle-and-mitosis-meiosis.tsx",
-    "./immune-system-and-vaccines": "./src/immune-system-and-vaccines.tsx"
+    "./immune-system-and-vaccines": "./src/immune-system-and-vaccines.tsx",
+    "./cancer-genetics-and-therapy": "./src/cancer-genetics-and-therapy.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -86,6 +87,8 @@
     "@paideia/membrane-transport": "workspace:*",
     "@paideia/immunology": "workspace:*",
     "@paideia/molecule": "workspace:*",
+    "@paideia/oncogenetics": "workspace:*",
+    "@paideia/treatment-response": "workspace:*",
     "@paideia/numerical-math": "workspace:*",
     "@paideia/signal-pathway": "workspace:*",
     "@paideia/protein-structure": "workspace:*",

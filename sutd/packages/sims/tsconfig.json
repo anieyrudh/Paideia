@@ -34,6 +34,8 @@
     { "path": "../../../core/sequence" },
     { "path": "../../../core/signal-pathway" },
     { "path": "../../../core/cell-cycle" },
-    { "path": "../../../core/immunology" }
+    { "path": "../../../core/immunology" },
+    { "path": "../../../core/oncogenetics" },
+    { "path": "../../../core/treatment-response" }
   ]
 }

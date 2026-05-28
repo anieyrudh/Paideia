@@ -1,0 +1,109 @@
+schema_version: "1.0.0"
+id: cancer-genetics-and-therapy
+aliases:
+  - clonal-growth-vs-therapy
+  - driver-mutation-and-dose-response
+branch: sutd
+subject: 10-019-science-and-technology-for-healthcare
+level: "Freshmore"
+module: "Science and Technology for Healthcare"
+title: "Cancer Genetics and Therapy"
+one_line_summary: "Watch driver mutations compound into clonal growth, then see how a Hill-shaped dose-response curve and a resistance factor change the apparent response. Educational only."
+syllabus_ref: "SUTD 10.019 Science and Technology for Healthcare / Cancer genetics and therapy"
+prerequisites:
+  - cell-cycle-and-mitosis-meiosis
+  - hill-activation-function
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A clone has 3 driver mutations with per-driver fitness advantage s = 0.1. After 20 cell generations starting from size 10, what is the clone size relative to a passenger-only clone (drivers = 0) starting from the same size?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "About 304x baseline, so about 3045 cells from a starting size of 10."
+      - "About 60; ratio is 3 * 20 because effects add."
+      - "About 200; ratio is 20 because only generations matter."
+      - "Exactly 1; drivers do not change cell number."
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: disinfection-window-shift
+    prompt: |
+      A lab bioreactor has a rare fast-growing contaminant subpopulation with 2 beneficial mutations, per-mutation advantage 0.08, and starting size 50. A disinfectant has IC50 = 8 and Hill coefficient n = 2, but the contaminant has a 3x resistance factor. After 15 generations, compare the contaminant size with a neutral subpopulation, then decide whether a 90 percent response stays below a safety dose of 40.
+    surface_form: "bioreactor disinfection safety window"
+    same_concept_check: "Same concept: advantageous mutations compound population size over generations; resistance multiplies effective IC50; the target-response dose must stay below a safety limit."
+    rubric_path: problem-solving/disinfection-window-shift.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-27"
+      author: "Codex"
+      summary: "Built SUTD 10.019 cancer-genetics-and-therapy v2 container with clonal-growth + dose-response lab."
+authors: ["Codex"]
+advisor_signoffs: []
+misconceptions:
+  - name: "More drivers always means lower survival immediately"
+    description: "Learners may treat driver mutations as instantaneously fatal; in reality they accelerate clonal growth, which compounds the population at risk."
+    evidence_source: "Vogelstein et al., Cancer Genome Landscapes (Science 2013) — referenced."
+    surface_in_predict: true
+  - name: "Higher dose always works"
+    description: "Learners may assume any therapy works at high enough dose; in reality the therapeutic-index ratio bounds the safe maximum and resistance can lift effective IC50 beyond it."
+    evidence_source: "Goodman & Gilman's Pharmacological Basis of Therapeutics (referenced)."
+    surface_in_predict: true
+sources:
+  - citation: "SUTD 10.019 Science and Technology for Healthcare module page (public)."
+    url: "https://www.sutd.edu.sg/course/10-019-science-and-technology-for-healthcare"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+  - citation: "OpenStax. Biology 2e, Chapter 10 Cell Reproduction (CC BY 4.0)."
+    url: "https://openstax.org/details/books/biology-2e"
+    publication_year: 2024
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "Vogelstein, B. et al. Cancer Genome Landscapes. Science 339:1546-1558, 2013. Used as a textbook reference; no copyrighted text reproduced."
+    publication_year: 2013
+    license: "Scientific-literature reference"
+    seab_alignment: n/a
+language: en

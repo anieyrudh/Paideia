@@ -1,0 +1,37 @@
+presets:
+  - id: baseline
+    label: "Baseline driver scenario"
+    state:
+      drivers: 3
+      perDriverAdvantage: 0.1
+      generations: 20
+      ic50: 10
+      hillCoefficient: 2
+      resistanceFactor: 1
+  - id: high-fitness
+    label: "Aggressive driver (s = 0.3)"
+    state:
+      drivers: 4
+      perDriverAdvantage: 0.3
+      generations: 20
+      ic50: 10
+      hillCoefficient: 2
+      resistanceFactor: 1
+  - id: resistance-4x
+    label: "Resistant clone (4x)"
+    state:
+      drivers: 3
+      perDriverAdvantage: 0.1
+      generations: 20
+      ic50: 10
+      hillCoefficient: 2
+      resistanceFactor: 4
+  - id: passenger-only
+    label: "Passenger-only baseline"
+    state:
+      drivers: 0
+      perDriverAdvantage: 0.1
+      generations: 20
+      ic50: 10
+      hillCoefficient: 2
+      resistanceFactor: 1
