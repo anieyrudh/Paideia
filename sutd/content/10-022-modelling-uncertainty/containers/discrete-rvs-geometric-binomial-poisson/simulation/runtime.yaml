@@ -1,0 +1,5 @@
+runtime:
+  package: "@paideia/sutd-sims/discrete-rvs-geometric-binomial-poisson"
+  export: "DiscreteRvsGeometricBinomialPoisson"
+  route_id: "sutd/10-022-modelling-uncertainty/discrete-rvs-geometric-binomial-poisson/probability-model-lab"
+  requires_browser: true

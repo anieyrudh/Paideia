@@ -32,6 +32,7 @@
     "./scheduling-and-project-management": "./src/scheduling-and-project-management.tsx",
     "./markov-chain-steady-state": "./src/markov-chain-steady-state.tsx",
     "./fairness-threshold-audit": "./src/fairness-threshold-audit.tsx",
+    "./discrete-rvs-geometric-binomial-poisson": "./src/discrete-rvs-geometric-binomial-poisson.tsx",
     "./atomic-structure-and-electron-configuration": "./src/atomic-structure-and-electron-configuration.tsx",
     "./determinant-and-trace": "./src/determinant-and-trace.tsx",
     "./eigenvalues-and-eigenvectors": "./src/eigenvalues-and-eigenvectors.tsx",

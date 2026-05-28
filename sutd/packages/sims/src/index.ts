@@ -20,6 +20,7 @@ export { default as ConfusionMatrixThresholds } from "./confusion-matrix-thresho
 export { default as SchedulingAndProjectManagement } from "./scheduling-and-project-management.js";
 export { default as MarkovChainSteadyState } from "./markov-chain-steady-state.js";
 export { default as FairnessThresholdAudit } from "./fairness-threshold-audit.js";
+export { default as DiscreteRvsGeometricBinomialPoisson } from "./discrete-rvs-geometric-binomial-poisson.js";
 export { default as DeterminantAndTrace } from "./determinant-and-trace.js";
 export { default as EigenvaluesAndEigenvectors } from "./eigenvalues-and-eigenvectors.js";
 export { default as LinearTransformations } from "./linear-transformations.js";

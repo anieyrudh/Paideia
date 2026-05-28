@@ -1,0 +1,13 @@
+steps:
+  - id: classify-process
+    prompt: "Classify the process before selecting a formula."
+    expected_action: "Name fixed trials, waiting time, or event count."
+  - id: choose-pmf
+    prompt: "Choose the matching PMF."
+    expected_action: "Use binomial, geometric, or Poisson only after the model assumptions match."
+  - id: substitute
+    prompt: "Substitute parameters with units or counts."
+    expected_action: "Show k, n, p, or lambda in the formula."
+  - id: sum-event
+    prompt: "Compute the requested event probability."
+    expected_action: "Sum PMF values over the target event."
