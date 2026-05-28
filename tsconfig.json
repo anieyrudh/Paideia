@@ -52,6 +52,7 @@
     { "path": "./core/transactions" },
     { "path": "./core/model-evaluation" },
     { "path": "./core/ml-linear-models" },
+    { "path": "./core/ml-clustering" },
     { "path": "./core/mechanics" },
     { "path": "./core/materials" },
     { "path": "./core/waves" },
