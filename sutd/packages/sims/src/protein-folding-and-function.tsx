@@ -233,7 +233,7 @@ export const foldingEvidence = (
   const dominant = pickDominantRegion(counts);
   let meanSum = 0;
   for (const point of points) {
-    meanSum += point.meanHydropathy as unknown as number;
+    meanSum += Number(point.meanHydropathy);
   }
   const mean = points.length === 0 ? 0 : meanSum / points.length;
   return ok({
@@ -249,7 +249,7 @@ export const foldingEvidence = (
 const residueColour = (letter: AminoAcidLetter): string => {
   const charge = chargeClass(letter);
   if (charge === "positive" || charge === "negative") return "#dc2626";
-  const hydropathy = kyteDoolittleHydropathy(letter) as unknown as number;
+  const hydropathy = Number(kyteDoolittleHydropathy(letter));
   if (hydropathy >= 1.5) return "#2563eb";
   if (hydropathy >= 0) return "#f59e0b";
   return "#059669";
@@ -319,7 +319,7 @@ const HydropathyPlot = ({
     );
   };
   const points = evidence.profile
-    .map((p, i) => `${padding + i * xStep},${yScale(p.meanHydropathy as unknown as number)}`)
+    .map((p, i) => `${padding + i * xStep},${yScale(Number(p.meanHydropathy))}`)
     .join(" ");
   const upperY = yScale(hydrophobicThreshold);
   const lowerY = yScale(hydrophilicThreshold);
@@ -513,7 +513,7 @@ const ObserveStage = () => {
         </dl>
         {firstProperties && (
           <p>
-            Substitution at the first centre residue: {firstProperties.threeLetter} ({firstProperties.name}) has H_KD = {(firstProperties.hydropathy as unknown as number).toFixed(2)}; the window mean averages it with its neighbours to give the plotted value.
+            Substitution at the first centre residue: {firstProperties.threeLetter} ({firstProperties.name}) has H_KD = {Number(firstProperties.hydropathy).toFixed(2)}; the window mean averages it with its neighbours to give the plotted value.
           </p>
         )}
         <p className="formula-note">

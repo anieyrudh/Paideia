@@ -1738,7 +1738,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.cell-structure-and-the-membrane
     title: "Cell Structure and the Membrane"
     priority: P1
-    status: in-build
+    status: reviewed
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1766,7 +1766,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.protein-folding-and-function
     title: "Protein Folding and Function"
     priority: P1
-    status: in-build
+    status: reviewed
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1794,7 +1794,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.gene-expression-dna-to-rna-to-protein
     title: "Gene Expression, DNA to RNA to Protein"
     priority: P1
-    status: in-build
+    status: reviewed
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1822,7 +1822,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.cell-signalling-pathways
     title: "Cell Signalling Pathways"
     priority: P1
-    status: in-build
+    status: reviewed
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1850,7 +1850,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.cell-cycle-and-mitosis-meiosis
     title: "Cell Cycle and Mitosis Meiosis"
     priority: P1
-    status: in-build
+    status: reviewed
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1878,7 +1878,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.immune-system-and-vaccines
     title: "Immune System and Vaccines"
     priority: P1
-    status: in-build
+    status: reviewed
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1906,7 +1906,7 @@ entries:
   - id: sutd.10-019-science-and-technology-for-healthcare.cancer-genetics-and-therapy
     title: "Cancer Genetics and Therapy"
     priority: P1
-    status: in-build
+    status: reviewed
     cluster: SUTD 10.019 Science and Technology for Healthcare
     discipline: biology-healthcare
     reuse_status: subject-specific
@@ -1929,6 +1929,1854 @@ entries:
     assignment:
       workstream: sutd-freshmore
       concept_cluster: SUTD 10.019 Science and Technology for Healthcare
+      target_container_kind: subject-specific
+
+  - id: alevel.physics.projectile-motion
+    title: "Projectile Motion"
+    priority: P1
+    status: ready-for-build
+    cluster: A-Level mechanics
+    discipline: physics
+    reuse_status: subject-specific
+    curricula: [alevel]
+    curriculum_mappings:
+      - curriculum: alevel
+        subjects: ["Physics"]
+        syllabus_refs: ["Projectile motion"]
+    simulation_type: trajectory-parameter-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [kinematics in one dimension, resolving vectors]
+      downstream: [circular motion, gravitational fields]
+      misconceptions: [horizontal and vertical motion affect each other directly]
+    kernel_dependencies: [core/mechanics, core/plotting, core/prediction-gate, core/ui-sim]
+    repo_package_name: alevel-physics-sims
+    estimated_effort: M
+    repo:
+      container_path: a-level/content/physics/containers/projectile-motion
+    assignment:
+      workstream: alevel-physics
+      concept_cluster: A-Level mechanics
+      target_container_kind: subject-specific
+
+  - id: sutd.10-022-modelling-uncertainty.conditional-probability-and-bayes
+    title: "Conditional Probability and Bayes"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.022 Modelling Uncertainty
+    discipline: probability-statistics
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.022 Modelling Uncertainty"]
+        syllabus_refs: ["Conditional probability and Bayes theorem"]
+    simulation_type: probability-tree-updater
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [sets and events, probability rules]
+      downstream: [Bayesian inference, classification]
+      misconceptions: [confusing P(A given B) with P(B given A)]
+    kernel_dependencies: [core/probability-stats, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-022-modelling-uncertainty/containers/conditional-probability-and-bayes
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.022 Modelling Uncertainty
+      target_container_kind: subject-specific
+
+  - id: sutd.10-022-modelling-uncertainty.central-limit-theorem
+    title: "Central Limit Theorem"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.022 Modelling Uncertainty
+    discipline: probability-statistics
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.022 Modelling Uncertainty"]
+        syllabus_refs: ["Sampling distributions and central limit theorem"]
+    simulation_type: sampling-distribution-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [random variables, expectation and variance]
+      downstream: [confidence intervals, hypothesis testing]
+      misconceptions: [the original data must become normal]
+    kernel_dependencies: [core/probability-stats, core/plotting, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-022-modelling-uncertainty/containers/central-limit-theorem
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.022 Modelling Uncertainty
+      target_container_kind: subject-specific
+
+  - id: sutd.10-023-designing-energy-systems.heat-transfer-modes
+    title: "Heat Transfer Modes"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.023 Designing Energy Systems
+    discipline: energy-systems
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["10.023 Designing Energy Systems"]
+        syllabus_refs: ["Conduction, convection, and radiation"]
+    simulation_type: heat-flow-comparison-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [temperature, energy conservation]
+      downstream: [open systems energy balance, exergy]
+      misconceptions: [heat and temperature are the same quantity]
+    kernel_dependencies: [core/heat-transfer, core/thermodynamics, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/10-023-designing-energy-systems/containers/heat-transfer-modes
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 10.023 Designing Energy Systems
+      target_container_kind: subject-specific
+
+  - id: sutd.40-012-manufacturing-and-service-operations-mso.scheduling-and-project-management
+    title: "Scheduling and Project Management"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 40.012 Manufacturing and Service Operations
+    discipline: operations
+    reuse_status: subject-specific
+    curricula: [sutd]
+    curriculum_mappings:
+      - curriculum: sutd
+        courses: ["40.012 Manufacturing and Service Operations"]
+        syllabus_refs: ["Scheduling and project management"]
+    simulation_type: schedule-critical-path-lab
+    problem_solving_elements: [prediction gate, formula and substitution panel, visual model readout, transfer prompt]
+    concept_map_needs:
+      prerequisites: [activity durations, precedence constraints]
+      downstream: [capacity planning, service operations]
+      misconceptions: [the shortest activity always controls completion time]
+    kernel_dependencies: [core/scheduling, core/algorithm-trace, core/prediction-gate, core/ui-sim]
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/40-012-manufacturing-and-service-operations-mso/containers/scheduling-and-project-management
+    assignment:
+      workstream: sutd-esd
+      concept_cluster: SUTD 40.012 Manufacturing and Service Operations
+      target_container_kind: subject-specific
+
+  - id: sutd.10-022-modelling-uncertainty.discrete-rvs-geometric-binomial-poisson
+    title: "Discrete RVs: Geometric, Binomial, Poisson"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.022 - Modelling Uncertainty
+    discipline: probability-statistics
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 10.022 Modelling Uncertainty
+        syllabus_refs:
+          - "Discrete RVs: Geometric, Binomial, Poisson"
+    simulation_type: probability-model-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/probability-stats
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-022-modelling-uncertainty/containers/discrete-rvs-geometric-binomial-poisson
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.022 - Modelling Uncertainty
+      target_container_kind: subject-specific
+  - id: sutd.10-022-modelling-uncertainty.continuous-rvs-uniform-exponential
+    title: "Continuous RVs: Uniform, Exponential"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.022 - Modelling Uncertainty
+    discipline: probability-statistics
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 10.022 Modelling Uncertainty
+        syllabus_refs:
+          - "Continuous RVs: Uniform, Exponential"
+    simulation_type: probability-model-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/probability-stats
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-022-modelling-uncertainty/containers/continuous-rvs-uniform-exponential
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.022 - Modelling Uncertainty
+      target_container_kind: subject-specific
+  - id: sutd.10-022-modelling-uncertainty.joint-and-marginal-distributions
+    title: Joint and Marginal Distributions
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.022 - Modelling Uncertainty
+    discipline: probability-statistics
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 10.022 Modelling Uncertainty
+        syllabus_refs:
+          - Joint and Marginal Distributions
+    simulation_type: probability-model-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/probability-stats
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-022-modelling-uncertainty/containers/joint-and-marginal-distributions
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.022 - Modelling Uncertainty
+      target_container_kind: subject-specific
+  - id: sutd.10-022-modelling-uncertainty.linear-regression
+    title: Linear Regression
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.022 - Modelling Uncertainty
+    discipline: probability-statistics
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 10.022 Modelling Uncertainty
+        syllabus_refs:
+          - Linear Regression
+    simulation_type: probability-model-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/probability-stats
+      - core/optimization
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/10-022-modelling-uncertainty/containers/linear-regression
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.022 - Modelling Uncertainty
+      target_container_kind: subject-specific
+  - id: sutd.10-022-modelling-uncertainty.maximum-likelihood-estimation
+    title: Maximum Likelihood Estimation
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.022 - Modelling Uncertainty
+    discipline: probability-statistics
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 10.022 Modelling Uncertainty
+        syllabus_refs:
+          - Maximum Likelihood Estimation
+    simulation_type: probability-model-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/probability-stats
+      - core/optimization
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/10-022-modelling-uncertainty/containers/maximum-likelihood-estimation
+    assignment:
+      workstream: sutd-freshmore
+      concept_cluster: SUTD 10.022 - Modelling Uncertainty
+      target_container_kind: subject-specific
+  - id: sutd.10-023-designing-energy-systems.open-systems-energy-balance
+    title: Open Systems Energy Balance
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.023 - Designing Energy Systems
+    discipline: energy-systems
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 10.023 Designing Energy Systems
+        syllabus_refs:
+          - Open Systems Energy Balance
+    simulation_type: energy-system-model-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/thermodynamics
+      - core/heat-transfer
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-023-designing-energy-systems/containers/open-systems-energy-balance
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 10.023 - Designing Energy Systems
+      target_container_kind: subject-specific
+  - id: sutd.10-023-designing-energy-systems.entropy-and-carnot-efficiency
+    title: Entropy and Carnot Efficiency
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.023 - Designing Energy Systems
+    discipline: energy-systems
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 10.023 Designing Energy Systems
+        syllabus_refs:
+          - Entropy and Carnot Efficiency
+    simulation_type: energy-system-model-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/thermodynamics
+      - core/heat-transfer
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-023-designing-energy-systems/containers/entropy-and-carnot-efficiency
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 10.023 - Designing Energy Systems
+      target_container_kind: subject-specific
+  - id: sutd.30-001-structures-and-materials.load-paths-and-free-body-diagrams
+    title: Load Paths and Free-Body Diagrams
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 30.001 - Structures & Materials
+    discipline: structures-materials
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 30.001 Structures & Materials
+        syllabus_refs:
+          - Load Paths and Free-Body Diagrams
+    simulation_type: structural-response-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/structural-analysis
+      - core/materials
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/30-001-structures-and-materials/containers/load-paths-and-free-body-diagrams
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 30.001 - Structures & Materials
+      target_container_kind: subject-specific
+  - id: sutd.30-001-structures-and-materials.stress-strain-and-material-behaviour
+    title: Stress-Strain and Material Behaviour
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 30.001 - Structures & Materials
+    discipline: structures-materials
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 30.001 Structures & Materials
+        syllabus_refs:
+          - Stress-Strain and Material Behaviour
+    simulation_type: structural-response-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/structural-analysis
+      - core/materials
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/30-001-structures-and-materials/containers/stress-strain-and-material-behaviour
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 30.001 - Structures & Materials
+      target_container_kind: subject-specific
+  - id: sutd.30-001-structures-and-materials.statically-indeterminate-structures
+    title: Statically Indeterminate Structures
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 30.001 - Structures & Materials
+    discipline: structures-materials
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 30.001 Structures & Materials
+        syllabus_refs:
+          - Statically Indeterminate Structures
+    simulation_type: structural-response-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/structural-analysis
+      - core/materials
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/30-001-structures-and-materials/containers/statically-indeterminate-structures
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 30.001 - Structures & Materials
+      target_container_kind: subject-specific
+  - id: sutd.30-001-structures-and-materials.combined-loading
+    title: Combined Loading
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 30.001 - Structures & Materials
+    discipline: structures-materials
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 30.001 Structures & Materials
+        syllabus_refs:
+          - Combined Loading
+    simulation_type: structural-response-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/structural-analysis
+      - core/materials
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/30-001-structures-and-materials/containers/combined-loading
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 30.001 - Structures & Materials
+      target_container_kind: subject-specific
+  - id: sutd.30-001-structures-and-materials.fea-as-design-validation
+    title: FEA as Design Validation
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 30.001 - Structures & Materials
+    discipline: structures-materials
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 30.001 Structures & Materials
+        syllabus_refs:
+          - FEA as Design Validation
+    simulation_type: structural-response-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/structural-analysis
+      - core/materials
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/30-001-structures-and-materials/containers/fea-as-design-validation
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 30.001 - Structures & Materials
+      target_container_kind: subject-specific
+  - id: sutd.30-001-structures-and-materials.material-selection-and-failure
+    title: Material Selection and Failure
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 30.001 - Structures & Materials
+    discipline: structures-materials
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 30.001 Structures & Materials
+        syllabus_refs:
+          - Material Selection and Failure
+    simulation_type: structural-response-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/structural-analysis
+      - core/materials
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/30-001-structures-and-materials/containers/material-selection-and-failure
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 30.001 - Structures & Materials
+      target_container_kind: subject-specific
+  - id: sutd.30-103-fluid-mechanics.fluid-properties-and-reynolds-number
+    title: Fluid Properties and Reynolds Number
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 30.103 - Fluid Mechanics
+    discipline: fluid-mechanics
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 30.103 Fluid Mechanics
+        syllabus_refs:
+          - Fluid Properties and Reynolds Number
+    simulation_type: fluid-flow-visualiser
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/fluid-mechanics
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/30-103-fluid-mechanics/containers/fluid-properties-and-reynolds-number
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 30.103 - Fluid Mechanics
+      target_container_kind: subject-specific
+  - id: sutd.30-103-fluid-mechanics.hydrostatics-and-buoyancy
+    title: Hydrostatics and Buoyancy
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 30.103 - Fluid Mechanics
+    discipline: fluid-mechanics
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 30.103 Fluid Mechanics
+        syllabus_refs:
+          - Hydrostatics and Buoyancy
+    simulation_type: fluid-flow-visualiser
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/fluid-mechanics
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/30-103-fluid-mechanics/containers/hydrostatics-and-buoyancy
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 30.103 - Fluid Mechanics
+      target_container_kind: subject-specific
+  - id: sutd.30-103-fluid-mechanics.bernoulli-equation
+    title: Bernoulli Equation
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 30.103 - Fluid Mechanics
+    discipline: fluid-mechanics
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 30.103 Fluid Mechanics
+        syllabus_refs:
+          - Bernoulli Equation
+    simulation_type: fluid-flow-visualiser
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/fluid-mechanics
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/30-103-fluid-mechanics/containers/bernoulli-equation
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 30.103 - Fluid Mechanics
+      target_container_kind: subject-specific
+  - id: sutd.30-103-fluid-mechanics.control-volume-analysis
+    title: Control Volume Analysis
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 30.103 - Fluid Mechanics
+    discipline: fluid-mechanics
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 30.103 Fluid Mechanics
+        syllabus_refs:
+          - Control Volume Analysis
+    simulation_type: fluid-flow-visualiser
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/fluid-mechanics
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/30-103-fluid-mechanics/containers/control-volume-analysis
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 30.103 - Fluid Mechanics
+      target_container_kind: subject-specific
+  - id: sutd.30-103-fluid-mechanics.laminar-vs-turbulent-pipe-flow
+    title: Laminar vs Turbulent Pipe Flow
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 30.103 - Fluid Mechanics
+    discipline: fluid-mechanics
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 30.103 Fluid Mechanics
+        syllabus_refs:
+          - Laminar vs Turbulent Pipe Flow
+    simulation_type: fluid-flow-visualiser
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/fluid-mechanics
+      - core/mechanics
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/30-103-fluid-mechanics/containers/laminar-vs-turbulent-pipe-flow
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 30.103 - Fluid Mechanics
+      target_container_kind: subject-specific
+  - id: sutd.electronics-3-x.digital-electronics
+    title: Digital Electronics
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD Electronics (3.x)
+    discipline: electronics
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - Electronics (3.x)
+        syllabus_refs:
+          - Digital Electronics
+    simulation_type: electronics-circuit-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/digital-logic
+      - core/algorithm-trace
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/electronics-3-x/containers/digital-electronics
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD Electronics (3.x)
+      target_container_kind: subject-specific
+  - id: sutd.electronics-3-x.circuit-basics-ohm-and-kirchhoff
+    title: "Circuit Basics: Ohm + Kirchhoff"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD Electronics (3.x)
+    discipline: electronics
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - Electronics (3.x)
+        syllabus_refs:
+          - "Circuit Basics: Ohm + Kirchhoff"
+    simulation_type: electronics-circuit-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/circuits
+      - core/electromagnetism
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/electronics-3-x/containers/circuit-basics-ohm-and-kirchhoff
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD Electronics (3.x)
+      target_container_kind: subject-specific
+  - id: sutd.electronics-3-x.linear-network-analysis
+    title: Linear Network Analysis
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD Electronics (3.x)
+    discipline: electronics
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - Electronics (3.x)
+        syllabus_refs:
+          - Linear Network Analysis
+    simulation_type: electronics-circuit-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/circuits
+      - core/electromagnetism
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/electronics-3-x/containers/linear-network-analysis
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD Electronics (3.x)
+      target_container_kind: subject-specific
+  - id: sutd.electronics-3-x.sinusoidal-ac-analysis
+    title: Sinusoidal AC Analysis
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD Electronics (3.x)
+    discipline: electronics
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - Electronics (3.x)
+        syllabus_refs:
+          - Sinusoidal AC Analysis
+    simulation_type: electronics-circuit-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/circuits
+      - core/electromagnetism
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/electronics-3-x/containers/sinusoidal-ac-analysis
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD Electronics (3.x)
+      target_container_kind: subject-specific
+  - id: sutd.electronics-3-x.transients
+    title: Transients
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD Electronics (3.x)
+    discipline: electronics
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - Electronics (3.x)
+        syllabus_refs:
+          - Transients
+    simulation_type: electronics-circuit-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/circuits
+      - core/electromagnetism
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/electronics-3-x/containers/transients
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD Electronics (3.x)
+      target_container_kind: subject-specific
+  - id: sutd.50-004-algorithms.asymptotic-notation-and-complexity
+    title: Asymptotic Notation and Complexity
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.004 - Algorithms
+    discipline: algorithms
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 50.004 Algorithms
+        syllabus_refs:
+          - Asymptotic Notation and Complexity
+    simulation_type: algorithm-trace-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/algorithm-trace
+      - core/graph-algorithms
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-004-algorithms/containers/asymptotic-notation-and-complexity
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.004 - Algorithms
+      target_container_kind: subject-specific
+  - id: sutd.50-004-algorithms.sorting-algorithms-comparison-and-linear-time
+    title: Sorting Algorithms (Comparison + Linear-Time)
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.004 - Algorithms
+    discipline: algorithms
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 50.004 Algorithms
+        syllabus_refs:
+          - Sorting Algorithms (Comparison + Linear-Time)
+    simulation_type: algorithm-trace-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/algorithm-trace
+      - core/graph-algorithms
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-004-algorithms/containers/sorting-algorithms-comparison-and-linear-time
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.004 - Algorithms
+      target_container_kind: subject-specific
+  - id: sutd.50-004-algorithms.heaps-and-priority-queues
+    title: Heaps and Priority Queues
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.004 - Algorithms
+    discipline: algorithms
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 50.004 Algorithms
+        syllabus_refs:
+          - Heaps and Priority Queues
+    simulation_type: algorithm-trace-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/algorithm-trace
+      - core/graph-algorithms
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-004-algorithms/containers/heaps-and-priority-queues
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.004 - Algorithms
+      target_container_kind: subject-specific
+  - id: sutd.50-004-algorithms.binary-search-trees-and-avl-self-balancing
+    title: Binary Search Trees + AVL Self-Balancing
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.004 - Algorithms
+    discipline: algorithms
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 50.004 Algorithms
+        syllabus_refs:
+          - Binary Search Trees + AVL Self-Balancing
+    simulation_type: algorithm-trace-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/algorithm-trace
+      - core/graph-algorithms
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-004-algorithms/containers/binary-search-trees-and-avl-self-balancing
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.004 - Algorithms
+      target_container_kind: subject-specific
+  - id: sutd.50-004-algorithms.hashing-and-hash-tables
+    title: Hashing and Hash Tables
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.004 - Algorithms
+    discipline: algorithms
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 50.004 Algorithms
+        syllabus_refs:
+          - Hashing and Hash Tables
+    simulation_type: algorithm-trace-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/algorithm-trace
+      - core/graph-algorithms
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-004-algorithms/containers/hashing-and-hash-tables
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.004 - Algorithms
+      target_container_kind: subject-specific
+  - id: sutd.50-004-algorithms.graph-search-bfs-dfs-topological-sort
+    title: "Graph Search: BFS, DFS, Topological Sort"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.004 - Algorithms
+    discipline: algorithms
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 50.004 Algorithms
+        syllabus_refs:
+          - "Graph Search: BFS, DFS, Topological Sort"
+    simulation_type: algorithm-trace-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/graph-algorithms
+      - core/algorithm-trace
+      - core/graph-layout
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-004-algorithms/containers/graph-search-bfs-dfs-topological-sort
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.004 - Algorithms
+      target_container_kind: subject-specific
+  - id: sutd.50-004-algorithms.shortest-path-bellman-ford-and-dijkstra
+    title: "Shortest Path: Bellman-Ford + Dijkstra"
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.004 - Algorithms
+    discipline: algorithms
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 50.004 Algorithms
+        syllabus_refs:
+          - "Shortest Path: Bellman-Ford + Dijkstra"
+    simulation_type: algorithm-trace-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/graph-algorithms
+      - core/algorithm-trace
+      - core/graph-layout
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-004-algorithms/containers/shortest-path-bellman-ford-and-dijkstra
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.004 - Algorithms
+      target_container_kind: subject-specific
+  - id: sutd.50-004-algorithms.dynamic-programming
+    title: Dynamic Programming
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.004 - Algorithms
+    discipline: algorithms
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 50.004 Algorithms
+        syllabus_refs:
+          - Dynamic Programming
+    simulation_type: algorithm-trace-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/algorithm-trace
+      - core/graph-algorithms
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-004-algorithms/containers/dynamic-programming
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.004 - Algorithms
+      target_container_kind: subject-specific
+  - id: sutd.50-043-database-systems.relational-model-and-er-diagrams
+    title: Relational Model and ER Diagrams
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.043 - Database Systems
+    discipline: database-systems
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 50.043 Database Systems
+        syllabus_refs:
+          - Relational Model and ER Diagrams
+    simulation_type: database-query-model-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/relational-data
+      - core/graph-layout
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-043-database-systems/containers/relational-model-and-er-diagrams
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.043 - Database Systems
+      target_container_kind: subject-specific
+  - id: sutd.50-043-database-systems.sql-fundamentals-and-joins-and-aggregation
+    title: SQL Fundamentals + Joins + Aggregation
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.043 - Database Systems
+    discipline: database-systems
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 50.043 Database Systems
+        syllabus_refs:
+          - SQL Fundamentals + Joins + Aggregation
+    simulation_type: database-query-model-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/relational-data
+      - core/graph-layout
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-043-database-systems/containers/sql-fundamentals-and-joins-and-aggregation
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.043 - Database Systems
+      target_container_kind: subject-specific
+  - id: sutd.50-043-database-systems.functional-dependencies-and-normalization
+    title: Functional Dependencies and Normalization
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.043 - Database Systems
+    discipline: database-systems
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 50.043 Database Systems
+        syllabus_refs:
+          - Functional Dependencies and Normalization
+    simulation_type: database-query-model-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/functional-dependencies
+      - core/relational-data
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-043-database-systems/containers/functional-dependencies-and-normalization
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.043 - Database Systems
+      target_container_kind: subject-specific
+  - id: sutd.50-043-database-systems.indexing-and-query-optimisation
+    title: Indexing and Query Optimisation
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.043 - Database Systems
+    discipline: database-systems
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 50.043 Database Systems
+        syllabus_refs:
+          - Indexing and Query Optimisation
+    simulation_type: database-query-model-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/indexing-query-cost
+      - core/relational-data
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-043-database-systems/containers/indexing-and-query-optimisation
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.043 - Database Systems
+      target_container_kind: subject-specific
+  - id: sutd.50-043-database-systems.transactions-acid-concurrency-control
+    title: Transactions, ACID, Concurrency Control
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 50.043 - Database Systems
+    discipline: database-systems
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 50.043 Database Systems
+        syllabus_refs:
+          - Transactions, ACID, Concurrency Control
+    simulation_type: database-query-model-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/transactions
+      - core/relational-data
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/50-043-database-systems/containers/transactions-acid-concurrency-control
+    assignment:
+      workstream: sutd-istd
+      concept_cluster: SUTD 50.043 - Database Systems
+      target_container_kind: subject-specific
+  - id: sutd.10-023-designing-energy-systems.exergy-and-system-optimisation
+    title: Exergy and System Optimisation
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.023 - Designing Energy Systems
+    discipline: energy-systems
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 10.023 Designing Energy Systems
+        syllabus_refs:
+          - Exergy and System Optimisation
+    simulation_type: energy-system-model-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/thermodynamics
+      - core/heat-transfer
+      - core/optimization
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-023-designing-energy-systems/containers/exergy-and-system-optimisation
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 10.023 - Designing Energy Systems
+      target_container_kind: subject-specific
+  - id: sutd.10-023-designing-energy-systems.photovoltaics-and-iv-curve
+    title: Photovoltaics and IV Curve
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.023 - Designing Energy Systems
+    discipline: energy-systems
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 10.023 Designing Energy Systems
+        syllabus_refs:
+          - Photovoltaics and IV Curve
+    simulation_type: energy-system-model-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/electromagnetism
+      - core/circuits
+      - core/charting
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: H
+    repo:
+      container_path: sutd/content/10-023-designing-energy-systems/containers/photovoltaics-and-iv-curve
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 10.023 - Designing Energy Systems
+      target_container_kind: subject-specific
+  - id: sutd.10-023-designing-energy-systems.battery-sizing-and-solar-placement
+    title: Battery Sizing and Solar Placement
+    priority: P1
+    status: ready-for-build
+    cluster: SUTD 10.023 - Designing Energy Systems
+    discipline: energy-systems
+    reuse_status: subject-specific
+    curricula:
+      - sutd
+    curriculum_mappings:
+      - curriculum: sutd
+        courses:
+          - 10.023 Designing Energy Systems
+        syllabus_refs:
+          - Battery Sizing and Solar Placement
+    simulation_type: energy-system-model-lab
+    problem_solving_elements:
+      - prediction gate
+      - formula and substitution panel
+      - visual model readout
+      - transfer prompt
+    concept_map_needs:
+      prerequisites:
+        - foundational notation
+        - core definitions
+      downstream:
+        - applied modelling
+        - system design
+      misconceptions:
+        - treating the formula as a memorised procedure instead of a model
+    kernel_dependencies:
+      - core/circuits
+      - core/optimization
+      - core/thermodynamics
+      - core/prediction-gate
+      - core/ui-sim
+    repo_package_name: sutd-sims
+    estimated_effort: M
+    repo:
+      container_path: sutd/content/10-023-designing-energy-systems/containers/battery-sizing-and-solar-placement
+    assignment:
+      workstream: sutd-epd
+      concept_cluster: SUTD 10.023 - Designing Energy Systems
       target_container_kind: subject-specific
 
   - id: sutd.freshmore.bayes-updating

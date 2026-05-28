@@ -7,8 +7,9 @@ generated_from: PAIDEIA_CONTAINER_TABLES_V2.md
 generated_on: "2026-05-24"
 entry_count: 197
 status_counts:
-  planned: 185
-  ready-for-build: 12
+  planned: 139
+  ready-for-build: 44
+  reviewed: 14
 status_policy:
   planned: "Backlog item copied from the reference table; not assigned yet."
   ready-for-build: "Small starter wave approved for one-container-per-PR builds."
@@ -19,7 +20,7 @@ starter_wave_note: "Only the entries marked ready-for-build should be assigned n
 
 entries:
   - queue_id: "alevel.physics.physical-quantities-and-units"
-    status: "ready-for-build"
+    status: "reviewed"
     concept_title: "Physical Quantities and Units"
     curriculum: "a-level"
     subject: "physics"
@@ -49,7 +50,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "alevel.physics.resolving-vectors"
-    status: "ready-for-build"
+    status: "reviewed"
     concept_title: "Resolving Vectors"
     curriculum: "a-level"
     subject: "physics"
@@ -64,7 +65,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "alevel.physics.kinematics-in-1d"
-    status: "ready-for-build"
+    status: "reviewed"
     concept_title: "Kinematics in 1D"
     curriculum: "a-level"
     subject: "physics"
@@ -94,7 +95,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "alevel.physics.forces-and-equilibrium"
-    status: "ready-for-build"
+    status: "reviewed"
     concept_title: "Forces and Equilibrium"
     curriculum: "a-level"
     subject: "physics"
@@ -109,7 +110,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "alevel.physics.work-energy-power"
-    status: "ready-for-build"
+    status: "reviewed"
     concept_title: "Work, Energy, Power"
     curriculum: "a-level"
     subject: "physics"
@@ -349,7 +350,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "alevel.mathematics.normal-distribution"
-    status: "ready-for-build"
+    status: "reviewed"
     concept_title: "Normal Distribution"
     curriculum: "a-level"
     subject: "mathematics"
@@ -364,7 +365,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "alevel.mathematics.hypothesis-testing"
-    status: "ready-for-build"
+    status: "reviewed"
     concept_title: "Hypothesis Testing"
     curriculum: "a-level"
     subject: "mathematics"
@@ -829,7 +830,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-019-science-and-technology-for-healthcare.cell-structure-and-the-membrane"
-    status: "planned"
+    status: "reviewed"
     concept_title: "Cell Structure and the Membrane"
     curriculum: "sutd"
     subject: "10-019-science-and-technology-for-healthcare"
@@ -844,7 +845,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-019-science-and-technology-for-healthcare.protein-folding-and-function"
-    status: "planned"
+    status: "reviewed"
     concept_title: "Protein Folding and Function"
     curriculum: "sutd"
     subject: "10-019-science-and-technology-for-healthcare"
@@ -859,7 +860,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-019-science-and-technology-for-healthcare.gene-expression-dna-to-rna-to-protein"
-    status: "planned"
+    status: "reviewed"
     concept_title: "Gene Expression: DNA  to  RNA  to  Protein"
     curriculum: "sutd"
     subject: "10-019-science-and-technology-for-healthcare"
@@ -874,7 +875,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-019-science-and-technology-for-healthcare.cell-signalling-pathways"
-    status: "planned"
+    status: "reviewed"
     concept_title: "Cell Signalling Pathways"
     curriculum: "sutd"
     subject: "10-019-science-and-technology-for-healthcare"
@@ -889,7 +890,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-019-science-and-technology-for-healthcare.cell-cycle-and-mitosis-meiosis"
-    status: "planned"
+    status: "reviewed"
     concept_title: "Cell Cycle and Mitosis / Meiosis"
     curriculum: "sutd"
     subject: "10-019-science-and-technology-for-healthcare"
@@ -904,7 +905,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-019-science-and-technology-for-healthcare.immune-system-and-vaccines"
-    status: "planned"
+    status: "reviewed"
     concept_title: "Immune System and Vaccines"
     curriculum: "sutd"
     subject: "10-019-science-and-technology-for-healthcare"
@@ -919,7 +920,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-019-science-and-technology-for-healthcare.cancer-genetics-and-therapy"
-    status: "planned"
+    status: "reviewed"
     concept_title: "Cancer Genetics and Therapy"
     curriculum: "sutd"
     subject: "10-019-science-and-technology-for-healthcare"
@@ -949,7 +950,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.discrete-rvs-geometric-binomial-poisson"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Discrete RVs: Geometric, Binomial, Poisson"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"
@@ -964,7 +965,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.continuous-rvs-uniform-exponential"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Continuous RVs: Uniform, Exponential"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"
@@ -979,7 +980,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.joint-and-marginal-distributions"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Joint and Marginal Distributions"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"
@@ -1009,7 +1010,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.linear-regression"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Linear Regression"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"
@@ -1024,7 +1025,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.maximum-likelihood-estimation"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Maximum Likelihood Estimation"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"
@@ -1054,7 +1055,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-023-designing-energy-systems.open-systems-energy-balance"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Open Systems Energy Balance"
     curriculum: "sutd"
     subject: "10-023-designing-energy-systems"
@@ -1069,7 +1070,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-023-designing-energy-systems.entropy-and-carnot-efficiency"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Entropy and Carnot Efficiency"
     curriculum: "sutd"
     subject: "10-023-designing-energy-systems"
@@ -1084,7 +1085,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-023-designing-energy-systems.exergy-and-system-optimisation"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Exergy and System Optimisation"
     curriculum: "sutd"
     subject: "10-023-designing-energy-systems"
@@ -1099,7 +1100,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-023-designing-energy-systems.photovoltaics-and-iv-curve"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Photovoltaics and IV Curve"
     curriculum: "sutd"
     subject: "10-023-designing-energy-systems"
@@ -1114,7 +1115,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-023-designing-energy-systems.battery-sizing-and-solar-placement"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Battery Sizing and Solar Placement"
     curriculum: "sutd"
     subject: "10-023-designing-energy-systems"
@@ -1129,7 +1130,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.30-001-structures-and-materials.load-paths-and-free-body-diagrams"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Load Paths and Free-Body Diagrams"
     curriculum: "sutd"
     subject: "30-001-structures-and-materials"
@@ -1144,7 +1145,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.30-001-structures-and-materials.stress-strain-and-material-behaviour"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Stress-Strain and Material Behaviour"
     curriculum: "sutd"
     subject: "30-001-structures-and-materials"
@@ -1159,7 +1160,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.30-001-structures-and-materials.statically-indeterminate-structures"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Statically Indeterminate Structures"
     curriculum: "sutd"
     subject: "30-001-structures-and-materials"
@@ -1174,7 +1175,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.30-001-structures-and-materials.combined-loading"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Combined Loading"
     curriculum: "sutd"
     subject: "30-001-structures-and-materials"
@@ -1189,7 +1190,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.30-001-structures-and-materials.fea-as-design-validation"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "FEA as Design Validation"
     curriculum: "sutd"
     subject: "30-001-structures-and-materials"
@@ -1204,7 +1205,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.30-001-structures-and-materials.material-selection-and-failure"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Material Selection and Failure"
     curriculum: "sutd"
     subject: "30-001-structures-and-materials"
@@ -1219,7 +1220,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.30-103-fluid-mechanics.fluid-properties-and-reynolds-number"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Fluid Properties and Reynolds Number"
     curriculum: "sutd"
     subject: "30-103-fluid-mechanics"
@@ -1234,7 +1235,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.30-103-fluid-mechanics.hydrostatics-and-buoyancy"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Hydrostatics and Buoyancy"
     curriculum: "sutd"
     subject: "30-103-fluid-mechanics"
@@ -1249,7 +1250,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.30-103-fluid-mechanics.bernoulli-equation"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Bernoulli Equation"
     curriculum: "sutd"
     subject: "30-103-fluid-mechanics"
@@ -1264,7 +1265,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.30-103-fluid-mechanics.control-volume-analysis"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Control Volume Analysis"
     curriculum: "sutd"
     subject: "30-103-fluid-mechanics"
@@ -1294,7 +1295,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.30-103-fluid-mechanics.laminar-vs-turbulent-pipe-flow"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Laminar vs Turbulent Pipe Flow"
     curriculum: "sutd"
     subject: "30-103-fluid-mechanics"
@@ -1474,7 +1475,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.electronics-3-x.digital-electronics"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Digital Electronics"
     curriculum: "sutd"
     subject: "electronics-3-x"
@@ -1489,7 +1490,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.electronics-3-x.circuit-basics-ohm-and-kirchhoff"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Circuit Basics: Ohm + Kirchhoff"
     curriculum: "sutd"
     subject: "electronics-3-x"
@@ -1504,7 +1505,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.electronics-3-x.linear-network-analysis"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Linear Network Analysis"
     curriculum: "sutd"
     subject: "electronics-3-x"
@@ -1519,7 +1520,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.electronics-3-x.sinusoidal-ac-analysis"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Sinusoidal AC Analysis"
     curriculum: "sutd"
     subject: "electronics-3-x"
@@ -1579,7 +1580,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.electronics-3-x.transients"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Transients"
     curriculum: "sutd"
     subject: "electronics-3-x"
@@ -1849,7 +1850,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-004-algorithms.asymptotic-notation-and-complexity"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Asymptotic Notation and Complexity"
     curriculum: "sutd"
     subject: "50-004-algorithms"
@@ -1864,7 +1865,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-004-algorithms.sorting-algorithms-comparison-and-linear-time"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Sorting Algorithms (Comparison + Linear-Time)"
     curriculum: "sutd"
     subject: "50-004-algorithms"
@@ -1879,7 +1880,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-004-algorithms.heaps-and-priority-queues"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Heaps and Priority Queues"
     curriculum: "sutd"
     subject: "50-004-algorithms"
@@ -1894,7 +1895,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-004-algorithms.binary-search-trees-and-avl-self-balancing"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Binary Search Trees + AVL Self-Balancing"
     curriculum: "sutd"
     subject: "50-004-algorithms"
@@ -1909,7 +1910,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-004-algorithms.hashing-and-hash-tables"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Hashing and Hash Tables"
     curriculum: "sutd"
     subject: "50-004-algorithms"
@@ -1924,7 +1925,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-004-algorithms.graph-search-bfs-dfs-topological-sort"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Graph Search: BFS, DFS, Topological Sort"
     curriculum: "sutd"
     subject: "50-004-algorithms"
@@ -1939,7 +1940,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-004-algorithms.shortest-path-bellman-ford-and-dijkstra"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Shortest Path: Bellman-Ford + Dijkstra"
     curriculum: "sutd"
     subject: "50-004-algorithms"
@@ -1954,7 +1955,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-004-algorithms.dynamic-programming"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Dynamic Programming"
     curriculum: "sutd"
     subject: "50-004-algorithms"
@@ -2344,7 +2345,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-043-database-systems.relational-model-and-er-diagrams"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Relational Model and ER Diagrams"
     curriculum: "sutd"
     subject: "50-043-database-systems"
@@ -2359,7 +2360,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-043-database-systems.sql-fundamentals-and-joins-and-aggregation"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "SQL Fundamentals + Joins + Aggregation"
     curriculum: "sutd"
     subject: "50-043-database-systems"
@@ -2374,7 +2375,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-043-database-systems.functional-dependencies-and-normalization"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Functional Dependencies and Normalization"
     curriculum: "sutd"
     subject: "50-043-database-systems"
@@ -2389,7 +2390,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-043-database-systems.indexing-and-query-optimisation"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Indexing and Query Optimisation"
     curriculum: "sutd"
     subject: "50-043-database-systems"
@@ -2404,7 +2405,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.50-043-database-systems.transactions-acid-concurrency-control"
-    status: "planned"
+    status: "ready-for-build"
     concept_title: "Transactions, ACID, Concurrency Control"
     curriculum: "sutd"
     subject: "50-043-database-systems"

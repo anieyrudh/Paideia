@@ -206,7 +206,7 @@ export const membraneEvidence = (
   });
   if (!diffusionTime.ok) return diffusionTime;
 
-  const pK = permeability(Math.max(1e-9, raw.permeabilityK));
+  const pK = permeability(Math.max(0, raw.permeabilityK));
   if (!pK.ok) return pK;
   const pNa = permeability(Math.max(0, raw.permeabilityNa));
   if (!pNa.ok) return pNa;
@@ -282,21 +282,19 @@ export const membraneEvidence = (
   if (!eCl.ok) return eCl;
 
   return ok({
-    restingVoltageMillivolts: (restingVoltage.value as unknown as number) * 1000,
-    potassiumNernstMillivolts: (eK.value as unknown as number) * 1000,
-    sodiumNernstMillivolts: (eNa.value as unknown as number) * 1000,
-    chlorideNernstMillivolts: (eCl.value as unknown as number) * 1000,
+    restingVoltageMillivolts: Number(restingVoltage.value) * 1000,
+    potassiumNernstMillivolts: Number(eK.value) * 1000,
+    sodiumNernstMillivolts: Number(eNa.value) * 1000,
+    chlorideNernstMillivolts: Number(eCl.value) * 1000,
     dominantIon: pickDominantIon(
       raw.permeabilityK,
       raw.permeabilityNa,
       raw.permeabilityCl,
     ),
-    surfaceToVolumeRatioPerMetre:
-      shape.value.surfaceToVolumeRatio as unknown as number,
-    surfaceAreaSquareMetres: shape.value.surfaceArea as unknown as number,
-    volumeCubicMetres: shape.value.volume as unknown as number,
-    diffusionTimeMilliseconds:
-      (diffusionTime.value as unknown as number) * 1000,
+    surfaceToVolumeRatioPerMetre: Number(shape.value.surfaceToVolumeRatio),
+    surfaceAreaSquareMetres: Number(shape.value.surfaceArea),
+    volumeCubicMetres: Number(shape.value.volume),
+    diffusionTimeMilliseconds: Number(diffusionTime.value) * 1000,
   });
 };
 
