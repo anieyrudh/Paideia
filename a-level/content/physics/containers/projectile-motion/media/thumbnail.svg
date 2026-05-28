@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Projectile motion thumbnail</title>
+  <desc id="desc">A projectile arc with horizontal and vertical component arrows.</desc>
+  <rect width="640" height="360" fill="#f8fbff"/>
+  <line x1="72" y1="294" x2="568" y2="294" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+  <path d="M96 294 C190 132 344 74 532 294" fill="none" stroke="#2563eb" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="96" cy="294" r="16" fill="#d97706"/>
+  <circle cx="532" cy="294" r="16" fill="#059669"/>
+  <line x1="112" y1="276" x2="220" y2="194" stroke="#d97706" stroke-width="8" stroke-linecap="round"/>
+  <path d="M226 190 L202 190 L216 210 Z" fill="#d97706" transform="rotate(-38 216 200)"/>
+  <line x1="112" y1="316" x2="250" y2="316" stroke="#0f766e" stroke-width="7" stroke-linecap="round"/>
+  <path d="M260 316 L238 304 L238 328 Z" fill="#0f766e"/>
+  <line x1="88" y1="276" x2="88" y2="174" stroke="#b42318" stroke-width="7" stroke-linecap="round"/>
+  <path d="M88 164 L76 186 L100 186 Z" fill="#b42318"/>
+  <text x="72" y="58" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="800">Projectile Motion</text>
+  <text x="72" y="92" fill="#334155" font-family="Inter, Arial, sans-serif" font-size="18">resolve launch velocity, then let gravity bend the path</text>
+</svg>

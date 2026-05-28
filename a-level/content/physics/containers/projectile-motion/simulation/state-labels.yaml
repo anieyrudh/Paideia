@@ -1,0 +1,8 @@
+state_labels:
+  launchSpeedMetresPerSecond: "launch speed"
+  launchAngleDegrees: "launch angle"
+  launchHeightMetres: "launch height"
+  gravityMetresPerSecondSquared: "gravitational acceleration"
+  rangeMetres: "horizontal range"
+  flightTimeSeconds: "time of flight"
+  peakHeightMetres: "peak height"

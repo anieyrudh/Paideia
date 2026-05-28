@@ -1,0 +1,23 @@
+# Projectile Motion Mindmap
+
+- Projectile motion
+  - Prerequisites
+    - Kinematics in one dimension
+    - Resolving vectors
+  - Core idea
+    - Resolve launch velocity into horizontal and vertical components
+    - Horizontal velocity is constant without air resistance
+    - Vertical velocity changes under downward acceleration `g`
+  - Quantities
+    - Range
+    - Time of flight
+    - Peak height
+    - Launch speed and launch angle
+  - Misconceptions
+    - Gravity slows horizontal velocity
+    - A continuing forward force is needed
+    - Launch angle changes gravitational acceleration
+  - Transfer
+    - Water jet range
+    - Sports ball launch
+    - Package dropped from a moving vehicle

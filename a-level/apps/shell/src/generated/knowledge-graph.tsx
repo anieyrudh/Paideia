@@ -16,11 +16,12 @@ import GeneratedSim12MagneticFieldsMagneticForceDirectionLab from "@paideia/a-le
 import GeneratedSim13MomentumMomentumCollisionLab from "@paideia/a-level-physics-sims/momentum";
 import GeneratedSim14OscillationsSimpleHarmonicMotionLab from "@paideia/a-level-physics-sims/oscillations";
 import GeneratedSim15PhysicalQuantitiesAndUnitsMeasurementUncertaintyLab from "@paideia/a-level-physics-sims/measurement-uncertainty";
-import GeneratedSim16ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
-import GeneratedSim17ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
-import GeneratedSim18ThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
-import GeneratedSim19WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
-import GeneratedSim20WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
+import GeneratedSim16ProjectileMotionTrajectoryParameterLab from "@paideia/a-level-physics-sims/projectile-motion";
+import GeneratedSim17ResolvingVectorsComponentResolution from "@paideia/a-level-physics-sims/resolving-vectors";
+import GeneratedSim18ScalarsAndVectorsResultantMagnitude from "@paideia/a-level-physics-sims/resultant-magnitude";
+import GeneratedSim19ThermalPhysicsGasLawEnergyTransferLab from "@paideia/a-level-physics-sims/thermal-physics";
+import GeneratedSim20WavesWaveSuperpositionLab from "@paideia/a-level-physics-sims/waves";
+import GeneratedSim21WorkEnergyPowerEnergyTransferLab from "@paideia/a-level-physics-sims/work-energy-power";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -221,6 +222,15 @@ export const knowledgeGraph = {
     status: "reviewed",
   },
   {
+    id: "a-level/physics/projectile-motion",
+    conceptId: "projectile-motion",
+    title: "Projectile Motion",
+    subject: "physics",
+    level: "H2",
+    module: "Foundations of Physics",
+    status: "reviewed",
+  },
+  {
     id: "a-level/physics/resolving-vectors",
     conceptId: "resolving-vectors",
     title: "Resolving Vectors",
@@ -353,6 +363,11 @@ export const knowledgeGraph = {
   { from: "a-level/physics/oscillations", to: "a-level/physics/waves", kind: "sibling" },
   { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/scalars-and-vectors", kind: "downstream" },
   { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/resolving-vectors", kind: "downstream" },
+  { from: "a-level/physics/kinematics-in-one-dimension", to: "a-level/physics/projectile-motion", kind: "prerequisite" },
+  { from: "a-level/physics/resolving-vectors", to: "a-level/physics/projectile-motion", kind: "prerequisite" },
+  { from: "a-level/physics/projectile-motion", to: "a-level/physics/circular-motion", kind: "downstream" },
+  { from: "a-level/physics/projectile-motion", to: "a-level/physics/gravitational-fields", kind: "downstream" },
+  { from: "a-level/physics/projectile-motion", to: "a-level/physics/momentum", kind: "sibling" },
   { from: "a-level/physics/physical-quantities-and-units", to: "a-level/physics/resolving-vectors", kind: "prerequisite" },
   { from: "a-level/physics/scalars-and-vectors", to: "a-level/physics/resolving-vectors", kind: "prerequisite" },
   { from: "a-level/physics/resolving-vectors", to: "a-level/physics/kinematics-in-one-dimension", kind: "downstream" },
@@ -1384,6 +1399,69 @@ export const containers = [
     ],
   },
   {
+    id: "a-level/physics/projectile-motion",
+    branch: "a-level",
+    subject: "Physics",
+    level: "H2",
+    module: "Foundations of Physics",
+    title: "Projectile Motion",
+    summary: "Resolve a launch into independent horizontal and vertical motion to predict a projectile's path.",
+    syllabusRef: "9478 / Section II / Projectile motion",
+    status: "reviewed",
+    packageId: "projectile-motion",
+    simId: "trajectory-parameter-lab",
+    predictPrompt: "A ball is launched horizontally from a bench. Before revealing the path, what happens to its horizontal velocity while it falls?",
+    aidTypes: [
+      "simulation",
+      "misconception-audit",
+      "transfer-problem",
+    ],
+    misconceptions: [
+      "Horizontal and vertical motion affect each other directly",
+      "A projectile needs a continuing forward force",
+      "Launch angle changes gravitational acceleration",
+    ],
+    transferProblem: "A water jet leaves a hose 1.2 m above the ground at 9.0 m s^-1 and 25 degrees above the horizontal. Estimate its range, then explain which part of the calculation would change if the launch height were doubled.",
+    firstPrinciples: "",
+    keyDefinitions: [
+      "Projectile: an object that has been launched and then moves only under gravity in the model.",
+      "Range: the horizontal distance from launch point to landing point.",
+      "Time of flight: the total time between launch and landing.",
+      "Peak height: the greatest vertical position reached by the projectile.",
+      "Components: horizontal and vertical parts of the initial velocity.",
+    ],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "Draw horizontal and vertical components",
+      "Resolve launch velocity into u_x and u_y",
+      "Use vertical motion to find time of flight",
+      "Choose the positive landing time",
+      "Multiply horizontal velocity by time",
+      "Check units and signs",
+      "Explain component independence",
+    ],
+    prerequisites: [
+      "Kinematics in One Dimension",
+      "Resolving Vectors",
+    ],
+    downstream: [
+      "Circular Motion",
+      "Gravitational Fields",
+    ],
+    siblings: [
+      "Momentum",
+    ],
+    sims: [
+      {
+        id: "trajectory-parameter-lab",
+        harnessId: "a-level/physics/projectile-motion/trajectory-parameter-lab",
+        title: "Trajectory Parameter Lab",
+        interactionType: "function-plot-with-draggable",
+        component: GeneratedSim16ProjectileMotionTrajectoryParameterLab,
+      },
+    ],
+  },
+  {
     id: "a-level/physics/resolving-vectors",
     branch: "a-level",
     subject: "Physics",
@@ -1442,7 +1520,7 @@ export const containers = [
         harnessId: "a-level/physics/resolving-vectors/component-resolution",
         title: "Component Resolution Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim16ResolvingVectorsComponentResolution,
+        component: GeneratedSim17ResolvingVectorsComponentResolution,
       },
     ],
   },
@@ -1504,7 +1582,7 @@ export const containers = [
         harnessId: "a-level/physics/scalars-and-vectors/resultant-magnitude",
         title: "Resultant Magnitude Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim17ScalarsAndVectorsResultantMagnitude,
+        component: GeneratedSim18ScalarsAndVectorsResultantMagnitude,
       },
     ],
   },
@@ -1572,7 +1650,7 @@ export const containers = [
         harnessId: "a-level/physics/thermal-physics/gas-law-energy-transfer-lab",
         title: "Gas Law and Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim18ThermalPhysicsGasLawEnergyTransferLab,
+        component: GeneratedSim19ThermalPhysicsGasLawEnergyTransferLab,
       },
     ],
   },
@@ -1636,7 +1714,7 @@ export const containers = [
         harnessId: "a-level/physics/waves/wave-superposition-lab",
         title: "Wave Superposition Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim19WavesWaveSuperpositionLab,
+        component: GeneratedSim20WavesWaveSuperpositionLab,
       },
     ],
   },
@@ -1701,7 +1779,7 @@ export const containers = [
         harnessId: "a-level/physics/work-energy-power/energy-transfer-lab",
         title: "Energy Transfer Lab",
         interactionType: "animation-playback",
-        component: GeneratedSim20WorkEnergyPowerEnergyTransferLab,
+        component: GeneratedSim21WorkEnergyPowerEnergyTransferLab,
       },
     ],
   }
