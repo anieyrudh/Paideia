@@ -2015,7 +2015,7 @@ export const containers = [
     status: "draft",
     packageId: "cancer-genetics-and-therapy",
     simId: "cancer-genetics-and-therapy",
-    predictPrompt: "A clone has 3 driver mutations with per-driver fitness advantage s = 0.1. After 20 cell generations starting from size 10, what is the clone size relative to a passenger-only clone (drivers = 0) starting from the same size?\ncommit_format:\n  kind: multiple-choice\n  options:\n  - \"About 304x baseline, so about 3045 cells from a starting size of 10.\"\n  - \"About 60; ratio is 3 * 20 because effects add.\"\n  - \"About 200; ratio is 20 because only generations matter.\"\n  - \"Exactly 1; drivers do not change cell number.\"\ncorrect_index: 0",
+    predictPrompt: "A clone has 3 driver mutations with per-driver fitness advantage s = 0.1. After 20 cell generations starting from size 10, what is the clone size relative to a passenger-only clone (drivers = 0) starting from the same size?",
     aidTypes: [
       "simulation",
       "transfer-problem",
