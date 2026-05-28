@@ -1,0 +1,25 @@
+presets:
+  - id: warm-panel
+    label: "Warm plant-room panel"
+    state:
+      hotTemperatureCelsius: 75
+      coldTemperatureCelsius: 25
+      thicknessMetres: 0.16
+      convectionCoefficientWattsPerSquareMetreKelvin: 12
+      emissivity: 0.8
+  - id: insulated-panel
+    label: "Thicker insulation"
+    state:
+      hotTemperatureCelsius: 75
+      coldTemperatureCelsius: 25
+      thicknessMetres: 0.32
+      convectionCoefficientWattsPerSquareMetreKelvin: 12
+      emissivity: 0.8
+  - id: forced-air
+    label: "Forced convection"
+    state:
+      hotTemperatureCelsius: 75
+      coldTemperatureCelsius: 25
+      thicknessMetres: 0.16
+      convectionCoefficientWattsPerSquareMetreKelvin: 28
+      emissivity: 0.8

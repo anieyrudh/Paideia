@@ -1,0 +1,8 @@
+state_labels:
+  hotTemperatureCelsius: "Hot surface temperature"
+  coldTemperatureCelsius: "Ambient temperature"
+  areaSquareMetres: "Transfer area"
+  thicknessMetres: "Wall thickness"
+  conductivityWattsPerMetreKelvin: "Thermal conductivity"
+  convectionCoefficientWattsPerSquareMetreKelvin: "Convection coefficient"
+  emissivity: "Surface emissivity"

@@ -17,6 +17,7 @@
     { "path": "../../../core/dynamical-systems" },
     { "path": "../../../core/graph-algorithms" },
     { "path": "../../../core/graph-layout" },
+    { "path": "../../../core/heat-transfer" },
     { "path": "../../../core/linear-algebra" },
     { "path": "../../../core/mechanics" },
     { "path": "../../../core/numerical-math" },

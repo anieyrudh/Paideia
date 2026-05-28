@@ -1,0 +1,64 @@
+id: heat-flow-comparison-lab
+title: "Heat Flow Comparison Lab"
+interaction_type: systems-flow-diagram
+kernel_deps:
+  - core/content-schema
+  - core/heat-transfer
+  - core/prediction-gate
+  - core/shared
+  - core/thermodynamics
+  - core/ui-sim
+predict:
+  prompt: |
+    A hot panel loses heat to cooler surroundings. If the temperature difference doubles while geometry stays fixed, what happens to conduction and convection heat rates?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "They approximately double because both are proportional to Delta T."
+      - "They stay unchanged because only material choice matters."
+      - "They become zero because heat and temperature are the same quantity."
+      - "They halve because the heat has farther to travel."
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: hot-temperature
+      label: "Hot surface temperature"
+      kind: slider
+      kernel_binding: state.hotTemperatureCelsius
+      bounds: { min: 30, max: 120, step: 1 }
+    - id: cold-temperature
+      label: "Ambient temperature"
+      kind: slider
+      kernel_binding: state.coldTemperatureCelsius
+      bounds: { min: 0, max: 35, step: 1 }
+    - id: panel-thickness
+      label: "Wall thickness"
+      kind: slider
+      kernel_binding: state.thicknessMetres
+      bounds: { min: 0.04, max: 0.4, step: 0.01 }
+    - id: convection-coefficient
+      label: "Convection coefficient"
+      kind: slider
+      kernel_binding: state.convectionCoefficientWattsPerSquareMetreKelvin
+      bounds: { min: 4, max: 35, step: 1 }
+    - id: emissivity
+      label: "Surface emissivity"
+      kind: slider
+      kernel_binding: state.emissivity
+      bounds: { min: 0.1, max: 0.95, step: 0.05 }
+observe:
+  renderers:
+    - id: heat-flow-comparison-lab
+      module: "@paideia/sutd-sims/heat-transfer-modes"
+      symbol: HeatTransferModes
+      props_binding: |
+        Compare conduction, convection, and radiation heat-flow rates with formula substitution and visual bars.
+explain:
+  prompt: |
+    Which mode is controlled by material thickness, which by fluid motion, and which by absolute temperature?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Heat and temperature are the same quantity"
+    - "Radiation needs air or a contact path"
+    - "Conduction depends only on area and not on thickness"

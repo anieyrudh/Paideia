@@ -1,0 +1,121 @@
+schema_version: "1.0.0"
+id: heat-transfer-modes
+aliases:
+  - conduction convection radiation
+  - heat flow modes
+  - thermal transfer modes
+branch: sutd
+subject: 10-023-designing-energy-systems
+level: "10.023"
+module: "Designing Energy Systems"
+title: "Heat Transfer Modes"
+one_line_summary: "Compare conduction, convection, and radiation as different pathways for heat-flow rate."
+syllabus_ref: "SUTD 10.023 / Conduction, convection, and radiation"
+prerequisites:
+  - temperature
+  - energy-conservation
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A hot panel loses heat to cooler surroundings. If the temperature difference doubles while geometry stays fixed, what happens to conduction and convection heat rates?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "They approximately double because both are proportional to Delta T."
+      - "They stay unchanged because only material choice matters."
+      - "They become zero because heat and temperature are the same quantity."
+      - "They halve because the heat has farther to travel."
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: insulated-duct-panel
+    prompt: |
+      A hot air duct has a warm outer panel and sits in cooler plant-room air. Use the three heat-transfer modes to decide whether thicker insulation, stronger airflow control, or a low-emissivity surface most directly reduces each heat-flow pathway.
+    surface_form: "insulated duct panel"
+    same_concept_check: "The surface changes from a generic panel to a duct, but conduction still depends on kA Delta T/L, convection on hA Delta T, and radiation on emissivity and absolute temperature."
+    rubric_path: problem-solving/insulated-duct-panel.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-28"
+      author: "Codex"
+      summary: "Built the SUTD 10.023 Heat Transfer Modes product slice with a heat-flow comparison lab, prediction gate, formula panel, and transfer problem."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-28"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-28"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Heat and temperature are the same quantity"
+    description: |
+      Learners may treat temperature as the amount of heat instead of the state variable whose difference drives heat transfer.
+    evidence_source: "OpenStax University Physics Volume 2, Chapter 1 Temperature and Heat."
+    surface_in_predict: true
+  - name: "Radiation needs air or contact"
+    description: |
+      Learners may assume radiation is another form of convection rather than electromagnetic emission that depends on absolute temperature and emissivity.
+    evidence_source: "OpenStax University Physics Volume 2, Chapter 1 Temperature and Heat."
+    surface_in_predict: false
+  - name: "Conduction ignores thickness"
+    description: |
+      Learners may focus on temperature difference and material but miss that a longer conduction path reduces heat-flow rate.
+    evidence_source: "OpenStax University Physics Volume 2, Chapter 1 Temperature and Heat."
+    surface_in_predict: false
+sources:
+  - citation: "Ling, S. J., Sanny, J., and Moebs, W. University Physics Volume 2, Chapter 1 Temperature and Heat. OpenStax, 2016."
+    url: "https://openstax.org/books/university-physics-volume-2/pages/1-introduction"
+    publication_year: 2016
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+language: en

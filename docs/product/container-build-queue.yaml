@@ -2018,7 +2018,7 @@ entries:
   - id: sutd.10-023-designing-energy-systems.heat-transfer-modes
     title: "Heat Transfer Modes"
     priority: P1
-    status: ready-for-build
+    status: in-build
     cluster: SUTD 10.023 Designing Energy Systems
     discipline: energy-systems
     reuse_status: subject-specific

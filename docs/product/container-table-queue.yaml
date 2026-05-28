@@ -1040,7 +1040,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-023-designing-energy-systems.heat-transfer-modes"
-    status: "ready-for-build"
+    status: "in-build"
     concept_title: "Heat Transfer Modes"
     curriculum: "sutd"
     subject: "10-023-designing-energy-systems"

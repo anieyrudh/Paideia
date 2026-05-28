@@ -1,0 +1,13 @@
+steps:
+  - id: identify-mode
+    label: "Identify each heat-transfer pathway"
+    check: "Conduction, convection, and radiation are separated before substituting."
+  - id: convert-temperature
+    label: "Use kelvin where required"
+    check: "Radiation uses absolute temperatures, while Delta T is a kelvin difference."
+  - id: substitute
+    label: "Substitute SI values"
+    check: "Area, thickness, coefficients, temperatures, and emissivity are stated with units."
+  - id: compare
+    label: "Compare rates and design levers"
+    check: "The answer links the largest heat-flow term to insulation, airflow, or surface finish."

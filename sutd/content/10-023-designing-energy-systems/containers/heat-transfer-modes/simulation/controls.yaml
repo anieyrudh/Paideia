@@ -1,0 +1,26 @@
+controls:
+  - id: hot-temperature
+    label: "Hot surface temperature"
+    kind: slider
+    kernel_binding: state.hotTemperatureCelsius
+    bounds: { min: 30, max: 120, step: 1 }
+  - id: cold-temperature
+    label: "Ambient temperature"
+    kind: slider
+    kernel_binding: state.coldTemperatureCelsius
+    bounds: { min: 0, max: 35, step: 1 }
+  - id: panel-thickness
+    label: "Wall thickness"
+    kind: slider
+    kernel_binding: state.thicknessMetres
+    bounds: { min: 0.04, max: 0.4, step: 0.01 }
+  - id: convection-coefficient
+    label: "Convection coefficient"
+    kind: slider
+    kernel_binding: state.convectionCoefficientWattsPerSquareMetreKelvin
+    bounds: { min: 4, max: 35, step: 1 }
+  - id: emissivity
+    label: "Surface emissivity"
+    kind: slider
+    kernel_binding: state.emissivity
+    bounds: { min: 0.1, max: 0.95, step: 0.05 }

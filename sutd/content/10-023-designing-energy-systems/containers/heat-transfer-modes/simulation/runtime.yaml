@@ -1,0 +1,5 @@
+runtime:
+  package: "@paideia/sutd-sims/heat-transfer-modes"
+  component: HeatTransferModes
+  version: "0.0.0"
+  requires_prediction_gate: true
