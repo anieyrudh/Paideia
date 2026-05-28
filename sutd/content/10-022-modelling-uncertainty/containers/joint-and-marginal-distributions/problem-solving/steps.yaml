@@ -1,0 +1,13 @@
+steps:
+  - id: define-events
+    prompt: "Define event A and event B."
+    checks: ["events are mutually clear", "four joint outcomes can be named"]
+  - id: fill-table
+    prompt: "Fill the 2x2 joint table."
+    checks: ["cells are non-negative", "cells sum to one"]
+  - id: sum-marginals
+    prompt: "Sum rows or columns to obtain marginals."
+    checks: ["row or column total used", "cell not mistaken for total"]
+  - id: condition
+    prompt: "Compute the conditional with the correct denominator."
+    checks: ["uses P(A and B)", "divides by P(B) for P(A|B)"]

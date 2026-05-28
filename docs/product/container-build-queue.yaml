@@ -2160,7 +2160,7 @@ entries:
   - id: sutd.10-022-modelling-uncertainty.joint-and-marginal-distributions
     title: Joint and Marginal Distributions
     priority: P1
-    status: ready-for-build
+    status: in-build
     cluster: SUTD 10.022 - Modelling Uncertainty
     discipline: probability-statistics
     reuse_status: subject-specific

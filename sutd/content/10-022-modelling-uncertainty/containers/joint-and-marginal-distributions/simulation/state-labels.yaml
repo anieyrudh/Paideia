@@ -1,0 +1,4 @@
+labels:
+  eventA: "Marginal P(A)"
+  eventB: "Marginal P(B)"
+  association: "Association"

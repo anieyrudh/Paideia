@@ -1,0 +1,10 @@
+presets:
+  - id: independent
+    label: "Independent events"
+    state: { eventA: 0.4, eventB: 0.5, association: 0 }
+  - id: positive-association
+    label: "Positive association"
+    state: { eventA: 0.4, eventB: 0.5, association: 0.55 }
+  - id: negative-association
+    label: "Negative association"
+    state: { eventA: 0.4, eventB: 0.5, association: -0.55 }

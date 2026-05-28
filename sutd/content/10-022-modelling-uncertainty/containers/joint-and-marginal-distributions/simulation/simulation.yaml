@@ -1,0 +1,42 @@
+schema_version: 1.0.0
+id: joint-table-lab
+title: "Joint and Marginal Distribution Table Lab"
+module: "@paideia/sutd-sims/joint-and-marginal-distributions"
+symbol: JointAndMarginalDistributions
+interaction_type: comparative-matrix
+prediction_gate: true
+kernel_deps:
+  - core/content-schema
+  - core/shared
+  - core/probability-stats
+  - core/prediction-gate
+  - core/ui-sim
+manipulate:
+  controls:
+    - id: event-a-rate
+      label: "Marginal P(A)"
+      kind: slider
+      kernel_binding: state.eventA
+      bounds: { min: 0.05, max: 0.95, step: 0.01 }
+    - id: event-b-rate
+      label: "Marginal P(B)"
+      kind: slider
+      kernel_binding: state.eventB
+      bounds: { min: 0.05, max: 0.95, step: 0.01 }
+    - id: association
+      label: "Association"
+      kind: slider
+      kernel_binding: state.association
+      bounds: { min: -0.95, max: 0.95, step: 0.01 }
+observe:
+  renderers:
+    - id: joint-table
+      module: "@paideia/sutd-sims/joint-and-marginal-distributions"
+      symbol: JointAndMarginalDistributions
+      props_binding: "Render a 2x2 joint table, marginals, conditional probability formula, substitution, legend, units, and interpretation."
+explain:
+  prompt: "Explain how summing joint cells creates marginals and why conditioning changes the denominator."
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Treating joint and conditional probability as interchangeable."
+    - "Reading a row total as if it were a joint cell."

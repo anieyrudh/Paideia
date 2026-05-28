@@ -19,6 +19,7 @@ export { default as NewsvendorCriticalFractile } from "./newsvendor-critical-fra
 export { default as ConfusionMatrixThresholds } from "./confusion-matrix-thresholds.js";
 export { default as SchedulingAndProjectManagement } from "./scheduling-and-project-management.js";
 export { default as ContinuousRvsUniformExponential } from "./continuous-rvs-uniform-exponential.js";
+export { default as JointAndMarginalDistributions } from "./joint-and-marginal-distributions.js";
 export { default as MarkovChainSteadyState } from "./markov-chain-steady-state.js";
 export { default as FairnessThresholdAudit } from "./fairness-threshold-audit.js";
 export { default as DiscreteRvsGeometricBinomialPoisson } from "./discrete-rvs-geometric-binomial-poisson.js";

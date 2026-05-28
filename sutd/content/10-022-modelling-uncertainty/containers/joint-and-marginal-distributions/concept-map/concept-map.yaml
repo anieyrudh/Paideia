@@ -1,0 +1,45 @@
+schema_version: "1.0.0"
+concept_id: joint-and-marginal-distributions
+prerequisites:
+  - id: probability-distributions
+    title: "Probability Distributions"
+    relationship: "Joint tables are finite distributions over combined outcomes."
+    status: available
+  - id: conditional-probability
+    title: "Conditional Probability"
+    relationship: "Conditionals divide a joint cell by the conditioning marginal."
+    status: available
+downstream:
+  - id: linear-regression
+    title: "Linear Regression"
+    relationship: "Joint variation motivates relationships between variables."
+    status: planned
+  - id: maximum-likelihood-estimation
+    title: "Maximum Likelihood Estimation"
+    relationship: "Likelihoods are products over joint observations."
+    status: planned
+siblings:
+  - id: conditional-probability-and-bayes
+    title: "Conditional Probability and Bayes"
+    relationship: "Both use conditional denominators and evidence updates."
+    status: planned
+  - id: discrete-rvs-geometric-binomial-poisson
+    title: "Discrete RVs"
+    relationship: "Both use finite probability mass that sums to one."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: joint-equals-conditional
+      label: "Joint probability equals conditional probability"
+    - id: marginal-is-cell
+      label: "Marginal probability is a single cell"
+    - id: denominator-drift
+      label: "The denominator is ignored"
+  edges:
+    - from: joint-equals-conditional
+      to: denominator-drift
+      label: "both divide by the wrong total"
+    - from: marginal-is-cell
+      to: denominator-drift
+      label: "both confuse cells with row or column totals"
+mermaid_source: graph.mmd

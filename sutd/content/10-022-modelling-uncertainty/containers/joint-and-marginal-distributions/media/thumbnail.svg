@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Joint probability table">
+  <rect width="640" height="360" fill="#f6fbf8"/>
+  <g transform="translate(130 70)">
+    <rect width="160" height="90" fill="#2d6a7f" opacity="0.22" stroke="#2d6a7f" stroke-width="4"/>
+    <rect x="160" width="160" height="90" fill="#2d6a7f" opacity="0.12" stroke="#2d6a7f" stroke-width="4"/>
+    <rect y="90" width="160" height="90" fill="#2d6a7f" opacity="0.12" stroke="#2d6a7f" stroke-width="4"/>
+    <rect x="160" y="90" width="160" height="90" fill="#2d6a7f" opacity="0.08" stroke="#2d6a7f" stroke-width="4"/>
+  </g>
+  <text x="105" y="308" fill="#172026" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="700">Joint table -> marginals -> conditionals</text>
+</svg>
