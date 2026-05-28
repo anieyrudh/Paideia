@@ -1,0 +1,22 @@
+controls:
+  - id: prototype-duration
+    label: "Prototype duration"
+    type: slider
+    min: 1
+    max: 12
+    step: 1
+    unit: days
+  - id: tooling-duration
+    label: "Tooling duration"
+    type: slider
+    min: 1
+    max: 12
+    step: 1
+    unit: days
+  - id: training-duration
+    label: "Training duration"
+    type: slider
+    min: 1
+    max: 12
+    step: 1
+    unit: days

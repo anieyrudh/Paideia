@@ -1,0 +1,21 @@
+presets:
+  - id: tooling-critical
+    label: "Tooling-critical launch"
+    state:
+      requirements: 3
+      procurement: 4
+      prototype: 5
+      tooling: 6
+      pilot: 3
+      training: 4
+      launch: 2
+  - id: training-critical
+    label: "Training-critical launch"
+    state:
+      requirements: 3
+      procurement: 4
+      prototype: 9
+      tooling: 6
+      pilot: 3
+      training: 8
+      launch: 2

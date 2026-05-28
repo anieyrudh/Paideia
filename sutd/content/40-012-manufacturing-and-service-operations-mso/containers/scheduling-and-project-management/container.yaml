@@ -1,0 +1,114 @@
+schema_version: "1.0.0"
+id: scheduling-and-project-management
+aliases:
+  - critical path method
+  - project schedule network
+  - CPM scheduling
+branch: sutd
+subject: 40-012-manufacturing-and-service-operations-mso
+level: "SUTD 40.012"
+module: "Manufacturing and Service Operations"
+title: "Scheduling and Project Management"
+one_line_summary: "Use activity durations and precedence constraints to find project duration, slack, and the critical path."
+syllabus_ref: "SUTD 40.012 Manufacturing and Service Operations / Scheduling and project management"
+prerequisites:
+  - activity-durations
+  - precedence-constraints
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A project has parallel prototype, tooling, and training work. Before reveal, predict the project duration in working days.
+  commit_format:
+    kind: value
+    unit: days
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: clinic-fitout-launch
+    prompt: |
+      A clinic fit-out has design, procurement, installation, staff training, and licensing activities. Design takes 4 days. Procurement takes 5 days after design. Installation takes 7 days after procurement. Staff training takes 6 days after design. Licensing takes 3 days after both installation and training. Compute project duration, critical path, and one activity that can slip without moving launch.
+    surface_form: "activity-on-node project schedule"
+    same_concept_check: "Same concept: compute earliest and latest times, then identify zero-slack activities."
+    rubric_path: problem-solving/steps.yaml
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-28"
+      author: "Codex"
+      summary: "Built SUTD MSO scheduling and project management container and CPM simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-28"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-28"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "The longest activity controls the project"
+    description: "Learners may pick the single longest activity instead of the longest predecessor chain."
+    evidence_source: "Queue entry misconception map and CPM critical-path interpretation."
+    surface_in_predict: true
+  - name: "Every delay moves launch"
+    description: "Learners may ignore slack and treat all activities as launch-controlling."
+    evidence_source: "Queue entry misconception map and CPM slack calculation."
+    surface_in_predict: true
+sources:
+  - citation: "Project Management for Instructional Designers explains project scheduling, network logic, and critical-path planning."
+    url: "https://pressbooks.pub/pm4id/"
+    publication_year: 2012
+    license: "CC BY-NC-SA 3.0"
+    seab_alignment: n/a
+  - citation: "OpenStax Principles of Management discusses planning, control, and operational project coordination."
+    url: "https://openstax.org/details/books/principles-management"
+    publication_year: 2019
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+language: en

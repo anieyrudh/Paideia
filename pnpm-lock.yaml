@@ -1657,6 +1657,9 @@ importers:
       '@paideia/protein-structure':
         specifier: workspace:*
         version: link:../../../core/protein-structure
+      '@paideia/scheduling':
+        specifier: workspace:*
+        version: link:../../../core/scheduling
       '@paideia/sequence':
         specifier: workspace:*
         version: link:../../../core/sequence

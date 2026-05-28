@@ -2046,7 +2046,7 @@ entries:
   - id: sutd.40-012-manufacturing-and-service-operations-mso.scheduling-and-project-management
     title: "Scheduling and Project Management"
     priority: P1
-    status: ready-for-build
+    status: in-build
     cluster: SUTD 40.012 Manufacturing and Service Operations
     discipline: operations
     reuse_status: subject-specific
