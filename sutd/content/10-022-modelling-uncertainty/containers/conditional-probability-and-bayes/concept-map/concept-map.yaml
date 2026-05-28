@@ -1,0 +1,37 @@
+schema_version: "1.0.0"
+concept_id: conditional-probability-and-bayes
+prerequisites:
+  - id: basic-probability
+    title: "Basic Probability"
+    relationship: "Conditional probability and Bayes needs probabilities between 0 and 1 and complementary events."
+    status: planned
+  - id: conditional-probability
+    title: "Conditional Probability"
+    relationship: "Sensitivity and posterior are conditional probabilities with reversed conditions."
+    status: planned
+downstream:
+  - id: bayesian-inference
+    title: "Bayesian Inference"
+    relationship: "Conditional probability and Bayes is the one-evidence case of broader inference."
+    status: planned
+siblings:
+  - id: confusion-matrix-thresholds
+    title: "Confusion Matrix Thresholds"
+    relationship: "Specificity and false-positive rate are confusion-matrix quantities."
+    status: planned
+misconception_graph:
+  nodes:
+    - id: positive-means-true
+      label: "Positive evidence means high probability"
+    - id: sensitivity-posterior-swap
+      label: "Sensitivity is treated as posterior"
+    - id: base-rate-neglect
+      label: "Base rate is ignored"
+  edges:
+    - from: sensitivity-posterior-swap
+      to: positive-means-true
+      label: "both reverse P(+|H) into P(H|+)"
+    - from: base-rate-neglect
+      to: positive-means-true
+      label: "both hide the false-positive route"
+mermaid_source: graph.mmd
