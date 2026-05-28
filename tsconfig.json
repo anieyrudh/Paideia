@@ -34,6 +34,7 @@
     { "path": "./core/digital-logic" },
     { "path": "./core/control-systems" },
     { "path": "./core/electromagnetism" },
+    { "path": "./core/semiconductor-devices" },
     { "path": "./core/chemistry" },
     { "path": "./core/queueing-systems" },
     { "path": "./core/scheduling" },
