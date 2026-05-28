@@ -1,0 +1,109 @@
+schema_version: "1.0.0"
+id: immune-system-and-vaccines
+aliases:
+  - herd-immunity-lab
+  - vaccine-booster-curve
+branch: sutd
+subject: 10-019-science-and-technology-for-healthcare
+level: "Freshmore"
+module: "Science and Technology for Healthcare"
+title: "Immune System and Vaccines"
+one_line_summary: "Compare an antigen-antibody match score with the herd-immunity threshold to see how vaccination fraction, R0, and waning together set the effective reproduction number."
+syllabus_ref: "SUTD 10.019 Science and Technology for Healthcare / Immune system and vaccines"
+prerequisites:
+  - hill-activation-function
+  - probability-fractions
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    A pathogen has basic reproduction number R0 = 4. Vaccinating 60 percent of the population gives them perfect immunity. Before reveal, what is the effective reproduction number Re and does the outbreak grow or shrink?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "Re = 1.6, outbreak still grows because Re > 1 and the herd-immunity threshold is 75 percent."
+      - "Re = 4, vaccination does nothing for the rest of the population."
+      - "Re = 0, outbreak halts immediately because some fraction is vaccinated."
+      - "Re = 0.4, outbreak shrinks because vaccination always halves R0."
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: waning-immunity-revaccination
+    prompt: |
+      A booster vaccine restores immunity to 0.95 right after dosing. Immunity wanes exponentially with rate 0.005 per day. After 200 days, walk through how the effective reproduction number Re evolves for a population with R0 = 5 and 90 percent vaccination coverage at day 0.
+    surface_form: "waning immunity and revaccination cadence"
+    same_concept_check: "Same concept: immunity exponentially decays; the effective vaccinated fraction shrinks, lifting Re."
+    rubric_path: problem-solving/waning-immunity-revaccination.md
+assessments: []
+status: draft
+authoring:
+  owner: "Codex"
+  reviewers: []
+  qa_status: not-started
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-27"
+      author: "Codex"
+      summary: "Built SUTD 10.019 immune-system-and-vaccines v2 container with herd-immunity lab."
+authors: ["Codex"]
+advisor_signoffs: []
+misconceptions:
+  - name: "Any vaccination coverage stops an outbreak"
+    description: "Learners may think partial vaccination is enough; without crossing the herd-immunity threshold the outbreak still spreads."
+    evidence_source: "OpenStax Biology, Adaptive Immunity chapter."
+    surface_in_predict: true
+  - name: "Antigen-antibody specificity is binary"
+    description: "Learners may treat antibody recognition as on/off; in reality match score is graded and partial matches still bind weakly."
+    evidence_source: "Janeway's Immunobiology (referenced)."
+    surface_in_predict: true
+sources:
+  - citation: "SUTD 10.019 Science and Technology for Healthcare module page (public)."
+    url: "https://www.sutd.edu.sg/course/10-019-science-and-technology-for-healthcare"
+    publication_year: 2026
+    license: "Public website"
+    seab_alignment: n/a
+  - citation: "OpenStax. Biology 2e, Chapter 42 The Immune System (CC BY 4.0)."
+    url: "https://openstax.org/details/books/biology-2e"
+    publication_year: 2024
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+  - citation: "Murphy, K. Janeway's Immunobiology. 9th ed., Garland Science, 2017. Used as a textbook reference; no copyrighted text reproduced."
+    publication_year: 2017
+    license: "Textbook reference"
+    seab_alignment: n/a
+language: en

@@ -1468,6 +1468,9 @@ importers:
       '@paideia/graph-layout':
         specifier: workspace:*
         version: link:../../../core/graph-layout
+      '@paideia/immunology':
+        specifier: workspace:*
+        version: link:../../../core/immunology
       '@paideia/linear-algebra':
         specifier: workspace:*
         version: link:../../../core/linear-algebra

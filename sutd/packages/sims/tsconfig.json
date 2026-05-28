@@ -33,6 +33,7 @@
     { "path": "../../../core/gene-regulatory-network" },
     { "path": "../../../core/sequence" },
     { "path": "../../../core/signal-pathway" },
-    { "path": "../../../core/cell-cycle" }
+    { "path": "../../../core/cell-cycle" },
+    { "path": "../../../core/immunology" }
   ]
 }

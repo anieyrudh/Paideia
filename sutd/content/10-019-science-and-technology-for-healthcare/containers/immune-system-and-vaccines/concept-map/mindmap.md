@@ -1,0 +1,21 @@
+# Mindmap
+
+- Immune system and vaccines
+  - Antigen-antibody match
+    - Graded similarity score
+    - Sequence match fraction in [0, 1]
+  - Population-level dynamics
+    - Re = R0 (1 - p)
+    - Herd-immunity threshold p* = 1 - 1/R0
+  - Vaccines
+    - Booster response: Hill-shaped in dose
+    - Waning: exponential decay in time
+  - Misconceptions
+    - Partial coverage stops outbreaks
+    - Binary specificity
+    - Immunity never wanes
+    - Herd immunity is forever
+  - Transfer
+    - Variant strain selection
+    - SIR / SEIR / SIRV models
+    - Public-health intervention scoring

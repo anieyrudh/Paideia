@@ -55,7 +55,8 @@
     "./protein-folding-and-function": "./src/protein-folding-and-function.tsx",
     "./gene-expression-dna-to-rna-to-protein": "./src/gene-expression-dna-to-rna-to-protein.tsx",
     "./cell-signalling-pathways": "./src/cell-signalling-pathways.tsx",
-    "./cell-cycle-and-mitosis-meiosis": "./src/cell-cycle-and-mitosis-meiosis.tsx"
+    "./cell-cycle-and-mitosis-meiosis": "./src/cell-cycle-and-mitosis-meiosis.tsx",
+    "./immune-system-and-vaccines": "./src/immune-system-and-vaccines.tsx"
   },
   "scripts": {
     "build": "tsc -b",
@@ -83,6 +84,7 @@
     "@paideia/cell-geometry": "workspace:*",
     "@paideia/gene-regulatory-network": "workspace:*",
     "@paideia/membrane-transport": "workspace:*",
+    "@paideia/immunology": "workspace:*",
     "@paideia/molecule": "workspace:*",
     "@paideia/numerical-math": "workspace:*",
     "@paideia/signal-pathway": "workspace:*",
