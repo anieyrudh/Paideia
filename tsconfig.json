@@ -32,6 +32,7 @@
     { "path": "./core/optimization" },
     { "path": "./core/circuits" },
     { "path": "./core/digital-logic" },
+    { "path": "./core/analog-electronics" },
     { "path": "./core/control-systems" },
     { "path": "./core/electromagnetism" },
     { "path": "./core/semiconductor-devices" },
