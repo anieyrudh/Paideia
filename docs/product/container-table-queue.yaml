@@ -7,8 +7,9 @@ generated_from: PAIDEIA_CONTAINER_TABLES_V2.md
 generated_on: "2026-05-24"
 entry_count: 197
 status_counts:
-  planned: 185
+  planned: 178
   ready-for-build: 12
+  reviewed: 7
 status_policy:
   planned: "Backlog item copied from the reference table; not assigned yet."
   ready-for-build: "Small starter wave approved for one-container-per-PR builds."
@@ -829,7 +830,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-019-science-and-technology-for-healthcare.cell-structure-and-the-membrane"
-    status: "planned"
+    status: "reviewed"
     concept_title: "Cell Structure and the Membrane"
     curriculum: "sutd"
     subject: "10-019-science-and-technology-for-healthcare"
@@ -844,7 +845,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-019-science-and-technology-for-healthcare.protein-folding-and-function"
-    status: "planned"
+    status: "reviewed"
     concept_title: "Protein Folding and Function"
     curriculum: "sutd"
     subject: "10-019-science-and-technology-for-healthcare"
@@ -859,7 +860,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-019-science-and-technology-for-healthcare.gene-expression-dna-to-rna-to-protein"
-    status: "planned"
+    status: "reviewed"
     concept_title: "Gene Expression: DNA  to  RNA  to  Protein"
     curriculum: "sutd"
     subject: "10-019-science-and-technology-for-healthcare"
@@ -874,7 +875,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-019-science-and-technology-for-healthcare.cell-signalling-pathways"
-    status: "planned"
+    status: "reviewed"
     concept_title: "Cell Signalling Pathways"
     curriculum: "sutd"
     subject: "10-019-science-and-technology-for-healthcare"
@@ -889,7 +890,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-019-science-and-technology-for-healthcare.cell-cycle-and-mitosis-meiosis"
-    status: "planned"
+    status: "reviewed"
     concept_title: "Cell Cycle and Mitosis / Meiosis"
     curriculum: "sutd"
     subject: "10-019-science-and-technology-for-healthcare"
@@ -904,7 +905,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-019-science-and-technology-for-healthcare.immune-system-and-vaccines"
-    status: "planned"
+    status: "reviewed"
     concept_title: "Immune System and Vaccines"
     curriculum: "sutd"
     subject: "10-019-science-and-technology-for-healthcare"
@@ -919,7 +920,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-019-science-and-technology-for-healthcare.cancer-genetics-and-therapy"
-    status: "planned"
+    status: "reviewed"
     concept_title: "Cancer Genetics and Therapy"
     curriculum: "sutd"
     subject: "10-019-science-and-technology-for-healthcare"

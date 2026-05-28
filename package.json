@@ -15,6 +15,7 @@
     "lint": "pnpm -r lint",
     "typecheck": "tsc -b",
     "container:validate": "node scripts/validate-containers.mjs",
+    "container:quality": "node scripts/check-container-quality.mjs",
     "container:new": "node scripts/new-container.mjs",
     "container:docs": "node scripts/generate-container-docs.mjs",
     "graph:generate": "node scripts/generate-knowledge-graph.mjs",
