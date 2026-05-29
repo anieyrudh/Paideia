@@ -1,0 +1,54 @@
+id: linear-regression
+title: "Linear Regression Fit Lab"
+interaction_type: other
+kernel_deps:
+  - core/content-schema
+  - core/shared
+  - core/sim-runtime
+  - core/numerical-math
+  - core/probability-stats
+  - core/plotting
+  - core/prediction-gate
+  - core/ui-sim
+predict:
+  prompt: |
+    If one high-x observation is pulled upward while the rest of the cloud stays similar, what happens to the least-squares line?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The fitted slope usually increases"
+      - "Only the intercept can change"
+      - "R squared must become exactly 1"
+      - "The line ignores the shifted point"
+    correct_index: 0
+  rationale_required: true
+manipulate:
+  controls:
+    - id: dataset
+      label: "Dataset"
+      kind: selector
+      kernel_binding: state.dataset
+    - id: outlier-shift
+      label: "Outlier shift"
+      kind: slider
+      kernel_binding: state.outlierShift
+      bounds: { min: -12, max: 12, step: 1 }
+    - id: noise-level
+      label: "Pattern noise"
+      kind: slider
+      kernel_binding: state.noiseLevel
+      bounds: { min: 0, max: 6, step: 1 }
+observe:
+  renderers:
+    - id: least-squares-fit
+      module: "@paideia/sutd-sims/linear-regression"
+      symbol: "LinearRegression"
+      props_binding: |
+        Display scatter plot, least-squares line, slope, intercept, R squared, residual table, formula, substitution, units, and interpretation.
+explain:
+  prompt: |
+    Explain why the least-squares line balances residuals rather than passing through every point.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "The regression line must pass through all observations."
+    - "A high R squared proves causation."

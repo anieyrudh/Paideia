@@ -1,0 +1,125 @@
+schema_version: "1.0.0"
+id: linear-regression
+aliases:
+  - least squares regression
+  - fitted line
+  - simple linear model
+branch: sutd
+subject: 10-022-modelling-uncertainty
+level: "SUTD 10.022"
+module: "Modelling Uncertainty"
+title: "Linear Regression"
+one_line_summary: "Fit and interpret a least-squares line through a noisy data cloud without overstating causation."
+syllabus_ref: "SUTD 10.022 Modelling Uncertainty - Linear Regression"
+prerequisites:
+  - descriptive-statistics
+  - scatter-plots
+  - covariance-and-correlation
+aid_types:
+  - simulation
+  - transfer-problem
+  - misconception-audit
+predict_at: package-level
+package_predict:
+  prompt: |
+    If one high-x observation is pulled upward while the rest of the cloud stays similar, what happens to the least-squares line?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The fitted slope usually increases"
+      - "Only the intercept can change"
+      - "R squared must become exactly 1"
+      - "The line ignores the shifted point"
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: campus-energy-regression
+    prompt: |
+      A facilities team fits daily energy use against outdoor temperature. One holiday has unusually low occupancy. Identify how that point could affect the slope, intercept, and R squared, then state one modelling caveat about causation or extrapolation.
+    surface_form: "campus facilities data audit"
+    same_concept_check: "Same concept: fit a line by least squares, inspect residuals, and limit the claim to association over the observed range."
+    rubric_path: problem-solving/steps.yaml
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers:
+    - "Codex local review"
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-28"
+      author: "Codex"
+      summary: "Built SUTD 10.022 linear regression container and simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-28"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-28"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "The regression line must pass through all observations"
+    description: "Learners may treat a fitted line as an interpolating curve rather than a least-squares summary of residuals."
+    evidence_source: "Introductory regression teaching contrasts residual minimisation with exact interpolation."
+    surface_in_predict: true
+  - name: "A high R squared proves causation"
+    description: "Learners may overclaim from strong linear association without checking design, confounding, and extrapolation limits."
+    evidence_source: "Statistical modelling guidance separates association, prediction, and causal claims."
+    surface_in_predict: true
+sources:
+  - citation: "OpenIntro Statistics explains simple linear regression, least squares, residuals, and R squared for introductory statistics learners."
+    url: "https://www.openintro.org/book/os/"
+    publication_year: 2023
+    license: "CC BY-SA"
+    seab_alignment: n/a
+  - citation: "MIT OpenCourseWare 18.05 Introduction to Probability and Statistics includes regression and least-squares modelling materials."
+    url: "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2014/"
+    publication_year: 2014
+    license: "CC BY-NC-SA"
+    seab_alignment: n/a
+  - citation: "Penn State STAT 501 notes describe simple linear regression, residuals, and least-squares interpretation."
+    url: "https://online.stat.psu.edu/stat501/"
+    publication_year: 2026
+    license: "Public educational website"
+    seab_alignment: n/a
+language: en

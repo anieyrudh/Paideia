@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Scatter plot with fitted regression line">
+  <rect width="640" height="360" fill="#fbfcf8"/>
+  <line x1="72" y1="294" x2="584" y2="294" stroke="#687b76" stroke-width="3"/>
+  <line x1="72" y1="48" x2="72" y2="294" stroke="#687b76" stroke-width="3"/>
+  <line x1="92" y1="260" x2="558" y2="78" stroke="#9b2c2c" stroke-width="6" stroke-linecap="round"/>
+  <g fill="#155e63">
+    <circle cx="112" cy="246" r="9"/>
+    <circle cx="186" cy="222" r="9"/>
+    <circle cx="260" cy="193" r="9"/>
+    <circle cx="334" cy="171" r="9"/>
+    <circle cx="408" cy="137" r="9"/>
+    <circle cx="482" cy="104" r="9"/>
+  </g>
+  <text x="72" y="332" fill="#172026" font-family="Inter, Arial, sans-serif" font-size="30" font-weight="700">Linear regression fit</text>
+</svg>
