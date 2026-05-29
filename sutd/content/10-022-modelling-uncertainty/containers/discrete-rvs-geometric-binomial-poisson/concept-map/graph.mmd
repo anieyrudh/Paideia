@@ -1,0 +1,9 @@
+flowchart LR
+  process["Random process"] --> model["Model family"]
+  model --> binomial["Binomial fixed trials"]
+  model --> geometric["Geometric waiting time"]
+  model --> poisson["Poisson event rate"]
+  binomial --> pmf["PMF"]
+  geometric --> pmf
+  poisson --> pmf
+  pmf --> moments["E(X), Var(X), tail"]

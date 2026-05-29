@@ -1,0 +1,5 @@
+labels:
+  model: "Model family"
+  p: "Success probability"
+  n: "Trial count"
+  lambda: "Event rate"

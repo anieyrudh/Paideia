@@ -1,0 +1,46 @@
+schema_version: "1.0.0"
+id: "probability-model-lab"
+title: "Discrete Random Variable Model Lab"
+module: "@paideia/sutd-sims/discrete-rvs-geometric-binomial-poisson"
+symbol: "DiscreteRvsGeometricBinomialPoisson"
+interaction_type: "comparative-matrix"
+prediction_gate: true
+kernel_deps:
+  - "core/content-schema"
+  - "core/shared"
+  - "core/probability-stats"
+  - "core/prediction-gate"
+  - "core/ui-sim"
+manipulate:
+  controls:
+    - id: "model"
+      label: "Model family"
+      kind: "selector"
+      kernel_binding: "state.model"
+    - id: "success-probability"
+      label: "Success probability"
+      kind: "slider"
+      kernel_binding: "state.p"
+      bounds: { min: 0.05, max: 0.95, step: 0.01 }
+    - id: "trial-count"
+      label: "Trial count"
+      kind: "slider"
+      kernel_binding: "state.n"
+      bounds: { min: 2, max: 20, step: 1 }
+    - id: "event-rate"
+      label: "Event rate"
+      kind: "slider"
+      kernel_binding: "state.lambda"
+      bounds: { min: 0.5, max: 10, step: 0.1 }
+observe:
+  renderers:
+    - id: "pmf-readout"
+      module: "@paideia/sutd-sims/discrete-rvs-geometric-binomial-poisson"
+      symbol: "DiscreteRvsGeometricBinomialPoisson"
+      props_binding: "Render PMF bars, model formula, substitution, expected value, variance, tail probability, legend, and interpretation."
+explain:
+  prompt: "Explain which model family matches the system before substituting into a formula."
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Choosing a formula by memory instead of matching the random process."
+    - "Using a fixed-trial binomial model for waiting time until first success."

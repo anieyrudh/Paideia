@@ -1,0 +1,95 @@
+schema_version: "1.0.0"
+id: discrete-rvs-geometric-binomial-poisson
+aliases: [discrete random variables, binomial geometric poisson, probability mass functions]
+branch: sutd
+subject: 10-022-modelling-uncertainty
+level: "SUTD 10.022"
+module: "Modelling Uncertainty"
+title: "Discrete RVs: Geometric, Binomial, Poisson"
+one_line_summary: "Match a discrete random process to the correct PMF before computing moments and tail probabilities."
+syllabus_ref: "SUTD 10.022 Modelling Uncertainty / Discrete RVs: Geometric, Binomial, Poisson"
+prerequisites: [foundational-notation, core-definitions]
+aid_types: [simulation, transfer-problem, misconception-audit]
+predict_at: package-level
+package_predict:
+  prompt: "Predict which model gives the largest chance of at least four events in the displayed system."
+  commit_format:
+    kind: multiple-choice
+    options: ["Binomial", "Geometric", "Poisson"]
+    correct_index: 0
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: sensor-fault-model
+    prompt: "A sensor can fail independently on each inspection, can be observed until the first fault, or can generate fault counts over an hour. Match each story to binomial, geometric, or Poisson, then compute the requested probability."
+    surface_form: "model-family selection and PMF calculation"
+    same_concept_check: "Same concept: choose the random process first, then substitute into the matching PMF."
+    rubric_path: problem-solving/steps.yaml
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers: ["Codex local review"]
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-28"
+      author: "Codex"
+      summary: "Built SUTD discrete-RV model selection container and PMF simulation."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-28"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-28"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "The formula is chosen by memory instead of by process"
+    description: "Learners may substitute into a familiar PMF without checking fixed trials, waiting time, or event-rate assumptions."
+    evidence_source: "Queue entry misconception and discrete-RV model-selection standard."
+    surface_in_predict: true
+sources:
+  - citation: "OpenStax Introductory Business Statistics covers discrete probability distributions, binomial distributions, and Poisson distributions."
+    url: "https://openstax.org/details/books/introductory-business-statistics"
+    publication_year: 2017
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+language: en

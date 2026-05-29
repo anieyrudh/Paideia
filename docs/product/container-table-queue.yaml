@@ -950,7 +950,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.discrete-rvs-geometric-binomial-poisson"
-    status: "ready-for-build"
+    status: "in-build"
     concept_title: "Discrete RVs: Geometric, Binomial, Poisson"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"

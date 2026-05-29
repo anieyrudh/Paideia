@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
+  <title id="title">Discrete PMF bars</title>
+  <rect width="640" height="360" fill="#f6f3ec"/>
+  <g fill="#2d6a7f">
+    <rect x="90" y="230" width="34" height="70" rx="5"/>
+    <rect x="150" y="170" width="34" height="130" rx="5"/>
+    <rect x="210" y="110" width="34" height="190" rx="5"/>
+    <rect x="270" y="150" width="34" height="150" rx="5"/>
+    <rect x="330" y="210" width="34" height="90" rx="5"/>
+  </g>
+  <g fill="#b6402a">
+    <rect x="430" y="190" width="34" height="110" rx="5"/>
+    <rect x="490" y="235" width="34" height="65" rx="5"/>
+  </g>
+  <text x="78" y="78" font-family="Inter,Arial" font-size="34" font-weight="700" fill="#14242b">PMF model choice</text>
+</svg>

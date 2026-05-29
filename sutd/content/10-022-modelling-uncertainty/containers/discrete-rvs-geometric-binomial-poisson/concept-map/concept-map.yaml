@@ -1,0 +1,36 @@
+schema_version: "1.0.0"
+concept_id: discrete-rvs-geometric-binomial-poisson
+prerequisites:
+  - id: foundational-notation
+    title: "Foundational Notation"
+    relationship: "PMFs use event notation, complements, sums, and parameters."
+    status: planned
+  - id: core-definitions
+    title: "Core Definitions"
+    relationship: "Random variables, expectation, and variance are reused here."
+    status: planned
+downstream:
+  - id: applied-modelling
+    title: "Applied Modelling"
+    relationship: "Discrete model choice supports reliability and demand models."
+    status: planned
+  - id: system-design
+    title: "System Design"
+    relationship: "Tail probabilities become design risk constraints."
+    status: planned
+siblings:
+  - id: conditional-probability-and-bayes
+    title: "Conditional Probability and Bayes"
+    relationship: "Both require matching formulas to the random process."
+    status: available
+misconception_graph:
+  nodes:
+    - id: formula-memory
+      label: "Formula is selected by memory"
+    - id: fixed-vs-waiting
+      label: "Fixed trials and waiting time are confused"
+  edges:
+    - from: formula-memory
+      to: fixed-vs-waiting
+      label: "both ignore the process assumptions"
+mermaid_source: graph.mmd

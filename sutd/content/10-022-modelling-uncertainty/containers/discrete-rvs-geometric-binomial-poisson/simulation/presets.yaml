@@ -1,0 +1,10 @@
+presets:
+  - id: binomial-failures
+    label: "Fixed inspections"
+    state: { model: binomial, p: 0.35, n: 8, lambda: 3 }
+  - id: geometric-waiting
+    label: "First success waiting"
+    state: { model: geometric, p: 0.25, n: 8, lambda: 3 }
+  - id: poisson-arrivals
+    label: "Faults per hour"
+    state: { model: poisson, p: 0.35, n: 8, lambda: 4 }
