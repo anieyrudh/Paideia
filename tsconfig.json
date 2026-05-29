@@ -41,6 +41,7 @@
     { "path": "./core/electromagnetism" },
     { "path": "./core/semiconductor-devices" },
     { "path": "./core/chemistry" },
+    { "path": "./core/reaction-kinetics" },
     { "path": "./core/queueing-systems" },
     { "path": "./core/scheduling" },
     { "path": "./core/inventory-models" },
