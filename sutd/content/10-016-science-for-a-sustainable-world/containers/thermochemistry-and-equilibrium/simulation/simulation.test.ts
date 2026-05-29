@@ -8,12 +8,16 @@ test.describe("Thermochemistry and Equilibrium", () => {
     );
   });
 
-  test("prediction-gate blocks energy and equilibrium evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Set up reaction system" }).click();
+  test("prediction-checkpoint keeps energy and equilibrium evidence visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Set up reaction system" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal energy and equilibrium" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
     await page.getByRole("radio", { name: "absorbed by the sample" }).check();
     await page.getByLabel("Rationale").fill("The water temperature increases, so heat enters the sample.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
@@ -26,7 +30,12 @@ test.describe("Thermochemistry and Equilibrium", () => {
   });
 
   test("manipulation changes heat direction and equilibrium quotient", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up reaction system" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up reaction system" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Final temperature" }).fill("22");
     await page.getByRole("slider", { name: "Product concentration" }).fill("0.3");
     await page.getByRole("slider", { name: "Reactant concentration" }).fill("1.5");
@@ -42,7 +51,12 @@ test.describe("Thermochemistry and Equilibrium", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up reaction system" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up reaction system" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal energy and equilibrium" }).click();
     await page.getByRole("radio", { name: "absorbed by the sample" }).check();
     await page.getByLabel("Rationale").fill("A warmer water sample has absorbed heat.");

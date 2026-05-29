@@ -12,7 +12,7 @@ kernel_deps:
 
 predict:
   prompt: |
-    A 10 N pull moves a trolley 3.0 m in the same direction as the motion in 2.0 s. Before revealing the lab, which work and average power statement is correct?
+    A 10 N pull moves a trolley 3.0 m in the same direction as the motion in 2.0 s. Before comparing with the lab, which work and average power statement is correct?
   commit_format:
     kind: multiple-choice
     options:

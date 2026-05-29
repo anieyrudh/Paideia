@@ -82,7 +82,7 @@ authoring:
   changelog:
     - date: "2026-05-26"
       author: "Codex"
-      summary: "Built SUTD 10.017 dielectric capacitor product slice with prediction-gated simulation."
+      summary: "Built SUTD 10.017 dielectric capacitor product slice with prediction-checkpointd simulation."
 authors: ["Codex"]
 advisor_signoffs: []
 filter_pass:

@@ -74,7 +74,7 @@ export const gravitationalFieldsSpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "A probe moves from 1 Earth radius to 2 Earth radii from Earth's centre. Before revealing the lab, what happens to the gravitational field strength?",
+      "A probe moves from 1 Earth radius to 2 Earth radii from Earth's centre. Before comparing with the lab, what happens to the gravitational field strength?",
     commit_format: {
       kind: "multiple-choice",
       options: [
@@ -579,7 +579,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
-      <p className="lab-kicker">Predict first</p>
+      <p className="lab-kicker">Prediction checkpoint</p>
       <h3>How quickly does gravity weaken?</h3>
       <p>
         Commit a prediction before the field vectors, potential curve, and numerical readouts are

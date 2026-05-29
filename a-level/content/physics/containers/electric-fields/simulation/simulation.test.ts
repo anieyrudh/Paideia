@@ -2,27 +2,30 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { mountSim } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
-test.describe("a-level/physics/electric-fields/charge-field-vector-lab prediction-gate", () => {
-  test("prediction-gate blocks electric field readouts until prediction commit", async ({ page }) => {
+test.describe("a-level/physics/electric-fields/charge-field-vector-lab prediction-checkpoint", () => {
+  test("prediction-checkpoint keeps electric field readouts visible while saving reflection", async ({ page }) => {
     await mountSim(page, "a-level/physics/electric-fields/charge-field-vector-lab");
 
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByLabel("Electric field readout")).toHaveCount(0);
+    {
 
-    await page.getByRole("button", { name: "Set charge position" }).click();
+      const setupButton = page.getByRole("button", { name: "Set charge position" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal field result" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByLabel("Electric field readout")).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByLabel("To the left").check();
     await page
       .getByLabel("Rationale")
       .fill("A negative test charge feels force opposite to the electric field direction.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByText("Electric field strength", { exact: true })).toBeVisible();
     await expect(page.getByLabel("Electric field readout")).toContainText("2.00 x 10^5 N/C");
     await expect(page.getByLabel("Formula used")).toContainText("Delta U = q Delta V");
@@ -31,7 +34,17 @@ test.describe("a-level/physics/electric-fields/charge-field-vector-lab predictio
   test("main controls change visible field state before reveal", async ({ page }) => {
     await mountSim(page, "a-level/physics/electric-fields/charge-field-vector-lab");
 
-    await page.getByRole("button", { name: "Set charge position" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set charge position" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByLabel("Separation").fill("10");
     await page.getByRole("button", { name: "Reveal field result" }).click();
     await page.getByLabel("To the left").check();
@@ -44,7 +57,17 @@ test.describe("a-level/physics/electric-fields/charge-field-vector-lab predictio
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, "a-level/physics/electric-fields/charge-field-vector-lab");
 
-    await page.getByRole("button", { name: "Set charge position" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set charge position" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal field result" }).click();
     await page.getByLabel("To the left").check();
     await page

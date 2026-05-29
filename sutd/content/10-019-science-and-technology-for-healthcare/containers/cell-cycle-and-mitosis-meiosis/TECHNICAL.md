@@ -95,7 +95,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -103,7 +103,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-019-science-and-technology-for-healthcare/containers/cell-cycle-and-mitosis-meiosis`
 - Docs regeneration: `pnpm container:docs sutd/content/10-019-science-and-technology-for-healthcare/containers/cell-cycle-and-mitosis-meiosis`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -121,7 +121,7 @@ Filter version: aniegpt v1.0 (builder self-audit plus local container-auditor re
 
 ### P0 issues
 
-- Resolved: container shape validates. Prediction gate is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and the React reveal sits behind `SimRuntime` + the `predict` spec. The revealed state renders an SVG phase wheel with the active phase highlighted plus daughter-cell readouts — a real visual model.
+- Resolved: container shape validates. Prediction checkpoint is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and the React reveal sits behind `SimRuntime` + the `predict` spec. The revealed state renders an SVG phase wheel with the active phase highlighted plus daughter-cell readouts — a real visual model.
 - Resolved: all state-machine logic goes through `core/cell-cycle` (`initialCell`, `attemptPhaseAdvance`, `divideMitosis`, `divideMeiosis`); no phase switch or ploidy arithmetic is implemented in the React sim. Formula text is display-only.
 - Resolved: no clinical claims; the container stays at introductory cell-cycle mechanism level.
 

@@ -98,7 +98,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -106,7 +106,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/dai/containers/confusion-matrix-thresholds`
 - Docs regeneration: `pnpm container:docs sutd/content/dai/containers/confusion-matrix-thresholds`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -124,8 +124,8 @@ Filter version: aniegpt v1.0
 
 ### P0 issues
 
-- Prediction-gate enforcement was required for reveal. Resolved with package unit coverage of the gate and route-level Playwright coverage proving the matrix is hidden before prediction commit.
-- Declared kernel dependencies had to be consumed rather than named only. Resolved by using sim-runtime, probability-stats, charting, annotation, prediction-gate, and ui-sim in the package surface.
+- Prediction-checkpoint enforcement was required for reveal. Resolved with package unit coverage of the gate and route-level Playwright coverage proving the matrix is hidden before prediction commit.
+- Declared kernel dependencies had to be consumed rather than named only. Resolved by using sim-runtime, probability-stats, charting, annotation, prediction-checkpoint, and ui-sim in the package surface.
 - Sim-architect review found local threshold/count metric math in the React sim surface. Resolved by moving the count update, metric, base-rate, curve, per-case outcome, and weighted-cost logic into `core/probability-stats`.
 - Probability-stats public API changes needed explicit contract tracking. Resolved by updating `core/probability-stats/AGENTS.md` and opening core-change proposal https://github.com/anieyrudh/Paideia/issues/127.
 - Sim-architect review found undeclared runtime imports from `core/content-schema` and `core/shared`. Resolved by deriving the spec/package-id types from `SimRuntime` and removing direct runtime imports from those packages.
@@ -138,7 +138,7 @@ Filter version: aniegpt v1.0
 - Pedagogy review found Explain wording too declarative. Resolved by changing it to a stakeholder-facing Socratic question.
 - Pedagogy review asked for a misconception artifact; the container validator rejects unexpected top-level files, so the evidence note lives under `concept-map/misconceptions.md` and is linked from `concept-map/mindmap.md`.
 - Sim-architect review found the dominant-risk interpretation compared raw error counts instead of weighted costs. Resolved by comparing FP and FN cost totals from `core/probability-stats`.
-- Sim-architect review found `core/prediction-gate` was only used in tests. Resolved by reading reveal status with the prediction-gate API inside the observed runtime surface.
+- Sim-architect review found `core/prediction-gate` was only used in tests. Resolved by reading reveal status with the prediction-checkpoint API inside the observed runtime surface.
 
 ### Accessibility result
 

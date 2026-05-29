@@ -21,14 +21,22 @@ test.describe("Graph Search and Shortest Paths", () => {
     });
   });
 
-  test("prediction-gate blocks observation until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps observation visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Choose traversal" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Choose traversal" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal graph evidence" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByLabel("BFS minimizes edge count; Dijkstra minimizes total non-negative weight.")
@@ -37,13 +45,16 @@ test.describe("Graph Search and Shortest Paths", () => {
       .getByLabel("Rationale")
       .fill("BFS treats every edge as one step, while Dijkstra sums the weights.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toBeVisible();
     await expect(page.getByText("Dijkstra weighted shortest path")).toBeVisible();
   });
 
   test("manipulate traversal mode changes the observed order", async ({ page }) => {
-    await page.getByRole("button", { name: "Choose traversal" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Choose traversal" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByLabel("DFS traversal").check();
     await page.getByRole("button", { name: "Reveal graph evidence" }).click();
     await page
@@ -58,7 +69,12 @@ test.describe("Graph Search and Shortest Paths", () => {
   });
 
   test("has no critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Choose traversal" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Choose traversal" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal graph evidence" }).click();
     await page
       .getByLabel("BFS minimizes edge count; Dijkstra minimizes total non-negative weight.")

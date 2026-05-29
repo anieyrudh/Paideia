@@ -119,7 +119,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -127,7 +127,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/gaussian-elimination-and-linear-systems`
 - Docs regeneration: `pnpm container:docs sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/gaussian-elimination-and-linear-systems`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -145,7 +145,7 @@ Filter version: aniegpt v1.0
 
 ### P0 issues
 
-- None open after repair. The revealed state is still prediction-gated, uses `core/linear-algebra.gaussianElimination2` for row-reduction evidence, and exposes a visible matrix diagram plus formula/legend/substitution readout.
+- None open after repair. The revealed state is still prediction-checkpointd, uses `core/linear-algebra.gaussianElimination2` for row-reduction evidence, and exposes a visible matrix diagram plus formula/legend/substitution readout.
 
 ### P1 issues
 

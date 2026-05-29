@@ -313,7 +313,7 @@ ${kernelDeps.length > 0
 
 ## Accessibility
 
-- Prediction gate contract: ${manifest.package_predict || simulation?.predict ? "required and tested when the sim is registered." : "not declared."}
+- Prediction checkpoint contract: ${manifest.package_predict || simulation?.predict ? "required and tested when the sim is registered." : "not declared."}
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: ${isFile(join(containerDir, "media", "fallback.svg")) ? "`media/fallback.svg` present." : "missing."}
 
@@ -321,7 +321,7 @@ ${kernelDeps.length > 0
 
 - Container validation: \`pnpm container:validate ${containerRelative(containerDir)}\`
 - Docs regeneration: \`pnpm container:docs ${containerRelative(containerDir)}\`
-- Prediction-gate test: ${simulation ? maybeLink("simulation/simulation.test.ts") : "`not declared`"}
+- Prediction-checkpoint test: ${simulation ? maybeLink("simulation/simulation.test.ts") : "`not declared`"}
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally

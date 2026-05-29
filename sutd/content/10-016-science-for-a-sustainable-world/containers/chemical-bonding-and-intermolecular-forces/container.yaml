@@ -80,7 +80,7 @@ authoring:
   changelog:
     - date: "2026-05-26"
       author: "Codex"
-      summary: "Built initial SUTD 10.016 bonding and intermolecular forces product slice with prediction gate and formula-backed bonding comparison."
+      summary: "Built initial SUTD 10.016 bonding and intermolecular forces product slice with prediction checkpoint and formula-backed bonding comparison."
 authors: ["Codex"]
 advisor_signoffs: []
 filter_pass:

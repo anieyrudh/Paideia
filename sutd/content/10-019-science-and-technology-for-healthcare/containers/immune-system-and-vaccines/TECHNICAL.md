@@ -105,7 +105,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -113,7 +113,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-019-science-and-technology-for-healthcare/containers/immune-system-and-vaccines`
 - Docs regeneration: `pnpm container:docs sutd/content/10-019-science-and-technology-for-healthcare/containers/immune-system-and-vaccines`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -131,7 +131,7 @@ Filter version: aniegpt v1.0 (builder self-audit plus local container-auditor re
 
 ### P0 issues
 
-- Resolved: container shape validates. Prediction gate is declared and asserted in Playwright. Reveal renders an SVG coverage-vs-threshold bar plus a waning-curve plot with the threshold dashed — a real visual model.
+- Resolved: container shape validates. Prediction checkpoint is declared and asserted in Playwright. Reveal renders an SVG coverage-vs-threshold bar plus a waning-curve plot with the threshold dashed — a real visual model.
 - Resolved: all math goes through `core/immunology` (`effectiveReproductionNumber`, `herdImmunityThreshold`, `waneImmunity`, `immunityLevel`, `reproductionNumber`, `decayRate`); no `Re = R0 (1-p)` or `1 - 1/R0` arithmetic is implemented in the React sim. Formula text is display-only.
 - Resolved: the container is educational only: it teaches SIR-style reasoning and explicitly avoids any clinical claim, diagnosis, patient-specific prediction, or treatment recommendation.
 
@@ -139,7 +139,7 @@ Filter version: aniegpt v1.0 (builder self-audit plus local container-auditor re
 
 - Resolved: formula colours pair `Re` (blue) with the coverage bar, `p*` (orange) with the threshold marker, and `p(t)` (purple) with the waning curve. Substitution shows R0, p0, lambda, t, p(t), p* and Re; the verdict line ("contained" vs "growing") translates Re into plain language.
 - Resolved: manipulation visibly retargets the coverage bar fill (blue when contained, red when growing), the threshold line slides with R0, and the waning curve flattens or steepens as lambda changes.
-- Resolved: `simulation.yaml` now declares the imported contract kernels (`core/content-schema`, `core/shared`, `core/sim-runtime`, `core/immunology`, and prediction-gate contract) and no longer declares unused `core/dynamical-systems` / `core/ui-sim`.
+- Resolved: `simulation.yaml` now declares the imported contract kernels (`core/content-schema`, `core/shared`, `core/sim-runtime`, `core/immunology`, and prediction-checkpoint contract) and no longer declares unused `core/dynamical-systems` / `core/ui-sim`.
 - Resolved: public helper code no longer uses `as unknown as number` casts to display branded immunology values.
 - Resolved: the revealed observation now includes an explicit button into the explain stage, and the Playwright test asserts that path.
 

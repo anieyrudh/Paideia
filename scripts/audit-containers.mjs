@@ -82,8 +82,8 @@ function auditContainer(containerDir) {
   if (hasPredict) {
     if (!existsSync(simTest)) {
       failures.push("simulation/simulation.test.ts is missing for declared prediction path");
-    } else if (!readFileSync(simTest, "utf8").includes("prediction-gate")) {
-      failures.push("simulation/simulation.test.ts does not reference `prediction-gate`");
+    } else if (!readFileSync(simTest, "utf8").includes("prediction-checkpoint")) {
+      failures.push("simulation/simulation.test.ts does not reference `prediction-checkpoint`");
     }
   }
 

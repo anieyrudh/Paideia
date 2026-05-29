@@ -19,7 +19,7 @@ aid_types:
 predict_at: package-level
 package_predict:
   prompt: |
-    Before revealing the counts, predict what happens if the threshold is raised from 65% to 80% while false negatives are costly.
+    Before comparing with the counts, predict what happens if the threshold is raised from 65% to 80% while false negatives are costly.
   commit_format:
     kind: multiple-choice
     options:

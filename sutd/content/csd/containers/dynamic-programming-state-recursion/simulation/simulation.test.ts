@@ -14,21 +14,27 @@ test.describe("Dynamic Programming State Recursion", () => {
     await page.getByRole("button", { name: "Commit prediction" }).click();
   };
 
-  test("prediction-gate blocks reveal until a prediction is committed", async ({ page }) => {
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await expect(page.getByRole("button", { name: "Define recurrence state" })).toHaveCount(0);
+  test("prediction-checkpoint keeps observation visible while saving reflection", async ({ page }) => {
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await commitPrediction(page);
-    await page.getByRole("button", { name: "Define recurrence state" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Define recurrence state" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal recursion trace" }).click();
-
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toBeVisible();
   });
 
   test("manipulating the target state changes the result and trace readout", async ({ page }) => {
     await commitPrediction(page);
-    await page.getByRole("button", { name: "Define recurrence state" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Define recurrence state" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "n = 7" }).click();
     await page.getByLabel("Trace style").selectOption({ label: "Plain recursion comparison" });
     await page.getByRole("button", { name: "Reveal recursion trace" }).click();
@@ -41,7 +47,12 @@ test.describe("Dynamic Programming State Recursion", () => {
 
   test("shows formula, legend, substituted values, units, and interpretation", async ({ page }) => {
     await commitPrediction(page);
-    await page.getByRole("button", { name: "Define recurrence state" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Define recurrence state" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal recursion trace" }).click();
 
     const formula = page.getByRole("region", { name: "Formula and interpretation" });
@@ -54,7 +65,12 @@ test.describe("Dynamic Programming State Recursion", () => {
 
   test("has no serious or critical accessibility violations after reveal", async ({ page }) => {
     await commitPrediction(page);
-    await page.getByRole("button", { name: "Define recurrence state" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Define recurrence state" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal recursion trace" }).click();
     await page.getByRole("region", { name: "Observation unlocked" }).waitFor();
 

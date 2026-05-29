@@ -5,18 +5,14 @@ import { mountSim } from "../../../../../../testing/sim-harness/src/playwright-c
 const simId = "sutd/10-023-designing-energy-systems/heat-transfer-modes/heat-flow-comparison-lab";
 
 test.describe("Heat Transfer Modes", () => {
-  test("prediction-gate blocks heat-flow evidence until commit", async ({ page }) => {
+  test("prediction-checkpoint keeps heat-flow evidence visible while saving reflection", async ({ page }) => {
     await mountSim(page, simId);
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByLabel("Formula used")).toHaveCount(0);
 
     await page
       .getByLabel("They approximately double because both are proportional to Delta T.")
       .check();
     await page.getByLabel("Rationale").fill("Both formulae contain the same temperature difference.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByLabel("Heat-transfer readout")).toContainText("Conduction");
     await expect(page.getByLabel("Formula used")).toContainText("q_cond");
   });

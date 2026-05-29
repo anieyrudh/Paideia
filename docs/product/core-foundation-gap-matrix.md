@@ -23,7 +23,7 @@ Status meanings:
 | Foundation | Existing core modules |
 | --- | --- |
 | Container and schema contract | `core/content-schema`, `core/shared` |
-| Prediction and reveal control | `core/prediction-gate` |
+| Prediction checkpoint and reflection persistence | `core/prediction-gate` |
 | Simulation runtime and UI composition | `core/sim-runtime`, `core/ui-sim`, `core/three-scene` |
 | General computation and visuals | `core/function-eval`, `core/numerical-math`, `core/plotting`, `core/charting`, `core/graph-layout`, `core/timeline`, `core/annotation`, `core/mind-map` |
 | Learning state | `core/fsrs`, `core/bkt` |

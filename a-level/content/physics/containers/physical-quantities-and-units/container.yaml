@@ -89,7 +89,7 @@ authoring:
       summary: "Added the prerequisite content-only container for the A-Level physics mini graph."
     - date: "2026-05-17"
       author: "Codex"
-      summary: "Upgraded the container into a product-quality measurement and uncertainty lab with prediction-gated unit reasoning."
+      summary: "Upgraded the container into a product-quality measurement and uncertainty lab with prediction-checkpointd unit reasoning."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []

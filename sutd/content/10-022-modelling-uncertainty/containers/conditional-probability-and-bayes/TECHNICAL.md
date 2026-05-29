@@ -93,7 +93,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -101,7 +101,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-022-modelling-uncertainty/containers/conditional-probability-and-bayes`
 - Docs regeneration: `pnpm container:docs sutd/content/10-022-modelling-uncertainty/containers/conditional-probability-and-bayes`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -118,7 +118,7 @@ Date: 2026-05-28
 
 ### P0 issues
 
-- None open. The container has the required v2 surfaces, prediction gate,
+- None open. The container has the required v2 surfaces, prediction checkpoint,
   cited sources, an SVG evidence-flow visual, formula substitution, and
   package-boundary-safe simulation entrypoint. A follow-up local review found
   that the first reveal was too text-heavy; that was repaired before merge.

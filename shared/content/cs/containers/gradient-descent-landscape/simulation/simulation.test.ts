@@ -6,16 +6,12 @@ test.describe("Gradient Descent Landscape", () => {
     await page.goto("/?sim=shared/cs/gradient-descent-landscape/loss-surface-stepper");
   });
 
-  test("prediction-gate blocks gradient trace reveal until commit", async ({ page }) => {
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByText("Formula used")).toHaveCount(0);
+  test("prediction-checkpoint keeps gradient trace reveal visible while saving reflection", async ({ page }) => {
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "The path can overshoot and zig-zag across the valley" }).check();
     await page.getByLabel("Rationale").fill("A larger step can jump across a steep valley.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByLabel("Loss surface and descent trace")).toBeVisible();
     await expect(page.getByText("Formula used")).toBeVisible();
   });

@@ -280,7 +280,7 @@ const StageSurface = () => {
   if (stage.current === "explain") return <ExplainStage />;
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Thermochemistry and Equilibrium Lab</h1>
       <p>Predict heat direction, then compare heat transfer with equilibrium composition.</p>
       <button type="button" onClick={() => stage.advance()}>Set up reaction system</button>

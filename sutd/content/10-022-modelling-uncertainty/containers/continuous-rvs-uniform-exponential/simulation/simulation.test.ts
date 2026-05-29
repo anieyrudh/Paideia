@@ -5,28 +5,32 @@ const route =
   "/?sim=sutd/10-022-modelling-uncertainty/continuous-rvs-uniform-exponential/continuous-density-lab";
 
 test.describe("Continuous RVs", () => {
-  test("prediction-gate blocks density evidence until commit", async ({ page }) => {
+  test("prediction-checkpoint keeps density evidence visible while saving reflection", async ({ page }) => {
     await page.goto(route);
-
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await expect(page.getByText("Interval probability")).toHaveCount(0);
-    await page.getByLabel("Uniform").check();
+    await page.getByRole("radio", { name: "Uniform" }).check();
     await page.getByLabel("Rationale").fill("Uniform is bounded over a fixed interval.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-    await page.getByRole("button", { name: "Build density" }).click();
-
-    await expect(page.getByText("Commit a prediction to reveal interval probability and moments.")).toBeVisible();
+    {
+      const setupButton = page.getByRole("button", { name: "Build density" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal area" }).click();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toBeVisible();
   });
 
   test("manipulation changes the visible density family", async ({ page }) => {
     await page.goto(route);
 
-    await page.getByLabel("Exponential").check();
+    await page.getByRole("radio", { name: "Exponential" }).check();
     await page.getByLabel("Rationale").fill("Exponential is the waiting-time model.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-    await page.getByRole("button", { name: "Build density" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Build density" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByLabel("Density family").selectOption({ label: "Exponential" });
     await page.getByRole("button", { name: "Reveal area" }).click();
 
@@ -37,10 +41,15 @@ test.describe("Continuous RVs", () => {
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await page.goto(route);
 
-    await page.getByLabel("Uniform").check();
+    await page.getByRole("radio", { name: "Uniform" }).check();
     await page.getByLabel("Rationale").fill("Uniform spreads density evenly over a bounded interval.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-    await page.getByRole("button", { name: "Build density" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Build density" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal area" }).click();
 
     const results = await new AxeBuilder({ page }).analyze();

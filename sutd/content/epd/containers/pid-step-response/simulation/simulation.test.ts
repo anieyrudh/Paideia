@@ -24,22 +24,28 @@ test.describe("PID Step Response", () => {
     });
   });
 
-  test("prediction-gate blocks observation until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps observation visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Start tuning" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Start tuning" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Observe response" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByLabel("Increase Ki moderately").check();
     await page
       .getByLabel("Rationale")
       .fill("Integral action should reduce final error, but too much can increase overshoot.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toBeVisible();
     await expect(page.getByRole("img", { name: "Step response chart, output against time in seconds" })).toBeVisible();
     await expect(page.getByRole("img", { name: "PID feedback loop diagram" })).toBeVisible();
     await expect(page.getByLabel("Formula used")).toContainText("e_ss");
@@ -47,7 +53,12 @@ test.describe("PID Step Response", () => {
   });
 
   test("manipulate controls write to response metrics", async ({ page }) => {
-    await page.getByRole("button", { name: "Start tuning" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Start tuning" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
 
     await page.getByLabel("Proportional gain Kp").focus();
     await page.keyboard.press("ArrowRight");
@@ -68,7 +79,12 @@ test.describe("PID Step Response", () => {
   });
 
   test("shows chart, formula legend, substitutions, units, and feedback loop", async ({ page }) => {
-    await page.getByRole("button", { name: "Start tuning" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Start tuning" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Observe response" }).click();
     await page.getByLabel("Increase Ki moderately").check();
     await page
@@ -87,7 +103,12 @@ test.describe("PID Step Response", () => {
   });
 
   test("has no critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Start tuning" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Start tuning" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Observe response" }).click();
     await page.getByLabel("Increase Ki moderately").check();
     await page

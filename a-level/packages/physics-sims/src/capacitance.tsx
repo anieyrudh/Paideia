@@ -79,7 +79,7 @@ export const capacitanceSpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "A capacitor is connected to a fixed 6.0 V supply. Before revealing the lab, what happens if the capacitance is doubled while the voltage is kept the same?",
+      "A capacitor is connected to a fixed 6.0 V supply. Before comparing with the lab, what happens if the capacitance is doubled while the voltage is kept the same?",
     commit_format: {
       kind: "multiple-choice",
       options: [
@@ -571,7 +571,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
-      <p className="lab-kicker">Predict first</p>
+      <p className="lab-kicker">Prediction checkpoint</p>
       <h3>Fixed voltage, changing capacitance</h3>
       <p>
         Commit a prediction before the charge, energy, time constant, and discharge curve appear.

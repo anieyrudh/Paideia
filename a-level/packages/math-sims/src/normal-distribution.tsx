@@ -521,7 +521,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
-      <p className="lab-kicker">Predict first</p>
+      <p className="lab-kicker">Prediction checkpoint</p>
       <h3>Which normal area is larger?</h3>
       <p>
         Commit a prediction before the z-scores, curve, and probability area are revealed.

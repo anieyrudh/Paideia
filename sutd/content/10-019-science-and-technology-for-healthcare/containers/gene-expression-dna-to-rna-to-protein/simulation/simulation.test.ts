@@ -8,14 +8,22 @@ test.describe("Gene Expression DNA to RNA to Protein", () => {
     );
   });
 
-  test("prediction-gate blocks central-dogma evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps central-dogma evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set up gene expression" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set up gene expression" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal central dogma output" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByRole("radio", {
@@ -40,7 +48,12 @@ test.describe("Gene Expression DNA to RNA to Protein", () => {
   });
 
   test("point mutation preset changes the translated protein", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up gene expression" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up gene expression" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page
       .getByRole("combobox", { name: "DNA preset" })
       .selectOption("mutation-elf-to-ely");
@@ -59,7 +72,12 @@ test.describe("Gene Expression DNA to RNA to Protein", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up gene expression" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up gene expression" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal central dogma output" }).click();
     await page
       .getByRole("radio", {

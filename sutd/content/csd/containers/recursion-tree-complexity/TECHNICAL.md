@@ -90,7 +90,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -98,7 +98,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/csd/containers/recursion-tree-complexity`
 - Docs regeneration: `pnpm container:docs sutd/content/csd/containers/recursion-tree-complexity`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -118,7 +118,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer
 - Initial implementation review: no P0 issues recorded before automated gates.
 
 ### P1 addressed or deferred
-- Browser playtest completed: prediction gate blocked reveal, desktop and mobile revealed states rendered without console errors, mobile horizontal overflow was fixed, and the sim-harness Playwright accessibility test passed.
+- Browser playtest completed: prediction checkpoint blocked reveal, desktop and mobile revealed states rendered without console errors, mobile horizontal overflow was fixed, and the sim-harness Playwright accessibility test passed.
 
 ### P2 noted
 - A future shared recurrence-analysis kernel may absorb the local recurrence-tree model once more containers need the same calculations.

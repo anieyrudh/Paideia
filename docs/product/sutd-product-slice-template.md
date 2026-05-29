@@ -99,7 +99,7 @@ Every interactive simulation must use `core/sim-runtime`; do not replace it
 with a container-local mount contract.
 
 Student UI requirements:
-- prediction gate blocks reveal until commit when prediction is declared
+- prediction checkpoint saves reflection without blocking the simulation when prediction is declared
 - controls are labelled and accessible
 - formulas include substituted values, signs, units, final result, and interpretation
 - formulas are LaTeX code blocks with color-coded symbol legends

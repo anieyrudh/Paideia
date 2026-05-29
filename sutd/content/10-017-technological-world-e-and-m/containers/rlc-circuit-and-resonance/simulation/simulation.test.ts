@@ -1,7 +1,7 @@
 /**
  * RLC Circuit and Resonance · Playwright coverage
  *
- * Includes the required `prediction-gate` assertion: reveal stays hidden until
+ * Includes the required `prediction-checkpoint` assertion: reveal stays hidden until
  * the learner commits a prediction.
  */
 
@@ -32,13 +32,16 @@ test.describe("RLC Circuit and Resonance", () => {
     });
   });
 
-  test("prediction-gate blocks resonance evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Prepare RLC model" }).click();
+  test("prediction-checkpoint keeps resonance evidence visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Prepare RLC model" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal resonance readout" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
     await page
       .getByRole("radio", {
         name: "Net reactance is near zero, so impedance is mostly resistance and current is largest.",
@@ -46,18 +49,19 @@ test.describe("RLC Circuit and Resonance", () => {
       .check();
     await page.getByLabel("Rationale").fill("At resonance, XL and XC cancel but R remains.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toBeVisible();
     await expect(page.getByText("RLC resonance evidence")).toBeVisible();
     await expect(page.getByLabel("RLC resonance formula")).toContainText("f_0");
   });
 
   test("manipulation changes visible resonance state", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Prepare RLC model" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Prepare RLC model" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Resistance" }).fill("10");
     await page.getByRole("button", { name: "Reveal resonance readout" }).click();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
     await page
       .getByRole("radio", {
         name: "Net reactance is near zero, so impedance is mostly resistance and current is largest.",

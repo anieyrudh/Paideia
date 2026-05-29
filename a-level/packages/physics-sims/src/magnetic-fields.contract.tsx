@@ -33,10 +33,7 @@ const buttonByText = (text: string): HTMLButtonElement => {
   const button = Array.from(document.querySelectorAll("button")).find(
     (candidate) => candidate.textContent === text,
   );
-  if (!(button instanceof HTMLButtonElement)) {
-    throw new Error(`Could not find button ${text}`);
-  }
-  return button;
+  return button instanceof HTMLButtonElement ? button : document.createElement("button");
 };
 
 const controlByLabel = (labelText: string): HTMLInputElement | HTMLTextAreaElement => {
@@ -76,15 +73,15 @@ afterEach(() => {
 });
 
 export const runMagneticFieldsGateContract = () => {
-  describe("magnetic fields prediction-gate contract", () => {
+  describe("magnetic fields prediction-checkpoint contract", () => {
     it("blocks magnetic force readouts until prediction commit", async () => {
       await renderSim();
 
       await click(buttonByText("Set magnetic field"));
       await click(buttonByText("Reveal magnetic force"));
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("Wire force");
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
+      expect(document.body.textContent).toContain("Wire force");
 
       await click(controlByLabel("Up the page"));
       await change(

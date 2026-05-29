@@ -18,7 +18,7 @@ export const kinematicsSimId = "motion-equations-lab";
 
 export const kinematicsPredict: TPredictSpec = {
   prompt:
-    "A trolley starts from rest and accelerates at 2.0 m s^-2 for 3.0 s. Before revealing the trace, which displacement is closest?",
+    "A trolley starts from rest and accelerates at 2.0 m s^-2 for 3.0 s. Before comparing with the trace, which displacement is closest?",
   commit_format: {
     kind: "multiple-choice",
     options: ["3.0 m", "6.0 m", "9.0 m", "18.0 m"],

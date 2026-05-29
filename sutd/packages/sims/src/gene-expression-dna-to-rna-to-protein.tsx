@@ -359,7 +359,7 @@ const ManipulateStage = () => {
       <section className="sutd-formula-card" aria-label="Before reveal cue">
         <p className="meta-line">Before reveal</p>
         <h3>One DNA segment, three layers</h3>
-        <p>Predict first. Then watch how a point mutation changes the protein sequence and how the inducer concentration changes the steady states.</p>
+        <p>Prediction checkpoint. Then watch how a point mutation changes the protein sequence and how the inducer concentration changes the steady states.</p>
       </section>
     </section>
   );
@@ -569,7 +569,7 @@ const StageSurface = () => {
   if (stage.current === "explain") return <ExplainStage />;
   return (
     <section className="sutd-formula-card" aria-label="Prediction setup">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Central Dogma Lab</h1>
       <p>Predict how mRNA and protein steady states respond to inducer concentration before transcribing and translating the chosen DNA segment.</p>
       <button type="button" onClick={() => stage.advance()}>Set up gene expression</button>

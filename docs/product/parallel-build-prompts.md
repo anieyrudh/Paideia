@@ -197,7 +197,7 @@ with a container-local mount contract.
 
 Student UI requirements:
 - every product slice declares a prediction path, and a test proves the
-  prediction gate blocks reveal until commit
+  prediction checkpoint saves reflection without blocking the simulation
 - controls are labelled and accessible
 - formulas are LaTeX code blocks with nearby color-coded symbol legends
 - formulas include substituted values, signs where relevant, units inside terms,

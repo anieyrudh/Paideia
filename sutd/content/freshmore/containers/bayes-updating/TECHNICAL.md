@@ -93,7 +93,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -101,7 +101,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 - Container validation: `pnpm container:validate sutd/content/freshmore/containers/bayes-updating`
 - Docs regeneration: `pnpm container:docs sutd/content/freshmore/containers/bayes-updating`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -120,7 +120,7 @@ Filter version: aniegpt v1.0
 ### P0 issues
 
 - Package-boundary violation: draft implementation lived inside the content folder and imported a wrong renderer package. Resolved by moving the sim to `@paideia/sutd-sims/bayes-updating` and declaring that package subpath in the simulation spec.
-- Prediction-gate test was placeholder-only. Resolved with Playwright assertions for blocked reveal, committed reveal, manipulation, and axe critical violations.
+- Prediction-checkpoint test was placeholder-only. Resolved with Playwright assertions for blocked reveal, committed reveal, manipulation, and axe critical violations.
 
 ### P1 issues
 

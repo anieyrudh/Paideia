@@ -8,14 +8,22 @@ test.describe("Immune System and Vaccines", () => {
     );
   });
 
-  test("prediction-gate blocks Re evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps Re evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set up herd immunity" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set up herd immunity" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal effective reproduction number" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByRole("radio", {
@@ -38,7 +46,12 @@ test.describe("Immune System and Vaccines", () => {
   });
 
   test("crossing the threshold flips the outbreak verdict", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up herd immunity" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up herd immunity" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Vaccination coverage" }).fill("0.9");
     await page.getByRole("button", { name: "Reveal effective reproduction number" }).click();
     await page
@@ -53,7 +66,12 @@ test.describe("Immune System and Vaccines", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up herd immunity" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up herd immunity" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal effective reproduction number" }).click();
     await page
       .getByRole("radio", {

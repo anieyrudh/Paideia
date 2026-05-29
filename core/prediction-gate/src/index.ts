@@ -7,7 +7,7 @@ import {
 } from "./storage.js";
 
 export { PredictionGate } from "./component.js";
-export { usePredictionGate } from "./usePredictionGate.js";
+export { usePredictionCheckpoint, usePredictionGate } from "./usePredictionGate.js";
 export type { PredictionCommit, PredictionEvent, PredictionScope } from "./storage.js";
 
 export const commitPrediction = (
@@ -16,10 +16,16 @@ export const commitPrediction = (
   prediction: PredictionCommit,
 ): KernelResult<void> => writeStoredPrediction(packageId, simId, prediction);
 
-export const isRevealed = (
+export const isPredictionCommitted = (
   packageId: string,
   simId: PredictionScope,
 ): boolean => hasStoredPrediction(packageId, simId);
+
+/**
+ * @deprecated Use isPredictionCommitted. Prediction no longer controls
+ * whether the simulation is visible; it only records learner reflection.
+ */
+export const isRevealed = isPredictionCommitted;
 
 export const clearPrediction = (
   packageId: string,

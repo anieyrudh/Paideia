@@ -71,7 +71,7 @@ export const workEnergyPowerSpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "A 10 N pull moves a trolley 3.0 m in the same direction as the motion in 2.0 s. Before revealing the lab, which work and average power statement is correct?",
+      "A 10 N pull moves a trolley 3.0 m in the same direction as the motion in 2.0 s. Before comparing with the lab, which work and average power statement is correct?",
     commit_format: {
       kind: "multiple-choice",
       options: ["0 J and 0 W", "30 J and 15 W", "30 J and 30 W", "60 J and 15 W"],
@@ -521,7 +521,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
-      <p className="lab-kicker">Predict first</p>
+      <p className="lab-kicker">Prediction checkpoint</p>
       <h3>Which part of the force counts?</h3>
       <p>
         Commit a prediction before the energy trace appears. The reveal will connect force angle,

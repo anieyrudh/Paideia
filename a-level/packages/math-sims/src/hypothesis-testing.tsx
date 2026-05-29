@@ -522,7 +522,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
-      <p className="lab-kicker">Predict first</p>
+      <p className="lab-kicker">Prediction checkpoint</p>
       <h3>Will the same gap become stronger evidence?</h3>
       <p>
         Commit a prediction before the test statistic, critical region, and p-value comparison are

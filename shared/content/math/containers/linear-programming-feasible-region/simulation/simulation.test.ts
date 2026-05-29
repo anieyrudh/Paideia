@@ -17,10 +17,8 @@ test.describe("LP Feasible Region Visualiser", () => {
     });
   });
 
-  test("prediction-gate blocks feasible-region reveal until commit", async ({ page }) => {
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByLabel("Feasible region and objective line")).toHaveCount(0);
+  test("prediction-checkpoint keeps feasible-region reveal visible while saving reflection", async ({ page }) => {
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByRole("radio", {
@@ -29,8 +27,6 @@ test.describe("LP Feasible Region Visualiser", () => {
       .check();
     await page.getByLabel("Rationale").fill("A linear objective is compared at feasible vertices.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByLabel("Feasible region and objective line")).toBeVisible();
     await expect(page.getByLabel("Formula used")).toContainText("Z");
   });

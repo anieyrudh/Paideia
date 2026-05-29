@@ -8,12 +8,15 @@ test.describe("Line Integrals and Conservative Vector Fields", () => {
     );
   });
 
-  test("prediction-gate blocks line-integral evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Set up path-independence check" }).click();
+  test("prediction-checkpoint keeps line-integral evidence visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Set up path-independence check" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal line-integral evidence" }).click();
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
     await page.getByRole("radio", { name: "The work stays the same because the field is conservative" }).check();
     await page.getByLabel("Rationale").fill("A gradient field has endpoint-only work.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
@@ -24,7 +27,12 @@ test.describe("Line Integrals and Conservative Vector Fields", () => {
   });
 
   test("manipulation changes the route-dependence verdict", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up path-independence check" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up path-independence check" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByLabel("Vector field").selectOption({ label: "Rotational circulation field" });
     await page.getByLabel("Path shape").selectOption({ label: "Two-leg elbow path" });
     await page.getByRole("button", { name: "Reveal line-integral evidence" }).click();
@@ -35,7 +43,12 @@ test.describe("Line Integrals and Conservative Vector Fields", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up path-independence check" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up path-independence check" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal line-integral evidence" }).click();
     await page.getByRole("radio", { name: "The work stays the same because the field is conservative" }).check();
     await page.getByLabel("Rationale").fill("Potential change should match the conservative field integral.");

@@ -80,7 +80,7 @@ authoring:
   changelog:
     - date: "2026-05-20"
       author: "Codex"
-      summary: "Built shared-core central limit theorem sampler with prediction gate, formula panel, charted sample means, and transfer problem."
+      summary: "Built shared-core central limit theorem sampler with prediction checkpoint, formula panel, charted sample means, and transfer problem."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []

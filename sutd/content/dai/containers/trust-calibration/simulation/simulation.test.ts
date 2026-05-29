@@ -21,14 +21,22 @@ test.describe("Trust Calibration", () => {
     });
   });
 
-  test("prediction-gate blocks policy cost until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps policy cost visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Choose trust policy" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Choose trust policy" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal policy cost" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "70% threshold" }).check();
     await page
@@ -43,7 +51,12 @@ test.describe("Trust Calibration", () => {
   });
 
   test("manipulating the threshold changes accepted coverage", async ({ page }) => {
-    await page.getByRole("button", { name: "Choose trust policy" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Choose trust policy" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Automation confidence threshold" }).fill("85");
     await page.getByRole("button", { name: "Reveal policy cost" }).click();
     await page.getByRole("radio", { name: "85% threshold" }).check();
@@ -56,7 +69,12 @@ test.describe("Trust Calibration", () => {
   });
 
   test("has no critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Choose trust policy" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Choose trust policy" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal policy cost" }).click();
     await page.getByRole("radio", { name: "70% threshold" }).check();
     await page.getByLabel("Rationale").fill("Cost matters more than confidence alone.");

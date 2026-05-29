@@ -36,7 +36,7 @@ manipulate:
       bounds: { min: 1, max: 6, step: 0.5 }
 predict:
   prompt: |
-    Before revealing the feasible region, which statement is most reliable for maximizing Z = 3x + 2y?
+    Before comparing with the feasible region, which statement is most reliable for maximizing Z = 3x + 2y?
   commit_format:
     kind: multiple-choice
     options:

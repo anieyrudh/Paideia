@@ -448,7 +448,7 @@ const ManipulateStage = () => {
       <section aria-label="Before reveal cue" className="sutd-formula-card">
         <p className="meta-line">Before reveal</p>
         <h3>Hydropathy shapes the energy landscape</h3>
-        <p>Predict first. Then change the sequence preset to watch how the same window and threshold flip the dominant-region label.</p>
+        <p>Prediction checkpoint. Then change the sequence preset to watch how the same window and threshold flip the dominant-region label.</p>
       </section>
     </section>
   );
@@ -545,7 +545,7 @@ const StageSurface = () => {
   if (stage.current === "explain") return <ExplainStage />;
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Hydropathy Folding Lab</h1>
       <p>
         Predict how a poly-leucine peptide behaves in water before scanning the hydropathy profile.

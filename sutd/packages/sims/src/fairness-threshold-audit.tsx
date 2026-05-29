@@ -623,7 +623,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" style={{ display: "grid", gap: "1rem" }}>
-      <p>Predict first</p>
+      <p>Prediction checkpoint</p>
       <h1>Fairness Threshold Audit Lab</h1>
       <p>
         Commit a prediction about one shared threshold before seeing the group audit. Then tune the

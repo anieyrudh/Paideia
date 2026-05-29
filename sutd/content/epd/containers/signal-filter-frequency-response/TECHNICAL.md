@@ -107,7 +107,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -115,7 +115,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/epd/containers/signal-filter-frequency-response`
 - Docs regeneration: `pnpm container:docs sutd/content/epd/containers/signal-filter-frequency-response`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -134,7 +134,7 @@ Reviewers: container-auditor, sim-architect, pedagogy-reviewer
 
 ### P0 issues
 
-- None open. The container has canonical v2 layout, prediction-gated observation, declared kernel dependencies, and generated docs.
+- None open. The container has canonical v2 layout, prediction-checkpointd observation, declared kernel dependencies, and generated docs.
 
 ### P1 issues
 

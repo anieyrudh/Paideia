@@ -1,8 +1,9 @@
 # @paideia/prediction-gate
 
-Predict-before-reveal enforcement for PMOE-T simulations. The package owns the
-commit contract, localStorage key scheme, and React gate that prevents Observe
-or Explain UI from entering the DOM before a learner commits.
+Prediction-checkpoint support for PMOE-T simulations. The package owns the
+commit contract, localStorage key scheme, and React checkpoint that records a
+learner's expectation without hiding the simulation. Children render
+immediately.
 
 ```tsx
 import { PredictionGate } from "@paideia/prediction-gate";
@@ -27,14 +28,14 @@ export function OscillatorGate() {
 }
 ```
 
-Lower-level helpers are available when a container needs to integrate the gate
+Lower-level helpers are available when a container needs to integrate the checkpoint
 with its own UI:
 
 ```ts
 import {
   clearPrediction,
   commitPrediction,
-  isRevealed,
+  isPredictionCommitted,
 } from "@paideia/prediction-gate";
 
 commitPrediction("simple-harmonic-motion", "package", {
@@ -42,8 +43,8 @@ commitPrediction("simple-harmonic-motion", "package", {
   rationale: "Amplitude does not appear in the period formula.",
 });
 
-if (isRevealed("simple-harmonic-motion", "package")) {
-  // render observation
+if (isPredictionCommitted("simple-harmonic-motion", "package")) {
+  // render saved-prediction summary or learner reflection state
 }
 
 // Only call from an explicit reset action.
@@ -53,3 +54,7 @@ clearPrediction("simple-harmonic-motion", "package");
 Storage is local-only under
 `paideia.predict.<packageId>.<simId|"package">`. Consumers must not read or
 write that key directly.
+
+Compatibility exports `isRevealed` and `usePredictionGate` remain available
+while older containers migrate, but they now mean "prediction committed", not
+"observation may be shown".

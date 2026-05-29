@@ -21,7 +21,7 @@ aid_types:
 predict_at: both
 package_predict:
   prompt: |
-    A ball is launched horizontally from a bench. Before revealing the path, what happens to its horizontal velocity while it falls?
+    A ball is launched horizontally from a bench. Before comparing with the path, what happens to its horizontal velocity while it falls?
   commit_format:
     kind: multiple-choice
     options:
@@ -86,7 +86,7 @@ authoring:
   changelog:
     - date: "2026-05-28"
       author: "Codex"
-      summary: "Built the Projectile Motion product slice with a mechanics-kernel trajectory lab, prediction gate, transfer problem, graph data, and tests."
+      summary: "Built the Projectile Motion product slice with a mechanics-kernel trajectory lab, prediction checkpoint, transfer problem, graph data, and tests."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []

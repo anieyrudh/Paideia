@@ -17,10 +17,8 @@ test.describe("Graph Algorithm Explorer", () => {
     });
   });
 
-  test("prediction-gate blocks graph evidence until commit", async ({ page }) => {
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByText("Formula used")).toHaveCount(0);
+  test("prediction-checkpoint keeps graph evidence visible while saving reflection", async ({ page }) => {
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByRole("radio", {
@@ -29,8 +27,6 @@ test.describe("Graph Algorithm Explorer", () => {
       .check();
     await page.getByLabel("Rationale").fill("Weights and hop count are different objectives.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByLabel("Graph algorithm diagram")).toBeVisible();
     await expect(page.getByText("Formula used")).toBeVisible();
   });

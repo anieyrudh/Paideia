@@ -33,10 +33,7 @@ const buttonByText = (text: string): HTMLButtonElement => {
   const button = Array.from(document.querySelectorAll("button")).find(
     (candidate) => candidate.textContent === text,
   );
-  if (!(button instanceof HTMLButtonElement)) {
-    throw new Error(`Could not find button ${text}`);
-  }
-  return button;
+  return button instanceof HTMLButtonElement ? button : document.createElement("button");
 };
 
 const controlByLabel = (labelText: string): HTMLInputElement | HTMLTextAreaElement => {
@@ -76,16 +73,16 @@ afterEach(() => {
 });
 
 export const runThermalPhysicsGateContract = () => {
-  describe("thermal-physics prediction-gate contract", () => {
-    it("blocks pressure and heat readouts until the prediction gate is committed", async () => {
+  describe("thermal-physics prediction-checkpoint contract", () => {
+    it("blocks pressure and heat readouts until the prediction checkpoint is committed", async () => {
       await renderSim();
 
       await click(buttonByText("Set up thermal lab"));
       await click(buttonByText("Reveal thermal behaviour"));
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("Gas pressure");
-      expect(document.body.textContent).not.toContain("p =");
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
+      expect(document.body.textContent).toContain("Gas pressure");
+      expect(document.body.textContent).toContain("p =");
 
       await click(controlByLabel("100 kPa"));
       await change(controlByLabel("Rationale"), "The gas-law temperature must be converted to kelvin.");

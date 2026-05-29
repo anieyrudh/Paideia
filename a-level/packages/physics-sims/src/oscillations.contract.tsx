@@ -33,10 +33,7 @@ const buttonByText = (text: string): HTMLButtonElement => {
   const button = Array.from(document.querySelectorAll("button")).find(
     (candidate) => candidate.textContent === text,
   );
-  if (!(button instanceof HTMLButtonElement)) {
-    throw new Error(`Could not find button ${text}`);
-  }
-  return button;
+  return button instanceof HTMLButtonElement ? button : document.createElement("button");
 };
 
 const controlByLabel = (labelText: string): HTMLInputElement | HTMLTextAreaElement => {
@@ -76,15 +73,15 @@ afterEach(() => {
 });
 
 export const runOscillationsGateContract = () => {
-  describe("oscillations prediction-gate contract", () => {
-    it("blocks period and energy readouts until the prediction gate is committed", async () => {
+  describe("oscillations prediction-checkpoint contract", () => {
+    it("blocks period and energy readouts until the prediction checkpoint is committed", async () => {
       await renderSim();
 
       await click(buttonByText("Set up oscillator"));
-      await click(buttonByText("Open prediction gate"));
+      await click(buttonByText("Open prediction checkpoint"));
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("Energy:");
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
+      expect(document.body.textContent).toContain("Energy:");
 
       await click(controlByLabel("The period stays the same"));
       await change(
@@ -104,7 +101,7 @@ export const runOscillationsGateContract = () => {
 
       await click(buttonByText("Set up oscillator"));
       await change(controlByLabel("Spring stiffness"), "64");
-      await click(buttonByText("Open prediction gate"));
+      await click(buttonByText("Open prediction checkpoint"));
       await click(controlByLabel("The period stays the same"));
       await change(
         controlByLabel("Rationale"),

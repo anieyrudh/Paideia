@@ -91,7 +91,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -99,7 +99,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-019-science-and-technology-for-healthcare/containers/protein-folding-and-function`
 - Docs regeneration: `pnpm container:docs sutd/content/10-019-science-and-technology-for-healthcare/containers/protein-folding-and-function`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -117,7 +117,7 @@ Filter version: aniegpt v1.0 (builder self-audit; awaiting reviewer pass)
 
 ### P0 issues
 
-- None observed. Container shape validates (77 containers OK). Prediction gate is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and the React reveal sits behind `SimRuntime` + the `predict` spec. The revealed state renders a coloured residue chain SVG plus a windowed hydropathy line plot with both thresholds drawn — a genuine visual model, not a text-only reveal. Hydropathy lookup, alphabet validation, and windowing all go through `core/protein-structure` (`aminoAcidLetter`, `aminoAcidProperties`, `kyteDoolittleHydropathy`, `chargeClass`, `hydropathyProfile`); no Kyte-Doolittle table or window math is inlined. No clinical claims: the container teaches hydropathy windowing and explicitly disclaims that hydropathy decides the final fold.
+- None observed. Container shape validates (77 containers OK). Prediction checkpoint is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and the React reveal sits behind `SimRuntime` + the `predict` spec. The revealed state renders a coloured residue chain SVG plus a windowed hydropathy line plot with both thresholds drawn — a genuine visual model, not a text-only reveal. Hydropathy lookup, alphabet validation, and windowing all go through `core/protein-structure` (`aminoAcidLetter`, `aminoAcidProperties`, `kyteDoolittleHydropathy`, `chargeClass`, `hydropathyProfile`); no Kyte-Doolittle table or window math is inlined. No clinical claims: the container teaches hydropathy windowing and explicitly disclaims that hydropathy decides the final fold.
 
 ### P1 issues
 

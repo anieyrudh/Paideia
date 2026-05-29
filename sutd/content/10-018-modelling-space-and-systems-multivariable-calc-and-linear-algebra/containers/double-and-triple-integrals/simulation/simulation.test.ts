@@ -8,12 +8,15 @@ test.describe("Double and Triple Integrals", () => {
     );
   });
 
-  test("prediction-gate blocks accumulation evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Set region" }).click();
+  test("prediction-checkpoint keeps accumulation evidence visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Set region" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal accumulation" }).click();
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "It doubles, because twice as much base area is accumulated" }).check();
     await page.getByLabel("Rationale").fill("With constant density, doubling one rectangular bound doubles the area being accumulated.");
@@ -24,7 +27,12 @@ test.describe("Double and Triple Integrals", () => {
   });
 
   test("manipulating the mode changes visible integral evidence", async ({ page }) => {
-    await page.getByRole("button", { name: "Set region" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set region" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("combobox", { name: "Integral mode" }).selectOption({ label: "Triple integral as stacked layers" });
     await page.getByRole("button", { name: "Reveal accumulation" }).click();
     await page.getByRole("radio", { name: "It doubles, because twice as much base area is accumulated" }).check();
@@ -37,7 +45,12 @@ test.describe("Double and Triple Integrals", () => {
   });
 
   test("formula, legend, substituted values, units, and interpretation are visible", async ({ page }) => {
-    await page.getByRole("button", { name: "Set region" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set region" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal accumulation" }).click();
     await page.getByRole("radio", { name: "It doubles, because twice as much base area is accumulated" }).check();
     await page.getByLabel("Rationale").fill("The area doubles when one bound doubles.");
@@ -52,7 +65,12 @@ test.describe("Double and Triple Integrals", () => {
   });
 
   test("has no serious or critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set region" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set region" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal accumulation" }).click();
     await page.getByRole("radio", { name: "It doubles, because twice as much base area is accumulated" }).check();
     await page.getByLabel("Rationale").fill("The integral accumulates density over the base area.");

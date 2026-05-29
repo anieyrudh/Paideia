@@ -80,7 +80,7 @@ authoring:
   changelog:
     - date: "2026-05-20"
       author: "Codex"
-      summary: "Built initial SUTD Freshmore Bayes updating product slice with prediction gate and posterior formula evidence."
+      summary: "Built initial SUTD Freshmore Bayes updating product slice with prediction checkpoint and posterior formula evidence."
 authors: ["Codex"]
 advisor_signoffs: []
 review:

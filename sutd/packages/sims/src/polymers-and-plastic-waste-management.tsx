@@ -240,7 +240,7 @@ const ControlPanel = () => {
       <section aria-label="Before reveal cue" className="sutd-formula-card">
         <p className="meta-line">Before reveal</p>
         <h3>Plastic waste is not solved by a label alone</h3>
-        <p>Predict first, then compare material performance with the recovery pathway.</p>
+        <p>Prediction checkpoint, then compare material performance with the recovery pathway.</p>
       </section>
     </section>
   );
@@ -330,7 +330,7 @@ const StageSurface = () => {
   if (stage.current === "explain") return <ExplainStage />;
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Polymers and Plastic Waste Management Lab</h1>
       <p>Predict what evidence matters before ranking polymer choices and end-of-life pathways.</p>
       <button type="button" onClick={() => stage.advance()}>Set up polymer scenario</button>

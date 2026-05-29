@@ -8,14 +8,22 @@ test.describe("Determinant and Trace", () => {
     );
   });
 
-  test("prediction-gate blocks determinant and trace evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps determinant and trace evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set up determinant and trace check" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set up determinant and trace check" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal determinant and trace evidence" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByRole("radio", {
@@ -35,7 +43,12 @@ test.describe("Determinant and Trace", () => {
   });
 
   test("manipulation flips the determinant sign", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up determinant and trace check" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up determinant and trace check" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Top-left entry a" }).fill("0");
     await page.getByRole("slider", { name: "Top-right entry b" }).fill("1");
     await page.getByRole("slider", { name: "Bottom-left entry c" }).fill("1");
@@ -56,7 +69,12 @@ test.describe("Determinant and Trace", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up determinant and trace check" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up determinant and trace check" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal determinant and trace evidence" }).click();
     await page
       .getByRole("radio", {

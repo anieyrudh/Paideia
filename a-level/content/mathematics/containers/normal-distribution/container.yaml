@@ -22,7 +22,7 @@ aid_types:
 predict_at: both
 package_predict:
   prompt: |
-    A score is modelled as normal with mean 100 and standard deviation 12. Before revealing the lab, predict whether the central interval 88 to 112 marks or the upper tail above 124 marks has the larger probability.
+    A score is modelled as normal with mean 100 and standard deviation 12. Before comparing with the lab, predict whether the central interval 88 to 112 marks or the upper tail above 124 marks has the larger probability.
   commit_format:
     kind: multiple-choice
     options:
@@ -81,7 +81,7 @@ authoring:
   changelog:
     - date: "2026-05-21"
       author: "Codex"
-      summary: "Built A-Level normal distribution product slice using core/probability-stats, charting, sim-runtime, prediction-gate, shared, and ui-sim."
+      summary: "Built A-Level normal distribution product slice using core/probability-stats, charting, sim-runtime, prediction-checkpoint, shared, and ui-sim."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []

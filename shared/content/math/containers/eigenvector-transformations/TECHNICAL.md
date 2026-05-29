@@ -125,7 +125,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -133,7 +133,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate shared/content/math/containers/eigenvector-transformations`
 - Docs regeneration: `pnpm container:docs shared/content/math/containers/eigenvector-transformations`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -151,7 +151,7 @@ Reviewers (local): structural validator, sim package tests, product self-review
 
 ### P0 resolved
 
-- Prediction gate blocks observation until a rationale-bearing prediction is committed — resolution: asserted in package and Playwright tests.
+- Prediction checkpoint blocks observation until a rationale-bearing prediction is committed — resolution: asserted in package and Playwright tests.
 - Eigenvector verdict uses `core/linear-algebra` matrix/vector operations and tolerance constants — resolution: added and consumed `checkEigenvector2()` for `A*v`, projection scale, residual, and verdict.
 - Shared-core path is `shared/content/math/containers/eigenvector-transformations` — resolution: no A-Level or SUTD wrapper placement.
 - Explain prompt must be Socratic and non-telegraphing — resolution: changed the prompt to ask what evidence proves the direction survived.

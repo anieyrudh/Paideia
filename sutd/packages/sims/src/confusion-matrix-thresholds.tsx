@@ -372,7 +372,7 @@ const ManipulateStage = () => {
   return (
     <section aria-label="Threshold controls" style={{ display: "grid", gap: "1rem" }}>
       <header>
-        <p>Manipulate the policy before revealing the counts.</p>
+        <p>Manipulate the policy before comparing with the counts.</p>
         <h2>Set the threshold and error costs</h2>
       </header>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }} aria-label="Preset policies">
@@ -532,7 +532,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" style={{ display: "grid", gap: "1rem" }}>
-      <p>Predict first</p>
+      <p>Prediction checkpoint</p>
       <h1>Confusion Matrix Threshold Explorer</h1>
       <p>
         Predict the effect of a stricter threshold before the count table is revealed. Then tune the

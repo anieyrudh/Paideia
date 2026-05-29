@@ -215,7 +215,7 @@ const ManipulateStage = () => {
       <section className="sutd-formula-card" aria-label="Before reveal cue">
         <p className="meta-line">Before reveal</p>
         <h3>Re = R0 (1 - p) is the verdict</h3>
-        <p>Predict first. Then watch the threshold line move with R0 and the waning curve drag the effective coverage down.</p>
+        <p>Prediction checkpoint. Then watch the threshold line move with R0 and the waning curve drag the effective coverage down.</p>
       </section>
     </section>
   );
@@ -347,7 +347,7 @@ const StageSurface = () => {
   if (stage.current === "explain") return <ExplainStage />;
   return (
     <section className="sutd-formula-card" aria-label="Prediction setup">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Herd Immunity Lab</h1>
       <p>Predict whether vaccinating 60 percent stops an R0 = 4 outbreak before adjusting the coverage and waning.</p>
       <button type="button" onClick={() => stage.advance()}>Set up herd immunity</button>

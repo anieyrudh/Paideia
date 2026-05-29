@@ -108,7 +108,7 @@ Recommended next PR, 2-3 routes:
 - `sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/partial-derivatives-and-gradient/partial-derivatives-and-gradient`
 - `sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/optimisation-with-lagrange-multipliers/optimisation-with-lagrange-multipliers`
 
-Acceptance: add `visual_quality`, use `expectProductSimulationReveal`, normalize formula labels if needed, and keep `pnpm container:visual-quality` green.
+Acceptance: add `visual_quality`, use `expectProductSimulationExperience`, normalize formula labels if needed, and keep `pnpm container:visual-quality` green.
 
 ### 2. SUTD 10.019 healthcare tranche
 
@@ -136,7 +136,7 @@ Add a rendered-copy gate after the next shell polish pass. It should reject lear
 
 ### 5. New container production
 
-Resume broad container production only with this rule in the build prompt: every new sim-worthy route must ship `simulation/runtime.yaml` `visual_quality` metadata and a test using `expectProductSimulationReveal` from the first PR.
+Resume broad container production only with this rule in the build prompt: every new sim-worthy route must ship `simulation/runtime.yaml` `visual_quality` metadata and a test using `expectProductSimulationExperience` from the first PR.
 
 ## Recommendation
 

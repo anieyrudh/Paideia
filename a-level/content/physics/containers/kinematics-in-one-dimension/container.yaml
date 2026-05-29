@@ -22,7 +22,7 @@ aid_types:
 predict_at: both
 package_predict:
   prompt: |
-    A trolley starts from rest and accelerates at 2.0 m s^-2 for 3.0 s. Before revealing the trace, which displacement is closest?
+    A trolley starts from rest and accelerates at 2.0 m s^-2 for 3.0 s. Before comparing with the trace, which displacement is closest?
   commit_format:
     kind: multiple-choice
     options:
@@ -90,7 +90,7 @@ authoring:
       summary: "Scaffolded v2 container."
     - date: "2026-05-18"
       author: "Codex"
-      summary: "Built the kinematics product slice with a mechanics-kernel simulation, prediction gate, transfer problem, graph data, and tests."
+      summary: "Built the kinematics product slice with a mechanics-kernel simulation, prediction checkpoint, transfer problem, graph data, and tests."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []

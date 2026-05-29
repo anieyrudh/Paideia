@@ -338,7 +338,7 @@ const simCss = `
   outline: 3px solid #f59e0b;
   outline-offset: 2px;
 }
-.rtc-sim form[aria-label="Prediction gate"] {
+.rtc-sim form[aria-label="Prediction checkpoint"] {
   background: #fbfdf9;
   border: 1px solid #d0d8d2;
   border-radius: 8px;
@@ -387,7 +387,7 @@ const simCss = `
   .rtc-sim {
     padding: 0.75rem;
   }
-  .rtc-sim form[aria-label="Prediction gate"] {
+  .rtc-sim form[aria-label="Prediction checkpoint"] {
     padding: 0.8rem;
   }
 }

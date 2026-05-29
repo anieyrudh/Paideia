@@ -63,7 +63,7 @@ export const momentumSpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "Cart A has mass 0.50 kg and moves at +2.0 m s^-1. Cart B has mass 1.0 kg and moves at -0.5 m s^-1. Before revealing the elastic collision, what happens to total momentum of the two-cart system?",
+      "Cart A has mass 0.50 kg and moves at +2.0 m s^-1. Cart B has mass 1.0 kg and moves at -0.5 m s^-1. Before comparing with the elastic collision, what happens to total momentum of the two-cart system?",
     commit_format: {
       kind: "multiple-choice",
       options: [
@@ -509,7 +509,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
-      <p className="lab-kicker">Predict first</p>
+      <p className="lab-kicker">Prediction checkpoint</p>
       <h3>Will total momentum change?</h3>
       <p>
         Commit a prediction before the final velocities appear. The reveal will separate each

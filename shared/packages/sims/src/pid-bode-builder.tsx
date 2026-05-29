@@ -581,7 +581,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>PID Tuner and Bode Builder</h1>
       <p>
         Predict the robustness tradeoff before seeing the response and Bode evidence. Then tune

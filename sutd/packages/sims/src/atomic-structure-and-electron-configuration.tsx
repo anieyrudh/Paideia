@@ -273,7 +273,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Atomic Structure and Electron Configuration Lab</h1>
       <p>
         Predict carbon's shell arrangement, then manipulate atomic number to connect proton count,

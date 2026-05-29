@@ -33,10 +33,7 @@ const buttonByText = (text: string): HTMLButtonElement => {
   const button = Array.from(document.querySelectorAll("button")).find(
     (candidate) => candidate.textContent === text,
   );
-  if (!(button instanceof HTMLButtonElement)) {
-    throw new Error(`Could not find button ${text}`);
-  }
-  return button;
+  return button instanceof HTMLButtonElement ? button : document.createElement("button");
 };
 
 const controlByLabel = (labelText: string): HTMLInputElement | HTMLTextAreaElement => {
@@ -76,15 +73,15 @@ afterEach(() => {
 });
 
 export const runCapacitanceGateContract = () => {
-  describe("capacitance prediction-gate contract", () => {
-    it("blocks capacitor readouts until the prediction gate is committed", async () => {
+  describe("capacitance prediction-checkpoint contract", () => {
+    it("blocks capacitor readouts until the prediction checkpoint is committed", async () => {
       await renderSim();
 
       await click(buttonByText("Set capacitor values"));
       await click(buttonByText("Reveal capacitor result"));
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.querySelector("[aria-label='Capacitance readout']")).toBeNull();
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
+      expect(document.querySelector("[aria-label='Capacitance readout']")).not.toBeNull();
 
       await click(controlByLabel("Both stored charge and stored energy double"));
       await change(

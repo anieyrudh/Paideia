@@ -20,7 +20,7 @@ aid_types:
 predict_at: package-level
 package_predict:
   prompt: |
-    A negative test charge is placed to the right of a positive source charge. Before revealing the vectors, which way does the force on the test charge point?
+    A negative test charge is placed to the right of a positive source charge. Before comparing with the vectors, which way does the force on the test charge point?
   commit_format:
     kind: multiple-choice
     options:

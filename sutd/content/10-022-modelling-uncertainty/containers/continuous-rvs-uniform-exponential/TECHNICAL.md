@@ -107,7 +107,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -115,7 +115,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-022-modelling-uncertainty/containers/continuous-rvs-uniform-exponential`
 - Docs regeneration: `pnpm container:docs sutd/content/10-022-modelling-uncertainty/containers/continuous-rvs-uniform-exponential`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -134,8 +134,8 @@ Reviewers (local): container-auditor, sim-architect, pedagogy-reviewer
 
 ### P0 resolved
 
-- Prediction gate must block density area, moment, and formula evidence before commitment - resolved with package-level prediction and route-level Playwright coverage.
-- Kernel boundary must not invent reusable statistics APIs inside content - resolved by keeping the local sim to distribution-specific PDF/CDF formulas while relying on existing Paideia runtime, schema, shared result, prediction-gate, and UI kernels. `core/probability-stats` does not currently own continuous distribution constructors.
+- Prediction checkpoint must block density area, moment, and formula evidence before commitment - resolved with package-level prediction and route-level Playwright coverage.
+- Kernel boundary must not invent reusable statistics APIs inside content - resolved by keeping the local sim to distribution-specific PDF/CDF formulas while relying on existing Paideia runtime, schema, shared result, prediction-checkpoint, and UI kernels. `core/probability-stats` does not currently own continuous distribution constructors.
 
 ### P1 addressed or deferred
 
@@ -151,5 +151,5 @@ Reviewers (local): container-auditor, sim-architect, pedagogy-reviewer
 ## Iteration log
 
 - Scaffolded from a reviewed SUTD container shape, then replaced placeholder content with the SUTD 10.022 continuous random variables slice.
-- Built a Uniform-vs-Exponential density lab with PMOE-T flow, prediction gate, PDF visualization, interval area, formula-backed readouts, and transfer problem.
+- Built a Uniform-vs-Exponential density lab with PMOE-T flow, prediction checkpoint, PDF visualization, interval area, formula-backed readouts, and transfer problem.
 - Corrected scaffold residue in metadata, media, embed contract, and technical review output before validation.

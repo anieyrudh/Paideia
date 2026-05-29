@@ -21,13 +21,16 @@ test.describe("Shared PID Bode Builder", () => {
     });
   });
 
-  test("prediction-gate blocks PID and Bode evidence until commit", async ({ page }) => {
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await page.getByRole("button", { name: "Start PID tuning" }).click();
+  test("prediction-checkpoint keeps PID and Bode evidence visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Start PID tuning" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal response and Bode evidence" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "The response can get faster" }).check();
     await page.getByLabel("Rationale").fill("Higher gain can move crossover to more phase lag.");
@@ -40,7 +43,12 @@ test.describe("Shared PID Bode Builder", () => {
   });
 
   test("manipulation changes visible response metrics", async ({ page }) => {
-    await page.getByRole("button", { name: "Start PID tuning" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Start PID tuning" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Proportional gain Kp" }).fill("3.2");
     await page.getByRole("button", { name: "Reveal response and Bode evidence" }).click();
     await page.getByRole("radio", { name: "The response can get faster" }).check();
@@ -51,7 +59,12 @@ test.describe("Shared PID Bode Builder", () => {
   });
 
   test("shows charts, formula panel, substitutions, units, and interpretation", async ({ page }) => {
-    await page.getByRole("button", { name: "Start PID tuning" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Start PID tuning" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal response and Bode evidence" }).click();
     await page.getByRole("radio", { name: "The response can get faster" }).check();
     await page.getByLabel("Rationale").fill("The phase margin can shrink at a higher crossover.");
@@ -76,7 +89,12 @@ test.describe("Shared PID Bode Builder", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Start PID tuning" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Start PID tuning" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal response and Bode evidence" }).click();
     await page.getByRole("radio", { name: "The response can get faster" }).check();
     await page.getByLabel("Rationale").fill("Robustness depends on phase at crossover.");

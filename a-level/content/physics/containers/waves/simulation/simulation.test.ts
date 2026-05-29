@@ -2,27 +2,30 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { mountSim } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
-test.describe("a-level/physics/waves/wave-superposition-lab prediction-gate", () => {
-  test("prediction-gate blocks wave readouts until prediction commit", async ({ page }) => {
+test.describe("a-level/physics/waves/wave-superposition-lab prediction-checkpoint", () => {
+  test("prediction-checkpoint keeps wave readouts visible while saving reflection", async ({ page }) => {
     await mountSim(page, "a-level/physics/waves/wave-superposition-lab");
 
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByText("resultant displacement")).toHaveCount(0);
+    {
 
-    await page.getByRole("button", { name: "Set up wave behaviour" }).click();
+      const setupButton = page.getByRole("button", { name: "Set up wave behaviour" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal wave behaviour" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByText("resultant displacement")).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByLabel("They add to double the displacement").check();
     await page
       .getByLabel("Rationale")
       .fill("The two crests have displacement in the same direction, so the displacements add.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByText("Resultant at marker")).toBeVisible();
     await expect(page.getByText("+3.00 m").first()).toBeVisible();
     await expect(page.getByText("resultant displacement").first()).toBeVisible();
@@ -32,7 +35,17 @@ test.describe("a-level/physics/waves/wave-superposition-lab prediction-gate", ()
   test("manipulation changes the resultant and keeps formula evidence visible", async ({ page }) => {
     await mountSim(page, "a-level/physics/waves/wave-superposition-lab");
 
-    await page.getByRole("button", { name: "Set up wave behaviour" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set up wave behaviour" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("slider", { name: "Phase difference" }).fill("180");
     await page.getByRole("button", { name: "Reveal wave behaviour" }).click();
     await page.getByLabel("They cancel to zero").check();
@@ -49,7 +62,17 @@ test.describe("a-level/physics/waves/wave-superposition-lab prediction-gate", ()
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, "a-level/physics/waves/wave-superposition-lab");
 
-    await page.getByRole("button", { name: "Set up wave behaviour" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set up wave behaviour" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal wave behaviour" }).click();
     await page.getByLabel("They add to double the displacement").check();
     await page

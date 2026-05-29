@@ -6,14 +6,22 @@ test.describe("Confusion Matrix Thresholds", () => {
     await page.goto("/?sim=sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds");
   });
 
-  test("prediction-gate blocks the confusion matrix until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps the confusion matrix visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set threshold policy" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set threshold policy" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal confusion matrix" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "Recall falls, so missed-positive cost can rise" }).check();
     await page
@@ -28,7 +36,12 @@ test.describe("Confusion Matrix Thresholds", () => {
   });
 
   test("manipulating the threshold visibly changes recall and counts", async ({ page }) => {
-    await page.getByRole("button", { name: "Set threshold policy" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set threshold policy" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Decision threshold" }).fill("80");
     await page.getByRole("button", { name: "Reveal confusion matrix" }).click();
     await page.getByRole("radio", { name: "Recall falls, so missed-positive cost can rise" }).check();
@@ -48,7 +61,12 @@ test.describe("Confusion Matrix Thresholds", () => {
   });
 
   test("shows formula legend and revealed-state accessibility is clean", async ({ page }) => {
-    await page.getByRole("button", { name: "Set threshold policy" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set threshold policy" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal confusion matrix" }).click();
     await page.getByRole("radio", { name: "Recall falls, so missed-positive cost can rise" }).check();
     await page.getByLabel("Rationale").fill("Precision, recall, and cost all matter.");

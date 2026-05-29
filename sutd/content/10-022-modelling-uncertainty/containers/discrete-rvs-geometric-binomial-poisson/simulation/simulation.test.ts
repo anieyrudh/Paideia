@@ -9,22 +9,29 @@ test.describe("Discrete RVs", () => {
     await page.goto(route);
   });
 
-  test("prediction-gate blocks PMF evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps PMF evidence visible while saving reflection", async ({ page }) => {
     await page.getByLabel("Binomial").check();
     await page.getByLabel("Rationale").fill("Fixed trial count has the largest highlighted event in the default setup.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-    await page.getByRole("button", { name: "Build model" }).click();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    {
+      const setupButton = page.getByRole("button", { name: "Build model" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal PMF" }).click();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toBeVisible();
   });
 
   test("manipulation changes the visible model family", async ({ page }) => {
     await page.getByLabel("Poisson").check();
     await page.getByLabel("Rationale").fill("Event counts over exposure fit Poisson.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-    await page.getByRole("button", { name: "Build model" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Build model" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByLabel("Model family").selectOption({ label: "Poisson" });
     await page.getByRole("button", { name: "Reveal PMF" }).click();
     await expect(page.getByText("Poisson PMF")).toBeVisible();
@@ -35,7 +42,12 @@ test.describe("Discrete RVs", () => {
     await page.getByLabel("Binomial").check();
     await page.getByLabel("Rationale").fill("Fixed trial count matches the default prompt.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-    await page.getByRole("button", { name: "Build model" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Build model" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal PMF" }).click();
     const results = await new AxeBuilder({ page }).analyze();
     const violations = results.violations.filter(

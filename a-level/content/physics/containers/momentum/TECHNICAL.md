@@ -43,7 +43,7 @@ kernel_deps:
   - core/ui-sim
 predict:
   prompt: |
-    Cart A has mass 0.50 kg and moves at +2.0 m s^-1. Cart B has mass 1.0 kg and moves at -0.5 m s^-1. Before revealing the elastic collision, what happens to total momentum of the two-cart system?
+    Cart A has mass 0.50 kg and moves at +2.0 m s^-1. Cart B has mass 1.0 kg and moves at -0.5 m s^-1. Before comparing with the elastic collision, what happens to total momentum of the two-cart system?
   commit_format:
     kind: multiple-choice
     options:
@@ -110,7 +110,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -118,7 +118,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 - Container validation: `pnpm container:validate a-level/content/physics/containers/momentum`
 - Docs regeneration: `pnpm container:docs a-level/content/physics/containers/momentum`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally

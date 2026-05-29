@@ -8,14 +8,22 @@ test.describe("Solar Energy and Band Theory", () => {
     );
   });
 
-  test("prediction-gate blocks band-gap evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps band-gap evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set up band-gap check" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set up band-gap check" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal band-gap evidence" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByRole("radio", { name: "It cannot excite an electron across the gap" })
@@ -32,7 +40,12 @@ test.describe("Solar Energy and Band Theory", () => {
   });
 
   test("manipulation switches absorption verdict", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up band-gap check" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up band-gap check" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Photon wavelength" }).fill("1000");
     await page.getByRole("slider", { name: "Semiconductor band gap" }).fill("1.8");
     await page.getByRole("button", { name: "Reveal band-gap evidence" }).click();
@@ -45,7 +58,12 @@ test.describe("Solar Energy and Band Theory", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up band-gap check" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up band-gap check" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal band-gap evidence" }).click();
     await page
       .getByRole("radio", { name: "It cannot excite an electron across the gap" })

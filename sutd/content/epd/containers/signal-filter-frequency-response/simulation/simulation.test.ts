@@ -8,14 +8,17 @@ test.describe("Signal Filter Frequency Response", () => {
     );
   });
 
-  test("prediction-gate blocks filter evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps filter evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Prepare filter lab" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Prepare filter lab" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal frequency response" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByRole("radio", {
@@ -33,7 +36,12 @@ test.describe("Signal Filter Frequency Response", () => {
   });
 
   test("manipulation changes visible filter state", async ({ page }) => {
-    await page.getByRole("button", { name: "Prepare filter lab" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Prepare filter lab" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Capacitance" }).fill("0.05");
     await page.getByRole("slider", { name: "Probe frequency" }).fill("4000");
     await page.getByRole("button", { name: "Reveal frequency response" }).click();
@@ -52,7 +60,12 @@ test.describe("Signal Filter Frequency Response", () => {
   });
 
   test("has no serious or critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Prepare filter lab" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Prepare filter lab" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal frequency response" }).click();
     await page
       .getByRole("radio", {

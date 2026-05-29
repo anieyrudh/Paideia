@@ -43,7 +43,7 @@ kernel_deps:
   - core/ui-sim
 predict:
   prompt: |
-    A 0.040 mol gas sample occupies 1.0 L at 27 deg C. Before revealing the lab, which pressure is closest when the ideal-gas law is used correctly?
+    A 0.040 mol gas sample occupies 1.0 L at 27 deg C. Before comparing with the lab, which pressure is closest when the ideal-gas law is used correctly?
   commit_format:
     kind: multiple-choice
     options:
@@ -126,7 +126,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -134,7 +134,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate a-level/content/physics/containers/thermal-physics`
 - Docs regeneration: `pnpm container:docs a-level/content/physics/containers/thermal-physics`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally

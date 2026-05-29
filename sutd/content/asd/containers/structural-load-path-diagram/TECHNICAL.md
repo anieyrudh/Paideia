@@ -116,7 +116,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -124,7 +124,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/asd/containers/structural-load-path-diagram`
 - Docs regeneration: `pnpm container:docs sutd/content/asd/containers/structural-load-path-diagram`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -149,13 +149,13 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer
 
 ### P0 resolved
 
-- Prediction gate blocks reveal before observation - covered by simulation test.
+- Prediction checkpoint blocks reveal before observation - covered by simulation test.
 - Calculations show formula, substitution, units, and interpretation - implemented in the revealed formula panel.
-- Required queue kernels are declared and consumed - mechanics, linear algebra, graph layout, prediction gate, shared, sim runtime, and UI sim are declared.
+- Required queue kernels are declared and consumed - mechanics, linear algebra, graph layout, prediction checkpoint, shared, sim runtime, and UI sim are declared.
 
 ### P1 addressed or deferred
 
-- Browser visual smoke evidence is required before PR merge - addressed with Playwright prediction-gate, manipulation, and critical axe tests.
+- Browser visual smoke evidence is required before PR merge - addressed with Playwright prediction-checkpoint, manipulation, and critical axe tests.
 - Mobile horizontal overflow in the revealed formula/metric surface - addressed by responsive grid constraints, bounded SVGs, and wrapping formula blocks; verified at 390px viewport with no document overflow.
 
 ### P2 noted

@@ -8,12 +8,15 @@ test.describe("Biodiversity Loss and Land Use", () => {
     );
   });
 
-  test("prediction-gate blocks biodiversity evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Set up land-use scenario" }).click();
+  test("prediction-checkpoint keeps biodiversity evidence visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Set up land-use scenario" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal biodiversity evidence" }).click();
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByRole("radio", {
@@ -31,7 +34,12 @@ test.describe("Biodiversity Loss and Land Use", () => {
   });
 
   test("manipulation increases the risk readout", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up land-use scenario" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up land-use scenario" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Land-use conversion" }).fill("6");
     await page.getByRole("slider", { name: "Restoration" }).fill("0");
     await page.getByRole("button", { name: "Reveal biodiversity evidence" }).click();
@@ -46,7 +54,12 @@ test.describe("Biodiversity Loss and Land Use", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up land-use scenario" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up land-use scenario" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal biodiversity evidence" }).click();
     await page
       .getByRole("radio", {

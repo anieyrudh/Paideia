@@ -72,7 +72,7 @@ export const electricFieldsSpec = {
   ],
   predict: {
     prompt:
-      "A negative test charge is placed to the right of a positive source charge. Before revealing the vectors, which way does the force on the test charge point?",
+      "A negative test charge is placed to the right of a positive source charge. Before comparing with the vectors, which way does the force on the test charge point?",
     commit_format: {
       kind: "multiple-choice",
       options: [
@@ -545,7 +545,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
-      <p className="lab-kicker">Predict first</p>
+      <p className="lab-kicker">Prediction checkpoint</p>
       <h3>Which vector follows the field?</h3>
       <p>
         Commit a prediction before the electric field strength, force vector, potential, and energy

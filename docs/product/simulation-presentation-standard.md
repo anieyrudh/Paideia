@@ -122,7 +122,7 @@ chosen alternative.
 Every product-quality simulation PR must include browser evidence:
 
 - first actionable screen loads;
-- prediction gate blocks reveal when prediction is declared;
+- prediction checkpoint blocks reveal when prediction is declared;
 - main controls update visible state;
 - formula panel appears after reveal or during calculation;
 - formula, legend, graph/control colors, and readouts stay aligned;

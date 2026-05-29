@@ -125,7 +125,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -133,7 +133,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 - Container validation: `pnpm container:validate a-level/content/mathematics/containers/probability-statistics`
 - Docs regeneration: `pnpm container:docs a-level/content/mathematics/containers/probability-statistics`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally

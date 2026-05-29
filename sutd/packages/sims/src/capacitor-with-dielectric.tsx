@@ -433,7 +433,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Capacitor with Dielectric</h1>
       <p>
         Predict how a dielectric changes charge storage before seeing the plate model. Then tune

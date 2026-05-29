@@ -81,7 +81,7 @@ authoring:
   changelog:
     - date: "2026-05-20"
       author: "Codex"
-      summary: "Built shared-core Bayes updating container with prediction gate, route chart, formula evidence, and shared sim package."
+      summary: "Built shared-core Bayes updating container with prediction checkpoint, route chart, formula evidence, and shared sim package."
 authors:
   - "Codex"
 advisor_signoffs: []

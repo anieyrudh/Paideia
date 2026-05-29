@@ -43,7 +43,7 @@ kernel_deps:
   - core/ui-sim
 predict:
   prompt: |
-    A spring oscillator has the same mass and spring constant, but the amplitude is doubled. Before revealing the lab, what happens to the period?
+    A spring oscillator has the same mass and spring constant, but the amplitude is doubled. Before comparing with the lab, what happens to the period?
   commit_format:
     kind: multiple-choice
     options:
@@ -118,7 +118,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -126,7 +126,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate a-level/content/physics/containers/oscillations`
 - Docs regeneration: `pnpm container:docs a-level/content/physics/containers/oscillations`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -170,7 +170,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer, test
 
 ### P0 resolved
 
-- Prediction-gate leak in manipulation stage — resolved by removing the numeric period preview before commit and keeping period, energy, displacement, velocity, and acceleration evidence behind the runtime prediction gate.
+- Prediction-checkpoint leak in manipulation stage — resolved by removing the numeric period preview before commit and keeping period, energy, displacement, velocity, and acceleration evidence behind the runtime prediction checkpoint.
 - Reusable oscillator math in the sim surface — resolved by moving ideal spring oscillator timing, SHM sampling, and energy trace generation into `core/mechanics.springOscillator`.
 - Dead `core/function-eval` dependency — resolved by removing it from the queue entry, simulation spec, runtime TS spec, and generated docs because the mechanics kernel owns the oscillator math.
 - Filter output placeholder in this technical record — resolved by replacing the generated placeholder with this explicit review disposition.
@@ -185,7 +185,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer, test
 - Formula/legend acceleration color conflicted with the chart and diagram — addressed by adding red formula and swatch classes and using them for acceleration.
 - Harness route lacked product sim styling — addressed by importing the A-Level shell stylesheet through a harness stylesheet, adding the missing purple/red legend swatches, and overriding SUTD formula-card legend colors to preserve accessibility.
 - Queue status remains `in-build` while this branch is under review — intentionally kept per maintainer instruction to leave the queue entry `in-build` before PR merge.
-- Accessibility record incomplete — addressed by focused sim-harness Playwright coverage: prediction-gate blocking, manipulation changing the visible period, and revealed-state axe scan all passed locally.
+- Accessibility record incomplete — addressed by focused sim-harness Playwright coverage: prediction-checkpoint blocking, manipulation changing the visible period, and revealed-state axe scan all passed locally.
 
 ### P2 noted
 

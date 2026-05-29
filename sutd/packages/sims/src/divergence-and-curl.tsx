@@ -313,7 +313,7 @@ const StageSurface = () => {
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
       <h1>Divergence and Curl</h1>
-      <p>Predict whether a local vector field behaves like a source, sink, or spinner before revealing the diagnostics.</p>
+      <p>Predict whether a local vector field behaves like a source, sink, or spinner before comparing with the diagnostics.</p>
       <button type="button" onClick={() => stage.advance()}>
         Set up local diagnostic check
       </button>

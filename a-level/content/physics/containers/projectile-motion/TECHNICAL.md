@@ -41,7 +41,7 @@ kernel_deps:
   - core/ui-sim
 predict:
   prompt: |
-    A ball is launched horizontally from a bench. Before revealing the path, what happens to its horizontal velocity while it falls?
+    A ball is launched horizontally from a bench. Before comparing with the path, what happens to its horizontal velocity while it falls?
   commit_format:
     kind: multiple-choice
     options:
@@ -100,7 +100,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -108,7 +108,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate a-level/content/physics/containers/projectile-motion`
 - Docs regeneration: `pnpm container:docs a-level/content/physics/containers/projectile-motion`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -125,7 +125,7 @@ Date: 2026-05-28
 
 ### P0 issues
 
-- None open. The container has the required v2 surfaces, prediction gate,
+- None open. The container has the required v2 surfaces, prediction checkpoint,
   visual revealed state, cited sources, and no copied or incompatible runtime
   assets.
 

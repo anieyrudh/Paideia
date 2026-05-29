@@ -9,7 +9,7 @@ First learner-facing Paideia app for A-Level content.
   concept links, and transfer target.
 - Launches the registered `resultant-magnitude` sim for
   `scalars-and-vectors`.
-- Keeps the prediction gate as the first interactive step before observation.
+- Keeps the prediction checkpoint as the first interactive step before observation.
 
 ## Local commands
 

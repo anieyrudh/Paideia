@@ -83,7 +83,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -91,7 +91,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate shared/content/cs/containers/graph-algorithm-explorer`
 - Docs regeneration: `pnpm container:docs shared/content/cs/containers/graph-algorithm-explorer`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -108,7 +108,7 @@ Date: 2026-05-22
 Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer
 
 ### P0 resolved
-- Prediction gate answer leak: graph evidence, formula panel, and path-cost readouts are inside `PredictionGate`; Playwright coverage asserts absence before commit.
+- Prediction checkpoint answer leak: graph evidence, formula panel, and path-cost readouts are inside `PredictionGate`; Playwright coverage asserts absence before commit.
 - Kernel boundary: traversal answers use `core/graph-algorithms`, layouts use `core/graph-layout`, and operation traces use `core/algorithm-trace`.
 - Representation truthfulness: the learner-facing text states that visual distance is not edge weight, and the formula panel uses labelled weights.
 

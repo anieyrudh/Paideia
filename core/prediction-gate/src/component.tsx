@@ -63,7 +63,7 @@ const CommitControl = ({
     return (
       <fieldset>
         <legend>Prediction</legend>
-        {predict.commit_format.options.map((option: string) => (
+        {predict.commit_format.options.map((option: string, index: number) => (
           <label key={option}>
             <input
               checked={rawValue === option}
@@ -103,6 +103,41 @@ const CommitControl = ({
   );
 };
 
+const checkpointStyle = {
+  border: "1px solid color-mix(in srgb, currentColor 16%, transparent)",
+  borderRadius: "0.75rem",
+  display: "grid",
+  gap: "0.75rem",
+  marginBlockStart: "1rem",
+  padding: "1rem",
+} as const;
+
+const checkpointHeaderStyle = {
+  display: "grid",
+  gap: "0.25rem",
+} as const;
+
+const checkpointKickerStyle = {
+  fontSize: "0.78rem",
+  fontWeight: 800,
+  letterSpacing: "0.04em",
+  margin: 0,
+  textTransform: "uppercase",
+} as const;
+
+const fieldStackStyle = {
+  display: "grid",
+  gap: "0.65rem",
+} as const;
+
+const formatCommittedValue = (value: unknown): string => {
+  if (Array.isArray(value)) return value.join(", ");
+  if (typeof value === "string") return value;
+  if (typeof value === "number" || typeof value === "boolean") return String(value);
+  if (value === null) return "No value";
+  return "Saved response";
+};
+
 export const PredictionGate = ({
   predict,
   packageId,
@@ -114,8 +149,6 @@ export const PredictionGate = ({
   const [rawValue, setRawValue] = useState("");
   const [rationale, setRationale] = useState("");
   const [error, setError] = useState<string | null>(null);
-
-  if (gate.revealed) return <>{children}</>;
 
   const submit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -141,20 +174,48 @@ export const PredictionGate = ({
   };
 
   return (
-    <form aria-label="Prediction gate" onSubmit={submit}>
-      <p>{predict.prompt}</p>
-      <p>{formatHint(predict)}</p>
-      <CommitControl predict={predict} rawValue={rawValue} setRawValue={setRawValue} />
-      <label>
-        Rationale
-        <textarea
-          aria-required={predict.rationale_required}
-          onChange={(event) => setRationale(event.currentTarget.value)}
-          value={rationale}
-        />
-      </label>
-      {error === null ? null : <p role="alert">{error}</p>}
-      <button type="submit">Commit prediction</button>
-    </form>
+    <>
+      {children}
+      {gate.committed && gate.prediction !== null ? (
+        <section aria-label="Prediction checkpoint" style={checkpointStyle}>
+          <div style={checkpointHeaderStyle}>
+            <p style={checkpointKickerStyle}>Prediction checkpoint</p>
+            <h2 style={{ margin: 0 }}>Saved prediction</h2>
+          </div>
+          <dl style={{ display: "grid", gap: "0.5rem", margin: 0 }}>
+            <div>
+              <dt>Prediction</dt>
+              <dd>{formatCommittedValue(gate.prediction.value)}</dd>
+            </div>
+            <div>
+              <dt>Rationale</dt>
+              <dd>{gate.prediction.rationale}</dd>
+            </div>
+          </dl>
+        </section>
+      ) : (
+        <form aria-label="Prediction checkpoint" onSubmit={submit} style={checkpointStyle}>
+          <div style={checkpointHeaderStyle}>
+            <p style={checkpointKickerStyle}>Prediction checkpoint</p>
+            <h2 style={{ margin: 0 }}>Save your expectation</h2>
+            <p style={{ margin: 0 }}>{predict.prompt}</p>
+            <p style={{ margin: 0 }}>{formatHint(predict)}</p>
+          </div>
+          <div style={fieldStackStyle}>
+            <CommitControl predict={predict} rawValue={rawValue} setRawValue={setRawValue} />
+            <label>
+              Rationale
+              <textarea
+                aria-required={predict.rationale_required}
+                onChange={(event) => setRationale(event.currentTarget.value)}
+                value={rationale}
+              />
+            </label>
+          </div>
+          {error === null ? null : <p role="alert">{error}</p>}
+          <button type="submit">Commit prediction</button>
+        </form>
+      )}
+    </>
   );
 };

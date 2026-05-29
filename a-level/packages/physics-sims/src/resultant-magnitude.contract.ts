@@ -78,11 +78,11 @@ afterEach(() => {
 });
 
 export const runResultantMagnitudeGateContract = () => {
-  describe("resultant-magnitude prediction-gate contract", () => {
-    it("blocks the observation until the prediction gate is committed", async () => {
+  describe("resultant-magnitude prediction-checkpoint contract", () => {
+    it("blocks the observation until the prediction checkpoint is committed", async () => {
       await renderSim();
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
 
       await click(controlByLabel("7.1 m"));
       await change(

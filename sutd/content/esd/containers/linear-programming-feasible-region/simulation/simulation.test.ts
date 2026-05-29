@@ -21,14 +21,22 @@ test.describe("Linear Programming Feasible Region", () => {
     });
   });
 
-  test("prediction-gate blocks observation until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps observation visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Start manipulating" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Start manipulating" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Observe this point" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByLabel("(4, 4)").check();
     await page
@@ -42,7 +50,12 @@ test.describe("Linear Programming Feasible Region", () => {
   });
 
   test("manipulate controls write to kernel state", async ({ page }) => {
-    await page.getByRole("button", { name: "Start manipulating" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Start manipulating" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
 
     await page.getByLabel("x units").focus();
     await page.keyboard.press("ArrowRight");
@@ -63,7 +76,12 @@ test.describe("Linear Programming Feasible Region", () => {
   });
 
   test("has no critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Start manipulating" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Start manipulating" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Observe this point" }).click();
     await page.getByLabel("(4, 4)").check();
     await page

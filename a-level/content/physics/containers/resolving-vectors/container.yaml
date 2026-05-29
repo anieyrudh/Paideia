@@ -20,7 +20,7 @@ aid_types:
 predict_at: both
 package_predict:
   prompt: |
-    A 10 N force acts at 30 degrees above the horizontal. Before revealing the components, which horizontal component is closest?
+    A 10 N force acts at 30 degrees above the horizontal. Before comparing with the components, which horizontal component is closest?
   commit_format:
     kind: multiple-choice
     options:

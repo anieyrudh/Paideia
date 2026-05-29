@@ -80,7 +80,7 @@ export const thermalPhysicsSpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "A 0.040 mol gas sample occupies 1.0 L at 27 deg C. Before revealing the lab, which pressure is closest when the ideal-gas law is used correctly?",
+      "A 0.040 mol gas sample occupies 1.0 L at 27 deg C. Before comparing with the lab, which pressure is closest when the ideal-gas law is used correctly?",
     commit_format: {
       kind: "multiple-choice",
       options: ["9.0 kPa", "100 kPa", "270 kPa", "830 kPa"],
@@ -641,7 +641,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
-      <p className="lab-kicker">Predict first</p>
+      <p className="lab-kicker">Prediction checkpoint</p>
       <h3>What temperature belongs in pV = nRT?</h3>
       <p>
         Commit a prediction before the pressure, chart, and heat-transfer readouts appear. The

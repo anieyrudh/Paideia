@@ -108,7 +108,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -116,7 +116,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-017-technological-world-e-and-m/containers/capacitor-with-dielectric`
 - Docs regeneration: `pnpm container:docs sutd/content/10-017-technological-world-e-and-m/containers/capacitor-with-dielectric`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -141,7 +141,7 @@ Filter version: aniegpt v1.0
 (Each P0 must be resolved before publishing. List them and resolution.)
 
 - 2026-05-26: Reusable dielectric-capacitor equations initially looked likely to live inside the SUTD sim. Resolved by adding `parallelPlateCapacitorModel` to `core/electromagnetism` and using that kernel from the sim.
-- 2026-05-26: Prediction reveal must remain blocked until commit. Resolved with `capacitor-with-dielectric.test.ts` and the container Playwright contract file carrying the required prediction-gate assertion.
+- 2026-05-26: Prediction reveal must remain blocked until commit. Resolved with `capacitor-with-dielectric.test.ts` and the container Playwright contract file carrying the required prediction-checkpoint assertion.
 
 ### P1 issues
 

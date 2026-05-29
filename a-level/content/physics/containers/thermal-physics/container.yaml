@@ -21,7 +21,7 @@ aid_types:
 predict_at: both
 package_predict:
   prompt: |
-    A 0.040 mol gas sample occupies 1.0 L at 27 deg C. Before revealing the lab, which pressure is closest when the ideal-gas law is used correctly?
+    A 0.040 mol gas sample occupies 1.0 L at 27 deg C. Before comparing with the lab, which pressure is closest when the ideal-gas law is used correctly?
   commit_format:
     kind: multiple-choice
     options:
@@ -80,7 +80,7 @@ authoring:
   changelog:
     - date: "2026-05-21"
       author: "Codex"
-      summary: "Built A-Level thermal physics product slice using core/numerical-math, charting, sim-runtime, prediction-gate, and ui-sim."
+      summary: "Built A-Level thermal physics product slice using core/numerical-math, charting, sim-runtime, prediction-checkpoint, and ui-sim."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []

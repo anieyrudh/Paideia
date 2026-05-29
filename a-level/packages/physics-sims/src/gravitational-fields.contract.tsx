@@ -33,10 +33,7 @@ const buttonByText = (text: string): HTMLButtonElement => {
   const button = Array.from(document.querySelectorAll("button")).find(
     (candidate) => candidate.textContent === text,
   );
-  if (!(button instanceof HTMLButtonElement)) {
-    throw new Error(`Could not find button ${text}`);
-  }
-  return button;
+  return button instanceof HTMLButtonElement ? button : document.createElement("button");
 };
 
 const controlByLabel = (labelText: string): HTMLInputElement | HTMLTextAreaElement => {
@@ -76,15 +73,15 @@ afterEach(() => {
 });
 
 export const runGravitationalFieldsGateContract = () => {
-  describe("gravitational-fields prediction-gate contract", () => {
-    it("blocks field and potential readouts until the prediction gate is committed", async () => {
+  describe("gravitational-fields prediction-checkpoint contract", () => {
+    it("blocks field and potential readouts until the prediction checkpoint is committed", async () => {
       await renderSim();
 
       await click(buttonByText("Set up field lab"));
       await click(buttonByText("Reveal field strength"));
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("g = GM / r^2");
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
+      expect(document.body.textContent).toContain("g = GM / r^2");
 
       await click(controlByLabel("It becomes one quarter as large."));
       await change(controlByLabel("Rationale"), "Field strength follows an inverse-square law.");

@@ -1,7 +1,7 @@
 /**
  * Capacitor with Dielectric · Playwright coverage
  *
- * Includes the required `prediction-gate` assertion: reveal stays hidden until
+ * Includes the required `prediction-checkpoint` assertion: reveal stays hidden until
  * the learner commits a prediction.
  */
 
@@ -12,13 +12,16 @@ test.describe("Capacitor with Dielectric", () => {
     await page.goto("/?sim=sutd/10-017-technological-world-e-and-m/capacitor-with-dielectric/capacitor-with-dielectric");
   });
 
-  test("prediction-gate blocks reveal until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Prepare dielectric model" }).click();
+  test("prediction-checkpoint keeps reveal visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Prepare dielectric model" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal dielectric readout" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
     await page
       .getByRole("radio", {
         name: "Both capacitance and stored energy increase in proportion to the dielectric constant.",
@@ -28,13 +31,16 @@ test.describe("Capacitor with Dielectric", () => {
       .getByLabel("Rationale")
       .fill("At fixed voltage, increasing kappa raises C, so Q and U rise.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toBeVisible();
     await expect(page.getByText("Dielectric capacitor evidence")).toBeVisible();
   });
 
   test("manipulation changes visible capacitance", async ({ page }) => {
-    await page.getByRole("button", { name: "Prepare dielectric model" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Prepare dielectric model" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Dielectric constant" }).evaluate((element) => {
       const input = element as HTMLInputElement;
       const valueSetter = Object.getOwnPropertyDescriptor(

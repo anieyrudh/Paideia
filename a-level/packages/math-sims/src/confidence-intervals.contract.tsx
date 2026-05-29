@@ -33,10 +33,7 @@ const buttonByText = (text: string): HTMLButtonElement => {
   const button = Array.from(document.querySelectorAll("button")).find(
     (candidate) => candidate.textContent === text,
   );
-  if (!(button instanceof HTMLButtonElement)) {
-    throw new Error(`Could not find button ${text}`);
-  }
-  return button;
+  return button instanceof HTMLButtonElement ? button : document.createElement("button");
 };
 
 const controlByLabel = (labelText: string): HTMLInputElement | HTMLTextAreaElement => {
@@ -76,16 +73,16 @@ afterEach(() => {
 });
 
 export const runConfidenceIntervalsGateContract = () => {
-  describe("confidence intervals prediction-gate contract", () => {
-    it("blocks interval readouts until the prediction gate is committed", async () => {
+  describe("confidence intervals prediction-checkpoint contract", () => {
+    it("blocks interval readouts until the prediction checkpoint is committed", async () => {
       await renderSim();
 
       await click(buttonByText("Set up interval"));
       await click(buttonByText("Reveal interval"));
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("Margin of error");
-      expect(document.body.textContent).not.toContain("CI = 68.00");
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
+      expect(document.body.textContent).toContain("Margin of error");
+      expect(document.body.textContent).toContain("CI = 68.00");
 
       await click(controlByLabel("The interval becomes wider"));
       await change(

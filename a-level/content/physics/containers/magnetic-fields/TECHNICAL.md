@@ -43,7 +43,7 @@ kernel_deps:
   - core/ui-sim
 predict:
   prompt: |
-    A wire carries conventional current to the right while a magnetic field goes into the page. Before revealing the result, which way is the force on the wire?
+    A wire carries conventional current to the right while a magnetic field goes into the page. Before comparing with the result, which way is the force on the wire?
   commit_format:
     kind: multiple-choice
     options:
@@ -126,7 +126,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -134,7 +134,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate a-level/content/physics/containers/magnetic-fields`
 - Docs regeneration: `pnpm container:docs a-level/content/physics/containers/magnetic-fields`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -154,7 +154,7 @@ Filter version: aniegpt v1.0
 ### P0 resolved
 
 - Empty copied review notes from the electric-fields template. Resolution: regenerated docs and replaced the preserved review section with this magnetic-fields review record.
-- Prediction gate leak risk. Resolution: the observed magnetic force readouts, force vectors, formula substitutions, and circular-path check are rendered only after the committed prediction gate.
+- Prediction checkpoint leak risk. Resolution: the observed magnetic force readouts, force vectors, formula substitutions, and circular-path check are rendered only after the committed prediction checkpoint.
 - Kernel boundary risk. Resolution: no broad `core/electromagnetism` magnetic-force API was added in this worker. The sim declares the existing electromagnetism dependency for curriculum/kernel lineage, uses `core/linear-algebra` for direction vectors, and uses `core/mechanics` for the circular-motion force cross-check. The A-Level magnetic-force formulae are kept explicit in the student-facing formula panel and package tests until a scoped core magnetic-force helper is approved.
 - Non-canonical transfer/misconception artifacts. Resolution: kept transfer and misconception coverage in the locked v2 schema locations: `container.yaml`, `concept-map/concept-map.yaml`, and `problem-solving/velocity-selector.md`.
 
@@ -177,6 +177,6 @@ Filter version: aniegpt v1.0
 ## Iteration log
 
 - 2026-05-21: Scaffolded the canonical magnetic-fields container from the existing A-Level physics layout and replaced all copied electric-fields surfaces.
-- 2026-05-21: Added the A-Level physics sim package slice with magnetic force model tests and jsdom prediction-gate contract coverage.
-- 2026-05-21: Added a Playwright simulation prediction-gate test that proves magnetic force readouts are absent before commit.
+- 2026-05-21: Added the A-Level physics sim package slice with magnetic force model tests and jsdom prediction-checkpoint contract coverage.
+- 2026-05-21: Added a Playwright simulation prediction-checkpoint test that proves magnetic force readouts are absent before commit.
 - 2026-05-21: Regenerated container docs for the magnetic-fields manifest.

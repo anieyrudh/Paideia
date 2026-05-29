@@ -317,10 +317,10 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>RLC Circuit and Resonance</h1>
       <p>
-        Predict what remains in the impedance at resonance before revealing
+        Predict what remains in the impedance at resonance before comparing with
         the reactance balance and current readout.
       </p>
       <button type="button" onClick={() => stage.advance()}>

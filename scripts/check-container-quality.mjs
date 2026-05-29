@@ -104,19 +104,30 @@ function checkPredictionGateTest(container, hasPrediction, requiresProductReveal
   if (!isFile(testPath)) return;
 
   const test = readFileSync(testPath, "utf8");
-  if (!test.includes("Observation unlocked") || !test.includes("toHaveCount(0)")) {
+  if (
+    !test.includes("Prediction checkpoint") &&
+    !test.includes("prediction-checkpoint") &&
+    !test.includes("expectProductSimulationExperience")
+  ) {
     failures.push(
-      `${relative(REPO_ROOT, testPath)} must assert the observation region is absent before commit and visible after commit.`,
+      `${relative(REPO_ROOT, testPath)} must assert the prediction checkpoint is present while the simulation remains visible.`,
+    );
+  }
+
+  if (/Observation unlocked["'}\s),\]}]*\)\.toHaveCount\(0\)/u.test(test)) {
+    failures.push(
+      `${relative(REPO_ROOT, testPath)} still expects the observation to be hidden before prediction; simulations must be visible immediately.`,
     );
   }
 
   if (
     requiresProductRevealHelper &&
+    !test.includes("expectProductSimulationExperience") &&
     !test.includes("expectProductSimulationReveal") &&
     !test.includes("expectRevealedSimulationVisual")
   ) {
     failures.push(
-      `${relative(REPO_ROOT, testPath)} must call expectProductSimulationReveal or expectRevealedSimulationVisual so revealed sims cannot stay text-only.`,
+      `${relative(REPO_ROOT, testPath)} must call expectProductSimulationExperience or expectRevealedSimulationVisual so sims cannot stay text-only.`,
     );
   }
 }

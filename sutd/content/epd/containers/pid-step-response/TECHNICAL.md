@@ -39,7 +39,7 @@ axe results at last green build:
 
 ## Tests
 
-- Prediction-gate Playwright: `simulation/simulation.test.ts`
+- Prediction-checkpoint Playwright: `simulation/simulation.test.ts`
 - Additional tests: ...
 
 ## How to run locally

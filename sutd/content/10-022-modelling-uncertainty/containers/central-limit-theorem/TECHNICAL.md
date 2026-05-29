@@ -94,7 +94,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -102,7 +102,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-022-modelling-uncertainty/containers/central-limit-theorem`
 - Docs regeneration: `pnpm container:docs sutd/content/10-022-modelling-uncertainty/containers/central-limit-theorem`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -120,7 +120,7 @@ Reviewers: Codex self-review against container-auditor, sim-architect, and pedag
 
 ### P0 resolved
 
-- Container shape, SUTD 10.022 placement, prediction gate, kernel dependencies, and embed API were checked before review.
+- Container shape, SUTD 10.022 placement, prediction checkpoint, kernel dependencies, and embed API were checked before review.
 - The sim uses `core/probability-stats` for distribution normalisation, sample-mean distribution statistics, and histogram binning; `core/charting` renders the sample-mean histogram; `core/prediction-gate` blocks reveal; `core/ui-sim` owns controls.
 - Added a standalone `concept-map/misconceptions.md` with named misconceptions, evidence, and predict-surface notes.
 - Moved CLT sampling-distribution math out of sim UI code into `core/probability-stats`; additive API traceability is tracked in [#112](https://github.com/anieyrudh/Paideia/issues/112).

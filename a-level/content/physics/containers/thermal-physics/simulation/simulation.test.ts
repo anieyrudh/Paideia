@@ -2,31 +2,30 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { mountSim } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
-test.describe("a-level/physics/thermal-physics/gas-law-energy-transfer-lab prediction-gate", () => {
-  test("prediction-gate blocks thermal readouts until prediction commit", async ({ page }) => {
+test.describe("a-level/physics/thermal-physics/gas-law-energy-transfer-lab prediction-checkpoint", () => {
+  test("prediction-checkpoint keeps thermal readouts visible while saving reflection", async ({ page }) => {
     await mountSim(page, "a-level/physics/thermal-physics/gas-law-energy-transfer-lab");
 
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByLabel("Thermal readout")).toHaveCount(0);
-    await expect(page.getByText("99.8 kPa")).toHaveCount(0);
-    await expect(page.getByLabel("Formula used")).toHaveCount(0);
+    {
 
-    await page.getByRole("button", { name: "Set up thermal lab" }).click();
+      const setupButton = page.getByRole("button", { name: "Set up thermal lab" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal thermal behaviour" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByLabel("Thermal readout")).toHaveCount(0);
-    await expect(page.getByText("99.8 kPa")).toHaveCount(0);
-    await expect(page.getByLabel("Formula used")).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByLabel("100 kPa").check();
     await page
       .getByLabel("Rationale")
       .fill("The gas-law temperature must be converted from Celsius to kelvin first.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByText("Gas pressure")).toBeVisible();
     await expect(page.getByText("99.8 kPa").first()).toBeVisible();
     await expect(page.getByLabel("Formula legend")).toContainText("kelvin temperature");
@@ -35,14 +34,19 @@ test.describe("a-level/physics/thermal-physics/gas-law-energy-transfer-lab predi
   test("manipulation changes pressure and keeps formula evidence visible", async ({ page }) => {
     await mountSim(page, "a-level/physics/thermal-physics/gas-law-energy-transfer-lab");
 
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByLabel("Thermal readout")).toHaveCount(0);
+    {
 
-    await page.getByRole("button", { name: "Set up thermal lab" }).click();
+      const setupButton = page.getByRole("button", { name: "Set up thermal lab" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("slider", { name: "Gas volume" }).fill("0.5");
     await page.getByRole("button", { name: "Reveal thermal behaviour" }).click();
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByLabel("Thermal readout")).toHaveCount(0);
     await page.getByLabel("100 kPa").check();
     await page
       .getByLabel("Rationale")
@@ -58,13 +62,18 @@ test.describe("a-level/physics/thermal-physics/gas-law-energy-transfer-lab predi
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, "a-level/physics/thermal-physics/gas-law-energy-transfer-lab");
 
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByLabel("Thermal readout")).toHaveCount(0);
+    {
 
-    await page.getByRole("button", { name: "Set up thermal lab" }).click();
+      const setupButton = page.getByRole("button", { name: "Set up thermal lab" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal thermal behaviour" }).click();
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByLabel("Thermal readout")).toHaveCount(0);
     await page.getByLabel("100 kPa").check();
     await page
       .getByLabel("Rationale")

@@ -17,16 +17,12 @@ test.describe("Circuit Phasor Lab", () => {
     });
   });
 
-  test("prediction-gate blocks phasor reveal until commit", async ({ page }) => {
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByText("Formula used")).toHaveCount(0);
+  test("prediction-checkpoint keeps phasor reveal visible while saving reflection", async ({ page }) => {
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "Current lags the voltage because the inductor adds positive reactance." }).check();
     await page.getByLabel("Rationale").fill("The inductor adds positive reactance, so current phase is negative.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByText("Formula used")).toBeVisible();
   });
 

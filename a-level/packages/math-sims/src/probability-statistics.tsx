@@ -518,7 +518,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
-      <p className="lab-kicker">Predict first</p>
+      <p className="lab-kicker">Prediction checkpoint</p>
       <h3>Will a rare high score pull the whole model up?</h3>
       <p>
         Commit a prediction before the expected value, spread, and test decision are revealed.

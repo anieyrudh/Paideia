@@ -7,7 +7,7 @@ import {
 
 const simId = "a-level/physics/forces-and-equilibrium/force-balance";
 
-// prediction-gate: force readouts and formula substitutions must stay hidden until commit.
+// prediction-checkpoint: force readouts and formula substitutions must stay hidden until commit.
 definePredictionGateContract({
   simId,
   predictionLabel: "6 N right and 5 N up",

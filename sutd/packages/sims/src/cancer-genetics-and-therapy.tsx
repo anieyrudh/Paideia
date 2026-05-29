@@ -448,7 +448,7 @@ const StageSurface = () => {
   if (stage.current === "explain") return <ExplainStage />;
   return (
     <section className="sutd-formula-card" aria-label="Prediction setup">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Clonal Growth and Dose-Response Lab</h1>
       <p>Predict the relative size of a 3-driver clone after 20 generations compared with a passenger-only clone.</p>
       <button type="button" onClick={() => stage.advance()}>Set up cancer lab</button>

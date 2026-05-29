@@ -408,7 +408,7 @@ export const containers = [
     status: "reviewed",
     packageId: "confidence-intervals",
     simId: "mean-interval-lab",
-    predictPrompt: "A sample mean, population standard deviation, and sample size stay fixed. Before revealing the lab, predict what happens to the confidence interval when the confidence level rises from 90% to 99%.",
+    predictPrompt: "A sample mean, population standard deviation, and sample size stay fixed. Before comparing with the lab, predict what happens to the confidence interval when the confidence level rises from 90% to 99%.",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -465,7 +465,7 @@ export const containers = [
     status: "reviewed",
     packageId: "hypothesis-testing",
     simId: "test-statistic-decision-lab",
-    predictPrompt: "A sample mean is above the null mean. Before revealing the lab, predict what happens to the strength of evidence when the sample size grows but the observed mean stays fixed.",
+    predictPrompt: "A sample mean is above the null mean. Before comparing with the lab, predict what happens to the strength of evidence when the sample size grows but the observed mean stays fixed.",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -521,7 +521,7 @@ export const containers = [
     status: "reviewed",
     packageId: "normal-distribution",
     simId: "normal-area-standardisation-lab",
-    predictPrompt: "A score is modelled as normal with mean 100 and standard deviation 12. Before revealing the lab, predict whether the central interval 88 to 112 marks or the upper tail above 124 marks has the larger probability.",
+    predictPrompt: "A score is modelled as normal with mean 100 and standard deviation 12. Before comparing with the lab, predict whether the central interval 88 to 112 marks or the upper tail above 124 marks has the larger probability.",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -577,7 +577,7 @@ export const containers = [
     status: "reviewed",
     packageId: "probability-statistics",
     simId: "probability-statistics-lab",
-    predictPrompt: "A score distribution has many ordinary outcomes and a few high-score outcomes. Before revealing the lab, predict what can happen if the high-score outcome becomes rarer but worth more marks.",
+    predictPrompt: "A score distribution has many ordinary outcomes and a few high-score outcomes. Before comparing with the lab, predict what can happen if the high-score outcome becomes rarer but worth more marks.",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -643,7 +643,7 @@ export const containers = [
     status: "reviewed",
     packageId: "alternating-current",
     simId: "ac-rms-phase-lab",
-    predictPrompt: "A sinusoidal supply has the same peak voltage but its frequency is doubled. Before revealing the lab, what happens to the rms voltage of the supply?",
+    predictPrompt: "A sinusoidal supply has the same peak voltage but its frequency is doubled. Before comparing with the lab, what happens to the rms voltage of the supply?",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -713,7 +713,7 @@ export const containers = [
     status: "reviewed",
     packageId: "capacitance",
     simId: "capacitor-charge-energy-lab",
-    predictPrompt: "A capacitor is connected to a fixed 6.0 V supply. Before revealing the lab, what happens if the capacitance is doubled while the voltage is kept the same?",
+    predictPrompt: "A capacitor is connected to a fixed 6.0 V supply. Before comparing with the lab, what happens if the capacitance is doubled while the voltage is kept the same?",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -782,7 +782,7 @@ export const containers = [
     status: "reviewed",
     packageId: "circuits",
     simId: "series-parallel-circuit-lab",
-    predictPrompt: "A resistor is added in parallel with an existing branch while the supply voltage stays fixed. Before revealing the lab, what happens to the total current drawn from the supply?",
+    predictPrompt: "A resistor is added in parallel with an existing branch while the supply voltage stays fixed. Before comparing with the lab, what happens to the total current drawn from the supply?",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -847,7 +847,7 @@ export const containers = [
     status: "reviewed",
     packageId: "circular-motion",
     simId: "centripetal-force-vector-lab",
-    predictPrompt: "A rider moves at constant speed around a circular track. Before revealing the vectors, predict the direction of the acceleration and resultant force.",
+    predictPrompt: "A rider moves at constant speed around a circular track. Before comparing with the vectors, predict the direction of the acceleration and resultant force.",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -897,7 +897,7 @@ export const containers = [
     status: "reviewed",
     packageId: "electric-fields",
     simId: "charge-field-vector-lab",
-    predictPrompt: "A negative test charge is placed to the right of a positive source charge. Before revealing the vectors, which way does the force on the test charge point?",
+    predictPrompt: "A negative test charge is placed to the right of a positive source charge. Before comparing with the vectors, which way does the force on the test charge point?",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -1018,7 +1018,7 @@ export const containers = [
     status: "reviewed",
     packageId: "gravitational-fields",
     simId: "inverse-square-field-lab",
-    predictPrompt: "A probe moves from 1 Earth radius to 2 Earth radii from Earth's centre. Before revealing the lab, what happens to the gravitational field strength?",
+    predictPrompt: "A probe moves from 1 Earth radius to 2 Earth radii from Earth's centre. Before comparing with the lab, what happens to the gravitational field strength?",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -1074,7 +1074,7 @@ export const containers = [
     status: "reviewed",
     packageId: "kinematics-in-one-dimension",
     simId: "motion-equations-lab",
-    predictPrompt: "A trolley starts from rest and accelerates at 2.0 m s^-2 for 3.0 s. Before revealing the trace, which displacement is closest?",
+    predictPrompt: "A trolley starts from rest and accelerates at 2.0 m s^-2 for 3.0 s. Before comparing with the trace, which displacement is closest?",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -1142,7 +1142,7 @@ export const containers = [
     status: "reviewed",
     packageId: "magnetic-fields",
     simId: "magnetic-force-direction-lab",
-    predictPrompt: "A wire carries conventional current to the right while a magnetic field goes into the page. Before revealing the result, which way is the force on the wire?",
+    predictPrompt: "A wire carries conventional current to the right while a magnetic field goes into the page. Before comparing with the result, which way is the force on the wire?",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -1212,7 +1212,7 @@ export const containers = [
     status: "reviewed",
     packageId: "momentum",
     simId: "momentum-collision-lab",
-    predictPrompt: "Two carts collide head-on on a low-friction track. Before revealing the lab, predict which statement about total momentum is correct for the isolated two-cart system.",
+    predictPrompt: "Two carts collide head-on on a low-friction track. Before comparing with the lab, predict which statement about total momentum is correct for the isolated two-cart system.",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -1277,7 +1277,7 @@ export const containers = [
     status: "reviewed",
     packageId: "oscillations",
     simId: "simple-harmonic-motion-lab",
-    predictPrompt: "A spring oscillator has the same mass and spring constant, but the amplitude is doubled. Before revealing the lab, what happens to the period?",
+    predictPrompt: "A spring oscillator has the same mass and spring constant, but the amplitude is doubled. Before comparing with the lab, what happens to the period?",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -1410,7 +1410,7 @@ export const containers = [
     status: "reviewed",
     packageId: "projectile-motion",
     simId: "trajectory-parameter-lab",
-    predictPrompt: "A ball is launched horizontally from a bench. Before revealing the path, what happens to its horizontal velocity while it falls?",
+    predictPrompt: "A ball is launched horizontally from a bench. Before comparing with the path, what happens to its horizontal velocity while it falls?",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -1473,7 +1473,7 @@ export const containers = [
     status: "reviewed",
     packageId: "resolving-vectors",
     simId: "component-resolution",
-    predictPrompt: "A 10 N force acts at 30 degrees above the horizontal. Before revealing the components, which horizontal component is closest?",
+    predictPrompt: "A 10 N force acts at 30 degrees above the horizontal. Before comparing with the components, which horizontal component is closest?",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -1598,7 +1598,7 @@ export const containers = [
     status: "reviewed",
     packageId: "thermal-physics",
     simId: "gas-law-energy-transfer-lab",
-    predictPrompt: "A 0.040 mol gas sample occupies 1.0 L at 27 deg C. Before revealing the lab, which pressure is closest when the ideal-gas law is used correctly?",
+    predictPrompt: "A 0.040 mol gas sample occupies 1.0 L at 27 deg C. Before comparing with the lab, which pressure is closest when the ideal-gas law is used correctly?",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -1666,7 +1666,7 @@ export const containers = [
     status: "reviewed",
     packageId: "waves",
     simId: "wave-superposition-lab",
-    predictPrompt: "Two identical waves meet in phase. Before revealing the lab, what happens to the displacement where their crests overlap?",
+    predictPrompt: "Two identical waves meet in phase. Before comparing with the lab, what happens to the displacement where their crests overlap?",
     aidTypes: [
       "simulation",
       "misconception-audit",
@@ -1730,7 +1730,7 @@ export const containers = [
     status: "reviewed",
     packageId: "work-energy-power",
     simId: "energy-transfer-lab",
-    predictPrompt: "A 10 N pull moves a trolley 3.0 m in the same direction as the motion in 2.0 s. Before revealing the lab, which work and average power statement is correct?",
+    predictPrompt: "A 10 N pull moves a trolley 3.0 m in the same direction as the motion in 2.0 s. Before comparing with the lab, which work and average power statement is correct?",
     aidTypes: [
       "simulation",
       "misconception-audit",

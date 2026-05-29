@@ -1,7 +1,7 @@
 # core/sim-runtime · agent contract
 
 ## What this module is
-The PMOE-T orchestrator. It owns the state machine that drives a simulation through the four stages — Predict → Manipulate → Observe → Explain — and the observable store (axon) that lets child components read sim state without prop-drilling. It validates the `SimulationSpec`, enforces the prediction gate, and exposes hooks for child renderers. It does not implement any specific physics, math, or rendering.
+The PMOE-T orchestrator. It owns the state machine that drives a simulation through the four stages — Predict → Manipulate → Observe → Explain — and the observable store (axon) that lets child components read sim state without prop-drilling. It validates the `SimulationSpec`, mounts the embedded prediction checkpoint, and exposes hooks for child renderers. It does not implement any specific physics, math, or rendering.
 
 ## Public interface
 Exports from `@paideia/sim-runtime`:
@@ -17,7 +17,7 @@ Exports from `@paideia/sim-runtime`:
 ## Invariants the caller must preserve
 - The runtime is the **only** writer of `PmoeTStage`. Children read; they do not set.
 - Transitions go forward only: `predict → manipulate → observe → explain`. `reset()` returns to `predict`. No skipping.
-- `<SimRuntime>` MUST wrap a `<PredictionGate>` internally for stages `observe` and `explain`; this is enforced — a sim that bypasses the gate fails to mount.
+- `<SimRuntime>` wraps a `<PredictionGate>` internally when `SimulationSpec.predict` is declared. The checkpoint must not hide children.
 - The spec passed in MUST `SimulationSpec.parse` successfully; invalid specs render an error boundary, not a partial sim.
 - State mutations during `manipulate` MUST go through `useManipulate().set`; direct ref mutation is undefined behaviour.
 
@@ -39,10 +39,10 @@ Use `core/sim-runtime` for every interactive simulation in the monorepo. If a pi
 
 ## Anti-patterns (will be rejected in PR review)
 - Reading or writing stage state from outside the runtime (e.g. via a parallel Zustand store).
-- A `skipPredict` or `instructorMode` prop — there is no skip.
+- A `hideUntilPredict`, `skipPredict`, or `instructorMode` prop. Prediction is a checkpoint, not a route lock.
 - Side effects in render (data fetches, timers) — use the spec's declared lifecycle hooks.
 - Calling `set` during `predict` or `observe` to "pre-warm" UI — it's an error.
 - Branch-specific stages (`if SUTD add 'reflect' stage`) — PMOE-T is the contract; extending it is a `core!:` change.
 
 ## How the Anieyrudh Filter reads this module
-The Filter probes that **stage transitions cannot be reordered, skipped, or driven by anything but learner action**, and that the prediction gate is always upstream of the observe-stage UI. A runtime that lets `observe` mount before `predict.commit()` is rejected — predict-before-reveal is non-negotiable.
+The Filter probes that **stage transitions cannot be reordered, skipped, or driven by anything but learner action**, and that the prediction checkpoint is visible without blocking the live model. A runtime that hides observations until `predict.commit()` is rejected.

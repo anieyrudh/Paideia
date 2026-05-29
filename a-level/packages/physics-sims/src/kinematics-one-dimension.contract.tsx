@@ -76,12 +76,12 @@ afterEach(() => {
 });
 
 export const runKinematicsGateContract = () => {
-  describe("kinematics-in-one-dimension prediction-gate contract", () => {
-    it("blocks motion readouts until the prediction gate is committed", async () => {
+  describe("kinematics-in-one-dimension prediction-checkpoint contract", () => {
+    it("blocks motion readouts until the prediction checkpoint is committed", async () => {
       await renderSim();
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("Substitution: s");
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
+      expect(document.body.textContent).toContain("Substitution: s");
 
       await click(controlByLabel("9.0 m"));
       await change(controlByLabel("Rationale"), "Starting from rest leaves only the acceleration term.");
@@ -101,8 +101,8 @@ export const runKinematicsGateContract = () => {
       await click(controlByLabel("9.0 m"));
       await change(controlByLabel("Rationale"), "The displacement depends on t squared when u is zero.");
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.querySelector("[aria-label='Formula used']")).toBeNull();
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
+      expect(document.querySelector("[aria-label='Formula used']")).not.toBeNull();
 
       await click(commitButton());
       await change(controlByLabel("Elapsed time"), "4");

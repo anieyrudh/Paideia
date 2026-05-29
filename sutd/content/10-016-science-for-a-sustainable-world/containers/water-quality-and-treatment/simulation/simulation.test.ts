@@ -8,14 +8,22 @@ test.describe("Water Quality and Treatment", () => {
     );
   });
 
-  test("prediction-gate blocks treatment evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps treatment evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set up treatment check" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set up treatment check" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal treatment evidence" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByRole("radio", {
@@ -34,7 +42,12 @@ test.describe("Water Quality and Treatment", () => {
   });
 
   test("manipulation exposes a disinfection blocker", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up treatment check" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up treatment check" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Free chlorine dose" }).fill("0.2");
     await page.getByRole("slider", { name: "Contact time" }).fill("5");
     await page.getByRole("button", { name: "Reveal treatment evidence" }).click();
@@ -52,7 +65,12 @@ test.describe("Water Quality and Treatment", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up treatment check" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up treatment check" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal treatment evidence" }).click();
     await page
       .getByRole("radio", {

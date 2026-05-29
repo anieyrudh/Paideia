@@ -96,7 +96,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -104,7 +104,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate shared/content/math/containers/hypothesis-test-decision`
 - Docs regeneration: `pnpm container:docs shared/content/math/containers/hypothesis-test-decision`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -124,7 +124,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer
 
 - Shared-core path risk — resolved by building only under `shared/content/math/containers/hypothesis-test-decision`.
 - Kernel-boundary risk — resolved by consuming `normalMeanHypothesisTest()` from `core/probability-stats` and chart/control/gate primitives from the declared kernels.
-- Prediction-gate leak risk — resolved by wrapping the observation, decision readout, chart, and formula panel in `PredictionGate` and testing blocked reveal.
+- Prediction-checkpoint leak risk — resolved by wrapping the observation, decision readout, chart, and formula panel in `PredictionGate` and testing blocked reveal.
 
 ### P1 addressed or deferred
 

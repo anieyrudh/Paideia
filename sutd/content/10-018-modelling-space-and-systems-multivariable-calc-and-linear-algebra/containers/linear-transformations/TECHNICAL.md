@@ -103,7 +103,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -111,7 +111,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/linear-transformations`
 - Docs regeneration: `pnpm container:docs sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/linear-transformations`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -129,7 +129,7 @@ Filter version: aniegpt v1.0 (builder self-audit, awaiting reviewer pass)
 
 ### P0 issues
 
-- None observed. Container shape validates. Prediction gate is wired end-to-end. Reveal renders an SVG basis-image plot (dashed e_1/e_2 + blue T(e_1) + green T(e_2)) and a colour-coded formula card with substitution, units, and per-class verdict. Computation goes through `core/linear-algebra` (`matrix2`, `determinant2`, `trace2`, `dot2`, `norm2`, `vector2`).
+- None observed. Container shape validates. Prediction checkpoint is wired end-to-end. Reveal renders an SVG basis-image plot (dashed e_1/e_2 + blue T(e_1) + green T(e_2)) and a colour-coded formula card with substitution, units, and per-class verdict. Computation goes through `core/linear-algebra` (`matrix2`, `determinant2`, `trace2`, `dot2`, `norm2`, `vector2`).
 
 ### P1 issues
 

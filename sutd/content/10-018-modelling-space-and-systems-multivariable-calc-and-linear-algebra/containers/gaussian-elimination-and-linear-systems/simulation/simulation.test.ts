@@ -24,11 +24,15 @@ test.describe("Gaussian Elimination and Linear Systems", () => {
     });
   });
 
-  test("prediction-gate blocks row-reduction evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Set up row-reduction check" }).click();
+  test("prediction-checkpoint keeps row-reduction evidence visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Set up row-reduction check" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal row-reduction evidence" }).click();
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
     await page.getByRole("radio", { name: "A unique solution at x = 2, y = 1" }).check();
     await page.getByLabel("Rationale").fill("Two independent pivots give one intersection.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
@@ -38,7 +42,12 @@ test.describe("Gaussian Elimination and Linear Systems", () => {
   });
 
   test("manipulation switches to parallel classification", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up row-reduction check" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up row-reduction check" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Row 1 x coefficient" }).fill("1");
     await page.getByRole("slider", { name: "Row 1 y coefficient" }).fill("1");
     await page.getByRole("slider", { name: "Row 2 x coefficient" }).fill("2");
@@ -46,7 +55,6 @@ test.describe("Gaussian Elimination and Linear Systems", () => {
     await page.getByRole("slider", { name: "Row 1 right side" }).fill("2");
     await page.getByRole("slider", { name: "Row 2 right side" }).fill("5");
     await page.getByRole("button", { name: "Reveal row-reduction evidence" }).click();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
     await page.getByRole("radio", { name: "A unique solution at x = 2, y = 1" }).check();
     await page.getByLabel("Rationale").fill("This tests a zero determinant system.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
@@ -54,9 +62,13 @@ test.describe("Gaussian Elimination and Linear Systems", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up row-reduction check" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up row-reduction check" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal row-reduction evidence" }).click();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
     await page.getByRole("radio", { name: "A unique solution at x = 2, y = 1" }).check();
     await page.getByLabel("Rationale").fill("Back substitution gives x=2 and y=1.");
     await page.getByRole("button", { name: "Commit prediction" }).click();

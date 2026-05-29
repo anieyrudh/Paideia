@@ -8,7 +8,7 @@ import {
 
 const simId = "a-level/physics/resolving-vectors/component-resolution";
 
-// prediction-gate: this sim must block component readouts until prediction commit.
+// prediction-checkpoint: this sim must block component readouts until prediction commit.
 definePredictionGateContract({
   simId,
   predictionLabel: "8.7 N",

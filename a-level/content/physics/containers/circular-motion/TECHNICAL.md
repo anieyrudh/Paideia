@@ -43,7 +43,7 @@ kernel_deps:
   - core/ui-sim
 predict:
   prompt: |
-    A rider moves at constant speed around a circular track. Before revealing the vectors, which direction is the acceleration at any instant?
+    A rider moves at constant speed around a circular track. Before comparing with the vectors, which direction is the acceleration at any instant?
   commit_format:
     kind: multiple-choice
     options:
@@ -110,7 +110,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -118,7 +118,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate a-level/content/physics/containers/circular-motion`
 - Docs regeneration: `pnpm container:docs a-level/content/physics/containers/circular-motion`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -157,7 +157,7 @@ Local validation on 2026-05-21:
 Date: 2026-05-21
 
 ### P0 resolved
-- Prediction-before-reveal could be bypassed if the observation panel mounted directly. Resolution: mounted observe/explain through `@paideia/sim-runtime`, which wraps reveal through `@paideia/prediction-gate`, and added package plus sim-harness prediction-gate tests.
+- Prediction-before-reveal could be bypassed if the observation panel mounted directly. Resolution: mounted observe/explain through `@paideia/sim-runtime`, which wraps reveal through `@paideia/prediction-gate`, and added package plus sim-harness prediction-checkpoint tests.
 - Prediction could be contaminated by pre-commit numerical acceleration. Resolution: removed the before-reveal radial acceleration readout; learners can manipulate settings before reveal, but formula values and inward force evidence appear only after prediction commit.
 - Circular-motion formulas could drift into the container or sim UI. Resolution: `a_c = v^2 / r`, `F_c = ma_c`, angular speed, and period calculations are owned by `core/mechanics`; the sim only renders geometry and calls the kernel.
 - Student UI could teach centripetal force as a separate extra force. Resolution: the UI labels the arrow as the centre-seeking resultant force, and the transfer prompt asks learners to name the real force source.

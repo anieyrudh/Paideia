@@ -6,14 +6,22 @@ test.describe("Fairness Threshold Audit", () => {
     await page.goto("/?sim=sutd/dai/fairness-threshold-audit/fairness-threshold-audit");
   });
 
-  test("prediction-gate blocks the group audit until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps the group audit visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set audit policy" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set audit policy" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal fairness audit" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByRole("radio", { name: "The group with lower recall can carry more missed-support harm" })
@@ -30,7 +38,12 @@ test.describe("Fairness Threshold Audit", () => {
   });
 
   test("manipulating Group B's threshold visibly changes the audit gap", async ({ page }) => {
-    await page.getByRole("button", { name: "Set audit policy" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set audit policy" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Lower Group B threshold" }).click();
     await page.getByRole("button", { name: "Reveal fairness audit" }).click();
     await page
@@ -48,7 +61,12 @@ test.describe("Fairness Threshold Audit", () => {
   });
 
   test("shows formula legend, stakeholder annotation, and critical accessibility is clean", async ({ page }) => {
-    await page.getByRole("button", { name: "Set audit policy" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set audit policy" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal fairness audit" }).click();
     await page
       .getByRole("radio", { name: "The group with lower recall can carry more missed-support harm" })

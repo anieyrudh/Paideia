@@ -82,7 +82,7 @@ authoring:
   changelog:
     - date: "2026-05-26"
       author: "Codex"
-      summary: "Built SUTD 10.017 RLC resonance product slice with prediction-gated impedance simulation."
+      summary: "Built SUTD 10.017 RLC resonance product slice with prediction-checkpointd impedance simulation."
 authors: ["Codex"]
 advisor_signoffs: []
 filter_pass:

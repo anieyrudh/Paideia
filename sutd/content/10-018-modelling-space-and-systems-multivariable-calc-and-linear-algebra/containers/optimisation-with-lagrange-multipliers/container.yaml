@@ -81,7 +81,7 @@ authoring:
   changelog:
     - date: "2026-05-26"
       author: "Codex"
-      summary: "Built SUTD 10.018 Lagrange multipliers product slice with prediction-gated constrained-optimisation lab."
+      summary: "Built SUTD 10.018 Lagrange multipliers product slice with prediction-checkpointd constrained-optimisation lab."
 authors: ["Codex"]
 advisor_signoffs: []
 filter_pass:

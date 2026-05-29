@@ -304,8 +304,8 @@ function validateSimulation(containerDir, manifest, failures) {
   const testPath = join(containerDir, "simulation", "simulation.test.ts");
   if (isFile(testPath) && (manifest.package_predict !== undefined || hasSimPredict)) {
     const test = readFileSync(testPath, "utf8");
-    if (!test.includes("prediction-gate")) {
-      failures.push("simulation/simulation.test.ts does not contain the literal string `prediction-gate`");
+    if (!test.includes("prediction-checkpoint")) {
+      failures.push("simulation/simulation.test.ts does not contain the literal string `prediction-checkpoint`");
     }
   }
 }

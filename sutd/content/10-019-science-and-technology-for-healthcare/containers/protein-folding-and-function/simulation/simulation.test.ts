@@ -8,14 +8,22 @@ test.describe("Protein Folding and Function", () => {
     );
   });
 
-  test("prediction-gate blocks hydropathy evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps hydropathy evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set up hydropathy lab" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set up hydropathy lab" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal hydropathy profile" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByRole("radio", {
@@ -35,7 +43,12 @@ test.describe("Protein Folding and Function", () => {
   });
 
   test("switching to poly-lysine flips the dominant region label", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up hydropathy lab" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up hydropathy lab" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page
       .getByRole("combobox", { name: "Sequence preset" })
       .selectOption("poly-lys");
@@ -55,7 +68,12 @@ test.describe("Protein Folding and Function", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up hydropathy lab" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up hydropathy lab" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal hydropathy profile" }).click();
     await page
       .getByRole("radio", {

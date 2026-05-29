@@ -70,7 +70,7 @@ export const magneticFieldsSpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "A wire carries conventional current to the right while a magnetic field goes into the page. Before revealing the result, which way is the force on the wire?",
+      "A wire carries conventional current to the right while a magnetic field goes into the page. Before comparing with the result, which way is the force on the wire?",
     commit_format: {
       kind: "multiple-choice",
       options: [
@@ -574,7 +574,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
-      <p className="lab-kicker">Predict first</p>
+      <p className="lab-kicker">Prediction checkpoint</p>
       <h3>Which way does the force point?</h3>
       <p>
         Commit a direction prediction before the magnetic force vector, formula substitution, and

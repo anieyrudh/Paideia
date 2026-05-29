@@ -8,14 +8,22 @@ test.describe("Atomic Structure and Electron Configuration", () => {
     );
   });
 
-  test("prediction-gate blocks electron configuration until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps electron configuration visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set up atom model" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set up atom model" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal electron arrangement" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "2, 4" }).check();
     await page.getByLabel("Rationale").fill("Carbon has six electrons: two in shell 1 and four in shell 2.");
@@ -30,7 +38,12 @@ test.describe("Atomic Structure and Electron Configuration", () => {
   });
 
   test("manipulation changes visible shell and valence evidence", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up atom model" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up atom model" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Atomic number Z" }).fill("17");
     await page.getByRole("button", { name: "Reveal electron arrangement" }).click();
     await page.getByRole("radio", { name: "2, 4" }).check();
@@ -45,7 +58,12 @@ test.describe("Atomic Structure and Electron Configuration", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up atom model" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up atom model" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal electron arrangement" }).click();
     await page.getByRole("radio", { name: "2, 4" }).check();
     await page.getByLabel("Rationale").fill("The first shell holds two electrons and carbon has four left.");

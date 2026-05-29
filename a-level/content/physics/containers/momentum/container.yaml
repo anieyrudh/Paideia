@@ -21,7 +21,7 @@ aid_types:
 predict_at: both
 package_predict:
   prompt: |
-    Two carts collide head-on on a low-friction track. Before revealing the lab, predict which statement about total momentum is correct for the isolated two-cart system.
+    Two carts collide head-on on a low-friction track. Before comparing with the lab, predict which statement about total momentum is correct for the isolated two-cart system.
   commit_format:
     kind: multiple-choice
     options:
@@ -80,7 +80,7 @@ authoring:
   changelog:
     - date: "2026-05-19"
       author: "Codex"
-      summary: "Built A-Level momentum and impulse product slice using core/mechanics, charting, sim-runtime, prediction-gate, and ui-sim."
+      summary: "Built A-Level momentum and impulse product slice using core/mechanics, charting, sim-runtime, prediction-checkpoint, and ui-sim."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []

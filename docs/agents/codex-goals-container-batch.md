@@ -153,12 +153,12 @@ Do not add unrelated file shapes unless the container spec already allows them.
 
 ## Simulation Standard
 
-Text-only reveals are not product quality.
+Text-only observations are not product quality.
 
 For every sim-worthy concept:
 
-- Prediction gate must block reveal before commit.
-- Revealed state must include a real visual model: chart, plot, SVG diagram,
+- Prediction checkpoint must save reflection without blocking the simulation.
+- Observation state must include a real visual model: chart, plot, SVG diagram,
   canvas, 2D scene, 3D scene, or equivalent.
 - Direct manipulation must visibly change the model.
 - Every calculation shown to a learner must show formula, symbol legend,
@@ -206,7 +206,7 @@ separate blocker.
 P0 blocks merge:
 
 - invalid container shape
-- missing prediction gate
+- missing prediction checkpoint
 - sim-worthy concept reveals only text
 - cross-branch imports
 - GPL/proprietary runtime code

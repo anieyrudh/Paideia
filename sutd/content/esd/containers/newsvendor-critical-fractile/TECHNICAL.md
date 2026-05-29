@@ -107,7 +107,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -115,7 +115,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/esd/containers/newsvendor-critical-fractile`
 - Docs regeneration: `pnpm container:docs sutd/content/esd/containers/newsvendor-critical-fractile`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -133,7 +133,7 @@ Filter version: aniegpt v1.0
 
 ### P0 issues
 
-- Prediction-gate reveal leak: resolved by routing observe/explain through `SimRuntime` with package-level prediction and Playwright pre-commit DOM assertions.
+- Prediction-checkpoint reveal leak: resolved by routing observe/explain through `SimRuntime` with package-level prediction and Playwright pre-commit DOM assertions.
 - Formula panel incompleteness: resolved with nearby formula, legend, substituted values, SGD/unit units, and interpretation.
 
 ### P1 issues

@@ -109,7 +109,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -117,7 +117,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/esd/containers/markov-chain-steady-state`
 - Docs regeneration: `pnpm container:docs sutd/content/esd/containers/markov-chain-steady-state`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -136,7 +136,7 @@ Reviewers (local): container-auditor, sim-architect, pedagogy-reviewer
 
 ### P0 resolved
 
-- Prediction gate must block observation-shaped steady-state evidence before commitment - resolved with package-level prediction, sim-level Playwright coverage, and package-level prediction-gate unit coverage.
+- Prediction checkpoint must block observation-shaped steady-state evidence before commitment - resolved with package-level prediction, sim-level Playwright coverage, and package-level prediction-checkpoint unit coverage.
 - Kernel boundary must not inline generic transition-matrix mechanics when a core kernel exists - resolved by using `core/linear-algebra` for matrix/vector updates and the eigenvector check, `core/probability-stats` for probability normalisation, and `core/charting` for the convergence chart.
 
 ### P1 addressed or deferred

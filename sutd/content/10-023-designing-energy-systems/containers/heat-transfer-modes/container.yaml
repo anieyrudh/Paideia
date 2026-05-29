@@ -80,7 +80,7 @@ authoring:
   changelog:
     - date: "2026-05-28"
       author: "Codex"
-      summary: "Built the SUTD 10.023 Heat Transfer Modes product slice with a heat-flow comparison lab, prediction gate, formula panel, and transfer problem."
+      summary: "Built the SUTD 10.023 Heat Transfer Modes product slice with a heat-flow comparison lab, prediction checkpoint, formula panel, and transfer problem."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []

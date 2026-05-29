@@ -63,7 +63,7 @@ Each builder must:
 - Show formulas as LaTeX code blocks with a nearby color-coded legend for every
   symbol. Keep formula colors aligned with controls, traces, vectors, and
   readouts. See [`simulation-presentation-standard.md`](./simulation-presentation-standard.md).
-- Add Playwright coverage for prediction-gate blocking, at least one manipulation changing visible state, and revealed-state critical axe scan.
+- Add Playwright coverage for the embedded prediction checkpoint, at least one manipulation changing visible state, and live observation-state critical axe scan.
 
 ## Required Checks
 
@@ -89,7 +89,7 @@ Playwright tests may need local-server permission in sandboxed environments.
 
 Reviewers should lead with P0/P1 findings:
 
-- P0: broken container shape, broken prediction gate, CI failure, license issue, cross-branch import, copied/incompatible source, or local reusable math that belongs in `core/`.
+- P0: broken container shape, broken prediction checkpoint, CI failure, license issue, cross-branch import, copied/incompatible source, or local reusable math that belongs in `core/`.
 - P1: weak student-facing explanation, missing formula substitution, shallow test coverage, unclear source support, or stale generated graph data.
 - P2: polish and future-product suggestions.
 

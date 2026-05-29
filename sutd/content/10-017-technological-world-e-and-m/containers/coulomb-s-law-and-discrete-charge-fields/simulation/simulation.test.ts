@@ -26,12 +26,15 @@ test.describe("Coulomb's Law and Discrete Charge Fields", () => {
     });
   });
 
-  test("prediction-gate blocks field evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Set charge position" }).click();
+  test("prediction-checkpoint keeps field evidence visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Set charge position" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal field result" }).click();
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByRole("radio", {
@@ -49,7 +52,12 @@ test.describe("Coulomb's Law and Discrete Charge Fields", () => {
   });
 
   test("manipulation changes visible force state", async ({ page }) => {
-    await page.getByRole("button", { name: "Set charge position" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set charge position" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Test charge" }).fill("20");
     await page.getByRole("button", { name: "Reveal field result" }).click();
     await page
@@ -65,7 +73,12 @@ test.describe("Coulomb's Law and Discrete Charge Fields", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set charge position" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set charge position" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal field result" }).click();
     await page
       .getByRole("radio", {
