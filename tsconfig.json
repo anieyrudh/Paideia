@@ -64,6 +64,7 @@
     { "path": "./core/mechanics" },
     { "path": "./core/materials" },
     { "path": "./core/waves" },
+    { "path": "./core/optics" },
     { "path": "./core/thermodynamics" },
     { "path": "./core/heat-transfer" },
     { "path": "./core/fluid-mechanics" },
