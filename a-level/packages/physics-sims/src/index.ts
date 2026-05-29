@@ -83,6 +83,15 @@ export {
   kinematicsPredict,
 } from "./kinematics-one-dimension.js";
 export {
+  ProjectileDiagram,
+  ProjectileMotionSim,
+  projectileMotionModel,
+  projectileMotionPackageId,
+  projectileMotionPredict,
+  projectileMotionSimId,
+  projectileMotionSpec,
+} from "./projectile-motion.js";
+export {
   EnergyTransferDiagram,
   WorkEnergyPowerSim,
   workEnergyPowerModel,
@@ -117,6 +126,11 @@ export type {
   MetresPerSecondSquared,
   MotionTimelineProps,
 } from "./kinematics-one-dimension.js";
+export type {
+  ProjectileMotionModel,
+  ProjectileMotionState,
+  ProjectileTracePoint,
+} from "./projectile-motion.js";
 export type {
   EnergyTracePoint,
   WorkEnergyPowerModel,

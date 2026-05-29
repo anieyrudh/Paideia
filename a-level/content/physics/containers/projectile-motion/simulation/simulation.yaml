@@ -1,0 +1,58 @@
+id: trajectory-parameter-lab
+title: "Trajectory Parameter Lab"
+interaction_type: function-plot-with-draggable
+kernel_deps:
+  - core/content-schema
+  - core/mechanics
+  - core/plotting
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+
+predict:
+  prompt: |
+    A ball is launched horizontally from a bench. Before revealing the path, what happens to its horizontal velocity while it falls?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "It stays constant if air resistance is ignored."
+      - "It decreases because gravity pulls downward."
+      - "It increases because the ball is speeding up overall."
+      - "It becomes zero at the highest point."
+    correct_index: 0
+  rationale_required: true
+
+manipulate:
+  controls:
+    - id: launch-speed
+      label: "Launch speed"
+      kind: slider
+      kernel_binding: state.launchSpeedMetresPerSecond
+      bounds: { min: 4, max: 30, step: 0.5 }
+    - id: launch-angle
+      label: "Launch angle"
+      kind: slider
+      kernel_binding: state.launchAngleDegrees
+      bounds: { min: 0, max: 70, step: 1 }
+    - id: launch-height
+      label: "Launch height"
+      kind: slider
+      kernel_binding: state.launchHeightMetres
+      bounds: { min: 0, max: 20, step: 0.5 }
+
+observe:
+  renderers:
+    - id: trajectory-parameter-lab
+      module: "@paideia/a-level-physics-sims/projectile-motion"
+      symbol: ProjectileMotionSim
+      props_binding: |
+        Show the sampled projectile arc, independent horizontal and vertical motion, range, flight time, peak height, and formula substitution from the current launch state.
+
+explain:
+  prompt: |
+    Which part of the projectile motion comes from the initial velocity, and which part comes from gravity?
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Horizontal and vertical motion affect each other directly"
+    - "A projectile needs a continuing forward force"
+    - "Launch angle changes gravitational acceleration"

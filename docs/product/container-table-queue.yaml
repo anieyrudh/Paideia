@@ -80,7 +80,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "alevel.physics.projectile-motion"
-    status: "ready-for-build"
+    status: "in-build"
     concept_title: "Projectile Motion"
     curriculum: "a-level"
     subject: "physics"

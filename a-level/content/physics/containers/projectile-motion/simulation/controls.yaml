@@ -1,0 +1,25 @@
+controls:
+  - id: launch-speed
+    label: "Launch speed"
+    kind: slider
+    unit: "m s^-1"
+    default: 18
+    min: 4
+    max: 30
+    step: 0.5
+  - id: launch-angle
+    label: "Launch angle"
+    kind: slider
+    unit: degrees
+    default: 35
+    min: 0
+    max: 70
+    step: 1
+  - id: launch-height
+    label: "Launch height"
+    kind: slider
+    unit: m
+    default: 2
+    min: 0
+    max: 20
+    step: 0.5

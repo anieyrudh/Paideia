@@ -1934,7 +1934,7 @@ entries:
   - id: alevel.physics.projectile-motion
     title: "Projectile Motion"
     priority: P1
-    status: ready-for-build
+    status: in-build
     cluster: A-Level mechanics
     discipline: physics
     reuse_status: subject-specific

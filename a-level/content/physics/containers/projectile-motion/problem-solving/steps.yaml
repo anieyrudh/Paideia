@@ -1,0 +1,16 @@
+schema_version: "1.0.0"
+steps:
+  - id: draw-components
+    label: "Draw horizontal and vertical components"
+  - id: resolve-launch-velocity
+    label: "Resolve launch velocity into u_x and u_y"
+  - id: write-vertical-equation
+    label: "Use vertical motion to find time of flight"
+  - id: choose-positive-root
+    label: "Choose the positive landing time"
+  - id: calculate-range
+    label: "Multiply horizontal velocity by time"
+  - id: check-units
+    label: "Check units and signs"
+  - id: interpret-independence
+    label: "Explain component independence"

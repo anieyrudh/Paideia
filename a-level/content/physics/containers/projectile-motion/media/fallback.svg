@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Projectile motion fallback diagram</title>
+  <desc id="desc">Formula-backed projectile path showing range and launch components.</desc>
+  <rect width="640" height="360" fill="#ffffff"/>
+  <g fill="none" stroke="#cbd5e1" stroke-width="2">
+    <line x1="72" y1="292" x2="572" y2="292"/>
+    <line x1="72" y1="292" x2="72" y2="72"/>
+  </g>
+  <path d="M72 248 C190 84 370 84 536 292" fill="none" stroke="#2563eb" stroke-width="7"/>
+  <circle cx="72" cy="248" r="10" fill="#d97706"/>
+  <line x1="72" y1="248" x2="164" y2="184" stroke="#d97706" stroke-width="5" stroke-linecap="round"/>
+  <line x1="72" y1="248" x2="178" y2="248" stroke="#0f766e" stroke-width="5" stroke-linecap="round"/>
+  <line x1="178" y1="248" x2="178" y2="184" stroke="#b42318" stroke-width="5" stroke-linecap="round"/>
+  <text x="198" y="190" fill="#334155" font-family="Inter, Arial, sans-serif" font-size="18">u_y</text>
+  <text x="122" y="270" fill="#334155" font-family="Inter, Arial, sans-serif" font-size="18">u_x</text>
+  <text x="300" y="326" fill="#334155" font-family="Inter, Arial, sans-serif" font-size="18">R = u_x t</text>
+  <text x="72" y="46" fill="#0f172a" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">Horizontal stays steady; vertical accelerates.</text>
+</svg>

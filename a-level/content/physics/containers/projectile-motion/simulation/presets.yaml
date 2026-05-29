@@ -1,0 +1,19 @@
+presets:
+  - id: angled-launch
+    label: "Angled launch"
+    state:
+      launchSpeedMetresPerSecond: 18
+      launchAngleDegrees: 35
+      launchHeightMetres: 2
+  - id: horizontal-bench
+    label: "Horizontal bench"
+    state:
+      launchSpeedMetresPerSecond: 14
+      launchAngleDegrees: 0
+      launchHeightMetres: 6
+  - id: high-arc
+    label: "High arc"
+    state:
+      launchSpeedMetresPerSecond: 20
+      launchAngleDegrees: 55
+      launchHeightMetres: 1
