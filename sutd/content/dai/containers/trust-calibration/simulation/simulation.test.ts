@@ -1,9 +1,24 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("Trust Calibration", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/?sim=sutd/dai/trust-calibration/trust-calibration");
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId: "sutd/dai/trust-calibration/trust-calibration",
+      setup: [
+        { role: "button", name: "Choose trust policy" },
+        { role: "button", name: "Reveal policy cost" },
+      ],
+      prediction: {
+        optionLabel: "70% threshold",
+        rationale: "A middle threshold reduces wrong automated decisions without reviewing everything.",
+      },
+    });
   });
 
   test("prediction-gate blocks policy cost until commit", async ({ page }) => {

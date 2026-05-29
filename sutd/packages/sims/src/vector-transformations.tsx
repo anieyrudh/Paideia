@@ -140,6 +140,48 @@ const transformEvidence = (state: TransformState): KernelResult<TransformEvidenc
   };
 };
 
+const vectorPoint = ([x, y]: readonly [number, number]): { readonly x: number; readonly y: number } => ({
+  x: 120 + x * 28,
+  y: 120 - y * 28,
+});
+
+const VectorPlane = ({ evidence }: { readonly evidence: TransformEvidence }) => {
+  const {
+    matrix: [[a11, a12], [a21, a22]],
+    vector,
+    transformed,
+  } = evidence;
+  const e1 = vectorPoint([a11, a21]);
+  const e2 = vectorPoint([a12, a22]);
+  const input = vectorPoint(vector);
+  const output = vectorPoint(transformed);
+
+  return (
+    <figure>
+      <svg aria-label="Vector transformation plane" role="img" viewBox="0 0 240 240" width="100%">
+        <title>Coordinate grid showing original and transformed vectors</title>
+        {[-3, -2, -1, 0, 1, 2, 3].map((tick) => (
+          <g key={tick}>
+            <line x1="20" x2="220" y1={120 - tick * 28} y2={120 - tick * 28} stroke="#d8e2dc" />
+            <line x1={120 + tick * 28} x2={120 + tick * 28} y1="20" y2="220" stroke="#d8e2dc" />
+          </g>
+        ))}
+        <line x1="20" x2="220" y1="120" y2="120" stroke="#23352d" strokeWidth="2" />
+        <line x1="120" x2="120" y1="20" y2="220" stroke="#23352d" strokeWidth="2" />
+        <line x1="120" x2={e1.x} y1="120" y2={e1.y} stroke="#2d6cdf" strokeWidth="4" />
+        <line x1="120" x2={e2.x} y1="120" y2={e2.y} stroke="#d97706" strokeWidth="4" />
+        <line x1="120" x2={input.x} y1="120" y2={input.y} stroke="#667085" strokeDasharray="5 4" strokeWidth="3" />
+        <line x1="120" x2={output.x} y1="120" y2={output.y} stroke="#208a68" strokeWidth="5" />
+        <circle cx={output.x} cy={output.y} fill="#208a68" r="5" />
+      </svg>
+      <figcaption>
+        Legend: blue = transformed basis e1, orange = transformed basis e2, grey dashed =
+        input vector, green = transformed target vector.
+      </figcaption>
+    </figure>
+  );
+};
+
 const RangeControl = ({
   id,
   label,
@@ -241,6 +283,7 @@ const ObserveStage = () => {
   return (
     <section aria-label="Observation unlocked" role="region">
       <h2>Transformed vector evidence</h2>
+      <VectorPlane evidence={evidence.value} />
       <p>
         Basis movement: e1 lands at ({a11}, {a21}) and e2 lands at ({a12}, {a22}).
       </p>
@@ -251,6 +294,9 @@ const ObserveStage = () => {
         Formula used: x' = ({a11})({x}) + ({a12})({y}) = {format(xPrime)}; y' = ({a21})(
         {x}) + ({a22})({y}) = {format(yPrime)}.
       </p>
+      <p>Substitution: multiply matrix columns by the input components ({x}, {y}).</p>
+      <p>Units: coordinate units.</p>
+      <p>Result: transformed target vector is ({format(xPrime)}, {format(yPrime)}).</p>
       <p>
         Area scale = det(A) = ({a11})({a22}) - ({a12})({a21}) = {format(determinant)}, so the
         transformation {orientation}.

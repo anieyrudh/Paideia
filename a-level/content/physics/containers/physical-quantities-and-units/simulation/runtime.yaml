@@ -5,3 +5,11 @@ runtime:
   state_model: local
   persistence: prediction-gate-local-storage
   deterministic: true
+visual_quality:
+  prediction:
+    option_label: "2.50 m s^-1 ± 0.09 m s^-1"
+    rationale: "A complete measurement record needs value, unit, and uncertainty."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

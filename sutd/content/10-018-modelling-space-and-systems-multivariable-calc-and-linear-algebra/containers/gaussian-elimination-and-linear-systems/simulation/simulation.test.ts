@@ -1,11 +1,27 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("Gaussian Elimination and Linear Systems", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto(
       "/?sim=sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/gaussian-elimination-and-linear-systems/gaussian-elimination-and-linear-systems",
     );
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId:
+        "sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/gaussian-elimination-and-linear-systems/gaussian-elimination-and-linear-systems",
+      setup: [
+        { role: "button", name: "Set up row-reduction check" },
+        { role: "button", name: "Reveal row-reduction evidence" },
+      ],
+      prediction: {
+        optionLabel: "A unique solution at x = 2, y = 1",
+        rationale: "Two independent pivots give one intersection.",
+      },
+    });
   });
 
   test("prediction-gate blocks row-reduction evidence until commit", async ({ page }) => {

@@ -1,9 +1,24 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("Graph Search and Shortest Paths", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/?sim=sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths");
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId: "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths",
+      setup: [
+        { role: "button", name: "Choose traversal" },
+        { role: "button", name: "Reveal graph evidence" },
+      ],
+      prediction: {
+        optionLabel: "BFS minimizes edge count; Dijkstra minimizes total non-negative weight.",
+        rationale: "BFS treats every edge as one step, while Dijkstra sums edge weights.",
+      },
+    });
   });
 
   test("prediction-gate blocks observation until commit", async ({ page }) => {

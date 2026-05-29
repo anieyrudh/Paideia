@@ -4,3 +4,16 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup:
+    - role: button
+      name: "Start manipulating"
+    - role: button
+      name: "Observe this point"
+  prediction:
+    option_label: "(4, 4)"
+    rationale: "A feasible corner should be tested against every constraint."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

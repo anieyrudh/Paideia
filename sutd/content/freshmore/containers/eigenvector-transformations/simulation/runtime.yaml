@@ -5,3 +5,16 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup:
+    - role: button
+      name: "Set up eigenvector check"
+    - role: button
+      name: "Reveal invariant-direction result"
+  prediction:
+    option_label: "Av = (3, 0), so the vector stays on its line and triples"
+    rationale: "A(1, 0) stays on the x-axis and scales by 3."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

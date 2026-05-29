@@ -631,6 +631,10 @@ textarea:focus-visible {
   margin: 0;
 }
 
+.formula-panel .meta-line {
+  color: #e8f2ec;
+}
+
 .formula {
   color: #ffffff;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;

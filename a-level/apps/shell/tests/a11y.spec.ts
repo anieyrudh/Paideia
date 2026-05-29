@@ -1,18 +1,18 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-test("has no critical accessibility violations on the first shell screen", async ({ page }) => {
+const seriousOrCritical = (violations: readonly { readonly impact?: string | null }[]) =>
+  violations.filter((violation) => violation.impact === "serious" || violation.impact === "critical");
+
+test("has no serious or critical accessibility violations on the first shell screen", async ({ page }) => {
   await page.goto("/");
 
   const results = await new AxeBuilder({ page }).analyze();
-  const criticalViolations = results.violations.filter(
-    (violation) => violation.impact === "critical",
-  );
 
-  expect(criticalViolations).toEqual([]);
+  expect(seriousOrCritical(results.violations)).toEqual([]);
 });
 
-test("has no critical accessibility violations after the physical-quantities sim is revealed", async ({
+test("has no serious or critical accessibility violations after the physical-quantities sim is revealed", async ({
   page,
 }) => {
   await page.goto("/#a-level/physics/physical-quantities-and-units");
@@ -25,11 +25,8 @@ test("has no critical accessibility violations after the physical-quantities sim
   await page.getByLabel("Observation unlocked").waitFor();
 
   const results = await new AxeBuilder({ page }).analyze();
-  const criticalViolations = results.violations.filter(
-    (violation) => violation.impact === "critical",
-  );
 
-  expect(criticalViolations).toEqual([]);
+  expect(seriousOrCritical(results.violations)).toEqual([]);
 });
 
 test("does not leak the physical-quantities prediction answer before commit", async ({ page }) => {
@@ -41,7 +38,7 @@ test("does not leak the physical-quantities prediction answer before commit", as
   await expect(page.getByText("2.50 ± 0.09 m s^-1 is a derived scalar measurement")).toHaveCount(0);
 });
 
-test("has no critical accessibility violations after the scalars-and-vectors sim is revealed", async ({
+test("has no serious or critical accessibility violations after the scalars-and-vectors sim is revealed", async ({
   page,
 }) => {
   await page.goto("/#a-level/physics/scalars-and-vectors");
@@ -54,14 +51,11 @@ test("has no critical accessibility violations after the scalars-and-vectors sim
   await page.getByLabel("Observation unlocked").waitFor();
 
   const results = await new AxeBuilder({ page }).analyze();
-  const criticalViolations = results.violations.filter(
-    (violation) => violation.impact === "critical",
-  );
 
-  expect(criticalViolations).toEqual([]);
+  expect(seriousOrCritical(results.violations)).toEqual([]);
 });
 
-test("has no critical accessibility violations after the resolving-vectors sim is revealed", async ({
+test("has no serious or critical accessibility violations after the resolving-vectors sim is revealed", async ({
   page,
 }) => {
   await page.goto("/#a-level/physics/resolving-vectors");
@@ -74,14 +68,11 @@ test("has no critical accessibility violations after the resolving-vectors sim i
   await page.getByLabel("Observation unlocked").waitFor();
 
   const results = await new AxeBuilder({ page }).analyze();
-  const criticalViolations = results.violations.filter(
-    (violation) => violation.impact === "critical",
-  );
 
-  expect(criticalViolations).toEqual([]);
+  expect(seriousOrCritical(results.violations)).toEqual([]);
 });
 
-test("has no critical accessibility violations after the kinematics sim is revealed", async ({
+test("has no serious or critical accessibility violations after the kinematics sim is revealed", async ({
   page,
 }) => {
   await page.goto("/#a-level/physics/kinematics-in-one-dimension");
@@ -94,14 +85,11 @@ test("has no critical accessibility violations after the kinematics sim is revea
   await page.getByLabel("Observation unlocked").waitFor();
 
   const results = await new AxeBuilder({ page }).analyze();
-  const criticalViolations = results.violations.filter(
-    (violation) => violation.impact === "critical",
-  );
 
-  expect(criticalViolations).toEqual([]);
+  expect(seriousOrCritical(results.violations)).toEqual([]);
 });
 
-test("has no critical accessibility violations after the work-energy-power sim is revealed", async ({
+test("has no serious or critical accessibility violations after the work-energy-power sim is revealed", async ({
   page,
 }) => {
   await page.goto("/#a-level/physics/work-energy-power");
@@ -116,11 +104,8 @@ test("has no critical accessibility violations after the work-energy-power sim i
   await page.getByLabel("Observation unlocked").waitFor();
 
   const results = await new AxeBuilder({ page }).analyze();
-  const criticalViolations = results.violations.filter(
-    (violation) => violation.impact === "critical",
-  );
 
-  expect(criticalViolations).toEqual([]);
+  expect(seriousOrCritical(results.violations)).toEqual([]);
 });
 
 test("has no serious or critical accessibility violations after the probability-statistics sim is revealed", async ({
@@ -138,9 +123,6 @@ test("has no serious or critical accessibility violations after the probability-
   await page.getByLabel("Observation unlocked").waitFor();
 
   const results = await new AxeBuilder({ page }).analyze();
-  const seriousOrCriticalViolations = results.violations.filter(
-    (violation) => violation.impact === "serious" || violation.impact === "critical",
-  );
 
-  expect(seriousOrCriticalViolations).toEqual([]);
+  expect(seriousOrCritical(results.violations)).toEqual([]);
 });

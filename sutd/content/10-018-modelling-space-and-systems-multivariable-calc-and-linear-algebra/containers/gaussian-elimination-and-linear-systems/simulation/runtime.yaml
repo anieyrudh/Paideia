@@ -8,3 +8,16 @@ runtime:
     - "@paideia/sim-runtime"
     - "@paideia/ui-sim"
   browser_required: true
+visual_quality:
+  setup:
+    - role: button
+      name: "Set up row-reduction check"
+    - role: button
+      name: "Reveal row-reduction evidence"
+  prediction:
+    option_label: "A unique solution at x = 2, y = 1"
+    rationale: "Two independent pivots give one intersection."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

@@ -1,9 +1,24 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("Linear Programming Feasible Region", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/?sim=sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region");
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
+      setup: [
+        { role: "button", name: "Start manipulating" },
+        { role: "button", name: "Observe this point" },
+      ],
+      prediction: {
+        optionLabel: "(4, 4)",
+        rationale: "A feasible corner should be tested against every constraint.",
+      },
+    });
   });
 
   test("prediction-gate blocks observation until commit", async ({ page }) => {
@@ -21,8 +36,9 @@ test.describe("Linear Programming Feasible Region", () => {
       .fill("Corner points are where the objective is worth checking first.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
 
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toBeVisible();
-    await expect(page.getByText("Z = 3x + 2y")).toBeVisible();
+    const observation = page.getByRole("region", { name: "Observation unlocked" });
+    await expect(observation).toBeVisible();
+    await expect(observation.getByText("Z = 3x + 2y =")).toBeVisible();
   });
 
   test("manipulate controls write to kernel state", async ({ page }) => {

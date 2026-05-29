@@ -74,6 +74,58 @@ export const measurementModel = (state: MeasurementState): KernelResult<Measurem
 const formatNumber = (value: number, places = 2): string => roundTo(value, places).toFixed(places);
 const formatPercent = (value: number): string => `${formatNumber(value * 100, 1)}%`;
 
+const MeasurementBand = ({ state, model }: { readonly state: MeasurementState; readonly model: MeasurementModel }) => {
+  const centre = 160;
+  const band = Math.max(10, Math.min(90, model.speedUncertaintyMetresPerSecond * 38));
+  const readings = [-0.72, -0.28, 0.08, 0.34, 0.61].map((offset, index) => ({
+    id: `reading-${index}`,
+    x: centre + offset * band,
+    y: 64 + (index % 2) * 16,
+  }));
+
+  return (
+    <figure className="measurement-visual">
+      <svg
+        aria-label="Measurement uncertainty visual"
+        role="img"
+        viewBox="0 0 320 140"
+        width="100%"
+      >
+        <title>Repeated readings scattered inside an uncertainty band</title>
+        <line x1="28" x2="292" y1="104" y2="104" stroke="#23352d" strokeWidth="2" />
+        <rect
+          fill="#f6c177"
+          fillOpacity="0.35"
+          height="58"
+          rx="6"
+          x={centre - band}
+          y="43"
+          width={band * 2}
+        />
+        <line x1={centre} x2={centre} y1="34" y2="112" stroke="#2d6cdf" strokeWidth="3" />
+        {readings.map((reading) => (
+          <circle key={reading.id} cx={reading.x} cy={reading.y} fill="#208a68" r="6" />
+        ))}
+        <text x="28" y="126" fontSize="11" fill="#23352d">
+          lower speed
+        </text>
+        <text x="222" y="126" fontSize="11" fill="#23352d">
+          higher speed
+        </text>
+        <text x="110" y="24" fontSize="12" fill="#23352d">
+          {formatNumber(model.speedMetresPerSecond)} m s^-1 +/-{" "}
+          {formatNumber(model.speedUncertaintyMetresPerSecond)} m s^-1
+        </text>
+      </svg>
+      <figcaption>
+        Repeated readings cluster around the result; the shaded band shows the combined uncertainty
+        from {formatNumber(state.distanceUncertaintyMetres)} m and{" "}
+        {formatNumber(state.timeUncertaintySeconds)} s.
+      </figcaption>
+    </figure>
+  );
+};
+
 export const MeasurementNotebook = ({ state }: { readonly state: MeasurementState }) => {
   const modelResult = measurementModel(state);
   if (!modelResult.ok) {
@@ -97,6 +149,8 @@ export const MeasurementNotebook = ({ state }: { readonly state: MeasurementStat
         </p>
       </div>
 
+      <MeasurementBand state={state} model={model} />
+
       <div className="quantity-cards" aria-label="Quantity classification">
         <article>
           <h3>Distance</h3>
@@ -117,7 +171,8 @@ export const MeasurementNotebook = ({ state }: { readonly state: MeasurementStat
 
       <section aria-label="Formula and unit reasoning" className="formula-panel">
         <h3>Formula and unit reasoning</h3>
-        <pre className="formula-code" aria-label="Speed and uncertainty formula">
+        <p className="meta-line">Formula used</p>
+        <pre className="formula-code" aria-label="Speed and uncertainty formula" tabIndex={0}>
           <code>
             <span className="formula-var formula-var--blue">v</span>
             {" = "}
@@ -132,6 +187,7 @@ export const MeasurementNotebook = ({ state }: { readonly state: MeasurementStat
             <span className="formula-var formula-var--green">t</span>
           </code>
         </pre>
+        <p>Legend: each coloured symbol below matches the formula colour.</p>
         <dl className="formula-legend" aria-label="Formula legend">
           <div>
             <dt>
@@ -157,8 +213,12 @@ export const MeasurementNotebook = ({ state }: { readonly state: MeasurementStat
           {formatNumber(state.timeSeconds)} s = {formatNumber(model.speedMetresPerSecond)} m s^-1.
         </p>
         <p>
-          Unit check: m ÷ s becomes <strong>{model.validEquationUnit}</strong>, so the
+          Units: m ÷ s becomes <strong>{model.validEquationUnit}</strong>, so the
           equation is dimensionally consistent for speed.
+        </p>
+        <p>
+          Result: v = {formatNumber(model.speedMetresPerSecond)} ±{" "}
+          {formatNumber(model.speedUncertaintyMetresPerSecond)} m s^-1.
         </p>
         <p>
           Impossible operation caught: distance + time would produce {model.invalidEquationUnit},

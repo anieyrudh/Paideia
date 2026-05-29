@@ -2,6 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import {
   definePredictionGateContract,
+  expectProductSimulationReveal,
   mountSim,
 } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
@@ -13,6 +14,16 @@ definePredictionGateContract({
   predictionLabel: "2.50 m s^-1 ± 0.09 m s^-1",
   rationale: "A complete measurement record needs value, unit, and uncertainty.",
   expectedText: ["Formula and unit reasoning", "v = 2.50 ± 0.09 m s^-1", "derived quantity"],
+});
+
+test("satisfies the product reveal visual contract", async ({ page }) => {
+  await expectProductSimulationReveal(page, {
+    simId,
+    prediction: {
+      optionLabel: "2.50 m s^-1 ± 0.09 m s^-1",
+      rationale: "A complete measurement record needs value, unit, and uncertainty.",
+    },
+  });
 });
 
 test.describe(`${simId} accessibility`, () => {

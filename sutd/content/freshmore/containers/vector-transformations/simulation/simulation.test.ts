@@ -1,9 +1,24 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("Vector Transformations", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/?sim=sutd/freshmore/vector-transformations/vector-transformations");
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId: "sutd/freshmore/vector-transformations/vector-transformations",
+      setup: [
+        { role: "button", name: "Set up transformation" },
+        { role: "button", name: "Reveal transformed vector" },
+      ],
+      prediction: {
+        optionLabel: "x = 3",
+        rationale: "The first coordinate is 2(1) + 1(1) = 3.",
+      },
+    });
   });
 
   test("prediction-gate blocks transformation evidence until commit", async ({ page }) => {

@@ -167,6 +167,12 @@ jobs:
       - name: Check container quality gates
         run: pnpm container:quality
 
+      - name: Install Playwright browsers
+        run: pnpm -F @paideia/sim-harness exec playwright install --with-deps chromium
+
+      - name: Check visual simulation quality
+        run: pnpm container:visual-quality
+
       - name: Validate roadmap
         run: pnpm roadmap:validate
 
