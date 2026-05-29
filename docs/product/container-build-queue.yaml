@@ -1962,7 +1962,7 @@ entries:
   - id: sutd.10-022-modelling-uncertainty.conditional-probability-and-bayes
     title: "Conditional Probability and Bayes"
     priority: P1
-    status: ready-for-build
+    status: in-build
     cluster: SUTD 10.022 Modelling Uncertainty
     discipline: probability-statistics
     reuse_status: subject-specific

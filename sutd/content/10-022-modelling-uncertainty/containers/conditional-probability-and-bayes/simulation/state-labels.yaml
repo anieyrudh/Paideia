@@ -1,0 +1,16 @@
+state_labels:
+  prevalencePercent:
+    label: "Prior prevalence P(H)"
+    meaning: "Probability that the hypothesis is true before seeing the positive result."
+  sensitivityPercent:
+    label: "Sensitivity P(+|H)"
+    meaning: "Probability that the result is positive when the hypothesis is true."
+  specificityPercent:
+    label: "Specificity P(-|not H)"
+    meaning: "Probability that the result is negative when the hypothesis is false."
+  falsePositiveRate:
+    label: "False-positive rate P(+|not H)"
+    meaning: "Probability of positive evidence when the hypothesis is false."
+  posterior:
+    label: "Posterior P(H|+)"
+    meaning: "Updated probability that the hypothesis is true after seeing positive evidence."

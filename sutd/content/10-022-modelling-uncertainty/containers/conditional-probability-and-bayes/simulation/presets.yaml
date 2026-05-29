@@ -1,0 +1,19 @@
+presets:
+  - id: screening-default
+    label: "Screening default"
+    state:
+      prevalencePercent: 10
+      sensitivityPercent: 95
+      specificityPercent: 90
+  - id: higher-prevalence
+    label: "Higher prior"
+    state:
+      prevalencePercent: 30
+      sensitivityPercent: 95
+      specificityPercent: 90
+  - id: better-specificity
+    label: "Fewer false positives"
+    state:
+      prevalencePercent: 10
+      sensitivityPercent: 95
+      specificityPercent: 98

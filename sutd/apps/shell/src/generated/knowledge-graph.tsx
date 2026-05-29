@@ -30,27 +30,28 @@ import GeneratedSim26CellStructureAndTheMembraneCellStructureAndTheMembrane from
 import GeneratedSim27GeneExpressionDnaToRnaToProteinGeneExpressionDnaToRnaToProtein from "@paideia/sutd-sims/gene-expression-dna-to-rna-to-protein";
 import GeneratedSim28ImmuneSystemAndVaccinesImmuneSystemAndVaccines from "@paideia/sutd-sims/immune-system-and-vaccines";
 import GeneratedSim29ProteinFoldingAndFunctionProteinFoldingAndFunction from "@paideia/sutd-sims/protein-folding-and-function";
-import GeneratedSim30LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
-import GeneratedSim31ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
-import GeneratedSim32StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
-import GeneratedSim33DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
-import GeneratedSim34GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim35RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
-import GeneratedSim36ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
-import GeneratedSim37FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
-import GeneratedSim38TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim39BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim40PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim41SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
-import GeneratedSim42LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim43MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
-import GeneratedSim44NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim45BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim46EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim47VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim48FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
-import GeneratedSim49LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim50OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim30ConditionalProbabilityAndBayesConditionalProbabilityAndBayes from "@paideia/sutd-sims/conditional-probability-and-bayes";
+import GeneratedSim31LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
+import GeneratedSim32ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
+import GeneratedSim33StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
+import GeneratedSim34DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
+import GeneratedSim35GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
+import GeneratedSim36RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
+import GeneratedSim37ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
+import GeneratedSim38FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
+import GeneratedSim39TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim40BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim41PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim42SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
+import GeneratedSim43LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim44MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
+import GeneratedSim45NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim46BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim47EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim48VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim49FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
+import GeneratedSim50LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim51OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -375,6 +376,15 @@ export const knowledgeGraph = {
     level: "Freshmore",
     module: "Science and Technology for Healthcare",
     status: "draft",
+  },
+  {
+    id: "sutd/10-022-modelling-uncertainty/conditional-probability-and-bayes",
+    conceptId: "conditional-probability-and-bayes",
+    title: "Conditional Probability and Bayes",
+    subject: "10-022-modelling-uncertainty",
+    level: "10.022",
+    module: "Probability and Statistics",
+    status: "reviewed",
   },
   {
     id: "sutd/asd/load-path-and-daylight-tradeoff",
@@ -705,6 +715,10 @@ export const knowledgeGraph = {
   { from: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function", to: "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein", kind: "downstream" },
   { from: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function", to: "sutd/10-019-science-and-technology-for-healthcare/membrane-protein-topology", kind: "downstream" },
   { from: "sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function", to: "sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane", kind: "sibling" },
+  { from: "sutd/10-022-modelling-uncertainty/basic-probability", to: "sutd/10-022-modelling-uncertainty/conditional-probability-and-bayes", kind: "prerequisite" },
+  { from: "sutd/10-022-modelling-uncertainty/conditional-probability", to: "sutd/10-022-modelling-uncertainty/conditional-probability-and-bayes", kind: "prerequisite" },
+  { from: "sutd/10-022-modelling-uncertainty/conditional-probability-and-bayes", to: "sutd/10-022-modelling-uncertainty/bayesian-inference", kind: "downstream" },
+  { from: "sutd/10-022-modelling-uncertainty/conditional-probability-and-bayes", to: "sutd/10-022-modelling-uncertainty/confusion-matrix-thresholds", kind: "sibling" },
   { from: "sutd/asd/force-equilibrium", to: "sutd/asd/load-path-and-daylight-tradeoff", kind: "prerequisite" },
   { from: "sutd/asd/vectors", to: "sutd/asd/load-path-and-daylight-tradeoff", kind: "prerequisite" },
   { from: "sutd/asd/ratio-reasoning", to: "sutd/asd/load-path-and-daylight-tradeoff", kind: "prerequisite" },
@@ -2400,6 +2414,69 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/10-022-modelling-uncertainty/conditional-probability-and-bayes",
+    branch: "sutd",
+    subject: "10 022 Modelling Uncertainty",
+    level: "10.022",
+    module: "Probability and Statistics",
+    title: "Conditional Probability and Bayes",
+    summary: "Use prior probability, sensitivity, and specificity to update belief after positive evidence.",
+    syllabusRef: "SUTD 10.022 / Probability and Statistics",
+    status: "reviewed",
+    packageId: "conditional-probability-and-bayes",
+    simId: "conditional-probability-and-bayes",
+    predictPrompt: "With prior 10%, sensitivity 95%, and specificity 90%, what is P(H|+) approximately?",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "A positive test always means high probability",
+      "Sensitivity alone determines posterior",
+    ],
+    transferProblem: "A sensor for a rare machine fault reports positive. Use the prior fault rate, sensitivity, and specificity to estimate how likely the fault really is.",
+    firstPrinciples: "Conditional probability and Bayes asks: after seeing evidence, how much of the evidence came from real cases rather than false alarms? A positive result can happen in two ways: the hypothesis is true and the test catches it, or the hypothesis is false and the test produces a false positive. The posterior probability is the true-case route divided by all positive-result routes.",
+    keyDefinitions: [
+      "Prior probability P(H): belief before the new evidence.",
+      "Sensitivity P(+|H): probability of a positive result when the hypothesis is true.",
+      "Specificity P(-|not H): probability of a negative result when the hypothesis is false.",
+      "False-positive rate P(+|not H): 1 - specificity.",
+      "Posterior probability P(H|+): belief after a positive result.",
+    ],
+    canonicalExamples: [
+      "Medical screening for a rare condition.",
+      "Fault detection in a machine that rarely fails.",
+      "Spam detection when genuine messages are much more common than spam.",
+    ],
+    problemSolvingSteps: [
+      "Start with the prior",
+      "Count true positives",
+      "Count false positives",
+      "Normalize all positive evidence",
+      "Interpret the posterior",
+    ],
+    prerequisites: [
+      "Basic Probability",
+      "Conditional Probability",
+    ],
+    downstream: [
+      "Bayesian Inference",
+    ],
+    siblings: [
+      "Confusion Matrix Thresholds",
+    ],
+    sims: [
+      {
+        id: "conditional-probability-and-bayes",
+        harnessId: "sutd/10-022-modelling-uncertainty/conditional-probability-and-bayes/conditional-probability-and-bayes",
+        title: "Conditional Probability and Bayes Explorer",
+        interactionType: "decision-matrix",
+        component: GeneratedSim30ConditionalProbabilityAndBayesConditionalProbabilityAndBayes,
+      },
+    ],
+  },
+  {
     id: "sutd/asd/load-path-and-daylight-tradeoff",
     branch: "sutd",
     subject: "Asd",
@@ -2461,7 +2538,7 @@ export const containers = [
         harnessId: "sutd/asd/load-path-and-daylight-tradeoff/load-path-and-daylight-tradeoff",
         title: "Load Path and Daylight Tradeoff Explorer",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim30LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
+        component: GeneratedSim31LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
       },
     ],
   },
@@ -2518,7 +2595,7 @@ export const containers = [
         harnessId: "sutd/asd/shading-daylight-heat-gain/shading-daylight-heat-gain",
         title: "Shading, Daylight, and Heat Gain",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim31ShadingDaylightHeatGainShadingDaylightHeatGain,
+        component: GeneratedSim32ShadingDaylightHeatGainShadingDaylightHeatGain,
       },
     ],
   },
@@ -2585,7 +2662,7 @@ export const containers = [
         harnessId: "sutd/asd/structural-load-path-diagram/structural-load-path-diagram",
         title: "Structural Load Path Diagram",
         interactionType: "diagram-builder",
-        component: GeneratedSim32StructuralLoadPathDiagramStructuralLoadPathDiagram,
+        component: GeneratedSim33StructuralLoadPathDiagramStructuralLoadPathDiagram,
       },
     ],
   },
@@ -2631,7 +2708,7 @@ export const containers = [
         harnessId: "sutd/csd/dynamic-programming-state-recursion/dynamic-programming-state-recursion",
         title: "Dynamic Programming State Recursion",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim33DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
+        component: GeneratedSim34DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
       },
     ],
   },
@@ -2681,7 +2758,7 @@ export const containers = [
         harnessId: "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths",
         title: "Graph Search and Shortest Paths",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim34GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
+        component: GeneratedSim35GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
       },
     ],
   },
@@ -2731,7 +2808,7 @@ export const containers = [
         harnessId: "sutd/csd/recursion-tree-complexity/recursion-tree-complexity",
         title: "Recursion Tree Complexity Lab",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim35RecursionTreeComplexityRecursionTreeComplexity,
+        component: GeneratedSim36RecursionTreeComplexityRecursionTreeComplexity,
       },
     ],
   },
@@ -2796,7 +2873,7 @@ export const containers = [
         harnessId: "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds",
         title: "Confusion Matrix Threshold Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim36ConfusionMatrixThresholdsConfusionMatrixThresholds,
+        component: GeneratedSim37ConfusionMatrixThresholdsConfusionMatrixThresholds,
       },
     ],
   },
@@ -2854,7 +2931,7 @@ export const containers = [
         harnessId: "sutd/dai/fairness-threshold-audit/fairness-threshold-audit",
         title: "Fairness Threshold Audit Lab",
         interactionType: "decision-matrix",
-        component: GeneratedSim37FairnessThresholdAuditFairnessThresholdAudit,
+        component: GeneratedSim38FairnessThresholdAuditFairnessThresholdAudit,
       },
     ],
   },
@@ -2907,7 +2984,7 @@ export const containers = [
         harnessId: "sutd/dai/trust-calibration/trust-calibration",
         title: "Trust Calibration Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim38TrustCalibrationTrustCalibration,
+        component: GeneratedSim39TrustCalibrationTrustCalibration,
       },
     ],
   },
@@ -2973,7 +3050,7 @@ export const containers = [
         harnessId: "sutd/epd/bode-stability-margin/bode-stability-margin",
         title: "Bode Margin Reader",
         interactionType: "comparative-matrix",
-        component: GeneratedSim39BodeStabilityMarginBodeStabilityMargin,
+        component: GeneratedSim40BodeStabilityMarginBodeStabilityMargin,
       },
     ],
   },
@@ -3027,7 +3104,7 @@ export const containers = [
         harnessId: "sutd/epd/pid-step-response/pid-step-response",
         title: "PID Step Response Explorer",
         interactionType: "comparative-matrix",
-        component: GeneratedSim40PidStepResponsePidStepResponse,
+        component: GeneratedSim41PidStepResponsePidStepResponse,
       },
     ],
   },
@@ -3085,7 +3162,7 @@ export const containers = [
         harnessId: "sutd/epd/signal-filter-frequency-response/signal-filter-frequency-response",
         title: "RC Filter Frequency Response Lab",
         interactionType: "comparative-matrix",
-        component: GeneratedSim41SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
+        component: GeneratedSim42SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
       },
     ],
   },
@@ -3129,7 +3206,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim42LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim43LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -3191,7 +3268,7 @@ export const containers = [
         harnessId: "sutd/esd/markov-chain-steady-state/markov-chain-steady-state",
         title: "Markov Chain Steady-State Lab",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim43MarkovChainSteadyStateMarkovChainSteadyState,
+        component: GeneratedSim44MarkovChainSteadyStateMarkovChainSteadyState,
       },
     ],
   },
@@ -3257,7 +3334,7 @@ export const containers = [
         harnessId: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
         title: "Newsvendor Critical Fractile Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim44NewsvendorCriticalFractileNewsvendorCriticalFractile,
+        component: GeneratedSim45NewsvendorCriticalFractileNewsvendorCriticalFractile,
       },
     ],
   },
@@ -3320,7 +3397,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim45BayesUpdatingBayesUpdating,
+        component: GeneratedSim46BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -3374,7 +3451,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim46EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim47EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -3426,7 +3503,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim47VectorTransformationsVectorTransformations,
+        component: GeneratedSim48VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -3472,7 +3549,7 @@ export const containers = [
         harnessId: "sutd/smt/fourier-mode-superposition/fourier-mode-superposition",
         title: "Fourier Mode Superposition Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim48FourierModeSuperpositionFourierModeSuperposition,
+        component: GeneratedSim49FourierModeSuperpositionFourierModeSuperposition,
       },
     ],
   },
@@ -3529,7 +3606,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim49LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim50LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -3595,7 +3672,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim50OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim51OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

@@ -935,7 +935,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.conditional-probability-and-bayes"
-    status: "ready-for-build"
+    status: "in-build"
     concept_title: "Conditional Probability and Bayes"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"
