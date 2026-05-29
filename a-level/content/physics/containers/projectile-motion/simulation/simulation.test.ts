@@ -2,6 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import {
   definePredictionGateContract,
+  expectProductSimulationReveal,
   mountSim,
 } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
@@ -19,6 +20,16 @@ definePredictionGateContract({
 });
 
 test.describe(`${simId} accessibility`, () => {
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId,
+      prediction: {
+        optionLabel: "It stays constant if air resistance is ignored.",
+        rationale: "Gravity has no horizontal component in this model.",
+      },
+    });
+  });
+
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, simId);
     await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);

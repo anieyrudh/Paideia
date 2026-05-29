@@ -5,3 +5,12 @@ runtime:
   state_model: local
   persistence: prediction-gate-local-storage
   deterministic: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "9.0 m"
+    rationale: "Starting from rest means the displacement comes from the acceleration term."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

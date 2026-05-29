@@ -5,3 +5,12 @@ runtime:
   state_model: local
   persistence: prediction-gate-local-storage
   deterministic: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "7.1 m"
+    rationale: "Perpendicular arrows should form a right triangle, not a straight line."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

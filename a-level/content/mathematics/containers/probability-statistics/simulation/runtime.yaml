@@ -6,3 +6,16 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup:
+    - role: button
+      name: "Set up distribution"
+    - role: button
+      name: "Reveal decision"
+  prediction:
+    option_label: "The expected score can stay close"
+    rationale: "A rare high outcome can preserve the centre while increasing spread."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

@@ -446,6 +446,7 @@ const ObserveStage = () => {
 \color{#60a5fa}{P(a<X<b)}=
 \Phi(z_b)-\Phi(z_a)`}</code>
         </pre>
+        <p className="lab-kicker">Legend</p>
         <dl className="formula-legend" aria-label="Formula legend">
           <div>
             <dt><span className="legend-swatch legend-swatch--blue" /> Blue symbols</dt>
@@ -464,6 +465,8 @@ const ObserveStage = () => {
             <dd>sigma is the standard deviation, also in marks.</dd>
           </div>
         </dl>
+        <p>Units: X, mu, sigma, lower bound, and upper bound are measured in marks; z is dimensionless.</p>
+        <p>Substitution:</p>
         <pre aria-label="Normal area substitution" className="formula-code" tabIndex={0}>
           <code>{`z_lower = (${formatNumber(Math.min(state.lowerBound, state.upperBound), 0)} - ${formatNumber(state.mean, 0)}) / ${formatNumber(state.standardDeviation)}
         = ${formatNumber(model.value.zLower)}
@@ -473,6 +476,7 @@ z_upper = (${formatNumber(Math.max(state.lowerBound, state.upperBound), 0)} - ${
 
 ${model.value.intervalLabel} = ${model.value.probabilityLabel}`}</code>
         </pre>
+        <p>Result: {model.value.intervalLabel} = {model.value.probabilityLabel}.</p>
         <p className="formula-note">{model.value.interpretation}</p>
         <p>
           A z-score is a location measured in standard deviations. The probability is the area under

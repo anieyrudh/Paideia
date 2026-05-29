@@ -215,7 +215,7 @@ export const KinematicsOneDimensionSim = () => {
 
   return (
     <PredictionGate packageId={kinematicsPackageId} predict={kinematicsPredict} simId={kinematicsSimId}>
-      <section aria-label="Kinematics motion lab" className="kinematics-lab vector-lab vector-lab--product">
+      <section aria-label="Observation unlocked" className="kinematics-lab vector-lab vector-lab--product">
         <div className="vector-controls vector-controls--product" aria-label="Motion controls">
           <p className="lab-kicker">Tune the motion</p>
           <ControlGroup legend="Motion controls">
@@ -260,7 +260,7 @@ export const KinematicsOneDimensionSim = () => {
           {model.ok ? (
             <>
               <MotionTimeline model={model.value} state={state} />
-              <dl aria-label="Observation unlocked" className="result-readout result-readout--cards">
+              <dl aria-label="Motion readout" className="result-readout result-readout--cards">
                 <div>
                   <dt>Displacement</dt>
                   <dd>{formatNumber(model.value.displacementMetres)} m</dd>
@@ -305,6 +305,7 @@ export const KinematicsOneDimensionSim = () => {
           </pre>
           {model.ok ? (
             <>
+              <p className="lab-kicker">Legend</p>
               <dl className="formula-legend" aria-label="Formula legend">
                 <div>
                   <dt>
@@ -325,6 +326,7 @@ export const KinematicsOneDimensionSim = () => {
                   <dd>elapsed time, {timeTerm(state.elapsedSeconds)}</dd>
                 </div>
               </dl>
+              <p>Units: displacement is in metres (m), velocity is in m s^-1, and acceleration is in m s^-2.</p>
               <p>
                 Substitution: s = ({velocityTerm(state.initialVelocityMetresPerSecond)})(
                 {timeTerm(state.elapsedSeconds)}) + 1/2(
@@ -336,6 +338,10 @@ export const KinematicsOneDimensionSim = () => {
                 Substitution: v = {velocityTerm(state.initialVelocityMetresPerSecond)} + (
                 {accelerationTerm(state.accelerationMetresPerSecondSquared)})(
                 {timeTerm(state.elapsedSeconds)}) ={" "}
+                {formatSigned(model.value.velocityMetresPerSecond)} m s^-1.
+              </p>
+              <p>
+                Result: displacement = {formatNumber(model.value.displacementMetres)} m and final velocity ={" "}
                 {formatSigned(model.value.velocityMetresPerSecond)} m s^-1.
               </p>
               <p className="formula-note">

@@ -5,3 +5,12 @@ runtime:
   state_model: local
   persistence: prediction-gate-local-storage
   deterministic: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "It stays constant if air resistance is ignored."
+    rationale: "Gravity has no horizontal component in this model."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

@@ -1,8 +1,25 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
-import { mountSim } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
+import {
+  expectProductSimulationReveal,
+  mountSim,
+} from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("a-level/mathematics/probability-statistics/probability-statistics-lab prediction-gate", () => {
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId: "a-level/mathematics/probability-statistics/probability-statistics-lab",
+      setup: [
+        { role: "button", name: "Set up distribution" },
+        { role: "button", name: "Reveal decision" },
+      ],
+      prediction: {
+        optionLabel: "The expected score can stay close",
+        rationale: "A rare high outcome can preserve the centre while increasing spread.",
+      },
+    });
+  });
+
   test("prediction-gate blocks distribution readouts until prediction commit", async ({ page }) => {
     await mountSim(page, "a-level/mathematics/probability-statistics/probability-statistics-lab");
 
