@@ -8,8 +8,9 @@ generated_on: "2026-05-24"
 entry_count: 197
 status_counts:
   planned: 124
-  ready-for-build: 59
-  reviewed: 14
+  ready-for-build: 49
+  reviewed: 23
+  blocked: 1
 status_policy:
   planned: "Backlog item copied from the reference table; not assigned yet."
   ready-for-build: "Small starter wave approved for one-container-per-PR builds."
@@ -80,7 +81,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "alevel.physics.projectile-motion"
-    status: "in-build"
+    status: "reviewed"
     concept_title: "Projectile Motion"
     curriculum: "a-level"
     subject: "physics"
@@ -935,7 +936,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.conditional-probability-and-bayes"
-    status: "in-build"
+    status: "reviewed"
     concept_title: "Conditional Probability and Bayes"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"
@@ -950,7 +951,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.discrete-rvs-geometric-binomial-poisson"
-    status: "in-build"
+    status: "reviewed"
     concept_title: "Discrete RVs: Geometric, Binomial, Poisson"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"
@@ -965,7 +966,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.continuous-rvs-uniform-exponential"
-    status: "in-build"
+    status: "reviewed"
     concept_title: "Continuous RVs: Uniform, Exponential"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"
@@ -980,7 +981,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.joint-and-marginal-distributions"
-    status: "in-build"
+    status: "reviewed"
     concept_title: "Joint and Marginal Distributions"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"
@@ -995,7 +996,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.central-limit-theorem"
-    status: "in-build"
+    status: "reviewed"
     concept_title: "Central Limit Theorem"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"
@@ -1010,7 +1011,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.linear-regression"
-    status: "in-build"
+    status: "reviewed"
     concept_title: "Linear Regression"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"
@@ -1025,7 +1026,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.maximum-likelihood-estimation"
-    status: "ready-for-build"
+    status: "blocked"
     concept_title: "Maximum Likelihood Estimation"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"
@@ -1040,7 +1041,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-023-designing-energy-systems.heat-transfer-modes"
-    status: "in-build"
+    status: "reviewed"
     concept_title: "Heat Transfer Modes"
     curriculum: "sutd"
     subject: "10-023-designing-energy-systems"
@@ -2915,7 +2916,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.40-012-manufacturing-and-service-operations-mso.scheduling-and-project-management"
-    status: "in-build"
+    status: "reviewed"
     concept_title: "Scheduling and Project Management"
     curriculum: "sutd"
     subject: "40-012-manufacturing-and-service-operations-mso"

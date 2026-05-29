@@ -43,6 +43,10 @@ These were previously held for deeper kernel or scope review. They are now ready
 
 ### Batch A
 
+Status: closed. All buildable items landed and are marked `reviewed` in
+`container-build-queue.yaml`; `maximum-likelihood-estimation` is blocked until a
+reusable likelihood/MLE kernel exists.
+
 - alevel.physics.projectile-motion
 - sutd.10-022-modelling-uncertainty.conditional-probability-and-bayes
 - sutd.10-022-modelling-uncertainty.central-limit-theorem
