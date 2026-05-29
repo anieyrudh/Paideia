@@ -1,0 +1,41 @@
+schema_version: "1.0.0"
+concept_id: heat-transfer-modes
+prerequisites:
+  - id: temperature
+    title: "Temperature"
+    relationship: "Temperature difference is the driving state difference for heat transfer."
+    status: planned
+  - id: energy-conservation
+    title: "Energy Conservation"
+    relationship: "Heat-flow rate is energy crossing a boundary per unit time."
+    status: planned
+downstream:
+  - id: open-systems-energy-balance
+    title: "Open Systems Energy Balance"
+    relationship: "Mode-specific heat rates become source and sink terms in an energy balance."
+    status: planned
+  - id: exergy
+    title: "Exergy"
+    relationship: "Heat-transfer temperature levels affect useful-work potential."
+    status: planned
+siblings:
+  - id: thermochemistry-and-equilibrium
+    title: "Thermochemistry and Equilibrium"
+    relationship: "Connects heat transfer with energy changes in material systems."
+    status: available
+misconception_graph:
+  nodes:
+    - id: heat-temperature-same
+      label: "Heat and temperature are treated as the same quantity"
+    - id: radiation-needs-air
+      label: "Radiation is treated like convection"
+    - id: thickness-ignored
+      label: "Conduction path length is ignored"
+  edges:
+    - from: heat-temperature-same
+      to: thickness-ignored
+      label: "both hide the transfer-rate formula"
+    - from: radiation-needs-air
+      to: heat-temperature-same
+      label: "both confuse pathway with state"
+mermaid_source: graph.mmd

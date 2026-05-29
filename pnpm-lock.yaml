@@ -1615,6 +1615,9 @@ importers:
       '@paideia/graph-layout':
         specifier: workspace:*
         version: link:../../../core/graph-layout
+      '@paideia/heat-transfer':
+        specifier: workspace:*
+        version: link:../../../core/heat-transfer
       '@paideia/immunology':
         specifier: workspace:*
         version: link:../../../core/immunology
