@@ -43,6 +43,7 @@
     { "path": "./core/chemistry" },
     { "path": "./core/queueing-systems" },
     { "path": "./core/scheduling" },
+    { "path": "./core/inventory-models" },
     { "path": "./core/vector-calculus" },
     { "path": "./core/time-series" },
     { "path": "./core/stochastic-processes" },
