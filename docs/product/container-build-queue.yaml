@@ -2247,7 +2247,7 @@ entries:
   - id: sutd.10-022-modelling-uncertainty.maximum-likelihood-estimation
     title: Maximum Likelihood Estimation
     priority: P1
-    status: blocked
+    status: ready-for-build
     cluster: SUTD 10.022 - Modelling Uncertainty
     discipline: probability-statistics
     reuse_status: subject-specific
@@ -2276,6 +2276,7 @@ entries:
         - treating the formula as a memorised procedure instead of a model
     kernel_dependencies:
       - core/probability-stats
+      - core/likelihood-estimation
       - core/optimization
       - core/charting
       - core/prediction-gate
