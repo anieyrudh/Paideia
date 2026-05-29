@@ -1,0 +1,9 @@
+runtime:
+  renderer: react
+  state_owner: sim
+  persistence: local
+  deterministic_sampling: true
+  accessibility:
+    keyboard_controls: true
+    screen_reader_labels: true
+    color_not_only_cue: true

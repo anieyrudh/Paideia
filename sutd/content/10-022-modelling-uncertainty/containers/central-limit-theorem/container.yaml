@@ -1,0 +1,114 @@
+schema_version: "1.0.0"
+id: central-limit-theorem
+aliases:
+  - CLT
+  - sampling distribution
+  - standard error
+branch: sutd
+subject: 10-022-modelling-uncertainty
+level: "10.022"
+module: "Probability and Statistics"
+title: "Central Limit Theorem"
+one_line_summary: "Repeated sample means become more stable and more bell-shaped as sample size grows."
+syllabus_ref: "SUTD 10.022 / Sampling distributions and central limit theorem"
+prerequisites:
+  - random-variables
+  - mean-and-variance
+aid_types:
+  - simulation
+  - misconception-audit
+  - transfer-problem
+predict_at: both
+package_predict:
+  prompt: |
+    A population is strongly right-skewed. If you repeatedly take larger samples and plot their means, what should happen to the shape and spread of those sample means?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The sample means will keep the same skew and the same spread as the population."
+      - "The sample means will be more bell-shaped and less spread out."
+      - "The original population will become bell-shaped."
+      - "Only the largest observations will remain in the sample means."
+    correct_index: 1
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: delivery-time-sampling
+    prompt: |
+      A delivery platform has right-skewed trip times because a few trips are very delayed. You inspect many samples of 36 trips and average each sample. Use the central limit theorem to predict the centre, standard error, and whether a normal approximation for those sample means is reasonable.
+    surface_form: "delivery-time sampling"
+    same_concept_check: "Same concept: averages from repeated independent samples form a sampling distribution centred at the population mean with standard error sigma/sqrt(n)."
+    rubric_path: problem-solving/delivery-time-sampling.md
+assessments: []
+status: reviewed
+authoring:
+  owner: "Anieyrudh R"
+  reviewers: []
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-28"
+      author: "Codex"
+      summary: "Built SUTD 10.022 central limit theorem sampler with prediction gate, formula panel, charted sample means, and transfer problem."
+authors:
+  - "Anieyrudh R"
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-28"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-28"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Sample distribution equals population distribution"
+    description: "Learners may expect the histogram of sample means to keep the same skew and spread as the original observations."
+    evidence_source: "OpenStax Introductory Statistics 2e, Section 7.1."
+    surface_in_predict: true
+  - name: "Larger samples change the population"
+    description: "Learners may think increasing sample size reshapes the original population instead of reshaping the distribution of repeated sample means."
+    evidence_source: "OpenStax Introductory Statistics 2e, Section 7.1."
+    surface_in_predict: true
+sources:
+  - citation: "Illowsky, B., Dean, S., et al. Introductory Statistics 2e, Section 7.1 The Central Limit Theorem for Sample Means (Averages). OpenStax, 2023."
+    url: "https://openstax.org/books/introductory-statistics-2e/pages/7-1-the-central-limit-theorem-for-sample-means-averages"
+    publication_year: 2023
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+language: en

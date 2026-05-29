@@ -1,0 +1,22 @@
+presets:
+  - id: small-skewed
+    label: "Skewed, n = 4"
+    state:
+      population: right-skewed
+      sampleSize: 4
+      sampleCount: 160
+      seed: 17
+  - id: medium-skewed
+    label: "Skewed, n = 16"
+    state:
+      population: right-skewed
+      sampleSize: 16
+      sampleCount: 160
+      seed: 17
+  - id: large-skewed
+    label: "Skewed, n = 64"
+    state:
+      population: right-skewed
+      sampleSize: 64
+      sampleCount: 160
+      seed: 17

@@ -1,0 +1,51 @@
+id: clt-sampler
+title: "Central Limit Theorem"
+interaction_type: decision-matrix
+kernel_deps:
+  - core/probability-stats
+  - core/charting
+  - core/content-schema
+  - core/prediction-gate
+  - core/shared
+  - core/ui-sim
+predict:
+  prompt: |
+    A population is strongly right-skewed. If you repeatedly take larger samples and plot their means, what should happen to the shape and spread of those sample means?
+  commit_format:
+    kind: multiple-choice
+    options:
+      - "The sample means will keep the same skew and the same spread as the population."
+      - "The sample means will be more bell-shaped and less spread out."
+      - "The original population will become bell-shaped."
+      - "Only the largest observations will remain in the sample means."
+    correct_index: 1
+  rationale_required: true
+manipulate:
+  controls:
+    - id: population-shape
+      label: "Population shape"
+      kind: selector
+      kernel_binding: state.population
+    - id: sample-size
+      label: "Sample size"
+      kind: slider
+      kernel_binding: state.sampleSize
+      bounds: { min: 2, max: 64, step: 1 }
+    - id: sample-count
+      label: "Number of samples"
+      kind: slider
+      kernel_binding: state.sampleCount
+      bounds: { min: 80, max: 320, step: 20 }
+observe:
+  renderers:
+    - id: clt-sampler
+      module: "@paideia/shared-sims/central-limit-theorem"
+      symbol: "CentralLimitTheoremSim"
+      props_binding: "state -> population bars, sample-mean histogram, standard-error formula, and interpretation"
+explain:
+  prompt: |
+    Which distribution changed when n increased: the original population or the distribution of repeated sample means? Use the standard-error formula to justify the visual narrowing.
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "Sample distribution equals population distribution"
+    - "Larger samples change the population"

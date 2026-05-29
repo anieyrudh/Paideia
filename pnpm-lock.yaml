@@ -1536,6 +1536,9 @@ importers:
       '@paideia/prediction-gate':
         specifier: workspace:*
         version: link:../../../core/prediction-gate
+      '@paideia/shared-sims':
+        specifier: workspace:*
+        version: link:../../../shared/packages/sims
       '@paideia/sutd-sims':
         specifier: workspace:*
         version: link:../../packages/sims

@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@paideia/prediction-gate": "workspace:*",
+    "@paideia/shared-sims": "workspace:*",
     "@paideia/sutd-sims": "workspace:*",
     "react": "^18.3.0",
     "react-dom": "^18.3.0"
