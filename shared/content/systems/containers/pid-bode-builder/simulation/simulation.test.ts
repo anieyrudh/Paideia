@@ -1,9 +1,24 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("Shared PID Bode Builder", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/?sim=shared/systems/pid-bode-builder/pid-bode-builder");
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId: "shared/systems/pid-bode-builder/pid-bode-builder",
+      setup: [
+        { role: "button", name: "Start PID tuning" },
+        { role: "button", name: "Reveal response and Bode evidence" },
+      ],
+      prediction: {
+        optionLabel: "The response can get faster, but the phase margin may shrink.",
+        rationale: "Higher gain can move crossover to more phase lag.",
+      },
+    });
   });
 
   test("prediction-gate blocks PID and Bode evidence until commit", async ({ page }) => {

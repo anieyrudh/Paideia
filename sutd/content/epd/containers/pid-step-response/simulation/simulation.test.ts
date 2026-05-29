@@ -1,10 +1,27 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
-import { expectRevealedSimulationVisual } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
+import {
+  expectProductSimulationReveal,
+  expectRevealedSimulationVisual,
+} from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("PID Step Response", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/?sim=sutd/epd/pid-step-response/pid-step-response");
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId: "sutd/epd/pid-step-response/pid-step-response",
+      setup: [
+        { role: "button", name: "Start tuning" },
+        { role: "button", name: "Observe response" },
+      ],
+      prediction: {
+        optionLabel: "Increase Ki moderately",
+        rationale: "Integral action should reduce final error, but too much can increase overshoot.",
+      },
+    });
   });
 
   test("prediction-gate blocks observation until commit", async ({ page }) => {

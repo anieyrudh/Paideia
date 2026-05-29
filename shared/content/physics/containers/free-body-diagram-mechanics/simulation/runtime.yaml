@@ -4,3 +4,12 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "6 N right and 5 N up"
+    rationale: "Each component must cancel its opposite force."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

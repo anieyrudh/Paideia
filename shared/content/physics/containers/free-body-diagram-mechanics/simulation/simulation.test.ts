@@ -1,9 +1,20 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("Forces and Equilibrium", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/?sim=shared/physics/free-body-diagram-mechanics/force-balance");
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId: "shared/physics/free-body-diagram-mechanics/force-balance",
+      prediction: {
+        optionLabel: "6 N right and 5 N up",
+        rationale: "Each component must cancel its opposite force.",
+      },
+    });
   });
 
   test("prediction-gate blocks force balance reveal until commit", async ({ page }) => {
@@ -55,7 +66,7 @@ test.describe("Forces and Equilibrium", () => {
 
     await expect(page.getByLabel("Formula used")).toContainText("\\sum F_x");
     await expect(page.getByLabel("Formula legend")).toContainText("right support force");
-    await expect(page.getByLabel("Formula used")).toContainText("Substitute horizontal forces");
+    await expect(page.getByLabel("Formula used")).toContainText("Substitution: horizontal forces");
     await expect(page.getByLabel("Formula used")).toContainText("Result:");
     await expect(page.getByLabel("Formula used")).toContainText("because independent horizontal");
   });

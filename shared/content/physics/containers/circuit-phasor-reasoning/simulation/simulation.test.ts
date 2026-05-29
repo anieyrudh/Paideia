@@ -1,9 +1,20 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("Circuit Phasor Lab", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/?sim=shared/physics/circuit-phasor-reasoning/circuit-phasor-lab");
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId: "shared/physics/circuit-phasor-reasoning/circuit-phasor-lab",
+      prediction: {
+        optionLabel: "Current lags the voltage because the inductor adds positive reactance.",
+        rationale: "The inductor adds positive reactance, so current phase is negative.",
+      },
+    });
   });
 
   test("prediction-gate blocks phasor reveal until commit", async ({ page }) => {
@@ -51,7 +62,7 @@ test.describe("Circuit Phasor Lab", () => {
 
     await expect(page.getByLabel("Formula used")).toContainText("\\color{#6941c6}{Z}");
     await expect(page.getByLabel("Formula legend")).toContainText("series impedance vector");
-    await expect(page.getByLabel("Formula used")).toContainText("Substitute reactance");
+    await expect(page.getByLabel("Formula used")).toContainText("Substitution: reactance");
     await expect(page.getByLabel("Formula used")).toContainText("Result:");
     await expect(page.getByLabel("Formula used")).toContainText("series AC circuit carries one current");
   });

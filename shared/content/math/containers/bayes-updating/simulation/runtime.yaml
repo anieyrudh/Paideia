@@ -4,3 +4,12 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "51.4%"
+    rationale: "Bayes combines prior and test reliability."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

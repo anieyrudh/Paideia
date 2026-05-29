@@ -1,9 +1,20 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("Shared Bayes Updating", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/?sim=shared/math/bayes-updating/bayes-updating");
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId: "shared/math/bayes-updating/bayes-updating",
+      prediction: {
+        optionLabel: "51.4%",
+        rationale: "Bayes combines prior and test reliability.",
+      },
+    });
   });
 
   test("prediction-gate blocks posterior until commit", async ({ page }) => {

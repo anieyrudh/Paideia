@@ -9,3 +9,12 @@ runtime:
   persistence:
     local_state: true
     embed_state: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "BFS finds the fewest edges, while Dijkstra finds the lowest total weight"
+    rationale: "Weights and hop count are different objectives."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

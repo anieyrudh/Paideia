@@ -1,9 +1,20 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("Graph Algorithm Explorer", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/?sim=shared/cs/graph-algorithm-explorer/graph-algorithm-explorer");
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId: "shared/cs/graph-algorithm-explorer/graph-algorithm-explorer",
+      prediction: {
+        optionLabel: "BFS finds the fewest edges, while Dijkstra finds the lowest total weight",
+        rationale: "Weights and hop count are different objectives.",
+      },
+    });
   });
 
   test("prediction-gate blocks graph evidence until commit", async ({ page }) => {
@@ -67,7 +78,7 @@ test.describe("Graph Algorithm Explorer", () => {
 
     await expect(page.getByLabel("Formula used")).toContainText("cost");
     await expect(page.getByLabel("Formula legend")).toContainText("edge weight");
-    await expect(page.getByLabel("Formula used")).toContainText("Substitute selected path");
+    await expect(page.getByLabel("Formula used")).toContainText("Substitution: selected path");
     await expect(page.getByLabel("Formula used")).toContainText("weight units");
     await expect(page.getByLabel("Formula used")).toContainText("The formula applies because");
   });

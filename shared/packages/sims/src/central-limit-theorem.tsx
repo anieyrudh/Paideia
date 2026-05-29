@@ -257,6 +257,7 @@ const FormulaPanel = ({
 \\qquad
 \\sigma_{\\bar X} = \\frac{\\sigma}{\\sqrt{n}}`}</code>
     </pre>
+    <p className="lab-kicker">Legend</p>
     <dl aria-label="Formula legend" className="formula-legend">
       <div>
         <dt>
@@ -283,8 +284,9 @@ const FormulaPanel = ({
         <dd>number of observations in each sample</dd>
       </div>
     </dl>
+    <p>Units: means, standard deviations, and standard errors are measured in score units.</p>
     <p>
-      Substitute: sigma-bar = {formatHundredths(model.populationStandardDeviation)} score units /
+      Substitution: sigma-bar = {formatHundredths(model.populationStandardDeviation)} score units /
       sqrt({sampleSize}) = {formatHundredths(model.standardError)} score units.
     </p>
     <p>
@@ -351,8 +353,8 @@ export const CentralLimitTheoremSim = () => {
         </div>
 
         {model.ok ? (
-          <div className="vector-stage vector-stage--product">
-            <section aria-label="Observation unlocked" style={styles.chartGrid}>
+          <section aria-label="Observation unlocked" className="vector-stage vector-stage--product">
+            <section aria-label="CLT visual comparison" style={styles.chartGrid}>
               <PopulationBars model={model.value} />
               <figure aria-label="Sample mean histogram" style={{ margin: 0 }}>
                 <Histogram bins={8} density samples={model.value.sampleMeans} />
@@ -379,7 +381,7 @@ export const CentralLimitTheoremSim = () => {
             </dl>
             <p>{model.value.interpretation}</p>
             <FormulaPanel model={model.value} sampleSize={state.sampleSize} />
-          </div>
+          </section>
         ) : (
           <p role="alert">The sampler cannot evaluate the current settings.</p>
         )}

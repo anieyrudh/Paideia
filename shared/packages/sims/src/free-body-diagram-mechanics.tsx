@@ -158,10 +158,10 @@ export const ForcesAndEquilibriumSim = () => {
           </div>
         </div>
 
-        <div className="vector-stage vector-stage--product">
+        <section aria-label="Observation unlocked" className="vector-stage vector-stage--product" role="region">
           <ForceBalanceDiagram state={state} />
           {model.ok ? (
-            <dl aria-label="Observation unlocked" className="result-readout result-readout--cards">
+            <dl aria-label="Force balance readout" className="result-readout result-readout--cards">
               <div>
                 <dt>Net horizontal force</dt>
                 <dd>{formatTenths(model.value.net.x)} N</dd>
@@ -178,9 +178,8 @@ export const ForcesAndEquilibriumSim = () => {
           ) : (
             <p role="alert">The forces cannot be evaluated for the current settings.</p>
           )}
-        </div>
 
-        <section className="formula-panel formula-panel--product" aria-label="Formula used">
+          <section className="formula-panel formula-panel--product" aria-label="Formula used">
           <p className="lab-kicker">Why balance works</p>
           <h3>Formula used</h3>
           <pre aria-label="LaTeX formula" className="formula-code">
@@ -188,6 +187,7 @@ export const ForcesAndEquilibriumSim = () => {
 \\sum F_y = F_{support,up} - W
 |\\vec{F}_{net}| = \\sqrt{(\\sum F_x)^2 + (\\sum F_y)^2}`}</code>
           </pre>
+          <p className="lab-kicker">Legend</p>
           <dl aria-label="Formula legend" className="formula-legend">
             <div>
               <dt>
@@ -217,14 +217,15 @@ export const ForcesAndEquilibriumSim = () => {
               <dd>weight, 5 N downward</dd>
             </div>
           </dl>
+          <p>Units: every force component is measured in newtons (N).</p>
           {model.ok ? (
             <>
               <p>
-                Substitute horizontal forces: {formatTenths(state.supportRightNewtons)} N -{" "}
+                Substitution: horizontal forces give {formatTenths(state.supportRightNewtons)} N -{" "}
                 {fixedLeftNewtons.toFixed(1)} N = {formatTenths(model.value.net.x)} N.
               </p>
               <p>
-                Substitute vertical forces: {formatTenths(state.supportUpNewtons)} N -{" "}
+                Substitution: vertical forces give {formatTenths(state.supportUpNewtons)} N -{" "}
                 {fixedWeightNewtons.toFixed(1)} N = {formatTenths(model.value.net.y)} N.
               </p>
               <p>
@@ -237,6 +238,7 @@ export const ForcesAndEquilibriumSim = () => {
               </p>
             </>
           ) : null}
+          </section>
         </section>
       </section>
     </PredictionGate>

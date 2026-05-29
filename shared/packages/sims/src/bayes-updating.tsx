@@ -173,6 +173,7 @@ const FormulaPanel = ({ evidence }: { readonly evidence: BayesEvidence }) => {
           <span className="formula-var formula-var--purple">P(not H)</span> )
         </code>
       </pre>
+      <p className="lab-kicker">Legend</p>
       <dl aria-label="Formula legend" className="formula-legend">
         <div>
           <dt>
@@ -199,6 +200,7 @@ const FormulaPanel = ({ evidence }: { readonly evidence: BayesEvidence }) => {
           <dd>complement of the prior, {formatPercent(notPrevalence)}</dd>
         </div>
       </dl>
+      <p>Units: all probability terms are dimensionless and displayed as percentages.</p>
       <p>
         Substitution: [{formatPercent(evidence.sensitivity)} x {formatPercent(evidence.prevalence)}
         ] / ([{formatPercent(evidence.sensitivity)} x {formatPercent(evidence.prevalence)}] + [

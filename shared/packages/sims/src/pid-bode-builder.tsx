@@ -356,6 +356,7 @@ PM = ${fmt(evidence.phaseMarginDeg ?? 0, 1)}^\circ`;
 \color{#9333ea}{PM}
 = 180^\circ + \angle \color{#dc2626}{L(j\omega_{gc})}`}</code>
       </pre>
+      <p className="lab-kicker">Legend</p>
       <dl aria-label="Formula legend" className="formula-legend">
         <div>
           <dt>Kp</dt>
@@ -378,6 +379,7 @@ PM = ${fmt(evidence.phaseMarginDeg ?? 0, 1)}^\circ`;
           <dd>phase margin, degrees</dd>
         </div>
       </dl>
+      <p>Units: gains follow the displayed PID terms; frequencies use rad/s, margins use degrees or decibels, and settling time uses seconds.</p>
       <p>
         Substitution: Kp = {fmt(evidence.state.kp)}, Ki = {fmt(evidence.state.ki)}, Kd ={" "}
         {fmt(evidence.state.kd)}, natural frequency ={" "}
