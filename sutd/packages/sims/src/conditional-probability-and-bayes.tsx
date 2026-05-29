@@ -126,6 +126,64 @@ export const bayesEvidence = (state: BayesState): KernelResult<BayesEvidence> =>
   });
 };
 
+const EvidenceFlow = ({ evidence }: { readonly evidence: BayesEvidence }) => {
+  const positiveWeight = evidence.truePositiveWeight + evidence.falsePositiveWeight;
+  const trueShare = positiveWeight === 0 ? 0 : evidence.truePositiveWeight / positiveWeight;
+  const falseShare = 1 - trueShare;
+  const trueWidth = Math.max(6, trueShare * 220);
+  const falseWidth = Math.max(6, falseShare * 220);
+
+  return (
+    <figure className="sutd-formula-card" aria-label="Bayes evidence flow visual">
+      <p className="meta-line">Visual model</p>
+      <h3>Positive results come from two routes</h3>
+      <svg
+        aria-label="Bayes evidence flow: true positives and false positives normalized into posterior"
+        role="img"
+        viewBox="0 0 640 260"
+      >
+        <defs>
+          <marker id="bayes-arrow" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="4">
+            <path d="M0,0 L8,4 L0,8 Z" fill="#42524a" />
+          </marker>
+        </defs>
+        <rect fill="#f8f5ed" height="260" rx="12" width="640" />
+        <g fill="#20352e" fontFamily="Inter, ui-sans-serif, system-ui, sans-serif">
+          <text fontSize="16" fontWeight="700" x="34" y="34">Before test</text>
+          <text fontSize="16" fontWeight="700" x="274" y="34">Positive-test routes</text>
+          <text fontSize="16" fontWeight="700" x="500" y="34">Posterior</text>
+        </g>
+        <g>
+          <rect fill="#2d6a7f" height="46" rx="8" width={42 + evidence.prevalence * 140} x="34" y="66" />
+          <text fill="#fff" fontSize="14" fontWeight="700" x="50" y="95">P(H) {fmtPct(evidence.prevalence)}</text>
+          <rect fill="#d6ddd7" height="46" rx="8" width={42 + (1 - evidence.prevalence) * 140} x="34" y="138" />
+          <text fill="#20352e" fontSize="14" fontWeight="700" x="50" y="167">P(not H) {fmtPct(1 - evidence.prevalence)}</text>
+        </g>
+        <line markerEnd="url(#bayes-arrow)" stroke="#42524a" strokeWidth="3" x1="210" x2="265" y1="89" y2="89" />
+        <line markerEnd="url(#bayes-arrow)" stroke="#42524a" strokeWidth="3" x1="210" x2="265" y1="161" y2="161" />
+        <g>
+          <rect fill="#d96f32" height="44" rx="8" width={trueWidth} x="278" y="68" />
+          <text fill="#fff" fontSize="13" fontWeight="700" x="292" y="95">true + {evidence.truePositiveWeight.toFixed(3)}</text>
+          <rect fill="#3f8f5c" height="44" rx="8" width={falseWidth} x="278" y="140" />
+          <text fill="#fff" fontSize="13" fontWeight="700" x="292" y="167">false + {evidence.falsePositiveWeight.toFixed(3)}</text>
+        </g>
+        <line markerEnd="url(#bayes-arrow)" stroke="#42524a" strokeWidth="3" x1="430" x2="492" y1="89" y2="119" />
+        <line markerEnd="url(#bayes-arrow)" stroke="#42524a" strokeWidth="3" x1="430" x2="492" y1="161" y2="137" />
+        <g>
+          <circle cx="548" cy="128" fill="#fff" r="58" stroke="#2d6a7f" strokeWidth="10" />
+          <text fill="#20352e" fontSize="26" fontWeight="800" textAnchor="middle" x="548" y="123">
+            {fmtPct(evidence.posterior)}
+          </text>
+          <text fill="#42524a" fontSize="13" textAnchor="middle" x="548" y="145">P(H|+)</text>
+        </g>
+      </svg>
+      <figcaption>
+        The posterior is the true-positive route divided by all positive-result routes.
+      </figcaption>
+    </figure>
+  );
+};
+
 const Control = ({
   label,
   max,
@@ -240,6 +298,7 @@ const ObserveStage = () => {
           </div>
         </dl>
       </div>
+      <EvidenceFlow evidence={evidence.value} />
       <section className="sutd-formula-card" aria-label="Formula used">
         <p className="meta-line">Formula used</p>
         <h3>Normalize the positive-test cases</h3>

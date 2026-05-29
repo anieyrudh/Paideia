@@ -119,8 +119,9 @@ Date: 2026-05-28
 ### P0 issues
 
 - None open. The container has the required v2 surfaces, prediction gate,
-  cited sources, route-weight visual evidence, formula substitution, and
-  package-boundary-safe simulation entrypoint.
+  cited sources, an SVG evidence-flow visual, formula substitution, and
+  package-boundary-safe simulation entrypoint. A follow-up local review found
+  that the first reveal was too text-heavy; that was repaired before merge.
 
 ### P1 issues
 
@@ -132,8 +133,8 @@ Date: 2026-05-28
 
 - Add a second transfer problem that uses a design-screening or quality-control
   context rather than a rare-fault sensor.
-- Add a small probability-tree diagram with adjustable branch widths after
-  learner testing confirms the current route-weight readout is not enough.
+- Add a fuller probability-tree diagram with adjustable branch widths after
+  learner testing confirms the current evidence-flow visual is not enough.
 
 ## Iteration log
 

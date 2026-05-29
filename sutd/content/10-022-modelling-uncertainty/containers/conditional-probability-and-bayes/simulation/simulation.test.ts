@@ -17,6 +17,11 @@ test.describe("Conditional Probability and Bayes", () => {
     await page.getByRole("button", { name: "Commit prediction" }).click();
 
     await expect(page.getByRole("region", { name: "Observation unlocked" })).toContainText("Conditional probability and Bayes evidence");
+    await expect(
+      page.getByRole("img", {
+        name: "Bayes evidence flow: true positives and false positives normalized into posterior",
+      }),
+    ).toBeVisible();
     await expect(page.getByLabel("Formula used")).toContainText("P(H \\mid +)");
     await expect(page.getByLabel("Formula legend")).toContainText("prior prevalence");
     await expect(page.getByRole("region", { name: "Observation unlocked" })).toContainText("Substitution");
