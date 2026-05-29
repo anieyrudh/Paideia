@@ -1,0 +1,95 @@
+schema_version: "1.0.0"
+id: joint-and-marginal-distributions
+aliases: [joint distributions, marginal distributions, conditional probability table]
+branch: sutd
+subject: 10-022-modelling-uncertainty
+level: "SUTD 10.022"
+module: "Modelling Uncertainty"
+title: "Joint and Marginal Distributions"
+one_line_summary: "Build a joint probability table and read marginals and conditionals from its cells."
+syllabus_ref: "SUTD 10.022 Modelling Uncertainty / Joint and Marginal Distributions"
+prerequisites: [probability-distributions, conditional-probability]
+aid_types: [simulation, transfer-problem, misconception-audit]
+predict_at: package-level
+package_predict:
+  prompt: "If the events are positively associated, predict how P(A given B) compares with marginal P(A)."
+  commit_format:
+    kind: multiple-choice
+    options: ["It is lower than P(A)", "It equals P(A)", "It is higher than P(A)"]
+    correct_index: 2
+  rationale_required: true
+components:
+  concept_card: concept-card.md
+  concept_map: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+  media: media
+  simulation: simulation
+  embed: embed
+  problem_solving: problem-solving
+  sources: sources.md
+capabilities:
+  sim_worthy: true
+  interactive_simulation: true
+  notebook_lab: false
+  visual_derivation: true
+simulation:
+  spec: simulation/simulation.yaml
+  controls: simulation/controls.yaml
+  presets: simulation/presets.yaml
+  state_labels: simulation/state-labels.yaml
+  runtime: simulation/runtime.yaml
+problem_solving:
+  algorithm: problem-solving/algorithm.md
+  steps: problem-solving/steps.yaml
+embed_api:
+  entry: embed/index.ts
+  api: embed/api.ts
+  methods: [load, saveState, score, resume, syncTheme, destroy]
+concept_map:
+  spec: concept-map/concept-map.yaml
+  mindmap: concept-map/mindmap.md
+  mermaid: concept-map/graph.mmd
+transfer_problems:
+  - id: sensor-alarm-audit
+    prompt: "A sensor may be faulty and an alarm may fire. Build the joint table, find each marginal, then compute P(alarm | faulty)."
+    surface_form: "2x2 joint table and marginal/conditional readout"
+    same_concept_check: "Same concept: marginals are sums across joint cells; conditionals change the denominator."
+    rubric_path: problem-solving/steps.yaml
+assessments: []
+status: reviewed
+authoring:
+  owner: "Codex"
+  reviewers: ["Codex local review"]
+  qa_status: passed
+  dependency_graph: concept-map/concept-map.yaml
+  changelog:
+    - date: "2026-05-28"
+      author: "Codex"
+      summary: "Built SUTD joint and marginal distribution table lab."
+authors: ["Codex"]
+advisor_signoffs: []
+filter_pass:
+  date: "2026-05-28"
+  p0_issues_resolved: true
+  p1_issues_addressed_or_deferred: true
+  output_in_technical_md: true
+review:
+  anieyrudh_filter:
+    required_for_status: reviewed
+    last_run: "2026-05-28"
+    p0_open: 0
+    p1_open: 0
+    output_in_technical_md: true
+misconceptions:
+  - name: "Joint, marginal, and conditional probabilities are interchangeable"
+    description: "Learners may read a cell, row total, and conditional value as if they used the same denominator."
+    evidence_source: "Queue entry misconception and joint-table probability standard."
+    surface_in_predict: true
+sources:
+  - citation: "OpenStax Introductory Business Statistics covers joint and marginal probability tables."
+    url: "https://openstax.org/details/books/introductory-business-statistics"
+    publication_year: 2017
+    license: "CC BY 4.0"
+    seab_alignment: n/a
+language: en

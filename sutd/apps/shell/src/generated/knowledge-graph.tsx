@@ -34,29 +34,30 @@ import GeneratedSim30CentralLimitTheoremCltSampler from "@paideia/shared-sims/ce
 import GeneratedSim31ConditionalProbabilityAndBayesConditionalProbabilityAndBayes from "@paideia/sutd-sims/conditional-probability-and-bayes";
 import GeneratedSim32ContinuousRvsUniformExponentialContinuousDensityLab from "@paideia/sutd-sims/continuous-rvs-uniform-exponential";
 import GeneratedSim33DiscreteRvsGeometricBinomialPoissonProbabilityModelLab from "@paideia/sutd-sims/discrete-rvs-geometric-binomial-poisson";
-import GeneratedSim34HeatTransferModesHeatFlowComparisonLab from "@paideia/sutd-sims/heat-transfer-modes";
-import GeneratedSim35SchedulingAndProjectManagementScheduleCriticalPathLab from "@paideia/sutd-sims/scheduling-and-project-management";
-import GeneratedSim36LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
-import GeneratedSim37ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
-import GeneratedSim38StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
-import GeneratedSim39DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
-import GeneratedSim40GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
-import GeneratedSim41RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
-import GeneratedSim42ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
-import GeneratedSim43FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
-import GeneratedSim44TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
-import GeneratedSim45BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
-import GeneratedSim46PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
-import GeneratedSim47SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
-import GeneratedSim48LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
-import GeneratedSim49MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
-import GeneratedSim50NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
-import GeneratedSim51BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
-import GeneratedSim52EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
-import GeneratedSim53VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
-import GeneratedSim54FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
-import GeneratedSim55LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
-import GeneratedSim56OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
+import GeneratedSim34JointAndMarginalDistributionsJointTableLab from "@paideia/sutd-sims/joint-and-marginal-distributions";
+import GeneratedSim35HeatTransferModesHeatFlowComparisonLab from "@paideia/sutd-sims/heat-transfer-modes";
+import GeneratedSim36SchedulingAndProjectManagementScheduleCriticalPathLab from "@paideia/sutd-sims/scheduling-and-project-management";
+import GeneratedSim37LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff from "@paideia/sutd-sims/load-path-and-daylight-tradeoff";
+import GeneratedSim38ShadingDaylightHeatGainShadingDaylightHeatGain from "@paideia/sutd-sims/shading-daylight-heat-gain";
+import GeneratedSim39StructuralLoadPathDiagramStructuralLoadPathDiagram from "@paideia/sutd-sims/structural-load-path-diagram";
+import GeneratedSim40DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion from "@paideia/sutd-sims/dynamic-programming-state-recursion";
+import GeneratedSim41GraphSearchAndShortestPathsGraphSearchAndShortestPaths from "@paideia/sutd-sims/graph-search-and-shortest-paths";
+import GeneratedSim42RecursionTreeComplexityRecursionTreeComplexity from "@paideia/sutd-sims/recursion-tree-complexity";
+import GeneratedSim43ConfusionMatrixThresholdsConfusionMatrixThresholds from "@paideia/sutd-sims/confusion-matrix-thresholds";
+import GeneratedSim44FairnessThresholdAuditFairnessThresholdAudit from "@paideia/sutd-sims/fairness-threshold-audit";
+import GeneratedSim45TrustCalibrationTrustCalibration from "@paideia/sutd-sims/trust-calibration";
+import GeneratedSim46BodeStabilityMarginBodeStabilityMargin from "@paideia/sutd-sims/bode-stability-margin";
+import GeneratedSim47PidStepResponsePidStepResponse from "@paideia/sutd-sims/pid-step-response";
+import GeneratedSim48SignalFilterFrequencyResponseSignalFilterFrequencyResponse from "@paideia/sutd-sims/signal-filter-frequency-response";
+import GeneratedSim49LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion from "@paideia/sutd-sims/linear-programming-feasible-region";
+import GeneratedSim50MarkovChainSteadyStateMarkovChainSteadyState from "@paideia/sutd-sims/markov-chain-steady-state";
+import GeneratedSim51NewsvendorCriticalFractileNewsvendorCriticalFractile from "@paideia/sutd-sims/newsvendor-critical-fractile";
+import GeneratedSim52BayesUpdatingBayesUpdating from "@paideia/sutd-sims/bayes-updating";
+import GeneratedSim53EigenvectorTransformationsEigenvectorTransformations from "@paideia/sutd-sims/eigenvector-transformations";
+import GeneratedSim54VectorTransformationsVectorTransformations from "@paideia/sutd-sims/vector-transformations";
+import GeneratedSim55FourierModeSuperpositionFourierModeSuperposition from "@paideia/sutd-sims/fourier-mode-superposition";
+import GeneratedSim56LinearSystemStabilityLinearSystemStability from "@paideia/sutd-sims/linear-system-stability";
+import GeneratedSim57OdePhasePortraitOdePhasePortrait from "@paideia/sutd-sims/ode-phase-portrait";
 
 export type AidType = "simulation" | "misconception-audit" | "transfer-problem" | "reasoning-lab" | "notebook" | "annotated-source";
 
@@ -413,6 +414,15 @@ export const knowledgeGraph = {
     id: "sutd/10-022-modelling-uncertainty/discrete-rvs-geometric-binomial-poisson",
     conceptId: "discrete-rvs-geometric-binomial-poisson",
     title: "Discrete RVs: Geometric, Binomial, Poisson",
+    subject: "10-022-modelling-uncertainty",
+    level: "SUTD 10.022",
+    module: "Modelling Uncertainty",
+    status: "reviewed",
+  },
+  {
+    id: "sutd/10-022-modelling-uncertainty/joint-and-marginal-distributions",
+    conceptId: "joint-and-marginal-distributions",
+    title: "Joint and Marginal Distributions",
     subject: "10-022-modelling-uncertainty",
     level: "SUTD 10.022",
     module: "Modelling Uncertainty",
@@ -786,6 +796,12 @@ export const knowledgeGraph = {
   { from: "sutd/10-022-modelling-uncertainty/discrete-rvs-geometric-binomial-poisson", to: "sutd/10-022-modelling-uncertainty/applied-modelling", kind: "downstream" },
   { from: "sutd/10-022-modelling-uncertainty/discrete-rvs-geometric-binomial-poisson", to: "sutd/10-022-modelling-uncertainty/system-design", kind: "downstream" },
   { from: "sutd/10-022-modelling-uncertainty/discrete-rvs-geometric-binomial-poisson", to: "sutd/10-022-modelling-uncertainty/conditional-probability-and-bayes", kind: "sibling" },
+  { from: "sutd/10-022-modelling-uncertainty/probability-distributions", to: "sutd/10-022-modelling-uncertainty/joint-and-marginal-distributions", kind: "prerequisite" },
+  { from: "sutd/10-022-modelling-uncertainty/conditional-probability", to: "sutd/10-022-modelling-uncertainty/joint-and-marginal-distributions", kind: "prerequisite" },
+  { from: "sutd/10-022-modelling-uncertainty/joint-and-marginal-distributions", to: "sutd/10-022-modelling-uncertainty/linear-regression", kind: "downstream" },
+  { from: "sutd/10-022-modelling-uncertainty/joint-and-marginal-distributions", to: "sutd/10-022-modelling-uncertainty/maximum-likelihood-estimation", kind: "downstream" },
+  { from: "sutd/10-022-modelling-uncertainty/joint-and-marginal-distributions", to: "sutd/10-022-modelling-uncertainty/conditional-probability-and-bayes", kind: "sibling" },
+  { from: "sutd/10-022-modelling-uncertainty/joint-and-marginal-distributions", to: "sutd/10-022-modelling-uncertainty/discrete-rvs-geometric-binomial-poisson", kind: "sibling" },
   { from: "sutd/10-023-designing-energy-systems/temperature", to: "sutd/10-023-designing-energy-systems/heat-transfer-modes", kind: "prerequisite" },
   { from: "sutd/10-023-designing-energy-systems/energy-conservation", to: "sutd/10-023-designing-energy-systems/heat-transfer-modes", kind: "prerequisite" },
   { from: "sutd/10-023-designing-energy-systems/heat-transfer-modes", to: "sutd/10-023-designing-energy-systems/open-systems-energy-balance", kind: "downstream" },
@@ -2729,6 +2745,59 @@ export const containers = [
     ],
   },
   {
+    id: "sutd/10-022-modelling-uncertainty/joint-and-marginal-distributions",
+    branch: "sutd",
+    subject: "10 022 Modelling Uncertainty",
+    level: "SUTD 10.022",
+    module: "Modelling Uncertainty",
+    title: "Joint and Marginal Distributions",
+    summary: "Build a joint probability table and read marginals and conditionals from its cells.",
+    syllabusRef: "SUTD 10.022 Modelling Uncertainty / Joint and Marginal Distributions",
+    status: "reviewed",
+    packageId: "joint-and-marginal-distributions",
+    simId: "joint-table-lab",
+    predictPrompt: "If the events are positively associated, predict how P(A given B) compares with marginal P(A).",
+    aidTypes: [
+      "simulation",
+      "transfer-problem",
+      "misconception-audit",
+    ],
+    misconceptions: [
+      "Joint, marginal, and conditional probabilities are interchangeable",
+    ],
+    transferProblem: "A sensor may be faulty and an alarm may fire. Build the joint table, find each marginal, then compute P(alarm | faulty).",
+    firstPrinciples: "",
+    keyDefinitions: [],
+    canonicalExamples: [],
+    problemSolvingSteps: [
+      "Define event A and event B.",
+      "Fill the 2x2 joint table.",
+      "Sum rows or columns to obtain marginals.",
+      "Compute the conditional with the correct denominator.",
+    ],
+    prerequisites: [
+      "Probability Distributions",
+      "Conditional Probability",
+    ],
+    downstream: [
+      "Linear Regression",
+      "Maximum Likelihood Estimation",
+    ],
+    siblings: [
+      "Conditional Probability and Bayes",
+      "Discrete RVs",
+    ],
+    sims: [
+      {
+        id: "joint-table-lab",
+        harnessId: "sutd/10-022-modelling-uncertainty/joint-and-marginal-distributions/joint-table-lab",
+        title: "Joint and Marginal Distribution Table Lab",
+        interactionType: "comparative-matrix",
+        component: GeneratedSim34JointAndMarginalDistributionsJointTableLab,
+      },
+    ],
+  },
+  {
     id: "sutd/10-023-designing-energy-systems/heat-transfer-modes",
     branch: "sutd",
     subject: "10 023 Designing Energy Systems",
@@ -2787,7 +2856,7 @@ export const containers = [
         harnessId: "sutd/10-023-designing-energy-systems/heat-transfer-modes/heat-flow-comparison-lab",
         title: "Heat Flow Comparison Lab",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim34HeatTransferModesHeatFlowComparisonLab,
+        component: GeneratedSim35HeatTransferModesHeatFlowComparisonLab,
       },
     ],
   },
@@ -2840,7 +2909,7 @@ export const containers = [
         harnessId: "sutd/40-012-manufacturing-and-service-operations-mso/scheduling-and-project-management/schedule-critical-path-lab",
         title: "Schedule Critical Path Lab",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim35SchedulingAndProjectManagementScheduleCriticalPathLab,
+        component: GeneratedSim36SchedulingAndProjectManagementScheduleCriticalPathLab,
       },
     ],
   },
@@ -2906,7 +2975,7 @@ export const containers = [
         harnessId: "sutd/asd/load-path-and-daylight-tradeoff/load-path-and-daylight-tradeoff",
         title: "Load Path and Daylight Tradeoff Explorer",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim36LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
+        component: GeneratedSim37LoadPathAndDaylightTradeoffLoadPathAndDaylightTradeoff,
       },
     ],
   },
@@ -2963,7 +3032,7 @@ export const containers = [
         harnessId: "sutd/asd/shading-daylight-heat-gain/shading-daylight-heat-gain",
         title: "Shading, Daylight, and Heat Gain",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim37ShadingDaylightHeatGainShadingDaylightHeatGain,
+        component: GeneratedSim38ShadingDaylightHeatGainShadingDaylightHeatGain,
       },
     ],
   },
@@ -3030,7 +3099,7 @@ export const containers = [
         harnessId: "sutd/asd/structural-load-path-diagram/structural-load-path-diagram",
         title: "Structural Load Path Diagram",
         interactionType: "diagram-builder",
-        component: GeneratedSim38StructuralLoadPathDiagramStructuralLoadPathDiagram,
+        component: GeneratedSim39StructuralLoadPathDiagramStructuralLoadPathDiagram,
       },
     ],
   },
@@ -3076,7 +3145,7 @@ export const containers = [
         harnessId: "sutd/csd/dynamic-programming-state-recursion/dynamic-programming-state-recursion",
         title: "Dynamic Programming State Recursion",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim39DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
+        component: GeneratedSim40DynamicProgrammingStateRecursionDynamicProgrammingStateRecursion,
       },
     ],
   },
@@ -3126,7 +3195,7 @@ export const containers = [
         harnessId: "sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths",
         title: "Graph Search and Shortest Paths",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim40GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
+        component: GeneratedSim41GraphSearchAndShortestPathsGraphSearchAndShortestPaths,
       },
     ],
   },
@@ -3176,7 +3245,7 @@ export const containers = [
         harnessId: "sutd/csd/recursion-tree-complexity/recursion-tree-complexity",
         title: "Recursion Tree Complexity Lab",
         interactionType: "algorithm-state-visualisation",
-        component: GeneratedSim41RecursionTreeComplexityRecursionTreeComplexity,
+        component: GeneratedSim42RecursionTreeComplexityRecursionTreeComplexity,
       },
     ],
   },
@@ -3241,7 +3310,7 @@ export const containers = [
         harnessId: "sutd/dai/confusion-matrix-thresholds/confusion-matrix-thresholds",
         title: "Confusion Matrix Threshold Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim42ConfusionMatrixThresholdsConfusionMatrixThresholds,
+        component: GeneratedSim43ConfusionMatrixThresholdsConfusionMatrixThresholds,
       },
     ],
   },
@@ -3299,7 +3368,7 @@ export const containers = [
         harnessId: "sutd/dai/fairness-threshold-audit/fairness-threshold-audit",
         title: "Fairness Threshold Audit Lab",
         interactionType: "decision-matrix",
-        component: GeneratedSim43FairnessThresholdAuditFairnessThresholdAudit,
+        component: GeneratedSim44FairnessThresholdAuditFairnessThresholdAudit,
       },
     ],
   },
@@ -3352,7 +3421,7 @@ export const containers = [
         harnessId: "sutd/dai/trust-calibration/trust-calibration",
         title: "Trust Calibration Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim44TrustCalibrationTrustCalibration,
+        component: GeneratedSim45TrustCalibrationTrustCalibration,
       },
     ],
   },
@@ -3418,7 +3487,7 @@ export const containers = [
         harnessId: "sutd/epd/bode-stability-margin/bode-stability-margin",
         title: "Bode Margin Reader",
         interactionType: "comparative-matrix",
-        component: GeneratedSim45BodeStabilityMarginBodeStabilityMargin,
+        component: GeneratedSim46BodeStabilityMarginBodeStabilityMargin,
       },
     ],
   },
@@ -3472,7 +3541,7 @@ export const containers = [
         harnessId: "sutd/epd/pid-step-response/pid-step-response",
         title: "PID Step Response Explorer",
         interactionType: "comparative-matrix",
-        component: GeneratedSim46PidStepResponsePidStepResponse,
+        component: GeneratedSim47PidStepResponsePidStepResponse,
       },
     ],
   },
@@ -3530,7 +3599,7 @@ export const containers = [
         harnessId: "sutd/epd/signal-filter-frequency-response/signal-filter-frequency-response",
         title: "RC Filter Frequency Response Lab",
         interactionType: "comparative-matrix",
-        component: GeneratedSim47SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
+        component: GeneratedSim48SignalFilterFrequencyResponseSignalFilterFrequencyResponse,
       },
     ],
   },
@@ -3574,7 +3643,7 @@ export const containers = [
         harnessId: "sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region",
         title: "Linear Programming Feasible Region Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim48LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
+        component: GeneratedSim49LinearProgrammingFeasibleRegionLinearProgrammingFeasibleRegion,
       },
     ],
   },
@@ -3636,7 +3705,7 @@ export const containers = [
         harnessId: "sutd/esd/markov-chain-steady-state/markov-chain-steady-state",
         title: "Markov Chain Steady-State Lab",
         interactionType: "systems-flow-diagram",
-        component: GeneratedSim49MarkovChainSteadyStateMarkovChainSteadyState,
+        component: GeneratedSim50MarkovChainSteadyStateMarkovChainSteadyState,
       },
     ],
   },
@@ -3702,7 +3771,7 @@ export const containers = [
         harnessId: "sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile",
         title: "Newsvendor Critical Fractile Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim50NewsvendorCriticalFractileNewsvendorCriticalFractile,
+        component: GeneratedSim51NewsvendorCriticalFractileNewsvendorCriticalFractile,
       },
     ],
   },
@@ -3765,7 +3834,7 @@ export const containers = [
         harnessId: "sutd/freshmore/bayes-updating/bayes-updating",
         title: "Bayes Updating Explorer",
         interactionType: "decision-matrix",
-        component: GeneratedSim51BayesUpdatingBayesUpdating,
+        component: GeneratedSim52BayesUpdatingBayesUpdating,
       },
     ],
   },
@@ -3819,7 +3888,7 @@ export const containers = [
         harnessId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
         title: "Eigenvector Direction Lab",
         interactionType: "diagram-builder",
-        component: GeneratedSim52EigenvectorTransformationsEigenvectorTransformations,
+        component: GeneratedSim53EigenvectorTransformationsEigenvectorTransformations,
       },
     ],
   },
@@ -3871,7 +3940,7 @@ export const containers = [
         harnessId: "sutd/freshmore/vector-transformations/vector-transformations",
         title: "2D Matrix-Vector Transformation Explorer",
         interactionType: "diagram-builder",
-        component: GeneratedSim53VectorTransformationsVectorTransformations,
+        component: GeneratedSim54VectorTransformationsVectorTransformations,
       },
     ],
   },
@@ -3917,7 +3986,7 @@ export const containers = [
         harnessId: "sutd/smt/fourier-mode-superposition/fourier-mode-superposition",
         title: "Fourier Mode Superposition Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim54FourierModeSuperpositionFourierModeSuperposition,
+        component: GeneratedSim55FourierModeSuperpositionFourierModeSuperposition,
       },
     ],
   },
@@ -3974,7 +4043,7 @@ export const containers = [
         harnessId: "sutd/smt/linear-system-stability/linear-system-stability",
         title: "Linear System Stability Lab",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim55LinearSystemStabilityLinearSystemStability,
+        component: GeneratedSim56LinearSystemStabilityLinearSystemStability,
       },
     ],
   },
@@ -4040,7 +4109,7 @@ export const containers = [
         harnessId: "sutd/smt/ode-phase-portrait/ode-phase-portrait",
         title: "ODE Phase Portrait Explorer",
         interactionType: "function-plot-with-draggable",
-        component: GeneratedSim56OdePhasePortraitOdePhasePortrait,
+        component: GeneratedSim57OdePhasePortraitOdePhasePortrait,
       },
     ],
   }

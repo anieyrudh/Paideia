@@ -1,0 +1,4 @@
+runtime:
+  package: "@paideia/sutd-sims/joint-and-marginal-distributions"
+  export: JointAndMarginalDistributions
+  route_id: "sutd/10-022-modelling-uncertainty/joint-and-marginal-distributions/joint-table-lab"

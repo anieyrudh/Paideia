@@ -980,7 +980,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.10-022-modelling-uncertainty.joint-and-marginal-distributions"
-    status: "ready-for-build"
+    status: "in-build"
     concept_title: "Joint and Marginal Distributions"
     curriculum: "sutd"
     subject: "10-022-modelling-uncertainty"
