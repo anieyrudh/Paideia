@@ -3,3 +3,12 @@ runtime:
   package: "@paideia/a-level-physics-sims"
   export: "ResolvingVectorsSim"
   local_state_only: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "8.7 N"
+    rationale: "The horizontal component is adjacent to the 30 degree angle, so cosine applies."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

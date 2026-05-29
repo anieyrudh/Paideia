@@ -244,7 +244,7 @@ export const ResolvingVectorsSim = () => {
       predict={componentPredict}
       simId={resolvingVectorsSimId}
     >
-      <section aria-label="Resolving vectors explorer" className="vector-lab vector-lab--product">
+      <section aria-label="Observation unlocked" className="vector-lab vector-lab--product">
         <div className="vector-controls vector-controls--product" aria-label="Resolution controls">
           <p className="lab-kicker">Split the force</p>
           <ControlGroup legend="Resolution controls">
@@ -279,7 +279,7 @@ export const ResolvingVectorsSim = () => {
         <div className="vector-stage vector-stage--product">
           <ResolutionDiagram state={state} />
           {model.ok ? (
-            <dl aria-label="Observation unlocked" className="result-readout result-readout--cards">
+            <dl aria-label="Component readout" className="result-readout result-readout--cards">
               <div>
                 <dt>Horizontal component</dt>
                 <dd>{formatTenths(model.value.componentsNewtons[0])} N</dd>
@@ -321,6 +321,7 @@ export const ResolvingVectorsSim = () => {
           </pre>
           {model.ok ? (
             <>
+              <p className="lab-kicker">Legend</p>
               <dl className="formula-legend" aria-label="Formula legend">
                 <div>
                   <dt>
@@ -341,6 +342,7 @@ export const ResolvingVectorsSim = () => {
                   <dd>angle above the horizontal, {state.angleDegrees.toFixed(0)} degrees</dd>
                 </div>
               </dl>
+              <p>Units: the original force and both resolved components are measured in newtons (N).</p>
               <p>
                 Substitution: Fx = ({formatTenths(state.magnitudeNewtons)} N)cos(
                 {state.angleDegrees.toFixed(0)} degrees) ={" "}
@@ -350,6 +352,10 @@ export const ResolvingVectorsSim = () => {
                 Substitution: Fy = ({formatTenths(state.magnitudeNewtons)} N)sin(
                 {state.angleDegrees.toFixed(0)} degrees) ={" "}
                 {formatTenths(model.value.componentsNewtons[1])} N
+              </p>
+              <p>
+                Result: Fx = {formatTenths(model.value.componentsNewtons[0])} N and Fy ={" "}
+                {formatTenths(model.value.componentsNewtons[1])} N.
               </p>
               <p className="formula-note">
                 cos θ = {formatHundredths(model.value.horizontalFraction)} and sin θ ={" "}

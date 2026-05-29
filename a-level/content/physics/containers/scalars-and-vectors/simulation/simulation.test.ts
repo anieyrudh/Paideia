@@ -4,6 +4,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import {
   definePredictionGateContract,
+  expectProductSimulationReveal,
   mountSim,
 } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
@@ -17,6 +18,16 @@ definePredictionGateContract({
 });
 
 test.describe(`${simId} accessibility`, () => {
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId,
+      prediction: {
+        optionLabel: "7.1 m",
+        rationale: "Perpendicular arrows should form a right triangle, not a straight line.",
+      },
+    });
+  });
+
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, simId);
     await page.getByLabel("7.1 m").check();

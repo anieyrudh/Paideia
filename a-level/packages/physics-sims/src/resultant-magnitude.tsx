@@ -277,7 +277,7 @@ export const ResultantMagnitudeSim = () => {
 
   return (
     <PredictionGate packageId={packageId} predict={perpendicularPredict} simId={simId}>
-      <section aria-label="Resultant magnitude explorer" className="vector-lab vector-lab--product">
+      <section aria-label="Observation unlocked" className="vector-lab vector-lab--product">
         <div className="vector-controls vector-controls--product" aria-label="Vector controls">
           <p className="lab-kicker">Shape the route</p>
           <ControlGroup legend="Vector controls">
@@ -321,7 +321,7 @@ export const ResultantMagnitudeSim = () => {
         <div className="vector-stage vector-stage--product">
           <ResultantVectorDiagram state={state} />
           {model.ok ? (
-            <dl aria-label="Observation unlocked" className="result-readout result-readout--cards">
+            <dl aria-label="Resultant readout" className="result-readout result-readout--cards">
               <div>
                 <dt>Geometric resultant</dt>
                 <dd>{formatTenths(model.value.magnitudeMetres)} m</dd>
@@ -362,6 +362,7 @@ export const ResultantMagnitudeSim = () => {
           </pre>
           {model.ok ? (
             <>
+              <p className="lab-kicker">Legend</p>
               <dl className="formula-legend" aria-label="Formula legend">
                 <div>
                   <dt>
@@ -382,12 +383,14 @@ export const ResultantMagnitudeSim = () => {
                   <dd>angle between the arrows, {state.angleDegrees.toFixed(0)} degrees</dd>
                 </div>
               </dl>
+              <p>Units: each displacement and the resultant magnitude are measured in metres (m).</p>
               <p>
                 Substitution: |R| = √(({formatTenths(state.vectorAMetres)} m)^2 + (
                 {formatTenths(state.vectorBMetres)} m)^2 + 2({formatTenths(state.vectorAMetres)} m)(
                 {formatTenths(state.vectorBMetres)} m)cos({state.angleDegrees.toFixed(0)} degrees)) ={" "}
                 {formatTenths(model.value.magnitudeMetres)} m.
               </p>
+              <p>Result: the resultant displacement is {formatTenths(model.value.magnitudeMetres)} m.</p>
               <p className="formula-note">
                 cos θ = {formatHundredths(model.value.cosine)}. When direction opens up, the
                 component sum no longer equals the magnitude-only sum.

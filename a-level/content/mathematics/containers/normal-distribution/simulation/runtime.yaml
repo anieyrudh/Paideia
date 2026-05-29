@@ -13,3 +13,16 @@ runtime:
     keyboard_controls: true
     aria_live_updates: false
     reduced_motion_safe: true
+visual_quality:
+  setup:
+    - role: button
+      name: "Set up normal model"
+    - role: button
+      name: "Reveal area"
+  prediction:
+    option_label: "The central interval"
+    rationale: "The central interval covers the high-density middle of the distribution."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

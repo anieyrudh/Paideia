@@ -2,6 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import {
   definePredictionGateContract,
+  expectProductSimulationReveal,
   mountSim,
 } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
@@ -16,6 +17,16 @@ definePredictionGateContract({
 });
 
 test.describe(`${simId} accessibility`, () => {
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId,
+      prediction: {
+        optionLabel: "8.7 N",
+        rationale: "The horizontal component is adjacent to the 30 degree angle, so cosine applies.",
+      },
+    });
+  });
+
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, simId);
     await page.getByLabel("8.7 N").check();

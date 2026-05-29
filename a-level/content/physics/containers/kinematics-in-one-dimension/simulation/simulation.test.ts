@@ -2,6 +2,7 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import {
   definePredictionGateContract,
+  expectProductSimulationReveal,
   mountSim,
 } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
@@ -19,6 +20,16 @@ definePredictionGateContract({
 });
 
 test.describe(`${simId} accessibility`, () => {
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId,
+      prediction: {
+        optionLabel: "9.0 m",
+        rationale: "Starting from rest means the displacement comes from the acceleration term.",
+      },
+    });
+  });
+
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, simId);
     await page.getByLabel("9.0 m").check();

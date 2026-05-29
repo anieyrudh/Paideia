@@ -338,7 +338,7 @@ export const ProjectileMotionSim = () => {
       predict={projectileMotionPredict}
       simId={projectileMotionSimId}
     >
-      <section aria-label="Projectile motion lab" className="kinematics-lab vector-lab vector-lab--product">
+      <section aria-label="Observation unlocked" className="kinematics-lab vector-lab vector-lab--product">
         <div className="vector-controls vector-controls--product" aria-label="Projectile controls">
           <p className="lab-kicker">Tune the launch</p>
           <ControlGroup legend="Launch controls">
@@ -390,7 +390,7 @@ export const ProjectileMotionSim = () => {
                   t={{ min: 0, max: model.value.flightTimeSeconds }}
                 />
               </div>
-              <dl aria-label="Observation unlocked" className="result-readout result-readout--cards">
+              <dl aria-label="Trajectory readout" className="result-readout result-readout--cards">
                 <div>
                   <dt>Range</dt>
                   <dd>{formatNumber(model.value.rangeMetres)} m</dd>
@@ -436,6 +436,7 @@ export const ProjectileMotionSim = () => {
           </pre>
           {model.ok ? (
             <>
+              <p className="lab-kicker">Legend</p>
               <dl className="formula-legend" aria-label="Formula legend">
                 <div>
                   <dt>
@@ -456,6 +457,7 @@ export const ProjectileMotionSim = () => {
                   <dd>launch angle and elapsed time</dd>
                 </div>
               </dl>
+              <p>Units: distances are in metres (m), time is in seconds (s), and velocity is in m s^-1.</p>
               <p>
                 Substitution: v_x = {formatNumber(state.launchSpeedMetresPerSecond, 1)} m s^-1
                 cos({formatNumber(state.launchAngleDegrees, 0)} degrees) ={" "}

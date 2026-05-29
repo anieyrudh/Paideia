@@ -440,6 +440,7 @@ const ObserveStage = () => {
 {\color{#34d399}{\bar{x}}-\color{#fb923c}{\mu_0}\over
 \color{#34d399}{\sigma}/\sqrt{\color{#fb923c}{n}}}`}</code>
         </pre>
+        <p className="lab-kicker">Legend</p>
         <dl className="formula-legend" aria-label="Formula legend">
           <div>
             <dt><span className="legend-swatch legend-swatch--blue" /> Blue symbols</dt>
@@ -454,6 +455,8 @@ const ObserveStage = () => {
             <dd>P(X=x), null mean, and sample size set the probability model.</dd>
           </div>
         </dl>
+        <p>Units: scores are measured in marks; probabilities and z-scores are dimensionless.</p>
+        <p>Substitution:</p>
         <pre aria-label="Expected value and z-score substitution" className="formula-code" tabIndex={0}>
           <code>{`E(X) = 0(${formatProbability(Number(model.value.distribution[0]?.probability ?? 0))})
      + 4(${formatProbability(Number(model.value.distribution[1]?.probability ?? 0))})
@@ -464,6 +467,10 @@ z = (${formatNumber(state.observedMean)} - ${formatNumber(model.value.decision.n
     / (${formatNumber(model.value.standardDeviation)} / sqrt(${state.sampleSize}))
   = ${formatNumber(model.value.decision.z)}`}</code>
         </pre>
+        <p>
+          Result: expected score = {formatNumber(model.value.expectedScore)} marks and z ={" "}
+          {formatNumber(model.value.decision.z)}.
+        </p>
         <p className="formula-note">
           Reason: the mean uses every outcome weighted by its probability. The test statistic asks
           how many standard errors the observed sample mean sits from the null mean.

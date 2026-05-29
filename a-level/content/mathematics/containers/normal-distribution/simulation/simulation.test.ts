@@ -1,8 +1,25 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
-import { mountSim } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
+import {
+  expectProductSimulationReveal,
+  mountSim,
+} from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("a-level/mathematics/normal-distribution/normal-area-standardisation-lab prediction-gate", () => {
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId: "a-level/mathematics/normal-distribution/normal-area-standardisation-lab",
+      setup: [
+        { role: "button", name: "Set up normal model" },
+        { role: "button", name: "Reveal area" },
+      ],
+      prediction: {
+        optionLabel: "The central interval",
+        rationale: "The central interval covers the high-density middle of the distribution.",
+      },
+    });
+  });
+
   test("prediction-gate blocks normal-area readouts until prediction commit", async ({ page }) => {
     await mountSim(page, "a-level/mathematics/normal-distribution/normal-area-standardisation-lab");
 
