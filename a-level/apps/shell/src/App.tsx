@@ -151,7 +151,7 @@ const ContainerList = ({
   readonly onQueryChange: (query: string) => void;
   readonly onModuleChange: (module: string) => void;
 }) => {
-  const resultLabel = `${visibleContainers.length} of ${containers.length} containers`;
+  const resultLabel = `${visibleContainers.length} of ${containers.length} concepts`;
 
   return (
     <div className="curriculum-browser">
@@ -187,7 +187,7 @@ const ContainerList = ({
 
       <p className="result-count">{resultLabel}</p>
 
-      <nav aria-label="Concept containers" className="package-list">
+      <nav aria-label="Concept labs" className="package-list">
         {visibleContainers.map((container) => (
           <a
             aria-current={container.id === active.id ? "page" : undefined}
@@ -460,7 +460,7 @@ export const App = () => {
               <h1 id="container-title">{active.title}</h1>
               <p>{active.summary}</p>
             </div>
-            <div className="status-stack" aria-label="Container status">
+            <div className="status-stack" aria-label="Concept status">
               <span>{learnerStatus(active.status)}</span>
               <span>{learnerAidTypes(active.aidTypes)}</span>
             </div>
