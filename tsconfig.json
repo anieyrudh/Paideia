@@ -62,6 +62,7 @@
     { "path": "./core/ml-linear-models" },
     { "path": "./core/ml-clustering" },
     { "path": "./core/mechanics" },
+    { "path": "./core/acoustics" },
     { "path": "./core/materials" },
     { "path": "./core/waves" },
     { "path": "./core/optics" },
