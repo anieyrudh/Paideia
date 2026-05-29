@@ -440,24 +440,27 @@ const ManipulateStage = () => {
 };
 
 const Legend = () => (
-  <dl aria-label="Formula legend" className="formula-legend">
-    <div>
-      <dt><span aria-hidden="true" className="legend-swatch legend-swatch--red" /> Q</dt>
-      <dd>source charge setting the electric field, in C; red or blue charge discs show sign.</dd>
-    </div>
-    <div>
-      <dt><span aria-hidden="true" className="legend-swatch legend-swatch--green" /> E</dt>
-      <dd>electric field strength at the test position, in N/C.</dd>
-    </div>
-    <div>
-      <dt><span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> F</dt>
-      <dd>force on the chosen test charge, in N.</dd>
-    </div>
-    <div>
-      <dt><span aria-hidden="true" className="legend-swatch legend-swatch--blue" /> q and Delta V</dt>
-      <dd>test charge and potential difference for the energy calculation, in C and V.</dd>
-    </div>
-  </dl>
+  <>
+    <p className="formula-note">Legend</p>
+    <dl aria-label="Formula legend" className="formula-legend">
+      <div>
+        <dt><span aria-hidden="true" className="legend-swatch legend-swatch--red" /> Q</dt>
+        <dd>source charge setting the electric field, in C; red or blue charge discs show sign.</dd>
+      </div>
+      <div>
+        <dt><span aria-hidden="true" className="legend-swatch legend-swatch--green" /> E</dt>
+        <dd>electric field strength at the test position, in N/C.</dd>
+      </div>
+      <div>
+        <dt><span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> F</dt>
+        <dd>force on the chosen test charge, in N.</dd>
+      </div>
+      <div>
+        <dt><span aria-hidden="true" className="legend-swatch legend-swatch--blue" /> q and Delta V</dt>
+        <dd>test charge and potential difference for the energy calculation, in C and V.</dd>
+      </div>
+    </dl>
+  </>
 );
 
 const ObserveStage = () => {
@@ -502,9 +505,17 @@ const ObserveStage = () => {
           {formatScientific(model.value.electricFieldStrengthNPerC, "N/C")}.
         </p>
         <p>
+          Units: source charge is in C, separation is in m, electric field is in N/C,
+          force is in N, potential is in V, and energy is in J.
+        </p>
+        <p>
           Then F = ({formatScientific(model.value.testChargeCoulombs, "C")})(
           {formatScientific(model.value.electricFieldStrengthNPerC, "N/C")}) ={" "}
           {formatScientific(model.value.forceMagnitudeNewtons, "N")} by magnitude.
+        </p>
+        <p>
+          Result: field strength is {formatScientific(model.value.electricFieldStrengthNPerC, "N/C")}
+          {" "}and force magnitude is {formatScientific(model.value.forceMagnitudeNewtons, "N")}.
         </p>
         <p>
           Potential link using zero potential at infinity: Delta V ={" "}

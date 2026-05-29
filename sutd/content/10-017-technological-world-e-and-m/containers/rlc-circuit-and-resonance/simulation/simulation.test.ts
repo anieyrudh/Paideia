@@ -6,12 +6,30 @@
  */
 
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
+
+const simId =
+  "sutd/10-017-technological-world-e-and-m/rlc-circuit-and-resonance/rlc-circuit-and-resonance";
 
 test.describe("RLC Circuit and Resonance", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(
-      "/?sim=sutd/10-017-technological-world-e-and-m/rlc-circuit-and-resonance/rlc-circuit-and-resonance",
-    );
+    await page.goto(`/?sim=${simId}`);
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId,
+      setup: [
+        { role: "button", name: "Prepare RLC model" },
+        { role: "button", name: "Reveal resonance readout" },
+      ],
+      prediction: {
+        optionLabel:
+          "Net reactance is near zero, so impedance is mostly resistance and current is largest.",
+        rationale:
+          "At resonance, inductive and capacitive reactance cancel while resistance remains.",
+      },
+    });
   });
 
   test("prediction-gate blocks resonance evidence until commit", async ({ page }) => {

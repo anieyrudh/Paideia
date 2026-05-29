@@ -432,24 +432,27 @@ const ManipulateStage = () => {
 };
 
 const Legend = () => (
-  <dl aria-label="Formula legend" className="formula-legend">
-    <div>
-      <dt><span aria-hidden="true" className="legend-swatch legend-swatch--green" /> Phi_E</dt>
-      <dd>electric flux through the closed Gaussian surface, in V m.</dd>
-    </div>
-    <div>
-      <dt><span aria-hidden="true" className="legend-swatch legend-swatch--red" /> Q_enc</dt>
-      <dd>net charge enclosed by the Gaussian surface, in C.</dd>
-    </div>
-    <div>
-      <dt><span aria-hidden="true" className="legend-swatch legend-swatch--blue" /> A_G</dt>
-      <dd>effective area receiving flux, in m^2.</dd>
-    </div>
-    <div>
-      <dt><span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> E</dt>
-      <dd>electric field magnitude on the useful surface, in V/m.</dd>
-    </div>
-  </dl>
+  <>
+    <p className="formula-note">Legend</p>
+    <dl aria-label="Formula legend" className="formula-legend">
+      <div>
+        <dt><span aria-hidden="true" className="legend-swatch legend-swatch--green" /> Phi_E</dt>
+        <dd>electric flux through the closed Gaussian surface, in V m.</dd>
+      </div>
+      <div>
+        <dt><span aria-hidden="true" className="legend-swatch legend-swatch--red" /> Q_enc</dt>
+        <dd>net charge enclosed by the Gaussian surface, in C.</dd>
+      </div>
+      <div>
+        <dt><span aria-hidden="true" className="legend-swatch legend-swatch--blue" /> A_G</dt>
+        <dd>effective area receiving flux, in m^2.</dd>
+      </div>
+      <div>
+        <dt><span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> E</dt>
+        <dd>electric field magnitude on the useful surface, in V/m.</dd>
+      </div>
+    </dl>
+  </>
 );
 
 const FormulaPanel = ({ evidence }: { readonly evidence: GaussLawEvidence }) => (
@@ -470,6 +473,7 @@ const FormulaPanel = ({ evidence }: { readonly evidence: GaussLawEvidence }) => 
 \frac{\color{#dc2626}{Q_{enc}}}{\epsilon_0\color{#2563eb}{A_G}}`}</code>
     </pre>
     <Legend />
+    <p className="formula-note">Substitution</p>
     <pre aria-label="Gauss law substitution" className="formula-code">
       <code>{`${evidence.sourceDescription}
 ${evidence.areaFormula} = ${areaScientific(evidence.model.gaussianAreaSquareMetres)}
@@ -478,6 +482,10 @@ Phi_E = ${chargeScientific(evidence.model.enclosedChargeCoulombs)} / (8.854 x 10
 ${evidence.substitution}
       = ${fieldScientific(evidence.model.electricFieldVoltsPerMetre)}`}</code>
     </pre>
+    <p>
+      Units: enclosed charge is in C, Gaussian area is in m^2, electric flux is
+      in V m, and electric field is in V/m.
+    </p>
     <p>
       Result: flux is {fluxScientific(evidence.model.electricFluxVoltsMetres)} and the
       matched-symmetry field is {fieldScientific(evidence.model.electricFieldVoltsPerMetre)}.

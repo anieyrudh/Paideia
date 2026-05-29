@@ -4,3 +4,16 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup:
+    - role: button
+      name: "Prepare RLC model"
+    - role: button
+      name: "Reveal resonance readout"
+  prediction:
+    option_label: "Net reactance is near zero, so impedance is mostly resistance and current is largest."
+    rationale: "At resonance, inductive and capacitive reactance cancel while resistance remains."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required
