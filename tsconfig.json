@@ -48,6 +48,7 @@
     { "path": "./core/scheduling" },
     { "path": "./core/inventory-models" },
     { "path": "./core/vector-calculus" },
+    { "path": "./core/spatial-analysis" },
     { "path": "./core/time-series" },
     { "path": "./core/stochastic-processes" },
     { "path": "./core/finance" },
