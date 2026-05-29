@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Density area fallback">
+  <rect width="640" height="360" fill="#ffffff"/>
+  <line x1="80" y1="280" x2="560" y2="280" stroke="#7d8a84" stroke-width="2"/>
+  <path d="M110 90 C170 122 220 175 300 220 C382 266 470 278 540 280" fill="none" stroke="#2d6a7f" stroke-width="6"/>
+  <rect x="210" y="130" width="180" height="150" fill="#b6402a" opacity="0.2"/>
+  <text x="88" y="326" fill="#172026" font-family="Inter, Arial, sans-serif" font-size="24">Probability is area under density.</text>
+</svg>

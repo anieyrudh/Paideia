@@ -2117,7 +2117,7 @@ entries:
   - id: sutd.10-022-modelling-uncertainty.continuous-rvs-uniform-exponential
     title: "Continuous RVs: Uniform, Exponential"
     priority: P1
-    status: ready-for-build
+    status: in-build
     cluster: SUTD 10.022 - Modelling Uncertainty
     discipline: probability-statistics
     reuse_status: subject-specific

@@ -18,6 +18,7 @@ export { default as ConditionalProbabilityAndBayes, bayesEvidence as conditional
 export { default as NewsvendorCriticalFractile } from "./newsvendor-critical-fractile.js";
 export { default as ConfusionMatrixThresholds } from "./confusion-matrix-thresholds.js";
 export { default as SchedulingAndProjectManagement } from "./scheduling-and-project-management.js";
+export { default as ContinuousRvsUniformExponential } from "./continuous-rvs-uniform-exponential.js";
 export { default as MarkovChainSteadyState } from "./markov-chain-steady-state.js";
 export { default as FairnessThresholdAudit } from "./fairness-threshold-audit.js";
 export { default as DiscreteRvsGeometricBinomialPoisson } from "./discrete-rvs-geometric-binomial-poisson.js";

@@ -1,0 +1,13 @@
+steps:
+  - id: classify-process
+    prompt: "Decide whether the random variable is bounded measurement or waiting time."
+    checks: ["uniform for bounded equal-likelihood interval", "exponential for constant-rate waiting time"]
+  - id: write-density
+    prompt: "Write the density, support, and parameter values."
+    checks: ["support stated", "parameters substituted"]
+  - id: compute-area
+    prompt: "Compute interval probability as area under the density."
+    checks: ["uses interval endpoints", "does not use point height as probability"]
+  - id: interpret
+    prompt: "State the probability, mean, and variance in context."
+    checks: ["probability unitless", "continuous variable unit stated"]

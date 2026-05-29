@@ -1,0 +1,7 @@
+labels:
+  model: "Density family"
+  min: "Uniform minimum"
+  max: "Uniform maximum"
+  rate: "Exponential rate"
+  lower: "Interval lower bound"
+  upper: "Interval upper bound"
