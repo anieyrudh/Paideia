@@ -49,6 +49,7 @@
     { "path": "./core/stochastic-processes" },
     { "path": "./core/finance" },
     { "path": "./core/relational-data" },
+    { "path": "./core/query-engine" },
     { "path": "./core/functional-dependencies" },
     { "path": "./core/distributed-data-systems" },
     { "path": "./core/indexing-query-cost" },
