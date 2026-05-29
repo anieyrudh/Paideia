@@ -297,7 +297,7 @@ const RegionPlot = ({
   const segment = objectiveSegment(model.solution.value, state.profitX, state.profitY);
 
   return (
-    <figure aria-label="Feasible region and objective line" className="vector-stage vector-stage--product">
+    <figure aria-label="Feasible region and objective line" className="vector-stage vector-stage--product" role="img">
       <PlotFrame domain={domain} grid="cartesian" aspect="auto">
         <polygon
           fill="#bfdbfe"
@@ -366,6 +366,7 @@ const FormulaPanel = ({
         <span className="formula-var formula-var--purple">y</span>
       </code>
     </pre>
+    <p className="lab-kicker">Legend</p>
     <dl aria-label="Formula legend" className="formula-legend">
       <div>
         <dt>
@@ -392,12 +393,17 @@ const FormulaPanel = ({
         <dd>production quantities, in batches</dd>
       </div>
     </dl>
+    <p>Units: x and y are batches, and Z is measured in profit-units.</p>
     <p>
-      Substitute optimum: Z = ({format(state.profitX)} profit-units/batch)({format(
+      Substitution: optimum gives Z = ({format(state.profitX)} profit-units/batch)({format(
         model.solution.point[0],
       )} batches) + ({format(state.profitY)} profit-units/batch)({format(
         model.solution.point[1],
       )} batches) = {format(model.solution.value)} profit-units.
+    </p>
+    <p>
+      Result: the objective reaches {format(model.solution.value)} profit-units at the selected
+      feasible corner.
     </p>
     <p>
       Test point substitution: ({format(state.testX)}, {format(state.testY)}) gives Z ={" "}
@@ -544,9 +550,9 @@ export const LinearProgrammingFeasibleRegionSim = () => {
         </div>
 
         {model.ok ? (
-          <>
+          <section aria-label="Observation unlocked" role="region">
             <RegionPlot model={model.value} state={state} />
-            <dl aria-label="Observation unlocked" className="result-readout result-readout--cards">
+            <dl aria-label="Optimisation readout" className="result-readout result-readout--cards">
               <div>
                 <dt>Kernel optimum</dt>
                 <dd>
@@ -565,7 +571,7 @@ export const LinearProgrammingFeasibleRegionSim = () => {
             </dl>
             <ConstraintReadout rows={model.value.rows} />
             <FormulaPanel model={model.value} state={state} />
-          </>
+          </section>
         ) : (
           <p role="alert">The current constraints cannot be evaluated: {model.error.message}</p>
         )}

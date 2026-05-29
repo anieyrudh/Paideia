@@ -2,3 +2,16 @@ runtime:
   prediction_gate: required
   initial_stage: predict
   reveal_stage: observe
+visual_quality:
+  setup:
+    - role: button
+      name: "Start tuning"
+    - role: button
+      name: "Observe response"
+  prediction:
+    option_label: "Increase Ki moderately"
+    rationale: "Integral action should reduce final error, but too much can increase overshoot."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

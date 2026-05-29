@@ -4,3 +4,16 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup:
+    - role: button
+      name: "Start PID tuning"
+    - role: button
+      name: "Reveal response and Bode evidence"
+  prediction:
+    option_label: "The response can get faster, but the phase margin may shrink."
+    rationale: "Higher gain can move crossover to more phase lag."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

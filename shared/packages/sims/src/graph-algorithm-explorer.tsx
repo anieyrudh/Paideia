@@ -279,7 +279,7 @@ const GraphDiagram = ({ model }: { readonly model: GraphAlgorithmExplorerModel }
   const visited = new Set(model.traversalOrder);
 
   return (
-    <figure aria-label="Graph algorithm diagram" className="vector-stage vector-stage--product">
+    <figure aria-label="Graph algorithm diagram" className="vector-stage vector-stage--product" role="img">
       <svg aria-hidden="true" viewBox="0 0 640 360">
         <rect fill="#f8fafc" height="360" rx="8" width="640" />
         {model.scenario.graph.edges.map((edge) => {
@@ -378,6 +378,7 @@ const FormulaPanel = ({ model }: { readonly model: GraphAlgorithmExplorerModel }
           <span className="formula-var formula-var--green">w(u, v)</span>
         </code>
       </pre>
+      <p className="lab-kicker">Legend</p>
       <dl aria-label="Formula legend" className="formula-legend">
         <div>
           <dt>
@@ -398,9 +399,11 @@ const FormulaPanel = ({ model }: { readonly model: GraphAlgorithmExplorerModel }
           <dd>edge weight from node u to node v, in weight units</dd>
         </div>
       </dl>
+      <p>Units: edge labels are measured in weight units.</p>
       <p>
-        Substitute selected path {formatOrder(model.selectedPath)}: cost = {substitution} = {result}.
+        Substitution: selected path {formatOrder(model.selectedPath)} gives cost = {substitution} = {result}.
       </p>
+      <p>Result: the selected path has total cost {result}.</p>
       <p>
         BFS comparison: {formatOrder(model.bfsPath)} uses {model.bfsHopCount} edge
         {model.bfsHopCount === 1 ? "" : "s"} and costs {model.bfsPathCost} weight units.
@@ -490,16 +493,14 @@ export const GraphAlgorithmExplorerSim = () => {
         </div>
 
         {model.ok ? (
-          <>
+          <section aria-label="Observation unlocked" role="region">
             <GraphDiagram model={model.value} />
-            <section aria-label="Observation unlocked" role="region">
-              <h2>Algorithm evidence</h2>
-              <p>{model.value.scenario.note}</p>
-              <p>{model.value.interpretation}</p>
-            </section>
+            <h2>Algorithm evidence</h2>
+            <p>{model.value.scenario.note}</p>
+            <p>{model.value.interpretation}</p>
             <TracePanel model={model.value} />
             <FormulaPanel model={model.value} />
-          </>
+          </section>
         ) : (
           <p role="alert">The current graph cannot be evaluated: {model.error.message}</p>
         )}

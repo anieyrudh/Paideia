@@ -302,6 +302,7 @@ overshoot % = max(0, y_peak - 1) x 100
 settling time = first time after which y(t) stays within +/-2% of target
               = ${format(metrics.settlingTimeSeconds)} s`}
     </pre>
+    <p className="lab-kicker">Legend</p>
     <dl aria-label="Formula legend" className="formula-legend">
       <div>
         <dt>

@@ -272,10 +272,10 @@ export const CircuitPhasorReasoningSim = () => {
         </div>
 
         {model.ok ? (
-          <>
+          <section aria-label="Observation unlocked" role="region">
             <div className="vector-stage vector-stage--product">
               <CircuitPhasorDiagram model={model.value} />
-              <dl aria-label="Observation unlocked" className="result-readout result-readout--cards">
+              <dl aria-label="Circuit phasor readout" className="result-readout result-readout--cards">
                 <div>
                   <dt>Impedance magnitude</dt>
                   <dd>{formatTenths(model.value.solution.impedanceMagnitudeOhms)} ohm</dd>
@@ -318,6 +318,7 @@ export const CircuitPhasorReasoningSim = () => {
 \\color{#b54708}{X_C}=\\frac{1}{2\\pi\\color{#475467}{f}\\color{#027a48}{C}}
 \\color{#027a48}{I_{rms}}=\\frac{\\color{#344054}{V_{rms}}}{|\\color{#6941c6}{Z}|}`}</code>
               </pre>
+              <p className="lab-kicker">Legend</p>
               <dl aria-label="Formula legend" className="formula-legend">
                 <div>
                   <dt><span aria-hidden="true" className="legend-swatch legend-swatch--purple" /> Z</dt>
@@ -336,13 +337,14 @@ export const CircuitPhasorReasoningSim = () => {
                   <dd>rms current, in amperes</dd>
                 </div>
               </dl>
+              <p>Units: impedance and reactance use ohms; current uses amperes; phase uses degrees.</p>
               <p>
-                Substitute reactance: X_L = {formatTenths(model.value.inductiveReactanceOhms)} ohm
+                Substitution: reactance gives X_L = {formatTenths(model.value.inductiveReactanceOhms)} ohm
                 and X_C = {formatTenths(model.value.capacitiveReactanceOhms)} ohm, so X ={" "}
                 {formatTenths(model.value.netReactanceOhms)} ohm.
               </p>
               <p>
-                Substitute impedance: |Z| = sqrt(({formatTenths(state.resistanceOhms)} ohm)^2 + (
+                Substitution: impedance gives |Z| = sqrt(({formatTenths(state.resistanceOhms)} ohm)^2 + (
                 {formatTenths(model.value.netReactanceOhms)} ohm)^2) ={" "}
                 {formatTenths(model.value.solution.impedanceMagnitudeOhms)} ohm.
               </p>
@@ -357,7 +359,7 @@ export const CircuitPhasorReasoningSim = () => {
                 element, so the voltage phasors add through the impedance vector.
               </p>
             </section>
-          </>
+          </section>
         ) : (
           <p role="alert">The selected circuit cannot be evaluated.</p>
         )}

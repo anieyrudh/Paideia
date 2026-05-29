@@ -1,9 +1,20 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("LP Feasible Region Visualiser", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/?sim=shared/math/linear-programming-feasible-region/lp-feasible-region");
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId: "shared/math/linear-programming-feasible-region/lp-feasible-region",
+      prediction: {
+        optionLabel: "Check every feasible corner, because a linear objective reaches its best value at a boundary vertex",
+        rationale: "A linear objective is compared at feasible vertices.",
+      },
+    });
   });
 
   test("prediction-gate blocks feasible-region reveal until commit", async ({ page }) => {
@@ -67,7 +78,7 @@ test.describe("LP Feasible Region Visualiser", () => {
 
     await expect(page.getByLabel("Formula", { exact: true })).toContainText("Z");
     await expect(page.getByLabel("Formula legend")).toContainText("profit per x batch");
-    await expect(page.getByLabel("Formula used")).toContainText("Substitute optimum");
+    await expect(page.getByLabel("Formula used")).toContainText("Substitution: optimum");
     await expect(page.getByLabel("Formula used")).toContainText("profit-units");
     await expect(page.getByLabel("Observation unlocked")).toContainText("optimum at a corner");
   });
