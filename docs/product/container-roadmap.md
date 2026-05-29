@@ -179,8 +179,9 @@ launching more agents.
 
 ### SUTD First Pillar Slices
 
-Status: twenty-one SUTD product slices have landed on `main` and are
-tracked in the build queue with required kernels:
+Status: seventy SUTD product slices are marked `reviewed` in the build queue.
+The representative first pillar slices below remain the reference shape for
+future builds:
 
 | Pillar | Container | Status | Required kernels |
 | --- | --- | --- | --- |
@@ -220,16 +221,24 @@ Latest SUTD wave landed:
 | 10.018 Modelling Space and Systems | `sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.line-integrals-and-conservative-vector-fields` | reviewed |
 | 10.018 Modelling Space and Systems | `sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.divergence-and-curl` | reviewed |
 | 10.018 Modelling Space and Systems | `sutd.10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra.gaussian-elimination-and-linear-systems` | reviewed |
+| 10.022 Modelling Uncertainty | `sutd.10-022-modelling-uncertainty.conditional-probability-and-bayes` | reviewed |
+| 10.022 Modelling Uncertainty | `sutd.10-022-modelling-uncertainty.central-limit-theorem` | reviewed |
+| 10.022 Modelling Uncertainty | `sutd.10-022-modelling-uncertainty.discrete-rvs-geometric-binomial-poisson` | reviewed |
+| 10.022 Modelling Uncertainty | `sutd.10-022-modelling-uncertainty.continuous-rvs-uniform-exponential` | reviewed |
+| 10.022 Modelling Uncertainty | `sutd.10-022-modelling-uncertainty.joint-and-marginal-distributions` | reviewed |
+| 10.022 Modelling Uncertainty | `sutd.10-022-modelling-uncertainty.linear-regression` | reviewed |
+| 10.023 Designing Energy Systems | `sutd.10-023-designing-energy-systems.heat-transfer-modes` | reviewed |
+| 40.012 MSO | `sutd.40-012-manufacturing-and-service-operations-mso.scheduling-and-project-management` | reviewed |
 
 Next SUTD candidates in order:
 
 | Queue ID | Status | Note |
 | --- | --- | --- |
-| `sutd.10-017-technological-world-e-and-m.capacitor-with-dielectric` | in-build | Active PR #194. |
-| `sutd.10-016-science-for-a-sustainable-world.atomic-structure-and-electron-configuration` | in-build | Active PR #192. |
-| `sutd.10-017-technological-world-e-and-m.gauss-law-for-symmetric-distributions` | blocked | Needs `core/electromagnetism` Gauss-law helpers; see issue #211. |
-| `sutd.10-016-science-for-a-sustainable-world.chemical-bonding-and-intermolecular-forces` | ready-for-build | Next chemistry/sustainability candidate after atomic structure lands. |
-| `sutd.10-016-science-for-a-sustainable-world.thermochemistry-and-equilibrium` | ready-for-build | Requires chemistry, thermodynamics, charting, prediction gate, UI sim. |
+| `sutd.10-017-technological-world-e-and-m.capacitor-with-dielectric` | reviewed | Landed after the E and M queue repair. |
+| `sutd.10-016-science-for-a-sustainable-world.atomic-structure-and-electron-configuration` | reviewed | Landed as the first 10.016 science slice. |
+| `sutd.10-017-technological-world-e-and-m.gauss-law-for-symmetric-distributions` | reviewed | Landed after the `core/electromagnetism` Gauss-law helpers. |
+| `sutd.10-022-modelling-uncertainty.maximum-likelihood-estimation` | blocked | Needs a reusable likelihood/MLE kernel; do not inline estimator logic in the container. |
+| Batch F/G kernel-available items | ready-for-build | See `parallel-container-wave-2026-05-28.md` and `container-build-queue.yaml` for the current promoted list. |
 
 ### Build Queue Discipline
 
