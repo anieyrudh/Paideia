@@ -226,6 +226,29 @@ const ObserveStage = () => {
       <div className="sutd-result-card">
         <p className="meta-line">Observe</p>
         <h2>Bayes updating evidence</h2>
+        <figure>
+          <svg aria-label="Prior to posterior probability transition" role="img" viewBox="0 0 320 130" width="100%">
+            <title>Probability bars showing prior prevalence updated into posterior probability</title>
+            <text x="18" y="28" fontSize="12" fill="#23352d">
+              prior
+            </text>
+            <rect x="72" y="16" width="210" height="18" fill="#ecf2ef" rx="4" />
+            <rect x="72" y="16" width={210 * prevalence} height="18" fill="#2d6cdf" rx="4" />
+            <text x="18" y="78" fontSize="12" fill="#23352d">
+              posterior
+            </text>
+            <rect x="72" y="66" width="210" height="18" fill="#ecf2ef" rx="4" />
+            <rect x="72" y="66" width={210 * posterior} height="18" fill="#208a68" rx="4" />
+            <line x1="177" x2="177" y1="36" y2="64" stroke="#d97706" strokeWidth="3" />
+            <text x="194" y="54" fontSize="11" fill="#23352d">
+              positive test
+            </text>
+          </svg>
+          <figcaption>
+            Legend: blue = prior probability, orange = evidence, green = posterior after the
+            positive result.
+          </figcaption>
+        </figure>
         <dl className="sutd-result-grid" aria-label="Posterior readout">
           <div>
             <dt>Posterior after +</dt>
@@ -272,6 +295,7 @@ const ObserveStage = () => {
           Result: P(H|+) = {fmtPct(posterior)}. The value is dimensionless; percentages make the
           probability easier to compare.
         </p>
+        <p>Units: probabilities are dimensionless and displayed as percentages.</p>
         <p className="formula-note">
           This applies because a positive result can come from a true case or a false positive. Bayes
           updating normalizes those two routes after the evidence is known.

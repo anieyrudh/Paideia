@@ -31,6 +31,9 @@ a different scope.
 ## Simulation Standard
 
 Text-only reveal states are not product-quality simulations.
+See `docs/quality/visual-simulation-standard.md` and
+`docs/quality/visual-exemplar-gallery.md` for the enforceable reveal contract
+and approved visual patterns.
 
 Every sim-worthy container must include:
 

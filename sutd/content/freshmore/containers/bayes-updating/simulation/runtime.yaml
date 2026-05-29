@@ -4,3 +4,16 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup:
+    - role: button
+      name: "Set up Bayes scenario"
+    - role: button
+      name: "Reveal posterior"
+  prediction:
+    option_label: "51.4%"
+    rationale: "Bayes combines the prior prevalence with test sensitivity and false positives."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

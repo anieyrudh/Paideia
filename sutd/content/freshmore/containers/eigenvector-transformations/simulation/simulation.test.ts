@@ -1,9 +1,24 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("Eigenvector Transformations", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/?sim=sutd/freshmore/eigenvector-transformations/eigenvector-transformations");
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId: "sutd/freshmore/eigenvector-transformations/eigenvector-transformations",
+      setup: [
+        { role: "button", name: "Set up eigenvector check" },
+        { role: "button", name: "Reveal invariant-direction result" },
+      ],
+      prediction: {
+        optionLabel: "Av = (3, 0), so the vector stays on its line and triples",
+        rationale: "A(1, 0) stays on the x-axis and scales by 3.",
+      },
+    });
   });
 
   test("prediction-gate blocks invariant-direction evidence until commit", async ({ page }) => {

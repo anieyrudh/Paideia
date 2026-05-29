@@ -4,3 +4,16 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup:
+    - role: button
+      name: "Choose trust policy"
+    - role: button
+      name: "Reveal policy cost"
+  prediction:
+    option_label: "70% threshold"
+    rationale: "A middle threshold reduces wrong automated decisions without reviewing everything."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

@@ -231,9 +231,36 @@ const ObserveStage = () => {
     return <p role="alert">This policy could not be evaluated.</p>;
   }
 
+  const acceptedWidth = evidence.value.acceptedCount * 22;
+  const reviewedWidth = evidence.value.reviewedCount * 22;
+  const riskHeight = Math.max(8, evidence.value.meanAcceptedErrorRisk * 240);
+
   return (
     <section aria-label="Observation unlocked" role="region">
       <h2>Trust calibration evidence</h2>
+      <figure>
+        <svg aria-label="Trust calibration reliability diagram" role="img" viewBox="0 0 300 170" width="100%">
+          <title>Coverage and accepted error risk for the selected automation threshold</title>
+          <line x1="42" x2="42" y1="20" y2="138" stroke="#23352d" strokeWidth="2" />
+          <line x1="42" x2="260" y1="138" y2="138" stroke="#23352d" strokeWidth="2" />
+          <rect x="70" y={138 - acceptedWidth} width="44" height={acceptedWidth} fill="#208a68" />
+          <rect x="132" y={138 - reviewedWidth} width="44" height={reviewedWidth} fill="#d97706" />
+          <rect x="204" y={138 - riskHeight} width="44" height={riskHeight} fill="#b42318" />
+          <text x="64" y="158" fontSize="11" fill="#23352d">
+            accepted
+          </text>
+          <text x="128" y="158" fontSize="11" fill="#23352d">
+            reviewed
+          </text>
+          <text x="198" y="158" fontSize="11" fill="#23352d">
+            error risk
+          </text>
+        </svg>
+        <figcaption>
+          Legend: green = automated cases, orange = human-reviewed cases, red = accepted error
+          risk.
+        </figcaption>
+      </figure>
       <p>
         Threshold {format(evidence.value.threshold * 100, 0)}% accepts{" "}
         {evidence.value.acceptedCount} cases and sends {evidence.value.reviewedCount} cases to
@@ -247,9 +274,16 @@ const ObserveStage = () => {
         review cost.
       </p>
       <p>
+        Substitution: automation cost {format(evidence.value.automationCost)} + review cost{" "}
+        {format(evidence.value.reviewCost)}.
+      </p>
+      <p>Units: expected cost units.</p>
+      <p>
         Automation cost = {format(evidence.value.automationCost)}; review cost ={" "}
         {format(evidence.value.reviewCost)}; total expected cost = {format(evidence.value.totalCost)}.
       </p>
+      <p>Result: total expected cost is {format(evidence.value.totalCost)}.</p>
+      <p>Legend: green = accepted, orange = reviewed, red = error risk.</p>
       <button type="button" onClick={() => stage.advance()}>
         Explain trust tradeoff
       </button>

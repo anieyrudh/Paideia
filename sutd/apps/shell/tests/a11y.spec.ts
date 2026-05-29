@@ -1,13 +1,13 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-test("has no critical accessibility violations on the empty SUTD shell", async ({ page }) => {
+const seriousOrCritical = (violations: readonly { readonly impact?: string | null }[]) =>
+  violations.filter((violation) => violation.impact === "serious" || violation.impact === "critical");
+
+test("has no serious or critical accessibility violations on the empty SUTD shell", async ({ page }) => {
   await page.goto("/");
 
   const results = await new AxeBuilder({ page }).analyze();
-  const criticalViolations = results.violations.filter(
-    (violation) => violation.impact === "critical",
-  );
 
-  expect(criticalViolations).toEqual([]);
+  expect(seriousOrCritical(results.violations)).toEqual([]);
 });

@@ -107,9 +107,36 @@ const ObserveStage = () => {
   const c3 = x + 3 * y;
   const z = 3 * x + 2 * y;
   const feasible = c1 <= 10 && c2 <= 14 && c3 <= 18;
+  const px = 36 + x * 16;
+  const py = 164 - y * 16;
 
   return (
     <section aria-label="Observation unlocked" role="region">
+      <figure>
+        <svg aria-label="Feasible region plot" role="img" viewBox="0 0 220 190" width="100%">
+          <title>Linear programming feasible region with current point and objective direction</title>
+          <polygon
+            fill="#dff4e8"
+            points="36,164 36,68 68,52 116,68 164,164"
+            stroke="#256f5d"
+            strokeWidth="2"
+          />
+          <line x1="36" x2="196" y1="164" y2="164" stroke="#23352d" strokeWidth="2" />
+          <line x1="36" x2="36" y1="20" y2="164" stroke="#23352d" strokeWidth="2" />
+          <line x1="36" x2="196" y1="4" y2="164" stroke="#8aa097" strokeDasharray="5 4" />
+          <line x1="36" x2="148" y1="52" y2="164" stroke="#d97706" strokeDasharray="5 4" />
+          <line x1="36" x2="132" y1="68" y2="164" stroke="#2d6cdf" strokeDasharray="5 4" />
+          <line x1="62" x2="100" y1="146" y2="120" stroke="#b42318" strokeWidth="3" />
+          <circle cx={px} cy={py} fill={feasible ? "#208a68" : "#b42318"} r="6" />
+          <text fill="#23352d" fontSize="11" x="108" y="118">
+            objective rises
+          </text>
+        </svg>
+        <figcaption>
+          Legend: green area = feasible region, coloured dashed lines = constraints, dot =
+          selected point, red arrow = objective direction.
+        </figcaption>
+      </figure>
       <p>
         x + y = {x} + {y} = {c1} {"<= 10"} {c1 <= 10 ? "pass" : "fail"}
       </p>
@@ -123,6 +150,11 @@ const ObserveStage = () => {
         Z = 3x + 2y = 3({x}) + 2({y}) = {z} value-units. Interpretation:{" "}
         {feasible ? "feasible point" : "infeasible point"}.
       </p>
+      <p>Formula used: Z = 3x + 2y and each constraint must be less than or equal to its limit.</p>
+      <p>Substitution: current point ({x}, {y}) gives Z = {z}.</p>
+      <p>Units: value-units from the objective.</p>
+      <p>Result: {feasible ? "inside" : "outside"} the feasible region.</p>
+      <p>Legend: green region = feasible, dashed lines = constraints, dot = selected point.</p>
       <button type="button" onClick={() => stage.advance()}>
         Explain
       </button>

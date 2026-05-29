@@ -6,6 +6,7 @@ export default defineConfig({
     "a-level/content/**/containers/**/simulation/**/*.test.ts",
     "shared/content/**/containers/**/simulation/**/*.test.ts",
     "sutd/content/**/containers/**/simulation/**/*.test.ts",
+    "testing/sim-harness/.visual-quality/**/*.spec.ts",
   ],
   fullyParallel: true,
   retries: process.env.CI ? 2 : 0,

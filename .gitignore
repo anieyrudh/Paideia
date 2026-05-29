@@ -6,6 +6,7 @@ build/
 coverage/
 test-results/
 playwright-report/
+testing/sim-harness/.visual-quality/
 .next/
 .vercel/
 .turbo/

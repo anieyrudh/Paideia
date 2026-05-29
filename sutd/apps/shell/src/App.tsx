@@ -48,6 +48,16 @@ const totalPlannedContainers = sutdPillars.reduce(
 );
 
 const plannedIdToContainerId = (id: string): string => id.replace(/\./g, "/");
+const titleFromPlannedId = (id: string): string => {
+  const slug = id.split(".").at(-1) ?? id;
+  return slug
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+};
+
+const matchesSearch = (text: string, searchQuery: string): boolean =>
+  searchQuery.trim().length === 0 || text.toLowerCase().includes(searchQuery.trim().toLowerCase());
 
 const firstContainerForPillar = (pillar: SutdPillar): ShellContainer | null => {
   for (const cluster of pillar.clusters) {
@@ -76,14 +86,19 @@ const pillarForContainer = (container: ShellContainer): SutdPillar => {
 
 const ClusterCard = ({
   cluster,
+  searchQuery,
 }: {
   readonly cluster: SutdPillar["clusters"][number];
+  readonly searchQuery: string;
 }) => {
-  const mappedContainers = cluster.plannedContainerIds.map((containerId) => ({
-    containerId,
-    routeId: plannedIdToContainerId(containerId),
-    container: containerById.get(plannedIdToContainerId(containerId)),
-  }));
+  const mappedContainers = cluster.plannedContainerIds
+    .map((containerId) => ({
+      containerId,
+      routeId: plannedIdToContainerId(containerId),
+      title: containerById.get(plannedIdToContainerId(containerId))?.title ?? titleFromPlannedId(containerId),
+      container: containerById.get(plannedIdToContainerId(containerId)),
+    }))
+    .filter(({ title }) => matchesSearch(`${cluster.title} ${cluster.discipline} ${title}`, searchQuery));
 
   return (
     <article className="cluster-card">
@@ -93,14 +108,14 @@ const ClusterCard = ({
     </div>
     <span data-status={cluster.wrapperStatus}>{cluster.wrapperStatus}</span>
     <ul>
-      {mappedContainers.map(({ containerId, routeId, container }) => (
+      {mappedContainers.map(({ containerId, routeId, title, container }) => (
         <li key={containerId}>
           {container === undefined ? (
-            <span>{containerId}</span>
+            <span>{title}</span>
           ) : (
             <a href={`#${routeId}`}>
-              <strong>{container.title}</strong>
-              <small>{containerId}</small>
+              <strong>{title}</strong>
+              <small>{container.module}</small>
             </a>
           )}
         </li>
@@ -112,11 +127,10 @@ const ClusterCard = ({
 
 const EmptyContainerState = () => (
   <section className="empty-state" aria-labelledby="empty-container-title">
-    <p className="meta-line">generated graph</p>
-    <h2 id="empty-container-title">No SUTD product containers wired yet</h2>
+    <p className="meta-line">Learning map</p>
+    <h2 id="empty-container-title">No lesson is available for this topic yet</h2>
     <p>
-      The shell is ready for generated shared and SUTD wrapper containers once
-      container manifests land under the SUTD branch.
+      Pick another topic group or search for a concept that is ready to explore.
     </p>
   </section>
 );
@@ -180,6 +194,7 @@ const ContainerPreview = ({
 export const App = () => {
   const [resetVersion, setResetVersion] = useState(0);
   const [route, setRoute] = useState<HashRoute>(() => parseHashRoute());
+  const [searchQuery, setSearchQuery] = useState("");
   const routeContainer = useMemo(
     () => (route.kind === "container" ? containerById.get(route.id) ?? null : null),
     [route],
@@ -228,6 +243,16 @@ export const App = () => {
             Choose a pillar, open a concept, and use the lab to connect the
             model, formula, and engineering decision.
           </p>
+          <label className="hero-search">
+            <span>Search SUTD concepts</span>
+            <input
+              aria-label="Search SUTD concepts"
+              onChange={(event) => setSearchQuery(event.currentTarget.value)}
+              placeholder="Try Bayes, PID, graph search..."
+              type="search"
+              value={searchQuery}
+            />
+          </label>
         </div>
         <dl className="stats-grid" aria-label="SUTD shell status">
           <div>
@@ -275,7 +300,7 @@ export const App = () => {
 
           <div className="cluster-grid">
             {activePillar.clusters.map((cluster) => (
-              <ClusterCard cluster={cluster} key={cluster.id} />
+              <ClusterCard cluster={cluster} key={cluster.id} searchQuery={searchQuery} />
             ))}
           </div>
 

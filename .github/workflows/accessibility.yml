@@ -79,12 +79,12 @@ jobs:
             exit 0
           fi
           set -e
-          # Critical issues are determined by the axe rule impact level.
+          # Serious and critical issues are determined by the axe rule impact level.
           # The Playwright project must export a script "test:a11y" that fails on any
-          # 'critical' impact violation. CI surfaces stderr / exit code.
+          # 'serious' or 'critical' impact violation. CI surfaces stderr / exit code.
           if pnpm -w run test:a11y; then
-            echo "axe scan: no critical violations"
+            echo "axe scan: no serious or critical violations"
           else
-            echo "axe scan: CRITICAL accessibility violations found" >&2
+            echo "axe scan: SERIOUS or CRITICAL accessibility violations found" >&2
             exit 1
           fi

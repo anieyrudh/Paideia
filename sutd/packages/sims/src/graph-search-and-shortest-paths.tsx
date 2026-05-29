@@ -88,6 +88,15 @@ const distanceTo = (
 
 const formatOrder = (order: readonly string[]): string => order.join(" → ");
 
+const nodePositions: Record<string, { readonly x: number; readonly y: number }> = {
+  A: { x: 38, y: 78 },
+  B: { x: 104, y: 38 },
+  C: { x: 104, y: 118 },
+  D: { x: 188, y: 34 },
+  E: { x: 188, y: 112 },
+  F: { x: 268, y: 78 },
+};
+
 export const graphSearchModel = (mode: TraversalMode): KernelResult<GraphSearchModel> => {
   const bfs = breadthFirstSearch(exampleGraph, "A");
   if (!bfs.ok) return bfs;
@@ -149,9 +158,69 @@ const ObserveStage = () => {
     return <p role="alert">The graph search model could not evaluate this graph.</p>;
   }
 
+  const dijkstraEdges = new Set(
+    model.value.dijkstraPath.slice(0, -1).map((node, index) => `${node}-${model.value.dijkstraPath[index + 1] ?? ""}`),
+  );
+  const visited = new Set(model.value.traversalOrder);
+
   return (
     <section aria-label="Observation unlocked" role="region">
       <h2>Search evidence</h2>
+      <figure>
+        <svg aria-label="Graph traversal diagram" role="img" viewBox="0 0 310 160" width="100%">
+          <title>Directed graph with visited nodes and highlighted weighted path</title>
+          <defs>
+            <marker id="arrowhead" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="3">
+              <path d="M0,0 L8,3 L0,6 Z" fill="#34423a" />
+            </marker>
+          </defs>
+          {exampleGraph.edges.map((edge) => {
+            const start = nodePositions[edge.source] ?? { x: 0, y: 0 };
+            const end = nodePositions[edge.target] ?? { x: 0, y: 0 };
+            const highlighted = dijkstraEdges.has(`${edge.source}-${edge.target}`);
+            return (
+              <g key={`${edge.source}-${edge.target}`}>
+                <line
+                  markerEnd="url(#arrowhead)"
+                  stroke={highlighted ? "#d97706" : "#8aa097"}
+                  strokeWidth={highlighted ? 4 : 2}
+                  x1={start.x}
+                  x2={end.x}
+                  y1={start.y}
+                  y2={end.y}
+                />
+                <text
+                  fill="#23352d"
+                  fontSize="11"
+                  x={(start.x + end.x) / 2}
+                  y={(start.y + end.y) / 2 - 4}
+                >
+                  {edge.weight}
+                </text>
+              </g>
+            );
+          })}
+          {Object.entries(nodePositions).map(([id, point]) => (
+            <g key={id}>
+              <circle
+                cx={point.x}
+                cy={point.y}
+                fill={visited.has(id) ? "#dff4e8" : "#ffffff"}
+                r="15"
+                stroke={model.value.dijkstraPath.includes(id) ? "#d97706" : "#256f5d"}
+                strokeWidth="3"
+              />
+              <text fill="#17251f" fontSize="13" fontWeight="700" textAnchor="middle" x={point.x} y={point.y + 5}>
+                {id}
+              </text>
+            </g>
+          ))}
+        </svg>
+        <figcaption>
+          Green nodes have been visited by {model.value.mode}; orange edges are the weighted
+          Dijkstra path to F.
+        </figcaption>
+      </figure>
       <p>Traversal mode: {model.value.mode}</p>
       <p>Traversal order from node A: {formatOrder(model.value.traversalOrder)}</p>
       <p>Unweighted BFS path to F uses {model.value.bfsDistanceToF} edges.</p>
@@ -160,6 +229,10 @@ const ObserveStage = () => {
         cost {model.value.dijkstraDistance}.
       </p>
       <p>Formula used: total path cost = sum of edge weights along the chosen path.</p>
+      <p>Substitution: A → B → E → F = 2 + 1 + 3 = {model.value.dijkstraDistance}.</p>
+      <p>Units: edge weights are cost units.</p>
+      <p>Result: weighted shortest path cost is {model.value.dijkstraDistance}.</p>
+      <p>Legend: orange = Dijkstra path, green fill = traversal visited node, grey = other edge.</p>
       <button type="button" onClick={() => stage.advance()}>
         Explain difference
       </button>

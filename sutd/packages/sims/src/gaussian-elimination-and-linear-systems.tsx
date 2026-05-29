@@ -105,6 +105,41 @@ export const gaussianEvidence = (state: GaussianState) => {
 const MatrixBlock = ({ result }: { readonly result: NonNullable<ReturnType<typeof gaussianEvidence> extends KernelResult<infer T> ? T : never> }) => (
   <div className="sutd-result-card">
     <h2>Row-reduction evidence</h2>
+    <svg aria-label="Row-operation and solution-point visual" role="img" viewBox="0 0 320 150" width="100%">
+      <title>Augmented matrix rows, pivot highlight, and solution point</title>
+      <rect x="24" y="20" width="118" height="82" fill="#ecf2ef" rx="8" stroke="#8aa097" />
+      <rect x="34" y="30" width="28" height="24" fill="#d97706" rx="4" />
+      <text x="42" y="47" fontSize="12" fill="#17251f">
+        {fmt(result.augmentedStart[0][0])}
+      </text>
+      <text x="74" y="47" fontSize="12" fill="#17251f">
+        {fmt(result.augmentedStart[0][1])}
+      </text>
+      <text x="112" y="47" fontSize="12" fill="#17251f">
+        {fmt(result.augmentedStart[0][2])}
+      </text>
+      <text x="42" y="82" fontSize="12" fill="#17251f">
+        {fmt(result.augmentedStart[1][0])}
+      </text>
+      <text x="74" y="82" fontSize="12" fill="#17251f">
+        {fmt(result.augmentedStart[1][1])}
+      </text>
+      <text x="112" y="82" fontSize="12" fill="#17251f">
+        {fmt(result.augmentedStart[1][2])}
+      </text>
+      <path d="M154 62 H196" stroke="#23352d" strokeWidth="3" markerEnd="url(#gaussian-arrow)" />
+      <defs>
+        <marker id="gaussian-arrow" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="3">
+          <path d="M0,0 L8,3 L0,6 Z" fill="#23352d" />
+        </marker>
+      </defs>
+      <rect x="208" y="20" width="82" height="82" fill="#dff4e8" rx="8" stroke="#208a68" />
+      <circle cx={result.solution ? 248 + result.solution[0] * 8 : 248} cy={result.solution ? 72 - result.solution[1] * 8 : 72} fill="#208a68" r="6" />
+      <text x="206" y="128" fontSize="12" fill="#23352d">
+        solution point
+      </text>
+    </svg>
+    <p>Legend: orange = first pivot, arrow = row operation, green dot = solution point.</p>
     <pre aria-label="Augmented matrix">{`[ ${fmt(result.augmentedStart[0][0])}  ${fmt(result.augmentedStart[0][1])} | ${fmt(result.augmentedStart[0][2])} ]\n[ ${fmt(result.augmentedStart[1][0])}  ${fmt(result.augmentedStart[1][1])} | ${fmt(result.augmentedStart[1][2])} ]`}</pre>
     <pre aria-label="Echelon matrix">{`[ ${fmt(result.rowEchelon[0][0])}  ${fmt(result.rowEchelon[0][1])} | ${fmt(result.rowEchelon[0][2])} ]\n[ ${fmt(result.rowEchelon[1][0])}  ${fmt(result.rowEchelon[1][1])} | ${fmt(result.rowEchelon[1][2])} ]`}</pre>
     <dl className="sutd-result-grid" aria-label="Linear system readout">
@@ -128,12 +163,14 @@ const Observation = ({ result }: { readonly result: NonNullable<ReturnType<typeo
   <section role="region" aria-label="Observation unlocked" className="sutd-sim-panel">
     <MatrixBlock result={result} />
     <section className="sutd-formula-card" aria-label="Formula panel">
-      <h3>Formula</h3>
+      <h3>Formula used</h3>
       <pre aria-label="LaTeX formula source">
         <code>{String.raw`\left[\begin{array}{cc|c}a&b&e\\c&d&f\end{array}\right]
 \quad R_2\leftarrow R_2-\frac{c}{a}R_1`}</code>
       </pre>
       <dl aria-label="Formula legend">
+        <dt>Legend</dt>
+        <dd>pivot and determinant cues identify the row-reduction status.</dd>
         <dt>pivot</dt>
         <dd>nonzero entry used to clear a column</dd>
         <dt>det A</dt>
@@ -141,6 +178,7 @@ const Observation = ({ result }: { readonly result: NonNullable<ReturnType<typeo
       </dl>
       <p>Substitution: determinant = {fmt(result.determinant)}; classification = {result.classification}.</p>
       <p>Units: equation coefficients are unitless in this algebra model.</p>
+      <p>Result: {result.solution ? `x = ${fmt(result.solution[0])}, y = ${fmt(result.solution[1])}` : result.classification}.</p>
       <p>Interpretation: {result.steps[result.steps.length - 1]}</p>
     </section>
   </section>

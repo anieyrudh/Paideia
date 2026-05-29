@@ -343,6 +343,46 @@ const EigenpairList = ({ pairs }: { readonly pairs: readonly Eigenpair2[] | null
   );
 };
 
+const planePoint = ([x, y]: readonly [number, number]): { readonly x: number; readonly y: number } => ({
+  x: 130 + x * 26,
+  y: 130 - y * 26,
+});
+
+const EigenvectorPlane = ({
+  transformed,
+  vector,
+}: {
+  readonly transformed: readonly [number, number];
+  readonly vector: readonly [number, number];
+}) => {
+  const input = planePoint(vector);
+  const output = planePoint(transformed);
+
+  return (
+    <figure>
+      <svg aria-label="Eigenvector invariant direction diagram" role="img" viewBox="0 0 260 260" width="100%">
+        <title>Input vector and transformed output compared on the same coordinate plane</title>
+        {[-3, -2, -1, 0, 1, 2, 3].map((tick) => (
+          <g key={tick}>
+            <line x1="26" x2="234" y1={130 - tick * 26} y2={130 - tick * 26} stroke="#d8e2dc" />
+            <line x1={130 + tick * 26} x2={130 + tick * 26} y1="26" y2="234" stroke="#d8e2dc" />
+          </g>
+        ))}
+        <line x1="26" x2="234" y1="130" y2="130" stroke="#23352d" strokeWidth="2" />
+        <line x1="130" x2="130" y1="26" y2="234" stroke="#23352d" strokeWidth="2" />
+        <line x1="130" x2={input.x} y1="130" y2={input.y} stroke="#208a68" strokeWidth="4" />
+        <line x1="130" x2={output.x} y1="130" y2={output.y} stroke="#d97706" strokeWidth="5" />
+        <circle cx={input.x} cy={input.y} fill="#208a68" r="5" />
+        <circle cx={output.x} cy={output.y} fill="#d97706" r="5" />
+      </svg>
+      <figcaption>
+        Legend: green = candidate direction v, orange = transformed output Av. An eigenvector keeps
+        both arrows on one line.
+      </figcaption>
+    </figure>
+  );
+};
+
 const ObserveStage = () => {
   const stage = useStage();
   const state = currentState(useSimState<Partial<EigenvectorState>>());
@@ -370,6 +410,7 @@ const ObserveStage = () => {
       <div className="sutd-result-card">
         <p className="meta-line">Observe</p>
         <h2>Invariant-direction evidence</h2>
+        <EigenvectorPlane transformed={evidence.value.transformed} vector={evidence.value.vector} />
         <dl className="sutd-result-grid" aria-label="Eigenvector readout">
           <div>
             <dt>Matrix-vector output</dt>
@@ -439,6 +480,7 @@ const ObserveStage = () => {
         <p>
           Projection scale: lambda = ((Av) dot v) / (v dot v) = {fmt(check.lambda)} times.
         </p>
+        <p>Units: vector entries use coordinate units; lambda is a dimensionless scale factor.</p>
         <p>
           Result: residual r = |Av - lambda v| = {coordinate(check.residual)}, so v {verdict}.
         </p>

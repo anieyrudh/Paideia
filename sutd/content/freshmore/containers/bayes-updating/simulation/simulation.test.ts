@@ -1,9 +1,24 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("Bayes Updating", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("/?sim=sutd/freshmore/bayes-updating/bayes-updating");
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId: "sutd/freshmore/bayes-updating/bayes-updating",
+      setup: [
+        { role: "button", name: "Set up Bayes scenario" },
+        { role: "button", name: "Reveal posterior" },
+      ],
+      prediction: {
+        optionLabel: "51.4%",
+        rationale: "Bayes combines the prior prevalence with test sensitivity and false positives.",
+      },
+    });
   });
 
   test("prediction-gate blocks posterior until commit", async ({ page }) => {

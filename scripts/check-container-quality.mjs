@@ -94,7 +94,7 @@ function checkPrompt(value, label, failures) {
   }
 }
 
-function checkPredictionGateTest(container, hasPrediction, failures) {
+function checkPredictionGateTest(container, hasPrediction, requiresProductRevealHelper, failures) {
   if (!hasPrediction) return;
 
   const relativeContainer = relative(REPO_ROOT, container);
@@ -107,6 +107,16 @@ function checkPredictionGateTest(container, hasPrediction, failures) {
   if (!test.includes("Observation unlocked") || !test.includes("toHaveCount(0)")) {
     failures.push(
       `${relative(REPO_ROOT, testPath)} must assert the observation region is absent before commit and visible after commit.`,
+    );
+  }
+
+  if (
+    requiresProductRevealHelper &&
+    !test.includes("expectProductSimulationReveal") &&
+    !test.includes("expectRevealedSimulationVisual")
+  ) {
+    failures.push(
+      `${relative(REPO_ROOT, testPath)} must call expectProductSimulationReveal or expectRevealedSimulationVisual so revealed sims cannot stay text-only.`,
     );
   }
 }
@@ -127,7 +137,9 @@ function checkContainers(failures) {
     }
 
     const hasPrediction = Boolean(manifest.package_predict || simulation?.predict);
-    checkPredictionGateTest(container, hasPrediction, failures);
+    const runtimePath = join(container, "simulation", "runtime.yaml");
+    const runtime = isFile(runtimePath) ? readYaml(runtimePath, failures) : null;
+    checkPredictionGateTest(container, hasPrediction, Boolean(runtime?.visual_quality), failures);
   }
 }
 

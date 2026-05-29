@@ -90,6 +90,32 @@ button {
   max-width: 62ch;
 }
 
+.hero-search {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1.2rem;
+  max-width: 34rem;
+}
+
+.hero-search span {
+  font-weight: 900;
+}
+
+.hero-search input {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font: inherit;
+  min-height: 44px;
+  padding: 0.68rem 0.8rem;
+}
+
+.hero-search input:focus-visible {
+  border-color: var(--accent);
+  outline: 3px solid rgba(15, 107, 104, 0.18);
+  outline-offset: 2px;
+}
+
 .meta-line,
 .pillar-nav small,
 .panel-header p,

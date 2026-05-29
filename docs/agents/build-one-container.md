@@ -21,6 +21,8 @@ Read first:
 - AGENTS.md
 - docs/container-spec.md
 - docs/product/container-quality-rubric.md
+- docs/quality/visual-simulation-standard.md
+- docs/quality/visual-exemplar-gallery.md
 - docs/product/core-foundation-gap-matrix.md
 - docs/product/container-roadmap.md
 - docs/product/container-table-queue.yaml
@@ -69,6 +71,9 @@ Simulation quality:
 - Prediction gate blocks reveal before commit.
 - Revealed state contains a real visual: chart, plot, SVG diagram, canvas, 2D
   scene, 3D scene, or equivalent interactive visual.
+- Add `visual_quality` metadata in `simulation/runtime.yaml` and make
+  `simulation.test.ts` call `expectProductSimulationReveal` or
+  `expectRevealedSimulationVisual`.
 - Direct manipulation visibly changes the model.
 - Formula panel shows formula, legend, substitution, units, result, and plain
   language interpretation.
