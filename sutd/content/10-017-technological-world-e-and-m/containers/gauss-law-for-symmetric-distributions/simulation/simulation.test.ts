@@ -6,12 +6,30 @@
  */
 
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
+
+const simId =
+  "sutd/10-017-technological-world-e-and-m/gauss-law-for-symmetric-distributions/gauss-law-flux-surface-lab";
 
 test.describe("Gauss Law for Symmetric Distributions", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(
-      "/?sim=sutd/10-017-technological-world-e-and-m/gauss-law-for-symmetric-distributions/gauss-law-flux-surface-lab",
-    );
+    await page.goto(`/?sim=${simId}`);
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId,
+      setup: [
+        { role: "button", name: "Choose Gaussian surface" },
+        { role: "button", name: "Reveal flux readout" },
+      ],
+      prediction: {
+        optionLabel:
+          "The total flux stays the same because it depends only on enclosed charge.",
+        rationale:
+          "Total flux is set by enclosed charge, while area changes field strength.",
+      },
+    });
   });
 
   test("prediction-gate blocks flux reveal until commit", async ({ page }) => {

@@ -3,3 +3,16 @@ runtime:
   export: CoulombLawAndDiscreteChargeFields
   route: sutd/10-017-technological-world-e-and-m/coulomb-s-law-and-discrete-charge-fields/coulomb-field-vector-lab
   prediction_gate: required
+visual_quality:
+  setup:
+    - role: button
+      name: "Set charge position"
+    - role: button
+      name: "Reveal field result"
+  prediction:
+    option_label: "To the left, because a negative test charge feels force opposite to the electric field."
+    rationale: "The positive source sets a rightward field, but the negative test charge feels force opposite to the field."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

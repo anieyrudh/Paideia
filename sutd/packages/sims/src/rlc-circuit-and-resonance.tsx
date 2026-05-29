@@ -214,12 +214,14 @@ const FormulaPanel = ({ evidence }: { readonly evidence: RlcEvidence }) => {
 \color{#f97316}{I_{\mathrm{rms}}} =
 \frac{\color{#0f766e}{V_{\mathrm{rms}}}}{|\color{#dc2626}{Z}|}`}</code>
       </pre>
+      <p className="formula-note">Legend</p>
       <dl className="formula-legend" aria-label="Formula legend">
         <div><dt><span aria-hidden="true" className="legend-swatch legend-swatch--blue" /> f0</dt><dd>resonant frequency, hertz</dd></div>
         <div><dt><span aria-hidden="true" className="legend-swatch legend-swatch--purple" /> L, XL</dt><dd>inductance and inductive reactance</dd></div>
         <div><dt><span aria-hidden="true" className="legend-swatch legend-swatch--green" /> C, XC</dt><dd>capacitance and capacitive reactance</dd></div>
         <div><dt><span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> I</dt><dd>RMS current, ampere</dd></div>
       </dl>
+      <p className="formula-note">Substitution</p>
       <pre className="formula-code" aria-label="RLC resonance substitution">
         <code>{String.raw`f_0 = \frac{1}{2\pi\sqrt{(${fmt(inductanceHenrys, 3)}\ H)(${fmt(capacitanceFarads, 6)}\ F)}}
 = ${fmt(model.resonantFrequencyHertz, 2)}\ Hz
@@ -236,6 +238,10 @@ X_C = \frac{1}{2\pi(${fmt(state.frequencyHertz, 1)}\ Hz)(${fmt(capacitanceFarads
 I_{\mathrm{rms}} = \frac{${fmt(state.sourceVoltageRmsVolts, 1)}\ V}{${fmt(model.impedanceMagnitudeOhms, 2)}\ \Omega}
 = ${fmt(model.currentRmsAmps, 3)}\ A`}</code>
       </pre>
+      <p>
+        Units: frequency is in Hz, inductance is in H, capacitance is in F,
+        resistance and impedance are in ohm, voltage is in V RMS, and current is in A.
+      </p>
       <p>
         Result: Q = {fmt(model.qualityFactor, 2)}, bandwidth ={" "}
         {fmt(model.bandwidthHertz, 2)} Hz, current phase ={" "}

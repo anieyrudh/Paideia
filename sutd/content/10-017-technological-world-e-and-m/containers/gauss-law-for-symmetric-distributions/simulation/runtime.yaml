@@ -11,3 +11,16 @@ runtime:
     dt: n/a
     steps: n/a
   reveal_requires_prediction: true
+visual_quality:
+  setup:
+    - role: button
+      name: "Choose Gaussian surface"
+    - role: button
+      name: "Reveal flux readout"
+  prediction:
+    option_label: "The total flux stays the same because it depends only on enclosed charge."
+    rationale: "Total flux is set by enclosed charge, while area changes field strength."
+  reveal:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

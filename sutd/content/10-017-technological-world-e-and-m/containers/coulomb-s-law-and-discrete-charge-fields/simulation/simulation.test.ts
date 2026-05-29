@@ -1,11 +1,29 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
+
+const simId =
+  "sutd/10-017-technological-world-e-and-m/coulomb-s-law-and-discrete-charge-fields/coulomb-field-vector-lab";
 
 test.describe("Coulomb's Law and Discrete Charge Fields", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto(
-      "/?sim=sutd/10-017-technological-world-e-and-m/coulomb-s-law-and-discrete-charge-fields/coulomb-field-vector-lab",
-    );
+    await page.goto(`/?sim=${simId}`);
+  });
+
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId,
+      setup: [
+        { role: "button", name: "Set charge position" },
+        { role: "button", name: "Reveal field result" },
+      ],
+      prediction: {
+        optionLabel:
+          "To the left, because a negative test charge feels force opposite to the electric field.",
+        rationale:
+          "The positive source sets a rightward field, but the negative test charge feels force opposite to the field.",
+      },
+    });
   });
 
   test("prediction-gate blocks field evidence until commit", async ({ page }) => {
