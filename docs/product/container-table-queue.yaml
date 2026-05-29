@@ -2915,7 +2915,7 @@ entries:
       - accessibility
       - sources-license
   - queue_id: "sutd.40-012-manufacturing-and-service-operations-mso.scheduling-and-project-management"
-    status: "ready-for-build"
+    status: "in-build"
     concept_title: "Scheduling and Project Management"
     curriculum: "sutd"
     subject: "40-012-manufacturing-and-service-operations-mso"

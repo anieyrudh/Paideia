@@ -1,0 +1,7 @@
+flowchart LR
+  durations["Activity durations"] --> cpm["CPM forward pass"]
+  precedence["Precedence constraints"] --> cpm
+  cpm --> slack["Slack calculation"]
+  slack --> critical["Critical path"]
+  critical --> risk["Launch-date risk"]
+  critical --> capacity["Capacity planning"]

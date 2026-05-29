@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title">
+  <title id="title">Critical path network thumbnail</title>
+  <rect width="640" height="360" fill="#f6f3ec"/>
+  <g fill="#edf4f7" stroke="#497180" stroke-width="6">
+    <rect x="48" y="140" width="110" height="70" rx="10"/>
+    <rect x="220" y="72" width="110" height="70" rx="10"/>
+    <rect x="220" y="218" width="110" height="70" rx="10"/>
+    <rect x="394" y="140" width="110" height="70" rx="10"/>
+  </g>
+  <g stroke="#b6402a" stroke-width="8" stroke-linecap="round">
+    <path d="M158 175h62"/>
+    <path d="M330 107l64 68"/>
+    <path d="M504 175h78"/>
+  </g>
+  <text x="72" y="184" font-family="Inter,Arial" font-size="32" font-weight="700" fill="#14242b">A</text>
+  <text x="247" y="116" font-family="Inter,Arial" font-size="32" font-weight="700" fill="#14242b">B</text>
+  <text x="247" y="262" font-family="Inter,Arial" font-size="32" font-weight="700" fill="#14242b">C</text>
+  <text x="421" y="184" font-family="Inter,Arial" font-size="32" font-weight="700" fill="#14242b">D</text>
+</svg>

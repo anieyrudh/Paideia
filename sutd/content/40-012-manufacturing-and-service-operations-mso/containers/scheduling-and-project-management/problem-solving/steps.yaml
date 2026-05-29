@@ -1,0 +1,13 @@
+steps:
+  - id: list-activities
+    prompt: "List activities, durations, and immediate predecessors."
+    expected_action: "Create an activity-on-node table before calculating."
+  - id: forward-pass
+    prompt: "Compute earliest start and finish for each activity."
+    expected_action: "Use the maximum predecessor finish time for each start."
+  - id: backward-pass
+    prompt: "Compute latest finish and latest start from the launch date."
+    expected_action: "Work backward from the project duration."
+  - id: slack-critical
+    prompt: "Identify slack and the critical path."
+    expected_action: "Mark zero-slack activities as launch-controlling."

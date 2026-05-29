@@ -1,0 +1,41 @@
+schema_version: "1.0.0"
+concept_id: scheduling-and-project-management
+prerequisites:
+  - id: activity-durations
+    title: "Activity Durations"
+    relationship: "Each node duration feeds the CPM forward pass."
+    status: planned
+  - id: precedence-constraints
+    title: "Precedence Constraints"
+    relationship: "Predecessor edges determine which finish times constrain a start."
+    status: planned
+downstream:
+  - id: capacity-planning
+    title: "Capacity Planning"
+    relationship: "Capacity decisions change activity durations and feasible parallelism."
+    status: planned
+  - id: service-operations
+    title: "Service Operations"
+    relationship: "Service launches use the same dependency and slack reasoning."
+    status: planned
+siblings:
+  - id: markov-chain-steady-state
+    title: "Markov Chain Steady State"
+    relationship: "Both turn operations structure into quantitative operating evidence."
+    status: available
+misconception_graph:
+  nodes:
+    - id: longest-activity
+      label: "The longest activity is assumed to control completion"
+    - id: sum-everything
+      label: "Parallel paths are added as if they were serial"
+    - id: slack-ignored
+      label: "Positive slack is ignored when judging delay risk"
+  edges:
+    - from: longest-activity
+      to: slack-ignored
+      label: "both hide network dependency"
+    - from: sum-everything
+      to: longest-activity
+      label: "both confuse path length with activity duration"
+mermaid_source: graph.mmd

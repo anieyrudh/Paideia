@@ -25,6 +25,7 @@
     { "path": "../../../core/plotting" },
     { "path": "../../../core/prediction-gate" },
     { "path": "../../../core/probability-stats" },
+    { "path": "../../../core/scheduling" },
     { "path": "../../../core/shared" },
     { "path": "../../../core/sim-runtime" },
     { "path": "../../../core/ui-sim" },

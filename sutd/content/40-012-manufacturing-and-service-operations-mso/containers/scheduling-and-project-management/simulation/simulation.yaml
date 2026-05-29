@@ -1,0 +1,43 @@
+schema_version: "1.0.0"
+id: "schedule-critical-path-lab"
+title: "Schedule Critical Path Lab"
+module: "@paideia/sutd-sims/scheduling-and-project-management"
+symbol: "SchedulingAndProjectManagement"
+interaction_type: "systems-flow-diagram"
+prediction_gate: true
+kernel_deps:
+  - "core/content-schema"
+  - "core/shared"
+  - "core/scheduling"
+  - "core/algorithm-trace"
+  - "core/prediction-gate"
+  - "core/ui-sim"
+manipulate:
+  controls:
+    - id: "prototype-duration"
+      label: "Prototype duration"
+      kind: "slider"
+      kernel_binding: "state.prototype"
+      bounds: { min: 1, max: 12, step: 1 }
+    - id: "tooling-duration"
+      label: "Tooling duration"
+      kind: "slider"
+      kernel_binding: "state.tooling"
+      bounds: { min: 1, max: 12, step: 1 }
+    - id: "training-duration"
+      label: "Training duration"
+      kind: "slider"
+      kernel_binding: "state.training"
+      bounds: { min: 1, max: 12, step: 1 }
+observe:
+  renderers:
+    - id: "critical-path-readout"
+      module: "@paideia/sutd-sims/scheduling-and-project-management"
+      symbol: "SchedulingAndProjectManagement"
+      props_binding: "Render CPM network, critical path, slack table, formula legend, substitution, units, and interpretation."
+explain:
+  prompt: "Explain why an activity with positive slack can slip without moving launch."
+  socratic: true
+  expected_misconceptions_surfaced:
+    - "The longest activity always controls project duration."
+    - "Every activity delay changes the completion date."
