@@ -1,147 +1,143 @@
-# Paideia UI/UX Audit Delta
+# Paideia UI/UX Audit Delta - Post #280 Refresh
 
 Date: 2026-05-29
-Baseline: `main` after PR #275 (`test: enforce visual simulation reveal quality`)
+Baseline: `main` at `8db31fa`, after #273 and the visual-quality backfill PRs #277-#280.
 
 ## Executive summary
 
-The immediate visual-simulation P0s from the previous audit are resolved on the enforceable path. The new `pnpm container:visual-quality` gate checks 8 formerly weak routes and all 8 now pass the product reveal contract: prediction is blocked before commit, observation unlocks after commit, a visible model is present, and formula/substitution/units/result/legend evidence is available.
+The enforced learner-facing path is healthier than the previous audit snapshot. #277-#280 landed the strongest-sim metadata backfill, A-Level copy polish, A-Level formula/stage normalization, and the first SUTD 10.017 metadata tranche. The generic visual-quality gate now checks 25 routes, and all 25 pass the product reveal contract.
 
-The product is not ready for another large container-production wave yet. The remaining risk is coverage and consistency: only 8 of 92 registered simulation routes declare `simulation/runtime.yaml` `visual_quality` metadata. Many older routes have their own route-specific tests and visuals, but they are not yet covered by the generic product-quality contract. That is now a P1 standards-backfill problem rather than the previous P0 text-only-route problem.
+No current P0 was reproduced on the audited path. `container:visual-quality`, the sim harness, shell tests, and a11y checks all pass on current `main`.
 
-## Checks rerun on main
+The remaining risk is standards coverage, not a known broken route. There are 92 registered simulation routes and 25 have `simulation/runtime.yaml` `visual_quality` metadata. The next work should raise coverage in small tranches, especially SUTD 10.018 and 10.019 routes that already have useful simulations but are not yet verified by the generic product reveal helper.
 
-| Check | Result | Notes |
+## Checks rerun on current main
+
+| Check | Result | Evidence |
 | --- | --- | --- |
-| `pnpm container:quality` | pass | Static quality gate accepts the new helper requirement for metadata-backed routes. |
-| `pnpm container:visual-quality` | pass | 8 metadata-backed routes passed. Local sandbox required elevated localhost binding. |
-| `pnpm test:a11y` | pass | A-Level shell: 8 passed. SUTD shell: 1 passed. Serious and critical axe violations are blocked. |
-| `pnpm -F @paideia/sutd-shell test` | pass | 7 passed, including search and no raw IDs on default SUTD screen. |
-| `pnpm -F @paideia/a-level-shell test` | pass | 16 passed, including navigation, search, and representative revealed sims. |
+| `pnpm graph:check` | pass | Generated graph files are fresh. |
+| `pnpm container:validate` | pass | 92 containers passed. |
+| `pnpm container:visual-quality` | pass | 25 routes checked, 25 passed. |
+| `pnpm -F @paideia/sim-harness test` | pass | 335 tests passed. |
+| `pnpm -F @paideia/a-level-shell test` | pass | 17 tests passed. |
+| `pnpm -F @paideia/sutd-shell test` | pass | 7 tests passed. |
+| `pnpm test:a11y` | pass | A-Level shell: 8 tests passed. SUTD shell: 1 test passed. |
+| `pnpm roadmap:validate` | pass | 143 queue entries validated after #273. |
+| `pnpm agent:validate` | pass | Agent docs validated after #273. |
+
+## Browser spot-checks
+
+Representative browser inspection was limited to shells and weak-route candidates because the automated harness now covers the full registered route set.
+
+| Surface | Result | Notes |
+| --- | --- | --- |
+| A-Level shell | pass | Shows `All curricula`, search, and student-facing concept language. No learner-facing `container`, `generated`, `queue`, or raw dot-separated IDs were visible on the default screen. |
+| SUTD shell | pass | Shows `All curricula`, search, course filters, and student-facing cluster cards. No learner-facing raw package/queue IDs were visible on the default screen. |
+| SUTD Gauss route | pass | Sim harness route loads with a prediction surface and no raw internal IDs in the initial learner-facing text. |
+| SUTD double/triple integrals route | pass with warning | Route loads with a prediction surface and student-facing title. It remains a good candidate for the next `visual_quality` metadata/helper backfill tranche. |
+
+Screenshots were not committed because no new visual failure evidence needed to be preserved in git.
 
 ## Route coverage
 
 | Metric | Count |
 | --- | ---: |
 | Registered sim-harness routes | 92 |
-| `simulation/simulation.test.ts` files | 92 |
-| Routes with `visual_quality` metadata | 8 |
-| Files calling `expectProductSimulationReveal` | 8 route tests plus the helper definition |
-| Files calling `expectRevealedSimulationVisual` | 1 route test plus the helper definition |
+| `simulation/runtime.yaml` files | 92 |
+| Routes with `visual_quality` metadata | 25 |
+| Routes still relying on route-specific tests only | 67 |
 
-## P0 findings
+## Completed remediation since the prior report
 
-No current P0 was reproduced on the post-#275 audit path.
+| Work | Status | Impact |
+| --- | --- | --- |
+| Strongest existing sims metadata/helper backfill | done | Raised generic reveal coverage for known-strong SUTD/shared routes. |
+| A-Level shell copy polish | done | Removed learner-facing `container` language from the default shell surface. |
+| A-Level formula/stage normalization | done | Brought high-traffic A-Level routes under the product reveal contract. |
+| SUTD 10.017 first tranche | done | Added metadata/helper coverage for Coulomb, Gauss-law, and RLC routes. |
 
-The 8 previously identified weak routes now pass the product reveal contract:
+## Current P0 findings
 
-- `a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab`
-- `sutd/csd/graph-search-and-shortest-paths/graph-search-and-shortest-paths`
-- `sutd/freshmore/vector-transformations/vector-transformations`
-- `sutd/freshmore/eigenvector-transformations/eigenvector-transformations`
-- `sutd/freshmore/bayes-updating/bayes-updating`
-- `sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/gaussian-elimination-and-linear-systems/gaussian-elimination-and-linear-systems`
-- `sutd/dai/trust-calibration/trust-calibration`
-- `sutd/esd/linear-programming-feasible-region/linear-programming-feasible-region`
+No current P0 was reproduced by the post-#280 gates.
 
-## P1 findings
+Important caveat: the 67 routes without `visual_quality` metadata are not automatically proven to satisfy the generic product reveal contract. They are not being marked P0 solely for missing metadata because their route-specific tests and container validations still pass. Treat them as P1 audit coverage debt until each route is checked by the generic helper.
 
-### P1-1: Generic visual-quality metadata coverage is still low
+## Current P1 findings
 
-Only 8 of 92 registered routes have `visual_quality` metadata. The next cleanup should not mass-edit all routes blindly, but every sim-worthy route should eventually be covered by `expectProductSimulationReveal` or an equivalent explicit helper. Without this, route-specific tests can pass while the global harness cannot verify stage progression, formula evidence, or visual evidence consistently.
+### P1-1: Generic visual-quality metadata coverage is incomplete
 
-### P1-2: Formula panels are not yet normalized repo-wide
+Only 25 of 92 registered simulation routes declare `visual_quality` metadata. The standard is now clear, but coverage is partial. New containers should include `visual_quality` from the start, and older routes should be backfilled in 2-3 route PRs.
 
-The new standard requires "Formula used", "Substitution", "Units", "Result", and "Legend" unless `formula: "not-applicable"` has a reason. The 8 remediated routes comply. Older routes often have enough math evidence for a human, but labels vary (`Interpretation`, `Formula`, `Result`, route-specific language), which prevents generic checks from being reliable.
+### P1-2: SUTD 10.xxx route normalization is still uneven
 
-### P1-3: Some shell learner copy still uses internal wording
+The first 10.017 tranche is covered, but many 10.018, 10.019, 10.022, and later course-code routes still need explicit setup/prediction/reveal metadata and generic tests. These routes are the highest-value next target because they were built in large generated waves and share similar structure.
 
-The SUTD shell default route is now tested against raw dot IDs and banned learner terms. A-Level still has code paths and some visible labels oriented around "containers" rather than "concepts" or "labs" (`x of y containers`, "Concept containers" aria label). This is not a broken route, but it weakens the public product feel.
+### P1-3: Formula labels still vary outside the covered routes
 
-### P1-4: The copy-quality lint is not yet a standalone repo gate
+Covered routes must show formula, substitution, units, result, and legend unless they declare a justified `formula: "not-applicable"` exemption. Older routes often contain the right evidence for a human reader, but labels vary enough that generic tests cannot reliably verify them.
 
-SUTD has a rendered shell regression test for the default screen. There is not yet a general `pnpm shell:copy-quality` or equivalent gate across shell routes and cards. This should be added after the next copy polish pass so it does not start life as a noisy lint.
+### P1-4: Copy-quality lint is still not a standalone repo gate
+
+The shell tests now catch banned learner-facing words on representative default surfaces. A broader rendered-copy lint would prevent regressions in shell cards, route lists, and future curriculum browsers, but it should be added after another tranche of shell polish so it does not start as a noisy gate.
 
 ## P2 findings
 
-- `NO_COLOR` / `FORCE_COLOR` warnings appear in Playwright output. They are non-fatal noise.
-- Local sandbox needs elevated localhost binding for Playwright web servers. CI is now configured correctly.
-- `container:visual-quality` currently checks metadata-backed routes only. That is intentional, but the pass count should rise steadily as routes are backfilled.
+- `NO_COLOR` / `FORCE_COLOR` warnings can still appear in Playwright output. They are noisy but non-fatal.
+- Local browser checks may require elevated localhost binding in sandboxed Codex environments. CI remains the authoritative browser environment.
+- The sim harness is a test surface, not the final learner shell. It is acceptable that harness pages are more direct than curriculum shell pages, but they should still avoid raw internal IDs where a route renders learner copy.
 
-## Don Norman assessment
+## Don Norman UI/UX assessment
 
-Discoverability is improving. The SUTD shell now has search and student-facing cluster cards, and both shells expose global navigation. The main remaining discoverability gap is not route access; it is consistency of what students see after reveal.
+Discoverability is materially better. Both shells expose global navigation, search, and student-facing labels. The SUTD shell now behaves more like a learner browser than a raw registry.
 
-Feedback is now enforceable for the remediated routes. They visibly change after prediction and show chart/SVG/model evidence. Older routes still rely on bespoke tests, so feedback quality is harder to compare across the product.
+Feedback is strongest on the 25 metadata-backed routes. The learner predicts first, commits, then sees an observation region with a visible model and formula/readout evidence. This is the right conceptual model.
 
-Mapping and constraints are strongest where controls sit near formulas, readouts, and legends. The next backfill should prioritize routes whose controls are not obviously tied to a visual state.
+Mapping is improving but still uneven. Routes with nearby controls, formula cards, legends, and chart/SVG changes feel coherent. Routes outside the generic gate need the same stage and formula structure so students can predict cause and effect without reading code-like labels.
 
-Consistency is the biggest remaining weakness. The repository now has the standard, helper, and exemplars, but most routes predate that standard.
+Constraints are now enforceable for covered routes. The gate blocks text-only reveals and missing formula evidence. The remaining issue is extending those constraints without mass-editing the repo blindly.
 
-## Repair waves
+Consistency is the largest remaining product weakness. The product now has a standard, helpers, and exemplars, but most routes predate the standard. Small backfill waves should close this.
 
-### Wave 1: Metadata and helper backfill for strongest existing sims
+## Next remediation backlog
 
-Goal: raise generic coverage without redesigning routes.
+### 1. SUTD 10.018 metadata/helper tranche
 
-Start with routes that already have strong route-specific visual/formula tests:
+Recommended next PR, 2-3 routes:
 
-- `sutd/epd/pid-step-response/pid-step-response`
-- `shared/systems/pid-bode-builder/pid-bode-builder`
-- `shared/cs/graph-algorithm-explorer/graph-algorithm-explorer`
-- `shared/math/linear-programming-feasible-region/lp-feasible-region`
-- `shared/math/bayes-updating/bayes-updating`
-- `shared/math/central-limit-theorem/clt-sampler`
-- `shared/physics/free-body-diagram-mechanics/force-balance`
-- `shared/physics/circuit-phasor-reasoning/circuit-phasor-lab`
+- `sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/double-and-triple-integrals/double-and-triple-integrals`
+- `sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/partial-derivatives-and-gradient/partial-derivatives-and-gradient`
+- `sutd/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/optimisation-with-lagrange-multipliers/optimisation-with-lagrange-multipliers`
 
-Acceptance: add `visual_quality`, switch or add tests using `expectProductSimulationReveal`, and keep `pnpm container:visual-quality` green.
+Acceptance: add `visual_quality`, use `expectProductSimulationReveal`, normalize formula labels if needed, and keep `pnpm container:visual-quality` green.
 
-### Wave 2: A-Level shell and copy polish
+### 2. SUTD 10.019 healthcare tranche
 
-Goal: remove learner-facing "container" terminology and add a rendered copy-quality test.
+Recommended follow-up PR, 2-3 routes:
 
-Targets:
+- `sutd/10-019-science-and-technology-for-healthcare/cell-structure-and-the-membrane/cell-structure-and-the-membrane`
+- `sutd/10-019-science-and-technology-for-healthcare/protein-folding-and-function/protein-folding-and-function`
+- `sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein/gene-expression-dna-to-rna-to-protein`
 
-- Replace visible "containers" labels with "concepts", "labs", or "modules".
-- Keep internal variable names unchanged unless they leak into UI.
-- Add rendered tests for banned terms on the default A-Level shell screen.
+These are likely strong visually, but they were generated in a batch and should be made visible to the generic gate.
 
-Acceptance: `pnpm -F @paideia/a-level-shell test`, `pnpm test:a11y`, and the new copy test pass.
+### 3. SUTD 10.022 uncertainty tranche
 
-### Wave 3: P1 formula/stage normalization for A-Level physics and mathematics
+Recommended follow-up PR:
 
-Goal: bring high-traffic A-Level routes under the product reveal contract.
+- `sutd/10-022-modelling-uncertainty/conditional-probability-and-bayes/conditional-probability-and-bayes`
+- `sutd/10-022-modelling-uncertainty/central-limit-theorem/central-limit-theorem`
+- `sutd/10-022-modelling-uncertainty/discrete-rvs-geometric-binomial-poisson/discrete-rvs-geometric-binomial-poisson`
 
-Suggested order:
+This tranche should also verify that probability formulas expose substitution, units or dimensionless notes, result, and legend.
 
-- `a-level/physics/scalars-and-vectors/resultant-magnitude`
-- `a-level/physics/resolving-vectors/component-resolution`
-- `a-level/physics/projectile-motion/trajectory-parameter-lab`
-- `a-level/physics/kinematics-in-one-dimension/motion-equations-lab`
-- `a-level/mathematics/probability-statistics/probability-statistics-lab`
-- `a-level/mathematics/normal-distribution/normal-area-standardisation-lab`
+### 4. Shell copy-quality gate
 
-Acceptance: each route declares explicit setup/prediction/reveal metadata and passes the generic product reveal contract.
+Add a rendered-copy gate after the next shell polish pass. It should reject learner-facing `container`, `generated`, `queue`, and raw dot-separated route IDs in shell cards and default screens.
 
-### Wave 4: SUTD 10.xxx standards backfill
+### 5. New container production
 
-Goal: add metadata and formula normalization to the generated SUTD course-code slices.
-
-Suggested order:
-
-- 10.016 sustainability/science routes
-- 10.017 E&M routes
-- 10.018 calculus/linear-algebra routes
-- 10.019 healthcare routes
-- 10.022 uncertainty routes
-
-Acceptance: 2-3 routes per PR, `pnpm container:visual-quality` count increases, no broad UI rewrite unless a route fails the generic contract.
-
-### Wave 5: Resume container production
-
-Resume new containers only after Waves 1-2 land. At that point, the build prompt should require `visual_quality` metadata from the start, so new containers do not add audit debt.
+Resume broad container production only with this rule in the build prompt: every new sim-worthy route must ship `simulation/runtime.yaml` `visual_quality` metadata and a test using `expectProductSimulationReveal` from the first PR.
 
 ## Recommendation
 
-Do not build another 40-container wave yet. Merge one small PR for Wave 1 first, then one A-Level copy-polish PR. After those two land, the standards are stable enough for container production to resume with the new gate active.
+Proceed with the SUTD 10.018 tranche next. It is small, high-value, and directly exercises the post-#280 standard on generated course-code routes without starting another large production wave.
