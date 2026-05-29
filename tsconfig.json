@@ -40,6 +40,7 @@
     { "path": "./core/control-systems" },
     { "path": "./core/electromagnetism" },
     { "path": "./core/semiconductor-devices" },
+    { "path": "./core/daylight-geometry" },
     { "path": "./core/chemistry" },
     { "path": "./core/reaction-kinetics" },
     { "path": "./core/equilibrium" },
