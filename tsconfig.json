@@ -52,6 +52,7 @@
     { "path": "./core/indexing-query-cost" },
     { "path": "./core/transactions" },
     { "path": "./core/model-evaluation" },
+    { "path": "./core/ml-classification" },
     { "path": "./core/ml-linear-models" },
     { "path": "./core/ml-clustering" },
     { "path": "./core/mechanics" },
