@@ -1,10 +1,10 @@
 import { expect, test } from "@playwright/test";
 
-test("launches the first container sim through the learner shell", async ({ page }) => {
+test("launches the first concept sim through the learner shell", async ({ page }) => {
   await page.goto("/#a-level/physics/scalars-and-vectors");
 
   await expect(page.getByRole("heading", { name: "Scalars and Vectors" })).toBeVisible();
-  await expect(page.getByRole("navigation", { name: "Concept containers" })).toContainText(
+  await expect(page.getByRole("navigation", { name: "Concept labs" })).toContainText(
     "Physics / H2",
   );
   await expect(page.getByRole("heading", { name: "Knowledge graph" })).toBeVisible();
@@ -26,20 +26,20 @@ test("launches the first container sim through the learner shell", async ({ page
   await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
 });
 
-test("navigates the generated mini knowledge graph", async ({ page }) => {
+test("navigates the mini knowledge graph", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByText(/\d+ concepts ready/)).toBeVisible();
   await expect(page.getByRole("heading", { name: "First principles" })).toBeVisible();
-  await expect(page.getByRole("navigation", { name: "Concept containers" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Concept labs" })).toBeVisible();
   await expect(
     page
-      .getByRole("navigation", { name: "Concept containers" })
+      .getByRole("navigation", { name: "Concept labs" })
       .getByRole("link", { name: /^Probability and Statistics Probability and Statistics \/ H2$/ }),
   ).toBeVisible();
 
   await page
-    .getByRole("navigation", { name: "Concept containers" })
+    .getByRole("navigation", { name: "Concept labs" })
     .getByRole("link", { name: /Resolving Vectors/ })
     .click();
   await expect(page.getByRole("heading", { name: "Resolving Vectors" })).toBeVisible();
@@ -54,7 +54,7 @@ test("navigates the generated mini knowledge graph", async ({ page }) => {
   await expect(page.getByLabel("Formula used")).toContainText("Substitution: Fx");
 });
 
-test("reveals the kinematics route from generated catalogue data", async ({ page }) => {
+test("reveals the kinematics route from catalogue data", async ({ page }) => {
   await page.goto("/#a-level/physics/kinematics-in-one-dimension");
 
   await expect(page.getByRole("heading", { name: "Kinematics in One Dimension" })).toBeVisible();
@@ -73,7 +73,7 @@ test("reveals the kinematics route from generated catalogue data", async ({ page
   await expect(page.getByLabel("Observation unlocked")).toContainText("9.00 m");
 });
 
-test("reveals the work-energy-power route from generated catalogue data", async ({ page }) => {
+test("reveals the work-energy-power route from catalogue data", async ({ page }) => {
   await page.goto("/#a-level/physics/work-energy-power");
 
   await expect(page.getByRole("heading", { name: "Work, Energy, Power" })).toBeVisible();
@@ -96,7 +96,7 @@ test("reveals the work-energy-power route from generated catalogue data", async 
   await expect(page.getByLabel("Observation unlocked")).toContainText("+30.00 J");
 });
 
-test("keeps the active thermal container when topbar lab links scroll", async ({ page }) => {
+test("keeps the active thermal concept when topbar lab links scroll", async ({ page }) => {
   await page.goto("/#a-level%2Fphysics%2Fthermal-physics");
 
   await expect(page.getByRole("heading", { name: "Thermal Physics" })).toBeVisible();
@@ -117,7 +117,7 @@ test("links back to the all-curricula page", async ({ page }) => {
   await expect(page).toHaveURL(/\/$/);
 });
 
-test("reveals the probability-statistics route from generated catalogue data", async ({ page }) => {
+test("reveals the probability-statistics route from catalogue data", async ({ page }) => {
   await page.goto("/#a-level/mathematics/probability-statistics");
 
   await expect(page.getByRole("heading", { name: "Probability and Statistics" })).toBeVisible();
@@ -148,13 +148,13 @@ test("searches modules and keeps local mastery progress", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Mastery map" })).toBeVisible();
   await page.getByLabel("Search curriculum").fill("base quantity");
 
-  const conceptNav = page.getByRole("navigation", { name: "Concept containers" });
+  const conceptNav = page.getByRole("navigation", { name: "Concept labs" });
   await expect(conceptNav).toContainText("Physical Quantities and Units");
   await expect(conceptNav).not.toContainText("Resolving Vectors");
 
   await page.getByLabel("Search curriculum").fill("");
   await page.getByRole("button", { name: "Foundations of Physics" }).click();
-  await expect(page.getByText(/\d+ of \d+ containers/)).toBeVisible();
+  await expect(page.getByText(/\d+ of \d+ concepts/)).toBeVisible();
 
   await page
     .getByLabel("Physical Quantities and Units mastery")
@@ -164,4 +164,15 @@ test("searches modules and keeps local mastery progress", async ({ page }) => {
 
   await page.reload();
   await expect(page.getByText(/1\/\d+ mastered/)).toBeVisible();
+});
+
+test("keeps internal build language off the learner-facing default screen", async ({ page }) => {
+  await page.goto("/");
+
+  const visibleCopy = await page.locator("body").innerText();
+
+  expect(visibleCopy).not.toMatch(/\b(container|generated|queue)\b/i);
+  expect(visibleCopy).not.toMatch(/\b(?:shared|sutd|a-level)\.[a-z0-9.-]+\b/i);
+  await expect(page.getByRole("navigation", { name: "Concept labs" })).toBeVisible();
+  await expect(page.getByLabel("Concept status")).toBeVisible();
 });
