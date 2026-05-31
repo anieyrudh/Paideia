@@ -39,7 +39,7 @@ kernel_deps:
   - core/prediction-gate
 predict:
   prompt: |
-    A pathogen has basic reproduction number R0 = 4. Vaccinating 60 percent of the population gives them perfect immunity. Before reveal, what is the effective reproduction number Re and does the outbreak grow or shrink?
+    A pathogen has basic reproduction number R0 = 4. Vaccinating 60 percent of the population gives them perfect immunity. Before using the checkpoint, what is the effective reproduction number Re and does the outbreak grow or shrink?
   commit_format:
     kind: multiple-choice
     options:
@@ -131,7 +131,7 @@ Filter version: aniegpt v1.0 (builder self-audit plus local container-auditor re
 
 ### P0 issues
 
-- Resolved: container shape validates. Prediction checkpoint is declared and asserted in Playwright. Reveal renders an SVG coverage-vs-threshold bar plus a waning-curve plot with the threshold dashed — a real visual model.
+- Resolved: container shape validates. Prediction checkpoint is declared and asserted in Playwright. Observation renders an SVG coverage-vs-threshold bar plus a waning-curve plot with the threshold dashed -- a real visual model.
 - Resolved: all math goes through `core/immunology` (`effectiveReproductionNumber`, `herdImmunityThreshold`, `waneImmunity`, `immunityLevel`, `reproductionNumber`, `decayRate`); no `Re = R0 (1-p)` or `1 - 1/R0` arithmetic is implemented in the React sim. Formula text is display-only.
 - Resolved: the container is educational only: it teaches SIR-style reasoning and explicitly avoids any clinical claim, diagnosis, patient-specific prediction, or treatment recommendation.
 

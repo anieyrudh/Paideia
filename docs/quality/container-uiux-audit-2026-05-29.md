@@ -1,15 +1,15 @@
 # Paideia UI/UX Audit Delta - Live-First Refresh
 
 Date: 2026-05-31
-Baseline: `main` after #283, plus the healthcare live-first tranche on `codex/live-first-cleanup-tranche-2`.
+Baseline: `main` after #284, plus the healthcare live-first tranche on `codex/live-first-healthcare-tranche-3`.
 
 ## Executive summary
 
-The enforced learner-facing path is healthier than the previous audit snapshot. #277-#280 landed the strongest-sim metadata backfill, A-Level copy polish, A-Level formula/stage normalization, and the first SUTD 10.017 metadata tranche. #283 then removed route-local reveal gates from representative SUTD routes. This tranche converts three more healthcare routes to live-first observation surfaces. The generic visual-quality gate now checks 29 routes, and all 29 pass the product simulation experience contract.
+The enforced learner-facing path is healthier than the previous audit snapshot. #277-#280 landed the strongest-sim metadata backfill, A-Level copy polish, A-Level formula/stage normalization, and the first SUTD 10.017 metadata tranche. #283 then removed route-local reveal gates from representative SUTD routes, and #284 expanded healthcare coverage through protein folding, gene expression, and cell signalling. This tranche finishes the remaining healthcare live-first routes. The generic visual-quality gate now checks 32 routes, and all 32 pass the product simulation experience contract.
 
 No current P0 was reproduced on the audited path. `container:visual-quality`, the sim harness, shell tests, and a11y checks pass on the current live-first path.
 
-The remaining risk is standards coverage, not a known broken route. There are 92 registered simulation routes and 29 have `simulation/runtime.yaml` `visual_quality` metadata. The next work should raise coverage in small tranches, especially remaining SUTD 10.018, 10.019, 10.022, DAI, and shared routes that still use old reveal-button copy.
+The remaining risk is standards coverage, not a known broken route. There are 92 registered simulation routes and 32 have `simulation/runtime.yaml` `visual_quality` metadata. The next work should raise coverage in small tranches, especially SUTD 10.018, 10.022, DAI, and shared routes that still use old reveal-button copy.
 
 ## Checks rerun on current main
 
@@ -17,8 +17,8 @@ The remaining risk is standards coverage, not a known broken route. There are 92
 | --- | --- | --- |
 | `pnpm graph:check` | pass | Generated graph files are fresh. |
 | `pnpm container:validate` | pass | 92 containers passed. |
-| `pnpm container:visual-quality` | pass | 29 routes checked, 29 passed. |
-| `pnpm -F @paideia/sim-harness test` | pass | 343 tests passed. |
+| `pnpm container:visual-quality` | pass | 32 routes checked, 32 passed. |
+| `pnpm -F @paideia/sim-harness test` | pass | 349 tests passed. |
 | `pnpm -F @paideia/a-level-shell test` | pass | 17 tests passed. |
 | `pnpm -F @paideia/sutd-shell test` | pass | 7 tests passed. |
 | `pnpm test:a11y` | pass | A-Level shell: 8 tests passed. SUTD shell: 1 test passed. |
@@ -44,8 +44,8 @@ Screenshots were not committed because no new visual failure evidence needed to 
 | --- | ---: |
 | Registered sim-harness routes | 92 |
 | `simulation/runtime.yaml` files | 92 |
-| Routes with `visual_quality` metadata | 29 |
-| Routes still relying on route-specific tests only | 63 |
+| Routes with `visual_quality` metadata | 32 |
+| Routes still relying on route-specific tests only | 60 |
 
 ## Completed remediation since the prior report
 
@@ -56,23 +56,24 @@ Screenshots were not committed because no new visual failure evidence needed to 
 | A-Level formula/stage normalization | done | Brought high-traffic A-Level routes under the product reveal contract. |
 | SUTD 10.017 first tranche | done | Added metadata/helper coverage for Coulomb, Gauss-law, and RLC routes. |
 | Live-first representative SUTD cleanup | done | Removed route-local reveal gates from PID, Gauss-law, graph search, and cell membrane. |
-| Healthcare live-first tranche | done | Added live-first observation and visual-quality coverage for protein folding, gene expression, and cell signalling. |
+| Healthcare live-first tranche 2 | done | Added live-first observation and visual-quality coverage for protein folding, gene expression, and cell signalling. |
+| Healthcare live-first tranche 3 | done | Added live-first observation and visual-quality coverage for cell cycle, immune system, and cancer genetics. |
 
 ## Current P0 findings
 
-No current P0 was reproduced by the post-#280 gates.
+No current P0 was reproduced by the post-#284 gates plus this tranche.
 
-Important caveat: the 63 routes without `visual_quality` metadata are not automatically proven to satisfy the generic product simulation experience contract. They are not being marked P0 solely for missing metadata because their route-specific tests and container validations still pass. Treat them as P1 audit coverage debt until each route is checked by the generic helper.
+Important caveat: the 60 routes without `visual_quality` metadata are not automatically proven to satisfy the generic product simulation experience contract. They are not being marked P0 solely for missing metadata because their route-specific tests and container validations still pass. Treat them as P1 audit coverage debt until each route is checked by the generic helper.
 
 ## Current P1 findings
 
 ### P1-1: Generic visual-quality metadata coverage is incomplete
 
-Only 29 of 92 registered simulation routes declare `visual_quality` metadata. The standard is now clear, but coverage is partial. New containers should include `visual_quality` from the start, and older routes should be backfilled in 3-5 route PRs.
+Only 32 of 92 registered simulation routes declare `visual_quality` metadata. The standard is now clear, but coverage is partial. New containers should include `visual_quality` from the start, and older routes should be backfilled in 3-5 route PRs.
 
 ### P1-2: SUTD 10.xxx route normalization is still uneven
 
-The first 10.017 tranche and part of 10.019 healthcare are covered, but many 10.018, remaining 10.019, 10.022, and later course-code routes still need explicit setup/prediction/observation metadata and generic tests. These routes are the highest-value next target because they were built in large generated waves and share similar structure.
+The first 10.017 tranche and the 10.019 healthcare routes are covered, but many 10.018, 10.022, and later course-code routes still need explicit setup/prediction/observation metadata and generic tests. These routes are the highest-value next target because they were built in large generated waves and share similar structure.
 
 ### P1-3: Formula labels still vary outside the covered routes
 
@@ -92,7 +93,7 @@ The shell tests now catch banned learner-facing words on representative default 
 
 Discoverability is materially better. Both shells expose global navigation, search, and student-facing labels. The SUTD shell now behaves more like a learner browser than a raw registry.
 
-Feedback is strongest on the 29 metadata-backed routes. The learner sees the model, formula, controls, and readouts immediately; the prediction checkpoint then records reflection without blocking observation. This is now the right conceptual model.
+Feedback is strongest on the 32 metadata-backed routes. The learner sees the model, formula, controls, and readouts immediately; the prediction checkpoint then records reflection without blocking observation. This is now the right conceptual model.
 
 Mapping is improving but still uneven. Routes with nearby controls, formula cards, legends, and chart/SVG changes feel coherent. Routes outside the generic gate need the same stage and formula structure so students can predict cause and effect without reading code-like labels.
 
@@ -112,17 +113,7 @@ Recommended next PR, 2-3 routes:
 
 Acceptance: remove route-local reveal buttons, add `visual_quality`, use `expectProductSimulationExperience`, normalize formula labels if needed, and keep `pnpm container:visual-quality` green.
 
-### 2. Remaining SUTD 10.019 healthcare tranche
-
-Recommended follow-up PR, 2-3 routes:
-
-- `sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis/cell-cycle-and-mitosis-meiosis`
-- `sutd/10-019-science-and-technology-for-healthcare/immune-system-and-vaccines/immune-system-and-vaccines`
-- `sutd/10-019-science-and-technology-for-healthcare/cancer-genetics-and-therapy/cancer-genetics-and-therapy`
-
-These are likely strong visually, but they were generated in a batch and should be moved to the same live-first pattern before broader production resumes.
-
-### 3. SUTD 10.022 uncertainty tranche
+### 2. SUTD 10.022 uncertainty tranche
 
 Recommended follow-up PR:
 
@@ -132,14 +123,14 @@ Recommended follow-up PR:
 
 This tranche should also verify that probability formulas expose substitution, units or dimensionless notes, result, and legend.
 
-### 4. Shell copy-quality gate
+### 3. Shell copy-quality gate
 
 Add a rendered-copy gate after the next shell polish pass. It should reject learner-facing `container`, `generated`, `queue`, and raw dot-separated route IDs in shell cards and default screens.
 
-### 5. New container production
+### 4. New container production
 
 Resume broad container production only with this rule in the build prompt: every new sim-worthy route must ship `simulation/runtime.yaml` `visual_quality` metadata and a test using `expectProductSimulationExperience` from the first PR.
 
 ## Recommendation
 
-Proceed with the SUTD 10.018 tranche next. It is small, high-value, and directly exercises the post-#280 standard on generated course-code routes without starting another large production wave.
+Proceed with the SUTD 10.018 tranche next. It is small, high-value, and directly exercises the live-first standard on generated course-code routes without starting another large production wave.

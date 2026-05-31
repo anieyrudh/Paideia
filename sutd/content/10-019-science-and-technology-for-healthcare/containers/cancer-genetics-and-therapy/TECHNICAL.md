@@ -149,7 +149,7 @@ Filter version: aniegpt v1.0 (builder self-audit plus local container-auditor re
 
 ### P0 issues
 
-- Resolved: container shape validates. Prediction checkpoint is declared and asserted in Playwright. Reveal renders an SVG clonal-growth log plot and a dose-response plot with the resistance-shifted curve dashed — a real visual model.
+- Resolved: container shape validates. Prediction checkpoint is declared and asserted in Playwright. Observation renders an SVG clonal-growth log plot and a dose-response plot with the resistance-shifted curve dashed -- a real visual model.
 - Resolved: all math goes through `core/oncogenetics` (`relativeFitness`, `clonalGrowthAfterGenerations`, `mutationCount`, `fitnessAdvantage`, `cellPopulationSize`) and `core/treatment-response` (`hillDoseResponse`, `effectiveIC50`, `doseAtResponse`, `ic50`, `dose`, `hillCoefficient`, `resistanceFactor`, `responseFraction`); no Hill or fitness compound formulas are implemented in the React sim. Formula text is display-only.
 - Resolved: the container is educational only and the concept-card, problem-solving rubric, and TECHNICAL all repeat the no-diagnosis / no-treatment-recommendation disclaimer.
 

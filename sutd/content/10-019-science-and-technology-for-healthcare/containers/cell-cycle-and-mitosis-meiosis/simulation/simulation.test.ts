@@ -1,5 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationExperience } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("Cell Cycle and Mitosis / Meiosis", () => {
   test.beforeEach(async ({ page }) => {
@@ -8,22 +9,22 @@ test.describe("Cell Cycle and Mitosis / Meiosis", () => {
     );
   });
 
+  test("satisfies the product simulation experience contract", async ({ page }) => {
+    await expectProductSimulationExperience(page, {
+      simId:
+        "sutd/10-019-science-and-technology-for-healthcare/cell-cycle-and-mitosis-meiosis/cell-cycle-and-mitosis-meiosis",
+      setup: [],
+      prediction: {
+        optionLabel: "Two diploid (n = 2) G1 daughters, each with DNA content 1 (unreplicated).",
+        rationale: "Mitosis preserves ploidy and resets DNA content to 1 in daughters.",
+      },
+      observation: { observationLabel: "Observation" },
+    });
+  });
+
   test("prediction-checkpoint keeps division evidence visible while saving reflection", async ({ page }) => {
-
-    {
-
-      const setupButton = page.getByRole("button", { name: "Set up cell cycle" });
-
-      if ((await setupButton.count()) > 0) {
-
-        await setupButton.first().click();
-
-      }
-
-    }
-    await page.getByRole("button", { name: "Reveal division outcome" }).click();
-
     await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
+    await expect(page.getByRole("region", { name: "Observation" })).toBeVisible();
 
     await page
       .getByRole("radio", {
@@ -35,7 +36,7 @@ test.describe("Cell Cycle and Mitosis / Meiosis", () => {
       .fill("Mitosis preserves ploidy and resets DNA content to 1 in daughters.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
 
-    const observation = page.getByRole("region", { name: "Observation unlocked" });
+    const observation = page.getByRole("region", { name: "Observation" });
     await expect(observation).toBeVisible();
     await expect(observation).toContainText("Daughter cells");
     await expect(observation).toContainText("Ploidy");
@@ -46,15 +47,8 @@ test.describe("Cell Cycle and Mitosis / Meiosis", () => {
   });
 
   test("DNA damaged toggle pins the cell at the G1/S checkpoint", async ({ page }) => {
-    {
-      const setupButton = page.getByRole("button", { name: "Set up cell cycle" });
-      if ((await setupButton.count()) > 0) {
-        await setupButton.first().click();
-      }
-    }
     await page.getByRole("checkbox", { name: "DNA damaged" }).check();
-    await page.getByRole("button", { name: "Reveal division outcome" }).click();
-    const observation = page.getByRole("region", { name: "Observation unlocked" });
+    const observation = page.getByRole("region", { name: "Observation" });
     await expect(observation).toBeVisible();
     await page
       .getByRole("radio", {
@@ -66,15 +60,8 @@ test.describe("Cell Cycle and Mitosis / Meiosis", () => {
     await expect(observation).toContainText("G1/S");
   });
 
-  test("has no serious accessibility violations after reveal", async ({ page }) => {
-    {
-      const setupButton = page.getByRole("button", { name: "Set up cell cycle" });
-      if ((await setupButton.count()) > 0) {
-        await setupButton.first().click();
-      }
-    }
-    await page.getByRole("button", { name: "Reveal division outcome" }).click();
-    const observation = page.getByRole("region", { name: "Observation unlocked" });
+  test("has no serious accessibility violations in observation", async ({ page }) => {
+    const observation = page.getByRole("region", { name: "Observation" });
     await expect(observation).toBeVisible();
     await page
       .getByRole("radio", {

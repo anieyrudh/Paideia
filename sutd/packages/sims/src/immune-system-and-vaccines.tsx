@@ -43,7 +43,7 @@ export const immunitySpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "A pathogen has basic reproduction number R0 = 4. Vaccinating 60 percent of the population gives them perfect immunity. Before reveal, what is the effective reproduction number Re and does the outbreak grow or shrink?",
+      "A pathogen has basic reproduction number R0 = 4. Vaccinating 60 percent of the population gives them perfect immunity. Before using the checkpoint, what is the effective reproduction number Re and does the outbreak grow or shrink?",
     commit_format: {
       kind: "multiple-choice",
       options: [
@@ -198,7 +198,6 @@ const Slider = ({
 );
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<ImmunityState>();
   const current = currentState(state);
   return (
@@ -210,12 +209,11 @@ const ManipulateStage = () => {
         <Slider label="Vaccination coverage" max={1} min={0} onChange={(v) => set("coverage", v)} step={0.01} suffix="" value={current.coverage} />
         <Slider label="Waning rate" max={0.05} min={0} onChange={(v) => set("waningRate", v)} step={0.001} suffix="per day" value={current.waningRate} />
         <Slider label="Days since vaccination" max={400} min={0} onChange={(v) => set("daysSinceVaccination", v)} step={5} suffix="days" value={current.daysSinceVaccination} />
-        <button type="button" onClick={() => stage.advance()}>Reveal effective reproduction number</button>
       </div>
-      <section className="sutd-formula-card" aria-label="Before reveal cue">
-        <p className="meta-line">Before reveal</p>
+      <section className="sutd-formula-card" aria-label="Model cue">
+        <p className="meta-line">Observation</p>
         <h3>Re = R0 (1 - p) is the verdict</h3>
-        <p>Prediction checkpoint. Then watch the threshold line move with R0 and the waning curve drag the effective coverage down.</p>
+        <p>Use the checkpoint to save your expectation, then watch the threshold line move with R0 and the waning curve drag the effective coverage down.</p>
       </section>
     </section>
   );
@@ -277,16 +275,16 @@ const ObserveStage = () => {
   const evidence = immunityEvidence(state);
   if (!evidence.ok) {
     return (
-      <section className="sutd-formula-card" role="region" aria-label="Observation unlocked">
+      <section className="sutd-formula-card" role="region" aria-label="Observation">
         <p role="alert">{evidence.error.message}</p>
       </section>
     );
   }
   const value = evidence.value;
   return (
-    <section aria-label="Observation unlocked" className="sutd-sim-panel" role="region">
+    <section aria-label="Observation" className="sutd-sim-panel" role="region">
       <div className="sutd-result-card">
-        <p className="meta-line">Observe</p>
+        <p className="meta-line">Observation</p>
         <h2>Re and the herd-immunity threshold</h2>
         <CoverageBar evidence={value} />
         <WaningCurve evidence={value} threshold={value.threshold} />
@@ -309,6 +307,7 @@ const ObserveStage = () => {
 
 \color{#7c3aed}{p(t) = p_0\,e^{-\lambda t}}`}</code>
         </pre>
+        <p className="meta-line">Legend</p>
         <dl aria-label="Formula legend" className="formula-legend">
           <div><dt><span className="legend-swatch legend-swatch--blue" /> Re</dt><dd>effective reproduction number (dimensionless)</dd></div>
           <div><dt><span className="legend-swatch legend-swatch--orange" /> p*</dt><dd>herd-immunity threshold (fraction)</dd></div>
@@ -317,10 +316,21 @@ const ObserveStage = () => {
         <p>
           Substitution: R0 = {value.r0.toFixed(2)}, p0 = {(value.initialCoverage * 100).toFixed(1)}%, lambda = {state.waningRate.toFixed(3)} per day, t = {state.daysSinceVaccination} days. p(t) = {(value.effectiveCoverage * 100).toFixed(1)}%; p* = {(value.threshold * 100).toFixed(1)}%; Re = {value.effectiveReproductionNumber.toFixed(2)}.
         </p>
+        <p>
+          Units: R0 and Re are dimensionless reproduction numbers; p, p0, and p* are fractions shown as percentages; lambda is per day. Result: {value.verdict === "contained" ? "outbreak contained because Re < 1" : "outbreak growing because Re > 1"}.
+        </p>
         <p className="formula-note">
           Re below 1 means the outbreak shrinks. Re above 1 means it grows, even with substantial vaccination, until coverage crosses the threshold.
         </p>
-        <button type="button" onClick={() => stage.advance()}>Explain booster timing</button>
+        <button
+          type="button"
+          onClick={() => {
+            stage.advance();
+            stage.advance();
+          }}
+        >
+          Explain booster timing
+        </button>
       </section>
     </section>
   );
@@ -342,16 +352,12 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
   return (
-    <section className="sutd-formula-card" aria-label="Prediction setup">
-      <p className="meta-line">Prediction checkpoint</p>
-      <h1>Herd Immunity Lab</h1>
-      <p>Predict whether vaccinating 60 percent stops an R0 = 4 outbreak before adjusting the coverage and waning.</p>
-      <button type="button" onClick={() => stage.advance()}>Set up herd immunity</button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

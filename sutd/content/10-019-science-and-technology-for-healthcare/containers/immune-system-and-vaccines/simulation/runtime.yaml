@@ -5,3 +5,12 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "Re = 1.6, outbreak still grows because Re > 1 and the herd-immunity threshold is 75 percent."
+    rationale: "Re = R0 (1 - p) = 4 * 0.4 = 1.6; threshold is 1 - 1/4 = 0.75."
+  observation:
+    observation_label: "Observation"
+    visual: required
+    formula: required

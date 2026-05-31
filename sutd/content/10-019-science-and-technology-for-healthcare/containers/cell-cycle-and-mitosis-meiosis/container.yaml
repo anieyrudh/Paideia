@@ -20,7 +20,7 @@ aid_types:
 predict_at: package-level
 package_predict:
   prompt: |
-    A diploid cell at M phase with replicated DNA divides via mitosis. Before reveal, what are the two daughter cells' ploidy and DNA-content multiplier?
+    A diploid cell at M phase with replicated DNA divides via mitosis. Before using the checkpoint, what are the two daughter cells' ploidy and DNA-content multiplier?
   commit_format:
     kind: multiple-choice
     options:

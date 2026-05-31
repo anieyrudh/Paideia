@@ -20,7 +20,7 @@ aid_types:
 predict_at: package-level
 package_predict:
   prompt: |
-    A pathogen has basic reproduction number R0 = 4. Vaccinating 60 percent of the population gives them perfect immunity. Before reveal, what is the effective reproduction number Re and does the outbreak grow or shrink?
+    A pathogen has basic reproduction number R0 = 4. Vaccinating 60 percent of the population gives them perfect immunity. Before using the checkpoint, what is the effective reproduction number Re and does the outbreak grow or shrink?
   commit_format:
     kind: multiple-choice
     options:
