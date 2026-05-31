@@ -5,3 +5,12 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "Both rise toward a saturating plateau set by the maximum transcription rate and the per-molecule decay constants."
+    rationale: "Inducer raises the Hill term, which raises transcription up to the maximum."
+  observation:
+    observation_label: "Observation"
+    visual: required
+    formula: required

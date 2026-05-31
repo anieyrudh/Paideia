@@ -61,7 +61,7 @@ export const proteinFoldingAndFunctionSpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "A short peptide is L L L L L L L L (eight leucines). The window-9 hydropathy classifier reports \"hydrophobic\" for every centre residue. Before reveal, which statement best describes the peptide's fold in aqueous solution?",
+      "A short peptide is L L L L L L L L (eight leucines). The window-9 hydropathy classifier reports \"hydrophobic\" for every centre residue. Which statement best describes the peptide's fold in aqueous solution?",
     commit_format: {
       kind: "multiple-choice",
       options: [
@@ -404,7 +404,6 @@ const Select = ({
 );
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<FoldingState>();
   const current = currentState(state);
   return (
@@ -441,12 +440,9 @@ const ManipulateStage = () => {
           suffix=""
           value={current.hydrophobicThreshold}
         />
-        <button type="button" onClick={() => stage.advance()}>
-          Reveal hydropathy profile
-        </button>
       </div>
-      <section aria-label="Before reveal cue" className="sutd-formula-card">
-        <p className="meta-line">Before reveal</p>
+      <section aria-label="Model cue" className="sutd-formula-card">
+        <p className="meta-line">Observation</p>
         <h3>Hydropathy shapes the energy landscape</h3>
         <p>Prediction checkpoint. Then change the sequence preset to watch how the same window and threshold flip the dominant-region label.</p>
       </section>
@@ -470,7 +466,7 @@ const ObserveStage = () => {
   const evidence = foldingEvidence(state);
   if (!evidence.ok) {
     return (
-      <section className="sutd-formula-card" role="region" aria-label="Observation unlocked">
+      <section className="sutd-formula-card" role="region" aria-label="Observation">
         <p role="alert">{evidence.error.message}</p>
       </section>
     );
@@ -481,9 +477,9 @@ const ObserveStage = () => {
   const firstResidue = aminoAcidLetter(value.sequence.charAt(0));
   const firstProperties = firstResidue.ok ? aminoAcidProperties(firstResidue.value) : null;
   return (
-    <section aria-label="Observation unlocked" className="sutd-sim-panel" role="region">
+    <section aria-label="Observation" className="sutd-sim-panel" role="region">
       <div className="sutd-result-card">
-        <p className="meta-line">Observe</p>
+        <p className="meta-line">Observation</p>
         <h2>Hydropathy profile</h2>
         <ResidueChain sequence={value.sequence} />
         <HydropathyPlot evidence={value} hydrophobicThreshold={state.hydrophobicThreshold} hydrophilicThreshold={hydrophilicThreshold} />
@@ -505,6 +501,7 @@ const ObserveStage = () => {
 = \frac{1}{W} \sum_{j=i-(W-1)/2}^{i+(W-1)/2}
   \color{#d97706}{H_{\text{KD}}(s_j)}`}</code>
         </pre>
+        <p className="meta-line">Legend</p>
         <dl aria-label="Formula legend" className="formula-legend">
           <div><dt><span className="legend-swatch legend-swatch--blue" /> H_w(i)</dt><dd>windowed mean hydropathy at centre residue i</dd></div>
           <div><dt><span className="legend-swatch legend-swatch--orange" /> H_KD</dt><dd>per-residue Kyte-Doolittle hydropathy (table value)</dd></div>
@@ -516,6 +513,9 @@ const ObserveStage = () => {
             Substitution at the first centre residue: {firstProperties.threeLetter} ({firstProperties.name}) has H_KD = {Number(firstProperties.hydropathy).toFixed(2)}; the window mean averages it with its neighbours to give the plotted value.
           </p>
         )}
+        <p>
+          Units: hydropathy is dimensionless; W is measured in residues. Result: mean hydropathy = {value.meanHydropathy.toFixed(2)}, longest hydrophobic run = {value.longestHydrophobicRun} centre residues.
+        </p>
         <p className="formula-note">
           Hydropathy windowing tells you where hydrophobic residues cluster. It does not pick alpha vs beta secondary structure, and it does not account for chaperones, ionic strength, or membrane interactions.
         </p>
@@ -540,20 +540,12 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
   return (
-    <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Prediction checkpoint</p>
-      <h1>Hydropathy Folding Lab</h1>
-      <p>
-        Predict how a poly-leucine peptide behaves in water before scanning the hydropathy profile.
-      </p>
-      <button type="button" onClick={() => stage.advance()}>
-        Set up hydropathy lab
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

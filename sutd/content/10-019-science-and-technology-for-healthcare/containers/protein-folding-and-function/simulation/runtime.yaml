@@ -5,3 +5,12 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "It collapses into a hydrophobic cluster; the fold also depends on chain length, environment, and chaperones."
+    rationale: "Hydrophobic residues cluster, but sequence is not enough to fix the fold."
+  observation:
+    observation_label: "Observation"
+    visual: required
+    formula: required
