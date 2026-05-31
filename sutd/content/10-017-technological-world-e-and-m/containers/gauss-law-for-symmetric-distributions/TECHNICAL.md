@@ -128,7 +128,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -136,7 +136,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-017-technological-world-e-and-m/containers/gauss-law-for-symmetric-distributions`
 - Docs regeneration: `pnpm container:docs sutd/content/10-017-technological-world-e-and-m/containers/gauss-law-for-symmetric-distributions`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -167,7 +167,7 @@ Filter version: aniegpt v1.0
 (P1 may be deferred with a tracked issue. List them and either resolution or
 deferral issue link.)
 
-- None open after local product review on 2026-05-27. Prediction-gate behavior is covered by both package and route-level tests.
+- None open after local product review on 2026-05-27. Prediction-checkpoint behavior is covered by both package and route-level tests.
 
 ### P2 issues
 

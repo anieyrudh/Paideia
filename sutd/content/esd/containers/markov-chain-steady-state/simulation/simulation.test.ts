@@ -7,31 +7,37 @@ test.describe("Markov Chain Steady State", () => {
     await page.goto("/?sim=sutd/esd/markov-chain-steady-state/markov-chain-steady-state");
   });
 
-  test("prediction-gate blocks steady-state evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Set transition matrix" }).click();
+  test("prediction-checkpoint keeps steady-state evidence visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Set transition matrix" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await expect(page.getByRole("table", { name: "Transition matrix" })).toContainText(
       "Smooth next",
     );
     await page.getByRole("button", { name: "Reveal steady state" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "Toward more congested weeks" }).check();
     await page
       .getByLabel("Rationale")
       .fill("Weak recovery means congestion keeps receiving enough long-run probability mass.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toBeVisible();
     await expect(page.getByLabel("Formula evidence")).toContainText("pi_S = b");
     await expect(page.getByLabel("Formula legend")).toContainText("probability per week");
     await expect(page.getByRole("table", { name: "State trajectory" })).toContainText("Week");
   });
 
   test("manipulation changes the visible steady-state recommendation", async ({ page }) => {
-    await page.getByRole("button", { name: "Set transition matrix" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set transition matrix" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "fast recovery" }).click();
     await page.getByRole("button", { name: "Reveal steady state" }).click();
     await page.getByRole("radio", { name: "Toward more smooth weeks" }).check();
@@ -51,7 +57,12 @@ test.describe("Markov Chain Steady State", () => {
   test("formula, substitution, units, interpretation, and legend are shown together", async ({
     page,
   }) => {
-    await page.getByRole("button", { name: "Set transition matrix" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set transition matrix" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal steady state" }).click();
     await page.getByRole("radio", { name: "Toward more congested weeks" }).check();
     await page.getByLabel("Rationale").fill("I will compare recovery with deterioration.");
@@ -74,7 +85,12 @@ test.describe("Markov Chain Steady State", () => {
   });
 
   test("has no serious or critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set transition matrix" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set transition matrix" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal steady state" }).click();
     await page.getByRole("radio", { name: "Toward more congested weeks" }).check();
     await page

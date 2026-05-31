@@ -239,7 +239,7 @@ const ManipulateStage = () => {
   return (
     <section aria-label="Biodiversity controls" role="region" className="paideia-sim paideia-sim--biodiversity">
       <h2>Habitat Loss Feedback Lab</h2>
-      <p>Change land conversion, restoration, and species sensitivity before revealing the coupled trajectory.</p>
+      <p>Change land conversion, restoration, and species sensitivity before comparing with the coupled trajectory.</p>
       <ControlGroup legend="Land-use controls">
         <Slider label="Starting intact habitat" min={20} max={100} step={5} value={current.habitatPercent} unit="%" onChange={(value) => set("habitatPercent", value)} />
         <Slider label="Land-use conversion" min={0} max={6} step={0.25} value={current.conversionPercentPerYear} unit="%/year" onChange={(value) => set("conversionPercentPerYear", value)} />

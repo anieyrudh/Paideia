@@ -1,4 +1,11 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+
+const commitCheckpoint = async (page: Page, rationale: string) => {
+  const checkpoint = page.getByRole("form", { name: "Prediction checkpoint" });
+  await checkpoint.locator("input[type='radio']").first().check();
+  await checkpoint.getByLabel("Rationale").fill(rationale);
+  await checkpoint.getByRole("button", { name: "Commit prediction" }).click();
+};
 
 test("launches the first concept sim through the learner shell", async ({ page }) => {
   await page.goto("/#a-level/physics/scalars-and-vectors");
@@ -9,21 +16,20 @@ test("launches the first concept sim through the learner shell", async ({ page }
   );
   await expect(page.getByRole("heading", { name: "Knowledge graph" })).toBeVisible();
   await expect(page.getByText("Prerequisite: Physical Quantities and Units")).toBeVisible();
-  await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-  await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
+  await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
+  await expect(page.getByLabel("Observation unlocked")).toBeVisible();
 
-  await page.getByLabel("7.1 m").check();
-  await page
-    .getByLabel("Rationale")
-    .fill("The arrows are perpendicular, so I expect a right-triangle resultant.");
-  await page.getByRole("button", { name: "Commit prediction" }).click();
+  await commitCheckpoint(
+    page,
+    "The arrows are perpendicular, so I expect a right-triangle resultant.",
+  );
 
   await expect(page.getByLabel("Observation unlocked")).toBeVisible();
   await expect(page.getByText("Geometric resultant")).toBeVisible();
   await expect(page.getByLabel("Formula used")).toContainText("Substitution: |R|");
 
   await page.getByRole("button", { name: "Reset prediction" }).click();
-  await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+  await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 });
 
 test("navigates the mini knowledge graph", async ({ page }) => {
@@ -44,12 +50,8 @@ test("navigates the mini knowledge graph", async ({ page }) => {
     .click();
   await expect(page.getByRole("heading", { name: "Resolving Vectors" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Component Resolution Explorer" })).toBeVisible();
-  await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-  await page.getByLabel("8.7 N").check();
-  await page
-    .getByLabel("Rationale")
-    .fill("The horizontal component is adjacent to the angle, so cosine applies.");
-  await page.getByRole("button", { name: "Commit prediction" }).click();
+  await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
+  await commitCheckpoint(page, "The horizontal component is adjacent to the angle, so cosine applies.");
   await expect(page.getByLabel("Observation unlocked")).toBeVisible();
   await expect(page.getByLabel("Formula used")).toContainText("Substitution: Fx");
 });
@@ -59,14 +61,13 @@ test("reveals the kinematics route from catalogue data", async ({ page }) => {
 
   await expect(page.getByRole("heading", { name: "Kinematics in One Dimension" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Motion Equations Lab" })).toBeVisible();
-  await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-  await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
+  await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
+  await expect(page.getByLabel("Observation unlocked")).toBeVisible();
 
-  await page.getByLabel("9.0 m").check();
-  await page
-    .getByLabel("Rationale")
-    .fill("Starting from rest leaves only the acceleration term in the displacement equation.");
-  await page.getByRole("button", { name: "Commit prediction" }).click();
+  await commitCheckpoint(
+    page,
+    "Starting from rest leaves only the acceleration term in the displacement equation.",
+  );
 
   await expect(page.getByLabel("Observation unlocked")).toBeVisible();
   await expect(page.getByLabel("Formula used")).toContainText("Substitution: s");
@@ -78,18 +79,18 @@ test("reveals the work-energy-power route from catalogue data", async ({ page })
 
   await expect(page.getByRole("heading", { name: "Work, Energy, Power" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Energy Transfer Lab" })).toBeVisible();
-  await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-  await expect(page.getByText("W = F s cos(theta)")).toHaveCount(0);
 
-  await page.getByRole("button", { name: "Set up energy transfer" }).click();
+  const setupButton = page.getByRole("button", { name: "Set up energy transfer" });
+    if ((await setupButton.count()) > 0) {
+      await setupButton.first().click();
+    }
   await page.getByRole("button", { name: "Reveal energy transfer" }).click();
+  await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
-  await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-  await page.getByLabel("30 J and 15 W").check();
-  await page
-    .getByLabel("Rationale")
-    .fill("The force and displacement point in the same direction, so the full force does work.");
-  await page.getByRole("button", { name: "Commit prediction" }).click();
+  await commitCheckpoint(
+    page,
+    "The force and displacement point in the same direction, so the full force does work.",
+  );
 
   await expect(page.getByLabel("Observation unlocked")).toBeVisible();
   await expect(page.getByLabel("Formula used")).toContainText("W = F s cos(theta)");
@@ -106,7 +107,8 @@ test("keeps the active thermal concept when topbar lab links scroll", async ({ p
   await expect(page).toHaveURL(/#a-level%2Fphysics%2Fthermal-physics$/);
   await expect(page.getByRole("heading", { name: "Thermal Physics" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Gas Law and Energy Transfer Lab" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "Set up thermal lab" })).toBeVisible();
+  await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Reveal thermal behaviour" })).toBeVisible();
 });
 
 test("links back to the all-curricula page", async ({ page }) => {
@@ -122,20 +124,17 @@ test("reveals the probability-statistics route from catalogue data", async ({ pa
 
   await expect(page.getByRole("heading", { name: "Probability and Statistics" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Distribution and Decision Lab" })).toBeVisible();
-  await expect(page.getByRole("form", { name: "Prediction gate" })).toHaveCount(0);
-  await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
 
-  await page.getByRole("button", { name: "Set up distribution" }).click();
+  const setupButton = page.getByRole("button", { name: "Set up distribution" });
+    if ((await setupButton.count()) > 0) {
+      await setupButton.first().click();
+    }
   await page.getByRole("button", { name: "Reveal decision" }).click();
+  await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
-  await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-  await expect(page.getByLabel("Distribution readout")).toHaveCount(0);
-  await expect(page.getByLabel("Formula used")).toHaveCount(0);
-  await page.getByLabel("The expected score can stay close while the spread increases.").check();
-  await page
-    .getByLabel("Rationale")
-    .fill("Changing the rare high outcome changes spread as well as the centre.");
-  await page.getByRole("button", { name: "Commit prediction" }).click();
+  await expect(page.getByLabel("Distribution readout")).toBeVisible();
+  await expect(page.getByLabel("Formula used")).toBeVisible();
+  await commitCheckpoint(page, "Changing the rare high outcome changes spread as well as the centre.");
 
   await expect(page.getByLabel("Observation unlocked")).toBeVisible();
   await expect(page.getByLabel("Formula used")).toContainText("E(X)");

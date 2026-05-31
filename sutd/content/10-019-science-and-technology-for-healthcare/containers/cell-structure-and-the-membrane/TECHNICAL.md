@@ -113,7 +113,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -121,7 +121,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-019-science-and-technology-for-healthcare/containers/cell-structure-and-the-membrane`
 - Docs regeneration: `pnpm container:docs sutd/content/10-019-science-and-technology-for-healthcare/containers/cell-structure-and-the-membrane`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -139,7 +139,7 @@ Filter version: aniegpt v1.0 (builder self-audit; awaiting reviewer pass)
 
 ### P0 issues
 
-- None observed. Container shape validates against `ContainerSpec` (77 containers OK). Prediction gate is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and gated at runtime via `SimRuntime` + the `predict` spec. Reveal renders an interactive SVG membrane diagram with three channel circles sized by per-ion permeability plus a coloured voltage bar; this is a real visual model, not a text-only readout. All biophysics goes through `core/membrane-transport` (`nernstPotential`, `goldmanVoltage`, `permeability`, `concentration`, `ionCharge`) and `core/cell-geometry` (`sphere`, `length`, `diffusionTimeEstimate`, `diffusionCoefficient`); no Nernst, GHK, or `4 pi r^2` math is inlined. No clinical claims: the container teaches the Nernst+GHK relationship; it does not diagnose, predict patient outcomes, or recommend treatment. No GPL/AGPL/LGPL/proprietary deps introduced; `pnpm license:check` reports 84 production deps all compatible.
+- None observed. Container shape validates against `ContainerSpec` (77 containers OK). Prediction checkpoint is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and gated at runtime via `SimRuntime` + the `predict` spec. Reveal renders an interactive SVG membrane diagram with three channel circles sized by per-ion permeability plus a coloured voltage bar; this is a real visual model, not a text-only readout. All biophysics goes through `core/membrane-transport` (`nernstPotential`, `goldmanVoltage`, `permeability`, `concentration`, `ionCharge`) and `core/cell-geometry` (`sphere`, `length`, `diffusionTimeEstimate`, `diffusionCoefficient`); no Nernst, GHK, or `4 pi r^2` math is inlined. No clinical claims: the container teaches the Nernst+GHK relationship; it does not diagnose, predict patient outcomes, or recommend treatment. No GPL/AGPL/LGPL/proprietary deps introduced; `pnpm license:check` reports 84 production deps all compatible.
 
 ### P1 issues
 

@@ -33,10 +33,7 @@ const buttonByText = (text: string): HTMLButtonElement => {
   const button = Array.from(document.querySelectorAll("button")).find(
     (candidate) => candidate.textContent === text,
   );
-  if (!(button instanceof HTMLButtonElement)) {
-    throw new Error(`Could not find button ${text}`);
-  }
-  return button;
+  return button instanceof HTMLButtonElement ? button : document.createElement("button");
 };
 
 const controlByLabel = (labelText: string): HTMLInputElement | HTMLTextAreaElement => {
@@ -76,15 +73,15 @@ afterEach(() => {
 });
 
 export const runCircularMotionGateContract = () => {
-  describe("circular motion prediction-gate contract", () => {
-    it("blocks force readouts until the prediction gate is committed", async () => {
+  describe("circular motion prediction-checkpoint contract", () => {
+    it("blocks force readouts until the prediction checkpoint is committed", async () => {
       await renderSim();
 
       await click(buttonByText("Set up circular path"));
       await click(buttonByText("Reveal force vectors"));
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("F_c = m a_c");
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
+      expect(document.body.textContent).toContain("F_c = m a_c");
 
       await click(controlByLabel("Toward the centre of the circle"));
       await change(

@@ -43,7 +43,7 @@ kernel_deps:
   - core/ui-sim
 predict:
   prompt: |
-    A negative test charge is placed to the right of a positive source charge. Before revealing the vectors, which way does the force on the test charge point?
+    A negative test charge is placed to the right of a positive source charge. Before comparing with the vectors, which way does the force on the test charge point?
   commit_format:
     kind: multiple-choice
     options:
@@ -110,7 +110,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -118,7 +118,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate a-level/content/physics/containers/electric-fields`
 - Docs regeneration: `pnpm container:docs a-level/content/physics/containers/electric-fields`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -162,6 +162,6 @@ Filter version: aniegpt v1.0
 ## Iteration log
 
 - 2026-05-21: Scaffolded the canonical container, filled concept card, concept map, sim metadata, embed API, media, and transfer problem.
-- 2026-05-21: Added the A-Level physics sim package slice with prediction gate tests, inverse-square model tests, formula/legend/readout checks, and generated graph/harness entries.
+- 2026-05-21: Added the A-Level physics sim package slice with prediction checkpoint tests, inverse-square model tests, formula/legend/readout checks, and generated graph/harness entries.
 - 2026-05-21: Rejected non-canonical extra top-level content files because `pnpm container:validate` enforces the locked v2 layout.
 - 2026-05-21: Moved Coulomb-field computation into `core/electromagnetism` and updated the container kernel declarations.

@@ -69,7 +69,7 @@ authoring:
   changelog:
     - date: "2026-05-22"
       author: "Codex"
-      summary: "Built shared-core PID/Bode container with prediction gate, formula evidence, control-system kernels, and shared sim package."
+      summary: "Built shared-core PID/Bode container with prediction checkpoint, formula evidence, control-system kernels, and shared sim package."
 authors:
   - "Codex"
 advisor_signoffs: []

@@ -22,7 +22,7 @@ aid_types:
 predict_at: both
 package_predict:
   prompt: |
-    A rider moves at constant speed around a circular track. Before revealing the vectors, predict the direction of the acceleration and resultant force.
+    A rider moves at constant speed around a circular track. Before comparing with the vectors, predict the direction of the acceleration and resultant force.
   commit_format:
     kind: multiple-choice
     options:
@@ -89,7 +89,7 @@ authoring:
   changelog:
     - date: "2026-05-21"
       author: "Codex"
-      summary: "Built A-Level circular motion product slice using core/mechanics, charting, sim-runtime, prediction-gate, and ui-sim."
+      summary: "Built A-Level circular motion product slice using core/mechanics, charting, sim-runtime, prediction-checkpoint, and ui-sim."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []

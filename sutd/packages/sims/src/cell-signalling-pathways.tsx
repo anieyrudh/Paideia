@@ -279,7 +279,7 @@ const ManipulateStage = () => {
       <section className="sutd-formula-card" aria-label="Before reveal cue">
         <p className="meta-line">Before reveal</p>
         <h3>Saturating responses keep the chain bounded</h3>
-        <p>Predict first. Then sweep the ligand to see the sigmoidal transcription-factor response and raise the phosphatase to see the switch-off.</p>
+        <p>Prediction checkpoint. Then sweep the ligand to see the sigmoidal transcription-factor response and raise the phosphatase to see the switch-off.</p>
       </section>
     </section>
   );
@@ -456,7 +456,7 @@ const StageSurface = () => {
   if (stage.current === "explain") return <ExplainStage />;
   return (
     <section className="sutd-formula-card" aria-label="Prediction setup">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Cascade Propagation Lab</h1>
       <p>Predict the shape of the transcription-factor response as the ligand sweeps from 0 to 1 before launching the cascade.</p>
       <button type="button" onClick={() => stage.advance()}>Set up signalling cascade</button>

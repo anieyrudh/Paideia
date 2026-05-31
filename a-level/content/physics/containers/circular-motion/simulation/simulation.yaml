@@ -12,7 +12,7 @@ kernel_deps:
 
 predict:
   prompt: |
-    A rider moves at constant speed around a circular track. Before revealing the vectors, which direction is the acceleration at any instant?
+    A rider moves at constant speed around a circular track. Before comparing with the vectors, which direction is the acceleration at any instant?
   commit_format:
     kind: multiple-choice
     options:

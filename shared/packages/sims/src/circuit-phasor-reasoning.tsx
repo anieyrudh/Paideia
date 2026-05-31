@@ -14,7 +14,7 @@ export const circuitPhasorSimId = "circuit-phasor-lab";
 
 export const circuitPhasorPredict: TPredictSpec = {
   prompt:
-    "A resistor and inductor are connected in series to a sinusoidal supply. Before revealing the lab, what happens to the current phase compared with the voltage?",
+    "A resistor and inductor are connected in series to a sinusoidal supply. Before comparing with the lab, what happens to the current phase compared with the voltage?",
   commit_format: {
     kind: "multiple-choice",
     options: [

@@ -4,7 +4,7 @@
  *
  * Containers opt in by adding simulation/runtime.yaml visual_quality metadata.
  * The generated Playwright spec uses that explicit metadata to move through
- * setup, prediction, and reveal without guessing learner-facing button labels.
+ * setup and prediction checkpoints without guessing learner-facing button labels.
  */
 
 import { spawnSync } from "node:child_process";
@@ -92,12 +92,12 @@ function loadContracts(routeFilter) {
     if (routeFilter.length > 0 && !routeFilter.includes(simId)) continue;
 
     const prediction = visualQuality.prediction;
-    const reveal = visualQuality.reveal ?? {};
+    const observation = visualQuality.observation ?? visualQuality.reveal ?? {};
     if (!prediction?.option_label || !prediction?.rationale) {
       failures.push(`${relative(REPO_ROOT, runtimePath)} visual_quality.prediction needs option_label and rationale.`);
       continue;
     }
-    if (reveal.formula === "not-applicable" && !reveal.formula_not_applicable_reason) {
+    if (observation.formula === "not-applicable" && !observation.formula_not_applicable_reason) {
       failures.push(`${relative(REPO_ROOT, runtimePath)} formula: not-applicable needs formula_not_applicable_reason.`);
       continue;
     }
@@ -111,11 +111,11 @@ function loadContracts(routeFilter) {
         optionLabel: prediction.option_label,
         rationale: prediction.rationale,
       },
-      reveal: {
-        observationLabel: reveal.observation_label ?? "Observation unlocked",
-        visual: reveal.visual ?? "required",
-        formula: reveal.formula ?? "required",
-        formulaNotApplicableReason: reveal.formula_not_applicable_reason,
+      observation: {
+        observationLabel: observation.observation_label ?? "Observation unlocked",
+        visual: observation.visual ?? "required",
+        formula: observation.formula ?? "required",
+        formulaNotApplicableReason: observation.formula_not_applicable_reason,
       },
     });
   }
@@ -132,13 +132,13 @@ function writeSpec(contracts) {
   rmSync(WORK_DIR, { recursive: true, force: true });
   mkdirSync(WORK_DIR, { recursive: true });
   const source = `import { test } from "@playwright/test";
-import { expectProductSimulationReveal } from "../src/playwright-contract.js";
+import { expectProductSimulationExperience } from "../src/playwright-contract.js";
 
 const contracts = ${JSON.stringify(contracts, null, 2)} as const;
 
 for (const contract of contracts) {
-  test(\`\${contract.simId} satisfies product reveal contract\`, async ({ page }) => {
-    await expectProductSimulationReveal(page, contract);
+  test(\`\${contract.simId} satisfies product simulation experience contract\`, async ({ page }) => {
+    await expectProductSimulationExperience(page, contract);
   });
 }
 `;

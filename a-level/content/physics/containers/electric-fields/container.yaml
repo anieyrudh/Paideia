@@ -22,7 +22,7 @@ aid_types:
 predict_at: both
 package_predict:
   prompt: |
-    A negative test charge is placed to the right of a positive source charge. Before revealing the vectors, which way does the force on the test charge point?
+    A negative test charge is placed to the right of a positive source charge. Before comparing with the vectors, which way does the force on the test charge point?
   commit_format:
     kind: multiple-choice
     options:
@@ -87,7 +87,7 @@ authoring:
   changelog:
     - date: "2026-05-21"
       author: "Codex"
-      summary: "Built A-Level electric fields product slice with point-charge vectors, force readouts, potential-energy transfer, and prediction-gated tests."
+      summary: "Built A-Level electric fields product slice with point-charge vectors, force readouts, potential-energy transfer, and prediction-checkpointd tests."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []

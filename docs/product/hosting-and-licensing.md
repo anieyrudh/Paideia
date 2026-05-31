@@ -48,7 +48,7 @@ The browser owns the normal learner loop:
 | Catalogue | generated TypeScript/JSON at build time |
 | Search | client-side index over generated graph data |
 | Sim computation | browser kernels from `core/` packages |
-| Prediction gate | local browser storage |
+| Prediction checkpoint | local browser storage |
 | Progress v0 | local storage |
 | Embeds | static host-ready bundle per container |
 | Secrets | none in the frontend |

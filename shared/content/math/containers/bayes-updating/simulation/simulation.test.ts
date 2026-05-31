@@ -17,10 +17,8 @@ test.describe("Shared Bayes Updating", () => {
     });
   });
 
-  test("prediction-gate blocks posterior until commit", async ({ page }) => {
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByText("Formula used")).toHaveCount(0);
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+  test("prediction-checkpoint keeps posterior visible while saving reflection", async ({ page }) => {
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "51.4%" }).check();
     await page.getByLabel("Rationale").fill("Bayes combines prior and test reliability.");

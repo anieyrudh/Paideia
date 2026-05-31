@@ -91,9 +91,9 @@ Required outcome:
 - Valid v2 container layout.
 - `container.yaml`, `concept-card.md`, `sources.md`, `TECHNICAL.md`.
 - `concept-map/`, `simulation/`, `problem-solving/`, `media/`, and `embed/`.
-- A prediction-gated simulation when the concept is sim-worthy.
+- A prediction-checkpointd simulation when the concept is sim-worthy.
 - Formula-backed readouts for any calculation.
-- Playwright tests proving the prediction gate blocks reveal, at least one
+- Playwright tests proving the prediction checkpoint blocks reveal, at least one
   manipulation changes visible state, and the revealed sim has no critical axe
   accessibility violations.
 - `TECHNICAL.md` records what failed, what was fixed, and what remains deferred.
@@ -169,7 +169,7 @@ Read first:
 - testing/sim-harness/README.md
 
 Use existing core kernels for math, plotting, graph layout, controls, and
-runtime. Do not inline reusable math or bypass the prediction gate. Run:
+runtime. Do not inline reusable math or bypass the prediction checkpoint. Run:
 
 pnpm container:validate
 pnpm container:docs <container-path>
@@ -270,9 +270,9 @@ Review checklist:
 - Public learner UI is student-facing and does not expose code/package details.
 - Every calculation shows formula, substitution, units, and interpretation.
 - Simulation uses the build queue's required core kernels instead of local math.
-- Prediction gate blocks reveal before commit.
+- Prediction checkpoint saves reflection without blocking the simulation.
 - At least one manipulation changes visible state.
-- Revealed sim has no critical axe accessibility violations.
+- Live sim has no critical axe accessibility violations.
 - Sources support the claims and there are no copied textbook dumps.
 - TECHNICAL.md records failures, fixes, and deferred issues.
 

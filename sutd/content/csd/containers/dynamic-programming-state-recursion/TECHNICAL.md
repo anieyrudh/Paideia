@@ -83,7 +83,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -91,7 +91,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/csd/containers/dynamic-programming-state-recursion`
 - Docs regeneration: `pnpm container:docs sutd/content/csd/containers/dynamic-programming-state-recursion`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -105,7 +105,7 @@ pnpm graph:generate
 ## Latest Validation
 
 - Axe summary: `simulation/simulation.test.ts` includes the revealed-state check "has no serious or critical accessibility violations after reveal"; it passed in the escalated full `pnpm test` run on 2026-05-21.
-- Kernel boundary note: recurrence table values, repeated-call counts, and memo hits are package-local because `core/algorithm-trace` explicitly excludes advanced dynamic programming until a future ADR. The SUTD sim consumes shared runtime, graph layout, prediction gate, and UI controls without widening any core public API.
+- Kernel boundary note: recurrence table values, repeated-call counts, and memo hits are package-local because `core/algorithm-trace` explicitly excludes advanced dynamic programming until a future ADR. The SUTD sim consumes shared runtime, graph layout, prediction checkpoint, and UI controls without widening any core public API.
 
 ## Anieyrudh Filter pass
 
@@ -122,7 +122,7 @@ Filter version: aniegpt v1.0
 
 ### High-bandwidth questions surfaced
 
-- The package intentionally uses a compact stair-count recurrence because no reusable DP kernel exists in the declared kernel set; the reusable boundaries are the runtime, graph layout, prediction gate, and UI controls.
+- The package intentionally uses a compact stair-count recurrence because no reusable DP kernel exists in the declared kernel set; the reusable boundaries are the runtime, graph layout, prediction checkpoint, and UI controls.
 
 ## Iteration log
 

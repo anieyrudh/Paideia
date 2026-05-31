@@ -376,7 +376,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Chemical Bonding and Intermolecular Forces Lab</h1>
       <p>
         Predict sodium chloride's bond class, then compare ionic, polar covalent, and nonpolar

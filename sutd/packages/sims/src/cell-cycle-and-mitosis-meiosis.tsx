@@ -246,7 +246,7 @@ const ManipulateStage = () => {
       <section className="sutd-formula-card" aria-label="Before reveal cue">
         <p className="meta-line">Before reveal</p>
         <h3>Checkpoints gate every advance</h3>
-        <p>Predict first. Then watch the cell traverse the phase wheel under the active checkpoint conditions and see which division mode produces which daughters.</p>
+        <p>Prediction checkpoint. Then watch the cell traverse the phase wheel under the active checkpoint conditions and see which division mode produces which daughters.</p>
       </section>
     </section>
   );
@@ -404,7 +404,7 @@ const StageSurface = () => {
   if (stage.current === "explain") return <ExplainStage />;
   return (
     <section className="sutd-formula-card" aria-label="Prediction setup">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Cell Cycle Phase Wheel</h1>
       <p>Predict the daughter cells of a mitotic diploid cell before stepping through the phase wheel.</p>
       <button type="button" onClick={() => stage.advance()}>Set up cell cycle</button>

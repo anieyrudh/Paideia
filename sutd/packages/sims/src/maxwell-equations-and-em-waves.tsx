@@ -313,11 +313,11 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Maxwell Equations and EM Waves</h1>
       <p>
         Predict how Maxwell's correction links changing electric and magnetic
-        fields before revealing the wave speed and wavelength.
+        fields before comparing with the wave speed and wavelength.
       </p>
       <button type="button" onClick={() => stage.advance()}>
         Prepare Maxwell model

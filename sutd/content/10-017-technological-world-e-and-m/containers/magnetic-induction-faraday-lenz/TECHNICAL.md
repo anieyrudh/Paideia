@@ -132,7 +132,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -140,7 +140,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-017-technological-world-e-and-m/containers/magnetic-induction-faraday-lenz`
 - Docs regeneration: `pnpm container:docs sutd/content/10-017-technological-world-e-and-m/containers/magnetic-induction-faraday-lenz`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -171,7 +171,7 @@ Filter version: aniegpt v1.0
   tilt projection, and invalid duration.
 - 2026-05-26: Prediction reveal must remain blocked until the learner commits.
   Resolved with the simulation route contract file carrying the required
-  prediction-gate assertion and a SUTD sim unit test around the gate state.
+  prediction-checkpoint assertion and a SUTD sim unit test around the gate state.
 
 ### P1 issues
 

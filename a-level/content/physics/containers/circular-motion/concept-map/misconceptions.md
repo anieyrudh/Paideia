@@ -6,7 +6,7 @@ Evidence: OpenStax University Physics Volume 1, Section 4.4 Uniform Circular Mot
 
 Surface in predict?: yes.
 
-This is surfaced in the prediction gate. The corrective move is to separate speed from velocity: speed can remain constant while velocity changes direction. The acceleration is therefore non-zero and radial.
+This is surfaced in the prediction checkpoint. The corrective move is to separate speed from velocity: speed can remain constant while velocity changes direction. The acceleration is therefore non-zero and radial.
 
 ## Centripetal Force Is An Extra New Force
 

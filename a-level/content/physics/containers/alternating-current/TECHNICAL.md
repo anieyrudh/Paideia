@@ -43,7 +43,7 @@ kernel_deps:
   - core/ui-sim
 predict:
   prompt: |
-    A sinusoidal supply has the same peak voltage but its frequency is doubled. Before revealing the lab, what happens to the rms voltage of the supply?
+    A sinusoidal supply has the same peak voltage but its frequency is doubled. Before comparing with the lab, what happens to the rms voltage of the supply?
   commit_format:
     kind: multiple-choice
     options:
@@ -127,7 +127,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -135,7 +135,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate a-level/content/physics/containers/alternating-current`
 - Docs regeneration: `pnpm container:docs a-level/content/physics/containers/alternating-current`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -153,7 +153,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer
 
 ### P0 issues
 
-- Prediction gate could leak impedance, phase, and power readouts before commit - resolved by keeping the observe surface inside `SimRuntime` / `PredictionGate` and asserting absence in jsdom and sim-harness tests.
+- Prediction checkpoint could leak impedance, phase, and power readouts before commit - resolved by keeping the observe surface inside `SimRuntime` / `PredictionGate` and asserting absence in jsdom and sim-harness tests.
 - AC calculations could drift from the reviewed circuit kernel - resolved by computing impedance, current phase, current rms, and power terms through `core/circuits.solveSeriesAcCircuit`.
 - Student-facing calculations could omit formula, substitution, units, or interpretation - resolved by showing a formula panel with substitutions and a nearby symbol legend for rms, reactance, impedance, phase, waveform sample, and power.
 

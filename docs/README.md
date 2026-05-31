@@ -9,7 +9,7 @@ and a technical audit trail.
 
 ## The Doctrine
 
-1. **Declared prediction gate:** when a container declares prediction, any
+1. **Declared prediction checkpoint:** when a container declares prediction, any
    observation-shaped reveal must require a committed prediction first.
 2. **Flexible learning flow:** Predict -> Manipulate -> Observe -> Explain ->
    Transfer is a useful pattern, not a required UI layout. Containers may use

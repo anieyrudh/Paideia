@@ -538,7 +538,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Determinant and Trace Lab</h1>
       <p>
         Predict the determinant and trace of the displayed matrix before the reveal. Then drag the

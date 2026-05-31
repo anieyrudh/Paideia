@@ -31,7 +31,7 @@ const installStorage = (): void => {
 };
 
 describe("linear system stability evidence", () => {
-  it("keeps stability evidence blocked until the prediction gate records a commit", () => {
+  it("keeps stability evidence blocked until the prediction checkpoint records a commit", () => {
     installStorage();
     clearPrediction(linearSystemStabilityPackageId, "linear-system-stability");
 

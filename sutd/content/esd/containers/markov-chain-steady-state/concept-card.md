@@ -105,7 +105,7 @@ and a convergence chart.
 
 ## Notes for the teacher
 
-Ask students to explain the direction of net flow before revealing the closed
+Ask students to explain the direction of net flow before comparing with the closed
 form. If they focus only on the largest matrix entry, point them back to the two
 off-diagonal probabilities because those govern the steady-state balance in a
 two-state chain.

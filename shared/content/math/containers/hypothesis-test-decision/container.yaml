@@ -81,7 +81,7 @@ authoring:
   changelog:
     - date: "2026-05-22"
       author: "Codex"
-      summary: "Built shared-core hypothesis test decision lab with prediction gate, normal-mean decision kernel, decision-region chart, formula panel, and transfer problem."
+      summary: "Built shared-core hypothesis test decision lab with prediction checkpoint, normal-mean decision kernel, decision-region chart, formula panel, and transfer problem."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []

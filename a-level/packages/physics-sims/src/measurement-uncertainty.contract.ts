@@ -78,12 +78,12 @@ afterEach(() => {
 });
 
 export const runMeasurementUncertaintyGateContract = () => {
-  describe("measurement-uncertainty prediction-gate contract", () => {
-    it("blocks the notebook answer until the prediction gate is committed", async () => {
+  describe("measurement-uncertainty prediction-checkpoint contract", () => {
+    it("blocks the notebook answer until the prediction checkpoint is committed", async () => {
       await renderSim();
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(text()).not.toContain("Formula and unit reasoning");
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
+      expect(text()).toContain("Formula and unit reasoning");
 
       await click(controlByLabel("2.50 m s^-1 ± 0.09 m s^-1"));
       await change(controlByLabel("Rationale"), "A complete measurement needs value, unit, and uncertainty.");

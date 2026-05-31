@@ -16,21 +16,27 @@ test.describe("Recursion Tree Complexity", () => {
     await page.getByRole("button", { name: "Commit prediction" }).click();
   };
 
-  test("prediction-gate blocks reveal until a prediction is committed", async ({ page }) => {
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await expect(page.getByRole("button", { name: "Build tree" })).toHaveCount(0);
+  test("prediction-checkpoint keeps observation visible while saving reflection", async ({ page }) => {
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await commitPrediction(page);
-    await page.getByRole("button", { name: "Build tree" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Build tree" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal level costs" }).click();
-
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toBeVisible();
   });
 
   test("manipulating the recurrence changes visible state and dominance", async ({ page }) => {
     await commitPrediction(page);
-    await page.getByRole("button", { name: "Build tree" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Build tree" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByLabel("Input size").selectOption({ label: "81 items" });
     await page.getByLabel("Recursive calls per node").selectOption({ label: "3 branches" });
     await page.getByLabel("Shrink factor").selectOption({ label: "n/2" });
@@ -45,7 +51,12 @@ test.describe("Recursion Tree Complexity", () => {
 
   test("shows formula, legend, substituted values, units, interpretation, and chart evidence", async ({ page }) => {
     await commitPrediction(page);
-    await page.getByRole("button", { name: "Build tree" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Build tree" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal level costs" }).click();
 
     const formula = page.getByRole("region", { name: "Formula and interpretation" });
@@ -59,7 +70,12 @@ test.describe("Recursion Tree Complexity", () => {
 
   test("has no serious or critical accessibility violations after reveal", async ({ page }) => {
     await commitPrediction(page);
-    await page.getByRole("button", { name: "Build tree" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Build tree" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal level costs" }).click();
     await page.getByRole("region", { name: "Observation unlocked" }).waitFor();
 

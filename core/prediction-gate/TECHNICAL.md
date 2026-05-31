@@ -13,8 +13,10 @@
 
 - `PredictionGate`
 - `commitPrediction`
+- `isPredictionCommitted`
 - `isRevealed`
 - `clearPrediction`
+- `usePredictionCheckpoint`
 - `usePredictionGate`
 - `PredictionCommit`
 - `PredictionEvent`
@@ -22,10 +24,12 @@
 
 ## Invariants
 
-- Reveal truth source: enforced by `isRevealed()` and `usePredictionGate()`,
-  both of which read the central storage schema.
-- No DOM leak before commit: `PredictionGate` returns only the prediction form
-  until `revealed` is true; children are not rendered hidden or blurred.
+- Prediction-commit truth source: enforced by `isPredictionCommitted()` and
+  `usePredictionCheckpoint()`, both of which read the central storage schema.
+  Deprecated aliases `isRevealed()` and `usePredictionGate()` return the same
+  committed state for compatibility.
+- Live simulation contract: `PredictionGate` renders children immediately and
+  adds a compact checkpoint form or saved-prediction summary.
 - Spec-dependent validation: enforced in `validatePrediction()` before the
   component commits.
 - Required rationale: enforced in `validatePrediction()` when
@@ -64,9 +68,9 @@ Filter version: aniegpt v1.0
 
 ### P0 issues
 
-- Potential P0: hidden child render before commit. Resolution: component returns
-  only the form until `gate.revealed` is true; tests assert the observation text
-  is absent from the DOM before commit.
+- Potential P0: prediction checkpoint could block the live model. Resolution:
+  component renders children before the checkpoint form; tests assert the
+  observation text is present before commit.
 - Potential P0: localStorage writes outside central writer. Resolution: all
   writes route through `writeStoredPrediction()`.
 - Potential P0: empty rationale stored when required. Resolution: component
@@ -91,5 +95,5 @@ Filter version: aniegpt v1.0
 - Implemented storage first around the canonical key and Zod-validated stored
   event schema.
 - Added internal spec validation for commit-format and rationale rules.
-- Kept the public surface aligned with `core/prediction-gate/AGENTS.md` instead
-  of widening it with bypass, preview, or branch-specific props.
+- Added explicit checkpoint aliases while keeping deprecated reveal/gate names
+  as compatibility exports.

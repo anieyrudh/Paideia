@@ -3,5 +3,5 @@ runtime:
   package_entry: "@paideia/a-level-physics-sims/circuits"
   mount_mode: react-component
   state_model: local
-  persistence: prediction-gate-local-storage
+  persistence: prediction-checkpoint-local-storage
   deterministic: true

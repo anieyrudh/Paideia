@@ -2,27 +2,30 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { mountSim } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
-test.describe("a-level/physics/magnetic-fields/magnetic-force-direction-lab prediction-gate", () => {
-  test("prediction-gate blocks magnetic force readouts until prediction commit", async ({ page }) => {
+test.describe("a-level/physics/magnetic-fields/magnetic-force-direction-lab prediction-checkpoint", () => {
+  test("prediction-checkpoint keeps magnetic force readouts visible while saving reflection", async ({ page }) => {
     await mountSim(page, "a-level/physics/magnetic-fields/magnetic-force-direction-lab");
 
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByLabel("Magnetic field readout")).toHaveCount(0);
+    {
 
-    await page.getByRole("button", { name: "Set magnetic field" }).click();
+      const setupButton = page.getByRole("button", { name: "Set magnetic field" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal magnetic force" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByLabel("Magnetic field readout")).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByLabel("Up the page").check();
     await page
       .getByLabel("Rationale")
       .fill("Current to the right and magnetic field into the page gives upward force.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByText("Wire force", { exact: true })).toBeVisible();
     await expect(page.getByLabel("Magnetic field readout")).toContainText("1.92 x 10^-2 N");
     await expect(page.getByLabel("Formula used")).toContainText("F = BIL sin theta");
@@ -31,7 +34,17 @@ test.describe("a-level/physics/magnetic-fields/magnetic-force-direction-lab pred
   test("main controls change visible magnetic-force state before reveal", async ({ page }) => {
     await mountSim(page, "a-level/physics/magnetic-fields/magnetic-force-direction-lab");
 
-    await page.getByRole("button", { name: "Set magnetic field" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set magnetic field" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByLabel("Active wire length").fill("10");
     await page.getByRole("button", { name: "Reveal magnetic force" }).click();
     await page.getByLabel("Up the page").check();
@@ -44,7 +57,17 @@ test.describe("a-level/physics/magnetic-fields/magnetic-force-direction-lab pred
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, "a-level/physics/magnetic-fields/magnetic-force-direction-lab");
 
-    await page.getByRole("button", { name: "Set magnetic field" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set magnetic field" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal magnetic force" }).click();
     await page.getByLabel("Up the page").check();
     await page

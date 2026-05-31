@@ -3,6 +3,7 @@ import type { TPredictSpec } from "@paideia/content-schema";
 import {
   clearPrediction,
   commitPrediction,
+  isPredictionCommitted,
   isRevealed,
   type PredictionScope,
 } from "./index.js";
@@ -40,7 +41,7 @@ const installStorage = (): MemoryStorage => {
 };
 
 const rankingPredict: TPredictSpec = {
-  prompt: "Rank the outcomes before revealing the graph.",
+  prompt: "Rank the outcomes before comparing with the graph.",
   commit_format: {
     kind: "ranking",
     options: ["increases", "stays-same", "decreases"],
@@ -49,7 +50,7 @@ const rankingPredict: TPredictSpec = {
 };
 
 const multipleChoicePredict: TPredictSpec = {
-  prompt: "Choose the direction before revealing the vector.",
+  prompt: "Choose the direction before comparing with the vector.",
   commit_format: {
     kind: "multiple-choice",
     options: ["left", "right"],
@@ -62,13 +63,15 @@ describe("@paideia/prediction-gate storage", () => {
     installStorage();
   });
 
-  it("blocks reveal until a commit is recorded", () => {
+  it("tracks whether a prediction checkpoint has been committed", () => {
+    expect(isPredictionCommitted("pkg", "package")).toBe(false);
     expect(isRevealed("pkg", "package")).toBe(false);
     const result = commitPrediction("pkg", "package", {
       value: "left",
       rationale: "Initial intuition",
     });
     expect(result.ok).toBe(true);
+    expect(isPredictionCommitted("pkg", "package")).toBe(true);
     expect(isRevealed("pkg", "package")).toBe(true);
   });
 

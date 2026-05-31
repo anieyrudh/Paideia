@@ -80,7 +80,7 @@ authoring:
   changelog:
     - date: "2026-05-26"
       author: "Codex"
-      summary: "Built initial SUTD 10.016 thermochemistry and equilibrium product slice with prediction gate and formula-backed simulation."
+      summary: "Built initial SUTD 10.016 thermochemistry and equilibrium product slice with prediction checkpoint and formula-backed simulation."
 authors: ["Codex"]
 advisor_signoffs: []
 filter_pass:

@@ -104,7 +104,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -112,7 +112,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 - Container validation: `pnpm container:validate a-level/content/physics/containers/physical-quantities-and-units`
 - Docs regeneration: `pnpm container:docs a-level/content/physics/containers/physical-quantities-and-units`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -127,7 +127,7 @@ pnpm graph:generate
 
 | Check | Failure observed | Fix |
 | --- | --- | --- |
-| Initial product review | Existing container was content-only and had no prediction-gated simulation | Added `measurement-uncertainty-lab`, updated `container.yaml`, and supplied all required simulation surfaces |
+| Initial product review | Existing container was content-only and had no prediction-checkpointd simulation | Added `measurement-uncertainty-lab`, updated `container.yaml`, and supplied all required simulation surfaces |
 | Answer-leak self-review | Complete speed notebook would be an answer leak if rendered outside the gate | Kept notebook and formula panels inside `PredictionGate`; added unit tests that assert the observation is absent before commit |
 | Container coherence review | Original problem-solving flow omitted uncertainty and scalar/vector classification | Updated algorithm, steps, concept card, and transfer rubric to include uncertainty and classification decisions |
 | Candidate integration | #34 concept-card examples included the exact default speed record before the gate | Rewrote examples qualitatively and added a shell axe regression that checks the answer is absent before commit |
@@ -144,7 +144,7 @@ This slice was integrated after reviewing draft candidate PRs #25-#39.
 | #31-#33 | Impossible-equation detector | Good equation-case library, but full test failed from missing sim-harness registration and some candidates left P1 metadata open. | Port the idea that unit checks reject impossibilities but do not prove physics. Save the richer equation case bank for a later dimensional-consistency sim. |
 | #34 | Measurement and uncertainty lab | Only candidate with visible required checks all green; coherent single interaction; shell and sim-harness wiring present. | Use as the base implementation. Remove pre-gate exact-answer examples and layer in the best small ideas from other candidates. |
 | #35-#36 | Measurement lab variants | Stronger repeated-reading and measurement-track ideas, but full test failed or shell tests were stale. | Port the “larger of repeat spread vs instrument resolution” principle into the uncertainty explanation; leave richer repeated-reading controls for a follow-up. |
-| #37-#39 | Dimensional consistency checker | Good unit-fingerprint mental model, but browser prediction-gate contract failed and concept cards leaked exact prediction answers. | Do not use as base. Save the dimension-balance table/custom builder for a future dedicated dimensional-consistency container or second sim. |
+| #37-#39 | Dimensional consistency checker | Good unit-fingerprint mental model, but browser prediction-checkpoint contract failed and concept cards leaked exact prediction answers. | Do not use as base. Save the dimension-balance table/custom builder for a future dedicated dimensional-consistency container or second sim. |
 
 ## Latest Validation
 

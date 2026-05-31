@@ -11,7 +11,7 @@ student-facing learning unit.
 | Generic math, simulation logic, parsing, layout, scheduling | `core/<kernel>/` | Behavior, public API, invariants, tests, dependency license proof |
 | A-Level, SUTD, or future branch syllabus alignment | `<branch>/content/...` | Curriculum, level, syllabus references, source fit, misconceptions |
 | A concrete learning experience | `<branch>/content/<subject>/containers/<id>/` | `container.yaml`, concept card, concept map, media, embed API, problem-solving path, simulation spec, citations, QA status |
-| A specific interactive simulation | `<container>/simulation/` plus a package/app renderer | UI wiring, controls, presets, state labels, kernel composition, prediction-gate Playwright test |
+| A specific interactive simulation | `<container>/simulation/` plus a package/app renderer | UI wiring, controls, presets, state labels, kernel composition, prediction-checkpoint Playwright test |
 | GPL code, external prototypes, and design guides | `docs/reference/` or external source notes until extracted | Source material only; no runtime behavior until relicensed, clean-room rewritten, or isolated |
 
 ## Classification Rule
@@ -97,7 +97,7 @@ repositories should be tracked with these tags before implementation:
 | `target_branch` | `a-level`, `sutd`, `ib-proposed`, `core`, `none` | Where the extracted work would land |
 | `artifact_type` | `core-kernel`, `concept-package`, `sim`, `reference-only` | What kind of Paideia artifact it becomes |
 | `domain` | `physics`, `math`, `csd`, `epd`, `esd`, `asd`, `dai`, `hass`, `ib-core`, or subject kebab-case | Curriculum or technical domain |
-| `kernel_deps` | `prediction-gate`, `function-eval`, `numerical-math`, `plotting`, etc. | Core modules needed by the candidate |
+| `kernel_deps` | `prediction-checkpoint`, `function-eval`, `numerical-math`, `plotting`, etc. | Core modules needed by the candidate |
 | `license_status` | `allowed`, `review-required`, `recreate`, `iframe-only`, `blocked`, `unknown` | Whether code/assets may be bundled |
 | `reuse_action` | `extract`, `clean-room-rewrite`, `isolate`, `discard`, `keep-as-reference` | What to do next |
 | `status` | `reference-only`, `content-only`, `sim-spec-ready`, `build-ready`, `implemented`, `validated` | Current delivery state |
@@ -111,7 +111,7 @@ runtime surface can be exercised by tests:
 - `simulation/simulation.yaml`
 - `simulation/index.tsx`
 - `simulation/simulation.test.ts`
-- package/app renderer and Playwright prediction-gate coverage when the sim is
+- package/app renderer and Playwright prediction-checkpoint coverage when the sim is
   runnable in a shell
 
 A guide section, prototype, mockup, issue, or GPL implementation is not a

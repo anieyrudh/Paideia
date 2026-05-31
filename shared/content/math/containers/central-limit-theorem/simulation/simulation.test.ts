@@ -18,20 +18,16 @@ test.describe("Central Limit Theorem Sampler", () => {
     });
   });
 
-  test("prediction-gate blocks sample-mean reveal until commit", async ({ page }) => {
+  test("prediction-checkpoint keeps sample-mean reveal visible while saving reflection", async ({ page }) => {
     await mountSim(page, simId);
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByText("Formula used")).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByLabel("The sample means will be more bell-shaped and less spread out.")
       .check();
     await page.getByLabel("Rationale").fill("Averages should vary less than individual draws.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByLabel("Formula used")).toContainText("sigma-bar");
   });
 
@@ -48,9 +44,9 @@ test.describe("Central Limit Theorem Sampler", () => {
     await expect(page.getByLabel("CLT readout")).toContainText("0.41");
   });
 
-  test("prediction-gate state has no serious accessibility violations", async ({ page }) => {
+  test("prediction-checkpoint state has no serious accessibility violations", async ({ page }) => {
     await mountSim(page, simId);
-    await page.getByRole("form", { name: "Prediction gate" }).waitFor();
+    await page.getByRole("form", { name: "Prediction checkpoint" }).waitFor();
 
     const results = await new AxeBuilder({ page }).analyze();
     const seriousOrCritical = results.violations.filter(

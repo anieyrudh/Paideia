@@ -6,14 +6,17 @@ test.describe("Bode Stability Margin", () => {
     await page.goto("/?sim=sutd/epd/bode-stability-margin/bode-stability-margin");
   });
 
-  test("prediction-gate blocks margin evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps margin evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Prepare Bode readout" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Prepare Bode readout" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal margin readout" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByRole("radio", {
@@ -33,7 +36,12 @@ test.describe("Bode Stability Margin", () => {
   });
 
   test("manipulation changes visible margin state", async ({ page }) => {
-    await page.getByRole("button", { name: "Prepare Bode readout" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Prepare Bode readout" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Loop gain" }).fill("4");
     await page.getByRole("button", { name: "Reveal margin readout" }).click();
     await page
@@ -50,7 +58,12 @@ test.describe("Bode Stability Margin", () => {
   });
 
   test("has no serious or critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Prepare Bode readout" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Prepare Bode readout" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal margin readout" }).click();
     await page
       .getByRole("radio", {

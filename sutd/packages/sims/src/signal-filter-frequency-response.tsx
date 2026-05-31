@@ -552,10 +552,10 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>RC Filter Frequency Response Lab</h1>
       <p>
-        Predict the cutoff behavior before revealing the Bode traces. Then adjust R, C, filter
+        Predict the cutoff behavior before comparing with the Bode traces. Then adjust R, C, filter
         type, and probe frequency to compare pass-band, transition-band, and attenuated-band
         behavior.
       </p>

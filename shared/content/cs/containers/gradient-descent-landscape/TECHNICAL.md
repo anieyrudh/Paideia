@@ -108,7 +108,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -116,7 +116,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate shared/content/cs/containers/gradient-descent-landscape`
 - Docs regeneration: `pnpm container:docs shared/content/cs/containers/gradient-descent-landscape`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -141,7 +141,7 @@ Reviewers: local Codex review aligned to container-auditor, sim-architect, pedag
 
 ### P0 resolved
 
-- Prediction gate: observation readouts, trace, and formula panel are not rendered before prediction commit.
+- Prediction checkpoint: observation readouts, trace, and formula panel are not rendered before prediction commit.
 - Kernel boundary: descent traces come from `core/optimization`; the sim does not inline descent math.
 - Canonical shared path: container is under `shared/content/cs/containers/gradient-descent-landscape`.
 - Added standalone `concept-map/misconceptions.md` with named misconceptions, evidence, and predict-surface notes.

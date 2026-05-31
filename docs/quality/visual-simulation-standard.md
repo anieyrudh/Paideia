@@ -2,13 +2,15 @@
 
 This is the merge bar for sim-worthy Paideia containers.
 
-## Reveal Contract
+## Live Simulation Contract
 
-Prediction comes first. A learner must commit a prediction before the route shows
-the model output.
+The simulation comes first. A sim-worthy route must show the model output,
+visuals, formulas, controls, and readouts on first load. Prediction remains
+mandatory as a compact reflection checkpoint, but it must not block the
+simulation.
 
-After the prediction is committed, the `Observation unlocked` region must contain
-all evidence needed to understand the result:
+The observation region must contain all evidence needed to understand the
+result:
 
 | Required item | Acceptance bar |
 | --- | --- |
@@ -18,12 +20,12 @@ all evidence needed to understand the result:
 | Legend | Symbol and colour mapping sits near the formula or visual |
 | Accessibility | Keyboard path works and axe has no serious or critical violations |
 
-Text-only reveal states are P0 for sim-worthy containers.
+Text-only observation states are P0 for sim-worthy containers.
 
 ## Runtime Metadata
 
-Every route that has been backfilled to the product reveal standard declares its
-browser path in `simulation/runtime.yaml`:
+Every route that has been backfilled to the product simulation standard declares
+its browser path in `simulation/runtime.yaml`:
 
 ```yaml
 visual_quality:
@@ -33,11 +35,14 @@ visual_quality:
   prediction:
     option_label: "Learner-facing answer"
     rationale: "Short prediction rationale."
-  reveal:
-    observation_label: "Observation unlocked"
+  observation:
+    observation_label: "Observation"
     visual: required
     formula: required
 ```
+
+Existing `visual_quality.reveal` metadata is accepted as a deprecated alias
+during migration, but new routes should use `visual_quality.observation`.
 
 Use `formula: not-applicable` only when there is genuinely no calculation. Add
 `formula_not_applicable_reason` so the exemption is reviewable.
@@ -45,7 +50,7 @@ Use `formula: not-applicable` only when there is genuinely no calculation. Add
 ## Test Gate
 
 Route-specific Playwright tests should call
-`expectProductSimulationReveal(page, contract)` from
+`expectProductSimulationExperience(page, contract)` from
 `testing/sim-harness/src/playwright-contract.ts`.
 
 The repo-wide gate is:
@@ -61,5 +66,6 @@ pnpm container:visual-quality -- sutd/csd/graph-search-and-shortest-paths/graph-
 ```
 
 The command reads `visual_quality` metadata, opens the route in the sim harness,
-commits the prediction, and fails if the revealed observation lacks a visible
+asserts that the visual model and formula evidence are visible before commit,
+commits the prediction checkpoint, and fails if the observation lacks a visible
 visual artifact or required formula language.

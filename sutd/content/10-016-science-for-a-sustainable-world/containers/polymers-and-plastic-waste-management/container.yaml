@@ -80,7 +80,7 @@ authoring:
   changelog:
     - date: "2026-05-26"
       author: "Codex"
-      summary: "Built initial SUTD 10.016 polymers and plastic waste management product slice with prediction gate and material-index simulation."
+      summary: "Built initial SUTD 10.016 polymers and plastic waste management product slice with prediction checkpoint and material-index simulation."
 authors: ["Codex"]
 advisor_signoffs: []
 filter_pass:

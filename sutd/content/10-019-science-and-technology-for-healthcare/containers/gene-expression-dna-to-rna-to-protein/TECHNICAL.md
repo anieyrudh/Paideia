@@ -103,7 +103,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -111,7 +111,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-019-science-and-technology-for-healthcare/containers/gene-expression-dna-to-rna-to-protein`
 - Docs regeneration: `pnpm container:docs sutd/content/10-019-science-and-technology-for-healthcare/containers/gene-expression-dna-to-rna-to-protein`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -129,7 +129,7 @@ Filter version: aniegpt v1.0 (builder self-audit plus local sim-architect/pedago
 
 ### P0 issues
 
-- Resolved: container shape validates (79 containers OK). Prediction gate is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and the React reveal is gated by `SimRuntime` + the `predict` spec. The revealed state renders three coloured codon/residue rows (DNA, mRNA, protein) plus a Hill activation curve with the live operating point — a real visual model.
+- Resolved: container shape validates (79 containers OK). Prediction checkpoint is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and the React reveal is gated by `SimRuntime` + the `predict` spec. The revealed state renders three coloured codon/residue rows (DNA, mRNA, protein) plus a Hill activation curve with the live operating point — a real visual model.
 - Resolved: all transcription/translation goes through `core/sequence` (`dna`, `transcribe`, `translate`) and all regulator/expression math goes through `core/gene-regulatory-network` (`applyRegulator`, `transcriptionRate`, `stepGeneExpression`, `expressionDerivatives`, branded constructors). The React surface no longer inlines Hill power math or steady-state equations.
 - Resolved: the concept card and algorithm now distinguish template-strand transcription from this container's coding-strand presets, so `T -> U` is scoped correctly.
 - Resolved: transfer moved from a lac-operon clone to a fluorescence biosensor reporter problem with different surface form, parameters, and interpretation.

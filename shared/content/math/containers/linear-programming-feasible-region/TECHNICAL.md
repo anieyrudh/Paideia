@@ -81,7 +81,7 @@ manipulate:
         step: 0.5
 predict:
   prompt: |
-    Before revealing the feasible region, which statement is most reliable for maximizing Z = 3x + 2y?
+    Before comparing with the feasible region, which statement is most reliable for maximizing Z = 3x + 2y?
   commit_format:
     kind: multiple-choice
     options:
@@ -113,7 +113,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -121,7 +121,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate shared/content/math/containers/linear-programming-feasible-region`
 - Docs regeneration: `pnpm container:docs shared/content/math/containers/linear-programming-feasible-region`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -173,7 +173,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer
 
 ### P0 resolved
 
-- Prediction gate could reveal the feasible polygon before commitment.
+- Prediction checkpoint could reveal the feasible polygon before commitment.
   Resolution: the product surface is wrapped in `PredictionGate`, and the
   Playwright test asserts the observation region and plot are absent before
   commit.

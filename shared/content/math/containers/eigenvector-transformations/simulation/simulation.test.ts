@@ -6,14 +6,22 @@ test.describe("Eigenvector Transformations", () => {
     await page.goto("/?sim=shared/math/eigenvector-transformations/eigenvector-transformations");
   });
 
-  test("prediction-gate blocks invariant-direction evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps invariant-direction evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set up eigenvector check" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set up eigenvector check" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal invariant-direction result" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByRole("radio", {
@@ -34,7 +42,12 @@ test.describe("Eigenvector Transformations", () => {
   });
 
   test("manipulation changes the eigenvector verdict", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up eigenvector check" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up eigenvector check" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Vector y component" }).fill("1");
     await page.getByRole("button", { name: "Reveal invariant-direction result" }).click();
     await page
@@ -51,7 +64,12 @@ test.describe("Eigenvector Transformations", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up eigenvector check" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up eigenvector check" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal invariant-direction result" }).click();
     await page
       .getByRole("radio", {

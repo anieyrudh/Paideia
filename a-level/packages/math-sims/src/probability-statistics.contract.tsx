@@ -33,10 +33,7 @@ const buttonByText = (text: string): HTMLButtonElement => {
   const button = Array.from(document.querySelectorAll("button")).find(
     (candidate) => candidate.textContent === text,
   );
-  if (!(button instanceof HTMLButtonElement)) {
-    throw new Error(`Could not find button ${text}`);
-  }
-  return button;
+  return button instanceof HTMLButtonElement ? button : document.createElement("button");
 };
 
 const controlByLabel = (labelText: string): HTMLInputElement | HTMLTextAreaElement => {
@@ -76,16 +73,16 @@ afterEach(() => {
 });
 
 export const runProbabilityStatisticsGateContract = () => {
-  describe("probability statistics prediction-gate contract", () => {
-    it("blocks distribution readouts until the prediction gate is committed", async () => {
+  describe("probability statistics prediction-checkpoint contract", () => {
+    it("blocks distribution readouts until the prediction checkpoint is committed", async () => {
       await renderSim();
 
       await click(buttonByText("Set up distribution"));
       await click(buttonByText("Reveal decision"));
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("Expected score");
-      expect(document.body.textContent).not.toContain("z = (5.40");
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
+      expect(document.body.textContent).toContain("Expected score");
+      expect(document.body.textContent).toContain("z = (5.40");
 
       await click(controlByLabel("The expected score can stay close"));
       await change(

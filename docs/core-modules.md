@@ -23,7 +23,7 @@ than a TypeScript kernel. `core/docs-templates` is template-only.
 | --- | --- | --- | --- |
 | `shared` | `@paideia/shared` | `KernelResult`, shared branded values, utility types. | [`AGENTS.md`](../core/shared/AGENTS.md) |
 | `content-schema` | `@paideia/content-schema` | Zod schemas for containers, sims, concept maps, metadata, and validation. | [`AGENTS.md`](../core/content-schema/AGENTS.md) |
-| `prediction-gate` | `@paideia/prediction-gate` | Predict-before-reveal persistence and reveal gating. | [`AGENTS.md`](../core/prediction-gate/AGENTS.md) |
+| `prediction-gate` | `@paideia/prediction-gate` | Embedded prediction checkpoint persistence and saved-reflection state. | [`AGENTS.md`](../core/prediction-gate/AGENTS.md) |
 | `aniegpt` | prompt asset | The Anieyrudh Filter prompt and critic contract. | [`AGENTS.md`](../core/aniegpt/AGENTS.md) |
 
 ## Simulation Runtime And UI
@@ -124,7 +124,7 @@ Accept a biology kernel when it:
 - Adds no runtime GPL, AGPL, LGPL, proprietary, Commons Clause, or unclear
   dependencies; reference-only sources must stay out of bundled runtime code.
 
-Container authors should compose these kernels into prediction-gated,
+Container authors should compose these kernels into prediction-checkpointed,
 student-facing simulations. They should not inline reusable biology logic in a
 container or widen a kernel to satisfy one branch's wording.
 

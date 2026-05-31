@@ -28,7 +28,7 @@ contract in `docs/container-spec.md`.
 | Required folders | `concept-map/`, `simulation/`, `problem-solving/`, `media/`, `embed/` where required by the spec | Yes, for empty scaffold files; no, for educational content |
 | Concept card | First-principles explanation, definitions, examples, misconceptions | No, human review required |
 | Sources | Citations for syllabus and factual claims | No, human review required |
-| Simulation contract | Declared runtime, controls, presets, state labels, LaTeX formula blocks, color-coded legends, prediction gate if declared | Sometimes, for wiring errors; no, for conceptual design |
+| Simulation contract | Declared runtime, controls, presets, state labels, LaTeX formula blocks, color-coded legends, prediction checkpoint if declared | Sometimes, for wiring errors; no, for conceptual design |
 | Problem solving | Strategy tree, worked method, proof outline, or decision procedure | No, human review required |
 | Concept map | Prerequisites, dependents, sibling concepts, misconception graph, mindmap source | Sometimes, for generated graph links |
 | Technical review | Non-empty Anieyrudh Filter pass and known limitations | No, human review required for P0/P1 acceptance |

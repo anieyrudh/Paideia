@@ -8,11 +8,15 @@ test.describe("Electrochemistry and Batteries", () => {
     );
   });
 
-  test("prediction-gate blocks battery voltage until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Set up battery cell" }).click();
+  test("prediction-checkpoint keeps battery voltage visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Set up battery cell" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal battery voltage" }).click();
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
     await page.getByRole("radio", { name: "Voltage decreases" }).check();
     await page.getByLabel("Rationale").fill("Product build-up increases Q, reducing voltage.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
@@ -24,7 +28,12 @@ test.describe("Electrochemistry and Batteries", () => {
   });
 
   test("reaction quotient manipulation lowers voltage", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up battery cell" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up battery cell" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Reaction quotient" }).fill("20");
     await page.getByRole("button", { name: "Reveal battery voltage" }).click();
     await page.getByRole("radio", { name: "Voltage decreases" }).check();
@@ -37,7 +46,12 @@ test.describe("Electrochemistry and Batteries", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up battery cell" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up battery cell" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal battery voltage" }).click();
     await page.getByRole("radio", { name: "Voltage decreases" }).check();
     await page.getByLabel("Rationale").fill("A larger reaction quotient lowers a galvanic cell potential.");

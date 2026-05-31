@@ -62,7 +62,7 @@ export const circularMotionSpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "A rider moves at constant speed around a circular track. Before revealing the vectors, which direction is the acceleration at any instant?",
+      "A rider moves at constant speed around a circular track. Before comparing with the vectors, which direction is the acceleration at any instant?",
     commit_format: {
       kind: "multiple-choice",
       options: [
@@ -501,7 +501,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
-      <p className="lab-kicker">Predict first</p>
+      <p className="lab-kicker">Prediction checkpoint</p>
       <h3>Where does acceleration point?</h3>
       <p>
         Commit a prediction before the inward acceleration and force vectors appear. The reveal keeps

@@ -103,7 +103,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -111,7 +111,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/determinant-and-trace`
 - Docs regeneration: `pnpm container:docs sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/determinant-and-trace`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -129,7 +129,7 @@ Filter version: aniegpt v1.0 (builder self-audit, awaiting reviewer pass)
 
 ### P0 issues
 
-- None observed. Container shape validates against `ContainerSpec`. Prediction gate is declared in `simulation.yaml`, asserted in `simulation/simulation.test.ts`, and gated in the React reveal path via `SimRuntime` + the `predict` spec. The reveal shows an interactive SVG of the transformed unit square plus a formula card with substitution, units, and an interpretation line. The sim consumes `core/linear-algebra` (`matrix2`, `determinant2`, `trace2`) instead of inlining matrix math. No GPL or proprietary deps were introduced.
+- None observed. Container shape validates against `ContainerSpec`. Prediction checkpoint is declared in `simulation.yaml`, asserted in `simulation/simulation.test.ts`, and gated in the React reveal path via `SimRuntime` + the `predict` spec. The reveal shows an interactive SVG of the transformed unit square plus a formula card with substitution, units, and an interpretation line. The sim consumes `core/linear-algebra` (`matrix2`, `determinant2`, `trace2`) instead of inlining matrix math. No GPL or proprietary deps were introduced.
 
 ### P1 issues
 

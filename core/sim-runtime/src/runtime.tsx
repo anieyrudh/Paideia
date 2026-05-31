@@ -140,8 +140,8 @@ const useFrozenState = (
 
 export const SimRuntime = ({ spec, packageId, children }: SimRuntimeProps) => {
   const parsed = useMemo(() => SimulationSpec.safeParse(spec), [spec]);
-  const [current, setCurrent] = useState<PmoeTStage>("predict");
-  const currentRef = useRef<PmoeTStage>("predict");
+  const [current, setCurrent] = useState<PmoeTStage>("manipulate");
+  const currentRef = useRef<PmoeTStage>("manipulate");
   const [transition, setTransition] = useState<StageTransition | null>(null);
   const [state, setState] = useState<Readonly<Record<PropertyKey, unknown>>>(() =>
     frozenEmptyState(),
@@ -149,8 +149,8 @@ export const SimRuntime = ({ spec, packageId, children }: SimRuntimeProps) => {
   const frozenState = useFrozenState(state);
 
   useEffect(() => {
-    currentRef.current = "predict";
-    setCurrent("predict");
+    currentRef.current = "manipulate";
+    setCurrent("manipulate");
     setTransition(null);
     setState(frozenEmptyState());
   }, [parsed.success ? parsed.data.id : null, packageId]);
@@ -174,8 +174,8 @@ export const SimRuntime = ({ spec, packageId, children }: SimRuntimeProps) => {
   }, []);
 
   const reset = useCallback((): void => {
-    currentRef.current = "predict";
-    setCurrent("predict");
+    currentRef.current = "manipulate";
+    setCurrent("manipulate");
     setTransition(null);
     setState(frozenEmptyState());
   }, []);
@@ -204,16 +204,12 @@ export const SimRuntime = ({ spec, packageId, children }: SimRuntimeProps) => {
   };
 
   const wrappedChildren =
-    current === "observe" || current === "explain" ? (
-      parsed.data.predict === undefined ? (
-        runtimeError("SimulationSpec.predict is required before observation can be revealed.")
-      ) : (
-        <PredictionGate packageId={packageId} predict={parsed.data.predict} simId={parsed.data.id}>
-          {children}
-        </PredictionGate>
-      )
-    ) : (
+    parsed.data.predict === undefined ? (
       children
+    ) : (
+      <PredictionGate packageId={packageId} predict={parsed.data.predict} simId={parsed.data.id}>
+        {children}
+      </PredictionGate>
     );
 
   return <RuntimeContext.Provider value={value}>{wrappedChildren}</RuntimeContext.Provider>;

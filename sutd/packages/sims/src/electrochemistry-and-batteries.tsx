@@ -149,7 +149,7 @@ const ManipulateStage = () => {
       <section aria-label="Before reveal cue" className="sutd-formula-card">
         <p className="meta-line">Before reveal</p>
         <h3>Composition shifts voltage</h3>
-        <p>Predict first, then compare standard voltage with the concentration-corrected cell voltage.</p>
+        <p>Prediction checkpoint, then compare standard voltage with the concentration-corrected cell voltage.</p>
       </section>
     </section>
   );
@@ -227,7 +227,7 @@ const StageSurface = () => {
   if (stage.current === "explain") return <ExplainStage />;
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Electrochemistry and Batteries Lab</h1>
       <p>Predict how composition changes voltage before the Nernst calculation is revealed.</p>
       <button type="button" onClick={() => stage.advance()}>Set up battery cell</button>

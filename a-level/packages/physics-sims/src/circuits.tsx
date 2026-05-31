@@ -65,7 +65,7 @@ export const circuitsSpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "A resistor is added in parallel with an existing branch while the supply voltage stays fixed. Before revealing the lab, what happens to the total current drawn from the supply?",
+      "A resistor is added in parallel with an existing branch while the supply voltage stays fixed. Before comparing with the lab, what happens to the total current drawn from the supply?",
     commit_format: {
       kind: "multiple-choice",
       options: [
@@ -583,7 +583,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
-      <p className="lab-kicker">Predict first</p>
+      <p className="lab-kicker">Prediction checkpoint</p>
       <h3>What changes the supply current?</h3>
       <p>
         Commit a prediction before the equivalent resistance, current split, and power readouts

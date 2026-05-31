@@ -10,7 +10,7 @@ kernel_deps:
 
 predict:
   prompt: |
-    A trolley starts from rest and accelerates at 2.0 m s^-2 for 3.0 s. Before revealing the trace, which displacement is closest?
+    A trolley starts from rest and accelerates at 2.0 m s^-2 for 3.0 s. Before comparing with the trace, which displacement is closest?
   commit_format:
     kind: multiple-choice
     options:

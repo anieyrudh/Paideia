@@ -113,7 +113,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -121,7 +121,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate a-level/content/mathematics/containers/confidence-intervals`
 - Docs regeneration: `pnpm container:docs a-level/content/mathematics/containers/confidence-intervals`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -139,7 +139,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer
 
 ### P0 resolved
 
-- No P0 issues found in the scoped pre-PR pass. The container shape, sim declaration, prediction gate, kernel dependencies, embed API, and transfer problem are present.
+- No P0 issues found in the scoped pre-PR pass. The container shape, sim declaration, prediction checkpoint, kernel dependencies, embed API, and transfer problem are present.
 
 ### P1 addressed or deferred
 
@@ -154,6 +154,6 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer
 Brief log of what the agent did and what was rejected during authoring. This
 is the "What AI did / what I rejected" record from the PR template, persisted.
 
-- Built the v2 container from the canonical scaffold, then replaced template content with A-Level confidence-interval pedagogy, a prediction-gated React sim, embed boundary, transfer rubric, media, registry entries, and generated docs.
+- Built the v2 container from the canonical scaffold, then replaced template content with A-Level confidence-interval pedagogy, a prediction-checkpointd React sim, embed boundary, transfer rubric, media, registry entries, and generated docs.
 - Kept interval calculations in the A-Level sim package while deriving standard error and the two-sided critical multiplier through `core/probability-stats`, avoiding a local critical-value table.
 - Rejected copying unrelated physics containers and queue-status edits from the contaminated shared worktree.

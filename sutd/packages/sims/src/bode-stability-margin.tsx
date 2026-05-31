@@ -497,7 +497,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Bode Margin Reader</h1>
       <p>
         Predict how gain changes the phase margin before seeing the crossover readout. Then tune

@@ -16,7 +16,7 @@ mindmap
       Capacitive lead
       Near resonance in phase
     Practice
-      Prediction gate
+      Prediction checkpoint
       Formula panel
       Motor capacitor transfer
     Misconceptions

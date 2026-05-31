@@ -80,7 +80,7 @@ authoring:
   changelog:
     - date: "2026-05-28"
       author: "Codex"
-      summary: "Built SUTD 10.022 central limit theorem sampler with prediction gate, formula panel, charted sample means, and transfer problem."
+      summary: "Built SUTD 10.022 central limit theorem sampler with prediction checkpoint, formula panel, charted sample means, and transfer problem."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []

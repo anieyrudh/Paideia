@@ -2,27 +2,30 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { mountSim } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
-test.describe("a-level/physics/capacitance/capacitor-charge-energy-lab prediction-gate", () => {
-  test("prediction-gate blocks capacitor readouts until prediction commit", async ({ page }) => {
+test.describe("a-level/physics/capacitance/capacitor-charge-energy-lab prediction-checkpoint", () => {
+  test("prediction-checkpoint keeps capacitor readouts visible while saving reflection", async ({ page }) => {
     await mountSim(page, "a-level/physics/capacitance/capacitor-charge-energy-lab");
 
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByLabel("Capacitance readout")).toHaveCount(0);
+    {
 
-    await page.getByRole("button", { name: "Set capacitor values" }).click();
+      const setupButton = page.getByRole("button", { name: "Set capacitor values" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal capacitor result" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByLabel("Capacitance readout")).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByLabel("Both stored charge and stored energy double").check();
     await page
       .getByLabel("Rationale")
       .fill("At fixed voltage, Q = CV and U = one half C V squared both scale with C.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByText("Stored charge", { exact: true })).toBeVisible();
     await expect(page.getByLabel("Capacitance readout")).toContainText("2820.0 microC");
     await expect(page.getByLabel("Formula used")).toContainText("U = 1/2");
@@ -31,7 +34,17 @@ test.describe("a-level/physics/capacitance/capacitor-charge-energy-lab predictio
   test("main controls change visible stored charge before reveal", async ({ page }) => {
     await mountSim(page, "a-level/physics/capacitance/capacitor-charge-energy-lab");
 
-    await page.getByRole("button", { name: "Set capacitor values" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set capacitor values" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("slider", { name: "Capacitance" }).fill("950");
     await page.getByRole("button", { name: "Reveal capacitor result" }).click();
     await page.getByLabel("Both stored charge and stored energy double").check();
@@ -44,7 +57,17 @@ test.describe("a-level/physics/capacitance/capacitor-charge-energy-lab predictio
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, "a-level/physics/capacitance/capacitor-charge-energy-lab");
 
-    await page.getByRole("button", { name: "Set capacitor values" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set capacitor values" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal capacitor result" }).click();
     await page.getByLabel("Both stored charge and stored energy double").check();
     await page

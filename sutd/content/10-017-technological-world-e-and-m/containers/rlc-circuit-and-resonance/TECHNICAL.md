@@ -116,7 +116,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -124,7 +124,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-017-technological-world-e-and-m/containers/rlc-circuit-and-resonance`
 - Docs regeneration: `pnpm container:docs sutd/content/10-017-technological-world-e-and-m/containers/rlc-circuit-and-resonance`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -142,7 +142,7 @@ Filter version: aniegpt v1.0
 
 ### P0 issues
 
-- None open. Local review checked the prediction gate, formula substitution, unit labels, and core-kernel ownership before PR publication.
+- None open. Local review checked the prediction checkpoint, formula substitution, unit labels, and core-kernel ownership before PR publication.
 
 ### P1 issues
 

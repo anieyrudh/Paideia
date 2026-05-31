@@ -43,7 +43,7 @@ kernel_deps:
   - core/ui-sim
 predict:
   prompt: |
-    A resistor is added in parallel with an existing branch while the supply voltage stays fixed. Before revealing the lab, what happens to the total current drawn from the supply?
+    A resistor is added in parallel with an existing branch while the supply voltage stays fixed. Before comparing with the lab, what happens to the total current drawn from the supply?
   commit_format:
     kind: multiple-choice
     options:
@@ -110,7 +110,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -118,7 +118,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 - Container validation: `pnpm container:validate a-level/content/physics/containers/circuits`
 - Docs regeneration: `pnpm container:docs a-level/content/physics/containers/circuits`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally

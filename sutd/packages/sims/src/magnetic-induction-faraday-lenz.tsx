@@ -391,10 +391,10 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Magnetic Induction: Faraday-Lenz</h1>
       <p>
-        Predict the direction of the induced field before revealing the coil readout. Then change
+        Predict the direction of the induced field before comparing with the coil readout. Then change
         flux, turns, and resistance to connect Faraday's law to Lenz's law.
       </p>
       <button type="button" onClick={() => stage.advance()}>

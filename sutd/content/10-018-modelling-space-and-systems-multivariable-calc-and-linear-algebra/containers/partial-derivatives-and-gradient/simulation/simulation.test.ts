@@ -8,15 +8,22 @@ test.describe("Partial Derivatives and Gradient", () => {
     );
   });
 
-  test("prediction-gate blocks gradient evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps gradient evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set point and direction" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set point and direction" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal gradient evidence" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await expect(page.getByRole("region", { name: "Formula panel" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "Perpendicular to the contour, toward fastest increase" }).check();
     await page
@@ -31,7 +38,12 @@ test.describe("Partial Derivatives and Gradient", () => {
   });
 
   test("manipulating the point changes visible gradient evidence", async ({ page }) => {
-    await page.getByRole("button", { name: "Set point and direction" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set point and direction" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Point x" }).fill("2");
     await page.getByRole("button", { name: "Reveal gradient evidence" }).click();
     await page.getByRole("radio", { name: "Perpendicular to the contour, toward fastest increase" }).check();
@@ -44,7 +56,12 @@ test.describe("Partial Derivatives and Gradient", () => {
   });
 
   test("formula, legend, substituted values, units, and interpretation are visible", async ({ page }) => {
-    await page.getByRole("button", { name: "Set point and direction" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set point and direction" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal gradient evidence" }).click();
     await page.getByRole("radio", { name: "Perpendicular to the contour, toward fastest increase" }).check();
     await page.getByLabel("Rationale").fill("The gradient should cross contours toward increase.");
@@ -59,7 +76,12 @@ test.describe("Partial Derivatives and Gradient", () => {
   });
 
   test("has no serious or critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set point and direction" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set point and direction" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal gradient evidence" }).click();
     await page.getByRole("radio", { name: "Perpendicular to the contour, toward fastest increase" }).check();
     await page.getByLabel("Rationale").fill("Contours have zero first-order change along themselves.");

@@ -12,7 +12,7 @@ kernel_deps:
 
 predict:
   prompt: |
-    A wire carries conventional current to the right while a magnetic field goes into the page. Before revealing the result, which way is the force on the wire?
+    A wire carries conventional current to the right while a magnetic field goes into the page. Before comparing with the result, which way is the force on the wire?
   commit_format:
     kind: multiple-choice
     options:

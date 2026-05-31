@@ -577,7 +577,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Gauss Law for Symmetric Distributions</h1>
       <p>
         Predict what changes when a closed surface grows, then choose a Gaussian surface for

@@ -15,9 +15,13 @@
 
 The stage controller is intentionally narrow. `advance()` can only move to the next stage in the fixed PMOE-T order, and returns a `KernelResult<void>`. Calling `advance()` at `explain` returns `precondition-violated`. `reset()` returns to `predict`, clears the active transition, and clears per-session runtime state.
 
-## Prediction Gate
+## Prediction Checkpoint
 
-Observe and explain children are wrapped internally with `PredictionGate`, scoped by `packageId` and `spec.id`. When a valid schema omits sim-level `predict`, the runtime blocks observe/explain rendering with an alert instead of revealing children. This preserves the predict-before-reveal invariant without inventing fallback prediction content.
+When `SimulationSpec.predict` is declared, children are wrapped internally with
+`PredictionGate`, scoped by `packageId` and `spec.id`. The wrapper renders
+children immediately and places a compact checkpoint beside the live simulation.
+When a valid schema omits sim-level `predict`, the runtime renders children
+without a checkpoint.
 
 ## State Store
 
@@ -34,11 +38,11 @@ State values must be JSON-like snapshots: primitives, arrays, and plain objects.
 - `useManipulate()` is rejected outside `manipulate`.
 - Nested state is cloned/frozen, and mutable built-ins are rejected.
 - Transition snapshots clear after the transition window.
-- Observe children are gated by `PredictionGate`.
-- Missing sim-level predict blocks observe rather than bypassing the gate.
+- Observe children remain visible while `PredictionGate` records a checkpoint.
+- Missing sim-level predict renders children without a checkpoint.
 
 ## Anieyrudh Filter pass
 
-- P0 issues + resolution: resolved retained-stage replay by making `advance()` read a current-stage ref; observe/explain remain gated by `PredictionGate`.
+- P0 issues + resolution: resolved retained-stage replay by making `advance()` read a current-stage ref; observe/explain remain visible while `PredictionGate` records prediction state.
 - P1 issues + resolution: runtime state is now JSON-like only, cloned before storage, deeply frozen before exposure, and mutable built-ins are rejected at `useManipulate().set`.
 - High-bandwidth questions surfaced: if future sims need richer state values, add explicit serialisers at the sim boundary rather than storing mutable class instances in `SimRuntime`.

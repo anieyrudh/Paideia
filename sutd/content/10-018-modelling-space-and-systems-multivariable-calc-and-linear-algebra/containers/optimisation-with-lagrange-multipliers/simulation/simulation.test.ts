@@ -8,14 +8,22 @@ test.describe("Optimisation with Lagrange Multipliers", () => {
     );
   });
 
-  test("prediction-gate blocks multiplier evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps multiplier evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set constrained design" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set constrained design" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal multiplier evidence" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "They are parallel, so the objective has no first-order gain along the constraint" }).check();
     await page.getByLabel("Rationale").fill("At an optimum the objective has no tangent component along the constraint.");
@@ -28,7 +36,12 @@ test.describe("Optimisation with Lagrange Multipliers", () => {
   });
 
   test("manipulating the point changes visible multiplier evidence", async ({ page }) => {
-    await page.getByRole("button", { name: "Set constrained design" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set constrained design" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Constraint point angle" }).fill("80");
     await page.getByRole("button", { name: "Reveal multiplier evidence" }).click();
     await page.getByRole("radio", { name: "They are parallel, so the objective has no first-order gain along the constraint" }).check();
@@ -41,7 +54,12 @@ test.describe("Optimisation with Lagrange Multipliers", () => {
   });
 
   test("formula, legend, substituted values, units, and interpretation are visible", async ({ page }) => {
-    await page.getByRole("button", { name: "Set constrained design" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set constrained design" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal multiplier evidence" }).click();
     await page.getByRole("radio", { name: "They are parallel, so the objective has no first-order gain along the constraint" }).check();
     await page.getByLabel("Rationale").fill("Parallel gradients remove feasible first-order improvement.");
@@ -56,7 +74,12 @@ test.describe("Optimisation with Lagrange Multipliers", () => {
   });
 
   test("has no serious or critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set constrained design" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set constrained design" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal multiplier evidence" }).click();
     await page.getByRole("radio", { name: "They are parallel, so the objective has no first-order gain along the constraint" }).check();
     await page.getByLabel("Rationale").fill("The tangent derivative should vanish at the constrained optimum.");

@@ -11,7 +11,7 @@ export const projectileMotionSimId = "trajectory-parameter-lab";
 
 export const projectileMotionPredict: TSimulationSpec["predict"] = {
   prompt:
-    "A ball is launched horizontally from a bench. Before revealing the path, what happens to its horizontal velocity while it falls?",
+    "A ball is launched horizontally from a bench. Before comparing with the path, what happens to its horizontal velocity while it falls?",
   commit_format: {
     kind: "multiple-choice",
     options: [

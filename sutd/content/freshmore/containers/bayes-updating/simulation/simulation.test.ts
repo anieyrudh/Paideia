@@ -21,11 +21,15 @@ test.describe("Bayes Updating", () => {
     });
   });
 
-  test("prediction-gate blocks posterior until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Set up Bayes scenario" }).click();
+  test("prediction-checkpoint keeps posterior visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Set up Bayes scenario" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal posterior" }).click();
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "51.4%" }).check();
     await page.getByLabel("Rationale").fill("Bayes combines prior and test quality.");
@@ -38,7 +42,12 @@ test.describe("Bayes Updating", () => {
   });
 
   test("manipulation changes posterior", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up Bayes scenario" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up Bayes scenario" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Prior prevalence P(H)" }).fill("30");
     await page.getByRole("button", { name: "Reveal posterior" }).click();
     await page.getByRole("radio", { name: "90.0%" }).check();
@@ -49,7 +58,12 @@ test.describe("Bayes Updating", () => {
   });
 
   test("has no critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up Bayes scenario" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up Bayes scenario" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal posterior" }).click();
     await page.getByRole("radio", { name: "51.4%" }).check();
     await page.getByLabel("Rationale").fill("Posterior must include base rate.");

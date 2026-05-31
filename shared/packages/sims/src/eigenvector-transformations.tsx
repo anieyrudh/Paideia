@@ -539,7 +539,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card" style={cardStyle}>
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Eigenvector Direction Lab</h1>
       <p>
         Predict whether the chosen vector keeps its direction before the transformation result is

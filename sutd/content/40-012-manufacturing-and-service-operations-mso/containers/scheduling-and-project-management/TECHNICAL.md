@@ -89,7 +89,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -97,7 +97,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/40-012-manufacturing-and-service-operations-mso/containers/scheduling-and-project-management`
 - Docs regeneration: `pnpm container:docs sutd/content/40-012-manufacturing-and-service-operations-mso/containers/scheduling-and-project-management`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -116,7 +116,7 @@ Reviewers (local): container-auditor, sim-architect, pedagogy-reviewer
 
 ### P0 resolved
 
-- Prediction gate must block CPM evidence before commitment - resolved with package-level prediction and route-level Playwright coverage.
+- Prediction checkpoint must block CPM evidence before commitment - resolved with package-level prediction and route-level Playwright coverage.
 - Critical-path math must come from a reusable kernel - resolved by using `core/scheduling` for activity brands and CPM timing.
 - The visual model must not be text-only - resolved with an activity-on-node SVG network that marks critical activities after reveal.
 
@@ -133,5 +133,5 @@ Reviewers (local): container-auditor, sim-architect, pedagogy-reviewer
 ## Iteration log
 
 - Scaffolded from a reviewed SUTD operations container, then replaced copied content with the MSO scheduling slice.
-- Built a CPM simulation with prediction gate, duration sliders, activity-on-node network, critical-path readout, slack interpretation, and transfer problem.
+- Built a CPM simulation with prediction checkpoint, duration sliders, activity-on-node network, critical-path readout, slack interpretation, and transfer problem.
 - Corrected the initial schema mismatch by mapping the descriptive queue simulation type to the allowed `systems-flow-diagram` enum while preserving CPM behavior in copy and renderer declarations.

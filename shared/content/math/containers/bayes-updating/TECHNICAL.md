@@ -98,7 +98,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -106,7 +106,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 - Container validation: `pnpm container:validate shared/content/math/containers/bayes-updating`
 - Docs regeneration: `pnpm container:docs shared/content/math/containers/bayes-updating`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -126,7 +126,7 @@ Filter version: aniegpt v1.0
 
 - Canonical-path risk: this is a `shared.*` queue item, so it must not live under a curriculum wrapper. Resolved by building at `shared/content/math/containers/bayes-updating`.
 - Package-boundary risk: learner runtime must not live inside the content folder or a curriculum package. Resolved by adding `@paideia/shared-sims/bayes-updating` and declaring that shared package subpath in the simulation spec.
-- Prediction-gate leak risk: posterior readouts, route chart, and formula panel must not enter the DOM before commitment. Resolved with Playwright assertions for blocked reveal, committed reveal, manipulation, formula evidence, and revealed-state axe coverage.
+- Prediction-checkpoint leak risk: posterior readouts, route chart, and formula panel must not enter the DOM before commitment. Resolved with Playwright assertions for blocked reveal, committed reveal, manipulation, formula evidence, and revealed-state axe coverage.
 - Architecture-review risk: Bayes posterior computation must not be owned by the sim layer. Resolved by adding `bayesPositiveEvidence()` to `core/probability-stats` and making the sim consume that kernel result.
 - Embed-boundary risk: host-provided state and theme values must be runtime-validated. Resolved by adding Zod parsing to `embed/index.ts` plus invalid-input embed tests.
 - Pedagogy-review risk: the Explain prompt must not give away the mechanism. Resolved by changing it to the question "Which route contributes most to the positive results, and how can you tell?"

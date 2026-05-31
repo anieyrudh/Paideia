@@ -87,7 +87,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -95,7 +95,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-022-modelling-uncertainty/containers/joint-and-marginal-distributions`
 - Docs regeneration: `pnpm container:docs sutd/content/10-022-modelling-uncertainty/containers/joint-and-marginal-distributions`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -114,7 +114,7 @@ Reviewers (local): container-auditor, sim-architect, pedagogy-reviewer
 
 ### P0 resolved
 
-- Prediction gate must block joint cells, marginals, conditionals, and formula evidence before commitment - resolved with package-level prediction and route-level Playwright coverage.
+- Prediction checkpoint must block joint cells, marginals, conditionals, and formula evidence before commitment - resolved with package-level prediction and route-level Playwright coverage.
 - Kernel boundary must preserve probability normalisation - resolved by using `core/probability-stats` to normalise the four-cell joint distribution while keeping learner-specific 2x2 table state local to the sim.
 
 ### P1 addressed or deferred
@@ -131,5 +131,5 @@ Reviewers (local): container-auditor, sim-architect, pedagogy-reviewer
 ## Iteration log
 
 - Scaffolded from a reviewed SUTD container shape, then replaced placeholder content with the SUTD 10.022 joint and marginal distributions slice.
-- Built a 2x2 joint table simulation with PMOE-T flow, prediction gate, formula-backed conditional readout, marginals, and transfer problem.
+- Built a 2x2 joint table simulation with PMOE-T flow, prediction checkpoint, formula-backed conditional readout, marginals, and transfer problem.
 - Corrected scaffold residue in metadata, media, embed contract, and technical review output before validation.

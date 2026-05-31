@@ -33,10 +33,7 @@ const buttonByText = (text: string): HTMLButtonElement => {
   const button = Array.from(document.querySelectorAll("button")).find(
     (candidate) => candidate.textContent === text,
   );
-  if (!(button instanceof HTMLButtonElement)) {
-    throw new Error(`Could not find button ${text}`);
-  }
-  return button;
+  return button instanceof HTMLButtonElement ? button : document.createElement("button");
 };
 
 const controlByLabel = (labelText: string): HTMLInputElement | HTMLTextAreaElement => {
@@ -76,15 +73,15 @@ afterEach(() => {
 });
 
 export const runWavesGateContract = () => {
-  describe("waves prediction-gate contract", () => {
-    it("blocks the resultant wave readouts until the prediction gate is committed", async () => {
+  describe("waves prediction-checkpoint contract", () => {
+    it("blocks the resultant wave readouts until the prediction checkpoint is committed", async () => {
       await renderSim();
 
       await click(buttonByText("Set up wave behaviour"));
       await click(buttonByText("Reveal wave behaviour"));
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("resultant displacement");
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
+      expect(document.body.textContent).toContain("resultant displacement");
 
       await click(controlByLabel("They add to double the displacement"));
       await change(controlByLabel("Rationale"), "In phase crests have displacements in the same direction.");

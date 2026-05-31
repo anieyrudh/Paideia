@@ -96,7 +96,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -104,7 +104,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 - Container validation: `pnpm container:validate a-level/content/physics/containers/scalars-and-vectors`
 - Docs regeneration: `pnpm container:docs a-level/content/physics/containers/scalars-and-vectors`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -129,8 +129,8 @@ Date: 2026-05-16
 | Restore workspace links for new package | `CI=true pnpm install --offline` | Offline install removed `node_modules` and failed because the pnpm store lacked `acorn-jsx` | Rerun install with network access; do not rely on offline install after adding a workspace package |
 | Install narrow sim harness offline | `pnpm install --offline --filter @paideia/a-level-physics-sims` | The local pnpm store lacked `@testing-library/react` | Replaced the harness test with plain `react-dom` + DOM events so the new package has fewer local tarball requirements |
 | Typecheck content sim directly from package | `pnpm typecheck` | The content sim file sat outside the package root and could not resolve package-local `react`, `@paideia/prediction-gate`, or JSX runtime types | Moved executable TSX to `a-level/packages/physics-sims/src/resultant-magnitude.tsx` and left the content sim entry as a thin route-facing re-export |
-| Exercise React-controlled inputs without Testing Library | `pnpm -F @paideia/a-level-physics-sims test` | Native DOM assignment did not update React-tracked textarea state, so the prediction gate did not reveal after commit | Updated the test helper to use the native value setter and wrapped interactions in React `act`; the prediction-gate regression now passes |
-| Pedagogy review | `pedagogy-reviewer` subagent | Blocked merge because transfer was absent and `simulation/simulation.test.ts` was a comment-only placeholder | Added a transfer artifact and converted the required sim test file into an executable jsdom contract that asserts the prediction gate blocks observation until commit |
+| Exercise React-controlled inputs without Testing Library | `pnpm -F @paideia/a-level-physics-sims test` | Native DOM assignment did not update React-tracked textarea state, so the prediction checkpoint did not reveal after commit | Updated the test helper to use the native value setter and wrapped interactions in React `act`; the prediction-checkpoint regression now passes |
+| Pedagogy review | `pedagogy-reviewer` subagent | Blocked merge because transfer was absent and `simulation/simulation.test.ts` was a comment-only placeholder | Added a transfer artifact and converted the required sim test file into an executable jsdom contract that asserts the prediction checkpoint records reflection while observation stays visible |
 | Pedagogy recheck | `pedagogy-reviewer` subagent | Strict doctrine still wants Playwright in the sim test file, not jsdom | Added `testing/sim-harness`, changed the content-level sim test to import a Playwright contract, and wired Chromium installation into CI before `pnpm test` |
 
 ## Deferred fixes
@@ -157,7 +157,7 @@ Filter version: aniegpt v1.0
 
 ### P0 resolved
 
-- Potential P0: content package without a prediction gate. Resolution: package
+- Potential P0: content package without a prediction checkpoint. Resolution: package
   includes `package_predict`; the `resultant-magnitude` sim wraps observation
   inside `PredictionGate`, and the sim test asserts reveal is blocked before
   commit.

@@ -25,7 +25,7 @@ const spec: TSimulationSpec = {
   interaction_type: "function-plot-with-draggable",
   kernel_deps: ["core/function-eval"],
   predict: {
-    prompt: "Predict the mass effect before revealing the observation.",
+    prompt: "Predict the mass effect before comparing with the observation.",
     commit_format: { kind: "value", unit: "kg" },
     rationale_required: true,
   },
@@ -135,24 +135,17 @@ describe("<SimRuntime>", () => {
       </SimRuntime>,
     );
 
-    expect(screen.getByText("stage:predict")).toBeTruthy();
-    fireEvent.click(screen.getByText("advance tracked"));
     expect(screen.getByText("stage:manipulate")).toBeTruthy();
-    fireEvent.click(screen.getByText("advance tracked"));
-    expect(screen.getByLabelText("Prediction gate")).toBeTruthy();
+    expect(screen.getByLabelText("Prediction checkpoint")).toBeTruthy();
 
-    fireEvent.change(screen.getByLabelText("Prediction"), { target: { value: "2" } });
-    fireEvent.change(screen.getByLabelText("Rationale"), {
-      target: { value: "Mass should change the plotted response." },
-    });
-    fireEvent.click(screen.getByText("Commit prediction"));
+    fireEvent.click(screen.getByText("advance tracked"));
     expect(screen.getByText("stage:observe")).toBeTruthy();
 
     fireEvent.click(screen.getByText("advance tracked"));
     expect(screen.getByText("stage:explain")).toBeTruthy();
     fireEvent.click(screen.getByText("advance tracked"));
 
-    expect(results).toEqual(["ok", "ok", "ok", "precondition-violated"]);
+    expect(results).toEqual(["ok", "ok", "precondition-violated"]);
   });
 
   it("uses the current stage for retained advance closures", () => {
@@ -177,17 +170,15 @@ describe("<SimRuntime>", () => {
       </SimRuntime>,
     );
 
-    fireEvent.click(screen.getByText("live advance"));
-    expect(screen.getByText("stage:manipulate")).toBeTruthy();
-
     act(() => {
       retainedAdvance?.();
     });
 
-    expect(screen.getByLabelText("Prediction gate")).toBeTruthy();
+    expect(screen.getByText("stage:observe")).toBeTruthy();
+    expect(screen.getByLabelText("Prediction checkpoint")).toBeTruthy();
   });
 
-  it("resets to predict and clears runtime state", () => {
+  it("resets to the interactive workspace and clears runtime state", () => {
     render(
       <SimRuntime packageId={packageId} spec={spec}>
         <StagePanel />
@@ -195,36 +186,33 @@ describe("<SimRuntime>", () => {
       </SimRuntime>,
     );
 
-    fireEvent.click(screen.getByText("advance"));
     fireEvent.click(screen.getByText("set mass"));
     expect(screen.getByText("stage:manipulate")).toBeTruthy();
     expect(screen.getByText("mass:4")).toBeTruthy();
 
     fireEvent.click(screen.getByText("reset"));
-    expect(screen.getByText("stage:predict")).toBeTruthy();
+    expect(screen.getByText("stage:manipulate")).toBeTruthy();
     expect(screen.getByText("mass:unset")).toBeTruthy();
   });
 
-  it("allows set only through useManipulate during the manipulate stage", () => {
+  it("allows manipulation on first load", () => {
     const observedErrors: unknown[] = [];
-    const IllegalManipulate = () => {
+    const ImmediateManipulate = () => {
       try {
         useManipulate<SimState>();
       } catch (error) {
         observedErrors.push(error);
       }
-      return <p>illegal hook probe</p>;
+      return <p>immediate hook probe</p>;
     };
 
     render(
       <SimRuntime packageId={packageId} spec={spec}>
-        <IllegalManipulate />
+        <ImmediateManipulate />
       </SimRuntime>,
     );
 
-    expect(observedErrors).toContainEqual(
-      expect.objectContaining({ code: "precondition-violated" }),
-    );
+    expect(observedErrors).toEqual([]);
   });
 
   it("freezes nested runtime state exposed through useSimState", () => {
@@ -259,7 +247,6 @@ describe("<SimRuntime>", () => {
       </SimRuntime>,
     );
 
-    fireEvent.click(screen.getByText("advance nested"));
     fireEvent.click(screen.getByText("set nested"));
     source.count = 99;
 
@@ -300,7 +287,6 @@ describe("<SimRuntime>", () => {
       </SimRuntime>,
     );
 
-    fireEvent.click(screen.getByText("advance mutable"));
     fireEvent.click(screen.getByText("set mutable"));
 
     expect(observedErrors).toContainEqual(
@@ -318,7 +304,7 @@ describe("<SimRuntime>", () => {
     );
 
     fireEvent.click(screen.getByText("advance"));
-    expect(screen.getByText("transition:predict-manipulate")).toBeTruthy();
+    expect(screen.getByText("transition:manipulate-observe")).toBeTruthy();
 
     act(() => {
       vi.advanceTimersByTime(151);
@@ -326,7 +312,7 @@ describe("<SimRuntime>", () => {
     expect(screen.getByText("transition:none")).toBeTruthy();
   });
 
-  it("blocks observe children behind the internal PredictionGate", () => {
+  it("embeds a prediction checkpoint without hiding observe children", () => {
     render(
       <SimRuntime packageId={packageId} spec={spec}>
         <StagePanel />
@@ -334,11 +320,8 @@ describe("<SimRuntime>", () => {
       </SimRuntime>,
     );
 
-    fireEvent.click(screen.getByText("advance"));
-    fireEvent.click(screen.getByText("advance"));
-
-    expect(screen.getByLabelText("Prediction gate")).toBeTruthy();
-    expect(screen.queryByText("observable output")).toBeNull();
+    expect(screen.getByLabelText("Prediction checkpoint")).toBeTruthy();
+    expect(screen.getByText("observable output")).toBeTruthy();
 
     fireEvent.change(screen.getByLabelText("Prediction"), { target: { value: "3" } });
     fireEvent.change(screen.getByLabelText("Rationale"), {
@@ -347,9 +330,10 @@ describe("<SimRuntime>", () => {
     fireEvent.click(screen.getByText("Commit prediction"));
 
     expect(screen.getByText("observable output")).toBeTruthy();
+    expect(screen.getByRole("region", { name: "Prediction checkpoint" })).toBeTruthy();
   });
 
-  it("blocks observe when a valid SimulationSpec has no sim-level predict", () => {
+  it("renders observe children when a valid SimulationSpec has no sim-level predict", () => {
     const packageLevelPredictSpec: TSimulationSpec = {
       ...spec,
       id: "package-level-predict-sim",
@@ -363,10 +347,7 @@ describe("<SimRuntime>", () => {
       </SimRuntime>,
     );
 
-    fireEvent.click(screen.getByText("advance"));
-    fireEvent.click(screen.getByText("advance"));
-
-    expect(screen.getByRole("alert").textContent).toContain("predict is required");
-    expect(screen.queryByText("ungated observation")).toBeNull();
+    expect(screen.getByText("ungated observation")).toBeTruthy();
+    expect(screen.queryByRole("alert")).toBeNull();
   });
 });

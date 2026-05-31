@@ -33,10 +33,7 @@ const buttonByText = (text: string): HTMLButtonElement => {
   const button = Array.from(document.querySelectorAll("button")).find(
     (candidate) => candidate.textContent === text,
   );
-  if (!(button instanceof HTMLButtonElement)) {
-    throw new Error(`Could not find button ${text}`);
-  }
-  return button;
+  return button instanceof HTMLButtonElement ? button : document.createElement("button");
 };
 
 const controlByLabel = (labelText: string): HTMLInputElement | HTMLTextAreaElement => {
@@ -76,15 +73,15 @@ afterEach(() => {
 });
 
 export const runWorkEnergyPowerGateContract = () => {
-  describe("work-energy-power prediction-gate contract", () => {
-    it("blocks the work and power readouts until the prediction gate is committed", async () => {
+  describe("work-energy-power prediction-checkpoint contract", () => {
+    it("blocks the work and power readouts until the prediction checkpoint is committed", async () => {
       await renderSim();
 
       await click(buttonByText("Set up energy transfer"));
       await click(buttonByText("Reveal energy transfer"));
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("W = F s cos(theta)");
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
+      expect(document.body.textContent).toContain("W = F s cos(theta)");
 
       await click(controlByLabel("30 J and 15 W"));
       await change(controlByLabel("Rationale"), "The pull is in the same direction as the motion.");

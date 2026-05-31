@@ -392,7 +392,7 @@ const ManipulateStage = () => {
       <section aria-label="Before reveal cue" className="sutd-formula-card">
         <p className="meta-line">Before reveal</p>
         <h3>Permeability picks the resting voltage</h3>
-        <p>Predict first. Then watch how channel sizes and bath potassium move the cell's resting voltage between the K+ and Na+ Nernst potentials.</p>
+        <p>Prediction checkpoint. Then watch how channel sizes and bath potassium move the cell's resting voltage between the K+ and Na+ Nernst potentials.</p>
       </section>
     </section>
   );
@@ -529,7 +529,7 @@ const StageSurface = () => {
   if (stage.current === "explain") return <ExplainStage />;
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Membrane Transport Lab</h1>
       <p>
         Predict whether the resting voltage sits near the K+ Nernst potential, the Na+ Nernst potential, or somewhere in between before adjusting channel permeabilities.

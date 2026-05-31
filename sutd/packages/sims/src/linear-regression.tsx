@@ -509,7 +509,7 @@ const StageSurface = () => {
         <p style={styles.kicker}>Predict</p>
         <h1 style={styles.h1}>Which line best summarises a data cloud?</h1>
         <p>
-          Before revealing the fitted model, choose a dataset and decide how a shifted
+          Before comparing with the fitted model, choose a dataset and decide how a shifted
           high-leverage point should affect the least-squares slope.
         </p>
         <button onClick={() => stage.advance()} style={styles.primaryButton} type="button">

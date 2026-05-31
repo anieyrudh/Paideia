@@ -29,7 +29,7 @@ kernel_deps:
 
 ## Accessibility
 
-- Prediction gate blocks reveal until a prediction and rationale are committed.
+- Prediction checkpoint blocks reveal until a prediction and rationale are committed.
 - Route-level Playwright test includes an axe scan after reveal.
 - Fallback media exists in `media/fallback.svg`.
 
@@ -49,7 +49,7 @@ Filter version: aniegpt v1.0
 ### P0 issues
 
 - Package-boundary violation: draft implementation lived inside the content folder and imported a wrong renderer package. Resolved by moving the sim to `@paideia/sutd-sims/trust-calibration` and using `module: local`.
-- Prediction-gate test was placeholder-only. Resolved with Playwright assertions for blocked reveal, committed reveal, manipulation, and axe critical violations.
+- Prediction-checkpoint test was placeholder-only. Resolved with Playwright assertions for blocked reveal, committed reveal, manipulation, and axe critical violations.
 
 ### P1 issues
 

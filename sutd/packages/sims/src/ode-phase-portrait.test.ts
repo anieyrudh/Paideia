@@ -29,7 +29,7 @@ const installStorage = (): void => {
 };
 
 describe("ODE phase portrait evidence", () => {
-  it("keeps phase evidence blocked until the prediction gate records a commit", () => {
+  it("keeps phase evidence blocked until the prediction checkpoint records a commit", () => {
     installStorage();
     clearPrediction(odePhasePortraitPackageId, "ode-phase-portrait");
 

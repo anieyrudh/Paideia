@@ -8,12 +8,16 @@ test.describe("Chemical Bonding and Intermolecular Forces", () => {
     );
   });
 
-  test("prediction-gate blocks bonding evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Set up bonding comparison" }).click();
+  test("prediction-checkpoint keeps bonding evidence visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Set up bonding comparison" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal bonding evidence" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
     await page.getByRole("radio", { name: "mostly ionic" }).check();
     await page.getByLabel("Rationale").fill("The electronegativity difference is large.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
@@ -26,7 +30,12 @@ test.describe("Chemical Bonding and Intermolecular Forces", () => {
   });
 
   test("manipulation changes the visible bonding classification", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up bonding comparison" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up bonding comparison" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByLabel("Bonding case").selectOption("water");
     await page.getByRole("button", { name: "Reveal bonding evidence" }).click();
     await page.getByRole("radio", { name: "mostly ionic" }).check();
@@ -40,7 +49,12 @@ test.describe("Chemical Bonding and Intermolecular Forces", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up bonding comparison" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up bonding comparison" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal bonding evidence" }).click();
     await page.getByRole("radio", { name: "mostly ionic" }).check();
     await page.getByLabel("Rationale").fill("A large electronegativity difference supports ionic bonding.");

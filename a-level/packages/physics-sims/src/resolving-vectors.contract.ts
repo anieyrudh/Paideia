@@ -76,11 +76,11 @@ afterEach(() => {
 });
 
 export const runResolvingVectorsGateContract = () => {
-  describe("resolving-vectors prediction-gate contract", () => {
-    it("blocks component readouts until the prediction gate is committed", async () => {
+  describe("resolving-vectors prediction-checkpoint contract", () => {
+    it("blocks component readouts until the prediction checkpoint is committed", async () => {
       await renderSim();
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
 
       await click(controlByLabel("8.7 N"));
       await change(

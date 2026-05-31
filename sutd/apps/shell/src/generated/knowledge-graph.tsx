@@ -1418,7 +1418,7 @@ export const containers = [
     status: "draft",
     packageId: "coulomb-s-law-and-discrete-charge-fields",
     simId: "coulomb-field-vector-lab",
-    predictPrompt: "A negative test charge is placed to the right of a positive source charge. Before revealing the vectors, which way does the force on the test charge point?",
+    predictPrompt: "A negative test charge is placed to the right of a positive source charge. Before comparing with the vectors, which way does the force on the test charge point?",
     aidTypes: [
       "simulation",
       "transfer-problem",
@@ -3339,7 +3339,7 @@ export const containers = [
     status: "reviewed",
     packageId: "confusion-matrix-thresholds",
     simId: "confusion-matrix-thresholds",
-    predictPrompt: "Before revealing the counts, predict what happens if the threshold is raised from 65% to 80% while false negatives are costly.",
+    predictPrompt: "Before comparing with the counts, predict what happens if the threshold is raised from 65% to 80% while false negatives are costly.",
     aidTypes: [
       "simulation",
       "transfer-problem",
@@ -3462,7 +3462,7 @@ export const containers = [
     status: "reviewed",
     packageId: "trust-calibration",
     simId: "trust-calibration",
-    predictPrompt: "Before revealing outcomes, choose whether a high-confidence automation-only policy or a human-override policy will produce lower total decision cost on this fixed dataset.",
+    predictPrompt: "Before comparing with outcomes, choose whether a high-confidence automation-only policy or a human-override policy will produce lower total decision cost on this fixed dataset.",
     aidTypes: [
       "simulation",
       "transfer-problem",

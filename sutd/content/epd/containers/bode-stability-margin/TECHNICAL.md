@@ -101,7 +101,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -109,7 +109,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 - Container validation: `pnpm container:validate sutd/content/epd/containers/bode-stability-margin`
 - Docs regeneration: `pnpm container:docs sutd/content/epd/containers/bode-stability-margin`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -128,7 +128,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer
 
 ### P0 resolved
 
-- container-auditor: canonical v2 layout, declared transfer rubric, media, embed contract, and prediction-gate test marker present - resolved in this PR.
+- container-auditor: canonical v2 layout, declared transfer rubric, media, embed contract, and prediction-checkpoint test marker present - resolved in this PR.
 - sim-architect: simulation uses declared core kernels for transfer-function and Bode samples; margin readout is derived from `@paideia/control-systems` output and rendering uses declared chart/control/runtime packages - resolved in this PR.
 - pedagogy-reviewer: PMOE-T path includes prediction, manipulation, blocked reveal, formula source, color-coded legend, substituted values with units, and learner-facing interpretation - resolved in this PR.
 - sim-architect follow-up: moved Bode margin extraction, phase unwrapping, and crossover interpolation into `core/control-systems.stabilityMargins`; the sim now only builds the open-loop transfer function and renders the kernel result.
@@ -138,7 +138,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer
 ### P1 addressed or deferred
 
 - Student UI copy avoids package names, file paths, kernel names, YAML fields, and queue ids - addressed in this PR.
-- Playwright coverage includes prediction-gate blocking, manipulation state change, and revealed-state serious-or-critical axe scan - `pnpm exec playwright test --config playwright.config.ts --grep "Bode Stability Margin"` passed on 2026-05-20 with 0 serious/critical axe violations.
+- Playwright coverage includes prediction-checkpoint blocking, manipulation state change, and revealed-state serious-or-critical axe scan - `pnpm exec playwright test --config playwright.config.ts --grep "Bode Stability Margin"` passed on 2026-05-20 with 0 serious/critical axe violations.
 - Formula block now includes learner-facing accessible labels, a complete nearby legend, and a separate substitution code block with units.
 - Transfer challenge now changes engineering surface, lag values, and target phase-margin buffer instead of replaying the exact prediction values.
 - Chart SVGs now receive chart-specific accessible labels for magnitude and phase traces.

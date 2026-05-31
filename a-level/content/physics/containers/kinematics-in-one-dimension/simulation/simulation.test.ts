@@ -8,7 +8,7 @@ import {
 
 const simId = "a-level/physics/kinematics-in-one-dimension/motion-equations-lab";
 
-// prediction-gate: the motion trace and formula readout must not reveal before commit.
+// prediction-checkpoint: the motion trace and formula readout must not reveal before commit.
 // The package jsdom contract checks the same gate quickly.
 // This browser-level contract catches generated registry drift.
 // Keep the id in sync with simulation.yaml.

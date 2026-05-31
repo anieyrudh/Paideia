@@ -14,7 +14,7 @@ matches the concept instead of defaulting to metric cards.
 
 ## Quality Notes
 
-- Put the visual inside the `Observation unlocked` region.
+- Put the visual inside the live observation region and keep it visible from first load.
 - Keep labels student-facing. Do not show package names, file paths, queue IDs,
   or generated registry language.
 - Use colour to connect the formula legend to the diagram or chart.

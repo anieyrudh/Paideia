@@ -91,7 +91,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -99,7 +99,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-022-modelling-uncertainty/containers/discrete-rvs-geometric-binomial-poisson`
 - Docs regeneration: `pnpm container:docs sutd/content/10-022-modelling-uncertainty/containers/discrete-rvs-geometric-binomial-poisson`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -117,7 +117,7 @@ Filter version: aniegpt v1.0
 
 ### P0 issues
 
-- Prediction-gate reveal leak: resolved by requiring a prediction before the PMF chart, moment readouts, formula substitution, and interpretation are shown.
+- Prediction-checkpoint reveal leak: resolved by requiring a prediction before the PMF chart, moment readouts, formula substitution, and interpretation are shown.
 - Kernel boundary risk: resolved by using `core/probability-stats` for distribution normalization, expected value, and variance instead of duplicating those reusable moment calculations in the sim.
 
 ### P1 issues

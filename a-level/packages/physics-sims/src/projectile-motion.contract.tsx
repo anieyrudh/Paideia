@@ -76,12 +76,12 @@ afterEach(() => {
 });
 
 export const runProjectileMotionGateContract = () => {
-  describe("projectile-motion prediction-gate contract", () => {
-    it("blocks trajectory and formula readouts until the prediction gate is committed", async () => {
+  describe("projectile-motion prediction-checkpoint contract", () => {
+    it("blocks trajectory and formula readouts until the prediction checkpoint is committed", async () => {
       await renderSim();
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("horizontal range");
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
+      expect(document.body.textContent).toContain("horizontal range");
 
       await click(controlByLabel("It stays constant if air resistance is ignored."));
       await change(controlByLabel("Rationale"), "Gravity has no horizontal component in this model.");

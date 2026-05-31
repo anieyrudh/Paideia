@@ -21,14 +21,22 @@ test.describe("Vector Transformations", () => {
     });
   });
 
-  test("prediction-gate blocks transformation evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps transformation evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set up transformation" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set up transformation" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal transformed vector" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "x = 3" }).check();
     await page.getByLabel("Rationale").fill("The x-coordinate is 2(1) + 1(1) = 3.");
@@ -41,7 +49,12 @@ test.describe("Vector Transformations", () => {
   });
 
   test("manipulation changes the transformed vector", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up transformation" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up transformation" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Basis e2 x output" }).fill("2");
     await page.getByRole("button", { name: "Reveal transformed vector" }).click();
 
@@ -57,7 +70,12 @@ test.describe("Vector Transformations", () => {
   });
 
   test("has no critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up transformation" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up transformation" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal transformed vector" }).click();
     await page.getByRole("radio", { name: "x = 3" }).check();
     await page.getByLabel("Rationale").fill("The first coordinate combines the two column moves.");

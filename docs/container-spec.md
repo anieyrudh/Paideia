@@ -28,7 +28,7 @@ The UI/UX is deliberately flexible. Predict -> Manipulate -> Observe -> Explain
 │   ├── presets.yaml            REQUIRED
 │   ├── runtime.yaml            REQUIRED
 │   ├── state-labels.yaml       REQUIRED
-│   └── simulation.test.ts      REQUIRED · prediction-gate assertion if predict is declared
+│   └── simulation.test.ts      REQUIRED · prediction-checkpoint assertion if predict is declared
 ├── embed/                      REQUIRED
 │   ├── api.ts                  REQUIRED · load/saveState/score/resume/syncTheme/destroy
 │   ├── index.ts                REQUIRED
@@ -168,7 +168,7 @@ The validator enforces:
 3. `concept-map/concept-map.yaml` parses against `ConceptMapSpec`.
 4. `simulation/simulation.yaml` parses against `SimulationSpec` when simulation is declared.
 5. All embed API methods are present.
-6. `simulation/simulation.test.ts` contains `prediction-gate` when prediction is declared.
+6. `simulation/simulation.test.ts` contains `prediction-checkpoint` when prediction is declared.
 7. Transfer problem markdown exists for each declared transfer problem.
 8. Filter output is required only once the container reaches its configured review lifecycle threshold.
 9. Kernel dependencies resolve to existing `core/<module>/` directories.

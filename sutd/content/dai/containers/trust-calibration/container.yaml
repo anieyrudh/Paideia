@@ -18,7 +18,7 @@ aid_types:
 predict_at: package-level
 package_predict:
   prompt: |
-    Before revealing outcomes, choose whether a high-confidence automation-only policy or a human-override policy will produce lower total decision cost on this fixed dataset.
+    Before comparing with outcomes, choose whether a high-confidence automation-only policy or a human-override policy will produce lower total decision cost on this fixed dataset.
   commit_format:
     kind: multiple-choice
     options:

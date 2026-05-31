@@ -22,7 +22,7 @@ aid_types:
 predict_at: both
 package_predict:
   prompt: |
-    A sample mean is above the null mean. Before revealing the lab, predict what happens to the strength of evidence when the sample size grows but the observed mean stays fixed.
+    A sample mean is above the null mean. Before comparing with the lab, predict what happens to the strength of evidence when the sample size grows but the observed mean stays fixed.
   commit_format:
     kind: multiple-choice
     options:
@@ -81,7 +81,7 @@ authoring:
   changelog:
     - date: "2026-05-21"
       author: "Codex"
-      summary: "Built A-Level hypothesis testing product slice using core/probability-stats, charting, sim-runtime, prediction-gate, and ui-sim."
+      summary: "Built A-Level hypothesis testing product slice using core/probability-stats, charting, sim-runtime, prediction-checkpoint, and ui-sim."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []

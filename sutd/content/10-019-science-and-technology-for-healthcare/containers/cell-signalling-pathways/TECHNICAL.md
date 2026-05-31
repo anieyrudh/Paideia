@@ -105,7 +105,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -113,7 +113,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-019-science-and-technology-for-healthcare/containers/cell-signalling-pathways`
 - Docs regeneration: `pnpm container:docs sutd/content/10-019-science-and-technology-for-healthcare/containers/cell-signalling-pathways`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -131,14 +131,14 @@ Filter version: aniegpt v1.0 (builder self-audit plus local sim-architect review
 
 ### P0 issues
 
-- Resolved: container shape validates (80 containers OK). Prediction gate is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and the React reveal is gated by `SimRuntime` + the `predict` spec. The revealed state renders a cascade graph SVG (per-node activation as fill saturation, activator vs inhibitor edges colour-coded) plus a TF response curve as ligand sweeps — a real visual model.
+- Resolved: container shape validates (80 containers OK). Prediction checkpoint is declared in `simulation/simulation.yaml`, asserted in the Playwright `simulation.test.ts`, and the React reveal is gated by `SimRuntime` + the `predict` spec. The revealed state renders a cascade graph SVG (per-node activation as fill saturation, activator vs inhibitor edges colour-coded) plus a TF response curve as ligand sweeps — a real visual model.
 - Resolved: cascade propagation, node validation, and topological sort all go through `core/signal-pathway` (`propagate`, `nodeId`, `edgeWeight`, `signalLevel`); no DAG traversal or logistic math is implemented in the React sim. Formula text is display-only.
 - Resolved: merge conflict markers in the SUTD sim package were removed during the main-branch integration pass before validation.
 
 ### P1 issues
 
 - Resolved: formula colours pair `input_i` (blue) with the activator/inhibitor edge colouring, and `y_i = sigma(...)` (orange) with the legend entry. Substitution shows ligand, phosphatase, receptor, kinase, and TF values plus the effective-input arithmetic for the kinase. Manipulation visibly retargets the node-fill colours and shifts the operating-point dot on the response curve; the Playwright test asserts the phosphatase control switches the TF off.
-- Resolved: `simulation.yaml` now declares the imported contract kernels (`core/content-schema`, `core/shared`, `core/sim-runtime`, `core/signal-pathway`, and prediction-gate contract) and no longer declares unused `core/dynamical-systems` / `core/ui-sim`.
+- Resolved: `simulation.yaml` now declares the imported contract kernels (`core/content-schema`, `core/shared`, `core/sim-runtime`, `core/signal-pathway`, and prediction-checkpoint contract) and no longer declares unused `core/dynamical-systems` / `core/ui-sim`.
 - Resolved: the transfer problem is now a paracrine growth-factor threshold case with no phosphatase branch and a weak middle edge, so it tests the same weighted-threshold idea in a different surface form.
 - Resolved: public helper code no longer uses `as unknown as number` casts to display branded `SignalLevel` values.
 

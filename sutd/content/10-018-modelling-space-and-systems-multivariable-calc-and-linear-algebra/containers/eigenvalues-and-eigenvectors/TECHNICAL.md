@@ -103,7 +103,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -111,7 +111,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/eigenvalues-and-eigenvectors`
 - Docs regeneration: `pnpm container:docs sutd/content/10-018-modelling-space-and-systems-multivariable-calc-and-linear-algebra/containers/eigenvalues-and-eigenvectors`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -129,7 +129,7 @@ Filter version: aniegpt v1.0 (builder self-audit, awaiting reviewer pass)
 
 ### P0 issues
 
-- None observed. Container shape validates. Prediction gate is declared and asserted in the Playwright test. The reveal renders an SVG eigenspace plot with one line per real eigenvalue (blue for the larger eigenvalue, green for the smaller) and a clear complex-case readout when the discriminant is negative. Computation goes through `core/linear-algebra` (`matrix2`, `determinant2`, `trace2`); the eigenpair solver inside the sim is a tiny 2x2 quadratic and is intentionally local because it is the explicit pedagogical surface of this container — `core/linear-algebra.eigenvectors2` returns an opaque eigenpair which would defeat the goal of teaching the procedure. The complex-case explicit `(real, imaginary)` reporting fills the gap that the kernel's real-only eigenvector contract leaves open.
+- None observed. Container shape validates. Prediction checkpoint is declared and asserted in the Playwright test. The reveal renders an SVG eigenspace plot with one line per real eigenvalue (blue for the larger eigenvalue, green for the smaller) and a clear complex-case readout when the discriminant is negative. Computation goes through `core/linear-algebra` (`matrix2`, `determinant2`, `trace2`); the eigenpair solver inside the sim is a tiny 2x2 quadratic and is intentionally local because it is the explicit pedagogical surface of this container — `core/linear-algebra.eigenvectors2` returns an opaque eigenpair which would defeat the goal of teaching the procedure. The complex-case explicit `(real, imaginary)` reporting fills the gap that the kernel's real-only eigenvector contract leaves open.
 
 ### P1 issues
 

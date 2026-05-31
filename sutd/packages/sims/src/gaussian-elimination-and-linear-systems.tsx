@@ -242,7 +242,7 @@ const StageSurface = () => {
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
       <h1>Gaussian Elimination and Linear Systems</h1>
-      <p>Predict the row-reduction outcome before revealing pivots, echelon form, and solution classification.</p>
+      <p>Predict the row-reduction outcome before comparing with pivots, echelon form, and solution classification.</p>
       <button type="button" onClick={() => stage.advance()}>
         Set up row-reduction check
       </button>

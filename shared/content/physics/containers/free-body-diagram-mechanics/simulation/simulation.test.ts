@@ -17,11 +17,9 @@ test.describe("Forces and Equilibrium", () => {
     });
   });
 
-  test("prediction-gate blocks force balance reveal until commit", async ({ page }) => {
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
+  test("prediction-checkpoint keeps force balance reveal visible while saving reflection", async ({ page }) => {
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByText("Formula used")).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "6 N right and 5 N up" }).check();
     await page.getByLabel("Rationale").fill("Each component must cancel its opposite force.");

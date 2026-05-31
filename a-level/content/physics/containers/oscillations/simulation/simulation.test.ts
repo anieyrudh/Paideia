@@ -2,27 +2,35 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { mountSim } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
-test.describe("a-level/physics/oscillations/simple-harmonic-motion-lab prediction-gate", () => {
-  test("prediction-gate blocks oscillation readouts until prediction commit", async ({ page }) => {
+test.describe("a-level/physics/oscillations/simple-harmonic-motion-lab prediction-checkpoint", () => {
+  test("prediction-checkpoint keeps oscillation readouts visible while saving reflection", async ({ page }) => {
     await mountSim(page, "a-level/physics/oscillations/simple-harmonic-motion-lab");
 
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByText("Energy:")).toHaveCount(0);
+    {
 
-    await page.getByRole("button", { name: "Set up oscillator" }).click();
-    await page.getByRole("button", { name: "Open prediction gate" }).click();
+      const setupButton = page.getByRole("button", { name: "Set up oscillator" });
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByText("Energy:")).toHaveCount(0);
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
+    {
+      const setupButton = page.getByRole("button", { name: "Open prediction checkpoint" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
+
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByLabel("The period stays the same").check();
     await page
       .getByLabel("Rationale")
       .fill("Amplitude is absent from the ideal period expression for a spring oscillator.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByLabel("Oscillation readout")).toContainText("Period");
     await expect(page.getByLabel("Formula legend")).toContainText("amplitude");
     await expect(page.getByLabel("Formula used")).toContainText("Energy:");
@@ -31,9 +39,24 @@ test.describe("a-level/physics/oscillations/simple-harmonic-motion-lab predictio
   test("manipulation changes the period and keeps formula evidence visible", async ({ page }) => {
     await mountSim(page, "a-level/physics/oscillations/simple-harmonic-motion-lab");
 
-    await page.getByRole("button", { name: "Set up oscillator" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set up oscillator" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("slider", { name: "Spring stiffness" }).fill("64");
-    await page.getByRole("button", { name: "Open prediction gate" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Open prediction checkpoint" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByLabel("The period stays the same").check();
     await page
       .getByLabel("Rationale")
@@ -48,8 +71,23 @@ test.describe("a-level/physics/oscillations/simple-harmonic-motion-lab predictio
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, "a-level/physics/oscillations/simple-harmonic-motion-lab");
 
-    await page.getByRole("button", { name: "Set up oscillator" }).click();
-    await page.getByRole("button", { name: "Open prediction gate" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set up oscillator" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
+    {
+      const setupButton = page.getByRole("button", { name: "Open prediction checkpoint" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByLabel("The period stays the same").check();
     await page
       .getByLabel("Rationale")

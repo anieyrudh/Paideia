@@ -332,7 +332,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Predict first</p>
+      <p className="meta-line">Prediction checkpoint</p>
       <h1>Bayes Updating Explorer</h1>
       <p>
         Predict the posterior before the calculation is revealed. Then adjust the prior prevalence,

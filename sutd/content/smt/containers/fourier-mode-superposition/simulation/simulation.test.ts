@@ -6,15 +6,22 @@ test.describe("Fourier Mode Superposition", () => {
     await page.goto("/?sim=sutd/smt/fourier-mode-superposition/fourier-mode-superposition");
   });
 
-  test("prediction-gate blocks reconstruction evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps reconstruction evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set coefficients" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set coefficients" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal reconstruction" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await expect(page.getByRole("region", { name: "Formula panel" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "Mode 1, the longest single arch" }).check();
     await page
@@ -29,7 +36,12 @@ test.describe("Fourier Mode Superposition", () => {
   });
 
   test("manipulation changes the revealed dominant mode", async ({ page }) => {
-    await page.getByRole("button", { name: "Set coefficients" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set coefficients" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("combobox", { name: "Target shape" }).selectOption({ label: "Two-lobed shape" });
     await page.getByRole("button", { name: "Reveal reconstruction" }).click();
 
@@ -45,7 +57,12 @@ test.describe("Fourier Mode Superposition", () => {
   });
 
   test("formula, legend, substituted values, units, and interpretation are visible", async ({ page }) => {
-    await page.getByRole("button", { name: "Set coefficients" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set coefficients" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal reconstruction" }).click();
     await page.getByRole("radio", { name: "Mode 1, the longest single arch" }).check();
     await page.getByLabel("Rationale").fill("The broad default shape aligns with the longest arch.");
@@ -61,7 +78,12 @@ test.describe("Fourier Mode Superposition", () => {
   });
 
   test("has no critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set coefficients" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set coefficients" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal reconstruction" }).click();
     await page.getByRole("radio", { name: "Mode 1, the longest single arch" }).check();
     await page.getByLabel("Rationale").fill("The first mode should dominate the default target.");

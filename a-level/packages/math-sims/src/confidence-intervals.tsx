@@ -479,7 +479,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
-      <p className="lab-kicker">Predict first</p>
+      <p className="lab-kicker">Prediction checkpoint</p>
       <h3>Will higher confidence narrow or widen the interval?</h3>
       <p>
         Commit a prediction before the interval bounds, margin of error, and claim check are

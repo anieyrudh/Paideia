@@ -6,14 +6,22 @@ test.describe("Structural Load Path Diagram", () => {
     await page.goto("/?sim=sutd/asd/structural-load-path-diagram/structural-load-path-diagram");
   });
 
-  test("prediction-gate blocks load path evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Load path evidence" })).toHaveCount(0);
+  test("prediction-checkpoint keeps load path evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set bay inputs" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set bay inputs" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal load path" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Load path evidence" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "The diagonal brace force, because it resolves the sideways load." }).check();
     await page
@@ -29,7 +37,12 @@ test.describe("Structural Load Path Diagram", () => {
   });
 
   test("manipulation changes the brace demand and revealed interpretation", async ({ page }) => {
-    await page.getByRole("button", { name: "Set bay inputs" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set bay inputs" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("combobox", { name: "Brace size" }).selectOption({ label: "Light diagonal" });
     await page.getByRole("slider", { name: "Sideways load" }).fill("46");
     await page.getByRole("slider", { name: "Storey height" }).fill("4.5");
@@ -45,7 +58,12 @@ test.describe("Structural Load Path Diagram", () => {
   });
 
   test("has no critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set bay inputs" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set bay inputs" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal load path" }).click();
     await page.getByRole("radio", { name: "The diagonal brace force, because it resolves the sideways load." }).check();
     await page.getByLabel("Rationale").fill("The diagonal brace gives the lateral load a direct path to the base.");

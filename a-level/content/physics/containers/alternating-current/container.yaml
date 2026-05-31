@@ -22,7 +22,7 @@ aid_types:
 predict_at: both
 package_predict:
   prompt: |
-    A sinusoidal supply has the same peak voltage but its frequency is doubled. Before revealing the lab, what happens to the rms voltage of the supply?
+    A sinusoidal supply has the same peak voltage but its frequency is doubled. Before comparing with the lab, what happens to the rms voltage of the supply?
   commit_format:
     kind: multiple-choice
     options:
@@ -81,7 +81,7 @@ authoring:
   changelog:
     - date: "2026-05-21"
       author: "Codex"
-      summary: "Built A-Level alternating current product slice using core/circuits, charting, sim-runtime, prediction-gate, shared, and ui-sim."
+      summary: "Built A-Level alternating current product slice using core/circuits, charting, sim-runtime, prediction-checkpoint, shared, and ui-sim."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []

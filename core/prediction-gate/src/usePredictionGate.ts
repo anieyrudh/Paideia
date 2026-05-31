@@ -1,14 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 import type { KernelResult } from "@paideia/shared";
-import type { PredictionCommit, PredictionScope } from "./storage.js";
+import type { PredictionCommit, PredictionEvent, PredictionScope } from "./storage.js";
 import {
-  hasStoredPrediction,
+  readStoredPrediction,
   removeStoredPrediction,
   writeStoredPrediction,
 } from "./storage.js";
 
 export interface PredictionGateState {
   readonly revealed: boolean;
+  readonly committed: boolean;
+  readonly prediction: PredictionEvent | null;
   readonly commit: (prediction: PredictionCommit) => KernelResult<void>;
   readonly clear: () => void;
 }
@@ -17,16 +19,16 @@ export const usePredictionGate = (
   packageId: string,
   simId: PredictionScope,
 ): PredictionGateState => {
-  const [revealed, setRevealed] = useState(false);
+  const [prediction, setPrediction] = useState<PredictionEvent | null>(null);
 
   useEffect(() => {
-    setRevealed(hasStoredPrediction(packageId, simId));
+    setPrediction(readStoredPrediction(packageId, simId));
   }, [packageId, simId]);
 
   const commit = useCallback(
     (prediction: PredictionCommit): KernelResult<void> => {
       const result = writeStoredPrediction(packageId, simId, prediction);
-      if (result.ok) setRevealed(true);
+      if (result.ok) setPrediction(readStoredPrediction(packageId, simId));
       return result;
     },
     [packageId, simId],
@@ -34,8 +36,11 @@ export const usePredictionGate = (
 
   const clear = useCallback(() => {
     removeStoredPrediction(packageId, simId);
-    setRevealed(false);
+    setPrediction(null);
   }, [packageId, simId]);
 
-  return { revealed, commit, clear };
+  const committed = prediction !== null;
+  return { revealed: committed, committed, prediction, commit, clear };
 };
+
+export const usePredictionCheckpoint = usePredictionGate;

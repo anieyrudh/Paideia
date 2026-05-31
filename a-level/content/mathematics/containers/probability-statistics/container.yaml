@@ -22,7 +22,7 @@ aid_types:
 predict_at: both
 package_predict:
   prompt: |
-    A score distribution has many ordinary outcomes and a few high-score outcomes. Before revealing the lab, predict what can happen if the high-score outcome becomes rarer but worth more marks.
+    A score distribution has many ordinary outcomes and a few high-score outcomes. Before comparing with the lab, predict what can happen if the high-score outcome becomes rarer but worth more marks.
   commit_format:
     kind: multiple-choice
     options:
@@ -81,7 +81,7 @@ authoring:
   changelog:
     - date: "2026-05-20"
       author: "Codex"
-      summary: "Built A-Level probability and statistics product slice using core/probability-stats, charting, sim-runtime, prediction-gate, and ui-sim."
+      summary: "Built A-Level probability and statistics product slice using core/probability-stats, charting, sim-runtime, prediction-checkpoint, and ui-sim."
 authors:
   - "Anieyrudh R"
 advisor_signoffs: []

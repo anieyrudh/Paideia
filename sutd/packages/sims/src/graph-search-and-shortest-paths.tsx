@@ -265,7 +265,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" role="region">
-      <p>Predict what BFS and Dijkstra optimize before revealing the graph evidence.</p>
+      <p>Predict what BFS and Dijkstra optimize before comparing with the graph evidence.</p>
       <button type="button" onClick={() => stage.advance()}>
         Choose traversal
       </button>

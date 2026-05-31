@@ -1,4 +1,4 @@
-// prediction-gate contract: mounted by the generic browser sim harness.
+// prediction-checkpoint contract: mounted by the generic browser sim harness.
 
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";

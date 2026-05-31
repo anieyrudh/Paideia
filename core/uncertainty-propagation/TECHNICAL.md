@@ -58,4 +58,4 @@ kernel's returned `steps` and selected `UncertaintySource`.
 
 Boundary decision: the kernel owns first-order classroom uncertainty rules only.
 It does not infer compound units, model correlations, perform statistical
-confidence intervals, render UI, or weaken prediction-gate timing.
+confidence intervals, render UI, or weaken prediction-checkpoint timing.

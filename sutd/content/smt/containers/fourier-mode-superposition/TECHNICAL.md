@@ -120,7 +120,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -128,7 +128,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/smt/containers/fourier-mode-superposition`
 - Docs regeneration: `pnpm container:docs sutd/content/smt/containers/fourier-mode-superposition`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -145,7 +145,7 @@ Date: 2026-05-21
 Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer
 
 ### P0 resolved
-- Prediction-gate leak risk — resolution: observation charts, coefficient values, RMS error, and formula panel mount only inside the observe stage guarded by the prediction gate.
+- Prediction-checkpoint leak risk — resolution: observation charts, coefficient values, RMS error, and formula panel mount only inside the observe stage guarded by the prediction checkpoint.
 - Kernel boundary risk — resolution: coefficient projection uses the shared numerical integration kernel; rendering uses shared plotting and charting components.
 
 ### P1 addressed or deferred

@@ -10,7 +10,7 @@ import type { TPredictSpec } from "@paideia/content-schema";
 import { PredictionGate } from "./component.js";
 
 const predict: TPredictSpec = {
-  prompt: "Predict the period before revealing the oscillator.",
+  prompt: "Predict the period before comparing with the oscillator.",
   commit_format: { kind: "value", unit: "seconds" },
   rationale_required: true,
 };
@@ -21,14 +21,15 @@ afterEach(() => {
 });
 
 describe("<PredictionGate>", () => {
-  it("keeps children out of the DOM until commit succeeds", () => {
+  it("renders children immediately and saves a prediction checkpoint", () => {
     render(
       <PredictionGate packageId="pkg" predict={predict} simId="package">
         <div>answer-shaped observation</div>
       </PredictionGate>,
     );
 
-    expect(screen.queryByText("answer-shaped observation")).toBeNull();
+    expect(screen.getByText("answer-shaped observation")).toBeTruthy();
+    expect(screen.getByRole("form", { name: "Prediction checkpoint" })).toBeTruthy();
     fireEvent.change(screen.getByLabelText("Prediction"), {
       target: { value: "2.5" },
     });
@@ -37,9 +38,12 @@ describe("<PredictionGate>", () => {
     });
     fireEvent.click(screen.getByText("Commit prediction"));
     expect(screen.getByText("answer-shaped observation")).toBeTruthy();
+    expect(screen.getByRole("region", { name: "Prediction checkpoint" }).textContent).toContain(
+      "Saved prediction",
+    );
   });
 
-  it("rejects commit when rationale is required and empty", () => {
+  it("rejects an empty required rationale without hiding children", () => {
     render(
       <PredictionGate packageId="pkg" predict={predict} simId="package">
         <div>revealed observation</div>
@@ -51,7 +55,7 @@ describe("<PredictionGate>", () => {
     });
     fireEvent.click(screen.getByText("Commit prediction"));
 
-    expect(screen.queryByText("revealed observation")).toBeNull();
+    expect(screen.getByText("revealed observation")).toBeTruthy();
     expect(screen.getByRole("alert").textContent).toContain("rationale");
   });
 

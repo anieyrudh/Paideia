@@ -74,7 +74,7 @@ export const oscillationsSpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "A spring oscillator has the same mass and spring constant, but the amplitude is doubled. Before revealing the lab, what happens to the period?",
+      "A spring oscillator has the same mass and spring constant, but the amplitude is doubled. Before comparing with the lab, what happens to the period?",
     commit_format: {
       kind: "multiple-choice",
       options: [
@@ -429,7 +429,7 @@ const ManipulateStage = () => {
           ))}
         </div>
         <button type="button" onClick={() => stage.advance()}>
-          Open prediction gate
+          Open prediction checkpoint
         </button>
       </div>
       <section className="formula-panel formula-panel--product" aria-label="Before reveal cue">
@@ -592,7 +592,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
-      <p className="lab-kicker">Predict first</p>
+      <p className="lab-kicker">Prediction checkpoint</p>
       <h3>Which settings decide the period?</h3>
       <p>
         Commit a prediction before the displacement, acceleration, and energy traces appear.

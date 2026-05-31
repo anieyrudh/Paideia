@@ -68,11 +68,11 @@ Required container shape:
 - TECHNICAL.md
 
 Simulation quality:
-- Prediction gate blocks reveal before commit.
-- Revealed state contains a real visual: chart, plot, SVG diagram, canvas, 2D
+- Prediction checkpoint saves reflection without blocking the simulation.
+- Observation state contains a real visual: chart, plot, SVG diagram, canvas, 2D
   scene, 3D scene, or equivalent interactive visual.
 - Add `visual_quality` metadata in `simulation/runtime.yaml` and make
-  `simulation.test.ts` call `expectProductSimulationReveal` or
+  `simulation.test.ts` call `expectProductSimulationExperience` or
   `expectRevealedSimulationVisual`.
 - Direct manipulation visibly changes the model.
 - Formula panel shows formula, legend, substitution, units, result, and plain
@@ -141,7 +141,7 @@ Check:
 - Reusable computation belongs in core/*.
 - No cross-branch imports exist.
 - Sources are cited and no incompatible code or content was copied.
-- Tests are meaningful and include prediction-gate coverage.
+- Tests are meaningful and include prediction-checkpoint coverage.
 
 Report findings as:
 - P0: must fix before merge.

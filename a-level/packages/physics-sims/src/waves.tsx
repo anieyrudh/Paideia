@@ -68,7 +68,7 @@ export const wavesSpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "Two identical waves meet in phase. Before revealing the lab, what happens to the displacement where their crests overlap?",
+      "Two identical waves meet in phase. Before comparing with the lab, what happens to the displacement where their crests overlap?",
     commit_format: {
       kind: "multiple-choice",
       options: [
@@ -547,7 +547,7 @@ const StageSurface = () => {
 
   return (
     <section aria-label="Prediction setup" className="formula-panel formula-panel--product">
-      <p className="lab-kicker">Predict first</p>
+      <p className="lab-kicker">Prediction checkpoint</p>
       <h3>What happens when two waves meet?</h3>
       <p>
         Commit a prediction before the resultant trace appears. The reveal will connect amplitude,

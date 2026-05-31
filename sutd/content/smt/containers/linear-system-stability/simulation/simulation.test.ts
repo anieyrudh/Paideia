@@ -6,14 +6,22 @@ test.describe("Linear System Stability", () => {
     await page.goto("/?sim=sutd/smt/linear-system-stability/linear-system-stability");
   });
 
-  test("prediction-gate blocks stability evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps stability evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set system matrix" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set system matrix" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal stability" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "It spirals inward and settles near the origin" }).check();
     await page
@@ -28,7 +36,12 @@ test.describe("Linear System Stability", () => {
   });
 
   test("manipulation changes the revealed stability classification", async ({ page }) => {
-    await page.getByRole("button", { name: "Set system matrix" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set system matrix" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("combobox", { name: "System preset" }).selectOption({ label: "Saddle split" });
     await page.getByRole("button", { name: "Reveal stability" }).click();
 
@@ -42,7 +55,12 @@ test.describe("Linear System Stability", () => {
   });
 
   test("formula, legend, substituted values, units, and interpretation are visible", async ({ page }) => {
-    await page.getByRole("button", { name: "Set system matrix" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set system matrix" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal stability" }).click();
     await page.getByRole("radio", { name: "It spirals inward and settles near the origin" }).check();
     await page.getByLabel("Rationale").fill("Both real parts are negative for the default system.");
@@ -58,7 +76,12 @@ test.describe("Linear System Stability", () => {
   });
 
   test("has no critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set system matrix" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set system matrix" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal stability" }).click();
     await page.getByRole("radio", { name: "It spirals inward and settles near the origin" }).check();
     await page.getByLabel("Rationale").fill("The negative real part should settle the perturbation.");

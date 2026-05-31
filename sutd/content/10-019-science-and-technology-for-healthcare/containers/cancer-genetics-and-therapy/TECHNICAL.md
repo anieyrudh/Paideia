@@ -123,7 +123,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -131,7 +131,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate sutd/content/10-019-science-and-technology-for-healthcare/containers/cancer-genetics-and-therapy`
 - Docs regeneration: `pnpm container:docs sutd/content/10-019-science-and-technology-for-healthcare/containers/cancer-genetics-and-therapy`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -149,7 +149,7 @@ Filter version: aniegpt v1.0 (builder self-audit plus local container-auditor re
 
 ### P0 issues
 
-- Resolved: container shape validates. Prediction gate is declared and asserted in Playwright. Reveal renders an SVG clonal-growth log plot and a dose-response plot with the resistance-shifted curve dashed — a real visual model.
+- Resolved: container shape validates. Prediction checkpoint is declared and asserted in Playwright. Reveal renders an SVG clonal-growth log plot and a dose-response plot with the resistance-shifted curve dashed — a real visual model.
 - Resolved: all math goes through `core/oncogenetics` (`relativeFitness`, `clonalGrowthAfterGenerations`, `mutationCount`, `fitnessAdvantage`, `cellPopulationSize`) and `core/treatment-response` (`hillDoseResponse`, `effectiveIC50`, `doseAtResponse`, `ic50`, `dose`, `hillCoefficient`, `resistanceFactor`, `responseFraction`); no Hill or fitness compound formulas are implemented in the React sim. Formula text is display-only.
 - Resolved: the container is educational only and the concept-card, problem-solving rubric, and TECHNICAL all repeat the no-diagnosis / no-treatment-recommendation disclaimer.
 
@@ -158,7 +158,7 @@ Filter version: aniegpt v1.0 (builder self-audit plus local container-auditor re
 - Resolved: formula colours pair `F` and `N(g)` with the red growth curve, `R` with the solid susceptible curve, and `IC50_eff` with the purple dashed resistant curve. Substitution shows all inputs and the computed `F`, `N(g)`, `IC50_eff`, dose for 90 percent response (susceptible and resistant).
 - Resolved: manipulation visibly retargets both plots when the user changes drivers, fitness advantage, generations, IC50, Hill coefficient, or resistance factor; the Playwright resistance test asserts the "effective IC50" reading appears in the reveal.
 - Resolved: the prediction answer and teaching text now use the correct compound calculation: `F = (1.1)^3 = 1.331`, `F^20 ~= 304x baseline`, or about 3045 cells from a starting size of 10.
-- Resolved: `simulation.yaml` now declares the imported contract kernels (`core/content-schema`, `core/shared`, `core/sim-runtime`, `core/oncogenetics`, `core/treatment-response`, and prediction-gate contract) and no longer declares unused `core/dynamical-systems` / `core/ui-sim`.
+- Resolved: `simulation.yaml` now declares the imported contract kernels (`core/content-schema`, `core/shared`, `core/sim-runtime`, `core/oncogenetics`, `core/treatment-response`, and prediction-checkpoint contract) and no longer declares unused `core/dynamical-systems` / `core/ui-sim`.
 - Resolved: public helper code no longer uses `as unknown as number` casts to display branded oncogenetics / dose-response values.
 - Resolved: the transfer problem now uses a bioreactor disinfection safety-window surface with different parameters and a safety-limit decision instead of mirroring the cancer-lab slider state.
 - Resolved: the revealed observation now includes an explicit button into the explain stage, and the Playwright test asserts that path.

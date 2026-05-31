@@ -6,14 +6,22 @@ test.describe("Shading, Daylight, and Heat Gain", () => {
     await page.goto("/?sim=sutd/asd/shading-daylight-heat-gain/shading-daylight-heat-gain");
   });
 
-  test("prediction-gate blocks tradeoff evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+  test("prediction-checkpoint keeps tradeoff evidence visible while saving reflection", async ({ page }) => {
 
-    await page.getByRole("button", { name: "Set facade options" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set facade options" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal tradeoff" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByRole("radio", {
@@ -33,7 +41,12 @@ test.describe("Shading, Daylight, and Heat Gain", () => {
   });
 
   test("manipulation changes the readout and interpretation", async ({ page }) => {
-    await page.getByRole("button", { name: "Set facade options" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set facade options" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "hot glass" }).click();
     await page.getByRole("button", { name: "Reveal tradeoff" }).click();
 
@@ -51,7 +64,12 @@ test.describe("Shading, Daylight, and Heat Gain", () => {
   });
 
   test("formula panel keeps legend, substitutions, units, and interpretation visible", async ({ page }) => {
-    await page.getByRole("button", { name: "Set facade options" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set facade options" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal tradeoff" }).click();
     await page
       .getByRole("radio", {
@@ -73,7 +91,12 @@ test.describe("Shading, Daylight, and Heat Gain", () => {
   });
 
   test("has no critical or serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set facade options" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set facade options" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal tradeoff" }).click();
     await page
       .getByRole("radio", {

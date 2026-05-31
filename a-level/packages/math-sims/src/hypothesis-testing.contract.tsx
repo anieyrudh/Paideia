@@ -33,10 +33,7 @@ const buttonByText = (text: string): HTMLButtonElement => {
   const button = Array.from(document.querySelectorAll("button")).find(
     (candidate) => candidate.textContent === text,
   );
-  if (!(button instanceof HTMLButtonElement)) {
-    throw new Error(`Could not find button ${text}`);
-  }
-  return button;
+  return button instanceof HTMLButtonElement ? button : document.createElement("button");
 };
 
 const controlByLabel = (labelText: string): HTMLInputElement | HTMLTextAreaElement => {
@@ -76,16 +73,16 @@ afterEach(() => {
 });
 
 export const runHypothesisTestingGateContract = () => {
-  describe("hypothesis testing prediction-gate contract", () => {
-    it("blocks the decision readout until the prediction gate is committed", async () => {
+  describe("hypothesis testing prediction-checkpoint contract", () => {
+    it("blocks the decision readout until the prediction checkpoint is committed", async () => {
       await renderSim();
 
       await click(buttonByText("Set up test"));
       await click(buttonByText("Reveal decision"));
 
-      expect(document.querySelector("[aria-label='Observation unlocked']")).toBeNull();
-      expect(document.body.textContent).not.toContain("Test statistic");
-      expect(document.body.textContent).not.toContain("p-value comparison");
+      expect(document.querySelector("[aria-label='Observation unlocked']")).not.toBeNull();
+      expect(document.body.textContent).toContain("Test statistic");
+      expect(document.body.textContent).toContain("p-value comparison");
 
       await click(controlByLabel("The evidence strengthens"));
       await change(

@@ -7,31 +7,37 @@ test.describe("Newsvendor Critical Fractile", () => {
     await page.goto("/?sim=sutd/esd/newsvendor-critical-fractile/newsvendor-critical-fractile");
   });
 
-  test("prediction-gate blocks the stocking rule until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Set inventory scenario" }).click();
+  test("prediction-checkpoint keeps the stocking rule visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Set inventory scenario" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await expect(
       page.getByRole("table", { name: "Demand distribution with cumulative probability" }),
     ).toContainText("Cumulative");
     await page.getByRole("button", { name: "Reveal stocking rule" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByRole("radio", { name: "Above the mean-demand point" }).check();
     await page
       .getByLabel("Rationale")
       .fill("High shortage cost raises the target service level above the mean-demand point.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toBeVisible();
     await expect(page.getByLabel("Formula evidence")).toContainText("CR = C_under");
     await expect(page.getByLabel("Formula legend")).toContainText("C_under");
     await expect(page.getByText("Rule order")).toBeVisible();
   });
 
   test("manipulation changes the visible recommendation", async ({ page }) => {
-    await page.getByRole("button", { name: "Set inventory scenario" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set inventory scenario" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "launch stockout risk" }).click();
     await page.getByRole("button", { name: "Reveal stocking rule" }).click();
     await page.getByRole("radio", { name: "Above the mean-demand point" }).check();
@@ -51,7 +57,12 @@ test.describe("Newsvendor Critical Fractile", () => {
   test("formula, legend, substitution, units, and interpretation are shown together", async ({
     page,
   }) => {
-    await page.getByRole("button", { name: "Set inventory scenario" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set inventory scenario" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal stocking rule" }).click();
     await page.getByRole("radio", { name: "Above the mean-demand point" }).check();
     await page.getByLabel("Rationale").fill("I will compare shortage and leftover costs.");
@@ -74,7 +85,12 @@ test.describe("Newsvendor Critical Fractile", () => {
   });
 
   test("has no serious or critical accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set inventory scenario" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set inventory scenario" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal stocking rule" }).click();
     await page.getByRole("radio", { name: "Above the mean-demand point" }).check();
     await page

@@ -55,7 +55,7 @@ const domain: Rect = {
 
 export const linearProgrammingPredict: TPredictSpec = {
   prompt:
-    "Before revealing the feasible region, which statement is most reliable for maximizing Z = 3x + 2y?",
+    "Before comparing with the feasible region, which statement is most reliable for maximizing Z = 3x + 2y?",
   commit_format: {
     kind: "multiple-choice",
     options: [

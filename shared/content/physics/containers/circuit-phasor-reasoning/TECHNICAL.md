@@ -41,7 +41,7 @@ kernel_deps:
   - core/ui-sim
 predict:
   prompt: |
-    A resistor and inductor are connected in series to a sinusoidal supply. Before revealing the lab, what happens to the current phase compared with the voltage?
+    A resistor and inductor are connected in series to a sinusoidal supply. Before comparing with the lab, what happens to the current phase compared with the voltage?
   commit_format:
     kind: multiple-choice
     options:
@@ -113,7 +113,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -121,7 +121,7 @@ Declared runtime kernel dependencies are listed above. Any additive or breaking 
 
 - Container validation: `pnpm container:validate shared/content/physics/containers/circuit-phasor-reasoning`
 - Docs regeneration: `pnpm container:docs shared/content/physics/containers/circuit-phasor-reasoning`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -138,7 +138,7 @@ Date: 2026-05-20
 Reviewers: local container-auditor, sim-architect, pedagogy-reviewer criteria
 
 ### P0 resolved
-- Prediction gate blocks observation and formula content until commit — verified by simulation test.
+- Prediction checkpoint saves reflection while observation and formula content remain visible — verified by simulation test.
 - AC impedance and phase math live in `core/circuits`, not inside the container.
 - Container shape follows `docs/container-spec.md`.
 - Misconception evidence exists as a dedicated artifact — addressed by `concept-map/misconceptions.md`.

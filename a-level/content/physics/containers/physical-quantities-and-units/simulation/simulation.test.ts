@@ -8,7 +8,7 @@ import {
 
 const simId = "a-level/physics/physical-quantities-and-units/measurement-uncertainty-lab";
 
-// prediction-gate: the lab notebook must not reveal the complete speed record before commit.
+// prediction-checkpoint: the lab notebook must not reveal the complete speed record before commit.
 definePredictionGateContract({
   simId,
   predictionLabel: "2.50 m s^-1 ± 0.09 m s^-1",

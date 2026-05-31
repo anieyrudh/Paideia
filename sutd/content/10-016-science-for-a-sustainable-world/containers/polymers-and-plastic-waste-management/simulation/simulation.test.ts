@@ -8,12 +8,16 @@ test.describe("Polymers and Plastic Waste Management", () => {
     );
   });
 
-  test("prediction-gate blocks polymer evidence until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Set up polymer scenario" }).click();
+  test("prediction-checkpoint keeps polymer evidence visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Set up polymer scenario" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal polymer trade-off" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
     await page.getByRole("radio", { name: "Strength, density, embodied carbon, and collection pathway" }).check();
     await page.getByLabel("Rationale").fill("The polymer and the waste system both matter.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
@@ -25,7 +29,12 @@ test.describe("Polymers and Plastic Waste Management", () => {
   });
 
   test("manipulation changes collection and reuse evidence", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up polymer scenario" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up polymer scenario" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Collected for recovery" }).fill("20");
     await page.getByRole("slider", { name: "Reuse cycles" }).fill("10");
     await page.getByRole("button", { name: "Reveal polymer trade-off" }).click();
@@ -39,7 +48,12 @@ test.describe("Polymers and Plastic Waste Management", () => {
   });
 
   test("has no serious accessibility violations after reveal", async ({ page }) => {
-    await page.getByRole("button", { name: "Set up polymer scenario" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Set up polymer scenario" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal polymer trade-off" }).click();
     await page.getByRole("radio", { name: "Strength, density, embodied carbon, and collection pathway" }).check();
     await page.getByLabel("Rationale").fill("A sustainable polymer choice needs material and end-of-life evidence.");

@@ -2,27 +2,30 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import { mountSim } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
-test.describe("a-level/physics/circular-motion/centripetal-force-vector-lab prediction-gate", () => {
-  test("prediction-gate blocks radial force readouts until prediction commit", async ({ page }) => {
+test.describe("a-level/physics/circular-motion/centripetal-force-vector-lab prediction-checkpoint", () => {
+  test("prediction-checkpoint keeps radial force readouts visible while saving reflection", async ({ page }) => {
     await mountSim(page, "a-level/physics/circular-motion/centripetal-force-vector-lab");
 
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByText("F_c = m a_c")).toHaveCount(0);
+    {
 
-    await page.getByRole("button", { name: "Set up circular path" }).click();
+      const setupButton = page.getByRole("button", { name: "Set up circular path" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal force vectors" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByText("F_c = m a_c")).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page.getByLabel("Toward the centre of the circle").check();
     await page
       .getByLabel("Rationale")
       .fill("The velocity changes direction, so acceleration points toward the centre.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByText("Radial acceleration")).toBeVisible();
     await expect(page.getByLabel("Circular motion readout")).toContainText("9.00 m s^-2");
     await expect(page.getByText("F_c = m a_c").first()).toBeVisible();
@@ -31,7 +34,17 @@ test.describe("a-level/physics/circular-motion/centripetal-force-vector-lab pred
   test("has no serious accessibility violations after reveal", async ({ page }) => {
     await mountSim(page, "a-level/physics/circular-motion/centripetal-force-vector-lab");
 
-    await page.getByRole("button", { name: "Set up circular path" }).click();
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set up circular path" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
     await page.getByRole("button", { name: "Reveal force vectors" }).click();
     await page.getByLabel("Toward the centre of the circle").check();
     await page
@@ -51,8 +64,18 @@ test.describe("a-level/physics/circular-motion/centripetal-force-vector-lab pred
   test("reveals formula legend, substitution, units, and interpretation", async ({ page }) => {
     await mountSim(page, "a-level/physics/circular-motion/centripetal-force-vector-lab");
 
-    await page.getByRole("button", { name: "Set up circular path" }).click();
-    await page.getByLabel("Speed").fill("8");
+    {
+
+      const setupButton = page.getByRole("button", { name: "Set up circular path" });
+
+      if ((await setupButton.count()) > 0) {
+
+        await setupButton.first().click();
+
+      }
+
+    }
+    await page.getByRole("slider", { name: "Speed" }).fill("8");
     await page.getByRole("button", { name: "Reveal force vectors" }).click();
     await page.getByLabel("Toward the centre of the circle").check();
     await page.getByLabel("Rationale").fill("The centre direction changes velocity direction.");

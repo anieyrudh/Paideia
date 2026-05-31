@@ -121,7 +121,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -129,7 +129,7 @@ No core-change proposal is declared in this container. Kernel use is limited to 
 
 - Container validation: `pnpm container:validate sutd/content/freshmore/containers/eigenvector-transformations`
 - Docs regeneration: `pnpm container:docs sutd/content/freshmore/containers/eigenvector-transformations`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -148,7 +148,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer
 
 ### P0 resolved
 
-- container-auditor: canonical v2 layout, declared transfer rubric, media, embed contract, and prediction-gate test marker present - resolved in this PR.
+- container-auditor: canonical v2 layout, declared transfer rubric, media, embed contract, and prediction-checkpoint test marker present - resolved in this PR.
 - sim-architect: simulation uses declared core kernels instead of local reusable eigenvector math; `@paideia/linear-algebra`, `@paideia/plotting`, `@paideia/sim-runtime`, `@paideia/prediction-gate`, and `@paideia/ui-sim` are declared - resolved in this PR.
 - pedagogy-reviewer: PMOE-T path includes prediction, manipulation, blocked reveal, formula, legend, substituted values with units, final result with units, and one reason sentence - resolved in this PR.
 

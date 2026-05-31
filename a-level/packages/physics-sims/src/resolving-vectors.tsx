@@ -16,7 +16,7 @@ export const resolvingVectorsSimId = "component-resolution";
 
 export const componentPredict: TPredictSpec = {
   prompt:
-    "A 10 N force acts at 30 degrees above the horizontal. Before revealing the components, which horizontal component is closest?",
+    "A 10 N force acts at 30 degrees above the horizontal. Before comparing with the components, which horizontal component is closest?",
   commit_format: {
     kind: "multiple-choice",
     options: ["5.0 N", "8.7 N", "10.0 N", "11.5 N"],

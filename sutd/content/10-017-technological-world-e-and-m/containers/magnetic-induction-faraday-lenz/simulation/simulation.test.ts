@@ -1,7 +1,7 @@
 /**
  * Magnetic Induction: Faraday-Lenz · Playwright coverage
  *
- * Includes the required `prediction-gate` assertion: reveal stays hidden until
+ * Includes the required `prediction-checkpoint` assertion: reveal stays hidden until
  * the learner commits a prediction.
  */
 
@@ -14,13 +14,16 @@ test.describe("Magnetic Induction: Faraday-Lenz", () => {
     );
   });
 
-  test("prediction-gate blocks reveal until commit", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Prepare induction model" }).click();
+  test("prediction-checkpoint keeps reveal visible while saving reflection", async ({ page }) => {
+    {
+      const setupButton = page.getByRole("button", { name: "Prepare induction model" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("button", { name: "Reveal induced emf" }).click();
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
     await page
       .getByRole("radio", {
         name: "Into the page, because Lenz's law opposes the increase in outward flux.",
@@ -30,17 +33,18 @@ test.describe("Magnetic Induction: Faraday-Lenz", () => {
       .getByLabel("Rationale")
       .fill("Increasing outward flux requires an induced field into the page.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toBeVisible();
     await expect(page.getByText("Faraday-Lenz evidence")).toBeVisible();
   });
 
   test("manipulation changes visible induced emf", async ({ page }) => {
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
-    await page.getByRole("button", { name: "Prepare induction model" }).click();
+    {
+      const setupButton = page.getByRole("button", { name: "Prepare induction model" });
+      if ((await setupButton.count()) > 0) {
+        await setupButton.first().click();
+      }
+    }
     await page.getByRole("slider", { name: "Coil turns" }).fill("80");
     await page.getByRole("button", { name: "Reveal induced emf" }).click();
-    await expect(page.getByRole("region", { name: "Observation unlocked" })).toHaveCount(0);
     await page
       .getByRole("radio", {
         name: "Into the page, because Lenz's law opposes the increase in outward flux.",

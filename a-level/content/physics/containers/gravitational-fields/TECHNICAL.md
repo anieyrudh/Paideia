@@ -43,7 +43,7 @@ kernel_deps:
   - core/ui-sim
 predict:
   prompt: |
-    A probe moves from 1 Earth radius to 2 Earth radii from Earth's centre. Before revealing the lab, what happens to the gravitational field strength?
+    A probe moves from 1 Earth radius to 2 Earth radii from Earth's centre. Before comparing with the lab, what happens to the gravitational field strength?
   commit_format:
     kind: multiple-choice
     options:
@@ -108,7 +108,7 @@ Declared runtime kernel dependencies are listed above. Additive mechanics/shared
 
 ## Accessibility
 
-- Prediction gate contract: required and tested when the sim is registered.
+- Prediction checkpoint contract: required and tested when the sim is registered.
 - Route-level axe coverage: record the latest shell or container-specific result in the preserved review section below.
 - Media fallback: `media/fallback.svg` present.
 
@@ -116,7 +116,7 @@ Declared runtime kernel dependencies are listed above. Additive mechanics/shared
 
 - Container validation: `pnpm container:validate a-level/content/physics/containers/gravitational-fields`
 - Docs regeneration: `pnpm container:docs a-level/content/physics/containers/gravitational-fields`
-- Prediction-gate test: `simulation/simulation.test.ts`
+- Prediction-checkpoint test: `simulation/simulation.test.ts`
 - Package or shell tests: record exact commands in the preserved validation section below.
 
 ## How to run locally
@@ -149,7 +149,7 @@ Reviewers (subagents): container-auditor, sim-architect, pedagogy-reviewer, test
 - [pedagogy-reviewer] Formula legend omitted `phi`, `E_p`, and `v` — addressed by adding the purple legend row.
 - [pedagogy-reviewer] Orbit-speed readout lacked formula/substitution — addressed by adding `v = sqrt(GM / r)` and substituted values.
 - [sim-architect] Bare numeric field and potential return types — addressed by adding branded `NewtonsPerKilogram` and `JoulesPerKilogram` types in `core/shared`, with the shared contract updated and tracked by issue #126.
-- [sim-architect] Embed completion state was hidden from the prediction gate — addressed by wiring embed completion scoring to `@paideia/prediction-gate` state.
+- [sim-architect] Embed completion state was hidden from the prediction checkpoint — addressed by wiring embed completion scoring to `@paideia/prediction-gate` state.
 
 ### P2 noted
 

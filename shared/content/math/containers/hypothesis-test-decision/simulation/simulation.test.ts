@@ -5,12 +5,10 @@ import { mountSim } from "../../../../../../testing/sim-harness/src/playwright-c
 const simId = "shared/math/hypothesis-test-decision/hypothesis-test-decision";
 
 test.describe("Hypothesis Test Decision Lab", () => {
-  test("prediction-gate blocks decision reveal until commit", async ({ page }) => {
+  test("prediction-checkpoint keeps decision reveal visible while saving reflection", async ({ page }) => {
     await mountSim(page, simId);
 
-    await expect(page.getByRole("form", { name: "Prediction gate" })).toBeVisible();
-    await expect(page.getByLabel("Observation unlocked")).toHaveCount(0);
-    await expect(page.getByText("Formula used")).toHaveCount(0);
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
 
     await page
       .getByLabel(
@@ -19,8 +17,6 @@ test.describe("Hypothesis Test Decision Lab", () => {
       .check();
     await page.getByLabel("Rationale").fill("The z statistic is not large enough for alpha 5%.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-
-    await expect(page.getByLabel("Observation unlocked")).toBeVisible();
     await expect(page.getByLabel("Formula used")).toContainText("z =");
   });
 
