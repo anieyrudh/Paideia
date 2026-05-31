@@ -342,7 +342,6 @@ settling time = first time after which y(t) stays within +/-2% of target
 );
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<PidState>();
   const current = currentState(state);
 
@@ -378,9 +377,6 @@ const ManipulateStage = () => {
         type="range"
         value={current.kd}
       />
-      <button type="button" onClick={() => stage.advance()}>
-        Observe response
-      </button>
     </section>
   );
 };
@@ -391,14 +387,14 @@ const ObserveStage = () => {
 
   if (!metrics.ok) {
     return (
-      <section aria-label="Observation unlocked" role="region">
+      <section aria-label="Observation" role="region">
         <p role="alert">These gains produce an unsupported closed-loop model.</p>
       </section>
     );
   }
 
   return (
-    <section aria-label="Observation unlocked" className="vector-stage vector-stage--product" role="region">
+    <section aria-label="Observation" className="vector-stage vector-stage--product" role="region">
       <h2>Step response evidence</h2>
       <p>
         Kp = {format(metrics.value.kp, 1)}, Ki = {format(metrics.value.ki, 2)}, Kd ={" "}
@@ -442,17 +438,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
 
   return (
-    <section aria-label="Prediction setup" role="region">
-      <p>Choose gains, then predict which control action best reduces final error.</p>
-      <button type="button" onClick={() => stage.advance()}>
-        Start tuning
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

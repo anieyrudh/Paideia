@@ -1,7 +1,7 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 import {
-  expectProductSimulationReveal,
+  expectProductSimulationExperience,
   expectRevealedSimulationVisual,
 } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
@@ -11,35 +11,21 @@ test.describe("PID Step Response", () => {
   });
 
   test("satisfies the product reveal visual contract", async ({ page }) => {
-    await expectProductSimulationReveal(page, {
+    await expectProductSimulationExperience(page, {
       simId: "sutd/epd/pid-step-response/pid-step-response",
-      setup: [
-        { role: "button", name: "Start tuning" },
-        { role: "button", name: "Observe response" },
-      ],
+      setup: [],
       prediction: {
         optionLabel: "Increase Ki moderately",
         rationale: "Integral action should reduce final error, but too much can increase overshoot.",
       },
+      observation: { observationLabel: "Observation" },
     });
   });
 
   test("prediction-checkpoint keeps observation visible while saving reflection", async ({ page }) => {
 
-    {
-
-      const setupButton = page.getByRole("button", { name: "Start tuning" });
-
-      if ((await setupButton.count()) > 0) {
-
-        await setupButton.first().click();
-
-      }
-
-    }
-    await page.getByRole("button", { name: "Observe response" }).click();
-
     await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
+    await expect(page.getByRole("img", { name: "Step response chart, output against time in seconds" })).toBeVisible();
 
     await page.getByLabel("Increase Ki moderately").check();
     await page
@@ -49,43 +35,28 @@ test.describe("PID Step Response", () => {
     await expect(page.getByRole("img", { name: "Step response chart, output against time in seconds" })).toBeVisible();
     await expect(page.getByRole("img", { name: "PID feedback loop diagram" })).toBeVisible();
     await expect(page.getByLabel("Formula used")).toContainText("e_ss");
-    await expectRevealedSimulationVisual(page);
+    await expectRevealedSimulationVisual(page, "Observation");
   });
 
   test("manipulate controls write to response metrics", async ({ page }) => {
-    {
-      const setupButton = page.getByRole("button", { name: "Start tuning" });
-      if ((await setupButton.count()) > 0) {
-        await setupButton.first().click();
-      }
-    }
-
     await page.getByLabel("Proportional gain Kp").focus();
     await page.keyboard.press("ArrowRight");
     await page.keyboard.press("ArrowRight");
     await page.getByLabel("Integral gain Ki").focus();
     await page.keyboard.press("ArrowRight");
-    await page.getByRole("button", { name: "Observe response" }).click();
     await page.getByLabel("Increase Ki moderately").check();
     await page.getByLabel("Rationale").fill("I want to compare a stronger integral term.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
 
-    const observation = page.getByRole("region", { name: "Observation unlocked" });
+    const observation = page.getByRole("region", { name: "Observation" });
     await expect(observation).toContainText("Kp = 1.4");
     await expect(observation).toContainText("Ki = 0.85");
     await expect(observation).toContainText("Final error");
     await expect(page.getByRole("img", { name: "Step response chart, output against time in seconds" })).toBeVisible();
-    await expectRevealedSimulationVisual(page);
+    await expectRevealedSimulationVisual(page, "Observation");
   });
 
   test("shows chart, formula legend, substitutions, units, and feedback loop", async ({ page }) => {
-    {
-      const setupButton = page.getByRole("button", { name: "Start tuning" });
-      if ((await setupButton.count()) > 0) {
-        await setupButton.first().click();
-      }
-    }
-    await page.getByRole("button", { name: "Observe response" }).click();
     await page.getByLabel("Increase Ki moderately").check();
     await page
       .getByLabel("Rationale")
@@ -99,23 +70,16 @@ test.describe("PID Step Response", () => {
     await expect(page.getByLabel("Formula used")).toContainText("s");
     await expect(page.getByLabel("Formula legend")).toContainText("y(t)");
     await expect(page.getByLabel("Formula legend")).toContainText("target");
-    await expectRevealedSimulationVisual(page);
+    await expectRevealedSimulationVisual(page, "Observation");
   });
 
   test("has no critical accessibility violations after reveal", async ({ page }) => {
-    {
-      const setupButton = page.getByRole("button", { name: "Start tuning" });
-      if ((await setupButton.count()) > 0) {
-        await setupButton.first().click();
-      }
-    }
-    await page.getByRole("button", { name: "Observe response" }).click();
     await page.getByLabel("Increase Ki moderately").check();
     await page
       .getByLabel("Rationale")
       .fill("A gain choice needs evidence from overshoot, settling time, and final error.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-    await page.getByRole("region", { name: "Observation unlocked" }).waitFor();
+    await page.getByRole("region", { name: "Observation" }).waitFor();
 
     const results = await new AxeBuilder({ page }).analyze();
     const seriousOrCritical = results.violations.filter(

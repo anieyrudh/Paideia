@@ -115,7 +115,6 @@ export const graphSearchModel = (mode: TraversalMode): KernelResult<GraphSearchM
 };
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<GraphSearchState>();
   const mode = state.mode ?? "BFS";
 
@@ -142,9 +141,6 @@ const ManipulateStage = () => {
           DFS traversal
         </label>
       </fieldset>
-      <button type="button" onClick={() => stage.advance()}>
-        Reveal graph evidence
-      </button>
     </section>
   );
 };
@@ -164,7 +160,7 @@ const ObserveStage = () => {
   const visited = new Set(model.value.traversalOrder);
 
   return (
-    <section aria-label="Observation unlocked" role="region">
+    <section aria-label="Observation" role="region">
       <h2>Search evidence</h2>
       <figure>
         <svg aria-label="Graph traversal diagram" role="img" viewBox="0 0 310 160" width="100%">
@@ -259,17 +255,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
 
   return (
-    <section aria-label="Prediction setup" role="region">
-      <p>Predict what BFS and Dijkstra optimize before comparing with the graph evidence.</p>
-      <button type="button" onClick={() => stage.advance()}>
-        Choose traversal
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

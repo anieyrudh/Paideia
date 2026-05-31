@@ -55,7 +55,7 @@ export const cellStructureAndTheMembraneSpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "A cell sits in a bath where [K+] outside is much lower than [K+] inside. The membrane is far more permeable to K+ than to Na+ or Cl-. Before reveal, what best describes the resting membrane potential?",
+      "A cell sits in a bath where [K+] outside is much lower than [K+] inside. The membrane is far more permeable to K+ than to Na+ or Cl-. Before adjusting the model, what best describes the resting membrane potential?",
     commit_format: {
       kind: "multiple-choice",
       options: [
@@ -332,7 +332,6 @@ const Slider = ({
 );
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<MembraneState>();
   const current = currentState(state);
   return (
@@ -385,14 +384,11 @@ const ManipulateStage = () => {
           suffix="micrometres"
           value={current.radiusMicrometres}
         />
-        <button type="button" onClick={() => stage.advance()}>
-          Reveal resting voltage
-        </button>
       </div>
-      <section aria-label="Before reveal cue" className="sutd-formula-card">
-        <p className="meta-line">Before reveal</p>
+      <section aria-label="Model setup" className="sutd-formula-card">
+        <p className="meta-line">Manipulate</p>
         <h3>Permeability picks the resting voltage</h3>
-        <p>Prediction checkpoint. Then watch how channel sizes and bath potassium move the cell's resting voltage between the K+ and Na+ Nernst potentials.</p>
+        <p>Use the checkpoint to save your expectation, then watch how channel sizes and bath potassium move the cell's resting voltage between the K+ and Na+ Nernst potentials.</p>
       </section>
     </section>
   );
@@ -459,14 +455,14 @@ const ObserveStage = () => {
   const evidence = membraneEvidence(state);
   if (!evidence.ok) {
     return (
-      <section className="sutd-formula-card" role="region" aria-label="Observation unlocked">
+      <section className="sutd-formula-card" role="region" aria-label="Observation">
         <p role="alert">{evidence.error.message}</p>
       </section>
     );
   }
   const value = evidence.value;
   return (
-    <section aria-label="Observation unlocked" className="sutd-sim-panel" role="region">
+    <section aria-label="Observation" className="sutd-sim-panel" role="region">
       <div className="sutd-result-card">
         <p className="meta-line">Observe</p>
         <h2>Resting voltage from selective permeability</h2>
@@ -491,6 +487,7 @@ const ObserveStage = () => {
          {\color{#2563eb}{P_K}[\text{K}^+]_i + \color{#f59e0b}{P_{Na}}[\text{Na}^+]_i + \color{#059669}{P_{Cl}}[\text{Cl}^-]_o}
   \right)`}</code>
         </pre>
+        <p className="formula-note">Legend</p>
         <dl aria-label="Formula legend" className="formula-legend">
           <div><dt><span className="legend-swatch legend-swatch--blue" /> P_K</dt><dd>K+ relative permeability {state.permeabilityK.toFixed(2)}</dd></div>
           <div><dt><span className="legend-swatch legend-swatch--orange" /> P_Na</dt><dd>Na+ relative permeability {state.permeabilityNa.toFixed(2)}</dd></div>
@@ -499,6 +496,12 @@ const ObserveStage = () => {
         </dl>
         <p>
           Substitution at T = 310.15 K with [K+]_o = {state.outsideK.toFixed(1)} mM, [K+]_i = {INSIDE_K} mM, [Na+]_o = {OUTSIDE_NA} mM, [Na+]_i = {INSIDE_NA} mM, [Cl-]_o = {OUTSIDE_CL} mM, [Cl-]_i = {INSIDE_CL} mM gives V_m = {value.restingVoltageMillivolts.toFixed(1)} mV.
+        </p>
+        <p>
+          Units: ion concentrations are millimolar, voltage is millivolts, surface-area-to-volume is per micrometre, and equilibration time is milliseconds.
+        </p>
+        <p>
+          Result: V_m = {value.restingVoltageMillivolts.toFixed(1)} mV, with {dominantIonLabel(value.dominantIon)}.
         </p>
         <p className="formula-note">
           The permeability bars in the diagram reflect P_K, P_Na, and P_Cl directly: bigger circle = more open channel.
@@ -524,20 +527,12 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
   return (
-    <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Prediction checkpoint</p>
-      <h1>Membrane Transport Lab</h1>
-      <p>
-        Predict whether the resting voltage sits near the K+ Nernst potential, the Na+ Nernst potential, or somewhere in between before adjusting channel permeabilities.
-      </p>
-      <button type="button" onClick={() => stage.advance()}>
-        Set up membrane bath
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

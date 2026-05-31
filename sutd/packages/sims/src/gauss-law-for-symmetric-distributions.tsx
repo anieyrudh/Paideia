@@ -328,7 +328,6 @@ const FluxModel = ({ evidence }: { readonly evidence: GaussLawEvidence }) => {
 };
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<GaussLawState>();
   const current = currentState(state);
 
@@ -410,11 +409,8 @@ const ManipulateStage = () => {
             />
           ) : null}
         </ControlGroup>
-        <button type="button" onClick={() => stage.advance()}>
-          Reveal flux readout
-        </button>
       </div>
-      <section aria-label="Before reveal cue" className="sutd-formula-card">
+      <section aria-label="Model setup" className="sutd-formula-card">
         <p className="meta-line">Manipulate</p>
         <h2>Choose a surface that matches the charge symmetry</h2>
         <p>
@@ -425,7 +421,7 @@ const ManipulateStage = () => {
               : `sigma = ${fmt(current.surfaceChargeDensityNanoCoulombsPerSquareMetre, 2)} nC/m^2`}
           .
         </p>
-        <p>The reveal tests whether the chosen surface makes flux easy to count.</p>
+        <p>The observation tests whether the chosen surface makes flux easy to count.</p>
       </section>
     </section>
   );
@@ -500,14 +496,14 @@ const ObserveStage = () => {
 
   if (!evidence.ok) {
     return (
-      <section aria-label="Observation unlocked" className="sutd-formula-card" role="region">
+      <section aria-label="Observation" className="sutd-formula-card" role="region">
         <p role="alert">{evidence.error.message}</p>
       </section>
     );
   }
 
   return (
-    <section aria-label="Observation unlocked" className="sutd-sim-panel" role="region">
+    <section aria-label="Observation" className="sutd-sim-panel" role="region">
       <div className="sutd-result-card">
         <p className="meta-line">Observe</p>
         <h2>Gauss law flux evidence</h2>
@@ -571,22 +567,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
 
   return (
-    <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Prediction checkpoint</p>
-      <h1>Gauss Law for Symmetric Distributions</h1>
-      <p>
-        Predict what changes when a closed surface grows, then choose a Gaussian surface for
-        spherical, cylindrical, or planar charge symmetry.
-      </p>
-      <button type="button" onClick={() => stage.advance()}>
-        Choose Gaussian surface
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 
