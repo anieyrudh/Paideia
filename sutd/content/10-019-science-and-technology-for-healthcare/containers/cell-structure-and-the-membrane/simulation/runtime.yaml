@@ -5,3 +5,12 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "Strongly negative inside, close to the K+ Nernst potential"
+    rationale: "K+ permeability dominates, so V_m sits close to E_K."
+  observation:
+    observation_label: "Observation"
+    visual: required
+    formula: required

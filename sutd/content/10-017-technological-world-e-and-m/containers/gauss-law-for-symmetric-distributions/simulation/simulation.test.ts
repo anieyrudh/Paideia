@@ -1,12 +1,12 @@
 /**
  * Gauss Law for Symmetric Distributions · Playwright coverage
  *
- * Includes the required prediction-checkpoint assertion: reveal stays hidden until
- * the learner commits a prediction.
+ * Includes the required prediction-checkpoint assertion: observation stays visible
+ * while the learner saves a prediction.
  */
 
 import { expect, test } from "@playwright/test";
-import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
+import { expectProductSimulationExperience } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 const simId =
   "sutd/10-017-technological-world-e-and-m/gauss-law-for-symmetric-distributions/gauss-law-flux-surface-lab";
@@ -17,31 +17,22 @@ test.describe("Gauss Law for Symmetric Distributions", () => {
   });
 
   test("satisfies the product reveal visual contract", async ({ page }) => {
-    await expectProductSimulationReveal(page, {
+    await expectProductSimulationExperience(page, {
       simId,
-      setup: [
-        { role: "button", name: "Choose Gaussian surface" },
-        { role: "button", name: "Reveal flux readout" },
-      ],
+      setup: [],
       prediction: {
         optionLabel:
           "The total flux stays the same because it depends only on enclosed charge.",
         rationale:
           "Total flux is set by enclosed charge, while area changes field strength.",
       },
+      observation: { observationLabel: "Observation" },
     });
   });
 
   test("prediction-checkpoint keeps flux reveal visible while saving reflection", async ({ page }) => {
-    {
-      const setupButton = page.getByRole("button", { name: "Choose Gaussian surface" });
-      if ((await setupButton.count()) > 0) {
-        await setupButton.first().click();
-      }
-    }
-    await page.getByRole("button", { name: "Reveal flux readout" }).click();
-
     await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
+    await expect(page.getByText("Gauss law flux evidence")).toBeVisible();
     await page
       .getByRole("radio", {
         name: "The total flux stays the same because it depends only on enclosed charge.",
@@ -57,14 +48,7 @@ test.describe("Gauss Law for Symmetric Distributions", () => {
   });
 
   test("symmetry selection changes the visible Gaussian surface model", async ({ page }) => {
-    {
-      const setupButton = page.getByRole("button", { name: "Choose Gaussian surface" });
-      if ((await setupButton.count()) > 0) {
-        await setupButton.first().click();
-      }
-    }
-    await page.getByLabel("Symmetry").selectOption({ label: "Long charged line" });
-    await page.getByRole("button", { name: "Reveal flux readout" }).click();
+    await page.getByLabel("Symmetry", { exact: true }).selectOption({ label: "Long charged line" });
     await page
       .getByRole("radio", {
         name: "The total flux stays the same because it depends only on enclosed charge.",

@@ -5,15 +5,11 @@ runtime:
   persistence: local
   deterministic: true
 visual_quality:
-  setup:
-    - role: button
-      name: "Choose traversal"
-    - role: button
-      name: "Reveal graph evidence"
+  setup: []
   prediction:
     option_label: "BFS minimizes edge count; Dijkstra minimizes total non-negative weight."
     rationale: "BFS treats every edge as one step, while Dijkstra sums edge weights."
-  reveal:
-    observation_label: "Observation unlocked"
+  observation:
+    observation_label: "Observation"
     visual: required
     formula: required

@@ -9,7 +9,7 @@ kernel_deps:
   - core/ui-sim
 predict:
   prompt: |
-    A cell sits in a bath where [K+] outside is much lower than [K+] inside. The membrane is far more permeable to K+ than to Na+ or Cl-. Before reveal, what best describes the resting membrane potential?
+    A cell sits in a bath where [K+] outside is much lower than [K+] inside. The membrane is far more permeable to K+ than to Na+ or Cl-. Before adjusting the model, what best describes the resting membrane potential?
   commit_format:
     kind: multiple-choice
     options:
