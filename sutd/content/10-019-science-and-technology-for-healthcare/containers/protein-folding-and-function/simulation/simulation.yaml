@@ -8,7 +8,7 @@ kernel_deps:
   - core/ui-sim
 predict:
   prompt: |
-    A short peptide is L L L L L L L L (eight leucines). The window-9 hydropathy classifier reports "hydrophobic" for every centre residue. Before reveal, which statement best describes the peptide's fold in aqueous solution?
+    A short peptide is L L L L L L L L (eight leucines). The window-9 hydropathy classifier reports "hydrophobic" for every centre residue. Which statement best describes the peptide's fold in aqueous solution?
   commit_format:
     kind: multiple-choice
     options:

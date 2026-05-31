@@ -334,7 +334,6 @@ const Select = ({
 );
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<ExpressionState>();
   const current = currentState(state);
   return (
@@ -354,10 +353,9 @@ const ManipulateStage = () => {
         <Slider label="Inducer concentration" max={10} min={0} onChange={(v) => set("inducerConcentration", v)} step={0.1} suffix="uM" value={current.inducerConcentration} />
         <Slider label="Hill coefficient n" max={4} min={1} onChange={(v) => set("hillCoefficient", v)} step={1} suffix="" value={current.hillCoefficient} />
         <Slider label="Half-max threshold K" max={5} min={0.1} onChange={(v) => set("hillThreshold", v)} step={0.1} suffix="uM" value={current.hillThreshold} />
-        <button type="button" onClick={() => stage.advance()}>Reveal central dogma output</button>
       </div>
-      <section className="sutd-formula-card" aria-label="Before reveal cue">
-        <p className="meta-line">Before reveal</p>
+      <section className="sutd-formula-card" aria-label="Model cue">
+        <p className="meta-line">Observation</p>
         <h3>One DNA segment, three layers</h3>
         <p>Prediction checkpoint. Then watch how a point mutation changes the protein sequence and how the inducer concentration changes the steady states.</p>
       </section>
@@ -480,7 +478,7 @@ const ObserveStage = () => {
   const evidence = geneExpressionEvidence(state);
   if (!evidence.ok) {
     return (
-      <section className="sutd-formula-card" role="region" aria-label="Observation unlocked">
+      <section className="sutd-formula-card" role="region" aria-label="Observation">
         <p role="alert">{evidence.error.message}</p>
       </section>
     );
@@ -490,9 +488,9 @@ const ObserveStage = () => {
   const rnaCodons = splitIntoCodons(value.rnaSequence);
   const residues = value.proteinSequence.split("");
   return (
-    <section aria-label="Observation unlocked" className="sutd-sim-panel" role="region">
+    <section aria-label="Observation" className="sutd-sim-panel" role="region">
       <div className="sutd-result-card">
-        <p className="meta-line">Observe</p>
+        <p className="meta-line">Observation</p>
         <h2>Central dogma output</h2>
         <CodonRow label="DNA" codons={dnaCodons} fill="#1e3a8a" />
         <CodonRow label="mRNA" codons={rnaCodons} fill="#2563eb" />
@@ -523,6 +521,7 @@ const ObserveStage = () => {
 \qquad
 \frac{dP}{dt} = k_{\text{tr}} M - k_P P`}</code>
         </pre>
+        <p className="meta-line">Legend</p>
         <dl aria-label="Formula legend" className="formula-legend">
           <div><dt><span className="legend-swatch legend-swatch--blue" /> R</dt><dd>regulator factor in [0, 1]</dd></div>
           <div><dt><span className="legend-swatch legend-swatch--orange" /> alpha</dt><dd>transcription rate (per second)</dd></div>
@@ -532,10 +531,21 @@ const ObserveStage = () => {
         <p>
           Substitution: [I] = {state.inducerConcentration.toFixed(2)} uM, K = {state.hillThreshold.toFixed(2)} uM, n = {state.hillCoefficient}, alpha_0 = {ALPHA_0}, alpha_max = {ALPHA_MAX}, k_tr = {K_TR}, k_M = {K_M}, k_P = {K_P}. R = {value.regulationFraction.toFixed(2)}; alpha = {value.transcriptionRatePerSecond.toFixed(3)} per s; M* = {value.steadyStateMrna.toFixed(2)} uM; P* = {value.steadyStateProtein.toFixed(1)} uM.
         </p>
+        <p>
+          Units: inducer, mRNA, and protein are in uM; rates are per second. Result: R = {value.regulationFraction.toFixed(2)}, M* = {value.steadyStateMrna.toFixed(2)} uM, P* = {value.steadyStateProtein.toFixed(1)} uM.
+        </p>
         <p className="formula-note">
           The Hill response is sigmoidal: below K the curve is almost linear, near K it is steepest, and above ~3K it saturates. The protein steady state inherits that shape.
         </p>
-        <button type="button" onClick={() => stage.advance()}>Explain the plateau</button>
+        <button
+          type="button"
+          onClick={() => {
+            stage.advance();
+            stage.advance();
+          }}
+        >
+          Explain the plateau
+        </button>
       </section>
     </section>
   );
@@ -564,16 +574,12 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
   return (
-    <section className="sutd-formula-card" aria-label="Prediction setup">
-      <p className="meta-line">Prediction checkpoint</p>
-      <h1>Central Dogma Lab</h1>
-      <p>Predict how mRNA and protein steady states respond to inducer concentration before transcribing and translating the chosen DNA segment.</p>
-      <button type="button" onClick={() => stage.advance()}>Set up gene expression</button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

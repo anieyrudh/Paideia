@@ -262,7 +262,6 @@ const Slider = ({
 );
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<CascadeState>();
   const current = currentState(state);
   return (
@@ -274,10 +273,9 @@ const ManipulateStage = () => {
         <Slider label="Phosphatase inhibitor" max={1} min={0} onChange={(v) => set("phosphataseLevel", v)} step={0.05} suffix="" value={current.phosphataseLevel} />
         <Slider label="Receptor threshold" max={1} min={0} onChange={(v) => set("receptorThreshold", v)} step={0.05} suffix="" value={current.receptorThreshold} />
         <Slider label="Per-node sensitivity" max={16} min={1} onChange={(v) => set("sensitivity", v)} step={1} suffix="" value={current.sensitivity} />
-        <button type="button" onClick={() => stage.advance()}>Reveal cascade output</button>
       </div>
-      <section className="sutd-formula-card" aria-label="Before reveal cue">
-        <p className="meta-line">Before reveal</p>
+      <section className="sutd-formula-card" aria-label="Model cue">
+        <p className="meta-line">Observation</p>
         <h3>Saturating responses keep the chain bounded</h3>
         <p>Prediction checkpoint. Then sweep the ligand to see the sigmoidal transcription-factor response and raise the phosphatase to see the switch-off.</p>
       </section>
@@ -378,16 +376,16 @@ const ObserveStage = () => {
   const evidence = cascadeEvidence(state);
   if (!evidence.ok) {
     return (
-      <section className="sutd-formula-card" role="region" aria-label="Observation unlocked">
+      <section className="sutd-formula-card" role="region" aria-label="Observation">
         <p role="alert">{evidence.error.message}</p>
       </section>
     );
   }
   const value = evidence.value;
   return (
-    <section aria-label="Observation unlocked" className="sutd-sim-panel" role="region">
+    <section aria-label="Observation" className="sutd-sim-panel" role="region">
       <div className="sutd-result-card">
-        <p className="meta-line">Observe</p>
+        <p className="meta-line">Observation</p>
         <h2>Cascade output</h2>
         <CascadeDiagram evidence={value} />
         <ResponsePlot evidence={value} />
@@ -410,6 +408,7 @@ const ObserveStage = () => {
 
 \color{#d97706}{y_i = \sigma(k_i (\text{input}_i - \theta_i))}`}</code>
         </pre>
+        <p className="meta-line">Legend</p>
         <dl aria-label="Formula legend" className="formula-legend">
           <div><dt><span className="legend-swatch legend-swatch--blue" /> input</dt><dd>activator minus inhibitor weighted sum from upstream nodes</dd></div>
           <div><dt><span className="legend-swatch legend-swatch--orange" /> y = sigma</dt><dd>logistic response with per-node threshold and sensitivity</dd></div>
@@ -419,10 +418,21 @@ const ObserveStage = () => {
         <p>
           Substitution: ligand = {state.ligandLevel.toFixed(2)}, phosphatase = {state.phosphataseLevel.toFixed(2)} give receptor = {value.receptor.toFixed(2)}, kinase = {value.kinase.toFixed(2)} (effective input = receptor - phosphatase = {(value.receptor - value.phosphatase).toFixed(2)}), tf = {value.transcriptionFactor.toFixed(2)}.
         </p>
+        <p>
+          Units: node signals, thresholds, and edge weights are dimensionless fractions in [0, 1]. Result: transcription-factor output = {value.transcriptionFactor.toFixed(2)} and verdict = {verdictLabel(value.verdict)}.
+        </p>
         <p className="formula-note">
           The TF response curve to ligand is sigmoidal; the operating point is marked with the red dot. Raising the phosphatase shifts the kinase's effective input down and can flip the TF off.
         </p>
-        <button type="button" onClick={() => stage.advance()}>Explain the threshold</button>
+        <button
+          type="button"
+          onClick={() => {
+            stage.advance();
+            stage.advance();
+          }}
+        >
+          Explain the threshold
+        </button>
       </section>
     </section>
   );
@@ -451,16 +461,12 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
   return (
-    <section className="sutd-formula-card" aria-label="Prediction setup">
-      <p className="meta-line">Prediction checkpoint</p>
-      <h1>Cascade Propagation Lab</h1>
-      <p>Predict the shape of the transcription-factor response as the ligand sweeps from 0 to 1 before launching the cascade.</p>
-      <button type="button" onClick={() => stage.advance()}>Set up signalling cascade</button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

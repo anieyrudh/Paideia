@@ -5,3 +5,12 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "A sigmoidal saturating curve, steepest near the receptor's threshold and flat above it."
+    rationale: "Stacked saturating responses keep the curve bounded and sigmoidal."
+  observation:
+    observation_label: "Observation"
+    visual: required
+    formula: required

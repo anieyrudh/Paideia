@@ -1,5 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationExperience } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 test.describe("Gene Expression DNA to RNA to Protein", () => {
   test.beforeEach(async ({ page }) => {
@@ -8,22 +9,23 @@ test.describe("Gene Expression DNA to RNA to Protein", () => {
     );
   });
 
+  test("satisfies the product simulation experience contract", async ({ page }) => {
+    await expectProductSimulationExperience(page, {
+      simId:
+        "sutd/10-019-science-and-technology-for-healthcare/gene-expression-dna-to-rna-to-protein/gene-expression-dna-to-rna-to-protein",
+      setup: [],
+      prediction: {
+        optionLabel:
+          "Both rise toward a saturating plateau set by the maximum transcription rate and the per-molecule decay constants.",
+        rationale: "Inducer raises the Hill term, which raises transcription up to the maximum.",
+      },
+      observation: { observationLabel: "Observation" },
+    });
+  });
+
   test("prediction-checkpoint keeps central-dogma evidence visible while saving reflection", async ({ page }) => {
-
-    {
-
-      const setupButton = page.getByRole("button", { name: "Set up gene expression" });
-
-      if ((await setupButton.count()) > 0) {
-
-        await setupButton.first().click();
-
-      }
-
-    }
-    await page.getByRole("button", { name: "Reveal central dogma output" }).click();
-
     await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
+    await expect(page.getByRole("region", { name: "Observation" })).toBeVisible();
 
     await page
       .getByRole("radio", {
@@ -35,7 +37,7 @@ test.describe("Gene Expression DNA to RNA to Protein", () => {
       .fill("Inducer raises the Hill term, which raises transcription up to the maximum.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
 
-    const observation = page.getByRole("region", { name: "Observation unlocked" });
+    const observation = page.getByRole("region", { name: "Observation" });
     await expect(observation).toBeVisible();
     await expect(observation).toContainText("Central dogma");
     await expect(observation).toContainText("AUG");
@@ -48,16 +50,9 @@ test.describe("Gene Expression DNA to RNA to Protein", () => {
   });
 
   test("point mutation preset changes the translated protein", async ({ page }) => {
-    {
-      const setupButton = page.getByRole("button", { name: "Set up gene expression" });
-      if ((await setupButton.count()) > 0) {
-        await setupButton.first().click();
-      }
-    }
     await page
       .getByRole("combobox", { name: "DNA preset" })
       .selectOption("mutation-elf-to-ely");
-    await page.getByRole("button", { name: "Reveal central dogma output" }).click();
     await page
       .getByRole("radio", {
         name: "Both rise toward a saturating plateau set by the maximum transcription rate and the per-molecule decay constants.",
@@ -67,18 +62,11 @@ test.describe("Gene Expression DNA to RNA to Protein", () => {
       .getByLabel("Rationale")
       .fill("A point mutation can change the protein sequence.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-    const observation = page.getByRole("region", { name: "Observation unlocked" });
+    const observation = page.getByRole("region", { name: "Observation" });
     await expect(observation).toContainText("Y");
   });
 
-  test("has no serious accessibility violations after reveal", async ({ page }) => {
-    {
-      const setupButton = page.getByRole("button", { name: "Set up gene expression" });
-      if ((await setupButton.count()) > 0) {
-        await setupButton.first().click();
-      }
-    }
-    await page.getByRole("button", { name: "Reveal central dogma output" }).click();
+  test("has no serious accessibility violations in observation", async ({ page }) => {
     await page
       .getByRole("radio", {
         name: "Both rise toward a saturating plateau set by the maximum transcription rate and the per-molecule decay constants.",
@@ -86,11 +74,13 @@ test.describe("Gene Expression DNA to RNA to Protein", () => {
       .check();
     await page.getByLabel("Rationale").fill("Hill saturation pins the plateau.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-    await page.getByRole("region", { name: "Observation unlocked" }).waitFor();
+    await page.getByRole("region", { name: "Observation" }).waitFor();
+
     const results = await new AxeBuilder({ page }).analyze();
     const seriousOrCritical = results.violations.filter(
-      (v) => v.impact === "critical" || v.impact === "serious",
+      (violation) => violation.impact === "critical" || violation.impact === "serious",
     );
+
     expect(seriousOrCritical).toEqual([]);
   });
 });
