@@ -3592,7 +3592,7 @@ export const containers = [
       "Derivative action removes steady-state error",
     ],
     transferProblem: "Choose a gain set for a thermal chamber where overshoot must stay low. Justify your choice with overshoot, settling time, and steady-state error.",
-    firstPrinciples: "",
+    firstPrinciples: "For the fixed plant \\(G(s) = 1/(s^2+2s+1)\\) — a critically damped second-order system — the closed-loop transfer function with a parallel PID controller \\(C(s) = K_p + K_i/s + K_d s\\) is",
     keyDefinitions: [],
     canonicalExamples: [],
     problemSolvingSteps: [
@@ -3703,7 +3703,7 @@ export const containers = [
       "Single-constraint satisfaction implies feasibility",
     ],
     transferProblem: "Maximize Z = 4x + 3y with x + y <= 12, x + 2y <= 14, x,y >= 0. Evaluate each feasible corner point and justify the optimum.",
-    firstPrinciples: "",
+    firstPrinciples: "Each inequality \\(a_{i1} x_1 + a_{i2} x_2 \\le b_i\\) divides the plane into two closed half-planes; the inequality picks one of them. The feasible region is the intersection of all chosen half-planes, including the non-negativity quadrant \\(x_1 \\ge 0,\\ x_2 \\ge 0\\). Three structural facts follow directly:",
     keyDefinitions: [],
     canonicalExamples: [],
     problemSolvingSteps: [

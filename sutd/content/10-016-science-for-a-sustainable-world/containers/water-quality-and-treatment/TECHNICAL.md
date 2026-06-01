@@ -149,7 +149,7 @@ pnpm graph:generate
 
 ## Anieyrudh Filter pass
 
-Date: TBD
+Date: 2026-05-31
 Filter version: aniegpt v1.0
 
 ### P0 issues

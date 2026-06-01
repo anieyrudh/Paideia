@@ -48,5 +48,5 @@ control the launch date if it sits on the critical chain.
 
 ## Kernel boundary
 
-Critical-path timings come from `core/scheduling`. The container renders the
-network, controls, and transfer prompt only.
+Critical-path timings come from a shared scheduling engine. The container
+renders the network, controls, and transfer prompt only.

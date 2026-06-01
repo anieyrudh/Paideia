@@ -70,7 +70,7 @@ adapter power-factor check.
 ## Pedagogical choices and why
 
 - **Predict format:** multiple choice, because the target misconception is a crisp alternative: frequency changes repetition rate, not the rms conversion for fixed peak voltage.
-- **Manipulate variables:** rms supply voltage, frequency, resistance, inductance, capacitance, and a time marker. These expose the physical knobs in `core/circuits` without asking learners to edit phasor algebra directly.
+- **Manipulate variables:** rms supply voltage, frequency, resistance, inductance, capacitance, and a time marker. These expose the physical knobs of the RLC circuit without asking learners to edit phasor algebra directly.
 - **Transfer problem:** a laptop adapter changes the surface from an in-sim phasor lab to a realistic power-factor calculation while preserving rms, impedance, phase, and power reasoning.
 
 ## Misconceptions this surfaces
