@@ -452,6 +452,7 @@ const FormulaPanel = ({ evidence }: { readonly evidence: StabilityEvidence }) =>
   return (
     <section aria-label="Formula panel" style={panelStyle}>
       <h3>Formula panel</h3>
+      <h4>Legend</h4>
       <div style={{ display: "grid", gap: "0.5rem", marginBlockEnd: "0.75rem" }}>
         <LegendItem color="#0f766e" label="Trace T" text="net local growth rate, measured per time unit" />
         <LegendItem color="#2563eb" label="Determinant D" text="area-rate sign that separates saddles from paired behaviour" />
@@ -487,13 +488,12 @@ const FormulaPanel = ({ evidence }: { readonly evidence: StabilityEvidence }) =>
       ) : (
         <p>Real eigendirections are not drawn here because this case uses a spiral pair.</p>
       )}
-      <p>Interpretation: {interpretationFor(stability)}</p>
+      <p>Result: {stability.kind}. Interpretation: {interpretationFor(stability)}</p>
     </section>
   );
 };
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<StabilityState>();
   const current = currentState(state);
 
@@ -544,9 +544,6 @@ const ManipulateStage = () => {
             value={current.initialYStateUnits}
           />
         </ControlGroup>
-        <button type="button" onClick={() => stage.advance()}>
-          Reveal stability
-        </button>
       </div>
       <div style={panelStyle}>
         <h3>Current matrix</h3>
@@ -621,23 +618,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-
+  if (stage.current === "observe") return <ObserveStage />;
   return (
-    <section aria-label="Prediction setup" role="region" style={surfaceStyle}>
-      <div style={panelStyle}>
-        <h2>Predict stability before seeing the phase portrait</h2>
-        <p>
-          Start from the damped oscillator matrix. Commit a prediction, then reveal whether the
-          eigenvalue evidence matches the motion.
-        </p>
-        <button type="button" onClick={() => stage.advance()}>
-          Set system matrix
-        </button>
-      </div>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

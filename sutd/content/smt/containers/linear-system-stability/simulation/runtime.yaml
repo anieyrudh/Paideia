@@ -10,3 +10,12 @@ runtime:
     dt: 0.04
     steps: 80
   reveal_requires_prediction: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "It spirals inward and settles near the origin"
+    rationale: "Negative trace and positive determinant give complex eigenvalues with negative real part, so trajectories spiral inward toward the origin."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

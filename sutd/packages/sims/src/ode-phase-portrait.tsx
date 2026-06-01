@@ -329,8 +329,15 @@ const FormulaTrail = ({ evidence }: { readonly evidence: PhaseEvidence }) => {
   const finalY = final?.state[1] ?? 0;
 
   return (
-    <div style={panelStyle}>
+    <section aria-label="Formula panel" style={panelStyle}>
       <h3>Formula trail</h3>
+      <h4>Legend</h4>
+      <ul>
+        <li>T (trace): sum of diagonal entries of A; carries the sign of the local growth rate.</li>
+        <li>D (determinant): product of eigenvalues; positive D rules out a saddle.</li>
+        <li>Delta = T^2 - 4D: positive means real eigenvalues, negative means a spiral pair.</li>
+        <li>lambda: eigenvalues of A; their real parts decide whether trajectories settle.</li>
+      </ul>
       <p>
         System matrix: A = [[0, 1], [-D, T]] = [[{format(a)}, {format(b)}], [{format(c)},{" "}
         {format(d)}]], so x' = y and y' = -{format(state.determinant)}x +{" "}
@@ -356,17 +363,24 @@ const FormulaTrail = ({ evidence }: { readonly evidence: PhaseEvidence }) => {
         sample z = ({format(finalX)}, {format(finalY)}).
       </p>
       <p>
+        Substitution: A z0 = ({format(a * state.initialX + b * state.initialY)},{" "}
+        {format(c * state.initialX + d * state.initialY)}), so the initial velocity at z0 is
+        {" "}({format(a * state.initialX + b * state.initialY)},{" "}
+        {format(c * state.initialX + d * state.initialY)}). Units: x and y are in state units;
+        trajectory time uses dt = {integrationDt}. Result: classification = {stability.kind};
+        final sample z = ({format(finalX)}, {format(finalY)}).
+      </p>
+      <p>
         Nullclines: x' = 0 gives y = 0. y' = 0 gives -D x + T y = 0, so{" "}
         {Math.abs(state.trace) < 1e-9
           ? "x = 0 for this trace value."
           : `y = (D / T)x = (${format(state.determinant)} / ${format(state.trace)})x.`}
       </p>
-    </div>
+    </section>
   );
 };
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<PhaseState>();
   const current = currentState(state);
 
@@ -427,9 +441,6 @@ const ManipulateStage = () => {
             value={current.initialY}
           />
         </ControlGroup>
-        <button type="button" onClick={() => stage.advance()}>
-          Reveal phase portrait
-        </button>
       </div>
       <div style={panelStyle}>
         <h3>Model family</h3>
@@ -499,21 +510,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-
+  if (stage.current === "observe") return <ObserveStage />;
   return (
-    <section aria-label="Prediction setup" role="region">
-      <h2>Before the reveal</h2>
-      <p>
-        Predict how the default ODE behaves near the origin, then tune trace and
-        determinant to test the prediction.
-      </p>
-      <button type="button" onClick={() => stage.advance()}>
-        Set phase plane
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

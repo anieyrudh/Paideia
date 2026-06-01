@@ -9,3 +9,12 @@ runtime:
     dt: 0.035
     steps: 120
   reveal_requires_prediction: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "Spiral inward toward the equilibrium"
+    rationale: "The trace -0.6 is negative and the determinant 1.2 is positive with Delta < 0, giving complex eigenvalues with negative real part, so trajectories spiral inward."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required
