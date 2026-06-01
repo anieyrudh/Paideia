@@ -166,18 +166,117 @@ function checkPackageSource(failures) {
   }
 }
 
+// Headings that the four-section exemplar concept card uses. Gate 3 is
+// warn-only because some legitimate containers use different headings; the
+// warning is a "drift" signal, not a merge bar.
+const CONCEPT_CARD_REQUIRED_SECTIONS = [
+  "First-Principles",
+  "Canonical Example",
+  "Common Misconceptions",
+  "Transfer",
+];
+
+const SOURCES_MIN_NON_BLANK_LINES = 5;
+
+const KERNEL_PATH_LEAK = /`core\/[a-z][a-z0-9-]*`/g;
+
+function checkFilterPassNonTbd(container, failures) {
+  const technicalPath = join(container, "TECHNICAL.md");
+  if (!isFile(technicalPath)) return;
+  const body = readFileSync(technicalPath, "utf8");
+  const sectionMatch = body.match(/^##\s+Anieyrudh Filter pass\s*$/m);
+  if (!sectionMatch) return;
+  const sectionStart = sectionMatch.index + sectionMatch[0].length;
+  const tail = body.slice(sectionStart, sectionStart + 200);
+  if (/^\s*Date:\s*TBD\b/m.test(tail)) {
+    failures.push(
+      `${relative(REPO_ROOT, technicalPath)} has \`Date: TBD\` in the \`## Anieyrudh Filter pass\` section; fill the date before review.`,
+    );
+  }
+}
+
+function checkKernelPathLeak(container, failures) {
+  for (const rel of ["concept-card.md", join("problem-solving", "algorithm.md")]) {
+    const path = join(container, rel);
+    if (!isFile(path)) continue;
+    const body = readFileSync(path, "utf8");
+    const hits = body.match(KERNEL_PATH_LEAK);
+    if (!hits) continue;
+    const unique = [...new Set(hits)].join(", ");
+    failures.push(
+      `${relative(REPO_ROOT, path)} mentions kernel package paths (${unique}) in learner-facing copy; describe the concept, not the repo path.`,
+    );
+  }
+}
+
+function checkConceptCardSections(container, warnings) {
+  const path = join(container, "concept-card.md");
+  if (!isFile(path)) return;
+  const body = readFileSync(path, "utf8");
+  const missing = CONCEPT_CARD_REQUIRED_SECTIONS.filter((heading) => !body.includes(heading));
+  if (missing.length > 0) {
+    warnings.push(
+      `${relative(REPO_ROOT, path)} is missing canonical heading(s): ${missing.join(", ")}.`,
+    );
+  }
+}
+
+function checkSourcesMinLines(container, warnings) {
+  const path = join(container, "sources.md");
+  if (!isFile(path)) return;
+  const body = readFileSync(path, "utf8");
+  const nonBlank = body.split(/\r?\n/).filter((line) => line.trim().length > 0).length;
+  if (nonBlank < SOURCES_MIN_NON_BLANK_LINES) {
+    warnings.push(
+      `${relative(REPO_ROOT, path)} has only ${nonBlank} non-blank line(s); aim for at least ${SOURCES_MIN_NON_BLANK_LINES}.`,
+    );
+  }
+}
+
+function checkCopyLints(failures, warnings) {
+  for (const container of findContainers()) {
+    checkFilterPassNonTbd(container, failures);
+    checkKernelPathLeak(container, failures);
+    checkConceptCardSections(container, warnings);
+    checkSourcesMinLines(container, warnings);
+  }
+}
+
+function summarizeWarnings(warnings) {
+  const grouped = new Map();
+  for (const warning of warnings) {
+    const tag = warning.includes("canonical heading")
+      ? "concept-card missing canonical heading"
+      : warning.includes("non-blank line")
+        ? "sources.md too thin"
+        : "other";
+    if (!grouped.has(tag)) grouped.set(tag, []);
+    grouped.get(tag).push(warning);
+  }
+  for (const [tag, list] of grouped) {
+    process.stderr.write(`\n[warn] ${list.length} × ${tag}:\n`);
+    for (const item of list.slice(0, 5)) process.stderr.write(`  - ${item}\n`);
+    if (list.length > 5) process.stderr.write(`  - ... and ${list.length - 5} more\n`);
+  }
+}
+
 function main() {
   const failures = [];
+  const warnings = [];
   checkContainers(failures);
   checkPackageSource(failures);
+  checkCopyLints(failures, warnings);
+
+  if (warnings.length > 0) summarizeWarnings(warnings);
 
   if (failures.length > 0) {
-    process.stderr.write(`check-container-quality: FAILED with ${failures.length} issue(s).\n\n`);
+    process.stderr.write(`\ncheck-container-quality: FAILED with ${failures.length} issue(s).\n\n`);
     for (const failure of failures) process.stderr.write(`- ${failure}\n`);
     process.exit(1);
   }
 
-  process.stdout.write("check-container-quality: OK\n");
+  const warnSuffix = warnings.length > 0 ? ` (${warnings.length} warning(s))` : "";
+  process.stdout.write(`check-container-quality: OK${warnSuffix}\n`);
 }
 
 main();
