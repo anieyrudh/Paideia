@@ -172,7 +172,6 @@ export const dielectricCapacitorEvidence = (
 };
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<DielectricState>();
   const current = currentState(state);
 
@@ -217,9 +216,6 @@ const ManipulateStage = () => {
             value={current.voltageVolts}
           />
         </ControlGroup>
-        <button type="button" onClick={() => stage.advance()}>
-          Reveal dielectric readout
-        </button>
       </div>
       <section aria-label="Capacitor preview" className="sutd-formula-card">
         <p className="meta-line">Manipulate</p>
@@ -301,6 +297,7 @@ const FormulaPanel = ({ evidence }: { readonly evidence: DielectricEvidence }) =
 \color{#0891b2}{U}
 =\frac{1}{2}\color{#f97316}{C}\color{#4f46e5}{V}^{2}`}</code>
       </pre>
+      <p className="meta-line">Legend</p>
       <dl className="formula-legend" aria-label="Formula legend">
         <div>
           <dt><span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> C</dt>
@@ -327,6 +324,7 @@ const FormulaPanel = ({ evidence }: { readonly evidence: DielectricEvidence }) =
           <dd>stored electric energy, joule</dd>
         </div>
       </dl>
+      <p className="meta-line">Substitution</p>
       <pre className="formula-code" aria-label="Dielectric capacitance substitution">
         <code>{String.raw`C
 =
@@ -341,6 +339,7 @@ U = \frac{1}{2}(${formatPicoFarads(model.capacitanceFarads)})(${fmt(state.voltag
 = ${formatNanoJoules(model.energyJoules)}`}</code>
       </pre>
       <p>
+        Units: capacitance in farad (shown in pF), charge in coulomb, energy in joule, field in V/m.
         Result: capacitance is {formatPicoFarads(model.capacitanceFarads)}, which is{" "}
         {fmt(evidence.multiplier, 2)} times the same air-filled geometry. The field magnitude is{" "}
         {formatField(model.electricFieldVoltsPerMetre)}.
@@ -427,22 +426,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-
+  if (stage.current === "observe") return <ObserveStage />;
   return (
-    <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Prediction checkpoint</p>
-      <h1>Capacitor with Dielectric</h1>
-      <p>
-        Predict how a dielectric changes charge storage before seeing the plate model. Then tune
-        geometry and voltage to compare material, area, and gap.
-      </p>
-      <button type="button" onClick={() => stage.advance()}>
-        Prepare dielectric model
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

@@ -4,3 +4,12 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "Into the page, because Lenz's law opposes the increase in outward flux."
+    rationale: "Lenz's law: the induced current opposes the change in flux, so an increasing out-of-page flux induces a field into the page."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

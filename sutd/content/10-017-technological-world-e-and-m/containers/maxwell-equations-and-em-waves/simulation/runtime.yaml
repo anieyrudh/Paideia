@@ -3,3 +3,12 @@ runtime:
   component: MaxwellEquationsAndEmWaves
   package_id: "sutd/10-017-technological-world-e-and-m/maxwell-equations-and-em-waves"
   prediction_gate: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "It sustains a changing magnetic field, allowing a transverse electromagnetic wave to propagate."
+    rationale: "Maxwell's displacement-current term lets a changing electric field source magnetic circulation, so the coupled fields propagate as one transverse wave in vacuum."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

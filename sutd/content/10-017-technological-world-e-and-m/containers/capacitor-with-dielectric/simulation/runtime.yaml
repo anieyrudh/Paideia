@@ -10,3 +10,12 @@ runtime:
     dt: n/a
     steps: n/a
   reveal_requires_prediction: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "Both capacitance and stored energy increase in proportion to the dielectric constant."
+    rationale: "C = kappa*eps0*A/d rises with kappa; with V fixed, U = 1/2 C V^2 rises in proportion to C, so both increase with the dielectric constant."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required
