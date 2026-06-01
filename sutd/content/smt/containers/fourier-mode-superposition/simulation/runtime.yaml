@@ -11,3 +11,12 @@ runtime:
       - reconstruction error
       - target/reconstruction chart
       - formula panel
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "Mode 1, the longest single arch"
+    rationale: "The default centre pluck is mostly a single positive arch, so its projection onto sin(pi x / L) dominates."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

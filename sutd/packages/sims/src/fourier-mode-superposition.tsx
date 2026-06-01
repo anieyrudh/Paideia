@@ -388,6 +388,7 @@ const FormulaPanel = ({ evidence }: { readonly evidence: FourierEvidence }) => {
   return (
     <section aria-label="Formula panel" style={panelStyle}>
       <h3>Formula panel</h3>
+      <h4>Legend</h4>
       <div style={{ display: "grid", gap: "0.5rem", marginBlockEnd: "0.75rem" }}>
         <LegendItem color="#2563eb" label="c_n" text="projection coefficient, measured in metres" />
         <LegendItem color="#7c3aed" label="f(x)" text="target displacement along the one metre interval" />
@@ -410,6 +411,11 @@ const FormulaPanel = ({ evidence }: { readonly evidence: FourierEvidence }) => {
         {coefficientText(currentCoefficient)}, the RMS mismatch is {coefficientText(evidence.rmsErrorMetres)}.
       </p>
       <p>
+        Units: coefficients and the RMS error are in metres of displacement; the basis modes phi_n
+        are unitless shape functions on the [0, L] interval. Result: dominant mode is {modeLabel(mode)}
+        with coefficient {coefficientText(dominantCoefficient)} and RMS mismatch {coefficientText(evidence.rmsErrorMetres)}.
+      </p>
+      <p>
         Interpretation: {modeLabel(mode)} carries the largest projection for this target, so its sign
         pattern is the strongest first correction to compare against the current reconstruction.
       </p>
@@ -418,7 +424,6 @@ const FormulaPanel = ({ evidence }: { readonly evidence: FourierEvidence }) => {
 };
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<FourierState>();
   const current = currentState(state);
   const target = targetProfiles[current.targetShape];
@@ -478,9 +483,6 @@ const ManipulateStage = () => {
             value={current.focusMode}
           />
         </ControlGroup>
-        <button type="button" onClick={() => stage.advance()}>
-          Reveal reconstruction
-        </button>
       </div>
       <div style={panelStyle}>
         <h3>Current trial coefficients</h3>
@@ -586,23 +588,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-
+  if (stage.current === "observe") return <ObserveStage />;
   return (
-    <section aria-label="Prediction setup" role="region" style={surfaceStyle}>
-      <div style={panelStyle}>
-        <h2>Predict the dominant mode</h2>
-        <p>
-          Choose a target, tune a trial set of coefficients, then commit which basis mode should
-          carry the largest projection before seeing the reconstruction evidence.
-        </p>
-        <button type="button" onClick={() => stage.advance()}>
-          Set coefficients
-        </button>
-      </div>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 
