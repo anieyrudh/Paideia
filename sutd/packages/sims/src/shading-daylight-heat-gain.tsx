@@ -318,6 +318,7 @@ const FormulaPanel = ({ evidence }: { readonly evidence: ShadingEvidence }) => {
 daylight score = 100 g b (1 - 0.38 shaded fraction)
 heat gain = A I SHGC e (1 - 0.82 shaded fraction)`}</code>
       </pre>
+      <p className="meta-line">Legend</p>
       <dl aria-label="Formula legend" className="formula-legend">
         <div>
           <dt><span aria-hidden="true" className="legend-swatch legend-swatch--blue" /> d</dt>
@@ -356,6 +357,7 @@ heat gain = A I SHGC e (1 - 0.82 shaded fraction)`}</code>
           <dd>solar heat-gain coefficient, unitless</dd>
         </div>
       </dl>
+      <p className="meta-line">Substitution</p>
       <p>
         Substitute shade: min(1, {fmt(state.overhangDepthM)} m × tan({fmt(state.solarAltitudeDeg, 0)} deg) / {fmt(windowHeightM)} m)
         = {fmt(evidence.shadedFraction, 2)}.
@@ -369,6 +371,12 @@ heat gain = A I SHGC e (1 - 0.82 shaded fraction)`}</code>
         × {fmt(evidence.exposureFactor, 2)} × (1 - 0.82 × {fmt(evidence.shadedFraction, 2)})
         = {fmt(kilowatts(evidence.heatGainW), 2)} kW.
       </p>
+      <p>
+        Units: overhang depth and window height in m, glass area in m², irradiance in kW/m², heat
+        gain in kW; shaded fraction and daylight score are unitless. Result: shaded fraction{" "}
+        {fmt(evidence.shadedFraction, 2)}, daylight {fmt(evidence.daylightScore)} / 100, heat gain{" "}
+        {fmt(kilowatts(evidence.heatGainW), 2)} kW.
+      </p>
       <p className="formula-note">
         This formula applies because a horizontal shade blocks a vertical slice of sunlit glass;
         the same shaded fraction then reduces useful daylight and direct solar heat gain by
@@ -379,7 +387,6 @@ heat gain = A I SHGC e (1 - 0.82 shaded fraction)`}</code>
 };
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<ShadingState>();
   const current = currentState(state);
   const evidence = shadingDaylightHeatGainModel(current);
@@ -433,9 +440,6 @@ const ManipulateStage = () => {
             </button>
           ))}
         </div>
-        <button type="button" onClick={() => stage.advance()}>
-          Reveal tradeoff
-        </button>
       </div>
       <section aria-label="Facade preview" className="sutd-formula-card">
         <p className="meta-line">Manipulate</p>
@@ -533,22 +537,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-
+  if (stage.current === "observe") return <ObserveStage />;
   return (
-    <section aria-label="Prediction setup" role="region" className="sutd-formula-card">
-      <p className="meta-line">Predict</p>
-      <h2>Before the reveal</h2>
-      <p>
-        Predict how deeper shading changes daylight and heat gain, then tune one facade section to
-        test the tradeoff.
-      </p>
-      <button type="button" onClick={() => stage.advance()}>
-        Set facade options
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

@@ -4,3 +4,12 @@ runtime:
   persistence: local
   prediction_gate: required
   responsive: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "Medium opening with diagonal brace"
+    rationale: "A medium opening keeps usable daylight while the diagonal brace gives the lateral load a continuous path to the foundation."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required
