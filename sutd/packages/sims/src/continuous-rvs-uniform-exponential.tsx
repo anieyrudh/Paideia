@@ -372,7 +372,8 @@ const FormulaPanel = ({ model }: { readonly model: ContinuousRvModel }) => (
     <p style={styles.kicker}>Formula</p>
     <h2 style={styles.h2}>Area, not point height</h2>
     <pre style={styles.formula}>{model.formula}</pre>
-    <div style={styles.legendGrid}>
+    <p style={styles.kicker}>Legend</p>
+    <div aria-label="Formula legend" style={styles.legendGrid}>
       <span style={{ ...styles.legendMark, background: "#2d6a7f" }} />
       <span>Blue curve: probability density f(x), with units of probability per x-unit.</span>
       <span style={{ ...styles.legendMark, background: "#b6402a" }} />

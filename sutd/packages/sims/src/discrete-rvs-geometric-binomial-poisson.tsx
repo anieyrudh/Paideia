@@ -366,7 +366,8 @@ const FormulaPanel = ({ model }: { readonly model: DiscreteRvModel }) => (
     <p style={styles.kicker}>Formula</p>
     <h2 style={styles.h2}>Model before formula</h2>
     <pre style={styles.formula}>{model.formula}</pre>
-    <div style={styles.legendGrid}>
+    <p style={styles.kicker}>Legend</p>
+    <div aria-label="Formula legend" style={styles.legendGrid}>
       <span style={{ ...styles.legendMark, background: "#2d6a7f" }} />
       <span>Blue bars: probability mass used by the kernel distribution.</span>
       <span style={{ ...styles.legendMark, background: "#b6402a" }} />

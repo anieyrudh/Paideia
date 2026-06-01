@@ -1,10 +1,26 @@
-import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
-const route =
-  "/?sim=sutd/10-022-modelling-uncertainty/continuous-rvs-uniform-exponential/continuous-density-lab";
+const simId =
+  "sutd/10-022-modelling-uncertainty/continuous-rvs-uniform-exponential/continuous-density-lab";
+const route = `/?sim=${simId}`;
 
 test.describe("Continuous RVs", () => {
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId,
+      setup: [
+        { role: "button", name: "Build density" },
+        { role: "button", name: "Reveal area" },
+      ],
+      prediction: {
+        optionLabel: "Exponential",
+        rationale: "Exponential is the only continuous waiting-time model with the memoryless property.",
+      },
+    });
+  });
+
   test("prediction-checkpoint keeps density evidence visible while saving reflection", async ({ page }) => {
     await page.goto(route);
     await page.getByRole("radio", { name: "Uniform" }).check();

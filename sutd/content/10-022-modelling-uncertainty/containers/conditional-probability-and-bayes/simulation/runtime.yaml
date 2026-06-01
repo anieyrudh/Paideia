@@ -4,3 +4,16 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup:
+    - role: button
+      name: "Set up Bayes scenario"
+    - role: button
+      name: "Reveal posterior"
+  prediction:
+    option_label: "51.4%"
+    rationale: "Bayes combines a 10% prior with a 95% sensitivity and 10% false-positive rate; the posterior P(H|+) is the true-positive rate over total positives, around 51.4%."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

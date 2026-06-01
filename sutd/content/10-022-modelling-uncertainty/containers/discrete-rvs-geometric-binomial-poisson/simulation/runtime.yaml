@@ -3,3 +3,16 @@ runtime:
   export: "DiscreteRvsGeometricBinomialPoisson"
   route_id: "sutd/10-022-modelling-uncertainty/discrete-rvs-geometric-binomial-poisson/probability-model-lab"
   requires_browser: true
+visual_quality:
+  setup:
+    - role: button
+      name: "Build model"
+    - role: button
+      name: "Reveal PMF"
+  prediction:
+    option_label: "Binomial"
+    rationale: "With a fixed trial count and per-trial success probability, the binomial PMF places the most mass on the highlighted at-least-four-events range in the default setup."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required
