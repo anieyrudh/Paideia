@@ -1,7 +1,24 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
+
+const simId = "sutd/10-022-modelling-uncertainty/linear-regression/linear-regression";
 
 test.describe("Linear Regression", () => {
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId,
+      setup: [
+        { role: "button", name: "Set regression data" },
+        { role: "button", name: "Reveal least-squares fit" },
+      ],
+      prediction: {
+        optionLabel: "The fitted slope usually increases",
+        rationale: "A high-leverage point shifted upward pulls the least-squares line toward it.",
+      },
+    });
+  });
+
   test.beforeEach(async ({ page }) => {
     await page.addInitScript(() => window.localStorage.clear());
     await page.goto("/?sim=sutd/10-022-modelling-uncertainty/linear-regression/linear-regression");

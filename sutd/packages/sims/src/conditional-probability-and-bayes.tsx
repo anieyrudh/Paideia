@@ -307,6 +307,7 @@ const ObserveStage = () => {
 \frac{P(+ \mid H)P(H)}
 {P(+ \mid H)P(H) + P(+ \mid \neg H)P(\neg H)}`}</code>
         </pre>
+        <p className="meta-line">Legend</p>
         <dl className="formula-legend" aria-label="Formula legend">
           <div>
             <dt><span className="legend-swatch legend-swatch--blue" /> P(H)</dt>
@@ -327,8 +328,8 @@ const ObserveStage = () => {
           {fmtPct(posterior)}.
         </p>
         <p>
-          Result: P(H|+) = {fmtPct(posterior)}. The value is dimensionless; percentages make the
-          probability easier to compare.
+          Result: P(H|+) = {fmtPct(posterior)}. Units: probabilities are dimensionless ratios; the
+          percent form makes the posterior easier to compare with the prior.
         </p>
         <p className="formula-note">
           This applies because a positive result can come from a true case or a false positive. Bayes

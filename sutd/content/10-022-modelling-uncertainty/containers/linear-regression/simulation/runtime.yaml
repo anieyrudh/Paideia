@@ -6,3 +6,16 @@ runtime:
   accessibility:
     axe: true
     keyboard: true
+visual_quality:
+  setup:
+    - role: button
+      name: "Set regression data"
+    - role: button
+      name: "Reveal least-squares fit"
+  prediction:
+    option_label: "The fitted slope usually increases"
+    rationale: "A high-leverage point shifted upward pulls the least-squares line toward it, so the slope typically increases."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

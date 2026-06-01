@@ -1,10 +1,26 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
-const route =
-  "/?sim=sutd/10-022-modelling-uncertainty/discrete-rvs-geometric-binomial-poisson/probability-model-lab";
+const simId =
+  "sutd/10-022-modelling-uncertainty/discrete-rvs-geometric-binomial-poisson/probability-model-lab";
+const route = `/?sim=${simId}`;
 
 test.describe("Discrete RVs", () => {
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId,
+      setup: [
+        { role: "button", name: "Build model" },
+        { role: "button", name: "Reveal PMF" },
+      ],
+      prediction: {
+        optionLabel: "Binomial",
+        rationale: "A fixed trial count with per-trial success places the most mass on the highlighted range.",
+      },
+    });
+  });
+
   test.beforeEach(async ({ page }) => {
     await page.goto(route);
   });

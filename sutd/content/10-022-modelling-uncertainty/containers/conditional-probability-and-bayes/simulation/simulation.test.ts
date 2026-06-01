@@ -1,7 +1,24 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
+
+const simId = "sutd/10-022-modelling-uncertainty/conditional-probability-and-bayes/conditional-probability-and-bayes";
 
 test.describe("Conditional Probability and Bayes", () => {
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId,
+      setup: [
+        { role: "button", name: "Set up Bayes scenario" },
+        { role: "button", name: "Reveal posterior" },
+      ],
+      prediction: {
+        optionLabel: "51.4%",
+        rationale: "Bayes combines a 10% prior with a 95% sensitivity and 10% false-positive rate.",
+      },
+    });
+  });
+
   test.beforeEach(async ({ page }) => {
     await page.goto("/?sim=sutd/10-022-modelling-uncertainty/conditional-probability-and-bayes/conditional-probability-and-bayes");
   });

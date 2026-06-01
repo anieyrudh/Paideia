@@ -2,3 +2,16 @@ runtime:
   package: "@paideia/sutd-sims/continuous-rvs-uniform-exponential"
   export: ContinuousRvsUniformExponential
   route_id: "sutd/10-022-modelling-uncertainty/continuous-rvs-uniform-exponential/continuous-density-lab"
+visual_quality:
+  setup:
+    - role: button
+      name: "Build density"
+    - role: button
+      name: "Reveal area"
+  prediction:
+    option_label: "Exponential"
+    rationale: "Exponential is the only continuous waiting-time model with the memoryless property: P(T > s + t | T > s) = P(T > t), so the post-3-hour remaining-life law stays exponential."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

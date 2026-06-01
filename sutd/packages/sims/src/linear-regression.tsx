@@ -290,6 +290,7 @@ const FormulaPanel = ({ model }: { readonly model: LinearRegressionModel }) => (
       <br />
       b = y_bar - m x_bar
     </div>
+    <p style={styles.kicker}>Legend</p>
     <div aria-label="Formula legend" style={styles.legendGrid}>
       <span style={{ ...styles.legendMark, background: "#155e63" }} />
       <span>points: observed pairs ({model.dataset.xLabel}, {model.dataset.yLabel})</span>
@@ -305,9 +306,14 @@ const FormulaPanel = ({ model }: { readonly model: LinearRegressionModel }) => (
       {formatNumber(model.predictionY, 2)} {model.dataset.unit}.
     </p>
     <p style={styles.interpretation}>
-      Interpretation: each residual is measured in {model.dataset.unit}. The least-squares line
-      chooses the slope and intercept that minimise the sum of squared residuals for this cloud,
-      so it can move when a high-leverage observation shifts.
+      Units: {model.dataset.xLabel} is the explanatory variable; {model.dataset.yLabel} and each
+      residual are measured in {model.dataset.unit}. Result: fitted line y_hat ={" "}
+      {formatNumber(model.slope, 3)}x {formatSigned(model.intercept, 3)}, R^2 ={" "}
+      {formatNumber(model.r2, 3)}.
+    </p>
+    <p style={styles.interpretation}>
+      Interpretation: the least-squares line chooses the slope and intercept that minimise the sum
+      of squared residuals for this cloud, so it can move when a high-leverage observation shifts.
     </p>
   </section>
 );
