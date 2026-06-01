@@ -202,7 +202,6 @@ export const inductionEvidence = (state: InductionState): KernelResult<Induction
 };
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<InductionState>();
   const current = currentState(state);
 
@@ -218,9 +217,6 @@ const ManipulateStage = () => {
           <Slider label="Change time" max={2000} min={50} onChange={(value) => set("durationMilliseconds", value)} step={50} unit="ms" value={current.durationMilliseconds} />
           <Slider label="Circuit resistance" max={50} min={1} onChange={(value) => set("resistanceOhms", value)} step={1} unit="ohm" value={current.resistanceOhms} />
         </ControlGroup>
-        <button type="button" onClick={() => stage.advance()}>
-          Reveal induced emf
-        </button>
       </div>
       <section aria-label="Flux preview" className="sutd-formula-card">
         <p className="meta-line">Manipulate</p>
@@ -291,6 +287,7 @@ const FormulaPanel = ({ evidence }: { readonly evidence: InductionEvidence }) =>
 \color{#f97316}{I}=
 \frac{|\color{#dc2626}{\mathcal{E}}|}{\color{#64748b}{R}}`}</code>
       </pre>
+      <p className="meta-line">Legend</p>
       <dl className="formula-legend" aria-label="Formula legend">
         <div><dt><span aria-hidden="true" className="legend-swatch legend-swatch--blue" /> Phi</dt><dd>magnetic flux through one turn, weber</dd></div>
         <div><dt><span aria-hidden="true" className="legend-swatch legend-swatch--purple" /> B</dt><dd>magnetic flux density, tesla</dd></div>
@@ -298,6 +295,7 @@ const FormulaPanel = ({ evidence }: { readonly evidence: InductionEvidence }) =>
         <div><dt><span aria-hidden="true" className="legend-swatch legend-swatch--red" /> E</dt><dd>induced emf, volt</dd></div>
         <div><dt><span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> I</dt><dd>induced current magnitude, ampere</dd></div>
       </dl>
+      <p className="meta-line">Substitution</p>
       <pre className="formula-code" aria-label="Faraday-Lenz substitution">
         <code>{String.raw`\Phi_i = (${fmt(state.initialFieldMilliTeslas / 1000, 3)}\ T)(${fmt(area, 4)}\ m^2)\cos(${fmt(state.angleToNormalDegrees, 0)}^\circ)
 = ${fmtMicro(model.initialFluxWebers, 2)}\ \mu Wb
@@ -312,6 +310,7 @@ I = \frac{${fmtMilli(model.inducedEmfMagnitudeVolts, 2)}\ mV}{${fmt(state.resist
 = ${fmtMilli(model.inducedCurrentAmps, 2)}\ mA`}</code>
       </pre>
       <p>
+        Units: flux in weber, emf in volt (shown in mV), current in ampere (shown in mA).
         Result: induced emf magnitude is {fmtMilli(model.inducedEmfMagnitudeVolts, 2)} mV,
         current magnitude is {fmtMilli(model.inducedCurrentAmps, 2)} mA, and the Lenz response is to{" "}
         {model.lenzOpposition.replace("-", " ")}.
@@ -385,22 +384,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-
+  if (stage.current === "observe") return <ObserveStage />;
   return (
-    <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Prediction checkpoint</p>
-      <h1>Magnetic Induction: Faraday-Lenz</h1>
-      <p>
-        Predict the direction of the induced field before comparing with the coil readout. Then change
-        flux, turns, and resistance to connect Faraday's law to Lenz's law.
-      </p>
-      <button type="button" onClick={() => stage.advance()}>
-        Prepare induction model
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

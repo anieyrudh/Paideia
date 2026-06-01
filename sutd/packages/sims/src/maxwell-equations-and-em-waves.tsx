@@ -191,12 +191,14 @@ const FormulaPanel = ({ evidence }: { readonly evidence: MaxwellEvidence }) => {
 
 \color{#0f766e}{B_0} = \frac{\color{#1d4ed8}{E_0}}{\color{#2563eb}{v}}`}</code>
       </pre>
+      <p className="meta-line">Legend</p>
       <dl className="formula-legend" aria-label="Formula legend">
         <div><dt><span aria-hidden="true" className="legend-swatch legend-swatch--blue" /> v</dt><dd>wave speed, metre per second</dd></div>
         <div><dt><span aria-hidden="true" className="legend-swatch legend-swatch--purple" /> epsilon_r</dt><dd>relative permittivity</dd></div>
         <div><dt><span aria-hidden="true" className="legend-swatch legend-swatch--green" /> mu_r</dt><dd>relative permeability</dd></div>
         <div><dt><span aria-hidden="true" className="legend-swatch legend-swatch--orange" /> lambda</dt><dd>wavelength, metre</dd></div>
       </dl>
+      <p className="meta-line">Substitution</p>
       <pre className="formula-code" aria-label="Maxwell wave substitution">
         <code>{String.raw`v = \frac{2.998e8\ m/s}{\sqrt{(${fmt(state.relativePermittivity, 2)})(${fmt(state.relativePermeability, 2)})}}
 = ${scientific(model.speedMetresPerSecond)}\ m/s
@@ -208,6 +210,7 @@ B_0 = \frac{${fmt(state.electricFieldVoltsPerMetre, 1)}\ V/m}{${scientific(model
 = ${scientific(model.magneticFieldAmplitudeTesla)}\ T`}</code>
       </pre>
       <p>
+        Units: wave speed in m/s, wavelength in m, magnetic field in T, intensity in W/m^2.
         Result: band = {model.spectrumBand}, period = {scientific(model.periodSeconds)} s,
         intensity = {scientific(model.averageIntensityWattsPerSquareMetre)} W/m^2.
       </p>
@@ -217,7 +220,6 @@ B_0 = \frac{${fmt(state.electricFieldVoltsPerMetre, 1)}\ V/m}{${scientific(model
 };
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<MaxwellState>();
   const current = currentState(state);
 
@@ -230,9 +232,6 @@ const ManipulateStage = () => {
           <Slider label="Relative permittivity" max={6} min={1} onChange={(value) => set("relativePermittivity", value)} step={0.25} value={current.relativePermittivity} />
           <Slider label="Relative permeability" max={3} min={1} onChange={(value) => set("relativePermeability", value)} step={0.1} value={current.relativePermeability} />
         </ControlGroup>
-        <button type="button" onClick={() => stage.advance()}>
-          Reveal wave model
-        </button>
       </div>
       <section aria-label="Maxwell preview" className="sutd-formula-card">
         <p className="meta-line">Manipulate</p>
@@ -307,22 +306,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-
+  if (stage.current === "observe") return <ObserveStage />;
   return (
-    <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Prediction checkpoint</p>
-      <h1>Maxwell Equations and EM Waves</h1>
-      <p>
-        Predict how Maxwell's correction links changing electric and magnetic
-        fields before comparing with the wave speed and wavelength.
-      </p>
-      <button type="button" onClick={() => stage.advance()}>
-        Prepare Maxwell model
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 
