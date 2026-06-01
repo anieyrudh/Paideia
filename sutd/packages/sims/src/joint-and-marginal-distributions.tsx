@@ -1,4 +1,4 @@
-import { PredictionGate, type PredictionScope } from "@paideia/prediction-gate";
+import { Sankey, type SankeyLink, type SankeyNode } from "@paideia/charting";
 import { normalizeDistribution, type DiscreteDistribution } from "@paideia/probability-stats";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
 import type { ConceptPackageId, KernelResult } from "@paideia/shared";
@@ -131,6 +131,7 @@ export const jointMarginalSpec: TSimulationSpec = {
     "core/shared",
     "core/probability-stats",
     "core/prediction-gate",
+    "core/charting",
     "core/ui-sim",
   ],
   predict: predictSpec,
@@ -162,11 +163,11 @@ export const jointMarginalSpec: TSimulationSpec = {
   observe: {
     renderers: [
       {
-        id: "joint-table",
+        id: "joint-flow",
         module: "@paideia/sutd-sims/joint-and-marginal-distributions",
         symbol: "JointAndMarginalDistributions",
         props_binding:
-          "Render a 2x2 joint table, marginals, conditional probability formula, substitution, legend, units, and interpretation.",
+          "Render a Sankey flow from {A, not A} sources to {B, not B} targets with link widths set to joint probabilities, plus marginals, conditional formula, substitution, units, legend, and interpretation.",
       },
     ],
   },
@@ -180,56 +181,22 @@ export const jointMarginalSpec: TSimulationSpec = {
   },
 };
 
-const PredictStage = () => (
-  <section aria-label="Prediction setup" role="region" style={styles.surface}>
-    <section style={styles.panel}>
-      <p style={styles.kicker}>Predict</p>
-      <h1 style={styles.h1}>How does association change a conditional probability?</h1>
-      <PredictionGate
-        packageId={jointMarginalPackageId}
-        predict={jointMarginalSpec.predict ?? predictSpec}
-        simId={jointMarginalSpec.id as PredictionScope}
-      >
-        <StageAdvanceButton />
-      </PredictionGate>
-    </section>
-  </section>
-);
-
-const StageAdvanceButton = () => {
-  const stage = useStage();
-  return (
-    <button onClick={() => stage.advance()} style={styles.primaryButton} type="button">
-      Build table
-    </button>
-  );
-};
-
 const ManipulateStage = () => {
-  const stage = useStage();
   const state = normalizeState(useSimState<Partial<JointMarginalState>>());
   const { set } = useManipulate<JointMarginalState>();
-  const model = jointMarginalModel(state);
-  if (!model.ok) return <p role="alert">The joint table could not be evaluated.</p>;
   return (
-    <section aria-label="Joint table setup" role="region" style={styles.surface}>
-      <div style={styles.grid}>
-        <section style={styles.panel}>
-          <p style={styles.kicker}>Manipulate</p>
-          <h1 style={styles.h1}>Set the marginals and association</h1>
-          <ControlGroup legend="Probability controls">
-            <div style={styles.controlStack}>
-              <Slider label="Marginal P(A)" max={0.95} min={0.05} onChange={(eventA) => set("eventA", eventA)} step={0.01} value={state.eventA} />
-              <Slider label="Marginal P(B)" max={0.95} min={0.05} onChange={(eventB) => set("eventB", eventB)} step={0.01} value={state.eventB} />
-              <Slider label="Association" max={0.95} min={-0.95} onChange={(association) => set("association", association)} step={0.01} value={state.association} />
-            </div>
-          </ControlGroup>
-          <button onClick={() => stage.advance()} style={styles.primaryButton} type="button">
-            Reveal marginals
-          </button>
-        </section>
-        <JointTable model={model.value} revealed={false} />
-      </div>
+    <section aria-label="Joint table controls" role="region" style={styles.surface}>
+      <section style={styles.panel}>
+        <p style={styles.kicker}>Manipulate</p>
+        <h1 style={styles.h1}>Set the marginals and association</h1>
+        <ControlGroup legend="Probability controls">
+          <div style={styles.controlStack}>
+            <Slider label="Marginal P(A)" max={0.95} min={0.05} onChange={(eventA) => set("eventA", eventA)} step={0.01} value={state.eventA} />
+            <Slider label="Marginal P(B)" max={0.95} min={0.05} onChange={(eventB) => set("eventB", eventB)} step={0.01} value={state.eventB} />
+            <Slider label="Association" max={0.95} min={-0.95} onChange={(association) => set("association", association)} step={0.01} value={state.association} />
+          </div>
+        </ControlGroup>
+      </section>
     </section>
   );
 };
@@ -237,7 +204,13 @@ const ManipulateStage = () => {
 const ObserveStage = () => {
   const stage = useStage();
   const model = jointMarginalModel(useSimState<Partial<JointMarginalState>>());
-  if (!model.ok) return <p role="alert">The joint table could not be evaluated.</p>;
+  if (!model.ok) {
+    return (
+      <section aria-label="Observation unlocked" role="region" style={styles.surface}>
+        <p role="alert">The joint table could not be evaluated.</p>
+      </section>
+    );
+  }
   return (
     <section aria-label="Observation unlocked" role="region" style={styles.surface}>
       <div style={styles.metricGrid}>
@@ -246,11 +219,11 @@ const ObserveStage = () => {
         <Metric label="P(A|B)" value={formatPct(model.value.conditionalAGivenB)} note="conditional rate" />
       </div>
       <div style={styles.grid}>
-        <JointTable model={model.value} revealed />
+        <JointFlowDiagram model={model.value} />
         <FormulaPanel model={model.value} />
       </div>
       <button onClick={() => stage.advance()} style={styles.primaryButton} type="button">
-        Transfer
+        Explain transfer
       </button>
     </section>
   );
@@ -278,45 +251,77 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-  return <PredictStage />;
+  return (
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
+  );
 };
 
-const JointTable = ({ model, revealed }: { readonly model: JointMarginalModel; readonly revealed: boolean }) => (
-  <section aria-label="Joint probability table" style={styles.panel}>
-    <p style={styles.kicker}>Visual model</p>
-    <h2 style={styles.h2}>2x2 joint distribution</h2>
-    <div style={styles.tableGrid}>
-      {model.cells.map((cell) => (
-        <div key={cell.id} style={styles.cell}>
-          <strong>{cell.label}</strong>
-          <span>{revealed ? formatPct(cell.probability) : "hidden"}</span>
-        </div>
-      ))}
-    </div>
-    <p style={styles.interpretation}>
-      {revealed
-        ? model.interpretation
-        : "Commit a prediction to reveal joint cells, marginals, and conditional probability."}
-    </p>
-  </section>
-);
+const SANKEY_NODES: readonly SankeyNode[] = [
+  { id: "A", label: "A" },
+  { id: "notA", label: "not A" },
+  { id: "B", label: "B" },
+  { id: "notB", label: "not B" },
+];
+
+const sankeyLinks = (model: JointMarginalModel): readonly SankeyLink[] => {
+  const lookup = new Map(model.cells.map((cell) => [cell.id, Math.max(0, cell.probability)]));
+  return [
+    { source: "A", target: "B", value: lookup.get("a-b") ?? 0 },
+    { source: "A", target: "notB", value: lookup.get("a-not-b") ?? 0 },
+    { source: "notA", target: "B", value: lookup.get("not-a-b") ?? 0 },
+    { source: "notA", target: "notB", value: lookup.get("not-a-not-b") ?? 0 },
+  ];
+};
+
+const JointFlowDiagram = ({ model }: { readonly model: JointMarginalModel }) => {
+  const links = sankeyLinks(model);
+  return (
+    <section aria-label="Joint probability flow" style={styles.panel}>
+      <p style={styles.kicker}>Visual model</p>
+      <h2 style={styles.h2}>Joint distribution flow</h2>
+      <div role="img" aria-label="Sankey flow from event A or not A to event B or not B; ribbon width is joint probability.">
+        <Sankey nodes={SANKEY_NODES} links={links} />
+      </div>
+      <ul style={styles.marginalList}>
+        <li><strong>P(A and B):</strong> {formatPct(links[0]?.value ?? 0)}</li>
+        <li><strong>P(A and not B):</strong> {formatPct(links[1]?.value ?? 0)}</li>
+        <li><strong>P(not A and B):</strong> {formatPct(links[2]?.value ?? 0)}</li>
+        <li><strong>P(not A and not B):</strong> {formatPct(links[3]?.value ?? 0)}</li>
+      </ul>
+      <p style={styles.interpretation}>{model.interpretation}</p>
+    </section>
+  );
+};
 
 const FormulaPanel = ({ model }: { readonly model: JointMarginalModel }) => (
-  <section aria-label="Formula panel" style={styles.panel}>
+  <section aria-label="Formula used" style={styles.panel}>
     <p style={styles.kicker}>Formula</p>
     <h2 style={styles.h2}>Conditioning changes the denominator</h2>
     <pre style={styles.formula}>{model.formula}</pre>
-    <div style={styles.legendGrid}>
-      <span style={{ ...styles.legendMark, background: "#2d6a7f" }} />
-      <span>Blue cells: joint probabilities that sum to 1.</span>
-      <span style={{ ...styles.legendMark, background: "#b6402a" }} />
-      <span>Red readout: conditional probability using only the B column.</span>
-    </div>
     <p style={styles.substitution}>Substitution: {model.substitution}.</p>
-    <p style={styles.interpretation}>Units: probabilities are unitless proportions. Result: P(A|B)={formatPct(model.conditionalAGivenB)}.</p>
+    <p style={styles.interpretation}>Units: probabilities are unitless proportions.</p>
+    <p style={styles.interpretation}>Result: P(A|B)={formatPct(model.conditionalAGivenB)}.</p>
+    <p style={styles.kicker}>Legend</p>
+    <dl aria-label="Formula legend" style={styles.legendGrid}>
+      <div>
+        <dt>
+          <span style={{ ...styles.legendMark, background: "#1f5f8b" }} />
+          Blue ribbons
+        </dt>
+        <dd>joint probabilities; ribbon widths sum to 1.</dd>
+      </div>
+      <div>
+        <dt>
+          <span style={{ ...styles.legendMark, background: "#b6402a" }} />
+          Red readout
+        </dt>
+        <dd>conditional probability P(A|B) using only the inflow into B.</dd>
+      </div>
+    </dl>
   </section>
 );
 
@@ -341,10 +346,9 @@ const styles = {
   metric: { background: "#f3f8f5", border: "1px solid #c4d8cd", borderRadius: "8px", display: "grid", gap: "0.2rem", padding: "0.85rem" },
   metricLabel: { color: "#506357", fontSize: "0.82rem", fontWeight: 700 },
   metricValue: { color: "#123f43", fontSize: "1.35rem", lineHeight: 1.15 },
-  tableGrid: { display: "grid", gap: "0.6rem", gridTemplateColumns: "repeat(2, minmax(8rem, 1fr))" },
-  cell: { background: "#f3f8f5", border: "1px solid #c4d8cd", borderRadius: "8px", display: "grid", gap: "0.35rem", minHeight: "5.5rem", padding: "0.85rem" },
+  marginalList: { display: "grid", gap: "0.35rem", listStyle: "none", margin: "0.6rem 0 0", padding: 0 },
   formula: { background: "#f6f3ec", border: "1px solid #d9ccb7", borderRadius: "6px", fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace", lineHeight: 1.6, padding: "0.8rem", whiteSpace: "pre-wrap" },
-  legendGrid: { display: "grid", gap: "0.4rem 0.55rem", gridTemplateColumns: "0.9rem 1fr", marginTop: "0.8rem" },
+  legendGrid: { display: "grid", gap: "0.4rem", margin: "0.4rem 0 0", padding: 0 },
   legendMark: { borderRadius: "999px", display: "inline-block", height: "0.85rem", width: "0.85rem" },
   substitution: { marginTop: "0.9rem" },
   interpretation: { marginTop: "0.7rem" },

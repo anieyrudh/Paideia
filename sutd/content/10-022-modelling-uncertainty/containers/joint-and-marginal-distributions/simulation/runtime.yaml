@@ -2,3 +2,12 @@ runtime:
   package: "@paideia/sutd-sims/joint-and-marginal-distributions"
   export: JointAndMarginalDistributions
   route_id: "sutd/10-022-modelling-uncertainty/joint-and-marginal-distributions/joint-table-lab"
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "It is higher than P(A)"
+    rationale: "Positive association concentrates probability into the A-and-B cell, so conditioning on B inflates P(A|B) above the marginal P(A)."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

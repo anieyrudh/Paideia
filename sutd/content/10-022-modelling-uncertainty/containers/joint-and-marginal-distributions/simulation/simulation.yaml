@@ -10,6 +10,7 @@ kernel_deps:
   - core/shared
   - core/probability-stats
   - core/prediction-gate
+  - core/charting
   - core/ui-sim
 manipulate:
   controls:
@@ -30,10 +31,10 @@ manipulate:
       bounds: { min: -0.95, max: 0.95, step: 0.01 }
 observe:
   renderers:
-    - id: joint-table
+    - id: joint-flow
       module: "@paideia/sutd-sims/joint-and-marginal-distributions"
       symbol: JointAndMarginalDistributions
-      props_binding: "Render a 2x2 joint table, marginals, conditional probability formula, substitution, legend, units, and interpretation."
+      props_binding: "Render a Sankey flow from {A, not A} sources to {B, not B} targets with link widths set to joint probabilities, plus marginals, conditional probability formula, substitution, legend, units, and interpretation."
 explain:
   prompt: "Explain how summing joint cells creates marginals and why conditioning changes the denominator."
   socratic: true
