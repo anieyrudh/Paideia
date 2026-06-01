@@ -1,10 +1,23 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
-import { mountSim } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
+import {
+  expectProductSimulationReveal,
+  mountSim,
+} from "../../../../../../testing/sim-harness/src/playwright-contract.js";
 
 const simId = "sutd/10-022-modelling-uncertainty/central-limit-theorem/clt-sampler";
 
 test.describe("Central Limit Theorem", () => {
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId,
+      prediction: {
+        optionLabel: "The sample means will be more bell-shaped and less spread out.",
+        rationale: "Averages should vary less than individual draws.",
+      },
+    });
+  });
+
   test("prediction-checkpoint keeps sample-mean reveal visible while saving reflection", async ({ page }) => {
     await mountSim(page, simId);
 

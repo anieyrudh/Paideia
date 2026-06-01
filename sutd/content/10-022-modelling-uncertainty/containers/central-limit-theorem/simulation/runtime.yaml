@@ -7,3 +7,12 @@ runtime:
     keyboard_controls: true
     screen_reader_labels: true
     color_not_only_cue: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "The sample means will be more bell-shaped and less spread out."
+    rationale: "Averages should vary less than individual draws."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required
