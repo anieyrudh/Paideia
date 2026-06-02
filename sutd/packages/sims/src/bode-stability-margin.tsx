@@ -197,7 +197,6 @@ const chartData = (
   }));
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<BodeState>();
   const current = currentState(state);
 
@@ -233,9 +232,6 @@ const ManipulateStage = () => {
             value={current.sensorLagSeconds}
           />
         </ControlGroup>
-        <button type="button" onClick={() => stage.advance()}>
-          Reveal margin readout
-        </button>
       </div>
       <section aria-label="Loop model preview" className="sutd-formula-card">
         <p className="meta-line">Manipulate</p>
@@ -329,6 +325,7 @@ GM_{dB} = ${fmt(evidence.gainMarginDb ?? 0, 1)}\ dB`;
 \color{#f97316}{GM_{dB}}
 = -20\log_{10}\color{#dc2626}{|L(j\omega_{pc})|}`}</code>
       </pre>
+      <p className="meta-line">Legend</p>
       <dl className="formula-legend" aria-label="Formula legend">
         <div>
           <dt>
@@ -392,7 +389,12 @@ GM_{dB} = ${fmt(evidence.gainMarginDb ?? 0, 1)}\ dB`;
               1,
             )} dB, so GM = ${fmt(evidence.gainMarginDb ?? 0, 1)} dB.`}
       </p>
-      <p className="formula-note">Result: {evidence.interpretation}.</p>
+      <p>
+        Units: frequencies in rad/s, magnitudes in dB, phase margin in degrees, gain margin in
+        decibels. Result: PM = {fmt(evidence.phaseMarginDeg ?? 0, 1)} deg, GM ={" "}
+        {fmt(evidence.gainMarginDb ?? 0, 1)} dB.
+      </p>
+      <p className="formula-note">Result interpretation: {evidence.interpretation}.</p>
     </section>
   );
 };
@@ -491,22 +493,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-
+  if (stage.current === "observe") return <ObserveStage />;
   return (
-    <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Prediction checkpoint</p>
-      <h1>Bode Margin Reader</h1>
-      <p>
-        Predict how gain changes the phase margin before seeing the crossover readout. Then tune
-        gain and lag to connect a Bode plot to feedback robustness.
-      </p>
-      <button type="button" onClick={() => stage.advance()}>
-        Prepare Bode readout
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

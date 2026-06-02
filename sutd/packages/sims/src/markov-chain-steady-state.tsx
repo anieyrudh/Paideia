@@ -354,6 +354,7 @@ const FormulaPanel = ({ analysis }: { readonly analysis: MarkovAnalysis }) => (
       <br />
       pi_S = b / (b + 1 - a), pi_C = (1 - a) / (b + 1 - a)
     </div>
+    <p style={styles.kicker}>Legend</p>
     <div aria-label="Formula legend" style={styles.legendGrid}>
       <span style={{ ...styles.legendMark, background: "#1f5f8b" }} />
       <span>a: probability per week that a smooth week stays smooth</span>
@@ -374,10 +375,15 @@ const FormulaPanel = ({ analysis }: { readonly analysis: MarkovAnalysis }) => (
       {formatPct(analysis.steadyCongested)}.
     </p>
     <p style={styles.interpretation}>
+      Units: a, b, and the pi components are probabilities per week (unitless ratios).
+      Result: pi_S = {formatPct(analysis.steadySmooth)}, pi_C ={" "}
+      {formatPct(analysis.steadyCongested)} at steady state.
+    </p>
+    <p style={styles.interpretation}>
       Interpretation: after many weekly transitions, the system spends about{" "}
       {formatPct(analysis.steadySmooth)} of weeks smooth and{" "}
-      {formatPct(analysis.steadyCongested)} congested. The units are probabilities
-      per week; individual weeks still move, but steady inflow and outflow balance.
+      {formatPct(analysis.steadyCongested)} congested. Individual weeks still move,
+      but steady inflow and outflow balance.
     </p>
   </section>
 );
@@ -411,7 +417,6 @@ const ConvergenceChart = ({ analysis }: { readonly analysis: MarkovAnalysis }) =
 };
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<MarkovState>();
   const current = currentState(state);
   const analysis = analyzeMarkovSteadyState(current);
@@ -486,9 +491,6 @@ const ManipulateStage = () => {
               />
             </div>
           </ControlGroup>
-          <button onClick={() => stage.advance()} style={styles.primaryButton} type="button">
-            Reveal steady state
-          </button>
         </section>
         <section style={styles.panel}>
           <p style={styles.kicker}>Matrix</p>
@@ -580,24 +582,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-
+  if (stage.current === "observe") return <ObserveStage />;
   return (
-    <section aria-label="Prediction setup" style={styles.surface}>
-      <section style={styles.panel}>
-        <p style={styles.kicker}>Predict</p>
-        <h1 style={styles.h1}>Which state owns the long run?</h1>
-        <p>
-          Before seeing the steady-state calculation, decide whether sticky
-          congestion or recovery flow should dominate the long-run operating mix.
-        </p>
-        <button onClick={() => stage.advance()} style={styles.primaryButton} type="button">
-          Set transition matrix
-        </button>
-      </section>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

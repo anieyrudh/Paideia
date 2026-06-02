@@ -7,3 +7,12 @@ runtime:
     - manipulate
     - observe
     - explain
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "The phase margin decreases because crossover moves to a higher-lag frequency"
+    rationale: "Doubling the loop gain shifts the 0 dB crossover to a higher frequency where the plant lag has eaten more phase, so the margin shrinks."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

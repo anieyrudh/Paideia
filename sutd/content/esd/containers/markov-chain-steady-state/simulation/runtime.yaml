@@ -7,3 +7,12 @@ runtime:
     congestedRecovers: 0.38
     initialSmooth: 0.72
     weeks: 10
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "Toward more congested weeks"
+    rationale: "Stickiness on the smooth side is high but the recovery rate from congested is low (0.38/week), so the steady state pi_C = (1-a)/(b+1-a) places more long-run mass on congestion."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required
