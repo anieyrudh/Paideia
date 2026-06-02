@@ -4,3 +4,12 @@ runtime:
   persistence: local
   prediction_gate: required
   responsive: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "The diagonal brace force, because it resolves the sideways load."
+    rationale: "The diagonal brace carries the horizontal load as axial force F_b = H / cos(theta), so it governs the load path from the sideways load down to the supports."
+  observation:
+    observation_label: "Load path evidence"
+    visual: required
+    formula: required

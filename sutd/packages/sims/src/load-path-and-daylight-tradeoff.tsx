@@ -286,7 +286,6 @@ const Metric = ({ label, value }: { readonly label: string; readonly value: stri
 );
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<BayState>();
   const current = currentState(state);
   const evidence = evaluateTradeoff(current);
@@ -333,9 +332,6 @@ const ManipulateStage = () => {
             value={current.bayHeightM}
           />
         </ControlGroup>
-        <button type="button" onClick={() => stage.advance()}>
-          Reveal tradeoff
-        </button>
       </div>
       <div style={panelStyle}>
         {evidence.ok ? <BayDiagram evidence={evidence.value} /> : <p role="alert">Preview unavailable.</p>}
@@ -372,8 +368,15 @@ const ObserveStage = () => {
       </div>
       <div style={panelStyle}>
         <h3>Formula trail</h3>
+        <h4>Legend</h4>
+        <ul>
+          <li>Daylight proxy: 0-100 score for usable daylight after the opening is obstructed.</li>
+          <li>Lateral capacity proxy: resisting force the bay system can carry, in kN.</li>
+          <li>Residual lateral force: demand minus capacity, in kN (positive means unmet demand).</li>
+          <li>Brace axial estimate: force carried along the diagonal brace path, in kN.</li>
+        </ul>
         <p>
-          Daylight proxy = opening ratio × clear area after obstruction × 100 ={" "}
+          Substitution. Daylight proxy = opening ratio × clear area after obstruction × 100 ={" "}
           {format(state.apertureRatio, 2)} × (1 - {format(profile.obstructionRatio, 2)}) × 100 ={" "}
           {format(value.daylightScore)}.
         </p>
@@ -401,6 +404,11 @@ const ObserveStage = () => {
           y={{ domain: { min: 0, max: 100 } }}
         />
       </div>
+      <p>
+        Units: forces are in kN, the brace angle in degrees, and the daylight proxy is a unitless
+        0-100 score. Result: daylight proxy {format(value.daylightScore)} / 100 with residual
+        lateral force {format(value.residualKn)} kN ({value.decision.replace("-", " ")}).
+      </p>
       <p>
         Interpretation:{" "}
         {value.decision === "balanced"
@@ -436,21 +444,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-
+  if (stage.current === "observe") return <ObserveStage />;
   return (
-    <section aria-label="Prediction setup" role="region">
-      <h2>Before the reveal</h2>
-      <p>
-        Predict which bay choice will keep a lateral path while preserving useful daylight. Then
-        tune the opening and bracing to test that prediction.
-      </p>
-      <button type="button" onClick={() => stage.advance()}>
-        Set bay options
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

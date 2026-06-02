@@ -4,3 +4,12 @@ runtime:
   persistence: local
   prediction_gate: required
   responsive: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "Heat gain falls, but useful daylight can also fall if the shade is too deep."
+    rationale: "A deeper horizontal overhang shades a larger vertical slice of glass, cutting direct solar heat gain but also reducing useful daylight once the shade is deep."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

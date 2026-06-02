@@ -516,7 +516,10 @@ const FormulaPanel = ({ evidence }: { readonly evidence: StructuralLoadPathEvide
           the axial brace force is larger than H.
         </p>
       </div>
-      <Legend />
+      <div>
+        <h4>Legend</h4>
+        <Legend />
+      </div>
     </div>
     <pre style={formulaBlockStyle}>
       <code>{String.raw`\color{#b45309}{\Delta R} = \frac{\color{#b42318}{H}\color{#6b7280}{h}}{\color{#6b7280}{L}}`}</code>
@@ -530,6 +533,12 @@ const FormulaPanel = ({ evidence }: { readonly evidence: StructuralLoadPathEvide
       Support reactions: R_windward = W/2 - Delta R = {format(evidence.state.roofLoadKn / 2)} -{" "}
       {format(evidence.overturningDeltaKn)} = {format(evidence.windwardReactionKn)} kN; R_leeward =
       W/2 + Delta R = {format(evidence.leewardReactionKn)} kN.
+    </p>
+    <p>
+      Units: forces and reactions in kN, the brace angle in degrees, geometry in m; brace
+      utilization is a percent. Result: brace axial {format(evidence.braceAxialKn)} kN at{" "}
+      {format(evidence.braceUtilizationPercent)}% utilization, equilibrium residual{" "}
+      {format(evidence.residualMagnitudeKn, 2)} kN.
     </p>
     <p>Interpretation: {statusText(evidence.status)}</p>
   </div>
@@ -546,7 +555,6 @@ const PreviewPanel = ({ evidence }: { readonly evidence: StructuralLoadPathEvide
 );
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<StructuralLoadPathState>();
   const current = currentState(state);
   const evidence = structuralLoadPathModel(current);
@@ -609,9 +617,6 @@ const ManipulateStage = () => {
             value={current.storeyHeightM}
           />
         </ControlGroup>
-        <button type="button" onClick={() => stage.advance()}>
-          Reveal load path
-        </button>
       </div>
       {evidence.ok ? <PreviewPanel evidence={evidence.value} /> : <p role="alert">The bay cannot be evaluated.</p>}
     </section>
@@ -674,21 +679,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-
+  if (stage.current === "observe") return <ObserveStage />;
   return (
-    <section aria-label="Prediction setup" role="region">
-      <h2>Before the reveal</h2>
-      <p>
-        Predict which part of a braced bay will govern the load path. Then tune the loads and
-        geometry to test the prediction with force equilibrium.
-      </p>
-      <button type="button" onClick={() => stage.advance()}>
-        Set bay inputs
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 
