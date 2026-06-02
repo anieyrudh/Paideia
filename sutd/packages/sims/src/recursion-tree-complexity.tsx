@@ -3,7 +3,6 @@ import { traceSort } from "@paideia/algorithm-trace";
 import { LineChart } from "@paideia/charting";
 import type { TSimulationSpec } from "@paideia/content-schema";
 import { treeLayout, type LayoutResult2D, type TreeNode } from "@paideia/graph-layout";
-import { PredictionGate, type PredictionScope } from "@paideia/prediction-gate";
 import { ok, err, type ConceptPackageId, type KernelResult } from "@paideia/shared";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
 import { ControlGroup, Selector } from "@paideia/ui-sim";
@@ -513,7 +512,8 @@ const FormulaPanel = ({ model }: { readonly model: RecursionTreeModel }) => (
     <pre aria-label="level cost formula" style={formulaStyle}>{String.raw`\color{#2563eb}{L_k}
 = \color{#7c3aed}{a^k}
   \cdot \color{#059669}{c(n/b^k)^p}`}</pre>
-    <dl style={{ display: "grid", gap: "0.35rem", gridTemplateColumns: "max-content 1fr", margin: "0.8rem 0" }}>
+    <h3 style={{ fontSize: "1rem", margin: "0.8rem 0 0.2rem" }}>Legend</h3>
+    <dl style={{ display: "grid", gap: "0.35rem", gridTemplateColumns: "max-content 1fr", margin: "0.4rem 0 0.8rem" }}>
       <dt><span aria-hidden="true" style={{ color: "#2563eb" }}>■</span> L_k</dt>
       <dd style={{ margin: 0 }}>total work at level k, measured in operations</dd>
       <dt><span aria-hidden="true" style={{ color: "#7c3aed" }}>■</span> a^k</dt>
@@ -522,6 +522,11 @@ const FormulaPanel = ({ model }: { readonly model: RecursionTreeModel }) => (
       <dd style={{ margin: 0 }}>work per node, measured in operations per subproblem</dd>
     </dl>
     <p><strong>Substitution:</strong> {model.substitution}.</p>
+    <p>
+      <strong>Units:</strong> level costs and totals are measured in operations; node counts (a^k)
+      are measured in subproblems. <strong>Result:</strong> total work = {model.totalWork}{" "}
+      operations across {model.height + 1} levels; asymptotic class {model.asymptoticClass}.
+    </p>
     <p><strong>Interpretation:</strong> {model.interpretation}</p>
   </section>
 );
@@ -592,7 +597,6 @@ const TraceEvidence = ({ model }: { readonly model: RecursionTreeModel }) => (
 );
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<RecursionTreeState>();
   const normalized = normalizeState(state);
   const model = buildRecursionTreeComplexityModel(normalized);
@@ -650,9 +654,6 @@ const ManipulateStage = () => {
           )}
         </div>
       </div>
-      <button onClick={() => stage.advance()} style={{ justifySelf: "start" }} type="button">
-        Reveal level costs
-      </button>
     </section>
   );
 };
@@ -717,36 +718,16 @@ const ExplainStage = () => {
   );
 };
 
-const PredictStage = () => {
-  const stage = useStage();
-  const predict = recursionTreeComplexitySpec.predict;
-  if (predict === undefined) return null;
-
-  return (
-    <section aria-label="Prediction setup" role="region" style={surfaceStyle}>
-      <h1 style={{ fontSize: "1.8rem", margin: "0 0 0.35rem" }}>Recursion tree complexity</h1>
-      <p style={mutedStyle}>
-        Commit a prediction about merge-sort-style level costs before the tree and chart are revealed.
-      </p>
-      <PredictionGate
-        packageId={recursionTreeComplexityPackageId}
-        predict={predict}
-        simId={recursionTreeComplexitySpec.id as PredictionScope}
-      >
-        <button onClick={() => stage.advance()} style={{ justifySelf: "start" }} type="button">
-          Build tree
-        </button>
-      </PredictionGate>
-    </section>
-  );
-};
-
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-  return <PredictStage />;
+  if (stage.current === "observe") return <ObserveStage />;
+  return (
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
+  );
 };
 
 export default function RecursionTreeComplexity() {

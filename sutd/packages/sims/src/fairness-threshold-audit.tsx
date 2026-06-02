@@ -369,6 +369,7 @@ const FormulaPanel = ({ audit }: { readonly audit: FairnessAuditEvidence }) => {
 Cost_g = FP_g x C_FP + FN_g x C_FN
 Recall gap = |Recall_A - Recall_B|`}</code>
       </pre>
+      <h4>Legend</h4>
       <dl aria-label="Formula legend" style={{ display: "grid", gap: "0.5rem" }}>
         <div>
           <dt><span style={swatchStyle("#2563eb")} />Recall_g</dt>
@@ -401,6 +402,12 @@ Recall gap = |Recall_A - Recall_B|`}</code>
         Audit substitution: recall gap = |{percent(groupA.evidence.recall)} -{" "}
         {percent(groupB.evidence.recall)}| = {pointGap(audit.recallGap)}; weighted harm gap =
         |{groupA.evidence.totalCost} - {groupB.evidence.totalCost}| = {audit.costGap} cost units.
+      </p>
+      <p>
+        Units: counts are in cases, costs in cost units, recalls and the recall gap in percentage
+        points. Result: Group A recall {percent(groupA.evidence.recall)} with cost{" "}
+        {groupA.evidence.totalCost} cost units; Group B recall {percent(groupB.evidence.recall)}{" "}
+        with cost {groupB.evidence.totalCost} cost units; recall gap {pointGap(audit.recallGap)}.
       </p>
       <p>
         Interpretation: {dominant} carries the larger weighted harm under this policy, so the audit
@@ -441,7 +448,6 @@ const stakeholderAnnotations: readonly Annotation[] = [
 ];
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { current, set, setAll } = useSetState();
 
   return (
@@ -503,9 +509,6 @@ const ManipulateStage = () => {
           accuracy, and weighted harm for the two groups.
         </p>
       </section>
-      <button type="button" onClick={() => stage.advance()}>
-        Reveal fairness audit
-      </button>
     </section>
   );
 };
@@ -617,22 +620,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-
+  if (stage.current === "observe") return <ObserveStage />;
   return (
-    <section aria-label="Prediction setup" style={{ display: "grid", gap: "1rem" }}>
-      <p>Prediction checkpoint</p>
-      <h1>Fairness Threshold Audit Lab</h1>
-      <p>
-        Commit a prediction about one shared threshold before seeing the group audit. Then tune the
-        policy and test whether accuracy, recall, and stakeholder harm tell the same story.
-      </p>
-      <button type="button" onClick={() => stage.advance()}>
-        Set audit policy
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

@@ -1,7 +1,6 @@
 import { useMemo, type ComponentProps, type CSSProperties } from "react";
 import { forceDirected2D, type Graph as LayoutGraph, type LayoutResult2D } from "@paideia/graph-layout";
 import { SimRuntime, useManipulate, useSimState, useStage } from "@paideia/sim-runtime";
-import { PredictionGate, type PredictionScope } from "@paideia/prediction-gate";
 import { Slider, Selector } from "@paideia/ui-sim";
 
 type RecursionStrategy = "memoized" | "plain";
@@ -467,7 +466,6 @@ const DependencyGraphView = ({ model }: { readonly model: DynamicProgrammingMode
 };
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<DynamicProgrammingState>();
   const targetStep = clampTargetStep(state.targetStep ?? 5);
   const strategy = state.strategy ?? "memoized";
@@ -525,9 +523,6 @@ const ManipulateStage = () => {
           )}
         </div>
       </div>
-      <button onClick={() => stage.advance()} style={{ justifySelf: "start" }} type="button">
-        Reveal recursion trace
-      </button>
     </section>
   );
 };
@@ -538,7 +533,8 @@ const FormulaPanel = ({ model }: { readonly model: DynamicProgrammingModel }) =>
     <div aria-label="recurrence formula" style={formulaStyle}>
       ways(i) = ways(i - 1) + ways(i - 2), with ways(0) = 1 and ways(1) = 1
     </div>
-    <dl style={{ display: "grid", gap: "0.35rem", gridTemplateColumns: "max-content 1fr", margin: "0.8rem 0" }}>
+    <h3 style={{ fontSize: "1rem", margin: "0.8rem 0 0.2rem" }}>Legend</h3>
+    <dl style={{ display: "grid", gap: "0.35rem", gridTemplateColumns: "max-content 1fr", margin: "0.4rem 0 0.8rem" }}>
       <dt><span aria-hidden="true" style={{ color: "#4f9d69" }}>■</span> ways(i)</dt>
       <dd style={{ margin: 0 }}>number of step sequences that end exactly at state i, measured in sequences</dd>
       <dt><span aria-hidden="true" style={{ color: "#f7c948" }}>■</span> i</dt>
@@ -547,6 +543,11 @@ const FormulaPanel = ({ model }: { readonly model: DynamicProgrammingModel }) =>
       <dd style={{ margin: 0 }}>dependency on smaller states, measured as subproblem links</dd>
     </dl>
     <p><strong>Substitution:</strong> {model.substitution} sequences.</p>
+    <p>
+      <strong>Units:</strong> ways(i) is a count of step sequences; the state index i is a count of
+      steps. <strong>Result:</strong> ways({model.targetStep}) = {model.result} sequences with{" "}
+      {model.memoHits} memo hits and {model.plainCallCount} plain recursive calls.
+    </p>
     <p><strong>Interpretation:</strong> {model.interpretation}</p>
   </section>
 );
@@ -661,35 +662,16 @@ const ExplainStage = () => {
   );
 };
 
-const PredictStage = () => {
-  const stage = useStage();
-  const prediction = dynamicProgrammingStateRecursionSpec.predict;
-  return (
-    <section aria-label="Prediction setup" role="region" style={surfaceStyle}>
-      <h1 style={{ fontSize: "1.8rem", margin: "0 0 0.35rem" }}>Dynamic programming state recursion</h1>
-      <p style={mutedStyle}>
-        Before seeing the table, predict what memoisation changes: the recurrence value, or the amount of repeated
-        work.
-      </p>
-      <PredictionGate
-        packageId={dynamicProgrammingStateRecursionPackageId}
-        predict={prediction}
-        simId={dynamicProgrammingStateRecursionSpec.id as PredictionScope}
-      >
-        <button onClick={() => stage.advance()} style={{ justifySelf: "start" }} type="button">
-          Define recurrence state
-        </button>
-      </PredictionGate>
-    </section>
-  );
-};
-
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-  return <PredictStage />;
+  if (stage.current === "observe") return <ObserveStage />;
+  return (
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
+  );
 };
 
 export default function DynamicProgrammingStateRecursion() {

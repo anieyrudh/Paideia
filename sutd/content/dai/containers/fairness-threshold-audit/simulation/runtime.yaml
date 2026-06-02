@@ -19,3 +19,12 @@ runtime:
   visual_smoke_targets:
     - desktop
     - mobile
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "The group with lower recall can carry more missed-support harm"
+    rationale: "An equal threshold rarely produces equal recall, so the group with lower recall has more false negatives and a higher weighted missed-support cost."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

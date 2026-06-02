@@ -11,3 +11,12 @@ runtime:
   persistence:
     local: true
     server_sync: false
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "Every level contributes n operations, so the height adds a log n factor."
+    rationale: "For T(n) = 2T(n/2) + n the node count doubles each level while per-node work halves, so each level contributes n operations and the height log_2 n multiplies the work."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

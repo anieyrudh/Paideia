@@ -290,6 +290,7 @@ Recall = TP / (TP + FN)
 Accuracy = (TP + TN) / N
 Cost = FP \times C_FP + FN \times C_FN`}</code>
       </pre>
+      <h4>Legend</h4>
       <dl aria-label="Formula legend" style={{ display: "grid", gap: "0.5rem" }}>
         <div>
           <dt><span style={swatchStyle("#d8f3dc")} />TP</dt>
@@ -332,6 +333,12 @@ Cost = FP \times C_FP + FN \times C_FN`}</code>
         {evidence.totalCost} cost units.
       </p>
       <p>
+        Units: counts are in cases, costs in cost units; precision, recall, and accuracy are
+        unitless ratios. Result: precision {percent(evidence.precision)}, recall{" "}
+        {percent(evidence.recall)}, accuracy {percent(evidence.accuracy)}, total weighted cost{" "}
+        {evidence.totalCost} cost units.
+      </p>
+      <p>
         Interpretation: the threshold flags {counts.truePositive + counts.falsePositive} cases.
         The main deployment risk is {dominantError} because that error cell contributes the
         larger weighted cost.
@@ -366,7 +373,6 @@ const stakeholderAnnotations: readonly Annotation[] = [
 ];
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { current, set, setAll } = useSetState();
 
   return (
@@ -418,9 +424,6 @@ const ManipulateStage = () => {
         </p>
         <CaseStrip threshold={current.thresholdPercent / 100} />
       </section>
-      <button type="button" onClick={() => stage.advance()}>
-        Reveal confusion matrix
-      </button>
     </section>
   );
 };
@@ -526,22 +529,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-
+  if (stage.current === "observe") return <ObserveStage />;
   return (
-    <section aria-label="Prediction setup" style={{ display: "grid", gap: "1rem" }}>
-      <p>Prediction checkpoint</p>
-      <h1>Confusion Matrix Threshold Explorer</h1>
-      <p>
-        Predict the effect of a stricter threshold before the count table is revealed. Then tune the
-        threshold and error costs to see how precision, recall, accuracy, and stakeholder cost move.
-      </p>
-      <button type="button" onClick={() => stage.advance()}>
-        Set threshold policy
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

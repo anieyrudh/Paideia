@@ -11,3 +11,12 @@ runtime:
     observe: state graph, table, formula, trace readout
     explain: recurrence result versus repeated-work interpretation
     transfer: resource allocation state table
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "Reuse ways(4) without changing its value."
+    rationale: "Memoisation stores the computed state value; reusing it does not change the recurrence answer, only the amount of repeated work."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required
