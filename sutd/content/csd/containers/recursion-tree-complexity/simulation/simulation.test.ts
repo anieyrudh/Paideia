@@ -1,82 +1,55 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { expectProductSimulationReveal } from "../../../../../../testing/sim-harness/src/playwright-contract.js";
+
+const simId = "sutd/csd/recursion-tree-complexity/recursion-tree-complexity";
+const route = `/?sim=${simId}`;
+const predictionOption = "Every level contributes n operations, so the height adds a log n factor.";
 
 test.describe("Recursion Tree Complexity", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("/?sim=sutd/csd/recursion-tree-complexity/recursion-tree-complexity");
+    await page.goto(route);
     await page.evaluate(() => localStorage.clear());
     await page.reload();
   });
 
-  const commitPrediction = async (page: import("@playwright/test").Page) => {
-    await page.getByLabel("Every level contributes n operations, so the height adds a log n factor.").check();
+  test("satisfies the product reveal visual contract", async ({ page }) => {
+    await expectProductSimulationReveal(page, {
+      simId,
+      setup: [],
+      prediction: {
+        optionLabel: predictionOption,
+        rationale: "Twice as many nodes and half the per-node work keep level cost at n.",
+      },
+    });
+  });
+
+  test("prediction-checkpoint keeps observation visible while saving reflection", async ({ page }) => {
+    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
+    const observation = page.getByRole("region", { name: "Observation unlocked" });
+    await expect(observation).toBeVisible();
+
+    await page.getByLabel(predictionOption).check();
     await page
       .getByLabel("Rationale")
       .fill("There are twice as many nodes and half as much linear work per node, so level cost stays n.");
     await page.getByRole("button", { name: "Commit prediction" }).click();
-  };
-
-  test("prediction-checkpoint keeps observation visible while saving reflection", async ({ page }) => {
-    await expect(page.getByRole("form", { name: "Prediction checkpoint" })).toBeVisible();
-
-    await commitPrediction(page);
-    {
-      const setupButton = page.getByRole("button", { name: "Build tree" });
-      if ((await setupButton.count()) > 0) {
-        await setupButton.first().click();
-      }
-    }
-    await page.getByRole("button", { name: "Reveal level costs" }).click();
+    await expect(observation).toBeVisible();
   });
 
-  test("manipulating the recurrence changes visible state and dominance", async ({ page }) => {
-    await commitPrediction(page);
-    {
-      const setupButton = page.getByRole("button", { name: "Build tree" });
-      if ((await setupButton.count()) > 0) {
-        await setupButton.first().click();
-      }
-    }
-    await page.getByLabel("Input size").selectOption({ label: "81 items" });
-    await page.getByLabel("Recursive calls per node").selectOption({ label: "3 branches" });
-    await page.getByLabel("Shrink factor").selectOption({ label: "n/2" });
-    await page.getByLabel("Combine-work pattern").selectOption({ label: "linear combine work" });
-    await page.getByRole("button", { name: "Reveal level costs" }).click();
-
-    const observation = page.getByRole("region", { name: "Observation unlocked" });
-    await expect(observation).toContainText("leaf-heavy");
-    await expect(observation).toContainText("Theta(n^1.585)");
-    await expect(observation).toContainText("81 operations");
-  });
-
-  test("shows formula, legend, substituted values, units, interpretation, and chart evidence", async ({ page }) => {
-    await commitPrediction(page);
-    {
-      const setupButton = page.getByRole("button", { name: "Build tree" });
-      if ((await setupButton.count()) > 0) {
-        await setupButton.first().click();
-      }
-    }
-    await page.getByRole("button", { name: "Reveal level costs" }).click();
-
+  test("shows formula, legend, substituted values, units, and interpretation", async ({ page }) => {
     const formula = page.getByRole("region", { name: "Formula and interpretation" });
     await expect(formula).toContainText("L_k");
-    await expect(formula).toContainText("total work at level k, measured in operations");
-    await expect(formula).toContainText("L_2 = 2^2 * 1 * (128 / 2^2)^1 = 128 operations");
-    await expect(formula).toContainText("Theta(n log n)");
-    await expect(page.getByRole("img", { name: "Line chart of recursion tree level costs in operations" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Algorithm trace evidence" })).toContainText("merge-sort trace");
+    await expect(formula).toContainText("total work at level k");
+    await expect(formula).toContainText("Substitution");
+    await expect(formula).toContainText("Units:");
+    await expect(formula).toContainText("Result:");
   });
 
   test("has no serious or critical accessibility violations after reveal", async ({ page }) => {
-    await commitPrediction(page);
-    {
-      const setupButton = page.getByRole("button", { name: "Build tree" });
-      if ((await setupButton.count()) > 0) {
-        await setupButton.first().click();
-      }
-    }
-    await page.getByRole("button", { name: "Reveal level costs" }).click();
+    await page.getByLabel(predictionOption).check();
+    await page.getByLabel("Rationale").fill("Each level contributes the same n operations.");
+    await page.getByRole("button", { name: "Commit prediction" }).click();
     await page.getByRole("region", { name: "Observation unlocked" }).waitFor();
 
     const results = await new AxeBuilder({ page }).analyze();

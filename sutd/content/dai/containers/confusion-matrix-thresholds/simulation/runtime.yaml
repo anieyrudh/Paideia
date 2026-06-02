@@ -4,3 +4,12 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "Recall falls, so missed-positive cost can rise"
+    rationale: "A higher threshold accepts fewer positives, so true positives drop and recall (TP / (TP+FN)) falls; when false negatives are costly, total cost rises."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required
