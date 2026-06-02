@@ -4,3 +4,12 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "Above the mean-demand point"
+    rationale: "Shortage cost dominates leftover cost, so the critical fractile exceeds 0.5 and the optimal order sits at a service level above the centre of demand."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

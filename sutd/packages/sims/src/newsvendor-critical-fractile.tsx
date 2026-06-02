@@ -315,6 +315,7 @@ const FormulaPanel = ({ analysis }: { readonly analysis: NewsvendorAnalysisView 
       <br />
       E[cost(Q)] = C_under E[(D - Q)+] + C_over E[(Q - D)+]
     </div>
+    <p style={styles.kicker}>Legend</p>
     <div aria-label="Formula legend" style={styles.legendGrid}>
       <span style={{ ...styles.legendMark, background: "#1f5f8b" }} />
       <span>C_under: shortage cost per unmet unit</span>
@@ -332,6 +333,12 @@ const FormulaPanel = ({ analysis }: { readonly analysis: NewsvendorAnalysisView 
       The first demand quantity with F(Q) at least that value is{" "}
       {analysis.recommendedQuantity} units, where F(Q) ={" "}
       {formatPct(analysis.recommendedServiceLevel)}.
+    </p>
+    <p style={styles.interpretation}>
+      Units: costs are SGD per unit, the order quantity is in units, and the critical fractile
+      and F(Q) are unitless probabilities. Result: CR ={" "}
+      {formatPct(analysis.criticalFractile)}, recommended order quantity Q ={" "}
+      {analysis.recommendedQuantity} units at service level {formatPct(analysis.recommendedServiceLevel)}.
     </p>
     <p style={styles.interpretation}>
       Interpretation: the fractile asks for enough inventory to make one more unit worthwhile
@@ -374,7 +381,6 @@ const CostChart = ({ analysis }: { readonly analysis: NewsvendorAnalysisView }) 
 };
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<NewsvendorState>();
   const current = currentState(state);
   const scenario = scenarioById(current.scenario);
@@ -447,9 +453,6 @@ const ManipulateStage = () => {
               />
             </div>
           </ControlGroup>
-          <button onClick={() => stage.advance()} style={styles.primaryButton} type="button">
-            Reveal stocking rule
-          </button>
         </section>
         <section style={styles.panel}>
           <p style={styles.kicker}>Demand</p>
@@ -536,24 +539,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-
+  if (stage.current === "observe") return <ObserveStage />;
   return (
-    <section aria-label="Prediction setup" style={styles.surface}>
-      <section style={styles.panel}>
-        <p style={styles.kicker}>Predict</p>
-        <h1 style={styles.h1}>How much should a one-day seller stock?</h1>
-        <p>
-          Before seeing the rule, choose a demand setting and costs. Then predict whether
-          expensive stockouts push the optimal order above, at, or below the centre of demand.
-        </p>
-        <button onClick={() => stage.advance()} style={styles.primaryButton} type="button">
-          Set inventory scenario
-        </button>
-      </section>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

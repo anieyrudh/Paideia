@@ -20,3 +20,12 @@ runtime:
     angular_frequency: rad/s
     magnitude: dB
     phase: deg
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "The output is about 0.707 of the input and the phase has already shifted"
+    rationale: "At the cutoff frequency the magnitude drops to 1/sqrt(2) ≈ 0.707 (the -3 dB point) and the phase has already rotated; cutoff is a response marker, not a hard wall."
+  observation:
+    observation_label: "Observation unlocked"
+    visual: required
+    formula: required

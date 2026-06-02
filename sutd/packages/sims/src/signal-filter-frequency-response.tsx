@@ -288,7 +288,6 @@ const modeLabel = (mode: FilterMode): string =>
   mode === "low-pass" ? "low-pass output across C" : "high-pass output across R";
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<FilterState>();
   const current = currentState(state);
   const preview = filterEvidence(current);
@@ -331,9 +330,6 @@ const ManipulateStage = () => {
             value={current.probeFrequencyHertz}
           />
         </ControlGroup>
-        <button type="button" onClick={() => stage.advance()}>
-          Reveal frequency response
-        </button>
       </div>
       <section aria-label="Filter model preview" className="sutd-formula-card">
         <p className="meta-line">Manipulate</p>
@@ -397,6 +393,7 @@ ${transferFormula}
 
 20\log_{10}(0.707) \approx -3.0\ dB`}</code>
       </pre>
+      <p className="meta-line">Legend</p>
       <dl className="formula-legend" aria-label="Formula legend">
         <div>
           <dt>
@@ -429,6 +426,7 @@ ${transferFormula}
           <dd>output-to-input magnitude ratio</dd>
         </div>
       </dl>
+      <p className="meta-line">Substitution</p>
       <pre className="formula-code" aria-label="Filter substitution">
         <code>{String.raw`R = ${fmt(evidence.resistanceOhms, 0)}\ \Omega
 C = ${fmt(evidence.capacitanceFarads, 8)}\ F
@@ -450,7 +448,13 @@ phase = ${fmtSigned(evidence.probe.phaseDeg, 1)}^\circ`}</code>
         {fmt(evidence.circuit.capacitorReactanceOhms, 0)} Ohm, and source current ={" "}
         {fmt(evidence.circuit.currentMilliAmps, 3)} mA for 1 V RMS.
       </p>
-      <p className="formula-note">Result: {evidence.interpretation}.</p>
+      <p>
+        Units: resistance in ohms, capacitance in farads, time constant in seconds, cutoff
+        frequency in hertz, magnitude in dB, phase in degrees. Result: f_c ={" "}
+        {fmt(evidence.cutoffHertz, 1)} Hz, |H| at probe = {fmt(evidence.probe.magnitudeDb, 1)} dB,
+        phase {fmtSigned(evidence.probe.phaseDeg, 1)} deg.
+      </p>
+      <p className="formula-note">Result interpretation: {evidence.interpretation}.</p>
     </section>
   );
 };
@@ -546,23 +550,13 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
-
+  if (stage.current === "observe") return <ObserveStage />;
   return (
-    <section aria-label="Prediction setup" className="sutd-formula-card">
-      <p className="meta-line">Prediction checkpoint</p>
-      <h1>RC Filter Frequency Response Lab</h1>
-      <p>
-        Predict the cutoff behavior before comparing with the Bode traces. Then adjust R, C, filter
-        type, and probe frequency to compare pass-band, transition-band, and attenuated-band
-        behavior.
-      </p>
-      <button type="button" onClick={() => stage.advance()}>
-        Prepare filter lab
-      </button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 
