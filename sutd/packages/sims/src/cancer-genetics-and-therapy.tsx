@@ -283,7 +283,6 @@ const Slider = ({
 );
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<CancerState>();
   const current = currentState(state);
   return (
@@ -297,10 +296,9 @@ const ManipulateStage = () => {
         <Slider label="Therapy IC50" max={100} min={1} onChange={(v) => set("ic50", v)} step={1} suffix="" value={current.ic50} />
         <Slider label="Hill coefficient" max={4} min={1} onChange={(v) => set("hillCoefficient", v)} step={1} suffix="" value={current.hillCoefficient} />
         <Slider label="Resistance factor" max={10} min={1} onChange={(v) => set("resistanceFactor", v)} step={0.1} suffix="" value={current.resistanceFactor} />
-        <button type="button" onClick={() => stage.advance()}>Reveal clonal and dose-response evidence</button>
       </div>
-      <section className="sutd-formula-card" aria-label="Before reveal cue">
-        <p className="meta-line">Before reveal</p>
+      <section className="sutd-formula-card" aria-label="Model cue">
+        <p className="meta-line">Observation</p>
         <h3>Educational only</h3>
         <p>This lab teaches the (1+s)^k growth law and the Hill dose-response. It does not diagnose, predict, or recommend treatment.</p>
       </section>
@@ -374,16 +372,16 @@ const ObserveStage = () => {
   const evidence = cancerEvidence(state);
   if (!evidence.ok) {
     return (
-      <section className="sutd-formula-card" role="region" aria-label="Observation unlocked">
+      <section className="sutd-formula-card" role="region" aria-label="Observation">
         <p role="alert">{evidence.error.message}</p>
       </section>
     );
   }
   const value = evidence.value;
   return (
-    <section aria-label="Observation unlocked" className="sutd-sim-panel" role="region">
+    <section aria-label="Observation" className="sutd-sim-panel" role="region">
       <div className="sutd-result-card">
-        <p className="meta-line">Observe</p>
+        <p className="meta-line">Observation</p>
         <h2>Clonal growth and dose-response</h2>
         <GrowthCurvePlot evidence={value} />
         <DoseResponsePlot evidence={value} />
@@ -409,6 +407,7 @@ const ObserveStage = () => {
 
 \color{#7c3aed}{IC50_{\text{eff}} = f\,IC50_{\text{base}}}`}</code>
         </pre>
+        <p className="meta-line">Legend</p>
         <dl aria-label="Formula legend" className="formula-legend">
           <div><dt><span className="legend-swatch legend-swatch--red" /> F</dt><dd>relative fitness; multiplies clone size per generation</dd></div>
           <div><dt><span className="legend-swatch legend-swatch--blue" /> R</dt><dd>response fraction from Hill curve</dd></div>
@@ -418,10 +417,21 @@ const ObserveStage = () => {
         <p>
           Substitution: drivers = {state.drivers}, s = {state.perDriverAdvantage.toFixed(2)}, generations = {state.generations}. F = {value.clonalFitness.toFixed(3)}; clonal size {value.clonalSizeAfterG.toFixed(1)} vs baseline {value.baselineSize.toFixed(1)}. IC50_eff = {value.effectiveIc50.toFixed(1)}. Dose for 90% response shifts from {value.doseFor90Susceptible.toFixed(1)} to {value.doseFor90Resistant.toFixed(1)} with resistance factor {state.resistanceFactor.toFixed(2)}.
         </p>
+        <p>
+          Units: clone size is counted in cells; dose and IC50 use the same arbitrary concentration unit; response is a dimensionless fraction. Result: the driver clone is x{value.clonalRatio.toFixed(1)} baseline and resistance shifts IC50 to {value.effectiveIc50.toFixed(1)}.
+        </p>
         <p className="formula-note">
           Educational only. The dose required for a target response scales linearly with the resistance factor; once that exceeds the toxic dose, the therapeutic window collapses.
         </p>
-        <button type="button" onClick={() => stage.advance()}>Explain resistance shift</button>
+        <button
+          type="button"
+          onClick={() => {
+            stage.advance();
+            stage.advance();
+          }}
+        >
+          Explain resistance shift
+        </button>
       </section>
     </section>
   );
@@ -443,16 +453,12 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
   return (
-    <section className="sutd-formula-card" aria-label="Prediction setup">
-      <p className="meta-line">Prediction checkpoint</p>
-      <h1>Clonal Growth and Dose-Response Lab</h1>
-      <p>Predict the relative size of a 3-driver clone after 20 generations compared with a passenger-only clone.</p>
-      <button type="button" onClick={() => stage.advance()}>Set up cancer lab</button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

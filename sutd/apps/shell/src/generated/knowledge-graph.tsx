@@ -2195,7 +2195,7 @@ export const containers = [
     status: "draft",
     packageId: "cell-cycle-and-mitosis-meiosis",
     simId: "cell-cycle-and-mitosis-meiosis",
-    predictPrompt: "A diploid cell at M phase with replicated DNA divides via mitosis. Before reveal, what are the two daughter cells' ploidy and DNA-content multiplier?",
+    predictPrompt: "A diploid cell at M phase with replicated DNA divides via mitosis. Before using the checkpoint, what are the two daughter cells' ploidy and DNA-content multiplier?",
     aidTypes: [
       "simulation",
       "transfer-problem",
@@ -2422,7 +2422,7 @@ export const containers = [
     status: "draft",
     packageId: "immune-system-and-vaccines",
     simId: "immune-system-and-vaccines",
-    predictPrompt: "A pathogen has basic reproduction number R0 = 4. Vaccinating 60 percent of the population gives them perfect immunity. Before reveal, what is the effective reproduction number Re and does the outbreak grow or shrink?",
+    predictPrompt: "A pathogen has basic reproduction number R0 = 4. Vaccinating 60 percent of the population gives them perfect immunity. Before using the checkpoint, what is the effective reproduction number Re and does the outbreak grow or shrink?",
     aidTypes: [
       "simulation",
       "transfer-problem",

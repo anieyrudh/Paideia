@@ -51,7 +51,7 @@ export const cellCycleSpec: TSimulationSpec = {
   ],
   predict: {
     prompt:
-      "A diploid cell at M phase with replicated DNA divides via mitosis. Before reveal, what are the two daughter cells' ploidy and DNA-content multiplier?",
+      "A diploid cell at M phase with replicated DNA divides via mitosis. Before using the checkpoint, what are the two daughter cells' ploidy and DNA-content multiplier?",
     commit_format: {
       kind: "multiple-choice",
       options: [
@@ -228,7 +228,6 @@ const Select = ({
 );
 
 const ManipulateStage = () => {
-  const stage = useStage();
   const { state, set } = useManipulate<CycleState>();
   const current = currentState(state);
   return (
@@ -241,12 +240,11 @@ const ManipulateStage = () => {
         <Toggle label="Chromosomes aligned" onChange={(v) => set("chromosomesAligned", v)} value={current.chromosomesAligned} />
         <Toggle label="Nutrients sufficient" onChange={(v) => set("nutrientsSufficient", v)} value={current.nutrientsSufficient} />
         <Select label="Division mode" onChange={(v) => set("divisionMode", v)} value={current.divisionMode} />
-        <button type="button" onClick={() => stage.advance()}>Reveal division outcome</button>
       </div>
-      <section className="sutd-formula-card" aria-label="Before reveal cue">
-        <p className="meta-line">Before reveal</p>
+      <section className="sutd-formula-card" aria-label="Model cue">
+        <p className="meta-line">Observation</p>
         <h3>Checkpoints gate every advance</h3>
-        <p>Prediction checkpoint. Then watch the cell traverse the phase wheel under the active checkpoint conditions and see which division mode produces which daughters.</p>
+        <p>Use the checkpoint to save your expectation, then watch the cell traverse the phase wheel under the active checkpoint conditions and see which division mode produces which daughters.</p>
       </section>
     </section>
   );
@@ -306,7 +304,7 @@ const ObserveStage = () => {
   const evidence = cycleEvidence(state);
   if (!evidence.ok) {
     return (
-      <section className="sutd-formula-card" role="region" aria-label="Observation unlocked">
+      <section className="sutd-formula-card" role="region" aria-label="Observation">
         <p role="alert">{evidence.error.message}</p>
       </section>
     );
@@ -314,9 +312,9 @@ const ObserveStage = () => {
   const value = evidence.value;
   const lastCheckpoint = [...value.trajectory].reverse().find((t) => t.checkpoint !== null)?.checkpoint;
   return (
-    <section aria-label="Observation unlocked" className="sutd-sim-panel" role="region">
+    <section aria-label="Observation" className="sutd-sim-panel" role="region">
       <div className="sutd-result-card">
-        <p className="meta-line">Observe</p>
+        <p className="meta-line">Observation</p>
         <h2>Cell cycle trajectory</h2>
         <PhaseWheel activePhase={value.finalCell.phase} />
         <dl aria-label="Cycle readout" className="sutd-result-grid">
@@ -366,18 +364,30 @@ n_{\text{daughter}} = n, \;
 n_{\text{daughter}} = n/2, \;
 \text{dnaContent}_{\text{daughter}} = 1`}</code>
         </pre>
+        <p className="meta-line">Legend</p>
         <dl aria-label="Formula legend" className="formula-legend">
           <div><dt><span className="legend-swatch legend-swatch--blue" /> ploidy</dt><dd>chromosome-set count n (haploid = 1, diploid = 2)</dd></div>
           <div><dt><span className="legend-swatch legend-swatch--orange" /> DNA content</dt><dd>multiplier (1 unreplicated, 2 replicated)</dd></div>
           <div><dt>checkpoint</dt><dd>conditional gate on phase advance</dd></div>
         </dl>
         <p>
-          The parent cell entered with ploidy 2 and DNA content {value.finalCell.dnaContent}. {value.divisionMode === "mitosis" ? "Mitosis preserves ploidy: each daughter is diploid with DNA content 1." : "Meiosis halves ploidy: each gamete is haploid with DNA content 1."}
+          Substitution: parent ploidy = 2, final parent DNA content = {value.finalCell.dnaContent}, division mode = {value.divisionMode}. {value.divisionMode === "mitosis" ? "Mitosis preserves ploidy: each daughter is diploid with DNA content 1." : "Meiosis halves ploidy: each gamete is haploid with DNA content 1."}
+        </p>
+        <p>
+          Units: ploidy is chromosome-set count n; DNA content is a relative multiplier. Result: {value.daughters.length > 0 ? `${value.daughters.length} daughter cells produced` : "no daughter cells produced under the current checkpoint state"}.
         </p>
         <p className="formula-note">
           Checkpoints gate transitions. With the current conditions, the cell {value.finalCell.phase === "M" ? "reached M and divided as configured." : `is parked in ${value.finalCell.phase}.`}
         </p>
-        <button type="button" onClick={() => stage.advance()}>Explain the daughter cells</button>
+        <button
+          type="button"
+          onClick={() => {
+            stage.advance();
+            stage.advance();
+          }}
+        >
+          Explain the daughter cells
+        </button>
       </section>
     </section>
   );
@@ -399,16 +409,12 @@ const ExplainStage = () => {
 
 const StageSurface = () => {
   const stage = useStage();
-  if (stage.current === "manipulate") return <ManipulateStage />;
-  if (stage.current === "observe") return <ObserveStage />;
   if (stage.current === "explain") return <ExplainStage />;
   return (
-    <section className="sutd-formula-card" aria-label="Prediction setup">
-      <p className="meta-line">Prediction checkpoint</p>
-      <h1>Cell Cycle Phase Wheel</h1>
-      <p>Predict the daughter cells of a mitotic diploid cell before stepping through the phase wheel.</p>
-      <button type="button" onClick={() => stage.advance()}>Set up cell cycle</button>
-    </section>
+    <>
+      <ManipulateStage />
+      <ObserveStage />
+    </>
   );
 };
 

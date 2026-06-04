@@ -5,3 +5,12 @@ runtime:
   state_model: local
   persistence: local
   deterministic: true
+visual_quality:
+  setup: []
+  prediction:
+    option_label: "Two diploid (n = 2) G1 daughters, each with DNA content 1 (unreplicated)."
+    rationale: "Mitosis preserves ploidy and resets DNA content to 1 in daughters."
+  observation:
+    observation_label: "Observation"
+    visual: required
+    formula: required
