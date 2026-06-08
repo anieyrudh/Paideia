@@ -1,10 +1,27 @@
 # CLAUDE.md
 
-Read @AGENTS.md first.
+Read `AGENTS.md` first.
 
-For per-package contracts, read the `AGENTS.md` inside the package you're touching — it is authoritative over this file.
+This repository is now intentionally simple. New work should target
+`contributions/<subject>/<slug>/` packages and the static gallery.
 
-For container authoring, also read @docs/container-spec.md and @core/aniegpt/aniegpt-system-prompt.md.
+Do not use the archived curriculum/kernel system unless the user explicitly
+asks for legacy recovery:
 
-Use `ultrathink` for architectural decisions (kernel contracts, schema changes, branch boundaries).
-Use `think` for routine implementation (sim wiring, content drafting, test writing).
+```text
+archive/legacy-curriculum-system/
+```
+
+For package work, read:
+
+- `docs/public/contribution-packages.md`
+- `docs/public/contribution-intake-workflow.md`
+- `docs/public/ai-simulation-prompts.md`
+
+Run:
+
+```bash
+pnpm contribution:organize -- --check
+pnpm contribution:validate
+pnpm build:pages
+```

@@ -1,8 +1,2 @@
 packages:
-  - "core/*"
-  - "shared/packages/*"
-  - "a-level/packages/*"
-  - "a-level/apps/*"
-  - "testing/*"
-  - "sutd/packages/*"
-  - "sutd/apps/*"
+  - "contributions/*/*"

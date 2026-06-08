@@ -1,0 +1,26 @@
+title: "Projectile Motion Mini Lab"
+slug: "projectile-motion-mini-lab"
+subject: "physics"
+level: "Secondary / A-Level"
+topic: "Projectile motion"
+type: "simulation-lesson"
+status: "draft"
+summary: >
+  Learners vary launch speed and angle, then observe how the trajectory,
+  range, and time of flight change.
+audience:
+  - "students"
+  - "teachers"
+license:
+  code: "MIT"
+  content: "CC-BY-4.0"
+simulation:
+  kind: "html"
+  entry: "simulation.html"
+  interactive: true
+  visual: "required"
+quality:
+  has_sources: true
+  has_teacher_notes: true
+  has_formula_legend: true
+  has_accessibility_notes: true

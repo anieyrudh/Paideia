@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc" viewBox="0 0 640 360">
+  <title id="title">Projectile motion preview</title>
+  <desc id="desc">A blue projectile trajectory with green peak and orange landing markers.</desc>
+  <rect width="640" height="360" rx="18" fill="#f8fafc"/>
+  <rect x="48" y="42" width="544" height="250" rx="12" fill="#ffffff" stroke="#cbd5e1"/>
+  <line x1="78" y1="268" x2="560" y2="268" stroke="#475569" stroke-width="4"/>
+  <line x1="78" y1="268" x2="78" y2="76" stroke="#475569" stroke-width="4"/>
+  <path d="M78 268 C190 70 390 70 540 268" fill="none" stroke="#2563eb" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="300" cy="105" r="12" fill="#16a34a"/>
+  <circle cx="540" cy="268" r="12" fill="#f97316"/>
+  <text x="52" y="326" fill="#111827" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="700">Projectile Motion Mini Lab</text>
+</svg>

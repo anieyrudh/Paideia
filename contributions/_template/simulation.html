@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Example Simulation Lesson</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        margin: 0;
+        background: #f8fafc;
+        color: #111827;
+      }
+
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+
+      .workspace {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
+        gap: 16px;
+      }
+
+      .panel {
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        background: #ffffff;
+        padding: 16px;
+      }
+
+      svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      label {
+        display: grid;
+        gap: 6px;
+        margin: 12px 0;
+      }
+
+      @media (max-width: 760px) {
+        .workspace {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Example Simulation Lesson</h1>
+      <p>Replace this with the learner-facing setup.</p>
+
+      <section class="workspace" aria-label="Simulation workspace">
+        <div class="panel">
+          <h2>Observation</h2>
+          <svg viewBox="0 0 420 220" role="img" aria-label="Example visual model">
+            <rect x="20" y="20" width="380" height="180" fill="#eff6ff" stroke="#bfdbfe" />
+            <line x1="40" y1="180" x2="380" y2="180" stroke="#475569" />
+            <line x1="40" y1="180" x2="40" y2="40" stroke="#475569" />
+            <circle id="point" cx="180" cy="110" r="14" fill="#2563eb" />
+            <text x="48" y="52" font-size="14" fill="#111827">visual changes with the slider</text>
+          </svg>
+        </div>
+
+        <div class="panel">
+          <h2>Controls</h2>
+          <label>
+            Example variable
+            <input id="control" type="range" min="0" max="100" value="40" />
+          </label>
+          <p id="readout">Value: 40</p>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const control = document.querySelector("#control");
+      const point = document.querySelector("#point");
+      const readout = document.querySelector("#readout");
+
+      control.addEventListener("input", () => {
+        const value = Number(control.value);
+        point.setAttribute("cx", String(40 + value * 3.4));
+        readout.textContent = `Value: ${value}`;
+      });
+    </script>
+  </body>
+</html>

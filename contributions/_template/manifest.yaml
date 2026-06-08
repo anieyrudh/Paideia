@@ -1,0 +1,26 @@
+title: "Example Simulation Lesson"
+slug: "example-simulation-lesson"
+subject: "physics"
+level: "A-Level"
+topic: "Example topic"
+type: "simulation-lesson"
+status: "draft"
+summary: >
+  Replace this with one or two sentences explaining what the learner can
+  manipulate and observe.
+audience:
+  - "students"
+  - "teachers"
+license:
+  code: "MIT"
+  content: "CC-BY-4.0"
+simulation:
+  kind: "html"
+  entry: "simulation.html"
+  interactive: true
+  visual: "required"
+quality:
+  has_sources: false
+  has_teacher_notes: false
+  has_formula_legend: false
+  has_accessibility_notes: false

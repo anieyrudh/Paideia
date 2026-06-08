@@ -1,112 +1,90 @@
-# Contributing to Paideia
+# Contributing To Paideia
 
-Paideia is open educational infrastructure. The doctrine — prediction gate, PMOE-T, own-the-kernels, local-first AI, AI-as-critic, build-first, falsifiability — is non-negotiable. The container shape is the API. Read [`AGENTS.md`](AGENTS.md) and [`docs/container-spec.md`](docs/container-spec.md) before you touch anything.
+Paideia accepts small academic lessons and simulations as folders.
 
-## Local setup
+Most pull requests should add or improve exactly one folder under
+`contributions/`.
+
+## Fast Path
+
+Copy:
+
+```text
+contributions/_template/
+```
+
+Create:
+
+```text
+contributions/<subject>/<your-slug>/
+  manifest.yaml
+  lesson.md
+  simulation.html
+  sources.md
+  license.md
+```
+
+If you are unsure about the subject, start in:
+
+```text
+contributions/_incoming/<your-slug>/
+```
+
+Then run:
 
 ```bash
-git clone https://github.com/Paideia/paideia.git
-cd paideia
+pnpm contribution:organize -- --write
+pnpm contribution:validate
+```
+
+## What A Good Submission Does
+
+- Explains one idea clearly.
+- Uses student-facing language.
+- Cites sources in `sources.md`.
+- Records code/content provenance in `license.md`.
+- If it is a simulation, shows a visual interactive model.
+- Avoids copied textbook material, private student data, proprietary code, and
+  GPL/AGPL/LGPL runtime code.
+
+Text-only pages are welcome as lessons. Do not label them as simulations.
+
+## AI-Assisted Submissions
+
+You can use ChatGPT, Claude, Gemini, Codex, Claude Code, or another tool.
+
+In the pull request, say:
+
+- what the AI helped create;
+- what you checked manually;
+- what sources support the lesson;
+- what license applies to any adapted material.
+
+Use [AI simulation prompts](docs/public/ai-simulation-prompts.md) if you want a
+copy-paste prompt.
+
+## Local Checks
+
+```bash
 pnpm install
-pnpm test            # vitest, all packages
-pnpm typecheck       # tsc -b
-pnpm container:validate
-pnpm boundary        # cross-branch import check
-pnpm license:check   # third-party license allowlist
+pnpm contribution:organize -- --check
+pnpm contribution:validate
+pnpm build:pages
 ```
 
-Node 20+ and pnpm 9+ required. If `container:validate` fails on a clean clone, file a `bug` issue — the container shape must always be green on `main`.
+The GitHub pull request workflow runs these checks again.
 
-## Branch naming
+## Pull Request Rules
 
-Use `feat/<phase>/<scope>/<id>` where:
+- One lesson or simulation package per PR.
+- Include a screenshot or preview when possible.
+- Cite sources.
+- Fill in license/provenance notes.
+- Keep server-side code out unless a maintainer explicitly approves it.
+- Do not mix unrelated cleanup with a contribution package.
 
-- `<phase>` is `a` (Phase A · platform), `b` (Phase B · branches), `c` (Phase C · pilot), or `core` for cross-branch work.
-- `<scope>` is the branch or core module: `a-level`, `sutd`, `core-sim-runtime`, `docs`, etc.
-- `<id>` is a short kebab-case slug or an issue number.
+## Legacy Material
 
-Examples: `feat/a/core-sim-runtime/pmoet-state-machine`, `fix/b/a-level/shm-prediction-gate-leak`, `chore/core/license-check`.
-
-## Scoping a PR
-
-**One branch per PR.** Path-filtered CI runs only the workflows for paths you touched: a PR under `a-level/**` runs the A-Level suite; a PR under `sutd/**` runs the SUTD suite; a PR under `core/**` runs both, because every branch consumes core.
-
-If you find yourself touching two branches in one PR (other than via `core/`), split it. The Anieyrudh Filter will flag conflated scopes as a P0.
-
-## The Anieyrudh Filter (run before opening a PR)
-
-Every PR runs the Filter (`core/aniegpt/aniegpt-system-prompt.md`). You run it locally first:
-
-1. Paste the diff (or the relevant slice) into the Filter prompt.
-2. Address every P0 before you push. Address every P1 in the PR or open a tracked issue.
-3. Paste the resulting summary into the PR description AND into the `## Anieyrudh Filter pass` section of each container's `TECHNICAL.md` you touched.
-
-Containers with an empty Filter section block merge. The `daily-compliance-audit.yml` workflow opens issues for any that slip through.
-
-The Filter is a critic. It does not write content. You write the content; the Filter blocks bad shipments.
-
-## Changing `core/` (the core change protocol)
-
-`core/` modules are consumed by every branch. Breaking changes propagate. Therefore:
-
-1. Open a `core-change-proposal` issue **before** writing code. Enumerate every current consumer, the current public interface, the proposed interface, what does NOT change, and the migration plan.
-2. Get maintainer approval on the issue.
-3. Open a PR. The PR must include changes to every affected branch's consumers in the same PR (or a documented migration sequence). Both branches' full test suites must be green.
-4. Breaking changes use the `core!:` commit prefix and require an ADR under `docs/adr/`.
-
-Single-write discipline: only the maintainer (currently @anieyrudh) merges to `core/`. CODEOWNERS enforces.
-
-## The PR template
-
-The PR template (`.github/PULL_REQUEST_TEMPLATE.md`) asks for:
-
-- **Branch** — a-level / sutd / core / docs (one).
-- **Original outcome** — the natural-language ask in the author's own words. Preserves the original intent before it becomes diff-speak.
-- **What this PR does** — concrete, not aspirational. One paragraph.
-- **What AI did / what I rejected** — Agentic Presence requires you to name what AI contributed and what you turned down. The student/author remains the author of the reasoning.
-- **Anieyrudh Filter pass** — checkbox that the Filter ran and the TECHNICAL.md section is non-empty.
-- **Definition of Done** — tests, CI, validator, no orphan `[NEEDS-VERIFICATION]` flags, dual-branch CI for `core/` changes.
-- **Linked issues** — `Closes #...`.
-
-If a section doesn't apply, write "n/a" and a one-line reason. Do not delete sections.
-
-## Commit conventions
-
-Conventional Commits with branch scopes:
-
-- `feat(a-level): add SHM container` — A-Level branch feature.
-- `feat(sutd): add design-thinking primer` — SUTD branch feature.
-- `feat(core): expose KernelResult.cache_key` — additive core change.
-- `fix(core): correct PMOE-T transition guard` — non-breaking core fix.
-- `core!: rename ConceptPackageSpec.items.sims` — breaking; requires ADR.
-- `docs:`, `chore:`, `test:`, `refactor:` — as usual.
-
-Pre-commit hook runs `pnpm lint && pnpm test && pnpm container:validate`. Do not bypass with `--no-verify`; if a hook fails, fix the cause.
-
-## Scaffolding a container
-
-```bash
-pnpm container:new
-```
-
-Prompts for branch, subject, package id, title, primary interaction type. Produces the full canonical directory tree from `core/docs-templates/`. Do not hand-author the structure — compose your content into the shape.
-
-To remix an existing container, copy it in a feature branch, preserve
-attribution in `sources.md`, and run `pnpm container:validate`. A dedicated
-remix helper can be added later.
-
-## License discipline
-
-- **Code is MIT.** New code goes under `LICENSE`.
-- **Content is CC-BY-4.0.** Concept cards, decision matrices, transfer problems, sources go under `LICENSE-content`.
-- **No GPL deps bundled into runtime.** `LICENSES.json` is the allowlist; `pnpm license:check` enforces. GPL services (e.g., Argdown) are integrated via iframe and never bundled.
-- **Clean-room replacements require evidence.** If a non-friendly dependency is
-  strategically important, follow
-  [`docs/dependency-clean-room.md`](docs/dependency-clean-room.md): benchmark the
-  original, implement independently from a clean spec, and evaluate with a
-  separate reviewer agent before merge.
-- **Provenance is mandatory.** If your work derives from PhET, an existing
-  textbook example, or another open project, record provenance in
-  `container.yaml` where applicable and cite in `sources.md`.
-
-When in doubt, ask in Discussions or open an `escalation` issue. Don't invent.
+The old curriculum-container system is archived in
+`archive/legacy-curriculum-system/`. Do not build new work there unless a
+maintainer asks for a legacy recovery.

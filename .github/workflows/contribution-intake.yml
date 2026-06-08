@@ -1,0 +1,45 @@
+name: Contribution intake
+
+on:
+  pull_request:
+    paths:
+      - "contributions/**"
+      - "scripts/validate-contributions.mjs"
+      - "scripts/organize-contributions.mjs"
+      - "docs/public/contribution-*.md"
+      - ".github/workflows/contribution-intake.yml"
+
+env:
+  NODE_VERSION: "24"
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate contribution package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check contribution bucket
+        run: pnpm contribution:organize -- --check
+
+      - name: Validate contribution shape
+        run: pnpm contribution:validate
