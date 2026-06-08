@@ -19,6 +19,8 @@
     "container:visual-quality": "node scripts/check-container-visual-quality.mjs",
     "container:new": "node scripts/new-container.mjs",
     "container:docs": "node scripts/generate-container-docs.mjs",
+    "contribution:validate": "node scripts/validate-contributions.mjs",
+    "contribution:organize": "node scripts/organize-contributions.mjs",
     "graph:generate": "node scripts/generate-knowledge-graph.mjs",
     "graph:check": "node scripts/check-generated-graph.mjs",
     "roadmap:validate": "node scripts/validate-container-build-queue.mjs",

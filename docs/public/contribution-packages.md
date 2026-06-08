@@ -24,6 +24,14 @@ contributions/
       license.md
 ```
 
+If you do not know the subject bucket yet, put the package in
+`contributions/_incoming/<slug>/`. The organizer can move it after you fill in
+`manifest.yaml`:
+
+```bash
+pnpm contribution:organize -- --write
+```
+
 For advanced apps, replace `simulation.html` with a `simulation/` folder:
 
 ```text
@@ -106,6 +114,23 @@ Before opening a pull request, check:
 - No copyrighted textbook dumps are included.
 - No GPL, AGPL, LGPL, proprietary, or unclear runtime code is included.
 - `license.md` says what is original, adapted, generated, or cited.
+
+## Automated Checks
+
+Pull requests that touch `contributions/` run the contribution intake workflow:
+
+```bash
+pnpm contribution:organize -- --check
+pnpm contribution:validate
+```
+
+The checks verify the package bucket, required files, manifest fields, citation
+presence, license notes, and obvious simulation visual/interactivity signals.
+They do not certify educational accuracy or source quality; maintainers still
+review those.
+
+For the full workflow, read
+[Automated contribution intake](contribution-intake-workflow.md).
 
 ## Review Status
 

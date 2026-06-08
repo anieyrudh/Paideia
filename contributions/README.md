@@ -17,5 +17,26 @@ contributions/
       license.md
 ```
 
+If you are unsure where the package belongs, copy `_template/` into
+`_incoming/` first:
+
+```text
+contributions/
+  _incoming/
+    projectile-motion-lab/
+      manifest.yaml
+      lesson.md
+      simulation.html
+      sources.md
+      license.md
+```
+
+Then run:
+
+```bash
+pnpm contribution:organize -- --write
+pnpm contribution:validate
+```
+
 Read [docs/public/contribution-packages.md](../docs/public/contribution-packages.md)
 before opening a pull request.

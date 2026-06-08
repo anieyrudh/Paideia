@@ -51,6 +51,49 @@ This is intentionally simpler than the current internal container system. The
 goal is to let teachers, students, researchers, and AI-assisted builders
 contribute useful academic material without learning the whole monorepo.
 
+If you are unsure where something belongs, start in `_incoming`:
+
+```text
+contributions/
+  _incoming/
+    my-simulation/
+      manifest.yaml
+      lesson.md
+      simulation.html
+      sources.md
+      license.md
+```
+
+Then run:
+
+```bash
+pnpm contribution:organize -- --write
+pnpm contribution:validate
+```
+
+The organizer moves it to `contributions/<subject>/<slug>/` using
+`manifest.yaml`.
+
+## Automated Intake
+
+Paideia has a dedicated contribution intake workflow for pull requests that add
+or edit `contributions/`.
+
+| Step | What happens |
+| --- | --- |
+| Submit | Add a simple lesson or simulation package under `contributions/`. |
+| Organize | `pnpm contribution:organize -- --check` confirms it is in the right subject bucket. |
+| Validate | `pnpm contribution:validate` checks required files, manifest shape, citations, license notes, and basic simulation visuals/interactivity. |
+| Review | Maintainers review educational quality, accuracy, accessibility, and whether it should be draft, reviewed, or featured. |
+| Publish | Merged packages can be surfaced by the public GitHub Pages library. |
+
+Automation can catch missing files, placeholder text, wrong folders, missing
+citations, and obvious license blockers. It does not certify that the learning
+design or scientific model is correct; that remains human review.
+
+Read the [automated intake workflow](docs/public/contribution-intake-workflow.md)
+for details.
+
 ## Quality Bar
 
 Every accepted contribution should be:
@@ -156,6 +199,8 @@ Common checks:
 | Check generated shell data | `pnpm graph:check` |
 | Run accessibility smoke tests | `pnpm test:a11y` |
 | Build the static Pages artifact | `pnpm build:pages` |
+| Organize contribution packages | `pnpm contribution:organize -- --check` or `--write` |
+| Validate contribution packages | `pnpm contribution:validate` |
 | Build a full container | [Agent workflows](docs/agent-workflows.md) |
 | Understand contribution packages | [Contribution package guide](docs/public/contribution-packages.md) |
 
@@ -184,6 +229,7 @@ dedicated migration lands.
 ## Project Docs
 
 - [Contribution package guide](docs/public/contribution-packages.md)
+- [Automated contribution intake](docs/public/contribution-intake-workflow.md)
 - [AI simulation prompts](docs/public/ai-simulation-prompts.md)
 - [Mission and governance](docs/README.md)
 - [Container specification](docs/container-spec.md)

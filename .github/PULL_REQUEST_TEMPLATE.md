@@ -39,6 +39,13 @@ Record what AI helped with, what you accepted, and what you manually checked.
 
 List commands or manual checks. If a check could not run, explain why.
 
+For contribution packages, include:
+
+```bash
+pnpm contribution:organize -- --check
+pnpm contribution:validate
+```
+
 ## Screenshots / Preview
 
 Attach a screenshot, preview image, or note where the preview can be found.
