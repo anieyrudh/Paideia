@@ -2,65 +2,73 @@
 
 ## What Paideia Is
 
-Paideia is open educational infrastructure for concept-mastery learning across
-institutions. It ships curriculum as container-shaped concept products: each
-container owns one concept, the content and components it declares, citations,
-and a technical audit trail.
+Paideia is an open library for academic simulations and lesson materials.
 
-## The Doctrine
+The repository has two contribution layers:
 
-1. **Declared prediction checkpoint:** when a container declares prediction, any
-   observation-shaped reveal must require a committed prediction first.
-2. **Flexible learning flow:** Predict -> Manipulate -> Observe -> Explain ->
-   Transfer is a useful pattern, not a required UI layout. Containers may use
-   any learner experience that preserves the declared interactions.
-3. **Own the kernels:** reusable math, rendering, state, and pedagogy logic
-   belongs in `core/` packages with explicit contracts.
-4. **Local-first AI:** learner state and draft authoring stay local unless a
-   deliberate integration says otherwise.
-5. **AI as critic:** the Anieyrudh Filter is a targeted review gate for
-   published or high-risk educational work; it does not author student-facing
-   truth on its own.
-6. **Build-first:** demos must be runnable, tested, and inspectable before they
-   are treated as design decisions.
-7. **Falsifiability:** claims in concept cards, sources, and assessments need
-   citations or a tracked `[NEEDS-VERIFICATION]` issue.
+1. **Contribution packages:** lightweight lesson and simulation folders under
+   `contributions/`.
+2. **Full containers:** stricter curriculum units under `a-level/`, `sutd/`,
+   and `shared/`.
+
+The public product should feel like a searchable GitHub-native library for
+academic simulations: easy to contribute to, easy to review, and easy to publish
+through GitHub Pages.
+
+## Doctrine
+
+1. **Visible simulations first:** if something is called a simulation, the
+   learner should see a real visual model immediately. Prediction is a
+   reflection checkpoint, not a blocker.
+2. **One concept at a time:** small focused contributions are easier to review
+   than large curriculum dumps.
+3. **Sources matter:** formulas, claims, datasets, and adapted ideas need
+   citations.
+4. **License clarity:** do not copy incompatible code or copyrighted textbook
+   material. Record provenance.
+5. **Student-facing language:** public pages should not expose raw queue IDs,
+   package names, or internal agent language.
+6. **Reusable foundations:** when full containers need shared domain logic, put
+   that logic in `core/` kernels instead of inlining it in one route.
+7. **AI as assistant and critic:** AI may draft, code, test, or review, but
+   humans remain responsible for factual, licensing, and pedagogical quality.
 
 ## Governance Roles
 
-- **Maintainer:** Anieyrudh R owns repository direction, `core/` contracts,
-  branch protection, licensing, and final merge calls.
-- **Executor:** an agent or contributor implementing a scoped issue or PR.
-- **Branch lead:** teacher or course lead responsible for an institution branch
-  such as `a-level/` or `sutd/`.
-- **Contributor:** anyone proposing content, code, issues, reviews, or docs.
-- **Advisor:** subject or pedagogy reviewer who signs off on published
-  containers.
+- **Maintainer:** owns repository direction, licensing, branch protection, and
+  final merge calls.
+- **Contributor:** proposes lesson packs, simulations, docs, code, issues, or
+  reviews.
+- **Reviewer:** checks pedagogy, source quality, UI/UX, accessibility, and
+  license risk.
+- **Agent:** Codex, Claude Code, or another AI coding assistant working from a
+  scoped prompt.
 
-## Escalation
+## Contribution Status
 
-Use the 1-day block rule. If work is blocked for a day, open an escalation issue
-with the blocker, at least three things tried, the Anieyrudh Filter output, and
-the decision needed from @anieyrudh.
+| Status | Meaning |
+| --- | --- |
+| `draft` | Valid enough to discuss and review. |
+| `reviewed` | Runs, cites sources, and is usable. |
+| `featured` | Strong pedagogy, polished interaction, and teacher-ready support. |
 
-## Adding A New Branch
+## Adding New Work
 
-New institutional branches require an ADR, a new top-level folder, a
-`pnpm-workspace.yaml` entry, CODEOWNERS coverage, and path-filtered CI. Shared
-logic still goes through `core/`; branch folders must not cross-import.
+Use the lightest path that fits:
 
-## Versioning
-
-Branch releases use branch tags such as `alevel-v0.1` and `sutd-v1.0`. Commits
-use Conventional Commits with branch scopes, for example `feat(a-level): ...`
-or `feat(sutd): ...`. Breaking shared API changes use `core!:` and require an
-ADR plus migration plan.
+| Need | Path |
+| --- | --- |
+| Submit a standalone sim or lesson | `contributions/<subject>/<slug>/` |
+| Add a full curriculum slice | full container under `a-level/`, `sutd/`, or `shared/` |
+| Add reusable math/science logic | `core/<kernel>/` with a package contract |
+| Ask for help | GitHub issue or discussion |
 
 ## Licensing
 
-Code is MIT. Curriculum, concept cards, decision matrices, and sources are
-CC-BY-4.0. Third-party notices live in `NOTICE`, and bundled runtime dependency
-licenses must pass `LICENSES.json`.
+Current repository licenses:
+
+- Code: MIT.
+- Learning content: CC-BY-4.0.
 
 The proposed future direction is Apache-2.0 for code and CC-BY-SA-4.0 for
 curriculum content. That is a migration plan, not the current effective license;
@@ -68,12 +76,12 @@ see [Hosting and licensing plan](product/hosting-and-licensing.md).
 
 ## Where To Read Next
 
+- [Contribution packages](public/contribution-packages.md)
+- [AI simulation prompts](public/ai-simulation-prompts.md)
 - [Container specification](container-spec.md)
-- [Public CFE onboarding brief](public/cfe-onboarding.html)
-- [Hosting and licensing plan](product/hosting-and-licensing.md)
-- [Simulation presentation standard](product/simulation-presentation-standard.md)
+- [Visual simulation standard](quality/visual-simulation-standard.md)
+- [Visual exemplar gallery](quality/visual-exemplar-gallery.md)
+- [Agent workflows](agent-workflows.md)
 - [Core module inventory](core-modules.md)
 - [Reuse boundaries and clean-room rewrites](reuse-boundaries.md)
 - [GitHub setup](github-setup.md)
-- [Anieyrudh Filter](../core/aniegpt/aniegpt-system-prompt.md)
-- [Contributing guide](../CONTRIBUTING.md)

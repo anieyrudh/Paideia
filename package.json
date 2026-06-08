@@ -2,7 +2,7 @@
   "name": "paideia",
   "version": "0.0.0",
   "private": true,
-  "description": "Open educational infrastructure. Concept-mastery learning across institutions. Predict → Manipulate → Observe → Explain → Transfer.",
+  "description": "Open library for academic simulations, lesson materials, and full Paideia learning containers.",
   "license": "SEE LICENSE AND LICENSE-content",
   "packageManager": "pnpm@10.15.0",
   "engines": {

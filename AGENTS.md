@@ -3,7 +3,7 @@
 This is the short agent map. Keep it small. For task-specific prompts and
 tool-specific entrypoints, use `docs/agent-workflows.md`.
 
-Open educational monorepo: MIT code + CC-BY-4.0 content, A-Level and SUTD branches, container-shaped delivery, local-first AI.
+Open educational monorepo: MIT code + CC-BY-4.0 content, lightweight contribution packages, full Paideia containers, and local-first AI.
 
 ## Build commands
 
@@ -18,6 +18,7 @@ Open educational monorepo: MIT code + CC-BY-4.0 content, A-Level and SUTD branch
 
 ## Where to read next
 
+- Lightweight contribution packages: `@docs/public/contribution-packages.md`
 - Container shape: `@docs/container-spec.md` (canonical layout; locked)
 - Agent task router: `@docs/agent-workflows.md` (copy-paste prompts and entrypoint map)
 - Schemas: `@core/content-schema/src/index.ts` (Zod, locked; ADR to change)
@@ -30,11 +31,11 @@ Open educational monorepo: MIT code + CC-BY-4.0 content, A-Level and SUTD branch
 - TypeScript strict ALWAYS (`noUncheckedIndexedAccess`, `exactOptionalPropertyTypes`); no `any` in public APIs.
 - All schema validation goes through Zod (v3) in `core/content-schema`.
 - No GPL deps bundled into runtime. Check `LICENSES.json` before adding a dep.
-- Prediction gate is non-negotiable — every sim test asserts the gate blocks reveal.
+- Simulations are live-first: visuals, formulas, controls, and readouts are visible immediately. Prediction is a reflection checkpoint, not a reveal blocker.
 - Cross-branch imports forbidden: `a-level/**` MUST NOT import from `sutd/**` and vice versa (dependency-cruiser enforces).
 - Container shape is enforced by `pnpm container:validate`. Authors compose into the shape; they do not invent files.
 - The Anieyrudh Filter is a critic, never an author. It blocks; it does not write content.
-- PMOE-T loop (Predict → Manipulate → Observe → Explain → Transfer) runs at container level.
+- PMOE-T remains a learning design pattern at container level, but it does not require hiding the model before prediction.
 - Own the kernels via contracts: kernels live in `core/<kernel>/`; sims consume them, never inline math/physics.
 
 ## Commits — Conventional Commits with scope

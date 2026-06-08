@@ -91,11 +91,12 @@ Required outcome:
 - Valid v2 container layout.
 - `container.yaml`, `concept-card.md`, `sources.md`, `TECHNICAL.md`.
 - `concept-map/`, `simulation/`, `problem-solving/`, `media/`, and `embed/`.
-- A prediction-checkpointd simulation when the concept is sim-worthy.
+- A live-first simulation with an embedded prediction checkpoint when the
+  concept is sim-worthy.
 - Formula-backed readouts for any calculation.
-- Playwright tests proving the prediction checkpoint blocks reveal, at least one
-  manipulation changes visible state, and the revealed sim has no critical axe
-  accessibility violations.
+- Playwright tests proving the model is visible on first load, the prediction
+  checkpoint saves reflection, at least one manipulation changes visible state,
+  and the observation state has no critical axe accessibility violations.
 - `TECHNICAL.md` records what failed, what was fixed, and what remains deferred.
 
 Run:

@@ -1,112 +1,132 @@
-# Contributing to Paideia
+# Contributing To Paideia
 
-Paideia is open educational infrastructure. The doctrine — prediction gate, PMOE-T, own-the-kernels, local-first AI, AI-as-critic, build-first, falsifiability — is non-negotiable. The container shape is the API. Read [`AGENTS.md`](AGENTS.md) and [`docs/container-spec.md`](docs/container-spec.md) before you touch anything.
+Paideia is a public library for academic simulations and lesson materials.
+Contributions should be easy to review, easy to run, and safe for teachers and
+learners to reuse.
 
-## Local setup
+You can contribute in two ways:
+
+1. **Simple contribution package** under `contributions/<subject>/<slug>/`.
+2. **Full Paideia container** under `a-level/`, `sutd/`, or `shared/`.
+
+Most new contributors should start with the simple package format.
+
+## Fast Path: A Contribution Package
+
+Copy the template:
+
+```text
+contributions/_template/
+```
+
+Then create:
+
+```text
+contributions/<subject>/<your-slug>/
+  manifest.yaml
+  lesson.md
+  simulation.html
+  preview.png
+  sources.md
+  teacher-notes.md
+  license.md
+```
+
+Read [the contribution package guide](docs/public/contribution-packages.md) for
+the manifest fields and review checklist.
+
+## What A Good Simulation Must Do
+
+- Show a visible model: chart, diagram, graph, animation, canvas, SVG, map, or
+  equivalent.
+- Let the learner manipulate something.
+- Give immediate feedback when controls change.
+- Use student-facing language.
+- Cite sources.
+- Include formulas with formula, substitution, units, result, and legend when
+  formulas matter.
+- Avoid copied textbook material, proprietary code, and GPL/AGPL/LGPL runtime
+  dependencies.
+
+Text-only "simulations" are not accepted as simulations. Submit them as lesson
+packs instead.
+
+## AI-Assisted Contributions
+
+It is fine to use ChatGPT, Claude, Gemini, Codex, Claude Code, or another tool.
+Record what AI helped with in the pull request.
+
+Use [AI simulation prompts](docs/public/ai-simulation-prompts.md) to generate
+output that matches this repository's expected shape.
+
+You remain responsible for:
+
+- checking sources;
+- checking license compatibility;
+- testing the simulation in a browser;
+- removing hallucinated facts;
+- making the visible copy understandable to learners.
+
+## Full Paideia Containers
+
+Full containers are the advanced path. They are appropriate when a contribution
+needs generated curriculum routes, strict runtime tests, shared kernels, or
+featured-quality review.
+
+Read:
+
+- [AGENTS.md](AGENTS.md)
+- [docs/container-spec.md](docs/container-spec.md)
+- [docs/agent-workflows.md](docs/agent-workflows.md)
+- [docs/quality/visual-simulation-standard.md](docs/quality/visual-simulation-standard.md)
+
+Containers should still be one concept per pull request.
+
+## Local Setup
 
 ```bash
-git clone https://github.com/Paideia/paideia.git
-cd paideia
+git clone https://github.com/anieyrudh/Paideia.git
+cd Paideia
 pnpm install
-pnpm test            # vitest, all packages
-pnpm typecheck       # tsc -b
+pnpm test
+pnpm typecheck
 pnpm container:validate
-pnpm boundary        # cross-branch import check
-pnpm license:check   # third-party license allowlist
+pnpm graph:check
+pnpm license:check
 ```
 
-Node 20+ and pnpm 9+ required. If `container:validate` fails on a clean clone, file a `bug` issue — the container shape must always be green on `main`.
+Node 20+ and pnpm 10+ are expected.
 
-## Branch naming
+## Pull Request Rules
 
-Use `feat/<phase>/<scope>/<id>` where:
+- Keep one lesson, simulation, or container per PR.
+- Do not mix unrelated cleanup into a contribution.
+- Include screenshots or a preview image when possible.
+- Cite sources in `sources.md`.
+- Fill in `license.md`.
+- If AI helped, say what it did and what you checked manually.
+- If a check fails, explain whether it is a real issue or an environment-only
+  failure.
 
-- `<phase>` is `a` (Phase A · platform), `b` (Phase B · branches), `c` (Phase C · pilot), or `core` for cross-branch work.
-- `<scope>` is the branch or core module: `a-level`, `sutd`, `core-sim-runtime`, `docs`, etc.
-- `<id>` is a short kebab-case slug or an issue number.
+## Licensing
 
-Examples: `feat/a/core-sim-runtime/pmoet-state-machine`, `fix/b/a-level/shm-prediction-gate-leak`, `chore/core/license-check`.
+Current repository licenses:
 
-## Scoping a PR
+- Code: MIT.
+- Learning content: CC-BY-4.0.
 
-**One branch per PR.** Path-filtered CI runs only the workflows for paths you touched: a PR under `a-level/**` runs the A-Level suite; a PR under `sutd/**` runs the SUTD suite; a PR under `core/**` runs both, because every branch consumes core.
+Do not paste copyrighted textbook material. Do not copy simulation code from
+PhET, commercial products, Stack Overflow answers, or other projects unless the
+license permits reuse and the source is cited.
 
-If you find yourself touching two branches in one PR (other than via `core/`), split it. The Anieyrudh Filter will flag conflated scopes as a P0.
+If a source is useful but not license-compatible, describe the idea in your own
+words, cite the source, and do not copy implementation code.
 
-## The Anieyrudh Filter (run before opening a PR)
+## When In Doubt
 
-Every PR runs the Filter (`core/aniegpt/aniegpt-system-prompt.md`). You run it locally first:
+Open an issue first. A useful issue can be as simple as:
 
-1. Paste the diff (or the relevant slice) into the Filter prompt.
-2. Address every P0 before you push. Address every P1 in the PR or open a tracked issue.
-3. Paste the resulting summary into the PR description AND into the `## Anieyrudh Filter pass` section of each container's `TECHNICAL.md` you touched.
-
-Containers with an empty Filter section block merge. The `daily-compliance-audit.yml` workflow opens issues for any that slip through.
-
-The Filter is a critic. It does not write content. You write the content; the Filter blocks bad shipments.
-
-## Changing `core/` (the core change protocol)
-
-`core/` modules are consumed by every branch. Breaking changes propagate. Therefore:
-
-1. Open a `core-change-proposal` issue **before** writing code. Enumerate every current consumer, the current public interface, the proposed interface, what does NOT change, and the migration plan.
-2. Get maintainer approval on the issue.
-3. Open a PR. The PR must include changes to every affected branch's consumers in the same PR (or a documented migration sequence). Both branches' full test suites must be green.
-4. Breaking changes use the `core!:` commit prefix and require an ADR under `docs/adr/`.
-
-Single-write discipline: only the maintainer (currently @anieyrudh) merges to `core/`. CODEOWNERS enforces.
-
-## The PR template
-
-The PR template (`.github/PULL_REQUEST_TEMPLATE.md`) asks for:
-
-- **Branch** — a-level / sutd / core / docs (one).
-- **Original outcome** — the natural-language ask in the author's own words. Preserves the original intent before it becomes diff-speak.
-- **What this PR does** — concrete, not aspirational. One paragraph.
-- **What AI did / what I rejected** — Agentic Presence requires you to name what AI contributed and what you turned down. The student/author remains the author of the reasoning.
-- **Anieyrudh Filter pass** — checkbox that the Filter ran and the TECHNICAL.md section is non-empty.
-- **Definition of Done** — tests, CI, validator, no orphan `[NEEDS-VERIFICATION]` flags, dual-branch CI for `core/` changes.
-- **Linked issues** — `Closes #...`.
-
-If a section doesn't apply, write "n/a" and a one-line reason. Do not delete sections.
-
-## Commit conventions
-
-Conventional Commits with branch scopes:
-
-- `feat(a-level): add SHM container` — A-Level branch feature.
-- `feat(sutd): add design-thinking primer` — SUTD branch feature.
-- `feat(core): expose KernelResult.cache_key` — additive core change.
-- `fix(core): correct PMOE-T transition guard` — non-breaking core fix.
-- `core!: rename ConceptPackageSpec.items.sims` — breaking; requires ADR.
-- `docs:`, `chore:`, `test:`, `refactor:` — as usual.
-
-Pre-commit hook runs `pnpm lint && pnpm test && pnpm container:validate`. Do not bypass with `--no-verify`; if a hook fails, fix the cause.
-
-## Scaffolding a container
-
-```bash
-pnpm container:new
-```
-
-Prompts for branch, subject, package id, title, primary interaction type. Produces the full canonical directory tree from `core/docs-templates/`. Do not hand-author the structure — compose your content into the shape.
-
-To remix an existing container, copy it in a feature branch, preserve
-attribution in `sources.md`, and run `pnpm container:validate`. A dedicated
-remix helper can be added later.
-
-## License discipline
-
-- **Code is MIT.** New code goes under `LICENSE`.
-- **Content is CC-BY-4.0.** Concept cards, decision matrices, transfer problems, sources go under `LICENSE-content`.
-- **No GPL deps bundled into runtime.** `LICENSES.json` is the allowlist; `pnpm license:check` enforces. GPL services (e.g., Argdown) are integrated via iframe and never bundled.
-- **Clean-room replacements require evidence.** If a non-friendly dependency is
-  strategically important, follow
-  [`docs/dependency-clean-room.md`](docs/dependency-clean-room.md): benchmark the
-  original, implement independently from a clean spec, and evaluate with a
-  separate reviewer agent before merge.
-- **Provenance is mandatory.** If your work derives from PhET, an existing
-  textbook example, or another open project, record provenance in
-  `container.yaml` where applicable and cite in `sources.md`.
-
-When in doubt, ask in Discussions or open an `escalation` issue. Don't invent.
+- the topic;
+- the learner level;
+- what students misunderstand;
+- what an ideal simulation would let them manipulate and observe.

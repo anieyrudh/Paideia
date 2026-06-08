@@ -1,37 +1,48 @@
-## Branch
+## Contribution Type
 
-- [ ] a-level
-- [ ] sutd
-- [ ] core
-- [ ] docs
+- [ ] Simple contribution package under `contributions/`
+- [ ] Full Paideia container under `a-level/`, `sutd/`, or `shared/`
+- [ ] Core/kernel change
+- [ ] Docs/governance
+- [ ] Other
 
-## Original outcome the author described
-
-One paragraph preserving the natural-language ask.
-
-## What this PR does
+## What This PR Adds Or Changes
 
 One concrete paragraph. State what changed, not what the project hopes to do.
 
-## What AI did / what I rejected
+## Audience And Learning Goal
 
-Record the agentic presence: what assistance was used, what was accepted, and
-what paths were rejected.
+- Audience:
+- Learning goal:
 
-## Anieyrudh Filter pass
+## Simulation / Lesson Quality
 
-- [ ] Filter section in `TECHNICAL.md` is non-empty
-- [ ] P0 issues addressed
-- [ ] P1 issues addressed or deferred with linked issue
+- [ ] Learner-facing copy is clear and avoids raw internal IDs.
+- [ ] Simulations have a visible model, not only text.
+- [ ] Controls visibly change the model or readout.
+- [ ] Formula sections include formula, substitution, units, result, and legend where relevant.
+- [ ] Teacher notes or usage guidance are included when useful.
 
-## Definition of Done
+## Sources And License
 
-- [ ] Tests added or updated
-- [ ] CI green locally
-- [ ] `pnpm container:validate` passes
-- [ ] No `[NEEDS-VERIFICATION]` flags without a tracked issue
-- [ ] If this touches `core/`, both branches' suites are green
+- [ ] `sources.md` or equivalent citations are included.
+- [ ] No copied textbook dumps.
+- [ ] No private student data.
+- [ ] No GPL, AGPL, LGPL, proprietary, or unclear runtime code is bundled.
+- [ ] `license.md` or equivalent provenance notes are included for contribution packages.
 
-## Linked issues
+## AI Assistance
+
+Record what AI helped with, what you accepted, and what you manually checked.
+
+## Checks Run
+
+List commands or manual checks. If a check could not run, explain why.
+
+## Screenshots / Preview
+
+Attach a screenshot, preview image, or note where the preview can be found.
+
+## Linked Issues
 
 Closes #

@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Documentation
-    url: https://github.com/Paideia/paideia/blob/main/docs/README.md
+    url: https://github.com/anieyrudh/Paideia/blob/main/docs/README.md
     about: Mission, governance, doctrine.
-  - name: Container specification
-    url: https://github.com/Paideia/paideia/blob/main/docs/container-spec.md
-    about: Uniform container layout for every ConceptPackage.
+  - name: Contribution package guide
+    url: https://github.com/anieyrudh/Paideia/blob/main/docs/public/contribution-packages.md
+    about: Lightweight lesson and simulation package format.

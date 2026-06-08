@@ -1,172 +1,141 @@
 # Paideia
 
-Paideia is a public project for building better learning tools.
+Paideia is an open library for academic simulations and lesson materials.
 
-The goal is simple: take difficult ideas, turn them into small interactive
-lessons, and make those lessons easy for teachers, students, and contributors
-to improve.
+The simple idea: if someone can design a useful simulation, diagram, lesson, or
+teacher note, Paideia should make it easy to publish, review, improve, and reuse.
 
-You do not need to be a software engineer to help. If you can spot a confusing
-topic, explain how a student gets stuck, check a source, sketch a better
-diagram, or test a lesson, you can contribute.
-
-## What This Project Builds
-
-Each lesson focuses on one idea.
-
-For example, a lesson on motion might include:
-
-| Part | What the learner sees |
-| --- | --- |
-| Clear explanation | The idea in plain language, then the formal definition |
-| Interactive model | Sliders, diagrams, motion, graphs, or decisions the learner can change |
-| Prediction step | A question before the answer is revealed |
-| Worked method | The formula, substitution, units, and reasoning used |
-| Common mistakes | The wrong turns students often take, shown directly |
-| Connections | What the idea depends on and what it unlocks next |
+You do not need to understand the whole codebase to contribute. You can submit a
+small lesson pack, a standalone HTML simulation, a React simulation, an external
+embed, source corrections, screenshots, or review notes. The repository keeps
+the work versioned; GitHub Pages publishes the public library.
 
 ```mermaid
 flowchart LR
-  A["A confusing idea"] --> B["A clear explanation"]
-  B --> C["A hands-on model"]
-  C --> D["A worked method"]
-  D --> E["A reusable lesson"]
+  A["Contributor builds a lesson or simulation"] --> B["Paideia validates shape, sources, license, and accessibility"]
+  B --> C["Maintainers review"]
+  C --> D["GitHub Pages publishes the library"]
+  D --> E["Teachers and learners reuse it"]
 ```
+
+## What You Can Contribute
+
+| Contribution | Good for | Minimum files |
+| --- | --- | --- |
+| Lesson pack | A clear explanation, worked example, or teacher-ready activity | `manifest.yaml`, `lesson.md`, `sources.md`, `license.md` |
+| Standalone simulation | Sim made in ChatGPT, Claude, Gemini Canvas, p5.js, vanilla JS, or similar | `manifest.yaml`, `simulation.html`, `lesson.md`, `sources.md`, `license.md` |
+| Advanced simulation | React, TypeScript, Three.js, or reusable code | `manifest.yaml`, `simulation/`, `lesson.md`, `sources.md`, `license.md` |
+| External embed | Existing friendly-licensed interactive hosted elsewhere | `manifest.yaml`, `lesson.md`, `sources.md`, `license.md` |
+| Full Paideia container | Product-quality vertical slice with tests and generated shell routing | Current `a-level/`, `sutd/`, or `shared/` container shape |
+
+Start with [the contribution package guide](docs/public/contribution-packages.md).
+
+## The Simple Folder Shape
+
+Most people should start here:
+
+```text
+contributions/
+  physics/
+    projectile-motion-lab/
+      manifest.yaml
+      lesson.md
+      simulation.html
+      preview.png
+      sources.md
+      teacher-notes.md
+      license.md
+```
+
+This is intentionally simpler than the current internal container system. The
+goal is to let teachers, students, researchers, and AI-assisted builders
+contribute useful academic material without learning the whole monorepo.
+
+## Quality Bar
+
+Every accepted contribution should be:
+
+| Requirement | What it means |
+| --- | --- |
+| Interactive when it claims to be a simulation | Learners can manipulate something and see a visual change. |
+| Visual | Simulations should show graphs, diagrams, motion, plots, maps, canvases, or equivalent models. Text-only simulations are not enough. |
+| Sourced | Claims, equations, datasets, and adapted ideas cite sources in `sources.md`. |
+| License-friendly | Code is MIT-compatible unless isolated and documented. Content is CC-BY-4.0 compatible under the current repo license. |
+| Student-facing | Visible copy avoids raw package names, queue IDs, and code terminology. |
+| Formula-clear | Where formulas matter, show the formula, substitution, units, result, and legend. |
+| Accessible enough to review | Keyboard path, readable labels, and no obvious serious accessibility issues. |
+
+Quality levels are explicit:
+
+| Level | Meaning |
+| --- | --- |
+| Draft | Shape is valid and the idea can be reviewed. |
+| Reviewed | Runs, cites sources, and is usable by a learner or teacher. |
+| Featured | Strong pedagogy, polished interaction, good visuals, and clear teacher support. |
 
 ## How To Start
 
-You can help even if you do not write code. Pick the path closest to what you
-want to do.
-
 ### I Have No Code Experience
 
-Start with the public onboarding brief:
-[Contributing without a coding background](docs/public/cfe-onboarding.html).
-Good first contributions are spotting confusing explanations, checking whether
-a diagram makes sense, trying a lesson as a learner, or listing the mistake a
-student is likely to make.
+Open an issue with the concept, audience, and what students usually find
+confusing. You can also review a lesson, check sources, suggest diagrams, or
+write teacher notes.
 
-### I Found A Learning Problem
+Use the [simulation idea issue template](.github/ISSUE_TEMPLATE/sim-idea.md).
 
-Open a small issue using the [sim idea template](.github/ISSUE_TEMPLATE/sim-idea.md).
-Describe the learner, the confusing idea, and what a good lesson should help
-them notice. You do not need to propose code.
+### I Made A Simulation With ChatGPT, Claude, Or Gemini
 
-### I Want An Agent To Help Me
+Use the simple package format:
 
-Use the copy-paste prompts in [Agent workflows](docs/agent-workflows.md).
-They tell Codex, Claude Code, or another coding agent exactly what to read and
-what to avoid. The point is to keep the task narrow enough that the agent can
-make a useful pull request without wandering through the whole repository.
+1. Copy `contributions/_template/`.
+2. Put your simulation in `simulation.html`.
+3. Fill in `manifest.yaml`.
+4. Add sources and license notes.
+5. Open a pull request.
 
-### I Want To Build A Container
+Use [AI simulation prompts](docs/public/ai-simulation-prompts.md) to generate a
+package that is easier to review.
 
-Follow the [product-quality container prompt](docs/agent-workflows.md#prompt-build-one-product-quality-container).
-A container is one complete learning unit: explanation, interactive model,
-worked method, concept map, sources, tests, and review notes.
+### I Want To Use Codex Or Claude Code
 
-| If this sounds like you | Best next step |
+Use the advanced prompt in [AI simulation prompts](docs/public/ai-simulation-prompts.md).
+It tells coding agents how to create one contribution package without crawling
+the whole repo.
+
+### I Want To Build A Full Paideia Container
+
+Use [Agent workflows](docs/agent-workflows.md) and
+[Container specification](docs/container-spec.md). This is the heavier path for
+featured curriculum slices that need tests, generated routes, and shared
+kernels.
+
+## Hosting Direction
+
+The default deployment target is GitHub Pages:
+
+- static lesson pages;
+- client-side simulations;
+- searchable gallery;
+- no accounts required;
+- every change reviewed through pull requests.
+
+Railway or another backend only becomes necessary later if Paideia needs
+accounts, private drafts, upload forms, moderation queues, analytics, or
+server-side AI generation.
+
+## Repository Map
+
+| Path | Purpose |
 | --- | --- |
-| "I can explain this better." | Suggest a concept-card improvement. |
-| "I can test lessons with students." | Try a reviewed container and report where the flow breaks. |
-| "I can design diagrams or interactions." | Propose a clearer media or simulation direction. |
-| "I can review quality." | Use the [review prompt](docs/agent-workflows.md#prompt-evaluate-one-container-pr). |
-
-## What Is Ready Now
-
-The first working path is A-Level Physics. It already has reviewed interactive
-lessons for:
-
-| Area | Status |
-| --- | --- |
-| Physical quantities and units | Reviewed |
-| Scalars and vectors | Reviewed |
-| Resolving vectors | Reviewed |
-| Kinematics in one dimension | Reviewed |
-| Forces and equilibrium | Reviewed |
-
-The next recommended A-Level lesson is **work, energy, power**, because it
-builds directly on force balance and motion.
-
-SUTD also has first reviewed slices across several pillars:
-
-| Pillar | First reviewed slice |
-| --- | --- |
-| Freshmore | Vector transformations |
-| EPD | PID step response |
-| ESD | Linear programming feasible region |
-| CSD | Graph search and shortest paths |
-| DAI | Trust calibration |
-
-The next SUTD priority is a clean ASD **load path and daylight tradeoff** slice.
-
-## How The Work Scales
-
-Paideia can grow in parallel when each team or agent owns one small lesson at a
-time and the shared checks stay green.
-
-```mermaid
-flowchart TB
-  R["Build queue"] --> A["A-Level lesson"]
-  R --> S["SUTD lesson"]
-  R --> K["Shared math or science tool"]
-  A --> Q["Review and tests"]
-  S --> Q
-  K --> Q
-  Q --> M["Merge"]
-```
-
-Parallel work is safe when:
-
-| Needed before a large wave | Current state |
-| --- | --- |
-| A clear build queue | Started in [container-build-queue.yaml](docs/product/container-build-queue.yaml) |
-| One lesson per pull request | Working well |
-| Shared tools for repeated math and simulations | Many core tools exist, more will be added as needed |
-| Tests that catch broken lessons | In place for the current A-Level shell |
-| Simple instructions for humans and AI agents | This README and [Agent workflows](docs/agent-workflows.md) are the entrypoints |
-
-That means we can already run several focused builds at the same time. For a
-large SUTD-wide wave, the next step is to seed the SUTD build queue and shell
-with the first concepts for EPD, CSD, ESD, ASD, and Freshmore before assigning
-many agents.
-
-## For AI Coding Agents
-
-Agents should not crawl the whole repository.
-
-Use this order:
-
-1. Read [AGENTS.md](AGENTS.md) for the short project rules.
-2. Read [Agent workflows](docs/agent-workflows.md) for the exact prompt type.
-3. Read only the files named by that prompt.
-4. Work on one target.
-5. Run the listed checks before opening a pull request.
-
-The agent folders have different purposes:
-
-| Folder | Purpose |
-| --- | --- |
-| `.agents/skills/` | Main reusable skills for agent workflows |
-| `.claude/skills/` | Mirror of the same skills for Claude Code |
-| `.codex/agents/` | Codex reviewer role definitions |
-| `.claude/agents/` | Claude reviewer role definitions |
-| `.cursor/rules/` | Cursor editor rules |
-
-The single human-readable map is [docs/agent-workflows.md](docs/agent-workflows.md).
-Run `pnpm agent:validate` to check that the agent instructions stay consistent.
-
-## Safety Rules
-
-These rules keep the project useful and legally simple:
-
-| Rule | Why it matters |
-| --- | --- |
-| Cite sources | Learners and teachers need to check where claims came from. |
-| Do not paste textbook chapters | Summarize, explain, and cite instead of copying. |
-| Do not include private student data | Build examples with fictional or public data only. |
-| Do not copy incompatible code | Avoid GPL, AGPL, LGPL, proprietary, or unclear simulation code in the product. |
-| Keep AI in the assistant role | AI can draft, test, and critique; humans remain responsible for the lesson. |
+| `contributions/` | Simple contributed lesson/simulation packages. |
+| `a-level/` | Current A-Level curriculum containers. |
+| `sutd/` | Current SUTD curriculum containers. |
+| `shared/` | Cross-curriculum containers. |
+| `core/` | Reusable kernels, schemas, charting, plotting, and simulation runtime pieces. |
+| `testing/sim-harness/` | Direct browser harness for all registered simulations. |
+| `docs/public/` | Human-friendly contributor docs. |
+| `docs/quality/` | Quality standards, audits, and exemplar gallery. |
+| `docs/agents/` | Agent-specific runbooks for Codex and Claude Code. |
 
 ## For Developers
 
@@ -178,39 +147,47 @@ pnpm graph:check
 pnpm agent:validate
 ```
 
-Common tasks:
+Common checks:
 
 | Task | Command or guide |
 | --- | --- |
-| Add a lesson | `pnpm container:new` |
-| Validate lessons | `pnpm container:validate` |
-| Regenerate lesson docs | `pnpm container:docs <container-path>` |
-| Check generated lesson graph | `pnpm graph:check` |
+| Validate current containers | `pnpm container:validate` |
+| Check visual simulation contracts | `pnpm container:visual-quality` |
+| Check generated shell data | `pnpm graph:check` |
+| Run accessibility smoke tests | `pnpm test:a11y` |
 | Build the static Pages artifact | `pnpm build:pages` |
-| Design simulation formula/readout UI | [Simulation presentation standard](docs/product/simulation-presentation-standard.md) |
-| Follow the build roadmap | [Container roadmap](docs/product/container-roadmap.md) |
-| Run a container wave | [Container wave runbook](docs/product/container-wave-runbook.md) |
-| Understand hosting and licensing direction | [Hosting and licensing plan](docs/product/hosting-and-licensing.md) |
+| Build a full container | [Agent workflows](docs/agent-workflows.md) |
+| Understand contribution packages | [Contribution package guide](docs/public/contribution-packages.md) |
 
-## Project Docs
+## Safety And Licensing
 
-- [Mission and governance](docs/README.md)
-- [Agent workflows](docs/agent-workflows.md)
-- [Container specification](docs/container-spec.md)
-- [Product roadmap](docs/product/container-roadmap.md)
-- [Container wave runbook](docs/product/container-wave-runbook.md)
-- [Hosting and licensing plan](docs/product/hosting-and-licensing.md)
-- [Simulation presentation standard](docs/product/simulation-presentation-standard.md)
-- [Core module inventory](docs/core-modules.md)
-- [GitHub setup](docs/github-setup.md)
-- [Clean-room dependency guide](docs/dependency-clean-room.md)
+These rules keep the library useful and legally safe:
 
-## License
+| Rule | Why it matters |
+| --- | --- |
+| Cite sources | Teachers and learners need to verify claims. |
+| Do not paste textbook chapters | Explain in your own words and cite instead. |
+| Do not include private student data | Use fictional, synthetic, or public data only. |
+| Do not copy proprietary or GPL simulation code | Keep the public site easy to reuse and deploy. |
+| Record AI assistance | AI can help draft or code, but the contribution still needs human review. |
+
+Current licenses:
 
 - Code: [MIT](LICENSE)
 - Learning content: [CC-BY-4.0](LICENSE-content)
 - Third-party notices: [NOTICE](NOTICE)
 
-The proposed future direction is Apache-2.0 for code and CC-BY-SA-4.0 for
-curriculum content. That requires a dedicated migration PR; the current license
-files remain authoritative until then.
+The future licensing direction may move to Apache-2.0 for code and CC-BY-SA-4.0
+for content, but the current license files remain authoritative until a
+dedicated migration lands.
+
+## Project Docs
+
+- [Contribution package guide](docs/public/contribution-packages.md)
+- [AI simulation prompts](docs/public/ai-simulation-prompts.md)
+- [Mission and governance](docs/README.md)
+- [Container specification](docs/container-spec.md)
+- [Visual simulation standard](docs/quality/visual-simulation-standard.md)
+- [Visual exemplar gallery](docs/quality/visual-exemplar-gallery.md)
+- [Agent workflows](docs/agent-workflows.md)
+- [Hosting and licensing plan](docs/product/hosting-and-licensing.md)

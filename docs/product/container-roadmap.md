@@ -130,8 +130,8 @@ What it proved:
 
 - A v2 container can drive the generated A-Level shell without hand-written
   catalogue metadata.
-- `core/prediction-gate` blocks reveal in the learner route and remains
-  testable through package and shell tests.
+- `core/prediction-gate` now acts as an embedded reflection checkpoint while
+  the learner route keeps the model visible from first load.
 - Content markdown, `container.yaml`, `simulation.yaml`, concept-map files,
   problem-solving artifacts, media, embed API, and generated graph data can stay
   in one auditable container shape.
@@ -141,8 +141,9 @@ What it proved:
 - Formula substitution is part of the simulation contract, not optional copy.
   Follow the simulation presentation standard: LaTeX formula block, nearby
   color-coded legend, substituted values, units, and interpretation.
-- Route-level Playwright and axe checks are required after reveal, because
-  pre-reveal tests do not prove the actual sim is usable.
+- Route-level Playwright and axe checks are required against the live
+  observation state, because static metadata does not prove the actual sim is
+  usable.
 - Follow-on slices can reuse the same package, shell route, sim-harness, and
   generated graph path without reworking the platform.
 
