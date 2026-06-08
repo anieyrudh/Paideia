@@ -1,0 +1,27 @@
+title: "Get It"
+slug: "get-it"
+subject: "study-tools"
+level: "General"
+topic: "PDF-based study companion"
+type: "external-embed"
+status: "draft"
+summary: >
+  A reference study-tool project that turns a PDF into concept tags,
+  visualizations, study tools, and a mastery map.
+audience:
+  - "students"
+  - "builders"
+  - "teachers"
+license:
+  code: "Apache-2.0"
+  content: "CC-BY-4.0"
+simulation:
+  kind: "external-embed"
+  url: "https://github.com/beltromatti/get-it"
+  interactive: true
+  visual: "required"
+quality:
+  has_sources: true
+  has_teacher_notes: false
+  has_formula_legend: false
+  has_accessibility_notes: false

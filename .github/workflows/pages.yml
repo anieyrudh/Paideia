@@ -4,32 +4,22 @@ on:
   pull_request:
     paths:
       - ".github/workflows/pages.yml"
-      - "a-level/**"
-      - "shared/**"
-      - "sutd/**"
-      - "core/**"
+      - "contributions/**"
+      - "docs/public/**"
       - "scripts/build-pages.mjs"
-      - "scripts/generate-knowledge-graph.mjs"
       - "package.json"
       - "pnpm-lock.yaml"
       - "pnpm-workspace.yaml"
-      - "tsconfig.base.json"
-      - "tsconfig.json"
   push:
     branches: [main]
     paths:
       - ".github/workflows/pages.yml"
-      - "a-level/**"
-      - "shared/**"
-      - "sutd/**"
-      - "core/**"
+      - "contributions/**"
+      - "docs/public/**"
       - "scripts/build-pages.mjs"
-      - "scripts/generate-knowledge-graph.mjs"
       - "package.json"
       - "pnpm-lock.yaml"
       - "pnpm-workspace.yaml"
-      - "tsconfig.base.json"
-      - "tsconfig.json"
   workflow_dispatch:
 
 permissions:
@@ -66,12 +56,6 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Regenerate shell catalogue data
-        run: pnpm graph:generate
-
-      - name: Verify generated shell catalogue freshness
-        run: pnpm graph:check
 
       - name: Build Pages artifact
         run: pnpm build:pages

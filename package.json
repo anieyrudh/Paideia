@@ -2,40 +2,21 @@
   "name": "paideia",
   "version": "0.0.0",
   "private": true,
-  "description": "Open library for academic simulations, lesson materials, and full Paideia learning containers.",
+  "description": "Static library for academic mini-apps, simulations, and lesson materials.",
   "license": "SEE LICENSE AND LICENSE-content",
   "packageManager": "pnpm@10.15.0",
   "engines": {
     "node": ">=20"
   },
   "scripts": {
-    "build": "pnpm -r build",
+    "build": "pnpm build:pages",
     "build:pages": "node scripts/build-pages.mjs",
-    "test": "pnpm -r test",
-    "lint": "pnpm -r lint",
-    "typecheck": "tsc -b",
-    "container:validate": "node scripts/validate-containers.mjs",
-    "container:quality": "node scripts/check-container-quality.mjs",
-    "container:visual-quality": "node scripts/check-container-visual-quality.mjs",
-    "container:new": "node scripts/new-container.mjs",
-    "container:docs": "node scripts/generate-container-docs.mjs",
+    "test": "pnpm contribution:organize -- --check && pnpm contribution:validate",
+    "lint": "node --check scripts/build-pages.mjs && node --check scripts/organize-contributions.mjs && node --check scripts/validate-contributions.mjs",
     "contribution:validate": "node scripts/validate-contributions.mjs",
-    "contribution:organize": "node scripts/organize-contributions.mjs",
-    "graph:generate": "node scripts/generate-knowledge-graph.mjs",
-    "graph:check": "node scripts/check-generated-graph.mjs",
-    "roadmap:validate": "node scripts/validate-container-build-queue.mjs",
-    "agent:validate": "node scripts/validate-agent-docs.mjs",
-    "test:a11y": "node scripts/run-a11y.mjs",
-    "axe": "pnpm -r axe",
-    "boundary": "dependency-cruiser --config .dependency-cruiser.cjs core shared a-level sutd",
-    "license:check": "node scripts/check-licenses.mjs"
+    "contribution:organize": "node scripts/organize-contributions.mjs"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
-    "dependency-cruiser": "^16.0.0",
-    "typescript": "^5.6.0",
-    "vitest": "^4.1.7",
-    "yaml": "^2.9.0",
-    "zod": "^3.23.0"
+    "yaml": "^2.9.0"
   }
 }

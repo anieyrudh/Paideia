@@ -151,14 +151,8 @@ Every package starts as `draft`.
 - A hard-to-run app with server requirements but no clear reason.
 - Private student data, real grades, or identifiable learner data.
 
-## Full Containers
+## Legacy Archive
 
-Full Paideia containers still exist. Use them when you need generated curriculum
-routes, strict simulation tests, shared kernels, or featured-quality curriculum
-integration.
-
-For that path, read:
-
-- [Container specification](../container-spec.md)
-- [Agent workflows](../agent-workflows.md)
-- [Visual simulation standard](../quality/visual-simulation-standard.md)
+The older curriculum-container system is archived in
+`archive/legacy-curriculum-system/`. New public submissions should use the
+simple package format on this page.

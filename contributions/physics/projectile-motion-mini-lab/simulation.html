@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Projectile Motion Mini Lab</title>
+    <style>
+      :root {
+        color-scheme: light;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: #f8fafc;
+        color: #111827;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        padding: 20px;
+        background: #f8fafc;
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(240px, 0.6fr);
+        gap: 16px;
+        max-width: 980px;
+        margin: 0 auto;
+      }
+
+      section {
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        background: #fff;
+        padding: 16px;
+      }
+
+      h1, h2 {
+        margin-top: 0;
+      }
+
+      svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      label {
+        display: grid;
+        gap: 6px;
+        margin: 14px 0;
+        font-weight: 700;
+      }
+
+      input {
+        width: 100%;
+      }
+
+      .readouts {
+        display: grid;
+        gap: 8px;
+        margin-top: 16px;
+      }
+
+      .readout {
+        border-radius: 8px;
+        background: #ecfeff;
+        padding: 10px;
+      }
+
+      @media (max-width: 760px) {
+        main {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section aria-label="Projectile trajectory">
+        <h1>Projectile Motion Mini Lab</h1>
+        <svg id="plot" viewBox="0 0 700 420" role="img" aria-label="Projectile path with peak and landing point">
+          <rect x="40" y="30" width="620" height="330" fill="#f8fafc" stroke="#cbd5e1" />
+          <line x1="60" y1="340" x2="640" y2="340" stroke="#475569" stroke-width="3" />
+          <line x1="60" y1="340" x2="60" y2="60" stroke="#475569" stroke-width="3" />
+          <path id="path" d="" fill="none" stroke="#2563eb" stroke-width="5" stroke-linecap="round" />
+          <circle id="peak" cx="0" cy="0" r="8" fill="#16a34a" />
+          <circle id="landing" cx="0" cy="0" r="8" fill="#f97316" />
+          <text x="62" y="382" fill="#475569" font-size="16">horizontal distance</text>
+          <text x="86" y="72" fill="#475569" font-size="16">height</text>
+        </svg>
+      </section>
+
+      <section aria-label="Controls and readouts">
+        <h2>Controls</h2>
+        <label>
+          Launch speed: <span id="speedLabel">24 m/s</span>
+          <input id="speed" type="range" min="8" max="40" value="24" />
+        </label>
+        <label>
+          Launch angle: <span id="angleLabel">45 degrees</span>
+          <input id="angle" type="range" min="10" max="80" value="45" />
+        </label>
+
+        <div class="readouts" aria-live="polite">
+          <div class="readout" id="range">Range: 58.7 m</div>
+          <div class="readout" id="height">Maximum height: 14.7 m</div>
+          <div class="readout" id="time">Flight time: 3.5 s</div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const g = 9.81;
+      const speed = document.querySelector("#speed");
+      const angle = document.querySelector("#angle");
+      const speedLabel = document.querySelector("#speedLabel");
+      const angleLabel = document.querySelector("#angleLabel");
+      const path = document.querySelector("#path");
+      const peak = document.querySelector("#peak");
+      const landing = document.querySelector("#landing");
+      const rangeReadout = document.querySelector("#range");
+      const heightReadout = document.querySelector("#height");
+      const timeReadout = document.querySelector("#time");
+
+      function update() {
+        const v = Number(speed.value);
+        const thetaDeg = Number(angle.value);
+        const theta = (thetaDeg * Math.PI) / 180;
+        const range = (v * v * Math.sin(2 * theta)) / g;
+        const height = (v * v * Math.sin(theta) * Math.sin(theta)) / (2 * g);
+        const time = (2 * v * Math.sin(theta)) / g;
+        const scaleX = 560 / Math.max(35, range);
+        const scaleY = 260 / Math.max(10, height * 1.2);
+
+        const points = [];
+        for (let i = 0; i <= 48; i += 1) {
+          const t = (time * i) / 48;
+          const x = v * Math.cos(theta) * t;
+          const y = v * Math.sin(theta) * t - 0.5 * g * t * t;
+          points.push([60 + x * scaleX, 340 - y * scaleY]);
+        }
+
+        path.setAttribute("d", points.map(([x, y], index) => `${index === 0 ? "M" : "L"} ${x.toFixed(1)} ${y.toFixed(1)}`).join(" "));
+        peak.setAttribute("cx", String(60 + (range / 2) * scaleX));
+        peak.setAttribute("cy", String(340 - height * scaleY));
+        landing.setAttribute("cx", String(60 + range * scaleX));
+        landing.setAttribute("cy", "340");
+
+        speedLabel.textContent = `${v} m/s`;
+        angleLabel.textContent = `${thetaDeg} degrees`;
+        rangeReadout.textContent = `Range: ${range.toFixed(1)} m`;
+        heightReadout.textContent = `Maximum height: ${height.toFixed(1)} m`;
+        timeReadout.textContent = `Flight time: ${time.toFixed(1)} s`;
+      }
+
+      speed.addEventListener("input", update);
+      angle.addEventListener("input", update);
+      update();
+    </script>
+  </body>
+</html>

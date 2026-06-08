@@ -169,8 +169,8 @@ function validateFiles(packageDir, manifest) {
   if (!isFile(join(packageDir, "teacher-notes.md"))) {
     warn(rel(packageDir), "teacher-notes.md is recommended");
   }
-  if (!isFile(join(packageDir, "preview.png"))) {
-    warn(rel(packageDir), "preview.png is recommended for the public gallery");
+  if (!isFile(join(packageDir, "preview.png")) && !isFile(join(packageDir, "preview.svg"))) {
+    warn(rel(packageDir), "preview.png or preview.svg is recommended for the public gallery");
   }
 
   if (manifest.type === "lesson") return;

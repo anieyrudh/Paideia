@@ -1,8 +1,6 @@
 ## Contribution Type
 
 - [ ] Simple contribution package under `contributions/`
-- [ ] Full Paideia container under `a-level/`, `sutd/`, or `shared/`
-- [ ] Core/kernel change
 - [ ] Docs/governance
 - [ ] Other
 
@@ -20,7 +18,7 @@ One concrete paragraph. State what changed, not what the project hopes to do.
 - [ ] Learner-facing copy is clear and avoids raw internal IDs.
 - [ ] Simulations have a visible model, not only text.
 - [ ] Controls visibly change the model or readout.
-- [ ] Formula sections include formula, substitution, units, result, and legend where relevant.
+- [ ] Formula sections include formula, substitution, units, result, and legend where useful.
 - [ ] Teacher notes or usage guidance are included when useful.
 
 ## Sources And License

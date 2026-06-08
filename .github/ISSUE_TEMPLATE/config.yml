@@ -2,7 +2,7 @@ blank_issues_enabled: false
 contact_links:
   - name: Documentation
     url: https://github.com/anieyrudh/Paideia/blob/main/docs/README.md
-    about: Mission, governance, doctrine.
+    about: Project overview and contribution docs.
   - name: Contribution package guide
     url: https://github.com/anieyrudh/Paideia/blob/main/docs/public/contribution-packages.md
     about: Lightweight lesson and simulation package format.

@@ -1,8 +1,15 @@
 # Paideia
 
-Paideia is an open library for academic simulations and lesson materials: a
-public place where people can share small interactive lessons, improve them
-together, and publish them for teachers and learners.
+Paideia is a simple public library for academic mini-apps, simulations, and
+lesson materials.
+
+The whole active architecture is:
+
+```text
+people submit folders -> checks run -> GitHub Pages lists the folders
+```
+
+No curriculum engine. No core-kernel system. No generated knowledge graph.
 
 ![Paideia preview](docs/public/assets/paideia-readme-preview.svg)
 
@@ -11,98 +18,48 @@ together, and publish them for teachers and learners.
 | I want to... | Go here |
 | --- | --- |
 | Try the public site | [Paideia on GitHub Pages](https://anieyrudh.github.io/Paideia/) |
-| Submit a lesson or simulation | [Contribution package issue](.github/ISSUE_TEMPLATE/contribution-package.md) |
+| Submit a lesson or simulation idea | [Contribution package issue](.github/ISSUE_TEMPLATE/contribution-package.md) |
+| Copy the package template | [`contributions/_template`](contributions/_template) |
 | Build with ChatGPT, Claude, or Gemini | [AI simulation prompts](docs/public/ai-simulation-prompts.md) |
-| Copy the simple package template | [`contributions/_template`](contributions/_template) |
-| Learn the automated checks | [Automated contribution intake](docs/public/contribution-intake-workflow.md) |
-| Build a full curriculum slice | [Agent workflows](docs/agent-workflows.md) |
+| Understand the checks | [Automated contribution intake](docs/public/contribution-intake-workflow.md) |
 
-You do not need to be a software engineer to help. If you can spot a confusing
-topic, explain how a student gets stuck, check a source, sketch a better
-diagram, test a lesson, or create a small simulation, you can contribute.
+## What This Repository Is Now
 
-## What Exists Now
+Paideia is a folder-based collection.
 
-| Area | Current state |
-| --- | --- |
-| Public contribution packages | Lightweight format under `contributions/`, with `_incoming` for first drafts. |
-| Automated intake | GitHub Action checks bucket placement, manifest shape, required files, citations, license notes, and simulation visuals. |
-| Curriculum containers | 92 internal A-Level, SUTD, and shared containers are already in the repo. |
-| Simulation quality | Registered simulations are checked for visible models, formula/readout evidence, and accessibility smoke coverage. |
-| Hosting | GitHub Pages is the default path; simulations are client-side unless a backend is truly needed. |
-
-```mermaid
-flowchart LR
-  A["Contributor builds a lesson or simulation"] --> B["Paideia validates shape, sources, license, and accessibility"]
-  B --> C["Maintainers review"]
-  C --> D["GitHub Pages publishes the library"]
-  D --> E["Teachers and learners reuse it"]
-```
-
-## What A Lesson Can Include
-
-Each lesson focuses on one idea.
-
-For example, a lesson on motion might include:
-
-| Part | What the learner sees |
-| --- | --- |
-| Clear explanation | The idea in plain language, then the formal definition. |
-| Interactive model | Sliders, diagrams, motion, graphs, or decisions the learner can change. |
-| Reflection checkpoint | A short prediction or explanation saved beside the model, never blocking it. |
-| Worked method | The formula, substitution, units, and reasoning used. |
-| Common mistakes | The wrong turns students often take, shown directly. |
-| Connections | What the idea depends on and what it unlocks next. |
-
-## Example Contributions We Want
-
-| Topic | Strong submission looks like |
-| --- | --- |
-| Projectile motion | A browser simulation with launch speed/angle sliders, trajectory graph, range readout, and cited formulas. |
-| Bayes updating | A probability bar diagram that changes from prior to posterior with a short worked example. |
-| Graph search | A node-link diagram where learners step through BFS or Dijkstra and see frontier/visited nodes. |
-| Cell membrane | A simple channel diagram showing permeability changes, voltage readout, and source notes. |
-| Teacher activity | A clear classroom prompt, likely misconceptions, source list, and optional worksheet. |
-
-## What You Can Contribute
-
-| Contribution | Good for | Minimum files |
-| --- | --- | --- |
-| Lesson pack | A clear explanation, worked example, or teacher-ready activity | `manifest.yaml`, `lesson.md`, `sources.md`, `license.md` |
-| Standalone simulation | Sim made in ChatGPT, Claude, Gemini Canvas, p5.js, vanilla JS, or similar | `manifest.yaml`, `simulation.html`, `lesson.md`, `sources.md`, `license.md` |
-| Advanced simulation | React, TypeScript, Three.js, or reusable code | `manifest.yaml`, `simulation/`, `lesson.md`, `sources.md`, `license.md` |
-| External embed | Existing friendly-licensed interactive hosted elsewhere | `manifest.yaml`, `lesson.md`, `sources.md`, `license.md` |
-| Full Paideia container | Product-quality vertical slice with tests and generated shell routing | Current `a-level/`, `sutd/`, or `shared/` container shape |
-
-Start with [the contribution package guide](docs/public/contribution-packages.md).
-
-## The Simple Folder Shape
-
-Most people should start here:
+Each contribution is one folder:
 
 ```text
 contributions/
   physics/
-    projectile-motion-lab/
+    projectile-motion/
       manifest.yaml
       lesson.md
       simulation.html
-      preview.png
       sources.md
-      teacher-notes.md
       license.md
 ```
 
-This is intentionally simpler than the current internal container system. The
-goal is to let teachers, students, researchers, and AI-assisted builders
-contribute useful academic material without learning the whole monorepo.
+GitHub Actions checks the folder. GitHub Pages lists it.
 
-If you are unsure where something belongs, start in `_incoming`:
+That is the product.
+
+## What You Can Submit
+
+| Submission | Required files |
+| --- | --- |
+| Lesson only | `manifest.yaml`, `lesson.md`, `sources.md`, `license.md` |
+| Interactive simulation | `manifest.yaml`, `lesson.md`, `simulation.html`, `sources.md`, `license.md` |
+| External demo or embed | `manifest.yaml`, `lesson.md`, `sources.md`, `license.md` |
+| Teacher notes | Add `teacher-notes.md` to any package |
+| Preview image | Add `preview.png` to any package |
+
+If you are unsure where the package belongs, start here:
 
 ```text
 contributions/
   _incoming/
-    my-simulation/
+    my-topic/
       manifest.yaml
       lesson.md
       simulation.html
@@ -117,138 +74,59 @@ pnpm contribution:organize -- --write
 pnpm contribution:validate
 ```
 
-The organizer moves it to `contributions/<subject>/<slug>/` using
-`manifest.yaml`.
+## What The Checks Do
 
-## Automated Intake
+The automated checks are deliberately small:
 
-Paideia has a dedicated contribution intake workflow for pull requests that add
-or edit `contributions/`.
-
-| Step | What happens |
+| Check | What it verifies |
 | --- | --- |
-| Submit | Add a simple lesson or simulation package under `contributions/`. |
-| Organize | `pnpm contribution:organize -- --check` confirms it is in the right subject bucket. |
-| Validate | `pnpm contribution:validate` checks required files, manifest shape, citations, license notes, and basic simulation visuals/interactivity. |
-| Review | Maintainers review educational quality, accuracy, accessibility, and whether it should be draft, reviewed, or featured. |
-| Publish | Merged packages can be surfaced by the public GitHub Pages library. |
+| Folder shape | Required files exist. |
+| Manifest | Title, slug, subject, level, type, status, and license fields are present. |
+| Sources | `sources.md` has real citations. |
+| License | `license.md` is filled and obvious GPL/proprietary blockers are stopped. |
+| Simulation | If a package claims to be a simulation, `simulation.html` exists and has a visible interactive surface. |
+| Gallery | `pnpm build:pages` can render the static site. |
 
-Automation can catch missing files, placeholder text, wrong folders, missing
-citations, and obvious license blockers. It does not certify that the learning
-design or scientific model is correct; that remains human review.
+The checks do not certify that a lesson is correct. They only make the review
+process cleaner.
 
-Read the [automated intake workflow](docs/public/contribution-intake-workflow.md)
-for details.
+## Local Commands
 
-## Quality Bar
+```bash
+pnpm install
+pnpm contribution:organize -- --check
+pnpm contribution:validate
+pnpm build:pages
+pnpm test
+```
 
-Every accepted contribution should be:
-
-| Requirement | What it means |
-| --- | --- |
-| Interactive when it claims to be a simulation | Learners can manipulate something and see a visual change. |
-| Visual | Simulations should show graphs, diagrams, motion, plots, maps, canvases, or equivalent models. Text-only simulations are not enough. |
-| Sourced | Claims, equations, datasets, and adapted ideas cite sources in `sources.md`. |
-| License-friendly | Code is MIT-compatible unless isolated and documented. Content is CC-BY-4.0 compatible under the current repo license. |
-| Student-facing | Visible copy avoids raw package names, queue IDs, and code terminology. |
-| Formula-clear | Where formulas matter, show the formula, substitution, units, result, and legend. |
-| Accessible enough to review | Keyboard path, readable labels, and no obvious serious accessibility issues. |
-
-Quality levels are explicit:
-
-| Level | Meaning |
-| --- | --- |
-| Draft | Shape is valid and the idea can be reviewed. |
-| Reviewed | Runs, cites sources, and is usable by a learner or teacher. |
-| Featured | Strong pedagogy, polished interaction, good visuals, and clear teacher support. |
-
-## How To Start
-
-### I Have No Code Experience
-
-Open an issue with the concept, audience, and what students usually find
-confusing. You can also review a lesson, check sources, suggest diagrams, or
-write teacher notes.
-
-Use the [simulation idea issue template](.github/ISSUE_TEMPLATE/sim-idea.md).
-
-### I Made A Simulation With ChatGPT, Claude, Or Gemini
-
-Use the simple package format:
-
-1. Copy `contributions/_template/`.
-2. Put your simulation in `simulation.html`.
-3. Fill in `manifest.yaml`.
-4. Add sources and license notes.
-5. Open a pull request.
-
-Use [AI simulation prompts](docs/public/ai-simulation-prompts.md) to generate a
-package that is easier to review.
-
-### I Want To Use Codex Or Claude Code
-
-Use the advanced prompt in [AI simulation prompts](docs/public/ai-simulation-prompts.md).
-It tells coding agents how to create one contribution package without crawling
-the whole repo.
-
-### I Want To Build A Full Paideia Container
-
-Use [Agent workflows](docs/agent-workflows.md) and
-[Container specification](docs/container-spec.md). This is the heavier path for
-featured curriculum slices that need tests, generated routes, and shared
-kernels.
-
-## Hosting Direction
-
-The default deployment target is GitHub Pages:
-
-- static lesson pages;
-- client-side simulations;
-- searchable gallery;
-- no accounts required;
-- every change reviewed through pull requests.
-
-Railway or another backend only becomes necessary later if Paideia needs
-accounts, private drafts, upload forms, moderation queues, analytics, or
-server-side AI generation.
+`pnpm test` is intentionally small. It runs the contribution organization and
+validation checks.
 
 ## Repository Map
 
 | Path | Purpose |
 | --- | --- |
-| `contributions/` | Simple contributed lesson/simulation packages. |
-| `a-level/` | Current A-Level curriculum containers. |
-| `sutd/` | Current SUTD curriculum containers. |
-| `shared/` | Cross-curriculum containers. |
-| `core/` | Reusable kernels, schemas, charting, plotting, and simulation runtime pieces. |
-| `testing/sim-harness/` | Direct browser harness for all registered simulations. |
+| `contributions/` | Active lesson and simulation packages. |
+| `contributions/_template/` | Copy this to start a new package. |
+| `contributions/_incoming/` | Temporary landing zone for unsure contributors. |
 | `docs/public/` | Human-friendly contributor docs. |
-| `docs/quality/` | Quality standards, audits, and exemplar gallery. |
-| `docs/agents/` | Agent-specific runbooks for Codex and Claude Code. |
+| `scripts/build-pages.mjs` | Builds the static GitHub Pages gallery. |
+| `scripts/organize-contributions.mjs` | Moves packages into `contributions/<subject>/<slug>/`. |
+| `scripts/validate-contributions.mjs` | Validates package shape, sources, license notes, and basic simulation presence. |
+| `archive/legacy-curriculum-system/` | Previous complex Paideia monorepo experiment, kept for reference only. |
 
-## For Developers
+## What Was Archived
 
-```bash
-pnpm install
-pnpm test
-pnpm container:validate
-pnpm graph:check
-pnpm agent:validate
+The previous A-Level/SUTD curriculum containers, shared kernels, generated
+graphs, sim harness, and heavy CI workflows are now in:
+
+```text
+archive/legacy-curriculum-system/
 ```
 
-Common checks:
-
-| Task | Command or guide |
-| --- | --- |
-| Validate current containers | `pnpm container:validate` |
-| Check visual simulation contracts | `pnpm container:visual-quality` |
-| Check generated shell data | `pnpm graph:check` |
-| Run accessibility smoke tests | `pnpm test:a11y` |
-| Build the static Pages artifact | `pnpm build:pages` |
-| Organize contribution packages | `pnpm contribution:organize -- --check` or `--write` |
-| Validate contribution packages | `pnpm contribution:validate` |
-| Build a full container | [Agent workflows](docs/agent-workflows.md) |
-| Understand contribution packages | [Contribution package guide](docs/public/contribution-packages.md) |
+They are not the active project. They are preserved only so useful old examples
+can be recovered later.
 
 ## Safety And Licensing
 
@@ -260,7 +138,7 @@ These rules keep the library useful and legally safe:
 | Do not paste textbook chapters | Explain in your own words and cite instead. |
 | Do not include private student data | Use fictional, synthetic, or public data only. |
 | Do not copy proprietary or GPL simulation code | Keep the public site easy to reuse and deploy. |
-| Record AI assistance | AI can help draft or code, but the contribution still needs human review. |
+| Record AI assistance | AI can help draft or code, but the contribution still needs review. |
 
 Current licenses:
 
@@ -268,18 +146,8 @@ Current licenses:
 - Learning content: [CC-BY-4.0](LICENSE-content)
 - Third-party notices: [NOTICE](NOTICE)
 
-The future licensing direction may move to Apache-2.0 for code and CC-BY-SA-4.0
-for content, but the current license files remain authoritative until a
-dedicated migration lands.
-
-## Project Docs
+## Useful Docs
 
 - [Contribution package guide](docs/public/contribution-packages.md)
 - [Automated contribution intake](docs/public/contribution-intake-workflow.md)
 - [AI simulation prompts](docs/public/ai-simulation-prompts.md)
-- [Mission and governance](docs/README.md)
-- [Container specification](docs/container-spec.md)
-- [Visual simulation standard](docs/quality/visual-simulation-standard.md)
-- [Visual exemplar gallery](docs/quality/visual-exemplar-gallery.md)
-- [Agent workflows](docs/agent-workflows.md)
-- [Hosting and licensing plan](docs/product/hosting-and-licensing.md)

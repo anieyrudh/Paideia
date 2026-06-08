@@ -1,13 +1,6 @@
-# Branches devolve to teachers/course leads once they onboard.
-# core/ always requires Anieyrudh approval — it's the contract.
+* @anieyrudh
 
-*                       @anieyrudh
-/core/                  @anieyrudh
-/a-level/content/       @anieyrudh
-/a-level/apps/          @anieyrudh
-/a-level/packages/      @anieyrudh
-/sutd/curriculum/       @anieyrudh
-/sutd/apps/             @anieyrudh
-/sutd/packages/         @anieyrudh
-/.github/               @anieyrudh
-/docs/                  @anieyrudh
+/contributions/       @anieyrudh
+/docs/public/         @anieyrudh
+/scripts/             @anieyrudh
+/.github/             @anieyrudh
