@@ -1,14 +1,35 @@
 # Paideia
 
-Paideia is an open library for academic simulations and lesson materials.
+Paideia is an open library for academic simulations and lesson materials: a
+public place where people can share small interactive lessons, improve them
+together, and publish them for teachers and learners.
 
-The simple idea: if someone can design a useful simulation, diagram, lesson, or
-teacher note, Paideia should make it easy to publish, review, improve, and reuse.
+![Paideia preview](docs/public/assets/paideia-readme-preview.svg)
 
-You do not need to understand the whole codebase to contribute. You can submit a
-small lesson pack, a standalone HTML simulation, a React simulation, an external
-embed, source corrections, screenshots, or review notes. The repository keeps
-the work versioned; GitHub Pages publishes the public library.
+## Start Here
+
+| I want to... | Go here |
+| --- | --- |
+| Try the public site | [Paideia on GitHub Pages](https://anieyrudh.github.io/Paideia/) |
+| Submit a lesson or simulation | [Contribution package issue](.github/ISSUE_TEMPLATE/contribution-package.md) |
+| Build with ChatGPT, Claude, or Gemini | [AI simulation prompts](docs/public/ai-simulation-prompts.md) |
+| Copy the simple package template | [`contributions/_template`](contributions/_template) |
+| Learn the automated checks | [Automated contribution intake](docs/public/contribution-intake-workflow.md) |
+| Build a full curriculum slice | [Agent workflows](docs/agent-workflows.md) |
+
+You do not need to be a software engineer to help. If you can spot a confusing
+topic, explain how a student gets stuck, check a source, sketch a better
+diagram, test a lesson, or create a small simulation, you can contribute.
+
+## What Exists Now
+
+| Area | Current state |
+| --- | --- |
+| Public contribution packages | Lightweight format under `contributions/`, with `_incoming` for first drafts. |
+| Automated intake | GitHub Action checks bucket placement, manifest shape, required files, citations, license notes, and simulation visuals. |
+| Curriculum containers | 92 internal A-Level, SUTD, and shared containers are already in the repo. |
+| Simulation quality | Registered simulations are checked for visible models, formula/readout evidence, and accessibility smoke coverage. |
+| Hosting | GitHub Pages is the default path; simulations are client-side unless a backend is truly needed. |
 
 ```mermaid
 flowchart LR
@@ -17,6 +38,31 @@ flowchart LR
   C --> D["GitHub Pages publishes the library"]
   D --> E["Teachers and learners reuse it"]
 ```
+
+## What A Lesson Can Include
+
+Each lesson focuses on one idea.
+
+For example, a lesson on motion might include:
+
+| Part | What the learner sees |
+| --- | --- |
+| Clear explanation | The idea in plain language, then the formal definition. |
+| Interactive model | Sliders, diagrams, motion, graphs, or decisions the learner can change. |
+| Reflection checkpoint | A short prediction or explanation saved beside the model, never blocking it. |
+| Worked method | The formula, substitution, units, and reasoning used. |
+| Common mistakes | The wrong turns students often take, shown directly. |
+| Connections | What the idea depends on and what it unlocks next. |
+
+## Example Contributions We Want
+
+| Topic | Strong submission looks like |
+| --- | --- |
+| Projectile motion | A browser simulation with launch speed/angle sliders, trajectory graph, range readout, and cited formulas. |
+| Bayes updating | A probability bar diagram that changes from prior to posterior with a short worked example. |
+| Graph search | A node-link diagram where learners step through BFS or Dijkstra and see frontier/visited nodes. |
+| Cell membrane | A simple channel diagram showing permeability changes, voltage readout, and source notes. |
+| Teacher activity | A clear classroom prompt, likely misconceptions, source list, and optional worksheet. |
 
 ## What You Can Contribute
 
